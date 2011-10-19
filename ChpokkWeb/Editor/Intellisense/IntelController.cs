@@ -33,7 +33,7 @@ namespace ChpokkWeb.Editor.Intellisense {
 
 
 			// Remove information from lastCompilationUnit and add information from newCompilationUnit.
-			projectContent.UpdateCompilationUnit(null, compilationUnit, "yo.cs");
+			projectContent.UpdateCompilationUnit(null, compilationUnit, "fakefile.cs");
 			var parseInformation =  new ParseInformation(compilationUnit);
 			//_parseInformation = new ParseInformation(new DefaultCompilationUnit(projectContent));
 			var text = input.Text.Insert(input.Position, input.NewChar.ToString());
