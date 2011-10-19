@@ -14,24 +14,25 @@
 
 
 			$('#code').keypress(function (data) {
-				var text = data.target.value; // text before keypress
-				var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
-				$('#shadow').html(shadowText);
-				var newchar = String.fromCharCode(data.charCode);
-				var position = $(this).caret().start;
-				var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
-					$('#results').empty();
-					if (inteldata == null || inteldata.Items == null || inteldata.Items.length == 0) {
-						$('#results').hide();
-					}
-					else {
-						$.tmpl(listItemTemplate, inteldata.Items).appendTo('#results');
-						var offset = { top: $('#wrapper').offset().top + $('#wrapper').height(), left: $('#wrapper').offset().left };
-						$('#results').offset(offset);
-						$('#results').show();
-					}
+				if(data.charCode != null) {
+					var text = data.target.value; // text before keypress
+					var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
+					$('#shadow').html(shadowText);
+					var newchar = String.fromCharCode(data.charCode);
+					var position = $(this).caret().start;
+					$('#results').hide();
+					var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
+						if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
+							$('#results').empty();
+							$.tmpl(listItemTemplate, inteldata.Items).appendTo('#results');
+							var offset = { top: $('#wrapper').offset().top + $('#wrapper').height(), left: $('#wrapper').offset().left };
+							$('#results').css(offset);
+							$('#results').show();
+						}
 
-				});
+					});
+				
+				}
 
 			});
 
@@ -76,8 +77,8 @@ class A
 {
  void B()
  {
-  string x;
-  x
+  string x; int y;
+  
  }
 }
 
