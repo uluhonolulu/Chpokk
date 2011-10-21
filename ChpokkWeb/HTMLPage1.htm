@@ -118,7 +118,12 @@
 					}
 			}
 			);
-		});
+			});
+
+		function updateHtml() {
+			var text = $('#code')[0].value;
+			$('#html').load('/editor/colorizer/tohtml', { code: text });
+		} 
 
 		var entityTypes = [];
 		entityTypes[0] = 'Class';
@@ -165,6 +170,9 @@ class A
 	<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
 		style="z-index: 1; display: none;">
 	</ul>
+
+	<button onclick="updateHtml()">updateHtml</button>
+	<div id="html"></div>
 
 </body>
 </html>

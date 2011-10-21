@@ -16,7 +16,7 @@ namespace ChpokkWeb
             // Policies
             Routes
                 .IgnoreControllerNamesEntirely()
-                .IgnoreMethodSuffix("Html")
+                //.IgnoreMethodSuffix("Html")
                 .RootAtAssemblyNamespace();
 
 			//Output.ToJson.WhenCallMatches(action => action.HasAttribute<JsonEndpointAttribute>());
