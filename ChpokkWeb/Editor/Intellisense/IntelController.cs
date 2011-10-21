@@ -16,10 +16,7 @@ namespace ChpokkWeb.Editor.Intellisense {
 
 			TextReader textReader = new StringReader(input.Text);
 			ICompilationUnit compilationUnit;
-			var pcRegistry = new ProjectContentRegistry();
-
-			var projectContent = new DefaultProjectContent() { Language = LanguageProperties.CSharp };
-			projectContent.AddReferencedContent(pcRegistry.Mscorlib);
+			var projectContent = DefaultProjectContent;
 
 			using (IParser p = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
 				// we only need to parse types and method definitions, no method bodies
@@ -52,6 +49,20 @@ namespace ChpokkWeb.Editor.Intellisense {
 			var items = from entry in completionData select new IntelOutputModel.IntelModelItem {Text = entry.Name};
 			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().ToArray()};
 			return model;
+		}
+
+		private static DefaultProjectContent _projectContent;
+		private static DefaultProjectContent DefaultProjectContent {
+			get {
+				if (_projectContent == null) {
+					var pcRegistry = new ProjectContentRegistry();
+
+					_projectContent = new DefaultProjectContent() {Language = LanguageProperties.CSharp};
+					_projectContent.AddReferencedContent(pcRegistry.Mscorlib);
+					
+				}
+				return _projectContent;
+			}
 		}
 
 		private ExpressionResult FindExpression(string text, int offset, ParseInformation parseInformation) {

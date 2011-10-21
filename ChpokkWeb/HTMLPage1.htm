@@ -9,38 +9,94 @@
 	<script type="text/javascript" language="javascript">
 		$(function () {
 			var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all'>${Text}</a></li>");
-			$('#code').keyup(function (data) {
-			});
-
+			var intelItems = [];
+			var filteredItems = [];
+			var selectedIntelItem;
+			var selectedIntelIndex = -1;
+			var currentFilter = "";
 
 			$('#code').keypress(function (data) {
-				if(data.charCode != null) {
+				if (data.charCode != null && data.charCode != 0) {
 					var text = data.target.value; // text before keypress
-					var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
-					$('#shadow').html(shadowText);
 					var newchar = String.fromCharCode(data.charCode);
-					var position = $(this).caret().start;
-					$('#results').hide();
-					var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
-						if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
-							$('#results').empty();
-							$.tmpl(listItemTemplate, inteldata.Items).appendTo('#results');
-							var offset = { top: $('#wrapper').offset().top + $('#wrapper').height(), left: $('#wrapper').offset().left };
-							$('#results').css(offset);
-							$('#results').show();
-						}
+					if (newchar == "(") return; // sharp bug
+					if ($('#results').is(':visible')) {
+						currentFilter += newchar;
+						filteredItems = $.grep(intelItems, function (item) {
+							return item.Text.beginsWith(currentFilter);
+						});
+						$('#results').empty();
+						$.tmpl(listItemTemplate, filteredItems).appendTo('#results');
+						selectedIntelIndex = 0;
+						selectedIntelItem = filteredItems[selectedIntelIndex];
+						$('#results li a').eq(selectedIntelIndex).addClass("ui-state-hover");
+					}
+					else {
+						var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
+						$('#shadow').html(shadowText);
+						var position = $(this).caret().start;
+						$('#results').hide();
+						var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
+							if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
+								intelItems = inteldata.Items;
+								filteredItems = inteldata.Items;
+								selectedIntelItem = null;
+								selectedIntelIndex = -1;
+								$('#results').empty();
+								$.tmpl(listItemTemplate, inteldata.Items).appendTo('#results');
+								var offset = { top: $('#wrapper').offset().top + $('#wrapper').height(), left: $('#wrapper').offset().left };
+								$('#results').css(offset);
+								$('#results').show();
+							}
 
-					});
-				
+						});
+					}
+
+
 				}
 
+				if (data.keyCode == 40) {
+					if (selectedIntelIndex != -1)
+						$('#results li a').eq(selectedIntelIndex).removeClass("ui-state-hover");
+					selectedIntelIndex += 1;
+					selectedIntelItem = filteredItems[selectedIntelIndex];
+					$('#results li a').eq(selectedIntelIndex).addClass("ui-state-hover");
+					data.preventDefault();
+				}
+				if (data.keyCode == 38 && selectedIntelIndex != -1) {
+					$('#results li a').eq(selectedIntelIndex).removeClass("ui-state-hover");
+					selectedIntelIndex -= 1;
+					if (selectedIntelIndex != -1) {
+						selectedIntelItem = filteredItems[selectedIntelIndex];
+						$('#results li a').eq(selectedIntelIndex).addClass("ui-state-hover");
+					}
+					else {
+						selectedIntelItem = null;
+					}
+					data.preventDefault();
+				}
+				if (data.keyCode == 9 && selectedIntelItem != null) {
+					var text = selectedIntelItem.Text;
+					var currentpos = $('#code').caret().end;
+					var startpos = currentpos - currentFilter.length;
+					$('#code').caret(startpos, currentpos);
+					text = $('#code').caret().replace(text);
+					$('#code').val(text);
+					$('#results').hide();
+					selectedIntelItem = null;
+					selectedIntelIndex = -1;
+					currentFilter = "";
+					data.preventDefault();
+				}
 			});
 
 
 			$('#results li a').live({
 				mouseenter:
-					function () {
+					function (data) {
 						$(this).addClass("ui-state-hover");
+						selectedIntelIndex = $(data.target).index('#results li a');
+						selectedIntelItem = intelItems[selectedIntelIndex];
 					},
 				mouseleave:
 					function () {
@@ -49,28 +105,39 @@
 				click:
 					function () {
 						var text = $(this).text();
+						var currentpos = $('#code').caret().end;
+						var startpos = currentpos - currentFilter.length;
+						$('#code').caret(startpos, currentpos);
 						text = $('#code').caret().replace(text);
-						//debugger;
 						$('#code').val(text);
 						$('#results').hide();
+						selectedIntelItem = null;
+						selectedIntelIndex = -1;
+						currentFilter = "";
 					}
 			}
 			);
 		});
+
+
+		String.prototype.beginsWith = function(t, i) {
+			if (i == false) {
+				return (t == this.substring(0, t.length));
+			}
+			else {
+				return (t.toLowerCase() == this.substring(0, t.length).toLowerCase());
+			}
+		}; 		
 	</script>
-
 	<link href="Styles/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-
 	<style>
-		#results a 
+		#results a
 		{
-			font-size:14px;
+			font-size: 14px;
 			line-height: 1.2;
 		}
 	</style>
 </head>
-
-
 <body>
 	<textarea id="code" rows="15" cols="20" style="font-family: sans-serif;">using System;
 class A
@@ -84,8 +151,11 @@ class A
 
 </textarea>
 	<input id="dropdown" />
-	<div id="shadow" style="white-space: pre; position:absolute; font-family: Sans-Serif; top: 12px; left: 13px; z-index: -1;"></div>
-	<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" 
-		style="z-index: 1; display: none;"></ul>
+	<div id="shadow" style="white-space: pre; position: absolute; font-family: Sans-Serif;
+		top: 12px; left: 13px; z-index: -1;">
+	</div>
+	<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
+		style="z-index: 1; display: none;">
+	</ul>
 </body>
 </html>
