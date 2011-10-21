@@ -8,7 +8,7 @@
 	<script src="Scripts/jquery.tmpl.js" type="text/javascript"></script>
 	<script type="text/javascript" language="javascript">
 		$(function () {
-			var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all'>${Text}</a></li>");
+			var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all'><img src=\"Images/Intellisense/Icons.16x16.${EntityName}.png\" /> ${Text}</a></li>");
 			var intelItems = [];
 			var filteredItems = [];
 			var selectedIntelItem;
@@ -38,6 +38,7 @@
 						$('#results').hide();
 						var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
 							if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
+								$.each(inteldata.Items, function () { this.EntityName = entityTypes[this.EntityType]; });
 								intelItems = inteldata.Items;
 								filteredItems = inteldata.Items;
 								selectedIntelItem = null;
@@ -119,6 +120,13 @@
 			);
 		});
 
+		var entityTypes = [];
+		entityTypes[0] = 'Class';
+		entityTypes[1] = 'Field';
+		entityTypes[2] = 'Property';
+		entityTypes[3] = 'Method';
+		entityTypes[4] = 'Event';
+		
 
 		String.prototype.beginsWith = function(t, i) {
 			if (i == false) {
@@ -145,17 +153,18 @@ class A
  void B()
  {
   string x; int y;
-  
+  ""
  }
 }
 
 </textarea>
-	<input id="dropdown" />
+
 	<div id="shadow" style="white-space: pre; position: absolute; font-family: Sans-Serif;
 		top: 12px; left: 13px; z-index: -1;">
 	</div>
 	<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
 		style="z-index: 1; display: none;">
 	</ul>
+
 </body>
 </html>

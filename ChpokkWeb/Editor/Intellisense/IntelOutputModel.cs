@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ICSharpCode.SharpDevelop.Dom;
 
 namespace ChpokkWeb.Editor.Intellisense {
 	public class IntelOutputModel {
@@ -9,6 +10,9 @@ namespace ChpokkWeb.Editor.Intellisense {
 
 		public class IntelModelItem {
 			public string Text { get; set; }
+
+			public EntityType EntityType { get; set; }
+
 			public override bool Equals(object obj) {
 				var other = obj as IntelModelItem;
 				if (other != null)
