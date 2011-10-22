@@ -77,18 +77,22 @@
 					data.preventDefault();
 				}
 				if (data.keyCode == 9 && selectedIntelItem != null) {
-					var text = selectedIntelItem.Text;
+					data.preventDefault();
+					var textToInsert = selectedIntelItem.Text;
 					var currentpos = $('#code').caret().end;
 					var startpos = currentpos - currentFilter.length;
 					$('#code').caret(startpos, currentpos);
-					text = $('#code').caret().replace(text);
-					$('#code').val(text);
+					var code = $('#code').caret().replace(textToInsert);
+					$('#code').val(code);
+					startpos += textToInsert.length;
+					$('#code').caret(startpos, startpos);
 					$('#results').hide();
 					selectedIntelItem = null;
 					selectedIntelIndex = -1;
 					currentFilter = "";
-					data.preventDefault();
 				}
+
+				updateHtml();
 			});
 
 
@@ -105,20 +109,27 @@
 					},
 				click:
 					function () {
-						var text = $(this).text();
+						var textToInsert = $(this).text().trim();
 						var currentpos = $('#code').caret().end;
 						var startpos = currentpos - currentFilter.length;
 						$('#code').caret(startpos, currentpos);
-						text = $('#code').caret().replace(text);
-						$('#code').val(text);
+						var code = $('#code').caret().replace(textToInsert);
+						$('#code').val(code);
+						startpos += textToInsert.length;
+						$('#code').caret(startpos, startpos);
 						$('#results').hide();
 						selectedIntelItem = null;
 						selectedIntelIndex = -1;
 						currentFilter = "";
+
+						updateHtml();
 					}
 			}
 			);
-			});
+
+			updateHtml();
+			$('#code').caret(60, 60);
+		});
 
 		function updateHtml() {
 			var text = $('#code')[0].value;
@@ -131,7 +142,10 @@
 		entityTypes[2] = 'Property';
 		entityTypes[3] = 'Method';
 		entityTypes[4] = 'Event';
-		
+
+		function log(msg) {
+			$('#log').html($('#log').html() + msg + "<br/>\n");
+		}
 
 		String.prototype.beginsWith = function(t, i) {
 			if (i == false) {
@@ -140,7 +154,14 @@
 			else {
 				return (t.toLowerCase() == this.substring(0, t.length).toLowerCase());
 			}
-		}; 		
+		};
+
+		if (typeof String.prototype.trim !== 'function') {
+			String.prototype.trim = function() {
+				return this.replace( /^\s+|\s+$/g , '');
+			};
+		}
+		
 	</script>
 	<link href="Styles/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<style>
@@ -152,7 +173,7 @@
 	</style>
 </head>
 <body>
-	<textarea id="code" rows="15" cols="20" style="font-family: sans-serif;">using System;
+	<textarea id="code" rows="15" cols="20" style="font-family: Consolas,Courier,Monospace; font-size:small; color:#000000;">using System;
 class A
 {
  void B()
@@ -171,8 +192,10 @@ class A
 		style="z-index: 1; display: none;">
 	</ul>
 
-	<button onclick="updateHtml()">updateHtml</button>
-	<div id="html"></div>
+	<button onclick="updateHtml();" style="display: none;">updateHtml</button>
+	<div id="html" style="position: absolute; font-family: Sans-Serif;
+		top: 12px; left: 12px; "></div>
 
+	<div id="log"></div>
 </body>
 </html>
