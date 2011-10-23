@@ -1,0 +1,5 @@
+﻿
+$(function() { $.addAjaxItemDeleteHandler({
+url: ${this.QuotedUrlFor<DeleteInputModel>()}
+     });
+}); 

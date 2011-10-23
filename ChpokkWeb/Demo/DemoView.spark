@@ -1,0 +1,3 @@
+﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+hey hey
+${Urls.UrlFor(new ChpokkWeb.Editor.Intellisense.IntelInputModel())}
