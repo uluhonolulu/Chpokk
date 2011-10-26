@@ -26,8 +26,11 @@ namespace ChpokkWeb
             // Policies
             Routes
                 .IgnoreControllerNamesEntirely()
+				//.IgnoreControllerNamespaceEntirely()
                 //.IgnoreMethodSuffix("Html")
-                .RootAtAssemblyNamespace();
+                .RootAtAssemblyNamespace()
+				.HomeIs<DummyModel>()
+				;
 
 			//Output.ToJson.WhenCallMatches(action => action.HasAttribute<JsonEndpointAttribute>());
 
@@ -41,14 +44,13 @@ namespace ChpokkWeb
 			//                    registry = reg.DefaultServiceFor<ITemplateRegistry>().Value as ITemplateRegistry;
 			//                });
 			Views
-				//.TryToAttachWithDefaultConventions()
+				.TryToAttachWithDefaultConventions()
 				.RegisterActionLessViews(
 				token => {
 					return token.ViewModelType == typeof(DummyModel);
-				}, chain =>
-				   	{
-				   		chain.Route = new RouteDefinition("demostuff");
-				   	})
+				}, chain => {
+						chain.Route = new RouteDefinition("");
+					})
 					//.Facility(new ModellessSparkViewFacility(registry))
 				;
         }

@@ -1,3 +1,50 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+<content name="title">Chpokk demo</content>
+
+
+<div class="hero-unit">
+	<h1>Hello, chpokk!</h1>
+	<p>Chpokk is an online .Net code editor with full Intellisense, refactoring, source control integration, and test running capabilities.</p>
+
+	<div style="display:table;width:100%;">
+		<div style="display:table-row;">
+			<p style="display:table-cell;">
+				<a href="#" class="btn primary large">Request an invite »</a>
+			</p>
+			<p style="display:table-cell;">
+				<a href="#" class="btn primary large">Add feature suggestion »</a>
+			</p>
+			<p style="display:table-cell;">
+				<a href="#" class="btn primary large">View demo »</a>
+			</p>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<h2>Use it when you can't, or don't want to, fire up your IDE</h2>
+		<p>Need a quick fix, or a demo of your code? You can use chpokk even in your smartphone. Use Intellisense, refactoring, and all your favorite shortcuts, and even the color scheme.</p>
+		<p>When you're done, run your tests to verify that you haven't broken anything. Or have your tests run in the background after each compile.</p>
+		<p>
+			<a href="#" class="btn">Learn more »</a>
+		</p>
+	</div>
+
+	<div class="span5">
+		<h2>Source contol integration</h2>
+		<p>Keep your code in GitHub, BitBucket, or another repository, access from anywhere.</p>
+		<p>
+			<a href="#" class="btn">Learn more »</a>
+		</p>
+	</div>
+	<div class="span5">
+		<h2>Blog integration</h2>
+		<p>Use our code in your blog and get Intellisense and code coloring.</p>
+		<p>
+			<a href="#" class="btn">Learn more »</a>
+		</p>
+	</div>
+</div>
+
 hey hey
 ${Urls.UrlFor(new ChpokkWeb.Editor.Intellisense.IntelInputModel())}

@@ -1,21 +1,25 @@
 ﻿<html>
   <head>
     <title><use content="title">Default Title</use></title>
+	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
+	<style>
+	body {padding-top: 60px;}
+	</style>
     <use content="head" />
   </head>
   <body>
-    <div id="header">
-      <use content="header">
-        <div>no header by default</div>
-      </use>
-    </div>
-    <div id="main">
+  	<div class="topbar">
+		<div class="fill">
+			<div class="container">
+			<span class="brand">Chpokk</span>
+			  <use content="header">
+			  </use>			
+			</div>
+		</div>
+	</div>
+  <div class="container">
+
       <use content="view"/>
-    </div>
-    <div id="footer">
-      <use content="footer">
-        <div>no footer by default</div>
-      </use>
-    </div>
+</div>
   </body>
 </html>
