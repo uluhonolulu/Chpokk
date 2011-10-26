@@ -26,32 +26,18 @@ namespace ChpokkWeb
             // Policies
             Routes
                 .IgnoreControllerNamesEntirely()
-				//.IgnoreControllerNamespaceEntirely()
-                //.IgnoreMethodSuffix("Html")
                 .RootAtAssemblyNamespace()
 				.HomeIs<DummyModel>()
 				;
 
-			//Output.ToJson.WhenCallMatches(action => action.HasAttribute<JsonEndpointAttribute>());
+			this.UseSpark();
 
-			((FubuRegistry)this).UseSpark();
-
-            // Match views to action methods by matching
-            // on model type, view name, and namespace
-			//ITemplateRegistry registry = null;
-			//this.Services(reg =>
-			//                {
-			//                    registry = reg.DefaultServiceFor<ITemplateRegistry>().Value as ITemplateRegistry;
-			//                });
 			Views
 				.TryToAttachWithDefaultConventions()
 				.RegisterActionLessViews(
-				token => {
-					return token.ViewModelType == typeof(DummyModel);
-				}, chain => {
+				token => token.ViewModelType == typeof(DummyModel), chain => {
 						chain.Route = new RouteDefinition("");
 					})
-					//.Facility(new ModellessSparkViewFacility(registry))
 				;
         }
     }
