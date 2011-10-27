@@ -237,12 +237,12 @@
     <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Demo\DemoView.spark">
+    <Content Include="Demo\DemoView.spark">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Shared\Application.spark" />
-    <None Include="Shared\_WhereAreWe.spark" />
-    <None Include="Stuff\Stuff.spark" />
+    </Content>
+    <Content Include="Shared\Application.spark" />
+    <Content Include="Shared\_WhereAreWe.spark" />
+    <Content Include="Stuff\Stuff.spark" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
