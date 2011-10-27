@@ -8,5 +8,9 @@ namespace ChpokkWeb.Stuff {
 		public StuffModel Index(InputStuffModel input) {
 			return new StuffModel();
 		}
+
+		public string Version() {
+			return Environment.OSVersion.ToString();
+		}
 	}
 }
