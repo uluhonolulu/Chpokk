@@ -98,35 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Bottles.dll" />
-    <Content Include="bin\Bottles.pdb" />
-    <Content Include="bin\ChpokkWeb.dll" />
-    <Content Include="bin\ChpokkWeb.pdb" />
-    <Content Include="bin\FubuCore.dll" />
-    <Content Include="bin\FubuCore.pdb" />
-    <Content Include="bin\FubuLocalization.dll" />
-    <Content Include="bin\FubuLocalization.pdb" />
-    <Content Include="bin\FubuMVC.Core.dll" />
-    <Content Include="bin\FubuMVC.Core.pdb" />
-    <Content Include="bin\FubuMVC.Spark.dll" />
-    <Content Include="bin\FubuMVC.Spark.pdb" />
-    <Content Include="bin\FubuMVC.StructureMap.dll" />
-    <Content Include="bin\FubuMVC.StructureMap.pdb" />
-    <Content Include="bin\HtmlTags.dll" />
-    <Content Include="bin\HtmlTags.xml" />
-    <Content Include="bin\log4net.dll" />
-    <Content Include="bin\log4net.xml" />
-    <Content Include="bin\Microsoft.Practices.ServiceLocation.dll" />
-    <Content Include="bin\Microsoft.Practices.ServiceLocation.pdb" />
-    <Content Include="bin\Microsoft.Practices.ServiceLocation.xml" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Mono.Cecil.dll" />
-    <Content Include="bin\Mono.Cecil.pdb" />
-    <Content Include="bin\Spark.dll" />
-    <Content Include="bin\StructureMap.dll" />
-    <Content Include="bin\StructureMap.pdb" />
-    <Content Include="bin\StructureMap.xml" />
-    <Content Include="bin\WebActivator.dll" />
     <Content Include="Demo\NB.txt" />
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
@@ -247,11 +218,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="ContextMenu\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\fubu-packages\fubumvc-diagnostics.zip" />
     <None Include="Demo\DemoView.spark">
       <SubType>Designer</SubType>
     </None>
