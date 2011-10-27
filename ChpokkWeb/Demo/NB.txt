@@ -3,3 +3,5 @@ $(function() { $.addAjaxItemDeleteHandler({
 url: ${this.QuotedUrlFor<DeleteInputModel>()}
      });
 }); 
+
+${Urls.UrlFor(new ChpokkWeb.Editor.Intellisense.IntelInputModel())}
