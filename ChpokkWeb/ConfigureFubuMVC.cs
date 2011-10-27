@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using ChpokkWeb.Shared;
+using ChpokkWeb.Stuff;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
@@ -24,17 +25,18 @@ namespace ChpokkWeb {
 			Routes
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
-				.HomeIs<DummyModel>()
+				//.HomeIs<DummyModel>()
+				.HomeIs<InputStuffModel>()
 				;
 
 			this.UseSpark();
 
 			Views
 				.TryToAttachWithDefaultConventions()
-				.RegisterActionLessViews(
-				token => token.ViewModelType == typeof(DummyModel), chain => {
-					chain.Route = new RouteDefinition("");
-				})
+				//.RegisterActionLessViews(
+				//token => token.ViewModelType == typeof(DummyModel), chain => {
+				//    chain.Route = new RouteDefinition("demo");
+				//})
 				;
 		}
 	}
