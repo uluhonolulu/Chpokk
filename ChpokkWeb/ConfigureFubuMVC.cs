@@ -9,6 +9,7 @@ using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.View;
 using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
+using FubuMVC.WebForms;
 using StructureMap;
 
 namespace ChpokkWeb {
@@ -30,6 +31,7 @@ namespace ChpokkWeb {
 				;
 
 			this.UseSpark();
+			this.Import<WebFormsEngine>();
 
 			Views
 				.TryToAttachWithDefaultConventions()
@@ -41,19 +43,5 @@ namespace ChpokkWeb {
 		}
 	}
 
-	public class ModellessSparkViewFacility : IViewFacility {
-		private readonly ITemplateRegistry _templateRegistry;
-		public ModellessSparkViewFacility(ITemplateRegistry templateRegistry) {
-			_templateRegistry = templateRegistry;
-		}
 
-		public IEnumerable<IViewToken> FindViews(TypePool types, BehaviorGraph graph) {
-			var descriptors = from template in _templateRegistry.AllTemplates()
-							  where template.Descriptor is ViewDescriptor
-							  select template.Descriptor as ViewDescriptor;
-			var tokens = from descriptor in descriptors where !descriptor.HasViewModel() select new SparkViewToken(descriptor);
-			return tokens.Cast<IViewToken>();
-
-		}
-	}
 }

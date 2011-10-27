@@ -12,5 +12,9 @@ namespace ChpokkWeb.Stuff {
 		public string Version() {
 			return Environment.OSVersion.ToString();
 		}
+
+		public OtherModel WebForms() {
+			return new OtherModel();
+		}
 	}
 }
