@@ -209,6 +209,7 @@
     <Compile Include="Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\DummyModel.cs" />
+    <Compile Include="Stuff\StuffController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
