@@ -114,13 +114,6 @@
     <Content Include="bin\FubuMVC.StructureMap.pdb" />
     <Content Include="bin\HtmlTags.dll" />
     <Content Include="bin\HtmlTags.xml" />
-    <Content Include="bin\ICSharpCode.AvalonEdit.dll" />
-    <Content Include="bin\ICSharpCode.AvalonEdit.pdb" />
-    <Content Include="bin\ICSharpCode.AvalonEdit.xml" />
-    <Content Include="bin\ICSharpCode.NRefactory.dll" />
-    <Content Include="bin\ICSharpCode.NRefactory.pdb" />
-    <Content Include="bin\ICSharpCode.SharpDevelop.Dom.dll" />
-    <Content Include="bin\ICSharpCode.SharpDevelop.Dom.pdb" />
     <Content Include="bin\log4net.dll" />
     <Content Include="bin\log4net.xml" />
     <Content Include="bin\Microsoft.Practices.ServiceLocation.dll" />
