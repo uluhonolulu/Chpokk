@@ -27,18 +27,18 @@ namespace ChpokkWeb {
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
 				//.HomeIs<DummyModel>()
-				.HomeIs<InputStuffModel>()
+				//.HomeIs<InputStuffModel>()
 				;
 
 			this.UseSpark();
-			this.Import<WebFormsEngine>();
+			//this.Import<WebFormsEngine>();
 
 			Views
 				.TryToAttachWithDefaultConventions()
-				//.RegisterActionLessViews(
-				//token => token.ViewModelType == typeof(DummyModel), chain => {
-				//    chain.Route = new RouteDefinition("demo");
-				//})
+				.RegisterActionLessViews(
+				token => token.ViewModelType == typeof(DummyModel), chain => {
+					chain.Route = new RouteDefinition("");
+				})
 				;
 		}
 	}
