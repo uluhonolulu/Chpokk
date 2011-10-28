@@ -1,6 +1,12 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
 <content name="title">Chpokk demo</content>
-
+<content name="head">
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			$('.bootstrap-popover').bootstrapPopover();
+		});
+	</script>
+</content>
 
 <div class="hero-unit">
 	<h1>Hello, chpokk!</h1>
@@ -24,32 +30,33 @@
 	<div class="span6">
 		<h2>Edit your code</h2>
 		<p>Use it when you can't, or don't want to, fire up your IDE. Use a tablet, a smartphone, or an Internet Cafe computer.</p>
-		<div class="hide">
-			<p>Need a quick fix, or a demo of your code? You can use chpokk even in your smartphone. Use Intellisense, refactoring, and all your favorite shortcuts, and even the color scheme.</p>
-			<p>Keep your code in GitHub, BitBucket, or another repository, access from anywhere.</p>
+		<div class="hide" id="edit_info">
+			<p>Need a quick fix, or a demo of your code? You can use chpokk even in your smartphone. Use Intellisense, refactoring, and all your favorite shortcuts.</p>
+			<p>Keep your code in GitHub, BitBucket, or another repository, access it from anywhere.</p>
 			<p>Use it in your blog and get Intellisense and code coloring.</p>
 		</div>
 		<p>
-			<a href="#" class="btn">Learn more »</a>
+			<a href="#edit_info" class="btn bootstrap-popover" title="Edit your code">Learn more »</a>
 		</p>
 	</div>
 
 	<div class="span5">
 		<h2>Run the tests</h2>
 		<p>When you're done, run your tests to verify that you haven't broken anything. </p>
-		<p class="hide">Or have your tests run in the background after each compile.</p>
+		<div class="hide" id="run_info">Or have your tests run in the background after each compile.</div>
 		<p>
-			<a href="#" class="btn">Learn more »</a>
+			<a href="#run_info" class="btn bootstrap-popover" title="Run the tests">Learn more »</a>
 		</p>
 	</div>
 	<div class="span5">
-		<h2>Deploy</h2>
+		<h2>Commit and deploy</h2>
 		<p>Deploy automatically or manually using your favorite deployment scenario</p>
+		<div class="hide" id="deploy_info">
+			<p>Commit your changes manually or automatically, on each successfull test pass.</p>
+			<p>Deploy using your favorite deployment mechanism.</p>
+		</div>
 		<p>
-			<a href="#" class="btn">Learn more »</a>
+			<a href="#deploy_info" class="btn bootstrap-popover" title="Commit and deploy">Learn more »</a>
 		</p>
 	</div>
 </div>
-
-
-
