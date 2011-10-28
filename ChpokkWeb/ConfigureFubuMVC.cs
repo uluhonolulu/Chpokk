@@ -26,12 +26,9 @@ namespace ChpokkWeb {
 			Routes
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
-				//.HomeIs<DummyModel>()
-				//.HomeIs<InputStuffModel>()
 				;
 
 			this.UseSpark();
-			//this.Import<WebFormsEngine>();
 
 			Views
 				.TryToAttachWithDefaultConventions()
