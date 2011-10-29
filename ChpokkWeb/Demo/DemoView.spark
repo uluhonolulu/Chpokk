@@ -18,7 +18,7 @@
 						$("form", $(this)).submit();
 						$(this).dialog("close");
 					}
-				}
+				} 
 			}; 
 			$("#dialogWrapper, .dialog").each(function () {
 				var options = $.extend({}, dialogOptions);
