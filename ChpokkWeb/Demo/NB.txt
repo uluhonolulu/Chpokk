@@ -4,4 +4,4 @@ url: ${this.QuotedUrlFor<DeleteInputModel>()}
      });
 }); 
 
-${Urls.UrlFor(new ChpokkWeb.Editor.Intellisense.IntelInputModel())}
+${Urls.UrlFor(new ChpokkWeb.Editor.Intellisense.IntelInputModel())} 
