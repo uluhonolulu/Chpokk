@@ -19,7 +19,7 @@
 						$(this).dialog("close");
 					}
 				}
-			}; 
+			};
 			$("#dialogWrapper, .dialog").each(function () {
 				var options = $.extend({}, dialogOptions);
 				if (!$(this).hasClass("nobuttons")) options = $.extend(options, buttons);
