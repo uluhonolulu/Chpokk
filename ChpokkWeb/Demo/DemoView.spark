@@ -1,7 +1,6 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
 <content name="title">Chpokk demo</content>
 <content name="head">
-<link rel="stylesheet" type="text/css" href="../Styles/themes/base/jquery-ui.css" />
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
 			$('.bootstrap-popover').bootstrapPopover();
