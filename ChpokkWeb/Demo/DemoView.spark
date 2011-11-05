@@ -1,29 +1,10 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
 <content name="title">Chpokk demo</content>
 <content name="head">
+	<script src="/Scripts/jquery.bootstrappopover.js" type="text/javascript"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
 			$('.bootstrap-popover').bootstrapPopover();
-			
-			var dialogOptions = {
-				autoOpen: false,
-				modal: true,
-				width: "auto"
-			};
-			var buttons = {
-				buttons: {
-					"Отмена": function () { $(this).dialog("close"); },
-					Ok: function () {
-						$("form", $(this)).submit();
-						$(this).dialog("close");
-					}
-				} 
-			}; 
-			$("#dialogWrapper, .dialog").each(function () {
-				var options = $.extend({}, dialogOptions);
-				if (!$(this).hasClass("nobuttons")) options = $.extend(options, buttons);
-				$(this).dialog(options);
-			});
 		});
 	</script>
 </content>
