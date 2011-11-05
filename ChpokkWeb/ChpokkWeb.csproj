@@ -185,6 +185,7 @@
     <Content Include="Images\Intellisense\Icons.16x16.ProtectedStruct.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Reference.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
+    <Content Include="InviteForm.htm" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
