@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using ChpokkWeb.App_Start;
+using StructureMap;
 
 namespace ChpokkWeb {
 	public class Global : System.Web.HttpApplication {
 
 		protected void Application_Start(object sender, EventArgs e) {
 			AppStartFubuMVC.Start();
+			ObjectFactory.Configure(
+				expr => { expr.For<SmtpClient>().Use(() => new SmtpClient()); expr.SelectConstructor(() => new SmtpClient());}
+				);
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {

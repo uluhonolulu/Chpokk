@@ -20,7 +20,8 @@
 				<invite/>
 			</p>
 			<p style="display:table-cell;">
-				<a href="#" class="btn primary large">Suggest a feature »</a>
+				<a href="#" class="btn primary large" onclick="$('#suggestDialog').dialog('open');">Suggest a feature »</a>
+				<suggest />
 			</p>
 			<p style="display:table-cell;">
 				<a href="#" class="btn primary large">View demo »</a>

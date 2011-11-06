@@ -1,0 +1,30 @@
+﻿<div id="suggestDialog">
+<form action="/demo/send">
+</form>
+
+</div>
+
+<content name="head">
+	<script type="text/javascript" charset="utf-8">
+		$(function () {
+			var dialogOptions = {
+				autoOpen: false,
+				modal: true,
+				width: "auto",
+				title: "Suggest a feature",
+				buttons: {
+					Ok: function () {
+						$("form", $(this)).submit();
+						$(this).dialog("close");
+					},
+					Cancel: function () { $(this).dialog("close"); }
+				}
+			};
+			$("#suggestDialog").each(function () {
+				$(this).dialog(dialogOptions);
+			});
+		});
+	</script>
+
+
+</content>

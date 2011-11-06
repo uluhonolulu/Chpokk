@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Demo\_invite.spark" />
+    <Content Include="Demo\_suggest.spark" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="Demo\NB.txt" />
     <Content Include="Global.asax" />
@@ -242,6 +243,7 @@
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Demo\DemoController.cs" />
+    <Compile Include="Demo\SuggestController.cs" />
     <Compile Include="Editor\Colorizer\ColorizerController.cs" />
     <Compile Include="Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Editor\Colorizer\HtmlWriter.cs" />
