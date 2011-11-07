@@ -246,6 +246,8 @@
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Demo\DemoController.cs" />
     <Compile Include="Demo\SuggestController.cs" />
+    <Compile Include="Demo\SuggestionModel.cs" />
+    <Compile Include="Demo\SuggestionOutputModel.cs" />
     <Compile Include="Editor\Colorizer\ColorizerController.cs" />
     <Compile Include="Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Editor\Colorizer\HtmlWriter.cs" />

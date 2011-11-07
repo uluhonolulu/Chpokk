@@ -16,19 +16,13 @@ namespace ChpokkWeb.Demo {
 		[JsonEndpoint]
 		public SuggestionOutputModel Send(SuggestionModel input) {
 			var message = "Name: " + input.Name + "\r\n" + "Email: " + input.Email + "\r\n" + "Message: " + input.Message;
-			new SmtpClient().Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Feature suggestion", message);
-			return new SuggestionOutputModel{StatusCode = HttpStatusCode.OK};
+			try {
+				_mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Feature suggestion", message);
+				return new SuggestionOutputModel { StatusCode = HttpStatusCode.OK };
+			}
+			catch (Exception exception) {
+				return new SuggestionOutputModel{StatusCode = HttpStatusCode.InternalServerError, Message = exception.Message};
+			}
 		}
-	}
-
-	public class SuggestionOutputModel {
-		public HttpStatusCode StatusCode { get; set; }
-		public string Message { get; set; }
-	}
-
-	public class SuggestionModel {
-		public string Message { get; set; }
-		public string Name { get; set; }
-		public string Email { get; set; }
 	}
 }
