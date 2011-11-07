@@ -62,6 +62,10 @@
 			$("#inviteDialog").each(function () {
 				$(this).dialog(dialogOptions);
 			});
+
+			$("#invitebutton").click(function () { $('#inviteDialog').dialog('open'); });
+
+
 		});
 	</script>
 

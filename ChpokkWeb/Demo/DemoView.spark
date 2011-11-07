@@ -16,7 +16,7 @@
 	<div style="display:table;width:100%;">
 		<div style="display:table-row;">
 			<p style="display:table-cell;">
-				<a href="#" class="btn primary large" onclick="$('#inviteDialog').dialog('open');">Request an invite »</a>
+				<a id="invitebutton" class="btn primary large" onclick="">Request an invite »</a>
 				<invite/>
 			</p>
 			<p style="display:table-cell;">
