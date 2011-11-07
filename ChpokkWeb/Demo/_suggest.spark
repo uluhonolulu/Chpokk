@@ -42,7 +42,10 @@
 				email: $('#email').val(),
 				message: $('#message').val()
 			};
-			$.post('/demo/send', data);
+			$.post('/demo/send', data, function (response) {
+				if (response.StatusCode == 200) 
+					alert("Ok!"); 
+			});
 		}
 	</script>
 
