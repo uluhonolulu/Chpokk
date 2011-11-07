@@ -34,6 +34,8 @@
 			$("#suggestDialog").each(function () {
 				$(this).dialog(dialogOptions);
 			});
+
+			$("#suggestbutton").click(function () { $('#suggestDialog').dialog('open'); });
 		});
 
 		function submitSuggestion() {
