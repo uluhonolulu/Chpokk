@@ -15,7 +15,8 @@ namespace ChpokkWeb.Demo {
 
 		[JsonEndpoint]
 		public SuggestionOutputModel Send(SuggestionModel input) {
-			new SmtpClient().Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Feature suggestion", "that's right!");
+			var message = "Name: " + input.Name + "\r\n" + "Email: " + input.Email + "\r\n" + "Message: " + input.Message;
+			new SmtpClient().Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Feature suggestion", message);
 			return new SuggestionOutputModel{StatusCode = HttpStatusCode.OK};
 		}
 	}
@@ -25,5 +26,9 @@ namespace ChpokkWeb.Demo {
 		public string Message { get; set; }
 	}
 
-	public class SuggestionModel {}
+	public class SuggestionModel {
+		public string Message { get; set; }
+		public string Name { get; set; }
+		public string Email { get; set; }
+	}
 }
