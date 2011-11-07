@@ -1,15 +1,20 @@
 ﻿<div id="suggestDialog">
-<form action="/demo/send">
-</form>
-
-<p>If you need a particular feature, or just think that chpokk is a good (or bad) idea, please leave your feedback.</p>
-<p>Please leave your name and email, if you want to receive a reply, or get a bonus. I won't put you on any list, promise!</p>
-<label for="name">Name:</label><input type="text" name="Name" id="name" /> <br />
-<label for="email">Email:</label><input type="email" name="Email" id="email" /> <br />
-<label for="message">Message:</label>
-<textarea name="Message" id="message" rows="5" cols="30"></textarea>
+	<p>
+		If you need a particular feature, or just think that chpokk is a good (or bad) idea,
+		please leave your feedback.</p>
+	<p>
+		Please leave your name and email, if you want to receive a reply, or get a bonus.
+		I won't put you on any list, promise!</p>
+	<label for="name">
+		Name:</label><input type="text" name="Name" id="name" />
+	<br />
+	<label for="email">
+		Email:</label><input type="email" name="Email" id="email" />
+	<br />
+	<label for="message">
+		Message:</label>
+	<textarea name="Message" id="message" rows="5" cols="30"></textarea>
 </div>
-
 <content name="head">
 	<script type="text/javascript" charset="utf-8">
 		$(function () {
@@ -20,7 +25,7 @@
 				title: "Suggest a feature",
 				buttons: {
 					Ok: function () {
-						$("form", $(this)).submit();
+						submitSuggestion();
 						$(this).dialog("close");
 					},
 					Cancel: function () { $(this).dialog("close"); }
@@ -31,7 +36,13 @@
 			});
 		});
 
-		function submit() {
+		function submitSuggestion() {
+			var data = {
+				name: $('#name').val(),
+				email: $('#email').val(),
+				message: $('#message').val()
+			};
+			$.post('/demo/send', data);
 		}
 	</script>
 
