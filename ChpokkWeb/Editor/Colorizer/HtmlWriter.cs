@@ -100,15 +100,15 @@ namespace ChpokkWeb.Editor.Colorizer
 			
 			StringWriter output = new StringWriter();
 			if (ShowLineNumbers || AlternateLineBackground) {
-				output.Write("<div");
-				WriteStyle(output, myMainStyle);
-				output.WriteLine(">");
+				//output.Write("<div");
+				//WriteStyle(output, myMainStyle);
+				//output.WriteLine(">");
 				
 				int longestNumberLength = 1 + (int)Math.Log10(document.LineCount);
 				
 				for (int lineNumber = 1; lineNumber <= document.LineCount; lineNumber++) {
 					HighlightedLine line = highlighter.HighlightLine(lineNumber);
-					output.Write("<pre");
+					output.Write("<pre class=\"1\"");
 					if (AlternateLineBackground && (lineNumber % 2) == 0) {
 						WriteStyle(output, AlternateLineStyle);
 					} else {
@@ -130,23 +130,15 @@ namespace ChpokkWeb.Editor.Colorizer
 				}
 				output.WriteLine("</div>");
 			} else {
-				output.Write("<pre");
-				WriteStyle(output, myMainStyle + LineStyle);
-				output.WriteLine(">");
+				//output.Write("<div>");
 				for (int lineNumber = 1; lineNumber <= document.LineCount; lineNumber++) {
 					HighlightedLine line = highlighter.HighlightLine(lineNumber);
 					PrintWords(output, line);
 					output.WriteLine();
 				}
-				output.WriteLine("</pre>");
+				//output.WriteLine("</div>");
 			}
-			if (CreateStylesheet && stylesheet.Length > 0) {
-				string result = "<style type=\"text/css\">" + stylesheet.ToString() + "</style>" + output.ToString();
-				stylesheet = new StringBuilder();
-				return result;
-			} else {
-				return output.ToString();
-			}
+			return output.ToString();
 		}
 		
 		void PrintWords(TextWriter writer, HighlightedLine line)

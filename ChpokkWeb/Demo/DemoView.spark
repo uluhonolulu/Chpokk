@@ -24,7 +24,8 @@
 				<suggest />
 			</p>
 			<p style="display:table-cell;">
-				<a href="#" class="btn primary large">View demo »</a>
+				<a id="editorbutton" class="btn primary large">View demo »</a>
+				<editor />
 			</p>
 		</div>
 	</div>
