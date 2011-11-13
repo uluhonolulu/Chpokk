@@ -10,4 +10,10 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
 
+	$(function () {
+		$("#editorbutton").click(function () { _gaq.push(['_trackEvent', 'Click', 'Demo']); });
+		$("#invitebutton").click(function () { _gaq.push(['_trackEvent', 'Click', 'Invite']); });
+		$("#suggestbutton").click(function () { _gaq.push(['_trackEvent', 'Click', 'Suggest']); });
+	});
+
 </script>
