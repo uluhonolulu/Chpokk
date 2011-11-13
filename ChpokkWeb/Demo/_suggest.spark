@@ -6,13 +6,15 @@
 		Please leave your name and email, if you want to receive a reply, or get a bonus.
 		I won't put you on any list, promise!</p>
 	<label for="name">
-		Name:</label><input type="text" name="Name" id="name" />
+		Name: </label> 
+	<input type="text" name="Name" id="name" />
 	<br />
 	<label for="email">
-		Email:</label><input type="email" name="Email" id="email" />
+		Email: </label> 
+	<input type="email" name="Email" id="email" />
 	<br />
 	<label for="message">
-		Message:</label>
+		Message: </label> 
 	<textarea name="Message" id="message" rows="5" cols="30"></textarea>
 </div>
 <content name="head">
@@ -21,7 +23,7 @@
 			var dialogOptions = {
 				autoOpen: false,
 				modal: true,
-				width: "auto",
+				width: "472px",
 				title: "Suggest a feature",
 				buttons: {
 					Ok: function () {
@@ -45,8 +47,8 @@
 				message: $('#message').val()
 			};
 			$.post('/demo/send', data, function (response) {
-				if (response.StatusCode == 200) 
-					alert("Ok!"); 
+				if (response.StatusCode == 200)
+					alert("Ok!");
 			});
 		}
 	</script>

@@ -132,7 +132,7 @@
 			);
 
 	updateHtml();
-	$('#code').caret(60, 60);
+	
 });
 
 function setEditorPositions() {

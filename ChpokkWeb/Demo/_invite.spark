@@ -1,11 +1,13 @@
 ﻿<div class="dialog" id="inviteDialog">
 	<div id="invitecontainer">
+		<p>Chpokk is currently being developed. If you want to participate in beta testing, or be notified when Chpokk opens to the general public, please leave your name and email below.</p>
+		<p>I won't spam you, and you'll be able to unsubscribe at any moment.</p>
 		<p>
 			Required fields are <b>bold...</b></p>
 		<form action="http://sm-art.us2.list-manage.com/subscribe/post" method="post">
 		<input type="hidden" name="u" value="993f5b9b3ecdad0540eeb28da" />
 		<input type="hidden" name="id" value="63ce6e8abb" />
-		<table cellpadding="5" cellspacing="0" border="0" align="center">
+		<table cellpadding="5" cellspacing="0" border="0" align="center" style="border-style:none;">
 			<tr>
 				<td align="right" class="formLabel">
 					<strong>Email Address</strong> <span class="asterisk">*</span>:
@@ -31,14 +33,14 @@
 					<input type="text" name="MERGE2" id="MERGE2" size="25" />
 				</td>
 			</tr>
-			<tr>
+<!--			<tr>
 				<td align="right">
 					&nbsp;
 				</td>
 				<td align="left">
 					<input type="submit" value="Subscribe">
 				</td>
-			</tr>
+			</tr>-->
 		</table>
 		</form>
 	</div>
@@ -52,11 +54,11 @@
 				width: "auto",
 				title: "Request an invite",
 				buttons: {
-					Ok: function () {
+					"I'd like to check this out": function () {
 						$("form", $(this)).submit();
 						$(this).dialog("close");
 					},
-					Cancel: function () { $(this).dialog("close"); }
+					"No thanks": function () { $(this).dialog("close"); }
 				}
 			};
 			$("#inviteDialog").each(function () {

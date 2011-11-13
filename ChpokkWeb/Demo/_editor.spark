@@ -1,6 +1,7 @@
 ﻿<div id="editorDialog" style="overflow:hidden;">
 	<p>
-		This is a quick demo of the code editor.</p>
+		This is a quick demo of the code editor, featuring color coding and intellisense.</p>
+		<p>You can start by pressing the "." key.</p>
 	<textarea id="code" class="code" rows="20" style="color: #4F4F4F;">using System;
 class A
 {
@@ -14,7 +15,7 @@ class A
 	<div id="shadow" class="code" style="position: absolute; top: 0px; left: 0px; padding:5px; z-index: -1;">
 	</div>
 	<div id="htmlandintellisense" style="position:absolute; top:0px;">
-		<div id="html" class="code" style="position: absolute; top: 0px; left: 0px; padding:5px;">
+		<div id="html" class="code" style="position: absolute; top: 0px; left: 1px; padding:5px;">
 		</div>
 		<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
 			style="z-index: 1; display: none;">
@@ -35,14 +36,18 @@ class A
 				width: "600px",
 				title: "Editor demo",
 				buttons: {
-					Close: function () { $(this).dialog("close"); }
+					"Enough for today": function () { $(this).dialog("close"); }
 				}
 			};
 			$("#editorDialog").each(function () {
 				$(this).dialog(dialogOptions);
 			});
 
-			$("#editorbutton").click(function () { $('#editorDialog').dialog('open'); setEditorPositions(); });
+			$("#editorbutton").click(function () {
+				$('#editorDialog').dialog('open');
+				setEditorPositions();
+				$('#code').caret(49, 49);
+			});
 		});	
 	
 	</script> 
