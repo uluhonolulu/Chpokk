@@ -212,6 +212,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Shared\_GA.spark" />
+    <Content Include="Styles\editor.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\themes\aristo\images\bg_fallback.png" />
     <Content Include="Styles\themes\aristo\images\icon_sprite.png" />

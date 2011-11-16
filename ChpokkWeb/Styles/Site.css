@@ -3,6 +3,7 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
+/*
 body
 {
     background-color: #5c87b2;
@@ -15,21 +16,21 @@ body
 
 a:link
 {
-    color: #034af3;
-    text-decoration: underline;
+    
+    
 }
 a:visited
 {
-    color: #505abc;
+    
 }
 a:hover
 {
-    color: #1d60ff;
+    
     text-decoration: none;
 }
 a:active
 {
-    color: #12eb87;
+    
 }
 
 p, ul
@@ -37,6 +38,7 @@ p, ul
     margin-bottom: 20px;
     line-height: 1.6em;
 }
+*/
 
 /* HEADINGS   
 ----------------------------------------------------------*/
@@ -342,4 +344,9 @@ div#title
 .tri-state
 {
     width: 6em;
+}
+
+
+.popover li {
+	color: #404040;
 }

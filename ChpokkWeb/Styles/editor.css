@@ -1,0 +1,42 @@
+﻿		#results a
+		{
+			font-size: 12px;
+			line-height: 1.2;
+			white-space: nowrap;
+		}
+		#results a img 
+		{
+			position:relative;
+			top:6px;
+		}
+		#editorDialog .code
+		{
+			font-family: Consolas,Courier,Monospace;
+			font-size: small;
+			white-space: pre;
+			width:560px;
+		}
+		.code0
+		{
+			margin: 0em;
+		}
+		.code1
+		{
+			color: #008000;
+		}
+		.code2
+		{
+			color: #ff0000;
+		}
+		.code3
+		{
+			color: #191970;
+		}
+		.code4
+		{
+			color: #ff0000;
+		}
+		.code5
+		{
+			color: #0000ff;
+		}
