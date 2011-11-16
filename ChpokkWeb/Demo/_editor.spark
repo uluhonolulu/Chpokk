@@ -15,7 +15,7 @@ class A
 	<div id="shadow" class="code" style="position: absolute; top: 0px; left: 0px; padding:5px; z-index: -1;">
 	</div>
 	<div id="htmlandintellisense" style="position:absolute; top:0px;">
-		<div id="html" class="code" style="position: absolute; top: 0px; left: 1px; padding:5px;">
+		<div id="html" class="code" style="position: absolute; top: 0px; left: 1px; padding:5px; display:none;">
 		</div>
 		<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
 			style="z-index: 1; display: none;">

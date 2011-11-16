@@ -48,27 +48,30 @@
 				}
 			}
 			else {
-				var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
-				$('#shadow').html(shadowText);
-				var position = $(this).caret().start;
-				$('#results').hide();
-				var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
-					if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
-						$.each(inteldata.Items, function () { this.EntityName = entityTypes[this.EntityType]; });
-						intelItems = inteldata.Items;
-						filteredItems = inteldata.Items;
-						selectedIntelItem = null;
-						selectedIntelIndex = -1;
-						$('#results').empty();
-						$.tmpl(listItemTemplate, inteldata.Items).appendTo('#results');
-						var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
-						$('#results').css(offset);
-						$('#results').show();
+				if (data.charCode == 46) {
+					var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
+					$('#shadow').html(shadowText);
+					var position = $(this).caret().start;
+					$('#results').hide();
+					var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
+						if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
+							$.each(inteldata.Items, function () { this.EntityName = entityTypes[this.EntityType]; });
+							intelItems = inteldata.Items;
+							filteredItems = inteldata.Items;
+							selectedIntelItem = null;
+							selectedIntelIndex = -1;
+							$('#results').empty();
+							$.tmpl(listItemTemplate, inteldata.Items).appendTo('#results');
+							var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
+							$('#results').css(offset);
+							$('#results').show();
 
-						setEditorPositions();
-					}
+							setEditorPositions();
+						}
 
-				});
+					});
+				}
+
 			}
 
 
@@ -95,8 +98,27 @@
 			data.preventDefault();
 		}
 
+		if (data.keyCode == 27) { //Esc
+			$('#results').hide();
+			setEditorPositions();
+			selectedIntelItem = null;
+			selectedIntelIndex = -1;
+			currentFilter = "";
+		}
+
+		if (data.keyCode == 13) { //Enter
+			$('#html').hide();
+		}
+
 		updateHtml();
 	});
+
+	$('#code').keydown(function (data) {
+		if (data.keyCode == 27) //Esc shouldn't close the dialog
+			data.stopPropagation();
+	});
+
+	$('#code').keyup(function() { updateHtml(); });
 
 
 	$('#results li a').live({
@@ -132,7 +154,7 @@
 			);
 
 	updateHtml();
-	
+
 });
 
 function setEditorPositions() {
@@ -143,6 +165,7 @@ function setEditorPositions() {
 function updateHtml() {
 	var text = $('#code')[0].value;
 	$('#html').load('/editor/colorizer/tohtml', { code: text });
+	$('#html').show();
 	//setEditorPositions();
 }
 
