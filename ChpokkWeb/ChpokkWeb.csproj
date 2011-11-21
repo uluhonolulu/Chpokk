@@ -137,9 +137,7 @@
     <Content Include="Demo\_editor.spark" />
     <Content Include="Demo\_invite.spark" />
     <Content Include="Demo\_suggest.spark" />
-    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="Demo\NB.txt" />
-    <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="HTMLPage2.htm" />
@@ -279,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ContextMenu\" />
+    <Folder Include="fubu-content\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
