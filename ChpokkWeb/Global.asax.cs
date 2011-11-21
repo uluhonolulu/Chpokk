@@ -12,7 +12,7 @@ namespace ChpokkWeb {
 	public class Global : System.Web.HttpApplication {
 
 		protected void Application_Start(object sender, EventArgs e) {
-			AppStartFubuMVC.Start();
+			AppStartFubuMVC.Start(); 
 			ObjectFactory.Configure(
 				expr => { expr.For<SmtpClient>().Use(() => new SmtpClient()); expr.SelectConstructor(() => new SmtpClient());}
 				);

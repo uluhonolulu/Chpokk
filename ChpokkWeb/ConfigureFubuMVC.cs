@@ -31,9 +31,11 @@ namespace ChpokkWeb {
 			Views
 				.TryToAttachWithDefaultConventions()
 				.RegisterActionLessViews(
-				token => token.ViewModelType == typeof(DummyModel), chain => {
-					chain.Route = new RouteDefinition("");
-				})
+				token => token.ViewModelType == typeof(DummyModel), (chain, token) =>
+				        {
+				            var url = (token.Name == "DemoView") ? "" : token.Name;
+				            chain.Route = new RouteDefinition(url);
+				        })
 				;
 		}
 	}
