@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using ChpokkWeb.App_Start;
+using ChpokkWeb.Editor.Intellisense;
 using StructureMap;
 
 namespace ChpokkWeb {
@@ -16,6 +17,9 @@ namespace ChpokkWeb {
 			ObjectFactory.Configure(
 				expr => { expr.For<SmtpClient>().Use(() => new SmtpClient()); expr.SelectConstructor(() => new SmtpClient());}
 				);
+
+			//warmup
+			IntelController.WarmUp();
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {

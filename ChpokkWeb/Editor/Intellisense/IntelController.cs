@@ -65,6 +65,10 @@ namespace ChpokkWeb.Editor.Intellisense {
 			}
 		}
 
+		public static void WarmUp() {
+			var x = IntelController.DefaultProjectContent;
+		}
+
 		private ExpressionResult FindExpression(string text, int offset, ParseInformation parseInformation) {
 			var finder = new CSharpExpressionFinder(parseInformation);
 			var expression = finder.FindExpression(text, offset);
