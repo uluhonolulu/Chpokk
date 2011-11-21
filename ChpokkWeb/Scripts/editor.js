@@ -8,7 +8,7 @@
 	var currentFilter = "";
 
 	$('#code').keypress(function (data) {
-		if ((data.keyCode == 9 || data.charCode == 32) && selectedIntelItem != null) { // space or tab
+		if ((data.keyCode === 9 || data.charCode === 32) && selectedIntelItem !== null) { // space or tab
 			data.preventDefault();
 			var textToInsert = selectedIntelItem.Text;
 			var currentpos = $('#code').caret().end;
@@ -25,10 +25,10 @@
 			currentFilter = "";
 		}
 
-		if (data.charCode != null && data.charCode != 0) {
+		if (data.charCode !== null && data.charCode !== 0) {
 			var text = data.target.value; // text before keypress
 			var newchar = String.fromCharCode(data.charCode);
-			if (newchar == "(") return; // sharp bug
+			if (newchar === "(") return; // sharp bug
 			if ($('#results').is(':visible')) {
 				currentFilter += newchar;
 				filteredItems = $.grep(intelItems, function (item) {
@@ -48,7 +48,7 @@
 				}
 			}
 			else {
-				if (data.charCode == 46) {
+				if (data.charCode === 46) {
 					var shadowText = $(this).caret().replace("<span id='wrapper'>.</span>");
 					$('#shadow').html(shadowText);
 					var position = $(this).caret().start;

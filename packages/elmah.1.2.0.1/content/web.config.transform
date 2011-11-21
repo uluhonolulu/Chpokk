@@ -1,8 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-  For more information on how to configure your ASP.NET application, please visit
-  http://go.microsoft.com/fwlink/?LinkId=169433
-  -->
 <configuration>
   <configSections>
     <sectionGroup name="elmah">
@@ -13,42 +8,24 @@
     </sectionGroup>
   </configSections>
   <system.web>
-    <compilation debug="true" targetFramework="4.0" />
-    <customErrors mode="Off" />
     <httpModules>
-      <add name="CompilableFileModule" type="SassAndCoffee.AspNet.CompilableFileModule" />
       <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" />
       <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" />
-      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" />
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/>
     </httpModules>
     <httpHandlers>
       <add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" />
     </httpHandlers>
   </system.web>
-  <system.net>
-    <mailSettings>
-      <smtp from="uluhonolulu@gmail.com" deliveryMethod="Network">
-        <!--<network host="localhost"/>-->
-      </smtp>
-    </mailSettings>
-  </system.net>
   <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
     <modules>
-      <!-- To prevent static content from being run thru ASP.NET, we want to set runAllManagedModulesForAllRequests="false"
-			   However, UrlRoutingModel will stop working, unless you patch IIS to support extensionless routing (introduced in .NET 4)
-			   Download the patch at http://support.microsoft.com/kb/980368  -->
-      <remove name="CompilableFileModule" />
-      <add name="CompilableFileModule" type="SassAndCoffee.AspNet.CompilableFileModule" />
       <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler" />
       <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler" />
       <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler" />
     </modules>
-    <validation validateIntegratedModeConfiguration="false" />
     <handlers>
       <add name="Elmah" path="elmah.axd" verb="POST,GET,HEAD" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode" />
     </handlers>
   </system.webServer>
-	<elmah>
-		<errorMail from="uluhonolulu@gmail.com" to="uluhonolulu@gmail.com" subject="Chpokk Error {1} ({0})" priority="high" async="false" />
-	</elmah>
 </configuration>

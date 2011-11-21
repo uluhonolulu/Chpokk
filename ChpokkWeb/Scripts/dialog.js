@@ -14,7 +14,9 @@ var buttons = {
 };
 $("#dialogWrapper, .dialog").each(function () {
 	var options = $.extend({}, dialogOptions);
-	if (!$(this).hasClass("nobuttons")) options = $.extend(options, buttons);
+	if (!$(this).hasClass("nobuttons")) {
+		options = $.extend(options, buttons);
+	}
 	$(this).dialog(options);
 });
 
