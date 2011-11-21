@@ -17,6 +17,10 @@
 		Message: </label> 
 	<textarea name="Message" id="message" rows="5" cols="30"></textarea>
 </div>
+
+<div id="thanks_for_suggestion">
+<h3>Thanks for your feedback!</h3>
+</div>
 <content name="head">
 	<script type="text/javascript" charset="utf-8">
 		$(function () {
@@ -38,6 +42,18 @@
 			});
 
 			$("#suggestbutton").click(function () { $('#suggestDialog').dialog('open'); });
+
+			$('#thanks_for_suggestion').dialog({
+				autoOpen: false,
+				width: "auto",
+				title: "Thanks!",
+				buttons: {
+					Ok: function () {
+						$(this).dialog("close");
+					}
+				}
+					
+				});
 		});
 
 		function submitSuggestion() {
@@ -48,7 +64,7 @@
 			};
 			$.post('/demo/send', data, function (response) {
 				if (response.StatusCode == 200)
-					alert("Ok!");
+					$('#thanks_for_suggestion').dialog('open');
 			});
 		}
 	</script>
