@@ -158,12 +158,12 @@
 });
 
 function setEditorPositions() {
-	$('#htmlandintellisense').css($('#code').position());
+	$('#commoncontainer').css($('#code').position());
 	$('#shadow').css($('#code').position());
 }
 
 function updateHtml() {
-	var text = $('#code')[0].value;
+	var text = $('#code')[0].value || $('#code')[0].textContent;
 	$('#html').load('/editor/colorizer/tohtml', { code: text });
 	$('#html').show();
 	//setEditorPositions();

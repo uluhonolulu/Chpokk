@@ -16,7 +16,7 @@
   <body>
   	<div class="topbar">
 		<div class="fill">
-			<div class="container">
+			<div class="container-fluid">
 			<span class="brand">chpokk</span>
 			  <use content="header">
 			  </use>			

@@ -148,6 +148,8 @@
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="HTMLPage2.htm" />
+    <Content Include="HTMLPage3.htm" />
+    <Content Include="HTMLPage4.htm" />
     <Content Include="Images\Intellisense\Icons.16x16.Class.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Delegate.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Enum.png" />
@@ -200,6 +202,7 @@
     <Content Include="Images\Intellisense\Icons.16x16.Reference.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
     <None Include="InviteForm.htm" />
+    <Content Include="Scripts\browser.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
@@ -263,7 +266,6 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="Demo\DemoController.cs" />
     <Compile Include="Demo\SuggestController.cs" />
     <Compile Include="Demo\SuggestionModel.cs" />
     <Compile Include="Demo\SuggestionOutputModel.cs" />
