@@ -19,6 +19,8 @@
 			margin: 0px;
 			padding: 4px;
 			line-height: 16px;
+			position: absolute;
+			top: 0px; left: 0px;
 		}
 		.code0
 		{

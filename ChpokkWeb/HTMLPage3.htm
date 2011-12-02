@@ -29,7 +29,6 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
 }
 ol, ul {
 	list-style: none;
@@ -56,18 +55,20 @@ table {
 		font-family: Consolas;
 		font-size: medium;
 		border:none;
-		border-width: 0px;
-		word-wrap:normal;
-		white-space:normal;
+		width: 500px;
+		white-space:pre;
+		line-height: 1;
 	}
-	div {color:red;}
-	textarea {color: blue;}
+	div {color:red;padding-top: 1px;}
+	textarea {color: blue;text-indent: -1px;}
 	</style>
 </head>
 <body>
 
-	<textarea>Stuff</textarea>
-	<div>Stuff</div>
+	<textarea>Stuff
+Other stuff</textarea>
+	<div>Stuff
+Other stuff</div>
 
 </body>
 </html>

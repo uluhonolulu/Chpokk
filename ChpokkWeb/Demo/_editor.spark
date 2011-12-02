@@ -3,12 +3,8 @@
 		This is a quick demo of the code editor, featuring color coding and intellisense.</p>
 	<p>
 		You can start by pressing the "." key.</p>
-	<div id="shadow" class="code" style="position: absolute; top: 0px; left: 0px; padding: 4px;
-		z-index: -1;">
-	</div>
 	<div id="commoncontainer" style="position: relative;">
-		<textarea contenteditable="true" id="code" class="code" rows="20" style="color: #4F4F4F;
-			position: absolute; top: 0px; left: 0px; padding: 4px;">using System;
+		<textarea contenteditable="true" id="code" class="code" rows="20" style="color: #4F4F4F;">using System;
 class A
 {
  void B()
@@ -18,8 +14,9 @@ class A
 }
 
 </textarea>
-		<div id="html" class="code" style="position: absolute; top: 0px; left: 0px; padding: 4px;
-			display: none;">
+		<div id="html" class="code" style="display: none;">
+		</div>
+		<div id="shadow" class="code" style="z-index: -1;">
 		</div>
 		<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
 			style="z-index: 1; display: none;">
