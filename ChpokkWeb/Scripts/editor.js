@@ -6,11 +6,11 @@
 	var selectedIntelItem;
 	var selectedIntelIndex = -1;
 	var currentFilter = "";
+	var keyCode = $.ui.keyCode;
 
 	if (BrowserDetect.browser == "Firefox")
 		$('#editorDialog textarea').css('padding-left', '3px');
 
-//				var keyCode = $.ui.keyCode;
 //				switch( event.keyCode ) {
 //				case keyCode.PAGE_UP:
 //					self._move( "previousPage", event );
@@ -63,23 +63,6 @@
 //			})
 
 	$('#code').keypress(function (data) {
-		if ((data.keyCode === 9 || data.charCode === 32) && selectedIntelItem !== null) { // space or tab
-			data.preventDefault();
-			var textToInsert = selectedIntelItem.Text;
-			var currentpos = $('#code').caret().end;
-			var startpos = currentpos - currentFilter.length;
-			$('#code').caret(startpos, currentpos);
-			var code = $('#code').caret().replace(textToInsert);
-			$('#code').val(code);
-			startpos += textToInsert.length;
-			$('#code').caret(startpos, startpos);
-			$('#results').hide();
-			setEditorPositions();
-			selectedIntelItem = null;
-			selectedIntelIndex = -1;
-			currentFilter = "";
-		}
-
 		if (data.charCode !== null && data.charCode !== 0) {
 			var text = data.target.value; // text before keypress
 			var newchar = String.fromCharCode(data.charCode);
@@ -132,7 +115,30 @@
 
 		}
 
-		if (data.keyCode == 40) {
+		updateHtml();
+	});
+
+	$('#code').keydown(function (data) {
+		if ((data.keyCode === keyCode.SPACE || data.keyCode === keyCode.TAB) && selectedIntelItem !== null) { // space or tab
+			data.preventDefault();
+			var textToInsert = selectedIntelItem.Text;
+			var currentpos = $('#code').caret().end;
+			var startpos = currentpos - currentFilter.length;
+			$('#code').caret(startpos, currentpos);
+			var code = $('#code').caret().replace(textToInsert);
+			$('#code').val(code);
+			startpos += textToInsert.length;
+			$('#code').caret(startpos, startpos);
+			$('#results').hide();
+			setEditorPositions();
+			selectedIntelItem = null;
+			selectedIntelIndex = -1;
+			currentFilter = "";
+		}
+
+
+
+		if (data.keyCode === keyCode.DOWN) {
 			if (selectedIntelIndex != -1)
 				$('#results li a').eq(selectedIntelIndex).removeClass("ui-state-hover");
 			selectedIntelIndex += 1;
@@ -140,7 +146,7 @@
 			$('#results li a').eq(selectedIntelIndex).addClass("ui-state-hover");
 			data.preventDefault();
 		}
-		if (data.keyCode == 38 && selectedIntelIndex != -1) {
+		if (data.keyCode === keyCode.UP && selectedIntelIndex != -1) {
 			$('#results li a').eq(selectedIntelIndex).removeClass("ui-state-hover");
 			selectedIntelIndex -= 1;
 			if (selectedIntelIndex != -1) {
@@ -153,24 +159,18 @@
 			data.preventDefault();
 		}
 
-		if (data.keyCode == 27) { //Esc
+		if (data.keyCode === keyCode.ESCAPE) { //Esc
 			$('#results').hide();
 			setEditorPositions();
 			selectedIntelItem = null;
 			selectedIntelIndex = -1;
 			currentFilter = "";
+			data.stopPropagation();//Esc shouldn't close the dialog
 		}
 
-		if (data.keyCode == 13) { //Enter
+		if (data.keyCode === keyCode.ENTER) { //Enter
 			$('#html').hide();
-		}
-
-		updateHtml();
-	});
-
-	$('#code').keydown(function (data) {
-		if (data.keyCode == 27) //Esc shouldn't close the dialog
-			data.stopPropagation();
+		}		
 	});
 
 	$('#code').keyup(function () { updateHtml(); });
