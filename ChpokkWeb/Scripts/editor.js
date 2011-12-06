@@ -11,56 +11,6 @@
 	if (BrowserDetect.browser == "Firefox")
 		$('#editorDialog textarea').css('padding-left', '3px');
 
-//				switch( event.keyCode ) {
-//				case keyCode.PAGE_UP:
-//					self._move( "previousPage", event );
-//					break;
-//				case keyCode.PAGE_DOWN:
-//					self._move( "nextPage", event );
-//					break;
-//				case keyCode.UP:
-//					self._move( "previous", event );
-//					// prevent moving cursor to beginning of text field in some browsers
-//					event.preventDefault();
-//					break;
-//				case keyCode.DOWN:
-//					self._move( "next", event );
-//					// prevent moving cursor to end of text field in some browsers
-//					event.preventDefault();
-//					break;
-//				case keyCode.ENTER:
-//				case keyCode.NUMPAD_ENTER:
-//					// when menu is open and has focus
-//					if ( self.menu.active ) {
-//						// #6055 - Opera still allows the keypress to occur
-//						// which causes forms to submit
-//						suppressKeyPress = true;
-//						event.preventDefault();
-//					}
-//					//passthrough - ENTER and TAB both select the current element
-//				case keyCode.TAB:
-//					if ( !self.menu.active ) {
-//						return;
-//					}
-//					self.menu.select( event );
-//					break;
-//				case keyCode.ESCAPE:
-//					self.element.val( self.term );
-//					self.close( event );
-//					break;
-//				default:
-//					// keypress is triggered before the input value is changed
-//					clearTimeout( self.searching );
-//					self.searching = setTimeout(function() {
-//						// only search if the value has changed
-//						if ( self.term != self.element.val() ) {
-//							self.selectedItem = null;
-//							self.search( null, event );
-//						}
-//					}, self.options.delay );
-//					break;
-//				}
-//			})
 
 	$('#code').keypress(function (data) {
 		if (data.charCode !== null && data.charCode !== 0) {
