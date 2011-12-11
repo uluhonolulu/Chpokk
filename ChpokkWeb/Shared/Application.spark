@@ -34,7 +34,7 @@
 	<div class="container">
 		<use content="view" />
 		<div class="pull-right" id="aboutme">
-			<a href="http://about.me/ulu">About me </a>
+			<a href="http://about.me/ulu" target="_blank">About me </a>
 		</div>
 	</div>
 </body>
