@@ -1,8 +1,8 @@
 ﻿<div id="editorDialog" style="overflow: hidden;">
 	<p>
-		This is a quick demo of the code editor, featuring color coding and intellisense.</p>
+		This is a quick demo of the code editor, featuring color coding and intellisense. Tested on Firefox, Internet Explorer, and Chrome.</p>
 	<p>
-		You can start by pressing the "." key.</p>
+		You can start by pressing the "." key. Use keyboard or mouse for intellisense.</p>
 	<div id="commoncontainer" style="position: relative;">
 		<textarea contenteditable="true" id="code" class="code" rows="20" style="color: #4F4F4F;">using System;
 class A

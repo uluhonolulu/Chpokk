@@ -69,5 +69,10 @@
 		}
 	</script>
 
+	<style>
+		html #suggestDialog br { display:block; margin-bottom:10px; }
+
+	</style>
+
 
 </content>

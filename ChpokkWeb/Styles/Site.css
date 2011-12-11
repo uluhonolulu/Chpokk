@@ -52,7 +52,7 @@ h1
 {
     font-size: 2em;
     padding-bottom: 0;
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 h2
 {
@@ -204,7 +204,7 @@ textarea
 
 input[type="text"] 
 {
-    width: 200px;
+    width: 210px;
     border: 1px solid #CCC;
 }
 

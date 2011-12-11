@@ -1,5 +1,5 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
-<content name="title">Chpokk demo</content>
+<content name="title">Chpokk, an online C# and Vb.Net editor</content>
 <content name="head">
 	<script src="/Scripts/jquery.bootstrappopover.js" type="text/javascript"></script>
 	<script type="text/javascript" charset="utf-8">
