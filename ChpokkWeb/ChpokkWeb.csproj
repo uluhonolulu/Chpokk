@@ -229,7 +229,7 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Shared\_GA.spark" />
+    <Content Include="Shared\_ga.spark" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\editor.css" />
     <Content Include="Styles\Site.css" />
