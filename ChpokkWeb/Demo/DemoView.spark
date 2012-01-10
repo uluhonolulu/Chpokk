@@ -67,7 +67,8 @@
 		<div class="hide popover" id="deploy_info">
 			<ul>
 				<li>Commit your changes manually or automatically, e.g. on each successfull test pass.</li>
-				<li>Publish to Azure, AppHarbor, or just push/FTP to your own server.</li>	
+				<li>Publish to Azure, AppHarbor, or just push/FTP to your own server.</li>
+				<li>Use MsBuild, Rake scripts, Dropkick, or other tools for building and deployment.</li>
 			</ul>
 			
 		</div>
