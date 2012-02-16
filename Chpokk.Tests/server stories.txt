@@ -1,3 +1,0 @@
-﻿1. Should be able to checkout from GitHub
-2. Should be able to edit
-3. Should be able to commit changes
