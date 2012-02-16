@@ -151,6 +151,7 @@
     <Content Include="Demo\_invite.spark" />
     <Content Include="Demo\_suggest.spark" />
     <Content Include="Demo\NB.txt" />
+    <Content Include="Editor\Main.spark" />
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="HTMLPage2.htm" />
@@ -235,6 +236,7 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Shared\bindings.xml" />
     <Content Include="Shared\_ga.spark" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\editor.css" />
