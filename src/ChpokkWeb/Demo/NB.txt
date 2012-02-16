@@ -1,0 +1,15 @@
+﻿
+$(function() { $.addAjaxItemDeleteHandler({
+url: ${this.QuotedUrlFor<DeleteInputModel>()}
+     });
+}); 
+
+${Urls.UrlFor(new ChpokkWeb.Editor.Intellisense.IntelInputModel())} 
+
+
+	
+	#this.Script('jquery.ui.js', 'jquery.js');
+	
+#this.ImageUrl("hmm");
+#this.WriteScriptTags();
+${this.CSS("stuff.css")}
