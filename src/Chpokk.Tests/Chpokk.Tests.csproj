@@ -56,8 +56,8 @@
     <Reference Include="CThru, Version=1.2.1.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\CThru.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.3.101\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore.0.9.4.112\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="FubuTestingSupport">
       <HintPath>..\packages\FubuTestingSupport.0.9.3.98\lib\FubuTestingSupport.dll</HintPath>

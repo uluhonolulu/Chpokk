@@ -34,22 +34,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles.0.9.1.191\lib\Bottles.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah, Version=1.2.14318.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
+      <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\FubuCore.0.9.3.101\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore.0.9.4.112\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\packages\FubuLocalization.0.9.4.112\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FubuMVC.References.0.9.3.731\lib\net40\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.3.731\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FubuMVC.Spark.0.9.3.731\lib\net40\FubuMVC.Spark.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.3.731\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="HtmlTags">
+      <HintPath>..\packages\HtmlTags.1.0.0.54\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -61,58 +69,57 @@
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Dom.dll</HintPath>
     </Reference>
     <Reference Include="IronRuby">
-      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\IronRuby.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.dll</HintPath>
     </Reference>
     <Reference Include="IronRuby.Libraries">
-      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.dll</HintPath>
     </Reference>
     <Reference Include="IronRuby.Libraries.Yaml">
-      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.Yaml.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.Yaml.dll</HintPath>
     </Reference>
     <Reference Include="LibGit2Sharp, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\LibGit2Sharp.0.8\lib\net35\LibGit2Sharp.dll</HintPath>
+      <HintPath>..\packages\LibGit2Sharp.0.8\lib\net35\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic">
-      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting">
-      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting.Metadata">
-      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.Metadata.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SassAndCoffee.AspNet, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\SassAndCoffee.AspNet.2.0.2.0\lib\net40\SassAndCoffee.AspNet.dll</HintPath>
+      <HintPath>..\packages\SassAndCoffee.AspNet.2.0.2.0\lib\net40\SassAndCoffee.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="SassAndCoffee.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\SassAndCoffee.Core.2.0.2.0\lib\net40-Client\SassAndCoffee.Core.dll</HintPath>
+      <HintPath>..\packages\SassAndCoffee.Core.2.0.2.0\lib\net40-Client\SassAndCoffee.Core.dll</HintPath>
     </Reference>
     <Reference Include="SassAndCoffee.JavaScript">
-      <HintPath>..\..\packages\SassAndCoffee.JavaScript.2.0.2.0\lib\net40-Client\SassAndCoffee.JavaScript.dll</HintPath>
+      <HintPath>..\packages\SassAndCoffee.JavaScript.2.0.2.0\lib\net40-Client\SassAndCoffee.JavaScript.dll</HintPath>
     </Reference>
     <Reference Include="SassAndCoffee.Ruby">
-      <HintPath>..\..\packages\SassAndCoffee.Ruby.2.0.2.0\lib\net40-Client\SassAndCoffee.Ruby.dll</HintPath>
+      <HintPath>..\packages\SassAndCoffee.Ruby.2.0.2.0\lib\net40-Client\SassAndCoffee.Ruby.dll</HintPath>
     </Reference>
     <Reference Include="Spark">
-      <HintPath>..\..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
+      <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -130,7 +137,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebActivator, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
+      <HintPath>..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -323,11 +330,11 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>
-if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
-if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
-if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+rem if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
+rem if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
+rem xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+rem if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
+rem xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

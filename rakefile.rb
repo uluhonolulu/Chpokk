@@ -6,7 +6,7 @@ raise "Run `git submodule update --init` to populate your buildsupport folder." 
 buildsupportfiles.each { |ext| load ext }
 solution_dir = "src"
 
-#include FileTest
+include FileTest
 #require 'albacore'
 #load "VERSION.txt"
 
@@ -20,7 +20,7 @@ ARTIFACTS = File.expand_path("artifacts")
 @teamcity_build_id = "bt99"
 tc_build_number = ENV["BUILD_NUMBER"]
 build_revision = tc_build_number || Time.new.strftime('5%H%M')
-BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
+BUILD_NUMBER = "0.1"
 
 props = { :stage => BUILD_DIR, :artifacts => ARTIFACTS }
 
@@ -48,9 +48,7 @@ def waitfor(&block)
 end
 
 desc "Compile demo"
-task :compile => [:restore_if_missing, :clean, :version] do  
-	FileList.new("#{solution_dir}/*.sln").each do |solution_file|
-		MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => solution_file, :clrversion => CLR_TOOLS_VERSION
-	end
+task :compile => [:clean] do  
+		MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => "#{solution_dir}/AppHarbor.sln", :clrversion => CLR_TOOLS_VERSION
 end
 
