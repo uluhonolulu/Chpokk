@@ -3,80 +3,13 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
-/*
-body
-{
-    background-color: #5c87b2;
-    font-size: 75%;
-    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
-    color: #696969;
-}
-
-a:link
-{
-    
-    
-}
-a:visited
-{
-    
-}
-a:hover
-{
-    
-    text-decoration: none;
-}
-a:active
-{
-    
-}
-
-p, ul
-{
-    margin-bottom: 20px;
-    line-height: 1.6em;
-}
-*/
-
-/* HEADINGS   
-----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6
-{
-    font-size: 1.5em;
-    color: #000;
-}
-
-h1
-{
-    font-size: 2em;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-}
-h2
-{
-    padding: 0 0 10px 0;
-}
-h3
-{
-    font-size: 1.2em;
-}
-h4
-{
-    font-size: 1.1em;
-}
-h5, h6
-{
-    font-size: 1em;
-}
-
-/* this rule styles <h2> tags that are the 
-first child of the left and right table columns */
-.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
-{
-    margin-top: 0;
-}
+		body {
+			padding-top: 60px;
+		}
+		html #aboutme a {
+			font-weight: 600;
+			color: black;
+		}
 
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/

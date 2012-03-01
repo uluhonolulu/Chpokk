@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web;
+using ChpokkWeb.App_Start;
 using ChpokkWeb.Shared;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
@@ -9,6 +11,11 @@ using FubuMVC.Core.View;
 using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
 using StructureMap;
+using dotless.Core;
+using dotless.Core.Importers;
+using dotless.Core.Input;
+using dotless.Core.Parser;
+using dotless.Core.Stylizers;
 
 namespace ChpokkWeb {
 	public class ConfigureFubuMVC : FubuRegistry {
@@ -28,6 +35,8 @@ namespace ChpokkWeb {
 
 			this.UseSpark();
 
+			//Services(registry => registry.ReplaceService<ILessEngine>(new LessEngine(new Parser(new PlainStylizer(), new Importer(new FileReader(new AssetPathResolver()))){})));
+
 			Views
 				.TryToAttachWithDefaultConventions()
 				.RegisterActionLessViews(
@@ -37,6 +46,12 @@ namespace ChpokkWeb {
 				            chain.Route = new RouteDefinition(url);
 				        })
 				;
+		}
+
+		internal class AssetPathResolver : IPathResolver {
+			public string GetFullPath(string path) {
+				return HttpContext.Current.Server.MapPath(path).Replace(@"\_content\", @"\Content\");
+			}
 		}
 	}
 

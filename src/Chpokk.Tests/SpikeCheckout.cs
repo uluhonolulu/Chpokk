@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FubuTestingSupport;
-using Gallio.Framework;
-using LibGit2Sharp;
-using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
+﻿using LibGit2Sharp;
+using NUnit.Framework;
 
 namespace Chpokk.Tests {
 	[TestFixture]

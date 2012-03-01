@@ -1,21 +1,22 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 <content name="head">
-	<Script src="bootstrap.js" />
-	<Stylesheet href="bootstrap.less" />
-</content>
 
-<a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary" style="display: none;">Open a project</a> 
-    <div class="modal" id="openProjectDialog">
-    <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Modal header</h3>
-    </div>
-    <div class="modal-body">
-    <p>One fine body…</p>
-    </div>
-    <div class="modal-footer">
-    <a href="#" class="btn btn-primary">Save changes</a>
-    <a href="#" class="btn">Close</a>
-    </div>
-    </div>
+</content>
+<a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Open a project</a>
+<div class="modal hide fade" id="openProjectDialog">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Modal header</h3>
+	</div>
+	<div class="modal-body">
+		<form class="well">
+			<label>Your repository URL</label>
+			<input type="text" class="span3"/>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary close">Open project</a> <a href="#" class="btn close">Cancel</a>
+	</div>
+</div>

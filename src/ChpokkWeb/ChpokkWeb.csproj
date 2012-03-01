@@ -37,6 +37,7 @@
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.3.738\lib\net40\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="dotless.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL" />
     <Reference Include="Elmah, Version=1.2.14318.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
@@ -52,6 +53,9 @@
     </Reference>
     <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.3.738\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Less, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>fubu-content\fubumvc-less\bin\FubuMVC.Less.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.OwinHost">
       <HintPath>..\packages\Serenity.0.9.3.738\lib\net40\FubuMVC.OwinHost.dll</HintPath>
@@ -155,41 +159,41 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\scripts\lib\jquery-1.7.1.js" />
     <Content Include="Content\scripts\lib\jquery-ui.js" />
-    <Content Include="Content\styles\accordion.less" />
-    <Content Include="Content\styles\alerts.less" />
-    <Content Include="Content\styles\bootstrap.less" />
-    <Content Include="Content\styles\breadcrumbs.less" />
-    <Content Include="Content\styles\button-groups.less" />
-    <Content Include="Content\styles\buttons.less" />
-    <Content Include="Content\styles\carousel.less" />
-    <Content Include="Content\styles\close.less" />
-    <Content Include="Content\styles\code.less" />
-    <Content Include="Content\styles\component-animations.less" />
-    <Content Include="Content\styles\dropdowns.less" />
-    <Content Include="Content\styles\forms.less" />
-    <Content Include="Content\styles\grid.less" />
-    <Content Include="Content\styles\hero-unit.less" />
-    <Content Include="Content\styles\labels.less" />
-    <Content Include="Content\styles\layouts.less" />
-    <Content Include="Content\styles\mixins.less" />
-    <Content Include="Content\styles\modals.less" />
-    <Content Include="Content\styles\navbar.less" />
-    <Content Include="Content\styles\navs.less" />
-    <Content Include="Content\styles\pager.less" />
-    <Content Include="Content\styles\pagination.less" />
-    <Content Include="Content\styles\popovers.less" />
-    <Content Include="Content\styles\progress-bars.less" />
-    <Content Include="Content\styles\reset.less" />
-    <Content Include="Content\styles\responsive.less" />
-    <Content Include="Content\styles\scaffolding.less" />
-    <Content Include="Content\styles\sprites.less" />
-    <Content Include="Content\styles\tables.less" />
-    <Content Include="Content\styles\thumbnails.less" />
-    <Content Include="Content\styles\tooltip.less" />
-    <Content Include="Content\styles\type.less" />
-    <Content Include="Content\styles\utilities.less" />
-    <Content Include="Content\styles\variables.less" />
-    <Content Include="Content\styles\wells.less" />
+    <Content Include="Content\styles\lib\accordion.less" />
+    <Content Include="Content\styles\lib\alerts.less" />
+    <Content Include="Content\styles\lib\bootstrap.less" />
+    <Content Include="Content\styles\lib\breadcrumbs.less" />
+    <Content Include="Content\styles\lib\button-groups.less" />
+    <Content Include="Content\styles\lib\buttons.less" />
+    <Content Include="Content\styles\lib\carousel.less" />
+    <Content Include="Content\styles\lib\close.less" />
+    <Content Include="Content\styles\lib\code.less" />
+    <Content Include="Content\styles\lib\component-animations.less" />
+    <Content Include="Content\styles\lib\dropdowns.less" />
+    <Content Include="Content\styles\lib\forms.less" />
+    <Content Include="Content\styles\lib\grid.less" />
+    <Content Include="Content\styles\lib\hero-unit.less" />
+    <Content Include="Content\styles\lib\labels.less" />
+    <Content Include="Content\styles\lib\layouts.less" />
+    <Content Include="Content\styles\lib\mixins.less" />
+    <Content Include="Content\styles\lib\modals.less" />
+    <Content Include="Content\styles\lib\navbar.less" />
+    <Content Include="Content\styles\lib\navs.less" />
+    <Content Include="Content\styles\lib\pager.less" />
+    <Content Include="Content\styles\lib\pagination.less" />
+    <Content Include="Content\styles\lib\popovers.less" />
+    <Content Include="Content\styles\lib\progress-bars.less" />
+    <Content Include="Content\styles\lib\reset.less" />
+    <Content Include="Content\styles\lib\responsive.less" />
+    <Content Include="Content\styles\lib\scaffolding.less" />
+    <Content Include="Content\styles\lib\sprites.less" />
+    <Content Include="Content\styles\lib\tables.less" />
+    <Content Include="Content\styles\lib\thumbnails.less" />
+    <Content Include="Content\styles\lib\tooltip.less" />
+    <Content Include="Content\styles\lib\type.less" />
+    <Content Include="Content\styles\lib\utilities.less" />
+    <Content Include="Content\styles\lib\variables.less" />
+    <Content Include="Content\styles\lib\wells.less" />
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
     <Content Include="Demo\RegisteredForInvite.spark" />
@@ -256,6 +260,7 @@
     <Content Include="Images\Intellisense\Icons.16x16.Reference.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
+    <Content Include="fubu-content\fubumvc-less.zip" />
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
@@ -290,8 +295,8 @@
     <Content Include="Shared\bindings.xml" />
     <Content Include="Shared\_ga.spark" />
     <Content Include="Styles\bootstrap.css" />
-    <Content Include="Styles\editor.css" />
-    <Content Include="Styles\Site.css" />
+    <Content Include="Content\styles\editor.css" />
+    <Content Include="Content\styles\Site.css" />
     <Content Include="Styles\themes\aristo\images\bg_fallback.png" />
     <Content Include="Styles\themes\aristo\images\icon_sprite.png" />
     <Content Include="Styles\themes\aristo\images\progress_bar.gif" />

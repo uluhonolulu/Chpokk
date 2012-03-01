@@ -56,24 +56,9 @@
     <Reference Include="CThru, Version=1.2.1.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\CThru.dll</HintPath>
     </Reference>
+    <Reference Include="dotless.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL" />
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.0.9.4.112\lib\FubuCore.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuTestingSupport">
-      <HintPath>..\packages\FubuTestingSupport.0.9.3.98\lib\FubuTestingSupport.dll</HintPath>
-    </Reference>
-    <Reference Include="Gallio, Version=3.2.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="HtmlTags, Version=1.0.0.51, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlTags.1.0.0.51\lib\4.0\HtmlTags.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-      <HintPath>..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
-      <HintPath>..\lib\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
-      <HintPath>..\lib\ICSharpCode.SharpDevelop.Dom.dll</HintPath>
     </Reference>
     <Reference Include="Ivonna, Version=2.1.8.25329, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -119,8 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Intellisense\RequestForIntelData.cs" />
+    <Compile Include="MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpikeCheckout.cs" />
+    <Compile Include="Whatsup.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
