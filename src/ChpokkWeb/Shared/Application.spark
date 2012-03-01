@@ -7,13 +7,11 @@
 	<Script src="lib/bootstrap.js" />
 	<Stylesheet href="lib/bootstrap.less" />
 	<Stylesheet href="Site.css" />
-<!--	<link href="/Styles/Site.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="/Styles/bootstrap.css">
-	<link href="/Styles/themes/aristo/jquery-ui.css" rel="stylesheet" type="text/css" />-->
 	<Script src="jslib"/>
 	<use content="head" />
 	<Scripts />
 	<Styles />
+	<use content="InlineScripts" />
 	<ga />
 </head>
 <body>

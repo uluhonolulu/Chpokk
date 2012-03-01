@@ -16,16 +16,13 @@
 	<div style="display:table;width:100%;">
 		<div style="display:table-row;">
 			<p style="display:table-cell;">
-				<a id="invitebutton" class="btn btn-primary btn-large">Request an invite »</a>
-				<invite/>
+				<a id="invitebutton" class="btn btn-primary btn-large" data-toggle="modal" href="#inviteDialog">Request an invite »</a>
 			</p>
 			<p style="display:table-cell;">
-				<a id="suggestbutton" class="btn btn-primary btn-large">Suggest a feature »</a>
-				<suggest />
+				<a id="suggestbutton" class="btn btn-primary btn-large" data-toggle="modal">Suggest a feature »</a>
 			</p>
 			<p style="display:table-cell;">
-				<a id="editorbutton" class="btn btn-primary btn-large">View demo »</a>
-				<editor />
+				<a id="editorbutton" class="btn btn-primary btn-large" data-toggle="modal">View demo »</a>
 			</p>
 		</div>
 	</div>
@@ -35,12 +32,12 @@
 		<h2>Edit your code</h2>
 		<p>Use it when you can't, or don't want to, fire up your IDE. Use a tablet, a smartphone, or an Internet Cafe computer.</p>
 		<div class="hide popover" id="edit_info">
-		<ul>
-			<li>Need a quick fix, or a demo of your code? You can use Chpokk even in your smartphone. Use Intellisense, refactoring, and all your favorite shortcuts.</li>
-			<li>Keep your code in GitHub, BitBucket, or another repository, access it from anywhere. Or just upload a zipped project.</li>
-			<li>Use it in your blog and get Intellisense and code coloring.</li>
-			<li>Use NuGet or OpenWrap for adding references, or upload your own.</li>
-		</ul>
+			<ul>
+				<li>Need a quick fix, or a demo of your code? You can use Chpokk even in your smartphone. Use Intellisense, refactoring, and all your favorite shortcuts.</li>
+				<li>Keep your code in GitHub, BitBucket, or another repository, access it from anywhere. Or just upload a zipped project.</li>
+				<li>Use it in your blog and get Intellisense and code coloring.</li>
+				<li>Use NuGet or OpenWrap for adding references, or upload your own.</li>
+			</ul>
 		</div>
 		<p>
 			<a href="#edit_info" class="btn bootstrap-popover" title="Edit your code">Learn more »</a>
@@ -77,3 +74,10 @@
 		</p>
 	</div>
 </div>
+
+<invite/>			
+	
+<suggest />
+
+<editor />
+
