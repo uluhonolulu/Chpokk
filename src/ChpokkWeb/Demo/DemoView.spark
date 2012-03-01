@@ -16,15 +16,15 @@
 	<div style="display:table;width:100%;">
 		<div style="display:table-row;">
 			<p style="display:table-cell;">
-				<a id="invitebutton" class="btn primary large">Request an invite »</a>
+				<a id="invitebutton" class="btn btn-primary btn-large">Request an invite »</a>
 				<invite/>
 			</p>
 			<p style="display:table-cell;">
-				<a id="suggestbutton" class="btn primary large">Suggest a feature »</a>
+				<a id="suggestbutton" class="btn btn-primary btn-large">Suggest a feature »</a>
 				<suggest />
 			</p>
 			<p style="display:table-cell;">
-				<a id="editorbutton" class="btn primary large">View demo »</a>
+				<a id="editorbutton" class="btn btn-primary btn-large">View demo »</a>
 				<editor />
 			</p>
 		</div>

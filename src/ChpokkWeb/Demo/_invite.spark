@@ -1,4 +1,4 @@
-﻿<div class="dialog" id="inviteDialog">
+﻿<div class="modal hide fade" id="inviteDialog">
 	<div id="invitecontainer">
 		<p>Chpokk is currently being developed. If you want to participate in beta testing, or be notified when Chpokk opens to the general public, please leave your name and email below.</p>
 		<p>I won't spam you, and you'll be able to unsubscribe at any moment.</p>

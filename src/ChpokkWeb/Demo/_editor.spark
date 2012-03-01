@@ -1,4 +1,4 @@
-﻿<div id="editorDialog" style="overflow: hidden;">
+﻿<div id="editorDialog" style="overflow: hidden;" class="modal hide fade">
 	<p>
 		This is a quick demo of the code editor, featuring color coding and intellisense. Tested on Firefox, Internet Explorer, and Chrome.</p>
 	<p>

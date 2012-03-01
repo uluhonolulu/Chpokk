@@ -1,4 +1,4 @@
-﻿<div id="suggestDialog">
+﻿<div id="suggestDialog" class="modal hide fade">
 	<p>
 		If you need a particular feature, or just think that chpokk is a good (or bad) idea,
 		please leave your feedback.</p>
@@ -18,7 +18,7 @@
 	<textarea name="Message" id="message" rows="5" cols="30"></textarea>
 </div>
 
-<div id="thanks_for_suggestion">
+<div id="thanks_for_suggestion" class="hide">
 <h3>Thanks for your feedback!</h3>
 </div>
 <content name="head">
