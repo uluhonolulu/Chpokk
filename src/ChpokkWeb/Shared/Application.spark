@@ -4,26 +4,21 @@
 	<title>
 		<use content="title">Default Title</use>
 	</title>
-	<link href="/Styles/Site.css" rel="stylesheet" type="text/css" />
+	<Script src="lib/bootstrap.js" />
+	<Stylesheet href="lib/bootstrap.less" />
+	<Stylesheet href="Site.css" />
+<!--	<link href="/Styles/Site.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="/Styles/bootstrap.css">
-	<link href="/Styles/themes/aristo/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<style>
-		body {
-			padding-top: 60px;
-		}
-		html #aboutme a {
-			font-weight: 600;
-			color: black;
-		}
-	</style>
+	<link href="/Styles/themes/aristo/jquery-ui.css" rel="stylesheet" type="text/css" />-->
 	<Script src="jslib"/>
 	<use content="head" />
 	<Scripts />
+	<Styles />
 	<ga />
 </head>
 <body>
-	<div class="topbar">
-		<div class="fill">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
 			<div class="container">
 				<span class="brand">chpokk</span>
 				<use content="header">
