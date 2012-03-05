@@ -197,8 +197,12 @@
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
     <Content Include="Demo\RegisteredForInvite.spark" />
-    <Content Include="Demo\_editor.spark" />
-    <Content Include="Demo\_invite.spark" />
+    <Content Include="Demo\_editor.spark">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Demo\_invite.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Demo\_suggest.spark" />
     <Content Include="Demo\NB.txt" />
     <Content Include="Editor\Main.spark" />
@@ -344,6 +348,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remotes\CloneController.cs" />
     <Compile Include="Shared\DummyModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +357,7 @@
   <ItemGroup>
     <Folder Include="Content\less\" />
     <Folder Include="Infrastructure\" />
+    <Folder Include="Repa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Demo\DemoView.spark">
