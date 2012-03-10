@@ -12,11 +12,23 @@
 	</div>
 	<div class="modal-body">
 		<form class="well">
-			<label>Your repository URL</label>
-			<input type="text" class="span3"/>
+			<label>
+				Your repository URL</label>
+			<input type="text" class="span3" />
 		</form>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary close">Open project</a> <a href="#" class="btn close">Cancel</a>
+		<a href="#" class="btn btn-primary close">Open project</a> <a href="#" class="btn close">
+		                                                           	Cancel</a>
 	</div>
 </div>
+<button id="test">Test me!</button>
+<script type="text/javascript">
+
+	$(function () {
+		$("#test").click(function () {
+			$.get('/remotes/test');
+			alert('OK');
+		});
+	});
+</script>
