@@ -1,46 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
-using Gallio.Framework;
-using LibGit2Sharp;
-using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 
-namespace Chpokk.Tests.Cloning {
-	[TestFixture]
-	public class GitHubApiSpike {
-		[Test]
-		public void Test() {
-			var content = "stuff";
-			var path = "testfile.txt";
-
-			//var sha = CreateBlob(fileContent);
-
+namespace Chpokk.Tests.GitHub.Infrastructure {
+	class Api {
+		public static void CommitFile(string path, string content) {
+//post a new tree object with that file path pointer replaced with your new blob SHA getting a tree SHA back
 			var treesha = CreateTreeObject(path, content);
 
-			var headsha = GetHead();
-
-			//post a new tree object with that file path pointer replaced with your new blob SHA getting a tree SHA back
 			//create a new commit object with the current commit SHA as the parent and the new tree SHA, getting a commit SHA back
+			var headsha = GetHead();
 			var commitsha = CreateCommit(treesha, headsha);
 
+			//update the reference of your branch to point to the new commit SHA
+			UpdateHead(commitsha);
+		}
+
+		public static void UpdateHead(string commitsha) {
 			var jserializer = new JavaScriptSerializer();
 			var body = jserializer.Serialize(new {sha = commitsha});
 			var bytes = Encoding.ASCII.GetBytes(body);
 			var request = CreateDataRequest(bytes, "refs/heads/master", "PATCH");
-			using (var response = request.GetResponse() as HttpWebResponse) {
-				// Get the response stream
-				var reader = new StreamReader(response.GetResponseStream());
-				var str = reader.ReadToEnd();
-				Console.WriteLine(str);
-				//var head = jserializer.Deserialize<Ref>(str);
-				//headsha = head.Object.Sha;
-				//Console.WriteLine(sha);
-			}
-			//update the reference of your branch to point to the new commit SHA
+			request.GetResponse().Close();
 		}
 
 		public static string GetHead() {

@@ -349,6 +349,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remotes\CloneController.cs" />
+    <Compile Include="Repa\RepositoryInfo.cs" />
     <Compile Include="Shared\DummyModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -357,7 +358,6 @@
   <ItemGroup>
     <Folder Include="Content\less\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="Repa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Demo\DemoView.spark">

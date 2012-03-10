@@ -53,6 +53,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arractas">
+      <HintPath>..\..\..\..\..\Разные штуки\Visual Studio 2008\Projects\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
+    </Reference>
     <Reference Include="CThru, Version=1.2.1.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\CThru.dll</HintPath>
     </Reference>
@@ -65,8 +68,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\Ivonna.dll</HintPath>
     </Reference>
-    <Reference Include="LibGit2Sharp">
-      <HintPath>..\packages\LibGit2Sharp.0.7\lib\net35\LibGit2Sharp.dll</HintPath>
+    <Reference Include="LibGit2Sharp, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LibGit2Sharp.0.8\lib\net35\LibGit2Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LibGit2Sharp.Tests">
+      <HintPath>..\..\..\..\libgit\LibGit2Sharp.Tests\bin\Debug\LibGit2Sharp.Tests.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -104,8 +111,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cloning\GitHubApiSpike.cs" />
-    <Compile Include="Cloning\LetsClone.cs" />
+    <Compile Include="GitHub\Cloning\GitHubApiSpike.cs" />
+    <Compile Include="GitHub\Cloning.cs" />
+    <Compile Include="GitHub\Infrastructure\Api.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
     <Compile Include="MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,9 +159,9 @@
     <PostBuildEvent>
 if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
 if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.7\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
 if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.7\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
