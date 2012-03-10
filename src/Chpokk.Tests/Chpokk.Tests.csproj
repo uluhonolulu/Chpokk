@@ -111,7 +111,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GitHub\Cloning\GitHubApiSpike.cs" />
     <Compile Include="GitHub\Cloning.cs" />
     <Compile Include="GitHub\Infrastructure\Api.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
