@@ -159,6 +159,8 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\scripts\lib\jquery-1.7.1.js" />
     <Content Include="Content\scripts\lib\jquery-ui.js" />
+    <Content Include="Content\scripts\lib\jquery.continuations.js" />
+    <Content Include="Content\scripts\lib\tree.jquery.js" />
     <Content Include="Content\styles\lib\accordion.less" />
     <Content Include="Content\styles\lib\alerts.less" />
     <Content Include="Content\styles\lib\bootstrap.less" />
@@ -173,6 +175,7 @@
     <Content Include="Content\styles\lib\forms.less" />
     <Content Include="Content\styles\lib\grid.less" />
     <Content Include="Content\styles\lib\hero-unit.less" />
+    <Content Include="Content\styles\lib\jqtree.css" />
     <Content Include="Content\styles\lib\labels.less" />
     <Content Include="Content\styles\lib\layouts.less" />
     <Content Include="Content\styles\lib\mixins.less" />
