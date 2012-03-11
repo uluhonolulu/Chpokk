@@ -12,6 +12,11 @@ using System.Linq;
 namespace Chpokk.Tests.GitHub {
 	[TestFixture]
 	public class Cloning: BaseQueryTest<CloneContext, Repository> {
+		public override Repository Act() {
+			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
+			return CloneRepository(repoUrl, Context.RepositoryPath);
+		}
+
 		[Test]
 		public void CreatesThePhysicalFiles() {
 			var expectedFile = Path.Combine(Context.RepositoryPath, Context.FilePath);
@@ -20,9 +25,8 @@ namespace Chpokk.Tests.GitHub {
 		}
 
 
-		public override Repository Act() {
-			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
-			var repository = Repository.Clone(repoUrl, Context.RepositoryPath);
+		private static Repository CloneRepository(string repoUrl, string repositoryPath) {
+			var repository = Repository.Clone(repoUrl, repositoryPath);
 			var master = repository.Branches["master"];
 			repository.Checkout(master);
 			return repository;
@@ -33,22 +37,18 @@ namespace Chpokk.Tests.GitHub {
 		}
 	}
 
-	public class CloneContext : IContext, IDisposable {
+	public class CloneContext : SimpleContext, IDisposable {
 		public string RepositoryPath { get; private set; }
 		public string FilePath { get; private set; }
-		public void Create() {
-			RepositoryPath  = Path.Combine(@"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\", new RepositoryInfo().Path);
+		public override void Create() {
+			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), new RepositoryInfo().Path);
 			FilePath = Guid.NewGuid().ToString();
 			var content = "stuff";
 			Api.CommitFile(FilePath, content);
 		}
-		public IDisposable ActionWrapper() {
-			return null;
-		}
 
 		public void Dispose() {
-			DirectoryHelper.DeleteDirectory(RepositoryPath);
-			
+			DirectoryHelper.DeleteDirectory(RepositoryPath);			
 		}
 	}
 

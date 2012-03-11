@@ -19,6 +19,7 @@ namespace ChpokkWeb.Remotes {
 	}
 
 	public class CloneInputModel {
+		public string RepoUrl { get; set; }
 		public string PhysicalApplicationPath { get; set; }
 	}
 }
