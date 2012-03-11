@@ -11,5 +11,14 @@ namespace ChpokkWeb.Remotes {
 		public AjaxContinuation Test() {
 			return new AjaxContinuation(){ShouldRefresh = true};
 		}
+
+		[JsonEndpoint]
+		public AjaxContinuation CloneRepo(CloneInputModel model) {
+			return new AjaxContinuation(){ShouldRefresh = true};
+		}
+	}
+
+	public class CloneInputModel {
+		public string PhysicalApplicationPath { get; set; }
 	}
 }

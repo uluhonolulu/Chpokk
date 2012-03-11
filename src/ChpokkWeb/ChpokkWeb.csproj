@@ -157,6 +157,7 @@
     <Content Include="Content\boot\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\scripts\lib\amplify.core.min.js" />
     <Content Include="Content\scripts\lib\jquery-1.7.1.js" />
     <Content Include="Content\scripts\lib\jquery-ui.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.js" />

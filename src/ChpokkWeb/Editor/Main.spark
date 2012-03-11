@@ -27,8 +27,7 @@
 
 	$(function () {
 		$("#test").click(function () {
-			$.get('/remotes/test');
-			alert('OK');
+			$.get('/remotes/CloneRepo');
 		});
 	});
 </script>
