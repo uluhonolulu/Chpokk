@@ -10,7 +10,7 @@ namespace ChpokkWeb.Editor.Colorizer {
 		public string ToHtml(ColorizerInputModel input) {
 			var highlightDefinition = HighlightingManager.Instance.GetDefinition("C#");
 			var writer = new HtmlWriter();
-			return writer.GenerateHtml(input.Code, highlightDefinition);
+			return writer.GenerateHtml(input.Code?? "", highlightDefinition);
 		}
 	}
 }
