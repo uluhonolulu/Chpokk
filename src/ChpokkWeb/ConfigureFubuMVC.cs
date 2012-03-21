@@ -40,7 +40,7 @@ namespace ChpokkWeb {
 			Views
 				.TryToAttachWithDefaultConventions()
 				.RegisterActionLessViews(
-				token => token.ViewModelType == typeof(DummyModel), (chain, token) =>
+				token => token.ViewModelType == typeof(DummyModel) || token.ViewModelType.Name.Contains("InputModel"), (chain, token) =>
 				        {
 				            var url = (token.Name == "DemoView") ? "" : token.Name;
 				            chain.Route = new RouteDefinition(url);

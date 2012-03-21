@@ -7,10 +7,6 @@ using FubuMVC.Core.Ajax;
 
 namespace ChpokkWeb.Remotes {
 	public class CloneController {
-		[JsonEndpoint]
-		public AjaxContinuation Test() {
-			return new AjaxContinuation(){ShouldRefresh = true};
-		}
 
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepo(CloneInputModel model) {
