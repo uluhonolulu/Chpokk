@@ -2,7 +2,7 @@
 using ChpokkWeb.Editor.Intellisense;
 using Ivonna.Framework.Generic;
 using Ivonna.Framework;
-using NUnit.Framework;
+using MbUnit.Framework;
 
 namespace Chpokk.Tests.Intellisense {
 	[TestFixture, RunOnWeb]
@@ -15,7 +15,7 @@ namespace Chpokk.Tests.Intellisense {
 			var inputModel = new IntelInputModel {Text = text, Position = 58, NewChar = '.'};
 			var output = session.PostJson<IntelOutputModel>("editor/intellisense/getintellisensedata", inputModel);
 			var members = from item in output.Items select item.Text;
-			Assert.Contains("ToString", members.ToArray());
+			Assert.Contains<string>(members.ToArray(), "ToString");
 			var toStrings = from member in members where member == "ToString" select member;
 			Assert.AreEqual(1, toStrings.Count());
 		}

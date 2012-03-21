@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Arractas;
 using Chpokk.Tests.GitHub.Infrastructure;
+using ChpokkWeb.Remotes;
 using ChpokkWeb.Repa;
 using LibGit2Sharp;
 using LibGit2Sharp.Tests.TestHelpers;
@@ -14,19 +15,21 @@ namespace Chpokk.Tests.GitHub {
 	public class Cloning: BaseQueryTest<CloneContext, Repository> {
 		public override Repository Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
-			return CloneRepository(repoUrl, Context.RepositoryPath);
+			var model = new CloneInputModel {PhysicalApplicationPath = Path.GetFullPath(".."), RepoUrl = repoUrl};
+			return CloneRepository(model);
 		}
 
 		[Test]
 		public void CreatesThePhysicalFiles() {
-			var expectedFile = Path.Combine(Context.RepositoryPath, Context.FilePath);
+			var expectedFile = Path.Combine(Context.RepositoryPath, Context.FileName);
 			var existingFiles = Directory.GetFiles(Repository.Info.WorkingDirectory);
 			Assert.AreElementsEqual(new [] {expectedFile}, existingFiles);
 		}
 
 
-		private static Repository CloneRepository(string repoUrl, string repositoryPath) {
-			var repository = Repository.Clone(repoUrl, repositoryPath);
+		private static Repository CloneRepository(CloneInputModel input) {
+			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, RepositoryInfo.Path);
+			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
 			var master = repository.Branches["master"];
 			repository.Checkout(master);
 			return repository;
@@ -39,12 +42,12 @@ namespace Chpokk.Tests.GitHub {
 
 	public class CloneContext : SimpleContext, IDisposable {
 		public string RepositoryPath { get; private set; }
-		public string FilePath { get; private set; }
+		public string FileName { get; private set; }
 		public override void Create() {
-			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), new RepositoryInfo().Path);
-			FilePath = Guid.NewGuid().ToString();
+			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
+			FileName = Guid.NewGuid().ToString();
 			var content = "stuff";
-			Api.CommitFile(FilePath, content);
+			Api.CommitFile(FileName, content);
 		}
 
 		public void Dispose() {

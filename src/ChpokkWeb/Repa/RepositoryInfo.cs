@@ -5,8 +5,8 @@ using System.Web;
 
 namespace ChpokkWeb.Repa {
 	public class RepositoryInfo {
-		public string Path {
-			get { return @"UserData\uluhonolulu"; }
+		public static string Path {
+			get { return @"somedir"; }
 		}
 	}
 }

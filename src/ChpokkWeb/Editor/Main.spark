@@ -14,7 +14,7 @@
 		<form class="well">
 			<label>
 				Your repository URL</label>
-			<input type="text" class="span3" />
+			<input type="text" class="span3" name="RepoUrl" />
 		</form>
 	</div>
 	<div class="modal-footer">
