@@ -14,20 +14,19 @@
 		<form class="well">
 			<label>
 				Your repository URL</label>
-			<input type="text" class="span3" name="RepoUrl" />
+			<input type="text" class="span3" name="RepoUrl" id="RepoUrl" value="git://github.com/uluhonolulu/Chpokk-Scratchpad.git" />
 		</form>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary close">Open project</a> <a href="#" class="btn close">
+		<a href="#" class="btn btn-primary close" id="openProjectButton">Open project</a> <a href="#" class="btn close">
 		                                                           	Cancel</a>
 	</div>
 </div>
-<button id="test">Test me!</button>
 <script type="text/javascript">
 
 	$(function () {
-		$("#test").click(function () {
-			$.get('/remotes/CloneRepo');
+		$("#openProjectButton").click(function () {
+			$.post('/remotes/CloneRepo', { RepoUrl: $('#RepoUrl').val() });
 		});
 	});
 </script>

@@ -16,24 +16,16 @@ namespace Chpokk.Tests.GitHub {
 		public override Repository Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 			var model = new CloneInputModel {PhysicalApplicationPath = Path.GetFullPath(".."), RepoUrl = repoUrl};
-			return CloneRepository(model);
+			return CloneController.CloneRepository(model);
 		}
 
 		[Test]
 		public void CreatesThePhysicalFiles() {
 			var expectedFile = Path.Combine(Context.RepositoryPath, Context.FileName);
-			var existingFiles = Directory.GetFiles(Repository.Info.WorkingDirectory);
+			var existingFiles = Directory.GetFiles(Repository.Info.WorkingDirectory); 
 			Assert.AreElementsEqual(new [] {expectedFile}, existingFiles);
 		}
 
-
-		private static Repository CloneRepository(CloneInputModel input) {
-			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, RepositoryInfo.Path);
-			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
-			var master = repository.Branches["master"];
-			repository.Checkout(master);
-			return repository;
-		}
 
 		private Repository Repository {
 			get { return Result; }
@@ -51,7 +43,8 @@ namespace Chpokk.Tests.GitHub {
 		}
 
 		public void Dispose() {
-			DirectoryHelper.DeleteDirectory(RepositoryPath);			
+			if (Directory.Exists(RepositoryPath))
+				DirectoryHelper.DeleteDirectory(RepositoryPath);			
 		}
 	}
 
