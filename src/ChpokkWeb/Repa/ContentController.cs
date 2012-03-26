@@ -13,12 +13,12 @@ namespace ChpokkWeb.Repa {
 			_registry = registry;
 		}
 
-		[UrlPattern("Project/{Name}")]
-		public string GetFileList(RepositoryInputModel model) {
-			return _registry.TemplateFor(model, "GET");
-			//return _registry.UrlFor<ContentController>(c => c.GetFileList(new RepositoryInputModel(){Name = "stuff"}));
-			//return "wow";
-			return model.Name;
-		}
+		//[UrlPattern("Project/{Name}")]
+		//public string GetFileList(RepositoryInputModel model) {
+		//    return _registry.TemplateFor(model, "GET");
+		//    //return _registry.UrlFor<ContentController>(c => c.GetFileList(new RepositoryInputModel(){Name = "stuff"}));
+		//    //return "wow";
+		//    return model.Name;
+		//}
 	}
 }

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.App_Start;
+using ChpokkWeb.Repa;
 using ChpokkWeb.Shared;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
@@ -40,9 +41,13 @@ namespace ChpokkWeb {
 			Views
 				.TryToAttachWithDefaultConventions()
 				.RegisterActionLessViews(
-				token => token.ViewModelType == typeof(DummyModel) || token.ViewModelType.Name.Contains("InputModel"), (chain, token) =>
+				token => typeof(IDontNeedActionsModel).IsAssignableFrom(token.ViewModelType) || token.ViewModelType.Name.Contains("InputModel"), (chain, token) =>
 				        {
 				            var url = (token.Name == "DemoView") ? "" : token.Name;
+							if (token.ViewModelType == typeof(RepositoryInputModel))
+				        	{
+				        		url += "/{Name}";
+				        	}
 				            chain.Route = new RouteDefinition(url);
 				        })
 				;

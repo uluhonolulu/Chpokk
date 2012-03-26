@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace ChpokkWeb.Shared {
-	public class DummyModel {
-	}
+	public class DummyModel : IDontNeedActionsModel {}
+
+	public interface IDontNeedActionsModel {}
 }

@@ -1,0 +1,7 @@
+﻿<viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
+<content name="title">Chpokk, an online C# and Vb.Net editor</content>
+<content name="head">
+
+</content>
+
+${Model.Name}

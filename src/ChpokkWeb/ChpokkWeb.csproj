@@ -221,6 +221,7 @@
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
     <Content Include="Remotes\CloneInput.spark" />
+    <Content Include="Repa\Project.spark" />
     <Content Include="Scripts\browser.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Scripts\editor.js" />
