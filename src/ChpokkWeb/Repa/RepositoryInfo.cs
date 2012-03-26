@@ -8,5 +8,9 @@ namespace ChpokkWeb.Repa {
 		public static string Path {
 			get { return @"Repka"; }
 		}
+
+		public static string Name {
+			get { return "Repka"; }
+		}
 	}
 }

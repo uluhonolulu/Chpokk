@@ -6,20 +6,26 @@ using System.Web;
 using ChpokkWeb.Repa;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
+using FubuMVC.Core.Urls;
 using LibGit2Sharp;
+using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Remotes {
 	public class CloneController {
 
-		[JsonEndpoint]
-		public AjaxContinuation CloneRepo(CloneInputModel model) {
-			CloneRepository(model);
-			var continuation = AjaxContinuation.Successful();
-			continuation["navigatePage"] = "/Main/repka";
-			return continuation;
+		private IUrlRegistry _registry;
+		public CloneController(IUrlRegistry registry) {
+			_registry = registry;
 		}
 
-		public static Repository CloneRepository(CloneInputModel input) {
+		[JsonEndpoint]
+		public AjaxContinuation CloneRepo(CloneInputModel model) {
+			CloneRepository(model).Dispose();
+			var projectUrl = _registry.UrlFor(new RepositoryInputModel() {Name = RepositoryInfo.Name});
+			return AjaxContinuation.Successful().NavigateTo(projectUrl);
+		}
+
+		private static Repository CloneRepository(CloneInputModel input) {
 			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, RepositoryInfo.Path);
 			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
 			var master = repository.Branches["master"];

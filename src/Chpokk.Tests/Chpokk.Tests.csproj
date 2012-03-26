@@ -63,6 +63,12 @@
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.0.9.4.112\lib\FubuCore.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="Gallio, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Ivonna, Version=2.1.8.25329, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

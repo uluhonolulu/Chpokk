@@ -53,7 +53,7 @@ namespace Chpokk.Tests.GitHub.Infrastructure {
 				// Get the response stream
 				var reader = new StreamReader(response.GetResponseStream());
 				var str = reader.ReadToEnd();
-				Console.WriteLine(str);
+				//Console.WriteLine(str);
 				var newCommit = jserializer.Deserialize<ShaObject>(str);
 				commitsha = newCommit.Sha;
 				//Console.WriteLine(sha);
