@@ -21,13 +21,14 @@ namespace Chpokk.Tests.Exploring {
 		[Test]
 		public void ContainsTheFileName() {
 			var child = Result.FirstChild();
-			Assert.AreEqual(child.Data("name"), Context.FileName);
-			Assert.AreEqual(child.Data("path"), Context.FilePath);
+			Assert.AreEqual(Context.FileName, child.Data("name"));
+			Assert.AreEqual(Context.FilePath, child.Data("path"));
+			Assert.AreEqual(Context.FileName, child.Text());
 		}
 
 		public override HtmlTag Act() {
 			var controller = Context.Container.Get<ContentController>();
-			return controller.GetFileList(new RepositoryFileContentModel(){Name = "stuff"});
+			return controller.GetFileList(new RepositoryFileContentModel(){Name = "stuff", PhysicalApplicationPath = Path.GetFullPath("..")});
 		}
 	}
 
