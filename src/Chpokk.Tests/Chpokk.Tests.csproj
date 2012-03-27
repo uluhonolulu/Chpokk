@@ -70,6 +70,9 @@
       <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Gallio, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
     <Reference Include="Ivonna, Version=2.1.8.25329, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\Ivonna.dll</HintPath>
@@ -117,8 +120,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exploring\FileSystem.cs" />
+    <Compile Include="Exploring\ICanSeeIt.cs" />
     <Compile Include="GitHub\Cloning.cs" />
     <Compile Include="GitHub\Infrastructure\Api.cs" />
+    <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
     <Compile Include="MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

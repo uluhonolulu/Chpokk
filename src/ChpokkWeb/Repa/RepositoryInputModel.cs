@@ -9,4 +9,8 @@ namespace ChpokkWeb.Repa {
 	public class RepositoryInputModel : IDontNeedActionsModel {
 		public string Name { get; set; }
 	}
+
+	public class RepositoryFileContentModel : RepositoryInputModel {
+		public string PhysicalApplicationPath { get; set; }		
+	}
 }

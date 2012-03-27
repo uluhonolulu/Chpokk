@@ -1,7 +1,10 @@
-﻿<viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
+﻿<use namespace="ChpokkWeb.Repa"/>
+<use namespace="FubuMVC.Core.UI"/>
+<viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 <content name="head">
 
 </content>
 
-${Model.Name}
+
+!{this.Partial<ChpokkWeb.Repa.RepositoryFileContentModel>(new ChpokkWeb.Repa.RepositoryFileContentModel(){Name = Model.Name, PhysicalApplicationPath = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\"})}

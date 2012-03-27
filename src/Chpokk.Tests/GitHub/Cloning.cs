@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Arractas;
 using Chpokk.Tests.GitHub.Infrastructure;
+using Chpokk.Tests.Infrastructure;
 using ChpokkWeb;
 using ChpokkWeb.App_Start;
 using ChpokkWeb.Remotes;
@@ -38,15 +39,12 @@ namespace Chpokk.Tests.GitHub {
 	}
 
 	//[RunOnWeb]
-	public class CloneContext : SimpleContext, IDisposable {
+	public class CloneContext : SimpleConfiguredContext, IDisposable {
 		public string RepositoryPath { get; private set; }
 		public string FileName { get; private set; }
 		[SetUp]
 		public override void Create() {
-			//AppStartFubuMVC.Start();
-			//new TestSession().Get("");
-
-			SetupContainer();
+			base.Create();
 
 			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
 			FileName = Guid.NewGuid().ToString();
@@ -57,22 +55,6 @@ namespace Chpokk.Tests.GitHub {
 		public void Dispose() {
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
-		}
-
-		private void SetupContainer() {
-			var container = new Container();
-			//container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
-			var runtime = FubuApplication.For<ConfigureFubuMVC>()
-				.StructureMap(container)
-				.Bootstrap()
-				;
-			_container = runtime.Facility;
-			_container.Inject(typeof (IUrlRegistry), typeof (UrlRegistry));
-		}
-
-		private IContainerFacility _container;
-		public IContainerFacility Container {
-			get { return _container; }
 		}
 	}
 
