@@ -6,10 +6,28 @@
 	<script type="text/javascript">
 
 		$(function () {
-			$('li[data-type="file"]').click(function () {
-				window.location.hash = $(this).attr('data-path'); //
+			amplify.subscribe('hashchange', function () {
+				_loadSelectedFile();
 			})
+			$(window).hashchange(function () {
+				_loadSelectedFile();
+			})
+			$('li[data-type="file"]').click(function () {
+				window.location.hash = $(this).attr('data-path');
+			})
+			$(window).hashchange();
 		});
+
+		function _loadSelectedFile() {
+			var hash = window.location.hash;
+			if (hash !== '' && hash !== '#') {
+				loadFile(hash.substring(1));
+			}
+		}
+
+		function loadFile(path) {
+			alert(path);
+		}
 	</script>
 </content>
 
