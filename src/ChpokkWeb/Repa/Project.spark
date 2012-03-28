@@ -2,13 +2,20 @@
 <use namespace="FubuMVC.Core.UI"/>
 <viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
 <content name="title">Project view</content>
-<content name="head">
+<content name="InlineScripts">
+	<script type="text/javascript">
 
+		$(function () {
+			$('li[data-type="file"]').click(function () {
+				window.location.hash = $(this).attr('data-path'); //
+			})
+		});
+	</script>
 </content>
 
 
 <div class="pull-right well" style="min-height: 500px;">
 
-!{this.Partial<ChpokkWeb.Repa.RepositoryFileContentModel>(new ChpokkWeb.Repa.RepositoryFileContentModel(){Name = Model.Name, PhysicalApplicationPath = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\"})}
+!{this.Partial<ChpokkWeb.Repa.RepositoryFileContentModel>()}
 
 </div>

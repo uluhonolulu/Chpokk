@@ -20,10 +20,15 @@ namespace ChpokkWeb.Repa {
 		//[UrlPattern("Project/{Name}")]
 		public HtmlTag GetFileList(RepositoryFileContentModel model) {
 			var fileList = new HtmlTag("ul");
-			var folder = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
-			foreach (var file in Directory.GetFiles(folder)) {
+			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
+			foreach (var file in Directory.GetFiles(repositoryRoot)) {
 				var fileName = Path.GetFileName(file);
-				fileList.Add("li").Data("path", file).Data("name", fileName).Text(fileName);
+				var relativePath = file.Substring(repositoryRoot.Length);
+				fileList.Add("li")
+					.Data("path", relativePath)
+					.Data("name", fileName)
+					.Data("type", "file")
+					.Text(fileName);
 			}
 			return fileList;
 		}

@@ -283,3 +283,12 @@ div#title
 .popover li {
 	color: #404040;
 }
+
+/* Project explorer */
+*[data-type="file"] {
+	cursor: pointer;
+}
+
+*[data-type="file"]:hover {
+	background-color: #E0E0E0; 
+}

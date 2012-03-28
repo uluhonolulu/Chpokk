@@ -22,7 +22,7 @@ namespace Chpokk.Tests.Exploring {
 		public void ContainsTheFileName() {
 			var child = Result.FirstChild();
 			Assert.AreEqual(Context.FileName, child.Data("name"));
-			Assert.AreEqual(Context.FilePath, child.Data("path"));
+			Assert.AreEqual(Context.FilePathRelativeToRepositoryRoot, child.Data("path"));
 			Assert.AreEqual(Context.FileName, child.Text());
 		}
 
@@ -35,13 +35,17 @@ namespace Chpokk.Tests.Exploring {
 	public class SingleFileContext : SimpleConfiguredContext, IDisposable {
 		public string FileName { get; set; }
 		public string FilePath { get; private set; }
+		public string RepositoryRoot { get; private set; }
+		public string FilePathRelativeToRepositoryRoot {
+			get { return FilePath.Substring(RepositoryRoot.Length); }
+		}
 		public override void Create() {
 			base.Create();
-			var folder = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
-			if (!Directory.Exists(folder))
-				Directory.CreateDirectory(folder);
+			RepositoryRoot = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
+			if (!Directory.Exists(RepositoryRoot))
+				Directory.CreateDirectory(RepositoryRoot);
 			FileName = Guid.NewGuid().ToString();
-			FilePath = Path.Combine(folder, FileName);
+			FilePath = Path.Combine(RepositoryRoot, FileName);
 			File.Create(FilePath).Dispose();
 		}
 
