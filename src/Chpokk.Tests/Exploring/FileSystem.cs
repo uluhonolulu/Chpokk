@@ -28,7 +28,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override HtmlTag Act() {
 			var controller = Context.Container.Get<ContentController>();
-			return controller.GetFileList(new RepositoryFileContentModel(){Name = "stuff", PhysicalApplicationPath = Path.GetFullPath("..")});
+			return controller.GetFileList(new FileListModel(){Name = "stuff", PhysicalApplicationPath = Path.GetFullPath("..")});
 		}
 	}
 

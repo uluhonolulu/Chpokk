@@ -113,6 +113,7 @@
     <Content Include="Content\scripts\lib\amplify.js" />
     <Content Include="Content\scripts\lib\jquery-1.7.1.js" />
     <Content Include="Content\scripts\lib\jquery-ui.js" />
+    <Content Include="Content\scripts\lib\jquery.ba-hashchange.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.js" />
     <Content Include="Content\scripts\lib\tree.jquery.js" />
     <Content Include="Content\styles\lib\accordion.less" />
@@ -307,6 +308,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
+    <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remotes\CloneController.cs" />
     <Compile Include="Repa\ContentController.cs" />

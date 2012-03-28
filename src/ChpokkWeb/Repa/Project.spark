@@ -1,5 +1,5 @@
-﻿<use namespace="ChpokkWeb.Repa"/>
-<use namespace="FubuMVC.Core.UI"/>
+﻿<use namespace="ChpokkWeb.Repa" />
+<use namespace="FubuMVC.Core.UI" />
 <viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
 <content name="title">Project view</content>
 <content name="InlineScripts">
@@ -26,14 +26,12 @@
 		}
 
 		function loadFile(path) {
-			alert(path);
+			$('#fileContent').load("${this.Urls.UrlFor<FileContentModel>()}", { RelativePath: path })
 		}
 	</script>
 </content>
-
-
+<div id="fileContent">
+</div>
 <div class="pull-right well" style="min-height: 500px;">
-
-!{this.Partial<ChpokkWeb.Repa.RepositoryFileContentModel>()}
-
+	!{this.Partial<FileListModel>()}
 </div>

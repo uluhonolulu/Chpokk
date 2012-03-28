@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using FubuCore;
+﻿using System.IO;
+using System.Text;
+using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
 using HtmlTags;
@@ -18,7 +15,7 @@ namespace ChpokkWeb.Repa {
 		
 
 		//[UrlPattern("Project/{Name}")]
-		public HtmlTag GetFileList(RepositoryFileContentModel model) {
+		public HtmlTag GetFileList(FileListModel model) {
 			var fileList = new HtmlTag("ul");
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
 			foreach (var file in Directory.GetFiles(repositoryRoot)) {
@@ -32,5 +29,17 @@ namespace ChpokkWeb.Repa {
 			}
 			return fileList;
 		}
+
+		//[AsymmetricJson]
+		public string GetContent(FileContentModel model) {
+			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
+			var filePath = repositoryRoot.AppendPathMyWay(model.RelativePath);
+			return File.ReadAllText(filePath, Encoding.Default);
+		}
+	}
+
+	public class FileContentModel {
+		public string PhysicalApplicationPath { get; set; }
+		public string RelativePath { get; set; }
 	}
 }
