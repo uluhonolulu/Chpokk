@@ -1,24 +1,37 @@
 ﻿<div id="suggestDialog" class="modal hide fade">
-	<p>
-		If you need a particular feature, or just think that chpokk is a good (or bad) idea,
-		please leave your feedback.</p>
-	<p>
-		Please leave your name and email, if you want to receive a reply, or get a bonus.
-		I won't put you on any list, promise!</p>
-	<label for="name">
-		Name: </label> 
-	<input type="text" name="Name" id="name" />
-	<br />
-	<label for="email">
-		Email: </label> 
-	<input type="email" name="Email" id="email" />
-	<br />
-	<label for="message">
-		Message: </label> 
-	<textarea name="Message" id="message" rows="5" cols="30"></textarea>
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Suggest a feature
+		</h3>
+	</div>
+	<div class="modal-body">
+		<p>
+			If you need a particular feature, or just think that chpokk is a good (or bad) idea,
+			please leave your feedback.</p>
+		<p>
+			Please leave your name and email, if you want to receive a reply, or get a bonus.
+			I won't put you on any list, promise!</p>
+		<label for="name">
+			Name: </label> 
+		<input type="text" name="Name" id="name" />
+		<br />
+		<label for="email">
+			Email: </label> 
+		<input type="email" name="Email" id="email" />
+		<br />
+		<label for="message">
+			Message: </label> 
+		<textarea name="Message" id="message" rows="5" cols="30"></textarea>
+		
+	</div>
+	<div class="modal-footer">
+		<button class="btn" id="cancelSuggestionButton" data-dismiss="modal">Changed my mind</button>
+		<button class="btn btn-primary" id="doSuggestButton" data-dismiss="modal" onclick="submitSuggestion();">I think it's a good idea</button>
+	</div>
 </div>
 
-<div id="thanks_for_suggestion" class="hide">
+<div id="thanks_for_suggestion" class="modal hide">
 <h3>Thanks for your feedback!</h3>
 </div>
 <content name="head">
@@ -71,6 +84,7 @@
 
 	<style>
 		html #suggestDialog br { display:block; margin-bottom:10px; }
+		html #suggestDialog input, html #suggestDialog textarea { width: 460px;max-height: 90px; }
 
 	</style>
 
