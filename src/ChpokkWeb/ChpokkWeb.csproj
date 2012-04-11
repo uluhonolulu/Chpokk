@@ -34,28 +34,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bottles.0.9.1.224\lib\Bottles.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL" />
     <Reference Include="Elmah, Version=1.2.14318.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.4.117\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuCore.0.9.8.130\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuLocalization.0.9.5.17\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.References.0.9.5.817\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Less, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>fubu-content\fubumvc-less\bin\FubuMVC.Less.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Spark">
-      <HintPath>..\packages\FubuMVC.Spark.0.9.3.730\lib\net40\FubuMVC.Spark.dll</HintPath>
+    <Reference Include="FubuMVC.Spark, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.5.817\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.References.0.9.5.817\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
+    <Reference Include="HtmlTags, Version=1.0.0.56, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlTags.1.0.0.56\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -79,8 +89,8 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Spark">
-      <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
+    <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spark.1.6.1\lib\NET40\Spark.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
@@ -108,6 +118,7 @@
     <Content Include="Content\boot\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\scripts\demo.js" />
     <Content Include="Content\scripts\lib\amplify-vsdoc.js" />
     <Content Include="Content\scripts\lib\amplify.core.min.js" />
     <Content Include="Content\scripts\lib\amplify.js" />
@@ -223,6 +234,7 @@
     <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc-less.zip" />
+    <Content Include="fubu-content\fubumvc.less.zip" />
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
@@ -257,6 +269,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Shared\bindings.xml" />
+    <Content Include="Shared\_break.spark" />
     <Content Include="Shared\_ga.spark" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Content\styles\editor.css" />

@@ -12,7 +12,7 @@ namespace Chpokk.Tests.Intellisense {
 		public void ShouldReturnValidIntelForStrings() {
 			var text = "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  x\r\n }\r\n}\r\n";
 			var session = new TestSession();
-			var inputModel = new IntelInputModel {Text = text, Position = 58, NewChar = '.'};
+			var inputModel = new IntelInputModel {Text = text, Position = 58, NewChar = '.'}; 
 			var output = session.PostJson<IntelOutputModel>("editor/intellisense/getintellisensedata", inputModel, encodeRequest:true);
 			var members = from item in output.Items select item.Text;
 			Assert.Contains<string>(members.ToArray(), "ToString");

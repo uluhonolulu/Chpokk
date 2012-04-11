@@ -12,8 +12,6 @@ namespace ChpokkWeb.App_Start
     {
         public static void Start()
         {
-            // FubuApplication "guides" the bootstrapping of the FubuMVC
-            // application
             FubuApplication.For<ConfigureFubuMVC>() // ConfigureFubuMVC is the main FubuRegistry
                                                     // for this application.  FubuRegistry classes 
                                                     // are used to register conventions, policies,

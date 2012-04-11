@@ -56,22 +56,28 @@
     <Reference Include="Arractas">
       <HintPath>..\..\..\..\..\Разные штуки\Visual Studio 2008\Projects\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
     </Reference>
+    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bottles.0.9.1.224\lib\Bottles.dll</HintPath>
+    </Reference>
     <Reference Include="CThru, Version=1.2.1.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\CThru.dll</HintPath>
     </Reference>
     <Reference Include="dotless.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL" />
-    <Reference Include="FubuCore">
-      <HintPath>..\packages\FubuCore.0.9.4.112\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuCore.0.9.8.130\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuLocalization.0.9.5.17\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.References.0.9.5.817\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.References.0.9.5.817\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Gallio, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
+    <Reference Include="HtmlTags, Version=1.0.0.56, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlTags.1.0.0.56\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="Ivonna, Version=2.1.8.25329, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -88,33 +94,15 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.mocks">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
-    </Reference>
-    <Reference Include="pnunit.framework">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap.AutoMocking">
-      <HintPath>..\packages\structuremap.automocking.2.6.3\lib\StructureMap.AutoMocking.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml" />
     <Reference Include="TypeMock">
       <SpecificVersion>False</SpecificVersion>
     </Reference>

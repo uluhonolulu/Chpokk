@@ -2,15 +2,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Bottles;
+using Bottles.Diagnostics;
 using ChpokkWeb.App_Start;
 using ChpokkWeb.Repa;
 using ChpokkWeb.Shared;
+using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.View;
 using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
+using Spark;
 using StructureMap;
 using dotless.Core;
 using dotless.Core.Importers;
@@ -34,9 +38,9 @@ namespace ChpokkWeb {
 				.RootAtAssemblyNamespace()
 				;
 
-			this.UseSpark();
+			
 
-			//Services(registry => registry.ReplaceService<ILessEngine>(new LessEngine(new Parser(new PlainStylizer(), new Importer(new FileReader(new AssetPathResolver()))){})));
+			Services(registry => registry.ReplaceService<ILessEngine>(new LessEngine(new Parser(new PlainStylizer(), new Importer(new FileReader(new AssetPathResolver()))){})));
 
 			Views
 				.TryToAttachWithDefaultConventions()
@@ -56,6 +60,18 @@ namespace ChpokkWeb {
 		internal class AssetPathResolver : IPathResolver {
 			public string GetFullPath(string path) {
 				return HttpContext.Current.Server.MapPath(path).Replace(@"\_content\", @"\Content\");
+			} 
+		}
+
+		public class SparkSettingsActivator : IActivator {
+			private readonly ISparkViewEngine _engine;
+			public SparkSettingsActivator(ISparkViewEngine engine) {
+				_engine = engine;
+			}
+
+			public void Activate(IEnumerable<IPackageInfo> packages, IPackageLog log) {
+				var settings = _engine.Settings.As<SparkSettings>();
+				settings.Debug = true;
 			}
 		}
 	}

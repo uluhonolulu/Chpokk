@@ -34,7 +34,7 @@
 <div id="thanks_for_suggestion" class="modal hide">
 <h3>Thanks for your feedback!</h3>
 </div>
-<content name="head">
+<content name="InlineScripts">
 	<script type="text/javascript" charset="utf-8">
 		$(function () {
 			var dialogOptions = {
@@ -54,7 +54,7 @@
 				$(this).dialog(dialogOptions);
 			});
 
-			$("#suggestbutton").click(function () { $('#suggestDialog').dialog('open'); });
+			//$("#suggestbutton").click(function () { $('#suggestDialog').dialog('open'); });
 
 			$('#thanks_for_suggestion').dialog({
 				autoOpen: false,
@@ -66,7 +66,7 @@
 					}
 				}
 					
-				});
+			});
 		});
 
 		function submitSuggestion() {
@@ -75,10 +75,8 @@
 				email: $('#email').val(),
 				message: $('#message').val()
 			};
-			$.post('/demo/send', data, function (response) {
-				if (response.StatusCode == 200)
-					$('#thanks_for_suggestion').dialog('open');
-			});
+			amplify.publish("suggestion", data);
+
 		}
 	</script>
 
