@@ -11,6 +11,7 @@ namespace ChpokkWeb.Editor.Intellisense {
 	public class IntelController {
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
+			if (input.Text == null) return null;
 			var resolver = new NRefactoryResolver(LanguageProperties.CSharp);
 			//Debug.Assert(input.Text == "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  \r\n }\r\n}\r\n");
 
