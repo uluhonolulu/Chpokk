@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,7 @@ using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
+using FubuMVC.Core.Runtime;
 using FubuMVC.Core.View;
 using FubuMVC.Spark;
 using FubuMVC.Spark.SparkModel;
@@ -40,7 +42,11 @@ namespace ChpokkWeb {
 
 			
 
-			Services(registry => registry.ReplaceService<ILessEngine>(new LessEngine(new Parser(new PlainStylizer(), new Importer(new FileReader(new AssetPathResolver()))){})));
+			Services(registry =>
+			         {
+			         	registry.ReplaceService<ILessEngine>(
+			         		new LessEngine(new Parser(new PlainStylizer(), new Importer(new FileReader(new AssetPathResolver()))) {}));
+			         });
 
 			Views
 				.TryToAttachWithDefaultConventions()
@@ -52,9 +58,11 @@ namespace ChpokkWeb {
 				        	{
 				        		url += "/{Name}";
 				        	}
-				            chain.Route = new RouteDefinition(url);
+				            chain.Route = new RouteDefinition(url); 
 				        })
 				;
+
+			Assets.CombineAllUniqueAssetRequests();
 		}
 
 		internal class AssetPathResolver : IPathResolver {

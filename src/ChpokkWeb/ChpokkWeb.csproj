@@ -129,7 +129,6 @@
     <Content Include="Content\scripts\lib\tree.jquery.js" />
     <Content Include="Content\styles\lib\accordion.less" />
     <Content Include="Content\styles\lib\alerts.less" />
-    <Content Include="Content\styles\lib\bootstrap.less" />
     <Content Include="Content\styles\lib\breadcrumbs.less" />
     <Content Include="Content\styles\lib\button-groups.less" />
     <Content Include="Content\styles\lib\buttons.less" />
@@ -233,8 +232,8 @@
     <Content Include="Images\Intellisense\Icons.16x16.Reference.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
-    <Content Include="fubu-content\fubumvc-less.zip" />
     <Content Include="fubu-content\fubumvc.less.zip" />
+    <Content Include="Content\bootstrap.asset.config" />
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
@@ -357,7 +356,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6213</DevelopmentServerPort>
+          <DevelopmentServerPort>5544</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:6213/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

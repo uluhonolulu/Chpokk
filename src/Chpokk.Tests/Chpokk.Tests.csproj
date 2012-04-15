@@ -101,8 +101,10 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
     <Reference Include="TypeMock">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -114,6 +116,7 @@
     <Compile Include="GitHub\Infrastructure\Api.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
+    <Compile Include="LessProblem.cs" />
     <Compile Include="MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

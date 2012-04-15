@@ -5,7 +5,7 @@
 		<use content="title">Default Title</use>
 	</title>
 	<Script src="lib/bootstrap.js" />
-	<Stylesheet href="lib/bootstrap.less" />
+	<Stylesheet href="bootstrap" />
 	<Stylesheet href="lib/jqtree.css" />
 	<Stylesheet href="Site.css" />
 	<Script src="jslib"/>

@@ -51,7 +51,7 @@
 				}
 			};
 			$("#suggestDialog").each(function () {
-				$(this).dialog(dialogOptions);
+				//$(this).dialog(dialogOptions);
 			});
 
 			//$("#suggestbutton").click(function () { $('#suggestDialog').dialog('open'); });
