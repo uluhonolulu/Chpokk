@@ -52,18 +52,33 @@
 						$(this).dialog("close");
 					}
 				}
-					
+
 			});
 		});
 
 		function submitSuggestion() {
-			var data = {
-				name: $('#name').val(),
-				email: $('#email').val(),
-				message: $('#message').val()
-			};
-			amplify.publish("suggestion", data);
+			if ($(':invalid').length == 0) {
+				var data = {
+					name: $('#name').val(),
+					email: $('#email').val(),
+					message: $('#message').val()
+				};
+				amplify.publish("suggestion", data);				
+			} else {
+				suggestionError("Please fill the required field(s)!");
+				$(':invalid')[0].focus();
+			}
+		}
 
+		function suggestionPublished() {
+			$('#suggestionError').hide();
+			$('#suggestDialog').modal('hide');
+			$('#thanks_for_suggestion').dialog('open');
+		}
+
+		function suggestionError(message) {
+			$('#suggestionError').show();
+			$('#suggestionErrorText').text(message);			
 		}
 	</script>
 
