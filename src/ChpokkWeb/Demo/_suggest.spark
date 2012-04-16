@@ -36,24 +36,18 @@
 	</div>
 </div>
 
-<div id="thanks_for_suggestion" class="modal hide">
-	<h3>Thanks for your feedback!</h3>
+<div id="thanks_for_suggestion" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Thanks for your feedback!</h3>
+	</div>
+	<div class="modal-body">&nbsp;</div>
 </div>
 
 <content name="InlineScripts">
 	<script type="text/javascript" charset="utf-8">
 		$(function () {
-			$('#thanks_for_suggestion').dialog({
-				autoOpen: false,
-				width: "auto",
-				title: "Thanks!",
-				buttons: {
-					Ok: function () {
-						$(this).dialog("close");
-					}
-				}
 
-			});
 		});
 
 		function submitSuggestion() {
@@ -73,7 +67,7 @@
 		function suggestionPublished() {
 			$('#suggestionError').hide();
 			$('#suggestDialog').modal('hide');
-			$('#thanks_for_suggestion').dialog('open');
+			$('#thanks_for_suggestion').modal('show');
 		}
 
 		function suggestionError(message) {
