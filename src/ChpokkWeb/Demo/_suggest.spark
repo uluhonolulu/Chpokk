@@ -22,7 +22,7 @@
 		<br />
 		<label for="message">
 			Message: </label> 
-		<textarea name="Message" id="message" rows="5" cols="30"></textarea>
+		<textarea name="Message" id="message" rows="5" cols="30" required="required"></textarea>
 		
 	</div>
 	<div class="modal-footer">
