@@ -12,13 +12,13 @@
 			You can start by pressing the "." key. Use keyboard or mouse for intellisense.</p>
 		<div id="commoncontainer" style="position: relative;">
 			<textarea contenteditable="true" id="code" class="code" rows="10" style="color: #4F4F4F;">using System;
-	class A
-	{
-	 void B()
-	 {
-	  var x = ""
-	 }
-	}
+     class A
+     {
+          void B()
+          {
+               var x = ""
+          }
+     }
 
 	</textarea>
 			<div id="html" class="code" style="display: none;">

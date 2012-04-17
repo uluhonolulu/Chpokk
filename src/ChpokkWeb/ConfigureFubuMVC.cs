@@ -10,6 +10,7 @@ using ChpokkWeb.Repa;
 using ChpokkWeb.Shared;
 using FubuCore;
 using FubuMVC.Core;
+using FubuMVC.Core.Assets.Combination;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.Runtime;
@@ -62,7 +63,7 @@ namespace ChpokkWeb {
 				        })
 				;
 
-			Assets.CombineAllUniqueAssetRequests();
+			Assets.CombineWith<CombineAllStylesheets>();
 		}
 
 		internal class AssetPathResolver : IPathResolver {

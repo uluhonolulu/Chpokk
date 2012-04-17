@@ -169,7 +169,7 @@ function setEditorPositions() {
 
 function updateHtml() {
 	var text = $('#code')[0].value || $('#code')[0].textContent;
-	$('#html').load('/editor/colorizer/tohtml', { code: text });
+	$('#html').load('/editor/colorizer/tohtml', { Code: text });
 	$('#html').show();
 	//setEditorPositions();
 }
