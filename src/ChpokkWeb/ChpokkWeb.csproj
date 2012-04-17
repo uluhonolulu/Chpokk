@@ -239,9 +239,9 @@
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
     <Content Include="Remotes\CloneInput.spark" />
     <Content Include="Repa\Project.spark" />
-    <Content Include="Scripts\browser.js" />
+    <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
-    <Content Include="Scripts\editor.js" />
+    <Content Include="Content\scripts\editor.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -251,8 +251,8 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.bootstrappopover.js" />
-    <Content Include="Scripts\jquery.caret.1.02.js" />
-    <Content Include="Scripts\jquery.tmpl.js" />
+    <Content Include="Content\scripts\lib\jquery.caret.1.02.js" />
+    <Content Include="Content\scripts\lib\jquery.tmpl.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
