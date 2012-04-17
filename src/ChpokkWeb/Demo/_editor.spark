@@ -32,7 +32,9 @@
 		<div id="log">
 		</div>		
 	</div>
-
+	<div class="modal-footer">
+		<button class="btn btn-primary" data-dismiss="modal">Enough for today</button>
+	</div>
 </div>
 <content name="head">
 	<Stylesheet href="editor.css" />
@@ -42,24 +44,9 @@
 	<script type="text/javascript" src="/Scripts/browser.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(function () {
-			var dialogOptions = {
-				autoOpen: false,
-				modal: true,
-				width: "600",
-				height: 530,
-				title: "Editor demo",
-				buttons: {
-					"Enough for today": function () { $(this).dialog("close"); }
-				}
-			};
-			$("#editorDialog").each(function () {
-				//$(this).dialog(dialogOptions);
-			});
-
 			$("#editorbutton").click(function () {
-				<!--$('#editorDialog').dialog('open');
 				setEditorPositions();
-				$('#code').caret(49, 49);-->
+				$('#code').caret(49, 49);
 			});
 		});	
 	
