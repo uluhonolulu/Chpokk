@@ -46,3 +46,8 @@
 		{
 			color: #0000ff;
 		}
+		
+		#editorDialog #code {
+			width: 100%;
+			height: auto;
+		}
