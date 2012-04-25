@@ -284,6 +284,14 @@ div#title
 	color: #404040;
 }
 
+#editInfo {
+	width: 340px;
+}
+
+#testInfo, #commitInfo {
+	width: 280px;
+}
+
 /* Project explorer */
 *[data-type="file"] {
 	cursor: pointer;

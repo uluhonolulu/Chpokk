@@ -23,7 +23,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="span6">
+	<div class="span4" id="editInfo">
 		<h2>Edit your code</h2>
 		<p>Use it when you can't, or don't want to, fire up your IDE. Use a tablet, a smartphone, or an Internet Cafe computer.</p>
 		<div class="hide popover" id="edit_info">
@@ -39,7 +39,7 @@
 		</p>
 	</div>
 
-	<div class="span5">
+	<div class="span4" id="testInfo">
 		<h2>Run the tests</h2>
 		<p>When you're done, run your tests to verify that you haven't broken anything. </p>
 		<div class="hide popover" id="run_info">
@@ -53,7 +53,7 @@
 			<a href="#run_info" class="btn bootstrap-popover" title="Run the tests">Learn more »</a>
 		</p>
 	</div>
-	<div class="span5">
+	<div class="span4" id="commitInfo">
 		<h2>Commit and deploy</h2>
 		<p>Deploy automatically or manually using your favorite deployment scenario</p>
 		<div class="hide popover" id="deploy_info">
