@@ -46,10 +46,11 @@
 		$(function () {
 			$("#editorbutton").click(function () {
 				setEditorPositions();
+				$('#code')[0].focus();
 				$('#code').caret(49, 49);
 			});
 		});	
 	
-	</script> 
-	
+	</script>
+
 </content>

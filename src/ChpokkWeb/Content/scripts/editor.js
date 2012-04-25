@@ -115,12 +115,12 @@
 			selectedIntelItem = null;
 			selectedIntelIndex = -1;
 			currentFilter = "";
-			data.stopPropagation();//Esc shouldn't close the dialog
+			data.stopPropagation(); //Esc shouldn't close the dialog
 		}
 
 		if (data.keyCode === keyCode.ENTER) { //Enter
 			$('#html').hide();
-		}		
+		}
 	});
 
 	$('#code').keyup(function () { updateHtml(); });
