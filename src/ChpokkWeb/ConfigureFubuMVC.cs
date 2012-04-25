@@ -63,7 +63,6 @@ namespace ChpokkWeb {
 				        })
 				;
 
-			Assets.CombineWith<CombineAllStylesheets>();
 		}
 
 		internal class AssetPathResolver : IPathResolver {

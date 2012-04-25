@@ -32,6 +32,19 @@ namespace Chpokk.Tests {
 		}
 
 		[Test]
+		public void CanHandleImport() {
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Asset")));
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Exception")));
+			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is AssetPipeline));
+			CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "DoesFileExist"));
+			string output = null;
+			Assert.DoesNotThrow(() => output = new TestSession().Get("/_content/styles/lib/bootstrap.less").BodyAsString);
+			Console.WriteLine(output);
+			// IAssetPipeline to ctor
+			// pipeline.Find(path).FullPath
+		}
+
+		[Test]
 		public void CangetTheLessFile() {
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("LessEngine") && info.MethodName == ".ctor", 5));
 			//CThruEngine.AddAspect(new LessDebugger());

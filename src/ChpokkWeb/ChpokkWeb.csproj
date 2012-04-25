@@ -234,6 +234,7 @@
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc.less.zip" />
     <Content Include="Content\bootstrap.asset.config" />
+    <Content Include="Content\chpokk.asset.config" />
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
@@ -270,30 +271,29 @@
     <Content Include="Shared\bindings.xml" />
     <Content Include="Shared\_break.spark" />
     <Content Include="Shared\_ga.spark" />
-    <Content Include="Styles\bootstrap.css" />
     <Content Include="Content\styles\editor.css" />
     <Content Include="Content\styles\Site.css" />
-    <Content Include="Styles\themes\aristo\images\bg_fallback.png" />
-    <Content Include="Styles\themes\aristo\images\icon_sprite.png" />
-    <Content Include="Styles\themes\aristo\images\progress_bar.gif" />
-    <Content Include="Styles\themes\aristo\images\slider_handles.png" />
-    <Content Include="Styles\themes\aristo\images\ui-icons_222222_256x240.png" />
-    <Content Include="Styles\themes\aristo\images\ui-icons_454545_256x240.png" />
-    <Content Include="Styles\themes\aristo\jquery-ui.css" />
-    <Content Include="Styles\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Styles\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Styles\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Styles\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Styles\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Styles\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Styles\themes\base\jquery-ui.css" />
+    <Content Include="Content\styles\themes\aristo\images\bg_fallback.png" />
+    <Content Include="Content\styles\themes\aristo\images\icon_sprite.png" />
+    <Content Include="Content\styles\themes\aristo\images\progress_bar.gif" />
+    <Content Include="Content\styles\themes\aristo\images\slider_handles.png" />
+    <Content Include="Content\styles\themes\aristo\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\styles\themes\aristo\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\styles\themes\aristo\jquery-ui.css" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\styles\themes\base\jquery-ui.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -342,11 +342,13 @@
     <Content Include="Shared\_WhereAreWe.spark" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\themes\aristo\jquery-ui-1.8.7.custom.css.scss" />
+    <Content Include="Content\styles\themes\aristo\jquery-ui-1.8.7.custom.css.scss" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="tests.script.config" />
-    <None Include="Styles\themes\aristo\jquery-ui.scss" />
+    <None Include="tests.script.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Content\styles\themes\aristo\jquery-ui.scss" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -356,7 +358,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5544</DevelopmentServerPort>
+          <DevelopmentServerPort>5321</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:6213/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
