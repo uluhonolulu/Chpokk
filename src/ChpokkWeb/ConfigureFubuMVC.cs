@@ -41,13 +41,7 @@ namespace ChpokkWeb {
 				.RootAtAssemblyNamespace()
 				;
 
-			
-
-			Services(registry =>
-			         {
-			         	registry.ReplaceService<ILessEngine>(
-			         		new LessEngine(new Parser(new PlainStylizer(), new Importer(new FileReader(new AssetPathResolver()))) {}));
-			         });
+		
 
 			Views
 				.TryToAttachWithDefaultConventions()
@@ -65,11 +59,11 @@ namespace ChpokkWeb {
 
 		}
 
-		internal class AssetPathResolver : IPathResolver {
-			public string GetFullPath(string path) {
-				return HttpContext.Current.Server.MapPath(path).Replace(@"\_content\", @"\Content\");
-			} 
-		}
+		//internal class AssetPathResolver : IPathResolver {
+		//    public string GetFullPath(string path) {
+		//        return HttpContext.Current.Server.MapPath(path).Replace(@"\_content\", @"\Content\");
+		//    } 
+		//}
 
 		public class SparkSettingsActivator : IActivator {
 			private readonly ISparkViewEngine _engine;

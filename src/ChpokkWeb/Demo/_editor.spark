@@ -49,7 +49,11 @@
 				$('#code')[0].focus();
 				$('#code').caret(49, 49);
 			});
-		});	
+		});
+
+		function whatsFocused() {
+			alert($("*:focus").attr("id"));
+		}
 	
 	</script>
 

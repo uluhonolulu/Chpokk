@@ -23,21 +23,21 @@ namespace Chpokk.Tests {
 		}
 	}
 
-	public class UnitTest {
-		[Test]
-		public void CheckThisOut() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "Url", 3));
-			CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "Quoted", 3));
-			CThruEngine.AddAspect(new DebugAspect(info => info.TargetInstance is INodeProvider && info.MethodName == "Import"));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Import") || info.MethodName.Contains("Import"), 3));
-			CThruEngine.StartListening();
-			const string content = "@import \"reset.less\";\r\n";
-			var engine = new LessEngine();
-			engine.Parser.Importer.Paths.Add(@"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Content\styles\lib\");
-			var result = engine.TransformToCss(content, null); //@"~/Content/styles/lib/bootstrap.less"
-			Console.WriteLine(result);
-		}
-	}
+	//public class UnitTest {
+	//    [Test]
+	//    public void CheckThisOut() {
+	//        CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "Url", 3));
+	//        CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "Quoted", 3));
+	//        CThruEngine.AddAspect(new DebugAspect(info => info.TargetInstance is INodeProvider && info.MethodName == "Import"));
+	//        //CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Import") || info.MethodName.Contains("Import"), 3));
+	//        CThruEngine.StartListening();
+	//        const string content = "@import \"reset.less\";\r\n";
+	//        var engine = new LessEngine();
+	//        engine.Parser.Importer.Paths.Add(@"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Content\styles\lib\");
+	//        var result = engine.TransformToCss(content, null); //@"~/Content/styles/lib/bootstrap.less"
+	//        Console.WriteLine(result);
+	//    }
+	//}
 
 
 }
