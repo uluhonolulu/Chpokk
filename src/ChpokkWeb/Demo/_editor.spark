@@ -11,7 +11,7 @@
 		<p>
 			You can start by pressing the "." key. Use keyboard or mouse for intellisense.</p>
 		<div id="commoncontainer" style="position: relative;">
-			<textarea contenteditable="true" id="code" class="code" rows="10" style="color: #4F4F4F;">using System;
+			<textarea contenteditable="true" id="code" class="code" rows="10" style="color: #4F4F4F;" tabindex="1">using System;
      class A
      {
           void B()
@@ -44,16 +44,16 @@
 <content name="InlineScripts">
 	<script type="text/javascript" charset="utf-8">
 		$(function () {
-			$("#editorbutton").click(function () {
+			$('#editorDialog').on('shown', function() {
 				setEditorPositions();
-				$('#code')[0].focus();
-				$('#code').caret(49, 49);
+				$('#code').focus();
+				var strToSearch = "var x = \"\"";
+				var text = $('#code')[0].innerHTML;
+				var position = text.indexOf(strToSearch) + strToSearch.length;
+				$('#code').caret(position, position);
 			});
 		});
 
-		function whatsFocused() {
-			alert($("*:focus").attr("id"));
-		}
 	
 	</script>
 
