@@ -79,6 +79,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LibGit2Sharp.0.8\lib\net35\LibGit2Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <HintPath>..\packages\Spark.1.6.1\lib\NET40\Spark.dll</HintPath>
     </Reference>
