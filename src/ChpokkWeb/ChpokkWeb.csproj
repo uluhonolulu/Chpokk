@@ -55,10 +55,6 @@
     <Reference Include="FubuMVC.Core, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Less, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>fubu-content\fubumvc-less\bin\FubuMVC.Less.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="FubuMVC.Spark, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuMVC.Spark.0.9.5.817\lib\net40\FubuMVC.Spark.dll</HintPath>
