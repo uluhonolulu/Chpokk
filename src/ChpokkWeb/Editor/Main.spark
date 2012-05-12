@@ -1,0 +1,32 @@
+﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+<content name="title">Chpokk, an online C# and Vb.Net editor</content>
+<content name="head">
+
+</content>
+<a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Open a project</a>
+<div class="modal hide fade" id="openProjectDialog">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Modal header</h3>
+	</div>
+	<div class="modal-body">
+		<form class="well">
+			<label>
+				Your repository URL</label>
+			<input type="text" class="span3" name="RepoUrl" id="RepoUrl" value="git://github.com/uluhonolulu/Chpokk-Scratchpad.git" />
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary close" id="openProjectButton">Open project</a> <a href="#" class="btn close">
+		                                                           	Cancel</a>
+	</div>
+</div>
+<script type="text/javascript">
+
+	$(function () {
+		$("#openProjectButton").click(function () {
+			$.post('/remotes/CloneRepo', { RepoUrl: $('#RepoUrl').val() });
+		});
+	});
+</script>

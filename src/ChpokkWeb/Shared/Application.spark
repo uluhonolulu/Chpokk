@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		<use content="title">Default Title</use>
+	</title>
+	<Script src="lib/bootstrap.js" />
+	<Stylesheet href="styles" />
+	<Script src="jslib"/>
+	<use content="head" />
+	<Script src="demo.js" />
+	<Scripts />
+	<Styles />
+	<use content="InlineScripts" />
+	<ga />
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<span class="brand">chpokk</span>
+				<use content="header">
+				  </use>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<use content="view" />
+		<div class="clearfix"></div>
+		<div class="pull-right" id="aboutme">
+			<a href="http://about.me/ulu" target="_blank">About me </a>
+		</div>
+	</div>
+</body>
+</html>

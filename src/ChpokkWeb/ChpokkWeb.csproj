@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{244CBBEC-847E-4E0D-8857-05BB34878174}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChpokkWeb</RootNamespace>
+    <AssemblyName>ChpokkWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <JSLintSkip>\Scripts\jquery-1.4.4-vsdoc.js|\Scripts\jquery-1.4.4.js|\Scripts\jquery-1.4.4.min.js|\Scripts\MicrosoftMvcValidation.debug.js|\Scripts\MicrosoftMvcAjax.js|\Scripts\MicrosoftMvcAjax.debug.js|\Scripts\MicrosoftAjax.js|\Scripts\MicrosoftAjax.debug.js|\Scripts\jquery.validate.unobtrusive.min.js|\Scripts\jquery.validate.unobtrusive.js|\Scripts\jquery.validate.min.js|\Scripts\jquery.validate.js|\Scripts\jquery.validate-vsdoc.js|\Scripts\jquery.unobtrusive-ajax.min.js|\Scripts\jquery.unobtrusive-ajax.js|\Scripts\jquery.tmpl.js|\Scripts\jquery.caret.1.02.js|\Scripts\jquery.bootstrappopover.js|\Scripts\jquery-ui.min.js|\Scripts\jquery-ui.js|\Scripts\jquery-1.7.min.js|\Scripts\jquery-1.7.js|\Scripts\MicrosoftMvcValidation.js|\Scripts\jquery-1.7-vsdoc.js</JSLintSkip>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bottles, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bottles.0.9.1.274\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="dotless.Core, Version=1.3.0.3, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\dotless.1.3.0.3\lib\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCore, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuCore.0.9.9.149\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Less, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>fubu-content\fubumvc-less\bin\FubuMVC.Less.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="FubuMVC.Spark, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.5.817\lib\net40\FubuMVC.Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags, Version=1.1.0.71, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlTags.1.1.0.71\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Dom.dll</HintPath>
+    </Reference>
+    <Reference Include="LibGit2Sharp, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LibGit2Sharp.0.8\lib\net35\LibGit2Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spark.1.6.1\lib\NET40\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="bin\FubuMVC.Less.dll" />
+    <Content Include="bin\FubuMVC.Less.pdb" />
+    <Content Include="Content\boot\bootstrap-responsive.css" />
+    <Content Include="Content\boot\bootstrap-responsive.min.css" />
+    <Content Include="Content\boot\bootstrap.css" />
+    <Content Include="Content\boot\bootstrap.min.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\scripts\demo.js" />
+    <Content Include="Content\scripts\lib\amplify-vsdoc.js" />
+    <Content Include="Content\scripts\lib\amplify.core.min.js" />
+    <Content Include="Content\scripts\lib\amplify.js" />
+    <Content Include="Content\scripts\lib\jquery-1.7.1.js" />
+    <Content Include="Content\scripts\lib\jquery-ui.js" />
+    <Content Include="Content\scripts\lib\jquery.ba-hashchange.js" />
+    <Content Include="Content\scripts\lib\jquery.continuations.js" />
+    <Content Include="Content\scripts\lib\tree.jquery.js" />
+    <Content Include="Content\styles\lib\accordion.less" />
+    <Content Include="Content\styles\lib\alerts.less" />
+    <Content Include="Content\styles\lib\breadcrumbs.less" />
+    <Content Include="Content\styles\lib\button-groups.less" />
+    <Content Include="Content\styles\lib\buttons.less" />
+    <Content Include="Content\styles\lib\carousel.less" />
+    <Content Include="Content\styles\lib\close.less" />
+    <Content Include="Content\styles\lib\code.less" />
+    <Content Include="Content\styles\lib\component-animations.less" />
+    <Content Include="Content\styles\lib\dropdowns.less" />
+    <Content Include="Content\styles\lib\forms.less" />
+    <Content Include="Content\styles\lib\grid.less" />
+    <Content Include="Content\styles\lib\hero-unit.less" />
+    <Content Include="Content\styles\lib\jqtree.css" />
+    <Content Include="Content\styles\lib\labels.less" />
+    <Content Include="Content\styles\lib\layouts.less" />
+    <Content Include="Content\styles\lib\mixins.less" />
+    <Content Include="Content\styles\lib\modals.less" />
+    <Content Include="Content\styles\lib\navbar.less" />
+    <Content Include="Content\styles\lib\navs.less" />
+    <Content Include="Content\styles\lib\pager.less" />
+    <Content Include="Content\styles\lib\pagination.less" />
+    <Content Include="Content\styles\lib\popovers.less" />
+    <Content Include="Content\styles\lib\progress-bars.less" />
+    <Content Include="Content\styles\lib\reset.less" />
+    <Content Include="Content\styles\lib\responsive.less" />
+    <Content Include="Content\styles\lib\scaffolding.less" />
+    <Content Include="Content\styles\lib\sprites.less" />
+    <Content Include="Content\styles\lib\tables.less" />
+    <Content Include="Content\styles\lib\thumbnails.less" />
+    <Content Include="Content\styles\lib\tooltip.less" />
+    <Content Include="Content\styles\lib\type.less" />
+    <Content Include="Content\styles\lib\utilities.less" />
+    <Content Include="Content\styles\lib\variables.less" />
+    <Content Include="Content\styles\lib\wells.less" />
+    <Content Include="Content\scripts\realstuff.js" />
+    <Content Include="Content\scripts\sampletest.js" />
+    <Content Include="Demo\RegisteredForInvite.spark" />
+    <Content Include="Demo\_editor.spark">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Demo\_invite.spark">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Demo\_suggest.spark" />
+    <Content Include="Demo\NB.txt" />
+    <Content Include="Editor\Main.spark" />
+    <Content Include="Editor\Tests\MainFixture.html" />
+    <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
+    <Content Include="Global.asax" />
+    <Content Include="HTMLPage1.htm" />
+    <Content Include="HTMLPage2.htm" />
+    <Content Include="HTMLPage3.htm" />
+    <Content Include="HTMLPage4.htm" />
+    <Content Include="Images\Intellisense\Icons.16x16.Class.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Delegate.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Enum.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Event.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ExtensionMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Field.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Indexer.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Interface.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalClass.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalDelegate.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalEnum.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalEvent.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalExtensionMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalField.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalIndexer.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalInterface.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalProperty.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.InternalStruct.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Keyword.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Literal.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Local.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Method.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.NameSpace.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Operator.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Parameter.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateClass.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateDelegate.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateEnum.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateEvent.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateExtensionMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateField.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateIndexer.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateInterface.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateProperty.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.PrivateStruct.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Property.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedClass.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedDelegate.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedEnum.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedEvent.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedExtensionMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedField.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedIndexer.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedInterface.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedMethod.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedProperty.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.ProtectedStruct.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Reference.png" />
+    <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
+    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
+    <Content Include="fubu-content\fubumvc.less.zip" />
+    <Content Include="Content\bootstrap.asset.config" />
+    <Content Include="Content\chpokk.asset.config" />
+    <None Include="InviteForm.htm" />
+    <Content Include="Content\scripts\lib\bootstrap.js" />
+    <Content Include="Content\scripts\lib\bootstrap.min.js" />
+    <Content Include="Remotes\CloneInput.spark" />
+    <Content Include="Repa\Project.spark" />
+    <Content Include="Content\scripts\lib\browser.js" />
+    <Content Include="Scripts\dialog.js" />
+    <Content Include="Content\scripts\editor.js" />
+    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.bootstrappopover.js" />
+    <Content Include="Content\scripts\lib\jquery.caret.1.02.js" />
+    <Content Include="Content\scripts\lib\jquery.tmpl.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\less-1.2.1.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Shared\bindings.xml" />
+    <Content Include="Shared\_break.spark" />
+    <Content Include="Shared\_ga.spark" />
+    <Content Include="Content\styles\editor.css" />
+    <Content Include="Content\styles\Site.css" />
+    <Content Include="Content\styles\themes\aristo\images\bg_fallback.png" />
+    <Content Include="Content\styles\themes\aristo\images\icon_sprite.png" />
+    <Content Include="Content\styles\themes\aristo\images\progress_bar.gif" />
+    <Content Include="Content\styles\themes\aristo\images\slider_handles.png" />
+    <Content Include="Content\styles\themes\aristo\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\styles\themes\aristo\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\styles\themes\aristo\jquery-ui.css" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\styles\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\styles\themes\base\jquery-ui.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="Demo\SuggestController.cs" />
+    <Compile Include="Demo\SuggestionModel.cs" />
+    <Compile Include="Demo\SuggestionOutputModel.cs" />
+    <Compile Include="Editor\Colorizer\ColorizerController.cs" />
+    <Compile Include="Editor\Colorizer\ColorizerInputModel.cs" />
+    <Compile Include="Editor\Colorizer\HtmlWriter.cs" />
+    <Compile Include="Editor\Intellisense\IntelController.cs" />
+    <Compile Include="Editor\Intellisense\IntelInputModel.cs" />
+    <Compile Include="Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\ContinuationExtensions.cs" />
+    <Compile Include="Infrastructure\PathExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remotes\CloneController.cs" />
+    <Compile Include="Repa\ContentController.cs" />
+    <Compile Include="Repa\RepositoryInfo.cs" />
+    <Compile Include="Repa\RepositoryInputModel.cs" />
+    <Compile Include="Shared\DummyModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\less\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Demo\DemoView.spark">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Shared\Application.spark" />
+    <Content Include="Shared\_WhereAreWe.spark" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\styles\themes\aristo\jquery-ui-1.8.7.custom.css.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tests.script.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Content\styles\themes\aristo\jquery-ui.scss" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5321</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6213/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+rem if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
+rem if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+rem if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

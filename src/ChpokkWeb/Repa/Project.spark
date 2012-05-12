@@ -1,0 +1,37 @@
+﻿<use namespace="ChpokkWeb.Repa" />
+<use namespace="FubuMVC.Core.UI" />
+<viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
+<content name="title">Project view</content>
+<content name="InlineScripts">
+	<script type="text/javascript">
+
+		$(function () {
+			amplify.subscribe('hashchange', function () {
+				_loadSelectedFile();
+			})
+			$(window).hashchange(function () {
+				_loadSelectedFile();
+			})
+			$('li[data-type="file"]').click(function () {
+				window.location.hash = $(this).attr('data-path');
+			})
+			$(window).hashchange();
+		});
+
+		function _loadSelectedFile() {
+			var hash = window.location.hash;
+			if (hash !== '' && hash !== '#') {
+				loadFile(hash.substring(1));
+			}
+		}
+
+		function loadFile(path) {
+			$('#fileContent').load("${this.Urls.UrlFor<FileContentModel>()}", { RelativePath: path })
+		}
+	</script>
+</content>
+<div id="fileContent">
+</div>
+<div class="pull-right well" style="min-height: 500px;">
+	!{this.Partial<FileListModel>()}
+</div>

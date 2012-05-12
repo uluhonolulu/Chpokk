@@ -1,0 +1,126 @@
+﻿<div class="modal hide fade" id="inviteDialog">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Request an invite
+		</h3>
+	</div>
+	<div id="invitecontainer" class="modal-body">
+		<p>Chpokk is currently being developed. If you want to participate in beta testing, or be notified when Chpokk opens to the general public, please leave your name and email below.</p>
+		<p>I won't spam you, and you'll be able to unsubscribe at any moment.</p>
+		<p>
+			Required fields are <b>bold...</b></p>
+		<form action="http://sm-art.us2.list-manage.com/subscribe/post" method="post" class="well" id="subscriptionForm">
+			<input type="hidden" name="u" value="993f5b9b3ecdad0540eeb28da" />
+			<input type="hidden" name="id" value="63ce6e8abb" />
+			<table cellpadding="5" cellspacing="0" border="0" align="center" style="border-style:none;">
+				<tr>
+					<td align="right" class="formLabel">
+						<strong>Email Address</strong> <span class="asterisk">*</span>:
+					</td>
+					<td align="left">
+						<input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0"
+						       size="25" />
+					</td>
+				</tr>
+				<tr>
+					<td align="right" class="formLabel">
+						First Name:
+					</td>
+					<td align="left">
+						<input type="text" name="MERGE1" id="MERGE1" size="25" />
+					</td>
+				</tr>
+				<tr>
+					<td align="right" class="formLabel">
+						Last Name:
+					</td>
+					<td align="left">
+						<input type="text" name="MERGE2" id="MERGE2" size="25" />
+					</td>
+				</tr>
+				<!--			<tr>
+				    				<td align="right">
+				    					&nbsp;
+				    				</td>
+				    				<td align="left">
+				    					<input type="submit" value="Subscribe">
+				    				</td>
+				    			</tr>-->
+			</table>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" id="cancelSubscriptionButtonButton" data-dismiss="modal">No thanks</button>
+		<button class="btn btn-primary" id="subscribeButton">I'd like to check this out</button>
+	</div>
+</div>
+<content name="InlineScripts">
+	<script type="text/javascript" charset="utf-8">
+		$(function () {
+			$('#subscribeButton').click(function() {
+				$('#subscriptionForm').submit();
+				$('#inviteDialog').modal('hide');
+			});
+
+
+		});
+	</script>
+
+	<style type="text/css">
+		p
+		{
+			line-height: 18px;
+		}
+		html #invitecontainer
+		{
+			background-color: #FFFFFF;
+			width: 400px;
+			/*border: 1px solid #999999;*/
+			padding: 5 5 15 5;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.pageTitle
+		{
+			background-color: #DDDDDD;
+			padding: 8px;
+			font-size: 16px;
+			font-weight: bold;
+			color: #000000;
+			text-align: left;
+		}
+		.pageTitleAlert
+		{
+			background-color: #FF0000;
+			padding: 8px;
+			font-size: 16px;
+			font-weight: bold;
+			color: #FFFFFF;
+			text-align: left;
+		}
+		.pageTitleSuccess
+		{
+			background-color: #33CC00;
+			padding: 8px;
+			font-size: 16px;
+			font-weight: bold;
+			color: #FFFFFF;
+			text-align: left;
+		}
+		.formLabel
+		{
+			font-size: 13px;
+		}
+		.error
+		{
+			color: #FF0000;
+			font-weight: bold;
+			font-size: 11px;
+		}
+		.small
+		{
+			font-size: 11px;
+		}
+	</style>
+</content>

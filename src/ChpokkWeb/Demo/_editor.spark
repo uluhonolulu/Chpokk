@@ -1,0 +1,60 @@
+﻿<div id="editorDialog" style="overflow: visible;" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Editor demo
+		</h3>
+	</div>
+	<div class="modal-body">
+		<p>
+			This is a quick demo of the code editor, featuring color coding and intellisense. Tested on Firefox, Internet Explorer, and Chrome.</p>
+		<p>
+			You can start by pressing the "." key. Use keyboard or mouse for intellisense.</p>
+		<div id="commoncontainer" style="position: relative;">
+			<textarea contenteditable="true" id="code" class="code" rows="10" style="color: #4F4F4F;" tabindex="1">using System;
+     class A
+     {
+          void B()
+          {
+               var x = ""
+          }
+     }
+
+	</textarea>
+			<div id="html" class="code" style="display: none;">
+			</div>
+			<div id="shadow" class="code" style="z-index: -1;">
+			</div>
+			<ul id="results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"
+				style="z-index: 1; display: none;">
+			</ul>
+		</div>
+		<div id="log">
+		</div>		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" data-dismiss="modal">Enough for today</button>
+	</div>
+</div>
+<content name="head">
+	<Stylesheet href="editor.css" />
+	<Script src="editor.js" />
+</content>
+
+<content name="InlineScripts">
+	<script type="text/javascript" charset="utf-8">
+		$(function () {
+			$('#editorDialog').on('shown', function() {
+				setEditorPositions();
+				$('#code').focus();
+				var strToSearch = "var x = \"\"";
+				var text = $('#code')[0].innerHTML;
+				var position = text.indexOf(strToSearch) + strToSearch.length;
+				$('#code').caret(position, position);
+			});
+		});
+
+	
+	</script>
+
+</content>

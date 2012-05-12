@@ -1,0 +1,92 @@
+﻿<div id="suggestDialog" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Suggest a feature
+		</h3>
+	</div>
+	<div class="modal-body">
+		<p>
+			If you need a particular feature, or just think that chpokk is a good (or bad) idea,
+			please leave your feedback.</p>
+		<p>
+			Please leave your name and email, if you want to receive a reply, or get a bonus.
+			I won't put you on any list, promise!</p>
+		<label for="name">
+			Name (optional): </label> 
+		<input type="text" name="Name" id="name" />
+		<br />
+		<label for="email">
+			Email (optional): </label> 
+		<input type="email" name="Email" id="email" />
+		<br />
+		<label for="message">
+			Message (required): </label> 
+		<textarea name="Message" id="message" rows="5" cols="30" required="required"></textarea>
+		
+	</div>
+	<div id="suggestionError" class="alert alert-block alert-error fade in hide">
+		<a class="close" data-dismiss="alert" href="#">×</a>
+		<h4 class="alert-heading">Crap! Couldn't submit your suggestion!</h4>
+		<p id="suggestionErrorText"></p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" id="cancelSuggestionButton" data-dismiss="modal">Changed my mind</button>
+		<button class="btn btn-primary" id="doSuggestButton" onclick="submitSuggestion();">I think it's a good idea</button>
+	</div>
+</div>
+
+<div id="thanks_for_suggestion" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Thanks for your feedback!</h3>
+	</div>
+	<div class="modal-body">&nbsp;</div>
+</div>
+
+<content name="InlineScripts">
+	<script type="text/javascript" charset="utf-8">
+		$(function () {
+
+		});
+
+		function submitSuggestion() {
+			try {
+				if ($(':invalid').length == 0) {
+					var data = {
+						name: $('#name').val(),
+						email: $('#email').val(),
+						message: $('#message').val()
+					};
+					amplify.publish("suggestion", data);
+				} else {
+					suggestionError("Please fill the required field(s)!");
+					$(':invalid')[0].focus();
+				}
+			} catch (e) {
+				// sorry IE!
+				suggestionError("Please fill the required field(s)!");
+
+			}
+		}
+
+		function suggestionPublished() {
+			$('#suggestionError').hide();
+			$('#suggestDialog').modal('hide');
+			$('#thanks_for_suggestion').modal('show');
+		}
+
+		function suggestionError(message) {
+			$('#suggestionError').show();
+			$('#suggestionErrorText').text(message);			
+		}
+	</script>
+
+	<style>
+		html #suggestDialog br { display:block; margin-bottom:10px; }
+		html #suggestDialog input, html #suggestDialog textarea { width: 460px;max-height: 90px; }
+
+	</style>
+
+
+</content>
