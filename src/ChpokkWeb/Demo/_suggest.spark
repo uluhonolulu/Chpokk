@@ -22,7 +22,7 @@
 		<br />
 		<label for="message">
 			Message (required): </label> 
-		<textarea name="Message" id="message" rows="5" cols="30" required="required"></textarea>
+		<textarea name="ThisIsMessage" id="message" rows="5" cols="30" required="required"></textarea>
 		
 	</div>
 	<div id="suggestionError" class="alert alert-block alert-error fade in hide">
@@ -65,7 +65,12 @@
 				}
 			} catch (e) {
 				// sorry IE!
-				suggestionError("Please fill the required field(s)!");
+				var data = {
+					Name: $('#name').val(),
+					Email: $('#email').val(),
+					Message: $('#message').val()
+				};
+				amplify.publish("suggestion", data);
 
 			}
 		}
