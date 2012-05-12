@@ -157,10 +157,10 @@
     <Content Include="Editor\Tests\MainFixture.html" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
-    <Content Include="HTMLPage1.htm" />
-    <Content Include="HTMLPage2.htm" />
-    <Content Include="HTMLPage3.htm" />
-    <Content Include="HTMLPage4.htm" />
+    <None Include="HTMLPage1.htm" />
+    <None Include="HTMLPage2.htm" />
+    <None Include="HTMLPage3.htm" />
+    <None Include="HTMLPage4.htm" />
     <Content Include="Images\Intellisense\Icons.16x16.Class.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Delegate.png" />
     <Content Include="Images\Intellisense\Icons.16x16.Enum.png" />
@@ -353,12 +353,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-rem if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
-rem if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
-rem if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+    <PostBuildEvent>rem if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
+xcopy /s /y /i "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+xcopy /s /y /i "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
