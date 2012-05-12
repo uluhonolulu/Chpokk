@@ -111,17 +111,5 @@ namespace Chpokk.Tests {
 			}
 		}
 
-		[Test]
-		public void CangetTheLessFile() {
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("LessEngine") && info.MethodName == ".ctor", 5));
-			//CThruEngine.AddAspect(new LessDebugger());
-			//Assert.DoesNotThrow(() => new TestSession().Get("/_content/styles/lib/reset.less"));
-			var session = new TestSession();
-			session.Get("/"); //warmup
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Asset") || info.TypeName.Contains("dotless")));
-			CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "TransformToCss"));
-			var response = session.Get("/_content/styles/lib/cbedfa0c7dd255710f3f38f5edf90b70.css");
-			Assert.GreaterThan(response.BodyAsString.Length, 0);
-		}
 	}
 }
