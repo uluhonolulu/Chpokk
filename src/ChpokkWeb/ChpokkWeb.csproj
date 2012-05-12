@@ -109,6 +109,7 @@
     <Content Include="Content\scripts\lib\tree.jquery.js" />
     <Content Include="Content\styles\lib\accordion.less" />
     <Content Include="Content\styles\lib\alerts.less" />
+    <Content Include="Content\styles\lib\bootstrap.less" />
     <Content Include="Content\styles\lib\breadcrumbs.less" />
     <Content Include="Content\styles\lib\button-groups.less" />
     <Content Include="Content\styles\lib\buttons.less" />
