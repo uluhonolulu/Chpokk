@@ -49,6 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuCore.0.9.9.149\lib\FubuCore.dll</HintPath>
     </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\packages\FubuLocalization.0.9.5.17\lib\FubuLocalization.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Core, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
@@ -93,8 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
-    <Content Include="bin\FubuMVC.Less.dll" />
-    <Content Include="bin\FubuMVC.Less.pdb" />
     <Content Include="Content\boot\bootstrap-responsive.css" />
     <Content Include="Content\boot\bootstrap-responsive.min.css" />
     <Content Include="Content\boot\bootstrap.css" />
@@ -316,6 +317,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="Content\less\" />
   </ItemGroup>
   <ItemGroup>
