@@ -13,15 +13,15 @@
 			Please leave your name and email, if you want to receive a reply, or get a bonus.
 			I won't put you on any list, promise!</p>
 		<label for="name">
-			Name: </label> 
+			Name (optional): </label> 
 		<input type="text" name="Name" id="name" />
 		<br />
 		<label for="email">
-			Email: </label> 
+			Email (optional): </label> 
 		<input type="email" name="Email" id="email" />
 		<br />
 		<label for="message">
-			Message: </label> 
+			Message (required): </label> 
 		<textarea name="Message" id="message" rows="5" cols="30" required="required"></textarea>
 		
 	</div>
@@ -51,16 +51,22 @@
 		});
 
 		function submitSuggestion() {
-			if ($(':invalid').length == 0) {
-				var data = {
-					name: $('#name').val(),
-					email: $('#email').val(),
-					message: $('#message').val()
-				};
-				amplify.publish("suggestion", data);				
-			} else {
+			try {
+				if ($(':invalid').length == 0) {
+					var data = {
+						name: $('#name').val(),
+						email: $('#email').val(),
+						message: $('#message').val()
+					};
+					amplify.publish("suggestion", data);
+				} else {
+					suggestionError("Please fill the required field(s)!");
+					$(':invalid')[0].focus();
+				}
+			} catch (e) {
+				// sorry IE!
 				suggestionError("Please fill the required field(s)!");
-				$(':invalid')[0].focus();
+
 			}
 		}
 
