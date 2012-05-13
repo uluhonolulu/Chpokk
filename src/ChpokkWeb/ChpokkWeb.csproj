@@ -155,7 +155,9 @@
     <Content Include="Demo\_invite.spark">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Demo\_suggest.spark" />
+    <Content Include="Demo\_suggest.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Demo\NB.txt" />
     <Content Include="Editor\Main.spark" />
     <Content Include="Editor\Tests\MainFixture.html" />

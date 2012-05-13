@@ -53,26 +53,24 @@
 		function submitSuggestion() {
 			try {
 				if ($(':invalid').length == 0) {
-					var data = {
-						name: $('#name').val(),
-						email: $('#email').val(),
-						message: $('#message').val()
-					};
-					amplify.publish("suggestion", data);
+					sendSuggestion();
 				} else {
 					suggestionError("Please fill the required field(s)!");
 					$(':invalid')[0].focus();
 				}
 			} catch (e) {
 				// sorry IE!
-				var data = {
-					Name: $('#name').val(),
-					Email: $('#email').val(),
-					Message: $('#message').val()
-				};
-				amplify.publish("suggestion", data);
-
+				sendSuggestion();
 			}
+		}
+		
+		function sendSuggestion() {
+			var data = {
+				Name: $('#name').val(),
+				Email: $('#email').val(),
+				Message: $('#message').val()
+			};
+			amplify.publish("suggestion", data);
 		}
 
 		function suggestionPublished() {
