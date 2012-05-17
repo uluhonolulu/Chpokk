@@ -1,29 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using Bottles;
 using Bottles.Diagnostics;
-using ChpokkWeb.App_Start;
 using ChpokkWeb.Features.Repa;
 using ChpokkWeb.Shared;
 using FubuCore;
 using FubuMVC.Core;
-using FubuMVC.Core.Assets.Combination;
-using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
-using FubuMVC.Core.Runtime;
-using FubuMVC.Core.View;
-using FubuMVC.Spark;
-using FubuMVC.Spark.SparkModel;
 using Spark;
-using StructureMap;
-using dotless.Core;
-using dotless.Core.Importers;
-using dotless.Core.Input;
-using dotless.Core.Parser;
-using dotless.Core.Stylizers;
 
 namespace ChpokkWeb {
 	public class ConfigureFubuMVC : FubuRegistry {
@@ -39,6 +22,7 @@ namespace ChpokkWeb {
 			Routes
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
+				.IgnoreNamespaceText("Features")
 				;
 
 		

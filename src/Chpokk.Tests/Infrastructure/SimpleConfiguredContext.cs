@@ -18,7 +18,7 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 		private IContainerFacility SetupContainer() {
 			var container = new Container();
-			//container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
+			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
 			var runtime = FubuApplication.For<ConfigureFubuMVC>()
 				.StructureMap(container)
 				.Bootstrap()
