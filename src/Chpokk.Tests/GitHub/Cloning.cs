@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Arractas;
-using Chpokk.Tests.GitHub.Infrastructure;
-using Chpokk.Tests.Infrastructure;
 using ChpokkWeb;
 using ChpokkWeb.App_Start;
 using ChpokkWeb.Remotes;
-using ChpokkWeb.Repa;
 using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
 using Ivonna.Framework;
 using LibGit2Sharp;
-using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;
 using System.Linq;
 using StructureMap;
@@ -22,7 +17,7 @@ using Ivonna.Framework.Generic;
 
 namespace Chpokk.Tests.GitHub {
 	[TestFixture]
-	public class Cloning: BaseCommandTest<CloneContext> {
+	public class Cloning: BaseCommandTest<RemoteRepositoryContext> {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 			var model = new CloneInputModel {PhysicalApplicationPath = Path.GetFullPath(".."), RepoUrl = repoUrl};
@@ -39,37 +34,19 @@ namespace Chpokk.Tests.GitHub {
 	}
 
 	//[RunOnWeb]
-	public class CloneContext : SimpleConfiguredContext, IDisposable {
-		public string RepositoryPath { get; private set; }
-		public string FileName { get; private set; }
-		[SetUp]
-		public override void Create() {
-			base.Create();
 
-			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
-			FileName = Guid.NewGuid().ToString();
-			var content = "stuff";
-			Api.CommitFile(FileName, content);
-		}
-
-		public void Dispose() {
-			if (Directory.Exists(RepositoryPath))
-				DirectoryHelper.DeleteDirectory(RepositoryPath);			
-		}
-	}
-
-	public class StructureMapWorks {
-		[Test]
-		public void CanGetTheDefaultInstance() {
-			var container = new Container();
-			var expr = FubuApplication.For<ConfigureFubuMVC>()
-				.StructureMap(container)
-				.Bootstrap()
-				;
-			expr.Facility.Inject(typeof(IUrlRegistry), typeof(UrlRegistry));
-			var registry = expr.Facility.Get<IUrlRegistry>();
-		}
-	}
+	//public class StructureMapWorks {
+	//    [Test]
+	//    public void CanGetTheDefaultInstance() {
+	//        var container = new Container();
+	//        var expr = FubuApplication.For<ConfigureFubuMVC>()
+	//            .StructureMap(container)
+	//            .Bootstrap()
+	//            ;
+	//        expr.Facility.Inject(typeof(IUrlRegistry), typeof(UrlRegistry));
+	//        var registry = expr.Facility.Get<IUrlRegistry>();
+	//    }
+	//}
 
 	//public static class CheckoutExtensions {
 	//    /// <summary>
