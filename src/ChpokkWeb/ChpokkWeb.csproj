@@ -242,7 +242,7 @@
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
     <Content Include="Features\Remotes\CloneInput.spark" />
-    <Content Include="Features\Repa\Project.spark" />
+    <Content Include="Features\Project\Project.spark" />
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Content\scripts\editor.js" />
@@ -319,6 +319,9 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\Project\ProjectController.cs" />
+    <Compile Include="Features\Project\ProjectInputModel.cs" />
+    <Compile Include="Features\Project\ProjectModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -362,7 +365,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5321</DevelopmentServerPort>
+          <DevelopmentServerPort>6950</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:6213/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

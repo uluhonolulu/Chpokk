@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using ChpokkWeb.Features.Project;
 using ChpokkWeb.Features.Repa;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
@@ -17,7 +18,7 @@ namespace ChpokkWeb.Features.Remotes {
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepo(CloneInputModel model) {
 			CloneRepository(model).Dispose();
-			var projectUrl = _registry.UrlFor(new RepositoryInputModel() {Name = RepositoryInfo.Name});
+			var projectUrl = _registry.UrlFor(new ProjectInputModel() {Name = RepositoryInfo.Name});
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
