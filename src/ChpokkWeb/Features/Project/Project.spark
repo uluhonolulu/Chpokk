@@ -1,6 +1,6 @@
-﻿<use namespace="ChpokkWeb.Repa" />
+﻿<use namespace="ChpokkWeb.Features.Repa" />
 <use namespace="FubuMVC.Core.UI" />
-<viewdata model="ChpokkWeb.Repa.RepositoryInputModel" />
+<viewdata model="ChpokkWeb.Features.Project.ProjectModel" />
 <content name="title">Project view</content>
 <content name="InlineScripts">
 	<script type="text/javascript">
