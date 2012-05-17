@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ChpokkWeb.Shared;
-using FubuMVC.Core;
+﻿using ChpokkWeb.Shared;
 
-namespace ChpokkWeb.Repa {
+namespace ChpokkWeb.Features.Repa {
 	public class RepositoryInputModel : IDontNeedActionsModel {
 		public string Name { get; set; }
 	}

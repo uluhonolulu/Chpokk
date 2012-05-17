@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
-using ChpokkWeb.Repa;
+using ChpokkWeb.Features.Repa;
 using Gallio.Framework;
 using HtmlTags;
 using MbUnit.Framework;

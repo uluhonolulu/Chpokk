@@ -1,6 +1,6 @@
 ﻿$(function () {
 
-	var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"Images/Intellisense/Icons.16x16.${EntityName}.png\" />&nbsp;${Text}</a></li>");
+	var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityName}.png\" />&nbsp;${Text}</a></li>");
 	var intelItems = [];
 	var filteredItems = [];
 	var selectedIntelItem;
@@ -41,7 +41,7 @@
 					$('#shadow').html(shadowText);
 					var position = $(this).caret().start;
 					$('#results').hide();
-					var result = $.post("/editor/intellisense/getintellisensedata", { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
+					var result = $.post(intelUrl, { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
 						if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
 							$.each(inteldata.Items, function () { this.EntityName = entityTypes[this.EntityType]; });
 							intelItems = inteldata.Items;
@@ -169,7 +169,7 @@ function setEditorPositions() {
 
 function updateHtml() {
 	var text = $('#code')[0].value || $('#code')[0].textContent;
-	$('#html').load('/editor/colorizer/tohtml', { Code: text });
+	$('#html').load(toHtmlUrl, { Code: text });
 	$('#html').show();
 	//setEditorPositions();
 }

@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ChpokkWeb.Editor.Intellisense;
+using ChpokkWeb.Features.Editor.Intellisense;
 using Ivonna.Framework.Generic;
 using Ivonna.Framework;
 using MbUnit.Framework;

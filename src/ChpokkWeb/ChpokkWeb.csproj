@@ -164,76 +164,76 @@
     <Content Include="Content\styles\lib\wells.less" />
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
-    <Content Include="Demo\RegisteredForInvite.spark" />
-    <Content Include="Demo\_editor.spark">
+    <Content Include="Features\Demo\RegisteredForInvite.spark" />
+    <Content Include="Features\Demo\_editor.spark">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Demo\_invite.spark">
+    <Content Include="Features\Demo\_invite.spark">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Demo\_suggest.spark">
+    <Content Include="Features\Demo\_suggest.spark">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Demo\NB.txt" />
-    <Content Include="Editor\Main.spark" />
-    <Content Include="Editor\Tests\MainFixture.html" />
+    <Content Include="Features\Demo\NB.txt" />
+    <Content Include="Features\MainScreen\Main.spark" />
+    <Content Include="Features\Editor\Tests\MainFixture.html" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />
     <None Include="HTMLPage4.htm" />
-    <Content Include="Images\Intellisense\Icons.16x16.Class.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Delegate.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Enum.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Event.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ExtensionMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Field.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Indexer.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Interface.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalClass.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalDelegate.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalEnum.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalEvent.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalExtensionMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalField.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalIndexer.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalInterface.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalProperty.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.InternalStruct.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Keyword.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Literal.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Local.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Method.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.NameSpace.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Operator.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Parameter.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateClass.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateDelegate.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateEnum.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateEvent.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateExtensionMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateField.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateIndexer.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateInterface.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateProperty.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.PrivateStruct.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Property.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedClass.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedDelegate.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedEnum.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedEvent.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedExtensionMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedField.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedIndexer.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedInterface.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedMethod.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedProperty.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.ProtectedStruct.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Reference.png" />
-    <Content Include="Images\Intellisense\Icons.16x16.Struct.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Class.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Delegate.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Enum.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Event.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ExtensionMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Field.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Indexer.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Interface.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalClass.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalDelegate.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalEnum.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalEvent.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalExtensionMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalField.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalIndexer.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalInterface.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalProperty.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.InternalStruct.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Keyword.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Literal.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Local.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Method.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.NameSpace.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Operator.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Parameter.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateClass.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateDelegate.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateEnum.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateEvent.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateExtensionMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateField.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateIndexer.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateInterface.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateProperty.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.PrivateStruct.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Property.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedClass.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedDelegate.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedEnum.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedEvent.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedExtensionMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedField.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedIndexer.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedInterface.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedMethod.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedProperty.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedStruct.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Reference.png" />
+    <Content Include="Content\images\Intellisense\Icons.16x16.Struct.png" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc.less.zip" />
     <Content Include="Content\bootstrap.asset.config" />
@@ -241,8 +241,8 @@
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
-    <Content Include="Remotes\CloneInput.spark" />
-    <Content Include="Repa\Project.spark" />
+    <Content Include="Features\Remotes\CloneInput.spark" />
+    <Content Include="Features\Repa\Project.spark" />
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Content\scripts\editor.js" />
@@ -310,25 +310,25 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="Demo\SuggestController.cs" />
-    <Compile Include="Demo\SuggestionModel.cs" />
-    <Compile Include="Demo\SuggestionOutputModel.cs" />
-    <Compile Include="Editor\Colorizer\ColorizerController.cs" />
-    <Compile Include="Editor\Colorizer\ColorizerInputModel.cs" />
-    <Compile Include="Editor\Colorizer\HtmlWriter.cs" />
-    <Compile Include="Editor\Intellisense\IntelController.cs" />
-    <Compile Include="Editor\Intellisense\IntelInputModel.cs" />
-    <Compile Include="Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\Demo\SuggestController.cs" />
+    <Compile Include="Features\Demo\SuggestionModel.cs" />
+    <Compile Include="Features\Demo\SuggestionOutputModel.cs" />
+    <Compile Include="Features\Editor\Colorizer\ColorizerController.cs" />
+    <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
+    <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
+    <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
+    <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
+    <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Remotes\CloneController.cs" />
-    <Compile Include="Repa\ContentController.cs" />
-    <Compile Include="Repa\RepositoryInfo.cs" />
-    <Compile Include="Repa\RepositoryInputModel.cs" />
+    <Compile Include="Features\Remotes\CloneController.cs" />
+    <Compile Include="Features\Repa\ContentController.cs" />
+    <Compile Include="Features\Repa\RepositoryInfo.cs" />
+    <Compile Include="Features\Repa\RepositoryInputModel.cs" />
     <Compile Include="Shared\DummyModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -339,7 +339,7 @@
     <Folder Include="Content\less\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Demo\DemoView.spark">
+    <Content Include="Features\Demo\DemoView.spark">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Shared\Application.spark" />

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ChpokkWeb.Editor.Colorizer {
+﻿namespace ChpokkWeb.Features.Editor.Colorizer {
 	public class ColorizerInputModel {
 		public string Code { get; set; }
 	}

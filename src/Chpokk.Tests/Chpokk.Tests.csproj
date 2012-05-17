@@ -134,7 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapping.cs" />
+    <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
     <Compile Include="GitHub\GitSharpCloningSpike.cs" />
@@ -144,8 +144,8 @@
     <Compile Include="GitHub\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
-    <Compile Include="LessProblem.cs" />
-    <Compile Include="MainProblem.cs" />
+    <Compile Include="Spikes\LessProblem.cs" />
+    <Compile Include="Spikes\MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

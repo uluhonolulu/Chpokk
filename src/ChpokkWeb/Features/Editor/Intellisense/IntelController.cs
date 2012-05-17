@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using FubuMVC.Core;
@@ -7,7 +6,7 @@ using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.CSharp;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 
-namespace ChpokkWeb.Editor.Intellisense {
+namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelController {
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {

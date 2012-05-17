@@ -26,8 +26,9 @@
 		}
 
 		function loadFile(path) {
-			$('#fileContent').load("${this.Urls.UrlFor<FileContentModel>()}", { RelativePath: path })
+			$('#fileContent').load("${this.Urls.UrlFor<FileContentModel>()}", { RelativePath: path });
 		}
+
 	</script>
 </content>
 <div id="fileContent">

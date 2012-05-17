@@ -3,7 +3,7 @@ using System.IO;
 using Arractas;
 using ChpokkWeb;
 using ChpokkWeb.App_Start;
-using ChpokkWeb.Remotes;
+using ChpokkWeb.Features.Remotes;
 using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Urls;

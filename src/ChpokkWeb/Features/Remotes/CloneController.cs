@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using ChpokkWeb.Repa;
+﻿using System.IO;
+using ChpokkWeb.Features.Repa;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
 
-namespace ChpokkWeb.Remotes {
+namespace ChpokkWeb.Features.Remotes {
 	public class CloneController {
 
 		private IUrlRegistry _registry;

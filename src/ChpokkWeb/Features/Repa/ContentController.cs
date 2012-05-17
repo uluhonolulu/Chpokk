@@ -1,11 +1,10 @@
 ﻿using System.IO;
 using System.Text;
 using ChpokkWeb.Infrastructure;
-using FubuMVC.Core;
 using FubuMVC.Core.Urls;
 using HtmlTags;
 
-namespace ChpokkWeb.Repa {
+namespace ChpokkWeb.Features.Repa {
 	public class ContentController {
 		private IUrlRegistry _registry;
 		public ContentController(IUrlRegistry registry) {

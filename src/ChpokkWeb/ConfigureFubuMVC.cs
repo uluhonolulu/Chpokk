@@ -6,7 +6,7 @@ using System.Web;
 using Bottles;
 using Bottles.Diagnostics;
 using ChpokkWeb.App_Start;
-using ChpokkWeb.Repa;
+using ChpokkWeb.Features.Repa;
 using ChpokkWeb.Shared;
 using FubuCore;
 using FubuMVC.Core;

@@ -32,7 +32,7 @@ using System.Text;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 
-namespace ChpokkWeb.Editor.Colorizer
+namespace ChpokkWeb.Features.Editor.Colorizer
 {
 	public class HtmlWriter
 	{

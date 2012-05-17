@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ChpokkWeb.Editor.Intellisense {
+﻿namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelInputModel {
 		public string Text { get; set; }
 		public char NewChar { get; set; }

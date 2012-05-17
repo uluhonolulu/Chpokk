@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using ICSharpCode.SharpDevelop.Dom;
+﻿using ICSharpCode.SharpDevelop.Dom;
 
-namespace ChpokkWeb.Editor.Intellisense {
+namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelOutputModel {
 
 		public IntelModelItem[] Items { get; set; }

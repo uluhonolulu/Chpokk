@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
 using FubuMVC.Core;
 
-namespace ChpokkWeb.Demo {
+namespace ChpokkWeb.Features.Demo {
 	public class SuggestController {
 		private readonly SmtpClient _mailer;
 		public SuggestController(SmtpClient mailer) {
