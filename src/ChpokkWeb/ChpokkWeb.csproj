@@ -326,7 +326,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
+    <Compile Include="Infrastructure\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
+    <Compile Include="Infrastructure\UrlTransformationException.cs" />
+    <Compile Include="Infrastructure\UrlTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Remotes\CloneController.cs" />
     <Compile Include="Features\Repa\ContentController.cs" />

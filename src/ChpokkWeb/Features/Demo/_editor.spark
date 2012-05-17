@@ -53,10 +53,7 @@
 				$('#code').caret(position, position);
 			});
 		});
-		
-		var toHtmlUrl = '${Urls.UrlFor(new ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel())}';
-		var intelUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Intellisense.IntelInputModel>()}';
-	
+			
 	</script>
 
 </content>

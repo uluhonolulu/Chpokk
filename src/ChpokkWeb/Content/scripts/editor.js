@@ -11,7 +11,6 @@
 	if (BrowserDetect.browser == "Firefox")
 		$('#editorDialog textarea').css('padding-left', '3px');
 
-
 	$('#code').keypress(function (data) {
 		if (data.charCode !== null && data.charCode !== 0) {
 			var text = data.target.value; // text before keypress
@@ -41,6 +40,7 @@
 					$('#shadow').html(shadowText);
 					var position = $(this).caret().start;
 					$('#results').hide();
+					var intelUrl = 'url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel';
 					var result = $.post(intelUrl, { Text: text, Position: position, NewChar: newchar }, function (inteldata) {
 						if (inteldata != null && inteldata.Items != null && inteldata.Items.length > 0) {
 							$.each(inteldata.Items, function () { this.EntityName = entityTypes[this.EntityType]; });
@@ -169,6 +169,7 @@ function setEditorPositions() {
 
 function updateHtml() {
 	var text = $('#code')[0].value || $('#code')[0].textContent;
+	var toHtmlUrl = 'url::ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel';
 	$('#html').load(toHtmlUrl, { Code: text });
 	$('#html').show();
 	//setEditorPositions();

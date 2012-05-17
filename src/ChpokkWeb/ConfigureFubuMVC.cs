@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using Bottles;
 using Bottles.Diagnostics;
 using ChpokkWeb.Features.Repa;
+using ChpokkWeb.Infrastructure;
 using ChpokkWeb.Shared;
 using FubuCore;
 using FubuMVC.Core;
+using FubuMVC.Core.Assets.Content;
 using FubuMVC.Core.Registration.Routes;
 using Spark;
 
@@ -40,6 +42,13 @@ namespace ChpokkWeb {
 				            chain.Route = new RouteDefinition(url); 
 				        })
 				;
+
+			Services(registry =>
+			         {
+			         	registry.FillType<IModelUrlResolver, ModelUrlResolutionCache>();
+			         	registry.AddService<ITransformerPolicy>(
+			         		new JavascriptTransformerPolicy<UrlTransformer>(ActionType.Transformation, ".js"));
+			         });
 
 		}
 

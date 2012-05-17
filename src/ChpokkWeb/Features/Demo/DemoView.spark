@@ -78,7 +78,7 @@
 
 <content name="InlineScripts">
 	<script>
-		var sendUrl = '${Urls.UrlFor<ChpokkWeb.Features.Demo.SuggestionModel>()}';
+		
 	</script>
 	
 </content>
