@@ -15,13 +15,13 @@ namespace ChpokkWeb.Features.Repa {
 		
 
 		//[UrlPattern("Project/{Name}")]
-		public IList<RepositoryItem> GetFileList(FileListInputModel model) {
+		public FileListModel GetFileList(FileListInputModel model) {
 			var root = new RepositoryItem();
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
 			foreach (var file in Directory.GetFiles(repositoryRoot)) {
 				root.Children.Add(new RepositoryItem{Name	= Path.GetFileName(file), PathRelativeToRepositoryRoot = file.Substring(repositoryRoot.Length)});
 			}
-			return  new List<RepositoryItem>{root};
+			return new FileListModel{Items = new[]{root}}; 
 		}
 
 		//[AsymmetricJson]

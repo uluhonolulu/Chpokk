@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chpokk.Tests", "Chpokk.Tests\Chpokk.Tests.csproj", "{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChpokkWeb", "ChpokkWeb\ChpokkWeb.csproj", "{244CBBEC-847E-4E0D-8857-05BB34878174}"
 EndProject
 Global
@@ -9,6 +11,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{244CBBEC-847E-4E0D-8857-05BB34878174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{244CBBEC-847E-4E0D-8857-05BB34878174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244CBBEC-847E-4E0D-8857-05BB34878174}.Release|Any CPU.ActiveCfg = Release|Any CPU

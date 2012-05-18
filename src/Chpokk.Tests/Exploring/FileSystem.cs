@@ -37,7 +37,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override IList<RepositoryItem> Act() {
 			var controller = Context.Container.Get<ContentController>();
-			return controller.GetFileList(new FileListModel {PhysicalApplicationPath = Path.GetFullPath("..")});
+			return controller.GetFileList(new FileListInputModel {PhysicalApplicationPath = Path.GetFullPath("..")}).Items;
 		}
 	}
 
