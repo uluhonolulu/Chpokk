@@ -9,26 +9,35 @@ using Gallio.Framework;
 using HtmlTags;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using System.Linq;
 
 namespace Chpokk.Tests.Exploring {
 	[TestFixture]
-	public class FileSystem : BaseQueryTest<SingleFileContext, HtmlTag> {
+	public class FileSystem : BaseQueryTest<SingleFileContext, IList<RepositoryItem>> {
+
 		[Test]
-		public void ReturnsAnUlTag() {
-			Assert.AreEqual("ul", Result.TagName());
+		public void HasOneRootItem() {
+			Assert.AreEqual(1, Result.Count);
+			//Assert.AreSame(new RepositoryItem{}, Result.First());
+			//var child = Result.First();
+			//Assert.AreEqual(Context.FileName, child.Data("name"));
+			//Assert.AreEqual(Context.FilePathRelativeToRepositoryRoot, child.Data("path"));
+			//Assert.AreEqual(Context.FileName, child.Text());
 		}
 
 		[Test]
-		public void ContainsTheFileName() {
-			var child = Result.FirstChild();
-			Assert.AreEqual(Context.FileName, child.Data("name"));
-			Assert.AreEqual(Context.FilePathRelativeToRepositoryRoot, child.Data("path"));
-			Assert.AreEqual(Context.FileName, child.Text());
+		public void HasOneChildItemWithNameAndPathSetToThoseOfTheExistingFile() {
+			var root = Result.First();
+			root.Children.Each(item => Console.WriteLine(item.Name));
+			Assert.AreEqual(1, root.Children.Count);
+			var child = root.Children.First();
+			Assert.AreEqual(Context.FileName, child.Name);
+			Assert.AreEqual(Context.FilePathRelativeToRepositoryRoot, child.PathRelativeToRepositoryRoot);
 		}
 
-		public override HtmlTag Act() {
+		public override IList<RepositoryItem> Act() {
 			var controller = Context.Container.Get<ContentController>();
-			return controller.GetFileList(new FileListModel(){Name = "stuff", PhysicalApplicationPath = Path.GetFullPath("..")});
+			return controller.GetFileList(new FileListModel {PhysicalApplicationPath = Path.GetFullPath("..")});
 		}
 	}
 
@@ -50,9 +59,12 @@ namespace Chpokk.Tests.Exploring {
 		}
 
 		public void Dispose() {
-			if (File.Exists(FilePath)) {
-				File.Delete(FilePath);
+			foreach (var file in Directory.GetFiles(RepositoryRoot)) {
+				File.Delete(file);
 			}
+			//if (File.Exists(FilePath)) {
+			//    File.Delete(FilePath);
+			//}
 		}
 	}
 }

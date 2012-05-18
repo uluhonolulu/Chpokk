@@ -322,14 +322,16 @@
     <Compile Include="Features\Project\ProjectController.cs" />
     <Compile Include="Features\Project\ProjectInputModel.cs" />
     <Compile Include="Features\Project\ProjectModel.cs" />
+    <Compile Include="Features\Repa\RepositoryItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
-    <Compile Include="Infrastructure\ModelUrlResolutionCache.cs" />
+    <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
-    <Compile Include="Infrastructure\UrlTransformationException.cs" />
-    <Compile Include="Infrastructure\UrlTransformer.cs" />
+    <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
+    <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
+    <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Remotes\CloneController.cs" />
     <Compile Include="Features\Repa\ContentController.cs" />
