@@ -1,5 +1,23 @@
-﻿<viewdata model="ChpokkWeb.Features.Repa" />
-<content name="title">Chpokk, an online C# and Vb.Net editor</content>
-<content name="head">
+﻿<viewdata model="ChpokkWeb.Features.Repa.FileListModel" />
+<use namespace="System.Collections.Generic"/>
+<use namespace="System.Linq"/>
 
+
+<ul>
+	<li each="var item in Model.Items.First().Children" data-type="file" data-path="${item.PathRelativeToRepositoryRoot}">${item.Name}</li>
+</ul>
+
+
+
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+
+		$(function () {
+			$('li[data-type="file"]').click(function() {
+				window.location.hash = $(this).attr('data-path');
+			});
+		});
+
+	</script>
 </content>
