@@ -5,7 +5,7 @@ namespace ChpokkWeb.Features.Repa {
 		public string Name { get; set; }
 	}
 
-	public class FileListModel : RepositoryInputModel {
+	public class FileListInputModel : RepositoryInputModel {
 		public string PhysicalApplicationPath { get; set; }		
 	}
 }

@@ -26,7 +26,7 @@
 		}
 
 		function loadFile(path) {
-			$('#fileContent').load("${this.Urls.UrlFor<FileContentModel>()}", { RelativePath: path });
+			$('#fileContent').load("${this.Urls.UrlFor<FileContentInputModel>()}", { RelativePath: path });
 		}
 
 	</script>
@@ -34,5 +34,5 @@
 <div id="fileContent">
 </div>
 <div class="pull-right well" style="min-height: 500px;">
-	!{this.Partial<FileListModel>()}
+	!{this.Partial<FileListInputModel>()}
 </div>

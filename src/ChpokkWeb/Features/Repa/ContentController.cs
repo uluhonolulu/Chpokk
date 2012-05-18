@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.Repa {
 		
 
 		//[UrlPattern("Project/{Name}")]
-		public IList<RepositoryItem> GetFileList(FileListModel model) {
+		public IList<RepositoryItem> GetFileList(FileListInputModel model) {
 			var root = new RepositoryItem();
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
 			foreach (var file in Directory.GetFiles(repositoryRoot)) {
@@ -25,15 +25,10 @@ namespace ChpokkWeb.Features.Repa {
 		}
 
 		//[AsymmetricJson]
-		public string GetContent(FileContentModel model) {
+		public string GetContent(FileContentInputModel model) {
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
 			var filePath = repositoryRoot.AppendPathMyWay(model.RelativePath);
 			return File.ReadAllText(filePath, Encoding.Default);
 		}
-	}
-
-	public class FileContentModel {
-		public string PhysicalApplicationPath { get; set; }
-		public string RelativePath { get; set; }
 	}
 }

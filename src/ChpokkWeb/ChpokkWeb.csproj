@@ -177,6 +177,7 @@
     <Content Include="Features\Demo\NB.txt" />
     <Content Include="Features\MainScreen\Main.spark" />
     <Content Include="Features\Editor\Tests\MainFixture.html" />
+    <Content Include="Features\Repa\_FileList.spark" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
     <None Include="HTMLPage1.htm" />
@@ -322,6 +323,8 @@
     <Compile Include="Features\Project\ProjectController.cs" />
     <Compile Include="Features\Project\ProjectInputModel.cs" />
     <Compile Include="Features\Project\ProjectModel.cs" />
+    <Compile Include="Features\Repa\FileContentInputModel.cs" />
+    <Compile Include="Features\Repa\FileListModel.cs" />
     <Compile Include="Features\Repa\RepositoryItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
