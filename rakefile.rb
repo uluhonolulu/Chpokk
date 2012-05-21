@@ -52,3 +52,17 @@ task :compile => [:clean] do
 		MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => "#{solution_dir}/AppHarbor.sln", :clrversion => CLR_TOOLS_VERSION
 end
 
+desc "Opens the Serenity Jasmine Runner in interactive mode"
+task :open_jasmine do
+	serenity "jasmine interactive src/serenity.txt"
+end
+
+desc "Runs the Jasmine tests"
+task :run_jasmine do
+	serenity "jasmine run src/serenity.txt"
+end
+
+def self.serenity(args)
+  serenity = Platform.runtime(Nuget.tool("Serenity", "SerenityRunner.exe"))
+  sh "#{serenity} #{args}"
+end

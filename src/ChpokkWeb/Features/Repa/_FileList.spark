@@ -4,7 +4,7 @@
 
 
 <ul>
-	<li each="var item in Model.Items.First().Children" data-type="file" data-path="${item.PathRelativeToRepositoryRoot}">${item.Name}</li>
+	<li each="var item in Model.Items" data-type="file" data-path="${item.PathRelativeToRepositoryRoot}">${item.Name}</li>
 </ul>
 
 
