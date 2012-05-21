@@ -17,17 +17,18 @@ namespace ChpokkWeb.Features.Repa {
 
 		//[UrlPattern("Project/{Name}")]
 		public FileListModel GetFileList(FileListInputModel model) {
-			var root = new RepositoryItem();
+			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
-			foreach (var directory in Directory.GetDirectories(repositoryRoot)) {
-				var item = new RepositoryItem {Name = Path.GetFileName(directory), PathRelativeToRepositoryRoot = directory.Substring(repositoryRoot.Length)};
-				root.Children.Add(item);
-				ImportFolder(item, repositoryRoot);
-			}
-			foreach (var file in Directory.GetFiles(repositoryRoot)) {
-				root.Children.Add(new RepositoryItem{Name	= Path.GetFileName(file), PathRelativeToRepositoryRoot = file.Substring(repositoryRoot.Length)});
-			}
-			return new FileListModel{Items = new[]{root}}; 
+			ImportFolder(root, repositoryRoot);
+			//foreach (var directory in Directory.GetDirectories(repositoryRoot)) {
+			//    var item = new RepositoryItem {Name = Path.GetFileName(directory), PathRelativeToRepositoryRoot = directory.Substring(repositoryRoot.Length)};
+			//    root.Children.Add(item);
+			//    ImportFolder(item, repositoryRoot);
+			//}
+			//foreach (var file in Directory.GetFiles(repositoryRoot)) {
+			//    root.Children.Add(new RepositoryItem{Name	= Path.GetFileName(file), PathRelativeToRepositoryRoot = file.Substring(repositoryRoot.Length)});
+			//}
+			return new FileListModel{Items = root.Children.ToArray()}; 
 		}
 
 		private void ImportFolder(RepositoryItem parent, string repositoryRoot) {

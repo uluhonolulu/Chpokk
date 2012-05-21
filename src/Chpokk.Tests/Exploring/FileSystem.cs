@@ -17,23 +17,19 @@ namespace Chpokk.Tests.Exploring {
 	public class SingleFile : BaseQueryTest<SingleFileContext, IList<RepositoryItem>> {
 
 		[Test]
-		public void HasOneRootItem() { // we have one root item, like "File system"
-			Assert.AreEqual(1, Result.Count);
-		}
-
-		[Test]
 		public void HasOneChildItemWithNameAndPathSetToThoseOfTheExistingFile() {
-			var root = Result.First();
-			root.Children.Each(item => Console.WriteLine(item.Name));
-			Assert.AreEqual(1, root.Children.Count);
-			var child = root.Children.First();
+			var items = Result;
+			items.Each(item => Console.WriteLine(item.Name));
+			Assert.AreEqual(1, items.Count);
+			var child = items.First();
 			Assert.AreEqual(Context.FileName, child.Name);
 			Assert.AreEqual(Context.FilePathRelativeToRepositoryRoot, child.PathRelativeToRepositoryRoot);
 		}
 
 		public override IList<RepositoryItem> Act() {
 			var controller = Context.Container.Get<ContentController>();
-			return controller.GetFileList(new FileListInputModel {PhysicalApplicationPath = Path.GetFullPath("..")}).Items;
+			var inputModel = new FileListInputModel {PhysicalApplicationPath = Path.GetFullPath("..")};
+			return controller.GetFileList(inputModel).Items;
 		}
 	}
 
@@ -42,21 +38,19 @@ namespace Chpokk.Tests.Exploring {
 
 		[Test]
 		public void HasTwoChildItems() {
-			var root = Result.First();
-			root.Children.Each(item => Console.WriteLine(item.Name));
-			Assert.AreEqual(2, root.Children.Count);
+			Assert.AreEqual(2, Result.Count);
 		}
 
 		[Test]
 		public void FirstItemHasSameNameAndPathAsSubfolder() {
-			var folderItem = Result.First().Children.First();
+			var folderItem = Result.First();
 			Assert.AreEqual(RootFileAndFileInSubfolderContext.FOLDER_NAME, folderItem.Name);
 			Assert.AreEqual(@"\" + RootFileAndFileInSubfolderContext.FOLDER_NAME, folderItem.PathRelativeToRepositoryRoot);
 		}
 
 		[Test]
 		public void GrandChildItemHasSameNameAndPathAsFileInSubfolder() {
-			var grandchild = Result.First().Children.First().Children.First();
+			var grandchild = Result.First().Children.First();
 			Assert.AreEqual(Context.OtherFileName, grandchild.Name);
 			Assert.AreEqual(Context.OtherFilePathRelativeToRepositoryRoot, grandchild.PathRelativeToRepositoryRoot);
 		}

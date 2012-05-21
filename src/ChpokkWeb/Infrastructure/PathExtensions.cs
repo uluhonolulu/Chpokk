@@ -8,7 +8,7 @@ namespace ChpokkWeb.Infrastructure {
 				if (Path.IsPathRooted(next)) {
 					toAppend = next.Substring(Path.GetPathRoot(next).Length);
 				}
-				path = Path.Combine(path, toAppend);
+				path = Path.Combine(path, toAppend?? string.Empty);
 			}
 			return path;
 		}
