@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Repa {
 			foreach (var directory in Directory.GetDirectories(repositoryRoot)) {
 				var item = new RepositoryItem {Name = Path.GetFileName(directory), PathRelativeToRepositoryRoot = directory.Substring(repositoryRoot.Length)};
 				root.Children.Add(item);
-				ImportFolder(item);
+				ImportFolder(item, repositoryRoot);
 			}
 			foreach (var file in Directory.GetFiles(repositoryRoot)) {
 				root.Children.Add(new RepositoryItem{Name	= Path.GetFileName(file), PathRelativeToRepositoryRoot = file.Substring(repositoryRoot.Length)});
@@ -30,12 +30,19 @@ namespace ChpokkWeb.Features.Repa {
 			return new FileListModel{Items = new[]{root}}; 
 		}
 
-		private void ImportFolder(RepositoryItem parent) {
-			var path = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\Subfolder";
-			var filePath = Directory.GetFiles(path).First();
-			var fileName = Path.GetFileName(filePath);
-			var item = new RepositoryItem { Name = fileName, PathRelativeToRepositoryRoot = Path.Combine(parent.PathRelativeToRepositoryRoot, fileName) };
-			parent.Children.Add(item);
+		private void ImportFolder(RepositoryItem parent, string repositoryRoot) {
+			var path = repositoryRoot.AppendPathMyWay(parent.PathRelativeToRepositoryRoot);
+			foreach (var directory in Directory.GetDirectories(path)) {
+				var item = new RepositoryItem {Name = Path.GetFileName(directory), PathRelativeToRepositoryRoot = directory.Substring(repositoryRoot.Length)};
+				parent.Children.Add(item);
+				ImportFolder(item, repositoryRoot);
+			}
+			foreach (var filePath in Directory.GetFiles(path)) {
+				var fileName = Path.GetFileName(filePath);
+				var item = new RepositoryItem { Name = fileName, PathRelativeToRepositoryRoot = Path.Combine(parent.PathRelativeToRepositoryRoot, fileName) };
+				parent.Children.Add(item);				
+			}
+
 		}
 
 		//[AsymmetricJson]
