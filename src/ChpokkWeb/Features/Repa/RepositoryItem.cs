@@ -14,5 +14,7 @@ namespace ChpokkWeb.Features.Repa {
 		}
 
 		public IList<RepositoryItem> Children { get; private set; }
+
+		public string Type { get; set; }
 	}
 }

@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bottles.0.9.1.274\lib\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core, Version=1.3.0.3, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\dotless.1.3.0.3\lib\dotless.Core.dll</HintPath>
@@ -97,6 +100,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Kayak">
       <HintPath>..\packages\Kayak.0.7.2\lib\Kayak.dll</HintPath>
     </Reference>
@@ -112,6 +118,12 @@
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.0.7\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\packages\Selenium.WebDriverBackedSelenium.2.21.0\lib\net40\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="Serenity">
+      <HintPath>..\packages\Serenity.0.9.5.927\lib\net40\Serenity.dll</HintPath>
     </Reference>
     <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <HintPath>..\packages\Spark.1.6.1\lib\NET40\Spark.dll</HintPath>
@@ -133,6 +145,12 @@
     <Reference Include="ThoughtWorks.Selenium.Core">
       <HintPath>..\packages\Selenium.RC.2.21.0\lib\net40\ThoughtWorks.Selenium.Core.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.21.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.21.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
     <Reference Include="Winterdom.IO.FileMap">
       <HintPath>..\packages\Winterdom.IO.FileMap.2.0.2.0\lib\Winterdom.IO.FileMap.dll</HintPath>
     </Reference>
@@ -145,6 +163,22 @@
     <Content Include="Content\boot\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\styles\lib\images\ajax-loader.gif" />
+    <Content Include="Content\styles\lib\images\file.gif" />
+    <Content Include="Content\styles\lib\images\folder-closed.gif" />
+    <Content Include="Content\styles\lib\images\folder.gif" />
+    <Content Include="Content\styles\lib\images\minus.gif" />
+    <Content Include="Content\styles\lib\images\plus.gif" />
+    <Content Include="Content\styles\lib\images\treeview-black-line.gif" />
+    <Content Include="Content\styles\lib\images\treeview-black.gif" />
+    <Content Include="Content\styles\lib\images\treeview-default-line.gif" />
+    <Content Include="Content\styles\lib\images\treeview-default.gif" />
+    <Content Include="Content\styles\lib\images\treeview-famfamfam-line.gif" />
+    <Content Include="Content\styles\lib\images\treeview-famfamfam.gif" />
+    <Content Include="Content\styles\lib\images\treeview-gray-line.gif" />
+    <Content Include="Content\styles\lib\images\treeview-gray.gif" />
+    <Content Include="Content\styles\lib\images\treeview-red-line.gif" />
+    <Content Include="Content\styles\lib\images\treeview-red.gif" />
     <Content Include="Content\scripts\demo.js" />
     <Content Include="Content\scripts\lib\amplify-vsdoc.js" />
     <Content Include="Content\scripts\lib\amplify.core.min.js" />
@@ -153,6 +187,7 @@
     <Content Include="Content\scripts\lib\jquery-ui.js" />
     <Content Include="Content\scripts\lib\jquery.ba-hashchange.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.js" />
+    <Content Include="Content\scripts\lib\jquery.treeview.js" />
     <Content Include="Content\scripts\lib\tree.jquery.js" />
     <Content Include="Content\styles\lib\accordion.less" />
     <Content Include="Content\styles\lib\alerts.less" />
@@ -169,6 +204,7 @@
     <Content Include="Content\styles\lib\grid.less" />
     <Content Include="Content\styles\lib\hero-unit.less" />
     <Content Include="Content\styles\lib\jqtree.css" />
+    <Content Include="Content\styles\lib\jquery.treeview.css" />
     <Content Include="Content\styles\lib\labels.less" />
     <Content Include="Content\styles\lib\layouts.less" />
     <Content Include="Content\styles\lib\mixins.less" />
@@ -326,6 +362,7 @@
     <Content Include="Content\styles\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\styles\themes\base\jquery-ui.css" />
+    <Content Include="Thanks.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -388,9 +425,6 @@
     <Content Include="Content\styles\themes\aristo\jquery-ui-1.8.7.custom.css.scss" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="core.script.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Content\styles\themes\aristo\jquery-ui.scss" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

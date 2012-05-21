@@ -300,3 +300,8 @@ div#title
 *[data-type="file"]:hover {
 	background-color: #E0E0E0; 
 }
+
+/* treeview override */
+.treeview ul {
+	background-color: inherit;
+}

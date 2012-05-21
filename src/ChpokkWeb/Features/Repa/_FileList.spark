@@ -3,8 +3,16 @@
 <use namespace="System.Linq"/>
 
 
-<ul>
-	<li each="var item in Model.Items" data-type="file" data-path="${item.PathRelativeToRepositoryRoot}">${item.Name}</li>
+<ul id="filelist" class="filetree">
+	<li each="var item in Model.Items" data-type="${item.Type}" data-path="${item.PathRelativeToRepositoryRoot}">
+		<span class="${item.Type}">${item.Name}</span> 
+		<ul if="item.Type=='folder'">
+			<li each="var child in item.Children" data-type="${child.Type}" data-path="${child.PathRelativeToRepositoryRoot}">
+				<span class="${child.Type}">${child.Name}</span>
+			</li>
+		</ul>
+	</li>
+
 </ul>
 
 
@@ -14,9 +22,13 @@
 	<script type="text/javascript">
 
 		$(function () {
-			$('li[data-type="file"]').click(function() {
+			$('li[data-type="file"]').click(function () {
 				window.location.hash = $(this).attr('data-path');
 			});
+
+			$('li[data-type="file"]').addClass('');
+
+			$('#filelist').treeview();
 		});
 
 	</script>

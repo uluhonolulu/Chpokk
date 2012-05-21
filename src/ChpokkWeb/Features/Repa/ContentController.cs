@@ -25,14 +25,14 @@ namespace ChpokkWeb.Features.Repa {
 
 		private void ImportFolder(RepositoryItem parent, string repositoryRoot) {
 			var path = repositoryRoot.AppendPathMyWay(parent.PathRelativeToRepositoryRoot);
-			foreach (var directory in Directory.GetDirectories(path)) {
-				var item = new RepositoryItem {Name = Path.GetFileName(directory), PathRelativeToRepositoryRoot = directory.Substring(repositoryRoot.Length)};
+			foreach (var directory in Directory.GetDirectories(path).Where(directory => (new DirectoryInfo(directory).Attributes & FileAttributes.System) == 0)) {
+				var item = new RepositoryItem {Name = Path.GetFileName(directory), PathRelativeToRepositoryRoot = directory.Substring(repositoryRoot.Length), Type = "folder"};
 				parent.Children.Add(item);
 				ImportFolder(item, repositoryRoot);
 			}
 			foreach (var filePath in Directory.GetFiles(path)) {
 				var fileName = Path.GetFileName(filePath);
-				var item = new RepositoryItem { Name = fileName, PathRelativeToRepositoryRoot = Path.Combine(parent.PathRelativeToRepositoryRoot, fileName) };
+				var item = new RepositoryItem { Name = fileName, PathRelativeToRepositoryRoot = Path.Combine(parent.PathRelativeToRepositoryRoot, fileName), Type = "file" };
 				parent.Children.Add(item);				
 			}
 
