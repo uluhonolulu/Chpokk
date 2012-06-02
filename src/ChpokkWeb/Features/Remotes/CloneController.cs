@@ -17,17 +17,17 @@ namespace ChpokkWeb.Features.Remotes {
 
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepo(CloneInputModel model) {
-			CloneRepository(model).Dispose();
+			CloneRepository(model);
 			var projectUrl = _registry.UrlFor(new ProjectInputModel() {Name = RepositoryInfo.Name});
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
-		private static Repository CloneRepository(CloneInputModel input) {
+		private static void CloneRepository(CloneInputModel input) {
 			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, RepositoryInfo.Path);
 			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
 			var master = repository.Branches["master"];
 			repository.Checkout(master);
-			return repository;
+			repository.Dispose();
 		}
 	}
 

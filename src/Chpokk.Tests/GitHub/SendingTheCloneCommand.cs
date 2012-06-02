@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Web.Hosting;
 using Arractas;
+using CThru;
+using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Remotes;
 using FubuMVC.Core.Urls;
 using Ivonna.Framework;
 using Ivonna.Framework.Generic;
+using LibGit2Sharp;
 using MbUnit.Framework;
+using System.Linq;
 
 namespace Chpokk.Tests.GitHub {
 	[TestFixture, RunOnWeb]
-	public class SendingTheCloneCommand : BaseCommandTest<SimpleConfiguredContext> {
-		private TestSession _session;
-		private string _url;
-
+	public class SendingTheCloneCommand : BaseQueryTest<SimpleConfiguredContext, Spy<CloneInputModel>> {
 		[Test]
 		public void Test() {
-			Assert.DoesNotThrow(() => _session.Post(_url, new CloneInputModel{RepoUrl = "stub"}));
+			Assert.AreEqual(1, Result.Results.Count());
 		}
 
 		[FixtureSetUp]
@@ -25,22 +26,15 @@ namespace Chpokk.Tests.GitHub {
 		}
 
 		//[TestedMethod]
-		public override void Act() {
-			var env = HostingEnvironment.IsHosted;
-			_session = new TestSession();
-			Assert.IsNotNull(Context);
-			var registry = Context.Container.Get<IUrlRegistry>();
-			_url = registry.UrlFor<CloneInputModel>();
-			Console.WriteLine(_url);
-			_session.Stub<CloneController>("CloneRepository").Return(new FakeRepository());
-			Assert.DoesNotThrow(() => _session.Post(_url, new CloneInputModel{RepoUrl = "stub"}));
-
+		public override Spy<CloneInputModel> Act() {
+			var spy = new Spy<CloneInputModel>(info => info.TypeName.EndsWith("CloneController") && info.MethodName == "CloneRepository", args => (CloneInputModel) args.ParameterValues[0]);
+			CThruEngine.AddAspect(spy);
+			var url = Context.Container.Get<IUrlRegistry>().UrlFor<CloneInputModel>();
+			new TestSession().Post(url, new CloneInputModel {RepoUrl = "stub"});
+			return spy;
 		}
 
-		class FakeRepository:IDisposable {
-			public void Dispose() {}
-		}
 	}
 
-	public class TestedMethodAttribute : Attribute {}
+	//public class TestedMethodAttribute : Attribute {}
 }

@@ -302,7 +302,9 @@
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc.less.zip" />
     <Content Include="Content\bootstrap.asset.config" />
-    <Content Include="Content\chpokk.asset.config" />
+    <Content Include="Content\chpokk.asset.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
