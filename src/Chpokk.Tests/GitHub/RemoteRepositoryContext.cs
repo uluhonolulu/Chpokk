@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Chpokk.Tests.GitHub.Infrastructure;
 using Chpokk.Tests.Infrastructure;
-using ChpokkWeb.Features.Repa;
+using ChpokkWeb.Features.Exploring;
 using GitSharp;
 using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;

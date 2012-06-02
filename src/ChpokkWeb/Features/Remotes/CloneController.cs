@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using ChpokkWeb.Features.Project;
-using ChpokkWeb.Features.Repa;
+using ChpokkWeb.Features.Exploring;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;

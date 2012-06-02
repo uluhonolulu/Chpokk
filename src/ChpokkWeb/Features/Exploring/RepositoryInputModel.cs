@@ -1,6 +1,6 @@
 ﻿using ChpokkWeb.Shared;
 
-namespace ChpokkWeb.Features.Repa {
+namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryInputModel : IDontNeedActionsModel {
 		public string Name { get; set; }
 	}

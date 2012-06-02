@@ -1,4 +1,4 @@
-﻿<use namespace="ChpokkWeb.Features.Repa" />
+﻿<use namespace="ChpokkWeb.Features.Exploring" />
 <use namespace="FubuMVC.Core.UI" />
 <viewdata model="ChpokkWeb.Features.Project.ProjectModel" />
 <content name="title">Project view</content>

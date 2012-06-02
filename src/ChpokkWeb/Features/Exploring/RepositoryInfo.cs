@@ -1,4 +1,4 @@
-﻿namespace ChpokkWeb.Features.Repa {
+﻿namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryInfo {
 		public static string Path {
 			get { return @"Repka"; }

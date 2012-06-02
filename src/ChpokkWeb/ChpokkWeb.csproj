@@ -241,7 +241,7 @@
     <Content Include="Features\Demo\NB.txt" />
     <Content Include="Features\MainScreen\Main.spark" />
     <Content Include="Features\Editor\Tests\MainFixture.html" />
-    <Content Include="Features\Repa\_FileList.spark" />
+    <Content Include="Features\Exploring\_FileList.spark" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
     <None Include="HTMLPage1.htm" />
@@ -390,9 +390,9 @@
     <Compile Include="Features\Project\ProjectController.cs" />
     <Compile Include="Features\Project\ProjectInputModel.cs" />
     <Compile Include="Features\Project\ProjectModel.cs" />
-    <Compile Include="Features\Repa\FileContentInputModel.cs" />
-    <Compile Include="Features\Repa\FileListModel.cs" />
-    <Compile Include="Features\Repa\RepositoryItem.cs" />
+    <Compile Include="Features\Exploring\FileContentInputModel.cs" />
+    <Compile Include="Features\Exploring\FileListModel.cs" />
+    <Compile Include="Features\Exploring\RepositoryItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -404,9 +404,9 @@
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Remotes\CloneController.cs" />
-    <Compile Include="Features\Repa\ContentController.cs" />
-    <Compile Include="Features\Repa\RepositoryInfo.cs" />
-    <Compile Include="Features\Repa\RepositoryInputModel.cs" />
+    <Compile Include="Features\Exploring\ContentController.cs" />
+    <Compile Include="Features\Exploring\RepositoryInfo.cs" />
+    <Compile Include="Features\Exploring\RepositoryInputModel.cs" />
     <Compile Include="Shared\DummyModel.cs" />
   </ItemGroup>
   <ItemGroup>

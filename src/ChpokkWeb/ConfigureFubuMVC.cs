@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Bottles;
 using Bottles.Diagnostics;
-using ChpokkWeb.Features.Repa;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Infrastructure;
 using ChpokkWeb.Shared;
 using FubuCore;

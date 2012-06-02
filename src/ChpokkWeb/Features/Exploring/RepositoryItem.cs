@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using ChpokkWeb.Infrastructure.Treeview;
 
-namespace ChpokkWeb.Features.Repa {
+namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryItem : ICanHasChildren {
 		public RepositoryItem() { Children = new List<RepositoryItem>(); }
 		public string Name { get; set; }

@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Features.Repa.FileListModel" />
+﻿<viewdata model="ChpokkWeb.Features.Exploring.FileListModel" />
 <use namespace="System.Collections.Generic"/>
 <use namespace="System.Linq"/>
 

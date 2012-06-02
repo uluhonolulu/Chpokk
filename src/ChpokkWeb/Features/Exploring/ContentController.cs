@@ -6,7 +6,7 @@ using FubuMVC.Core.Urls;
 using HtmlTags;
 using System.Linq;
 
-namespace ChpokkWeb.Features.Repa {
+namespace ChpokkWeb.Features.Exploring {
 	public class ContentController {
 		private IUrlRegistry _registry;
 		public ContentController(IUrlRegistry registry) {
