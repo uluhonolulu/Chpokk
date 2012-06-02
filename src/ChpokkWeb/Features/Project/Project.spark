@@ -31,5 +31,5 @@
 <div id="fileContent">
 </div>
 <div class="pull-right well" style="min-height: 500px;">
-	!{this.Partial<FileListInputModel>()}
+	!{this.Partial<ChpokkWeb.Features.Exploring.FileListDummyModel>()}
 </div>

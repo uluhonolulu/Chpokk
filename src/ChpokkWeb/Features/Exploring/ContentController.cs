@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using ChpokkWeb.Infrastructure;
+using FubuMVC.Core;
 using FubuMVC.Core.Urls;
 using HtmlTags;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ChpokkWeb.Features.Exploring {
 		
 
 		//[UrlPattern("Project/{Name}")]
+		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
 			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);

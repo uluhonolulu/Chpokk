@@ -1,19 +1,9 @@
-﻿<viewdata model="ChpokkWeb.Features.Exploring.FileListModel" />
+﻿<viewdata model="ChpokkWeb.Features.Exploring.FileListDummyModel" />
 <use namespace="System.Collections.Generic"/>
 <use namespace="System.Linq"/>
 
+<div id="fileListWrapper"></div>
 
-<ul id="filelist" class="filetree">
-	<li each="var item in Model.Items" data-type="${item.Type}" data-path="${item.PathRelativeToRepositoryRoot}">
-		<span class="${item.Type}">${item.Name}</span> 
-		<ul if="item.Type=='folder'">
-			<li each="var child in item.Children" data-type="${child.Type}" data-path="${child.PathRelativeToRepositoryRoot}">
-				<span class="${child.Type}">${child.Name}</span>
-			</li>
-		</ul>
-	</li>
-
-</ul>
 
 
 
@@ -22,14 +12,32 @@
 	<script type="text/javascript">
 
 		$(function () {
+			var fileListUrl = '${Urls.UrlFor<ChpokkWeb.Features.Exploring.FileListInputModel>()}';
+			$.get(fileListUrl, function(data) {
+				var root = $("<ul/>")
+					.attr('id', 'filelist')
+					.addClass('filetree');
+				var items = data.Items;
+				$.each(items, function() {
+					root.append($('<li/>').attr('data-type', this.Type).attr('data-path', this.PathRelativeToRepositoryRoot).append($('<span/>').addClass(this.Type).text(this.Name)));
+				});
+				$('#fileListWrapper').append(root);
+
+				initTreeView('#filelist');
+			}
+			);
+		});
+		
+		function initTreeView(selector) {
 			$('li[data-type="file"]').click(function () {
 				window.location.hash = $(this).attr('data-path');
 			});
 
-			$('li[data-type="file"]').addClass('');
+			//$('li[data-type="file"]').addClass('');
 
-			$('#filelist').treeview();
-		});
+			$(selector).treeview();
+			
+		}
 
 	</script>
 </content>

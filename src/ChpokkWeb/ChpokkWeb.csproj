@@ -387,6 +387,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\Exploring\FileListDummyModel.cs" />
     <Compile Include="Features\Project\ProjectController.cs" />
     <Compile Include="Features\Project\ProjectInputModel.cs" />
     <Compile Include="Features\Project\ProjectModel.cs" />
@@ -407,7 +408,7 @@
     <Compile Include="Features\Exploring\ContentController.cs" />
     <Compile Include="Features\Exploring\RepositoryInfo.cs" />
     <Compile Include="Features\Exploring\RepositoryInputModel.cs" />
-    <Compile Include="Shared\DummyModel.cs" />
+    <Compile Include="Infrastructure\DummyModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
