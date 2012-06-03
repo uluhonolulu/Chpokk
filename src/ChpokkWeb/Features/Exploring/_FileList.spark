@@ -10,17 +10,33 @@
 
 <content name="InlineScripts">
 	<script type="text/javascript">
+		
+		function build_li(item) {
+			var li = $('<li/>')
+				.attr('data-type', item.Type)
+				.attr('data-path', item.PathRelativeToRepositoryRoot)
+				.append($('<span/>').addClass(item.Type).text(item.Name));
+				if (item.Type === 'folder') {
+					li.append(build_ul(item.Children));
+				}
+			return li;
+		}
+
+		function build_ul(items) {
+			var ul = $('<ul/>');
+			$.each(items, function() {
+				ul.append(build_li(this));
+			});
+			return ul;
+		}
 
 		$(function () {
 			var fileListUrl = '${Urls.UrlFor<ChpokkWeb.Features.Exploring.FileListInputModel>()}';
 			$.get(fileListUrl, function(data) {
-				var root = $("<ul/>")
+				var items = data.Items;
+				var root = build_ul(items)
 					.attr('id', 'filelist')
 					.addClass('filetree');
-				var items = data.Items;
-				$.each(items, function() {
-					root.append($('<li/>').attr('data-type', this.Type).attr('data-path', this.PathRelativeToRepositoryRoot).append($('<span/>').addClass(this.Type).text(this.Name)));
-				});
 				$('#fileListWrapper').append(root);
 
 				initTreeView('#filelist');
