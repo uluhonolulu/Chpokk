@@ -305,3 +305,7 @@ div#title
 .treeview ul {
 	background-color: inherit;
 }
+
+.waitContainer {
+	display: none;
+}
