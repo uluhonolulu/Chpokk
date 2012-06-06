@@ -5,12 +5,13 @@
 		<use content="title">Default Title</use>
 	</title>
 	<Script src="lib/bootstrap.js" />
+	<Script src="common.js"/>
 	<Stylesheet href="styles" />
-	<Script src="jslib"/>
-	<use content="head" />
-	
+	<use content="head" />	
+
 	<Scripts />
 	<Styles />
+
 	<use content="InlineScripts" />
 	<ga />
 </head>

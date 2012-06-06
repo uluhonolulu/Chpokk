@@ -163,6 +163,7 @@
     <Content Include="Content\boot\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
