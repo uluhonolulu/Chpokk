@@ -1,7 +1,9 @@
 ﻿using System.IO;
+using System.Web;
 using ChpokkWeb.Features.Project;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Shared;
+using Elmah;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
@@ -18,8 +20,14 @@ namespace ChpokkWeb.Features.Remotes {
 
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepo(CloneInputModel model) {
-			CloneRepository(model);
-			var projectUrl = _registry.UrlFor(new ProjectInputModel() {Name = RepositoryInfo.Name});
+			try {
+				CloneRepository(model);
+			}
+			catch (System.Exception exception) {
+				Elmah.ErrorLog.GetDefault(HttpContext.Current).Log(new Error(exception));
+				return new AjaxContinuation().ForException(exception);
+			} 
+				var projectUrl = _registry.UrlFor(new ProjectInputModel() { Name = RepositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 

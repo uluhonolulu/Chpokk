@@ -10,5 +10,10 @@ namespace ChpokkWeb.Infrastructure {
 			continuation["navigatePage"] = url;
 			return continuation;
 		}
+
+		public static AjaxContinuation ForException(this AjaxContinuation continuation, Exception exception) {
+			continuation.Errors.Add(new AjaxError(){message = exception.Message});
+			return continuation;
+		}
 	}
 }
