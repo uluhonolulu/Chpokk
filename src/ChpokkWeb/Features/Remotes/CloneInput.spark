@@ -1,2 +1,30 @@
-﻿<viewdata model="ChpokkWeb.Remotes.CloneInputModel" />
-Hi! I'm an input!
+﻿<div class="modal hide fade" id="openProjectDialog">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>
+			Enter the address of your remote repository</h3>
+	</div>
+	<div class="modal-body">
+		<form class="well">
+			<label>
+				Your repository URL</label>
+			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-Scratchpad.git")}
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary close" id="openProjectButton">Open project</a> <a href="#" class="btn close">
+		                                                           	Cancel</a>
+	</div>
+</div>
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+
+		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.CloneInputModel>()}';
+		$(function () {
+			$("#openProjectButton").click(function () {
+				$.post(cloneRepoUrl, { RepoUrl: $('#RepoUrl').val() });
+			});
+		});
+	</script>
+</content>

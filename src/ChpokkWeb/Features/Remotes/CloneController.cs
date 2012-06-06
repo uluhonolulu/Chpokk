@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using ChpokkWeb.Features.Project;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Shared;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
@@ -31,7 +32,7 @@ namespace ChpokkWeb.Features.Remotes {
 		}
 	}
 
-	public class CloneInputModel {
+	public class CloneInputModel : IDontNeedActionsModel {
 		public string RepoUrl { get; set; }
 		public string PhysicalApplicationPath { get; set; }
 	}
