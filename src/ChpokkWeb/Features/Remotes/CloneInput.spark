@@ -13,7 +13,8 @@
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="btn btn-primary close" id="openProjectButton">Open project</a> <a href="#" class="btn close">
-		                                                           	Cancel</a>
+		                                                                                  	Cancel</a>
+		<div id="errorContainer" style="clear: both; color: red; font-size: smaller;"></div>
 	</div>
 </div>
 
