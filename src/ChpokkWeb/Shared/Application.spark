@@ -8,7 +8,7 @@
 	<Stylesheet href="styles" />
 	<Script src="jslib"/>
 	<use content="head" />
-	<Script src="demo.js" />
+	
 	<Scripts />
 	<Styles />
 	<use content="InlineScripts" />

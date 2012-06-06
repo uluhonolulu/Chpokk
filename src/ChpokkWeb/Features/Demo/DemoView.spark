@@ -1,7 +1,7 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 <content name="head">
-
+<Script src="demo.js" />
 </content>
 
 <div class="hero-unit">
