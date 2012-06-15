@@ -431,7 +431,7 @@
     <Content Include="Content\styles\themes\aristo\jquery-ui-1.8.7.custom.css.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Content\styles\themes\aristo\jquery-ui.scss" />
+    <Content Include="Content\styles\themes\aristo\jquery-ui.scss" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
