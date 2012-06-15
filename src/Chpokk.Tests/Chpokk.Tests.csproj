@@ -96,9 +96,15 @@
     <Reference Include="ICSharpCode.Core">
       <HintPath>..\..\lib\ICSharpCode.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.Core.Presentation">
+      <HintPath>..\..\lib\ICSharpCode.Core.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpDevelop, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Widgets">
+      <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -158,7 +164,6 @@
     <Compile Include="Spikes\LessProblem.cs" />
     <Compile Include="Spikes\MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spikes\SerenityCheck.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
   </ItemGroup>
