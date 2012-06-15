@@ -391,6 +391,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\Exploring\FileListDummyModel.cs" />
+    <Compile Include="Features\Exploring\RepositoryManager.cs" />
     <Compile Include="Features\Project\ProjectController.cs" />
     <Compile Include="Features\Project\ProjectInputModel.cs" />
     <Compile Include="Features\Project\ProjectModel.cs" />

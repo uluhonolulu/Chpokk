@@ -70,7 +70,8 @@ namespace Chpokk.Tests.Exploring {
 		}
 		public override void Create() {
 			base.Create();
-			RepositoryRoot = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
+			var repositoryInfo = new RepositoryManager().GetRepositoryInfo("Repka"); //TODO: DI, model.Name
+			RepositoryRoot = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
 			if (!Directory.Exists(RepositoryRoot))
 				Directory.CreateDirectory(RepositoryRoot);
 			FileName = Guid.NewGuid().ToString();

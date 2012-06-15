@@ -19,8 +19,9 @@ namespace ChpokkWeb.Features.Exploring {
 		//[UrlPattern("Project/{Name}")]
 		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
+			var repositoryInfo = new RepositoryManager().GetRepositoryInfo("Repka"); //TODO: DI, model.Name
 			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
-			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
+			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			ImportFolder(root, repositoryRoot);
 			return new FileListModel{Items = root.Children.ToArray()}; 
 		}
@@ -42,7 +43,8 @@ namespace ChpokkWeb.Features.Exploring {
 
 		//[AsymmetricJson]
 		public string GetContent(FileContentInputModel model) {
-			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, RepositoryInfo.Path);
+			var repositoryInfo = new RepositoryManager().GetRepositoryInfo(model.RelativePath); //TODO: DI, model.Name
+			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			var filePath = repositoryRoot.AppendPathMyWay(model.RelativePath);
 			return File.ReadAllText(filePath, Encoding.Default);
 		}

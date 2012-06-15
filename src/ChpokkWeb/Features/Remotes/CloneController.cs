@@ -33,12 +33,13 @@ namespace ChpokkWeb.Features.Remotes {
 		}
 
 		private static RepositoryInfo CloneRepository(CloneInputModel input) {
-			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, RepositoryInfo.Path);
+			var repositoryInfo = new RepositoryManager().GetClonedRepositoryInfo(input.RepoUrl); //TODO: DI
+			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, repositoryInfo.Path);
 			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
 			var master = repository.Branches["master"];
 			repository.Checkout(master);
 			repository.Dispose();
-			return new RepositoryInfo();
+			return repositoryInfo;
 		}
 	}
 

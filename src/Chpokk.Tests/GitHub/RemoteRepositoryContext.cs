@@ -9,6 +9,7 @@ using MbUnit.Framework;
 
 namespace Chpokk.Tests.GitHub {
 	public class RemoteRepositoryContext : SimpleConfiguredContext, IDisposable {
+		public const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 		public string RepositoryPath { get; private set; }
 		public string FileName { get; private set; }
 		public string FilePath {
@@ -18,7 +19,8 @@ namespace Chpokk.Tests.GitHub {
 		public override void Create() {
 			base.Create();
 
-			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), RepositoryInfo.Path);
+			var repositoryInfo = new RepositoryManager().GetClonedRepositoryInfo(REPO_URL);
+			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
 			FileName = Guid.NewGuid().ToString();
@@ -33,7 +35,7 @@ namespace Chpokk.Tests.GitHub {
 	}
 
 	public class ClonedRepositoryContext : RemoteRepositoryContext {
-		public const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
+		public new const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 		public override void Create() {
 			base.Create();
 			Git.Clone(REPO_URL, RepositoryPath);
