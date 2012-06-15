@@ -20,23 +20,25 @@ namespace ChpokkWeb.Features.Remotes {
 
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepo(CloneInputModel model) {
+			RepositoryInfo repositoryInfo;
 			try {
-				CloneRepository(model);
+				repositoryInfo = CloneRepository(model);
 			}
 			catch (System.Exception exception) {
 				Elmah.ErrorLog.GetDefault(HttpContext.Current).Log(new Error(exception));
 				return new AjaxContinuation().ForException(exception);
-			} 
-				var projectUrl = _registry.UrlFor(new ProjectInputModel() { Name = RepositoryInfo.Name });
+			}
+			var projectUrl = _registry.UrlFor(new ProjectInputModel() { Name = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
-		private static void CloneRepository(CloneInputModel input) {
+		private static RepositoryInfo CloneRepository(CloneInputModel input) {
 			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, RepositoryInfo.Path);
 			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
 			var master = repository.Branches["master"];
 			repository.Checkout(master);
 			repository.Dispose();
+			return new RepositoryInfo();
 		}
 	}
 

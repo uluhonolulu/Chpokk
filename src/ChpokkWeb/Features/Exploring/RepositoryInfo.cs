@@ -4,7 +4,7 @@
 			get { return @"Repka"; }
 		}
 
-		public static string Name {
+		public string Name {
 			get { return "Repka"; }
 		}
 	}
