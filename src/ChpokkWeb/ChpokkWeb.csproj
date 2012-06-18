@@ -166,6 +166,7 @@
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
+    <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
     <Content Include="Content\styles\lib\images\folder-closed.gif" />
@@ -401,6 +402,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AjaxExceptionWrapper.cs" />
+    <Compile Include="Infrastructure\Annotations.cs" />
+    <Compile Include="Infrastructure\ChpokkRegistry.cs" />
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
