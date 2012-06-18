@@ -5,7 +5,7 @@
 			Enter the address of your remote repository</h3>
 	</div>
 	<div class="modal-body">
-		<form class="well">
+		<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.CloneInputModel>()}">
 			<label>
 				Your repository URL</label>
 			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-Scratchpad.git")}
@@ -26,7 +26,8 @@
 		$(function () {
 			$("#openProjectButton").click(function () {
 				$('.waitContainer').show();
-				$.post(cloneRepoUrl, { RepoUrl: $('#RepoUrl').val() });
+				$('#cloneForm').correlatedSubmit();
+				//$.post(cloneRepoUrl, { RepoUrl: $('#RepoUrl').val() });
 			});
 		});
 	</script>
