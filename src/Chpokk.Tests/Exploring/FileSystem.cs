@@ -57,11 +57,12 @@ namespace Chpokk.Tests.Exploring {
 
 		public override IList<RepositoryItem> Act() {
 			var controller = Context.Container.Get<ContentController>();
-			return controller.GetFileList(new FileListInputModel { PhysicalApplicationPath = Path.GetFullPath("..") }).Items;
+			return controller.GetFileList(new FileListInputModel { PhysicalApplicationPath = Path.GetFullPath(".."), Name = Context.REPO_NAME}).Items;
 		}
 	}
 
 	public class SingleFileContext : SimpleConfiguredContext, IDisposable {
+		public string REPO_NAME = "Perka";
 		public string FileName { get; set; }
 		public string FilePath { get; private set; }
 		public string RepositoryRoot { get; private set; }
@@ -70,7 +71,9 @@ namespace Chpokk.Tests.Exploring {
 		}
 		public override void Create() {
 			base.Create();
-			var repositoryInfo = new RepositoryManager().GetRepositoryInfo("Repka"); //TODO: DI, model.Name
+			var repositoryManager = Container.Get<RepositoryManager>();
+			var repositoryInfo = new RepositoryInfo("Repka", REPO_NAME); 
+			repositoryManager.Register(repositoryInfo);
 			RepositoryRoot = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
 			if (!Directory.Exists(RepositoryRoot))
 				Directory.CreateDirectory(RepositoryRoot);

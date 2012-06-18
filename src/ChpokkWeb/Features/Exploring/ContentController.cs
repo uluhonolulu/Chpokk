@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
-using FubuMVC.Core.Urls;
 using HtmlTags;
 using System.Linq;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ContentController {
-		private IUrlRegistry _registry;
-		public ContentController(IUrlRegistry registry) {
-			_registry = registry;
+		[NotNull]
+		private readonly RepositoryManager _repositoryManager;
+		public ContentController(RepositoryManager repositoryManager) {
+			_repositoryManager = repositoryManager;
 		}
 
-		
 
 		//[UrlPattern("Project/{Name}")]
 		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
-			var repositoryInfo = new RepositoryManager().GetRepositoryInfo("Repka"); //TODO: DI, model.Name
+			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.Name);
 			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			ImportFolder(root, repositoryRoot);

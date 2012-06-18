@@ -1,6 +1,7 @@
 ﻿<viewdata model="ChpokkWeb.Features.Exploring.FileListDummyModel" />
 <use namespace="System.Collections.Generic"/>
 <use namespace="System.Linq"/>
+<use namespace="ChpokkWeb.Features.Exploring"/>
 
 <div id="fileListWrapper"></div>
 
@@ -31,7 +32,7 @@
 		}
 
 		$(function () {
-			var fileListUrl = '${Urls.UrlFor<ChpokkWeb.Features.Exploring.FileListInputModel>()}';
+			var fileListUrl = '${Urls.UrlFor<FileListInputModel>()}';
 			$.get(fileListUrl, function(data) {
 				var items = data.Items;
 				var root = build_ul(items)
