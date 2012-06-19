@@ -15,16 +15,16 @@ namespace ChpokkWeb.Infrastructure {
 	//Adapted from http://www.dovetailsoftware.com/blogs/kmiller/archive/2012/04/24/fubumvc-hijacking-behaviors
 	public class AjaxExceptionWrapper : IActionBehavior {
 		private readonly IFubuRequest _request;
-		private readonly IPartialFactory _factory;
 		private readonly IJsonWriter _writer;
+		private readonly IOutputWriter _output;
 		private readonly HttpContext _httpContext;
 
 		public AjaxExceptionWrapper(IFubuRequest request, IPartialFactory factory, IJsonWriter writer,
-		                            HttpContext httpContext) {
+		                            HttpContext httpContext, IOutputWriter output) {
 			_request = request;
-			_factory = factory;
 			_writer = writer;
 			_httpContext = httpContext;
+			_output = output;
 		}
 
 		public IActionBehavior InsideBehavior { get; set; }
@@ -49,13 +49,9 @@ namespace ChpokkWeb.Infrastructure {
 
 
 				var continuation = new AjaxContinuation().ForException(exception);
-				_request.Set(continuation);
-
+				//_request.Set(continuation);
 				_writer.Write(continuation, MimeType.Json.ToString());
-				//var partial = _factory.BuildPartial(typeof(AjaxContinuation));
-				//partial.InvokePartial();
-
-				//_writer.WriteResponseCode(HttpStatusCode.InternalServerError);
+				_output.WriteResponseCode(HttpStatusCode.InternalServerError);
 			}
 		}
 	}
