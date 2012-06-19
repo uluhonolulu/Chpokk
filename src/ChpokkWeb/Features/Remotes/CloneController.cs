@@ -14,26 +14,22 @@ namespace ChpokkWeb.Features.Remotes {
 	public class CloneController {
 
 		private IUrlRegistry _registry;
-		public CloneController(IUrlRegistry registry) {
+		private RepositoryManager _repositoryManager;
+		public CloneController(IUrlRegistry registry, RepositoryManager repositoryManager) {
 			_registry = registry;
+			_repositoryManager = repositoryManager;
 		}
 
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepo(CloneInputModel model) {
-			RepositoryInfo repositoryInfo;
-			try {
-				repositoryInfo = CloneRepository(model);
-			}
-			catch (System.Exception exception) {
-				Elmah.ErrorLog.GetDefault(HttpContext.Current).Log(new Error(exception));
-				return new AjaxContinuation().ForException(exception);
-			}
+			var repositoryInfo = CloneRepository(model);
+			_repositoryManager.Register(repositoryInfo);
 			var projectUrl = _registry.UrlFor(new ProjectInputModel() { Name = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
-		private static RepositoryInfo CloneRepository(CloneInputModel input) {
-			var repositoryInfo = new RepositoryManager().GetClonedRepositoryInfo(input.RepoUrl); //TODO: DI
+		private RepositoryInfo CloneRepository(CloneInputModel input) {
+			var repositoryInfo = _repositoryManager.GetClonedRepositoryInfo(input.RepoUrl);
 			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, repositoryInfo.Path);
 			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
 			var master = repository.Branches["master"];

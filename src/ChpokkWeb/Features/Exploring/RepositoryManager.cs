@@ -25,5 +25,8 @@ namespace ChpokkWeb.Features.Exploring {
 		public RepositoryInfo GetRepositoryInfo(string name) {
 			return _repositories[name];
 		}
+		public bool RepositoryNameIsValid(string name) {
+			return _repositories.ContainsKey(name);
+		}
 	}
 }

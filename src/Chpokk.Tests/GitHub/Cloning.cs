@@ -3,6 +3,7 @@ using System.IO;
 using Arractas;
 using ChpokkWeb;
 using ChpokkWeb.App_Start;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
@@ -29,6 +30,12 @@ namespace Chpokk.Tests.GitHub {
 			var expectedFile = Path.Combine(Context.RepositoryPath, Context.FileName);
 			var existingFiles = Directory.GetFiles(Context.RepositoryPath); 
 			Assert.AreElementsEqual(new [] {expectedFile}, existingFiles);
+		}
+
+		[Test]
+		public void RepositoryIsRegisteredByTheManager() {
+			var manager = Context.Container.Get<RepositoryManager>();
+			Assert.IsTrue(manager.RepositoryNameIsValid(Context.RepositoryName));
 		}
 
 	}

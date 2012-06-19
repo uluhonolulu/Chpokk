@@ -33,7 +33,8 @@
 
 		$(function () {
 			var fileListUrl = '${Urls.UrlFor<FileListInputModel>()}';
-			$.get(fileListUrl, function(data) {
+			var model = { Name: "Chpokk-Scratchpad" };
+			$.post(fileListUrl, model, function(data) {
 				var items = data.Items;
 				var root = build_ul(items)
 					.attr('id', 'filelist')

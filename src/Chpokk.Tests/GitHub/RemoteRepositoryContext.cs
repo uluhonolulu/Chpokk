@@ -11,6 +11,7 @@ namespace Chpokk.Tests.GitHub {
 	public class RemoteRepositoryContext : SimpleConfiguredContext, IDisposable {
 		public const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 		public string RepositoryPath { get; private set; }
+		public string RepositoryName { get; private set; }
 		public string FileName { get; private set; }
 		public string FilePath {
 			get { return Path.Combine(RepositoryPath, FileName); }
@@ -20,6 +21,7 @@ namespace Chpokk.Tests.GitHub {
 			base.Create();
 
 			var repositoryInfo = new RepositoryManager().GetClonedRepositoryInfo(REPO_URL);
+			RepositoryName = repositoryInfo.Name;
 			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
