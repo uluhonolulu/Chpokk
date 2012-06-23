@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Arractas;
 using ChpokkWeb;
+using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Urls;
@@ -18,6 +19,7 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 		private IContainerFacility SetupContainer() {
 			var container = new Container();
+			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
 			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
 			var runtime = FubuApplication.For<ConfigureFubuMVC>()
 				.StructureMap(container)

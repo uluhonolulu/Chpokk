@@ -150,6 +150,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exploring\RepositoryFolderContext.cs" />
+    <Compile Include="Exploring\SeeingASolutionFile.cs" />
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />

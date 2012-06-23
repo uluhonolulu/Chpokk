@@ -61,30 +61,19 @@ namespace Chpokk.Tests.Exploring {
 		}
 	}
 
-	public class SingleFileContext : SimpleConfiguredContext, IDisposable {
-		public string REPO_NAME = "Perka";
+	public class SingleFileContext : RepositoryFolderContext {
 		public string FileName { get; set; }
 		public string FilePath { get; private set; }
-		public string RepositoryRoot { get; private set; }
 		public string FilePathRelativeToRepositoryRoot {
 			get { return FilePath.Substring(RepositoryRoot.Length); }
 		}
 		public override void Create() {
 			base.Create();
-			var repositoryManager = Container.Get<RepositoryManager>();
-			var repositoryInfo = new RepositoryInfo("Repka", REPO_NAME); 
-			repositoryManager.Register(repositoryInfo);
-			RepositoryRoot = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
-			if (!Directory.Exists(RepositoryRoot))
-				Directory.CreateDirectory(RepositoryRoot);
 			FileName = Guid.NewGuid().ToString();
 			FilePath = Path.Combine(RepositoryRoot, FileName);
 			File.Create(FilePath).Dispose();
 		}
 
-		public void Dispose() {
-			DirectoryHelper.DeleteDirectory(RepositoryRoot);
-		}
 	}
 
 	public class RootFileAndFileInSubfolderContext : SingleFileContext {
