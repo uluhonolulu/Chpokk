@@ -24,6 +24,19 @@ namespace Chpokk.Tests.Exploring {
 		}
 	}
 
+	public class WhenFileIsNotASolutionOne  : BaseQueryTest<SingleFileContext, IEnumerable<RepositoryItem>> {
+
+		[Test]
+		public void FileListShouldBeEmpty() {
+			Assert.IsEmpty(Result);
+		}
+
+		public override IEnumerable<RepositoryItem> Act() {
+			var controller = Context.Container.Get<SolutionContentController>();
+			return controller.GetSolutions(new SolutionExplorerInputModel { Name = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") });
+		}
+	}
+
 	public class SingleSolutionContext : RepositoryFolderContext {
 		public string FileName { get; set; }
 		public string FilePath { get; set; }
