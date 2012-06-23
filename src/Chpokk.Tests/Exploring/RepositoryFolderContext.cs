@@ -9,12 +9,13 @@ using LibGit2Sharp.Tests.TestHelpers;
 
 namespace Chpokk.Tests.Exploring {
 	public class RepositoryFolderContext : SimpleConfiguredContext, IDisposable {
-		public string REPO_NAME = "Perka";
+		public readonly string REPO_NAME = "Perka";
+		public readonly string REPO_PATH = "Repka";
 		public string RepositoryRoot { get; private set; }
 		public override void Create() {
 			base.Create();
 			var repositoryManager = Container.Get<RepositoryManager>();
-			var repositoryInfo = new RepositoryInfo("Repka", REPO_NAME);
+			var repositoryInfo = new RepositoryInfo(REPO_PATH, REPO_NAME);
 			repositoryManager.Register(repositoryInfo);
 			RepositoryRoot = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
 			if (!Directory.Exists(RepositoryRoot))
