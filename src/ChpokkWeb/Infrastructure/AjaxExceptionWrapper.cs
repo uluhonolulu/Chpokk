@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.ExceptionServices;
 using System.Web;
 using Elmah;
 using FubuMVC.Core;
@@ -37,6 +38,7 @@ namespace ChpokkWeb.Infrastructure {
 			exceptionHandledBehavior(b => b.InvokePartial());
 		}
 
+		[HandleProcessCorruptedStateExceptions]
 		public void exceptionHandledBehavior(Action<IActionBehavior> behaviorAction) {
 			if (InsideBehavior == null) return;
 

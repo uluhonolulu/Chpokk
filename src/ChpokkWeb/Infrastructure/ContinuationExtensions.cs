@@ -11,8 +11,8 @@ namespace ChpokkWeb.Infrastructure {
 			return continuation;
 		}
 
-		public static AjaxContinuation ForException(this AjaxContinuation continuation, Exception exception) {
-			continuation.Errors.Add(new AjaxError(){message = exception.Message});
+		public static AjaxContinuation ForException([NotNull] this AjaxContinuation continuation, [NotNull] Exception exception) {
+			continuation.Errors.Add(new AjaxError(){category = exception.Message,  message = exception.ToString()});
 			return continuation;
 		}
 	}
