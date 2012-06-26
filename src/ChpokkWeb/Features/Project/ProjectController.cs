@@ -8,7 +8,7 @@ namespace ChpokkWeb.Features.Project {
 	public class ProjectController {
 		[UrlPattern("Project/{Name}")]
 		public ProjectModel Get(ProjectInputModel input) {
-			return new ProjectModel();
+			return new ProjectModel(){Name = input.Name};
 		}
 	}
 }
