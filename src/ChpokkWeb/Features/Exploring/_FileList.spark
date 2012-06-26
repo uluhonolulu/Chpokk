@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Features.Exploring.FileListDummyModel" />
+﻿<viewdata model="ChpokkWeb.Features.Exploring.FileListPartialModel" />
 <use namespace="System.Collections.Generic"/>
 <use namespace="System.Linq"/>
 <use namespace="ChpokkWeb.Features.Exploring"/>
@@ -33,7 +33,7 @@
 
 		$(function () {
 			var fileListUrl = '${Urls.UrlFor<FileListInputModel>()}';
-			var model = { Name: "Chpokk-Scratchpad" };
+			var model = { Name: "${Model.Name}" };
 			$.post(fileListUrl, model, function(data) {
 				var items = data.Items;
 				var root = build_ul(items)

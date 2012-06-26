@@ -391,7 +391,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
-    <Compile Include="Features\Exploring\FileListDummyModel.cs" />
+    <Compile Include="Features\Exploring\FileListPartialModel.cs" />
     <Compile Include="Features\Exploring\RepositoryManager.cs" />
     <Compile Include="Features\Exploring\SolutionContentController.cs" />
     <Compile Include="Features\Exploring\SolutionExplorerInputModel.cs" />

@@ -5,6 +5,7 @@ using System.Web;
 using ChpokkWeb.Shared;
 
 namespace ChpokkWeb.Features.Exploring {
-	public class FileListDummyModel : DummyModel {
+	public class FileListPartialModel : IDontNeedActionsModel {
+		public string Name { get; set; }
 	}
 }

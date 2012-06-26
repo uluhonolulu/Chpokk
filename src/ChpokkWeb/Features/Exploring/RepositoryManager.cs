@@ -7,7 +7,10 @@ using ChpokkWeb.Infrastructure;
 namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryManager {
 		public RepositoryManager() {
-			
+			// for local testing
+			var name = "Chpokk-SampleSol";
+			var path = commonRepositoryFolder.AppendPathMyWay(name);
+			this.Register(new RepositoryInfo(path, name));
 		}
 		private const string commonRepositoryFolder = "UserFiles";
 		public RepositoryInfo GetClonedRepositoryInfo(string url) {

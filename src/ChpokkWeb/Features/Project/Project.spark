@@ -1,5 +1,7 @@
 ﻿<use namespace="ChpokkWeb.Features.Exploring" />
 <use namespace="FubuMVC.Core.UI" />
+<use namespace="ChpokkWeb.Features.Exploring" />
+<use namespace="System.Reflection" />
 <viewdata model="ChpokkWeb.Features.Project.ProjectModel" />
 <content name="title">Project view</content>
 <content name="InlineScripts">
@@ -31,5 +33,5 @@
 <div id="fileContent">
 </div>
 <div class="pull-right well" style="min-height: 500px;">
-	!{this.Partial<ChpokkWeb.Features.Exploring.FileListDummyModel>()}
+	!{this.Partial(new FileListPartialModel{Name = "Chpokk-SampleSol"})}
 </div>
