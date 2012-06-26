@@ -43,7 +43,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		//[AsymmetricJson]
 		public string GetContent(FileContentInputModel model) {
-			var repositoryInfo = new RepositoryManager().GetRepositoryInfo(model.RelativePath); //TODO: DI, model.Name
+			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.ProjectName); 
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			var filePath = repositoryRoot.AppendPathMyWay(model.RelativePath);
 			return File.ReadAllText(filePath, Encoding.Default);
