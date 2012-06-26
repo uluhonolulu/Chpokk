@@ -33,5 +33,5 @@
 <div id="fileContent">
 </div>
 <div class="pull-right well" style="min-height: 500px;">
-	!{this.Partial(new FileListPartialModel{Name = "Chpokk-SampleSol"})}
+	!{this.Partial(new FileListPartialModel{Name = Model.Name})}
 </div>
