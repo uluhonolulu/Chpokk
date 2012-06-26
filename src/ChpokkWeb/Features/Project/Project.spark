@@ -30,7 +30,7 @@
 
 	</script>
 </content>
-<div id="fileContent">
+<div id="fileContent" style="white-space: pre;">
 </div>
 <div class="pull-right well" style="min-height: 500px;">
 	!{this.Partial(new FileListPartialModel{Name = Model.Name})}
