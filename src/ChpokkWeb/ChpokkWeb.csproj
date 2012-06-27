@@ -243,6 +243,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Demo\NB.txt" />
+    <Content Include="Features\Exploring\_SolutionBrowser.spark" />
     <Content Include="Features\MainScreen\Main.spark" />
     <Content Include="Features\Editor\Tests\MainFixture.html" />
     <Content Include="Features\Exploring\_FileList.spark" />
@@ -393,6 +394,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\Exploring\FileListPartialModel.cs" />
     <Compile Include="Features\Exploring\RepositoryManager.cs" />
+    <Compile Include="Features\Exploring\SolutionBrowserPartialModel.cs" />
     <Compile Include="Features\Exploring\SolutionContentController.cs" />
     <Compile Include="Features\Exploring\SolutionExplorerInputModel.cs" />
     <Compile Include="Features\Project\ProjectController.cs" />

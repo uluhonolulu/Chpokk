@@ -1,0 +1,5 @@
+﻿<viewdata model="ChpokkWeb.Features.Exploring.SolutionBrowserPartialModel" />
+<use namespace="System.Collections.Generic"/>
+<use namespace="System.Linq"/>
+<use namespace="ChpokkWeb.Features.Exploring"/>
+yo man!
