@@ -2,7 +2,7 @@
 <use namespace="System.Collections.Generic"/>
 <use namespace="System.Linq"/>
 <use namespace="ChpokkWeb.Features.Exploring"/>
-yo man!
+
 <div id="solutionBrowserWrapper"></div>
 
 <content name="InlineScripts">

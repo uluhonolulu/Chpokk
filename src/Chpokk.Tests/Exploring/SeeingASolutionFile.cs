@@ -15,7 +15,20 @@ namespace Chpokk.Tests.Exploring {
 	public class SeeingASolutionFile : BaseQueryTest<SingleSolutionContext, IEnumerable<RepositoryItem>> {
 		[Test]
 		public void CanSeeTheFile() {
-			Assert.AreElementsEqual(new[]{Context.FileName}, Result.Select(item => item.Name));
+			var names = Result.Select(item => item.Name);
+			Assert.AreElementsEqual(new[]{Context.FileName}, names);
+		}
+
+		[Test]
+		public void ThePathIsCorrect() {
+			var paths = Result.Select(item => item.PathRelativeToRepositoryRoot);
+			Assert.AreElementsEqual(new[]{@"\Repka\" + Context.FileName}, paths);
+		}
+
+		[Test]
+		public void WillBeAbleToEditIt() {
+			var first = Result.First();
+			Assert.AreEqual("file", first.Type);
 		}
 
 		public override IEnumerable<RepositoryItem> Act() {
@@ -45,7 +58,6 @@ namespace Chpokk.Tests.Exploring {
 			base.Create();
 			FileName = Guid.NewGuid().ToString() + ".sln";
 			FilePath = Path.Combine(RepositoryRoot, FileName);
-			Console.WriteLine(FilePath);
 			File.Create(FilePath).Dispose();			
 		}
 

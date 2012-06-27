@@ -25,7 +25,15 @@ namespace ChpokkWeb.Features.Exploring {
 			var info = _repositoryManager.GetRepositoryInfo(model.Name);
 			var folder = FileSystem.Combine(model.PhysicalApplicationPath, info.Path);
 			var files = _fileSystem.FindFiles(folder, new FileSet { Include = "*.sln" });
-			var items = files.Select(filePath => new RepositoryItem {Name = Path.GetFileName(filePath)});
+			var items =
+				files.Select(
+					filePath =>
+					new RepositoryItem
+					{
+						Name = Path.GetFileName(filePath),
+						PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder),
+						Type = "file"
+					});
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
 	}
