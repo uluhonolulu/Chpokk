@@ -397,6 +397,7 @@
     <Compile Include="Features\Exploring\SolutionBrowserPartialModel.cs" />
     <Compile Include="Features\Exploring\SolutionContentController.cs" />
     <Compile Include="Features\Exploring\SolutionExplorerInputModel.cs" />
+    <Compile Include="Features\Exploring\SolutionExplorerModel.cs" />
     <Compile Include="Features\Project\ProjectController.cs" />
     <Compile Include="Features\Project\ProjectInputModel.cs" />
     <Compile Include="Features\Project\ProjectModel.cs" />

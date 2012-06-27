@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
+using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionContentController {
@@ -14,17 +15,18 @@ namespace ChpokkWeb.Features.Exploring {
 		[NotNull]
 		private IFileSystem _fileSystem;
 
-		public SolutionContentController(RepositoryManager repositoryManager, IFileSystem fileSystem) {
+		public SolutionContentController([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem) {
 			_repositoryManager = repositoryManager;
 			_fileSystem = fileSystem;
 		}
 
-		public IEnumerable<RepositoryItem> GetSolutions(SolutionExplorerInputModel model) {
+		[JsonEndpoint]
+		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
 			var info = _repositoryManager.GetRepositoryInfo(model.Name);
 			var folder = FileSystem.Combine(model.PhysicalApplicationPath, info.Path);
-			Console.WriteLine(folder);
-			var files = _fileSystem.FindFiles(folder, new FileSet(){ Include = "*.sln" });// 
-			return files.Select(filePath => new RepositoryItem(){Name = Path.GetFileName(filePath)});//filePath, 
+			var files = _fileSystem.FindFiles(folder, new FileSet { Include = "*.sln" });
+			var items = files.Select(filePath => new RepositoryItem {Name = Path.GetFileName(filePath)});
+			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
 	}
 }

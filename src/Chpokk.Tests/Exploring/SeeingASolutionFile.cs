@@ -20,7 +20,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override IEnumerable<RepositoryItem> Act() {
 			var controller = Context.Container.Get<SolutionContentController>();
-			return controller.GetSolutions(new SolutionExplorerInputModel { Name = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") });
+			return controller.GetSolutions(new SolutionExplorerInputModel { Name = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") }).Items;
 		}
 	}
 
@@ -33,7 +33,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override IEnumerable<RepositoryItem> Act() {
 			var controller = Context.Container.Get<SolutionContentController>();
-			return controller.GetSolutions(new SolutionExplorerInputModel { Name = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") });
+			return controller.GetSolutions(new SolutionExplorerInputModel { Name = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") }).Items;
 		}
 	}
 

@@ -3,3 +3,24 @@
 <use namespace="System.Linq"/>
 <use namespace="ChpokkWeb.Features.Exploring"/>
 yo man!
+<div id="solutionBrowserWrapper"></div>
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+
+		$(function () {
+			var fileListUrl = '${Urls.UrlFor<SolutionExplorerInputModel>()}';
+			var model = { Name: "${Model.Name}" };
+			$.post(fileListUrl, model, function (data) {
+				var items = data.Items;
+				var root = build_ul(items)
+					.attr('id', 'solutionBrowser')
+					.addClass('filetree');
+				$('#solutionBrowserWrapper').append(root);
+
+				initTreeView('#solutionBrowser');
+			}
+			);			
+		});
+	</script>
+</content>
