@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using ChpokkWeb.Features.Exploring;
 
-namespace Chpokk.Tests.Exploring {
+namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
 		public IEnumerable<RepositoryItem> GetProjectItems(string projectFileContent) {
 			var doc = new XmlDocument();
