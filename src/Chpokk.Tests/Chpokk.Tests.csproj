@@ -152,6 +152,7 @@
   <ItemGroup>
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
     <Compile Include="Exploring\ParsingTheSolutionFile.cs" />
+    <Compile Include="Exploring\ParsingAProjectFile.cs" />
     <Compile Include="Exploring\RepositoryFolderContext.cs" />
     <Compile Include="Exploring\SeeingASolutionFile.cs" />
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
