@@ -17,6 +17,16 @@ namespace Chpokk.Tests.Exploring {
 			Assert.AreEqual(1, SolutionItem.Children.Count);
 		}
 
+		[Test]
+		public void CanSeeTheProjectsName() {
+			Assert.AreEqual(Context.PROJECT_NAME, ProjectItem.Name);
+		}
+
+		[Test]
+		public void DontWantToEditAProject () {
+			Assert.AreEqual("folder", ProjectItem.Type);
+		}
+
 		public RepositoryItem SolutionItem {
 			get { return Result.First(); }
 		}

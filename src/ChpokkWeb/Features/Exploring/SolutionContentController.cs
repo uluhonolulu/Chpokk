@@ -14,11 +14,15 @@ namespace ChpokkWeb.Features.Exploring {
 		private readonly RepositoryManager _repositoryManager;
 
 		[NotNull]
-		private IFileSystem _fileSystem;
+		private readonly IFileSystem _fileSystem;
 
-		public SolutionContentController([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem) {
+		[NotNull] private readonly SolutionParser _solutionParser;
+
+		public SolutionContentController([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem, [NotNull
+		                                                                                                                ] SolutionParser solutionParser) {
 			_repositoryManager = repositoryManager;
 			_fileSystem = fileSystem;
+			_solutionParser = solutionParser;
 		}
 
 		[JsonEndpoint]
@@ -33,27 +37,14 @@ namespace ChpokkWeb.Features.Exploring {
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
 
-		static Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
 		private RepositoryItem CreateSolutionItem(string folder, string filePath) {
 			var solutionItem = new RepositoryItem
 			                     {
 			                     	Name = Path.GetFileName(filePath), PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder), Type = "folder"
 			                     };
-			_fileSystem.ReadTextFile(filePath, line =>
-			                                   {
-												Match match = projectLinePattern.Match(line);
-												if (match.Success) {
-													string projectGuid = match.Result("${ProjectGuid}");
-													string title = match.Result("${Title}");
-													string location = match.Result("${Location}");
-													string guid = match.Result("${Guid}");
-													solutionItem.Children.Add(new RepositoryItem());
-												}
-			                                   });
+			var content = _fileSystem.ReadStringFromFile(filePath);
+			_solutionParser.FillSolutionData(solutionItem, content);
 			return solutionItem;
 		}
-
-
-
 	}
 }
