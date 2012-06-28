@@ -31,9 +31,5 @@ namespace Chpokk.Tests.Exploring {
 					<Compile Include=""Class1.cs"" />
 				  </ItemGroup>
 				</Project>";
-		public override void Create() {
-			base.Create();
-
-		}
 	}
 }
