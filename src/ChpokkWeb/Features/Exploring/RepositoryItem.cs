@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Infrastructure;
 using ChpokkWeb.Infrastructure.Treeview;
 
 namespace ChpokkWeb.Features.Exploring {
@@ -13,6 +14,7 @@ namespace ChpokkWeb.Features.Exploring {
 			get { return this.Children; }
 		}
 
+		[NotNull]
 		public IList<RepositoryItem> Children { get; private set; }
 
 		public string Type { get; set; }

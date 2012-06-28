@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
@@ -28,13 +29,26 @@ namespace ChpokkWeb.Features.Exploring {
 			var items =
 				files.Select(
 					filePath =>
-					new RepositoryItem
-					{
-						Name = Path.GetFileName(filePath),
-						PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder),
-						Type = "folder"
-					});
+					CreateSolutionItem(folder, filePath));
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
+
+		private RepositoryItem CreateSolutionItem(string folder, string filePath) {
+			var solutionItem = new RepositoryItem
+			                     {
+			                     	Name = Path.GetFileName(filePath), PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder), Type = "folder"
+			                     };
+			solutionItem.Children.Add(new RepositoryItem());
+			return solutionItem;
+		}
+
+		static Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
+
+				//        Match match = projectLinePattern.Match(line);
+				//if (match.Success) {
+				//    string projectGuid  = match.Result("${ProjectGuid}");
+				//    string title        = match.Result("${Title}");
+				//    string location     = match.Result("${Location}");
+				//    string guid         = match.Result("${Guid}");
 	}
 }
