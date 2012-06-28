@@ -14,8 +14,7 @@ namespace Chpokk.Tests.Exploring {
 	public class ParsingTheSolutionFile : BaseSolutionBrowserTest<SingleSolutionContext> {
 		[Test]
 		public void ShouldSeeTheProject() {
-			var projectItem = SolutionItem.Children.FirstOrDefault();
-			Assert.IsNotNull(projectItem);
+			Assert.AreEqual(1, SolutionItem.Children.Count);
 		}
 
 		public RepositoryItem SolutionItem {

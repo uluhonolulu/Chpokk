@@ -33,22 +33,27 @@ namespace ChpokkWeb.Features.Exploring {
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
 
+		static Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
 		private RepositoryItem CreateSolutionItem(string folder, string filePath) {
 			var solutionItem = new RepositoryItem
 			                     {
 			                     	Name = Path.GetFileName(filePath), PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder), Type = "folder"
 			                     };
-			solutionItem.Children.Add(new RepositoryItem());
+			_fileSystem.ReadTextFile(filePath, line =>
+			                                   {
+												Match match = projectLinePattern.Match(line);
+												if (match.Success) {
+													string projectGuid = match.Result("${ProjectGuid}");
+													string title = match.Result("${Title}");
+													string location = match.Result("${Location}");
+													string guid = match.Result("${Guid}");
+													solutionItem.Children.Add(new RepositoryItem());
+												}
+			                                   });
 			return solutionItem;
 		}
 
-		static Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
 
-				//        Match match = projectLinePattern.Match(line);
-				//if (match.Success) {
-				//    string projectGuid  = match.Result("${ProjectGuid}");
-				//    string title        = match.Result("${Title}");
-				//    string location     = match.Result("${Location}");
-				//    string guid         = match.Result("${Guid}");
+
 	}
 }
