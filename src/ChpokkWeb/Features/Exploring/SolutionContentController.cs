@@ -32,7 +32,7 @@ namespace ChpokkWeb.Features.Exploring {
 					{
 						Name = Path.GetFileName(filePath),
 						PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder),
-						Type = "file"
+						Type = "folder"
 					});
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}

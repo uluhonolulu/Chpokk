@@ -26,9 +26,9 @@ namespace Chpokk.Tests.Exploring {
 		}
 
 		[Test]
-		public void WillBeAbleToEditIt() {
+		public void WillNotBeAbleToEditIt() {
 			var first = Result.First();
-			Assert.AreEqual("file", first.Type);
+			Assert.AreEqual("folder", first.Type);
 		}
 
 		public override IEnumerable<RepositoryItem> Act() {
