@@ -43,7 +43,7 @@ namespace ChpokkWeb.Features.Exploring {
 			                     	Name = Path.GetFileName(filePath), PathRelativeToRepositoryRoot = filePath.PathRelativeTo(folder), Type = "folder"
 			                     };
 			var content = _fileSystem.ReadStringFromFile(filePath);
-			_solutionParser.FillSolutionData(solutionItem, content);
+			_solutionParser.FillSolutionData(solutionItem, content, filePath);
 			return solutionItem;
 		}
 	}

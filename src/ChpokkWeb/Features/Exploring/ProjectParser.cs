@@ -10,7 +10,7 @@ namespace ChpokkWeb.Features.Exploring {
 			var xmlNamespaceManager = new XmlNamespaceManager(doc.NameTable);
 			xmlNamespaceManager.AddNamespace("ms", "http://schemas.microsoft.com/developer/msbuild/2003");
 			var filePaths = doc.SelectNodes("//ms:Compile/@Include", xmlNamespaceManager).Cast<XmlNode>().Select(node => node.Value);
-			return from path in filePaths select new RepositoryItem {Name = path};
+			return from path in filePaths select new RepositoryItem {Name = path, PathRelativeToRepositoryRoot = path, Type = "file"};
 		}
 	}
 }

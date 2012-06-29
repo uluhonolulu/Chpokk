@@ -17,9 +17,24 @@ namespace Chpokk.Tests.Exploring {
 			Assert.AreEqual(1, Result.Count());
 		}
 
+		[Test, DependsOn("CanSeeOneCodeFile")]
+		public void ItemNameIsFilename() {
+			Assert.AreEqual("Class1.cs", FileItem.Name);
+		}
+
+		[Test, DependsOn("CanSeeOneCodeFile")]
+		public void CanEditTheFile() {
+			Assert.AreEqual("Class1.cs", FileItem.PathRelativeToRepositoryRoot);
+			Assert.AreEqual("file", FileItem.Type);
+		}
+
 		public override IEnumerable<RepositoryItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
 			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT);
+		}
+
+		public RepositoryItem FileItem {
+			get { return Result.First(); }
 		}
 	}
 
@@ -29,6 +44,23 @@ namespace Chpokk.Tests.Exploring {
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
 				  <ItemGroup>
 					<Compile Include=""Class1.cs"" />
+				  </ItemGroup>
+				</Project>";
+	}
+
+	public class ParsingProjectContentWithAFileInASubfolder : BaseQueryTest<ProjectContentWithOneFileInASubfolderContext, IEnumerable<RepositoryItem>> {
+		public override IEnumerable<RepositoryItem> Act() {
+			var parser = Context.Container.Get<ProjectParser>();
+			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT);
+		}
+	}
+
+	public class ProjectContentWithOneFileInASubfolderContext : SimpleConfiguredContext {
+		public string PROJECT_FILE_CONTENT =
+			@"<?xml version=""1.0"" encoding=""utf-8""?>
+				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
+				  <ItemGroup>
+					<Compile Include=""Subfolder\\Class1.cs"" />
 				  </ItemGroup>
 				</Project>";
 	}
