@@ -21,11 +21,6 @@ namespace Chpokk.Tests.Exploring {
 			Assert.AreElementsEqual(new[]{Context.FileName}, names);
 		}
 
-		[Test]
-		public void ThePathIsCorrect() {
-			var paths = Result.Select(item => item.PathRelativeToRepositoryRoot);
-			Assert.AreElementsEqual(new[]{@"\Repka\" + Context.FileName}, paths);
-		}
 
 		[Test]
 		public void WillNotBeAbleToEditIt() {
