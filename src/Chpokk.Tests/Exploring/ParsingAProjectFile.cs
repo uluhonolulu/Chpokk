@@ -36,6 +36,7 @@ namespace Chpokk.Tests.Exploring {
 	}
 
 	public class SolutionAndProjectWithSingleFileContext : SingleSolutionContext {
+		public string ProjectFolder { get; set; }
 			const string projectFileContent = 
 				@"<?xml version=""1.0"" encoding=""utf-8""?>
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
@@ -45,8 +46,10 @@ namespace Chpokk.Tests.Exploring {
 				</Project>";
 		public override void Create() {
 			base.Create();
-			var projectFilePath = FileSystem.Combine(this.RepositoryRoot, this.PROJECT_PATH);
+			var projectFilePath = FileSystem.Combine(SolutionFolder, this.PROJECT_PATH);
+			ProjectFolder = projectFilePath.ParentDirectory();
 			var fileSystem = Container.Get<FileSystem>();
+			Console.WriteLine("Writing project to " + projectFilePath);
 			fileSystem.WriteStringToFile(projectFilePath, projectFileContent);
 		}
 	}

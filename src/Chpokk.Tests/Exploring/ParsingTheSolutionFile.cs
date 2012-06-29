@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Arractas;
-using ChpokkWeb.Features.Exploring;
-using Gallio.Framework;
+﻿using ChpokkWeb.Features.Exploring;
+using FubuCore;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
 
 namespace Chpokk.Tests.Exploring {
@@ -45,7 +39,7 @@ namespace Chpokk.Tests.Exploring {
 			EndProject";
 
 		public override void CreateSolutionFile(string filePath) {
-			File.WriteAllText(filePath, string.Format(_slnFileContent, PROJECT_NAME, PROJECT_PATH));
+			Container.Get<FileSystem>().WriteStringToFile(filePath, string.Format(_slnFileContent, PROJECT_NAME, PROJECT_PATH));
 		}
 
 

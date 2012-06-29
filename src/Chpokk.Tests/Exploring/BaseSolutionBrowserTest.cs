@@ -21,13 +21,16 @@ namespace Chpokk.Tests.Exploring {
 	public abstract class SingleSlnFileContext : RepositoryFolderContext {
 		public string FileName { get; set; }
 		public string FilePath { get; set; }
+		public string SolutionFolder { get; set; }
 
 		public abstract void CreateSolutionFile(string filePath);
 
 		public override void Create() {
 			base.Create();
 			FileName = Guid.NewGuid().ToString() + ".sln";
-			FilePath = FileSystem.Combine(RepositoryRoot, FileName);
+			SolutionFolder = FileSystem.Combine(RepositoryRoot, "src");
+			FilePath = FileSystem.Combine(SolutionFolder, FileName);
+			Console.WriteLine("Writing solution to " + FilePath);
 			CreateSolutionFile(FilePath);
 		}
 	}

@@ -7,6 +7,7 @@ using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Infrastructure;
+using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -49,7 +50,7 @@ namespace Chpokk.Tests.Exploring {
 
 	public class EmptySlnFileContext : SingleSlnFileContext {
 		public override void CreateSolutionFile([NotNull] string filePath) {
-			File.WriteAllText(filePath, string.Empty);
+			Container.Get<FileSystem>().WriteStringToFile(filePath, string.Empty);
 		}
 	}
 }
