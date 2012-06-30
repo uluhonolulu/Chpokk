@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
-using FubuCore;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
 
-namespace Chpokk.Tests.Exploring {
+namespace Chpokk.Tests.Exploring.UnitTests {
 	[TestFixture]
 	public class ParsingProjectContent : BaseQueryTest<ProjectContentWithOneRootFileContext, IEnumerable<FileItem>> {
 

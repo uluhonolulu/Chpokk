@@ -151,7 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
-    <Compile Include="Exploring\ParsingProjectContent.cs" />
+    <Compile Include="Exploring\ParsingProjectFile.cs" />
+    <Compile Include="Exploring\UnitTests\ParsingProjectContent.cs" />
     <Compile Include="Exploring\ParsingTheSolutionFile.cs" />
     <Compile Include="Exploring\ParsingAProjectFile.cs" />
     <Compile Include="Exploring\RepositoryFolderContext.cs" />
