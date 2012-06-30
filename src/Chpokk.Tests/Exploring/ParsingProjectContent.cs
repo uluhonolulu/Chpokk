@@ -33,7 +33,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override IEnumerable<RepositoryItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
+			return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
 		}
 
 		public RepositoryItem FileItem {
@@ -56,7 +56,7 @@ namespace Chpokk.Tests.Exploring {
 	public class ParsingProjectContentWithAFileInASubfolder : BaseQueryTest<ProjectContentWithOneFileInASubfolderContext, IEnumerable<RepositoryItem>> {
 		public override IEnumerable<RepositoryItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
+			return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
 		}
 	}
 

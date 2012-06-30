@@ -25,23 +25,34 @@ namespace ChpokkWeb.Features.Exploring {
 				.Split(new[] {Environment.NewLine}, StringSplitOptions.None)
 				.Select(line => projectLinePattern.Match(line))
 				.Where(match => match.Success)
-				.Select(match => CreateProjectItem(match, item => PostProcessProjectItem(solutionPath.ParentDirectory(), match.Result("${Location}"), item)));
+				.Select(match => CreateProjectItem(match, item => CreateRepositoryItem(solutionPath.ParentDirectory(), item)));
 		}
 
-		private RepositoryItem CreateProjectItem([NotNull] Match match, [NotNull] Action<RepositoryItem> projectLoader) {
+		private RepositoryItem CreateProjectItem([NotNull] Match match, [NotNull] Func<ProjectItem, RepositoryItem> projectLoader) {
 			var projectTitle = match.Result("${Title}");
 			var projectPath = match.Result("${Location}");
-			var projectItem = new RepositoryItem {Name = projectTitle, PathRelativeToRepositoryRoot = projectPath, Type = "folder"};
-			projectLoader(projectItem);
-			return projectItem;
+			var projectItem = new ProjectItem {Name = projectTitle, Path = projectPath};
+			return projectLoader(projectItem);
 		}
 
-		private void PostProcessProjectItem(string solutionFolder, string projectPath, RepositoryItem projectItem) {
+		private RepositoryItem CreateRepositoryItem(string solutionFolder, ProjectItem projectItem) {
 			var projectFilePath = FileSystem.Combine(solutionFolder,
-			                                         projectPath);
+			                                         projectItem.Path);
+			var projectRepositoryItem = new RepositoryItem()
+			                            {
+			                            	Name = projectItem.Name,
+			                            	PathRelativeToRepositoryRoot = projectFilePath,
+			                            	Type = "folder"
+			                            };
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
-			var fileItems = _projectParser.GetProjectItems(projectFileContent, "");
-			projectItem.Children.AddRange(fileItems);
+			var fileItems = _projectParser.GetCompiledFiles(projectFileContent).Select(item => new RepositoryItem());
+			projectRepositoryItem.Children.AddRange(fileItems);
+			return projectRepositoryItem;
 		}
+	}
+
+	public class ProjectItem {
+		public string Name { get; set; }
+		public string Path { get; set; }
 	}
 }
