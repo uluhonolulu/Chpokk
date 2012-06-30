@@ -10,7 +10,7 @@ using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 
 namespace Chpokk.Tests {
-	[TestFixture]
+	[TestFixture, Ignore("Spike")]
 	public class GitSharpCloningSpike : BaseCommandTest<RemoteRepositoryContext> {
 		const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 		[Test]

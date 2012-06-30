@@ -25,14 +25,14 @@ namespace ChpokkWeb.Features.Exploring {
 				.Split(new[] {Environment.NewLine}, StringSplitOptions.None)
 				.Select(line => projectLinePattern.Match(line))
 				.Where(match => match.Success)
-				.Select(match => CreateProjectItem(match, solutionPath.ParentDirectory()));
+				.Select(match => CreateProjectItem(match, item => PostProcessProjectItem(solutionPath.ParentDirectory(), match.Result("${Location}"), item)));
 		}
 
-		private RepositoryItem CreateProjectItem([NotNull] Match match, string solutionFolder) {
+		private RepositoryItem CreateProjectItem([NotNull] Match match, [NotNull] Action<RepositoryItem> projectLoader) {
 			var projectTitle = match.Result("${Title}");
 			var projectPath = match.Result("${Location}");
 			var projectItem = new RepositoryItem {Name = projectTitle, PathRelativeToRepositoryRoot = projectPath, Type = "folder"};
-			PostProcessProjectItem(solutionFolder, projectPath, projectItem);
+			projectLoader(projectItem);
 			return projectItem;
 		}
 

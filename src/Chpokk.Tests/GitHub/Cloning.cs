@@ -17,7 +17,7 @@ using StructureMap;
 using Ivonna.Framework.Generic;
 
 namespace Chpokk.Tests.GitHub {
-	[TestFixture]
+	[TestFixture, Ignore("Long running test")]
 	public class Cloning: BaseCommandTest<RemoteRepositoryContext> {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
