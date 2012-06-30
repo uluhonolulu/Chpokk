@@ -21,28 +21,27 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		public IEnumerable<RepositoryItem> GetProjectItems(string content, string solutionPath) {
-			var solutionFolder = solutionPath.ParentDirectory();
 			return content
 				.Split(new[] {Environment.NewLine}, StringSplitOptions.None)
 				.Select(line => projectLinePattern.Match(line))
 				.Where(match => match.Success)
-				.Select(match => CreateProjectItem(match, solutionFolder));
+				.Select(match => CreateProjectItem(match, solutionPath.ParentDirectory()));
 		}
 
 		private RepositoryItem CreateProjectItem([NotNull] Match match, string solutionFolder) {
 			var projectTitle = match.Result("${Title}");
 			var projectPath = match.Result("${Location}");
+			var projectItem = new RepositoryItem {Name = projectTitle, PathRelativeToRepositoryRoot = projectPath, Type = "folder"};
+			PostProcessProjectItem(solutionFolder, projectPath, projectItem);
+			return projectItem;
+		}
+
+		private void PostProcessProjectItem(string solutionFolder, string projectPath, RepositoryItem projectItem) {
 			var projectFilePath = FileSystem.Combine(solutionFolder,
 			                                         projectPath);
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
-			return CreateProjectItem(projectFileContent, projectTitle, projectPath);
-		}
-
-		private RepositoryItem CreateProjectItem(string projectFileContent, string projectTitle, string projectPath) {
-			var projectItem = new RepositoryItem {Name = projectTitle, PathRelativeToRepositoryRoot = projectPath, Type = "folder"};
 			var fileItems = _projectParser.GetProjectItems(projectFileContent, "");
 			projectItem.Children.AddRange(fileItems);
-			return projectItem;
 		}
 	}
 }

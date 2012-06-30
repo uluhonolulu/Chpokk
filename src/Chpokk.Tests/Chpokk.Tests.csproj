@@ -156,6 +156,7 @@
     <Compile Include="Exploring\ParsingAProjectFile.cs" />
     <Compile Include="Exploring\RepositoryFolderContext.cs" />
     <Compile Include="Exploring\SeeingASolutionFile.cs" />
+    <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
@@ -209,6 +210,7 @@
     <Content Include="requirements.txt" />
     <Content Include="server stories.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem copy F:\Projects\Fubu\FubuMVC.AssetTransforms\src\FubuMVC.Less\bin\Debug\FubuMVC.Less.dll $(TargetDir)*.*</PostBuildEvent>
