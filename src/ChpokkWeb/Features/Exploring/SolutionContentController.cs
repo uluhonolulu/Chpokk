@@ -14,14 +14,12 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[NotNull] private readonly IFileSystem _fileSystem;
 
-		[NotNull] private readonly SolutionParser _solutionParser;
 		[NotNull] private readonly SolutionFileLoader _solutionFileLoader;
 
 		public SolutionContentController([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem, [NotNull
 		                                                                                                                ] SolutionParser solutionParser, SolutionFileLoader solutionFileLoader) {
 			_repositoryManager = repositoryManager;
 			_fileSystem = fileSystem;
-			_solutionParser = solutionParser;
 			_solutionFileLoader = solutionFileLoader;
 		}
 

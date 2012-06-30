@@ -16,39 +16,29 @@ namespace ChpokkWeb.Features.Exploring {
 			_fileSystem = fileSystem;
 		}
 
-		public void FillSolutionData(RepositoryItem solutionItem, string content, string solutionPath) {
-			solutionItem.Children.AddRange(this.GetProjectItems(content, solutionPath));
-		}
-
-		public IEnumerable<RepositoryItem> GetProjectItems(string content, string solutionPath) {
+		public IEnumerable<ProjectItem> GetProjectItems(string content, string solutionPath) {
 			return content
 				.Split(new[] {Environment.NewLine}, StringSplitOptions.None)
 				.Select(line => projectLinePattern.Match(line))
 				.Where(match => match.Success)
-				.Select(match => CreateProjectItem(match, item => CreateRepositoryItem(solutionPath.ParentDirectory(), item)));
+				.Select(match => CreateProjectItem(match));
 		}
 
+		//, item => CreateRepositoryItem(solutionPath.ParentDirectory(), item)
+
 		private RepositoryItem CreateProjectItem([NotNull] Match match, [NotNull] Func<ProjectItem, RepositoryItem> projectLoader) {
-			var projectTitle = match.Result("${Title}");
-			var projectPath = match.Result("${Location}");
-			var projectItem = new ProjectItem {Name = projectTitle, Path = projectPath};
+			var projectItem = CreateProjectItem(match);
 			return projectLoader(projectItem);
 		}
 
-		private RepositoryItem CreateRepositoryItem(string solutionFolder, ProjectItem projectItem) {
-			var projectFilePath = FileSystem.Combine(solutionFolder,
-			                                         projectItem.Path);
-			var projectRepositoryItem = new RepositoryItem()
-			                            {
-			                            	Name = projectItem.Name,
-			                            	PathRelativeToRepositoryRoot = projectFilePath,
-			                            	Type = "folder"
-			                            };
-			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
-			var fileItems = _projectParser.GetCompiledFiles(projectFileContent).Select(item => new RepositoryItem());
-			projectRepositoryItem.Children.AddRange(fileItems);
-			return projectRepositoryItem;
+		private ProjectItem CreateProjectItem(Match match) {
+			var projectTitle = match.Result("${Title}");
+			var projectPath = match.Result("${Location}");
+			var projectItem = new ProjectItem {Name = projectTitle, Path = projectPath};
+			return projectItem;
 		}
+
+
 	}
 
 	public class ProjectItem {

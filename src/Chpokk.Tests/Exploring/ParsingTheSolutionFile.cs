@@ -1,4 +1,5 @@
-﻿using ChpokkWeb.Features.Exploring;
+﻿using System;
+using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using MbUnit.Framework;
 using System.Linq;
@@ -39,9 +40,11 @@ namespace Chpokk.Tests.Exploring {
 			EndProject";
 
 		public override void CreateSolutionFile(string filePath) {
-			Container.Get<FileSystem>().WriteStringToFile(filePath, string.Format(_slnFileContent, PROJECT_NAME, PROJECT_PATH));
+			var fileSystem = Container.Get<FileSystem>();
+			fileSystem.WriteStringToFile(filePath, string.Format(_slnFileContent, PROJECT_NAME, PROJECT_PATH));
+			var projectFilePath = FileSystem.Combine(filePath.ParentDirectory(), PROJECT_PATH);
+			Console.WriteLine("Writing the project to " + projectFilePath);
+			fileSystem.WriteStringToFile(projectFilePath, "<root/>");
 		}
-
-
 	}
 }
