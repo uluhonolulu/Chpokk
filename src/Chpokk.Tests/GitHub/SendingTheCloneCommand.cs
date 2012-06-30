@@ -4,6 +4,7 @@ using Arractas;
 using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using FubuMVC.Core.Urls;
 using Ivonna.Framework;
@@ -29,6 +30,7 @@ namespace Chpokk.Tests.GitHub {
 		public override Spy<CloneInputModel> Act() {
 			var spy = new Spy<CloneInputModel>(info => info.TypeName.EndsWith("CloneController") && info.MethodName == "CloneRepository", args => (CloneInputModel) args.ParameterValues[0]);
 			CThruEngine.AddAspect(spy);
+			CThruEngine.AddAspect(Stub.For<CloneController>("CloneRepository").Return(new RepositoryInfo("", "")));
 			var url = Context.Container.Get<IUrlRegistry>().UrlFor<CloneInputModel>();
 			new TestSession().Post(url, new CloneInputModel {RepoUrl = "stub"});
 			return spy;

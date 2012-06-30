@@ -4,6 +4,7 @@ using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -12,6 +13,7 @@ using System.Linq;
 namespace Chpokk.Tests.Exploring {
 	[TestFixture]
 	public class ParsingProjectContent : BaseQueryTest<ProjectContentWithOneRootFileContext, IEnumerable<RepositoryItem>> {
+
 		[Test]
 		public void CanSeeOneCodeFile() {
 			Assert.AreEqual(1, Result.Count());
@@ -19,18 +21,19 @@ namespace Chpokk.Tests.Exploring {
 
 		[Test, DependsOn("CanSeeOneCodeFile")]
 		public void ItemNameIsFilename() {
-			Assert.AreEqual("Class1.cs", FileItem.Name);
+			Assert.AreEqual(Context.FILE_NAME, FileItem.Name);
 		}
 
 		[Test, DependsOn("CanSeeOneCodeFile")]
 		public void CanEditTheFile() {
-			Assert.AreEqual("Class1.cs", FileItem.PathRelativeToRepositoryRoot);
+			var fileName = FileSystem.Combine(Context.PROJECT_ROOT, Context.FILE_NAME);
+			Assert.AreEqual(fileName, FileItem.PathRelativeToRepositoryRoot);
 			Assert.AreEqual("file", FileItem.Type);
 		}
 
 		public override IEnumerable<RepositoryItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT);
+			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
 		}
 
 		public RepositoryItem FileItem {
@@ -39,6 +42,8 @@ namespace Chpokk.Tests.Exploring {
 	}
 
 	public class ProjectContentWithOneRootFileContext : SimpleConfiguredContext {
+		public string PROJECT_ROOT = "root";
+		public readonly string FILE_NAME = "Class1.cs";
 		public string PROJECT_FILE_CONTENT =
 			@"<?xml version=""1.0"" encoding=""utf-8""?>
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
@@ -51,11 +56,14 @@ namespace Chpokk.Tests.Exploring {
 	public class ParsingProjectContentWithAFileInASubfolder : BaseQueryTest<ProjectContentWithOneFileInASubfolderContext, IEnumerable<RepositoryItem>> {
 		public override IEnumerable<RepositoryItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT);
+			return parser.GetProjectItems(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
 		}
 	}
 
 	public class ProjectContentWithOneFileInASubfolderContext : SimpleConfiguredContext {
+		public string PROJECT_ROOT = "root";
+		public readonly string FILE_NAME = "Class1.cs";
+		public readonly string FILE_PATH = @"Subfolder\\Class1.cs";
 		public string PROJECT_FILE_CONTENT =
 			@"<?xml version=""1.0"" encoding=""utf-8""?>
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">

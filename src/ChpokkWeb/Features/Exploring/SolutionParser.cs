@@ -40,7 +40,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		private RepositoryItem CreateProjectItem(string projectFileContent, string projectTitle, string projectPath) {
 			var projectItem = new RepositoryItem {Name = projectTitle, PathRelativeToRepositoryRoot = projectPath, Type = "folder"};
-			var fileItems = _projectParser.GetProjectItems(projectFileContent);
+			var fileItems = _projectParser.GetProjectItems(projectFileContent, "");
 			projectItem.Children.AddRange(fileItems);
 			return projectItem;
 		}
