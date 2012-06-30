@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace Chpokk.Tests.Exploring {
 	[TestFixture]
-	public class ParsingProjectContent : BaseQueryTest<ProjectContentWithOneRootFileContext, IEnumerable<RepositoryItem>> {
+	public class ParsingProjectContent : BaseQueryTest<ProjectContentWithOneRootFileContext, IEnumerable<FileItem>> {
 
 		[Test]
 		public void CanSeeOneCodeFile() {
@@ -21,22 +21,15 @@ namespace Chpokk.Tests.Exploring {
 
 		[Test, DependsOn("CanSeeOneCodeFile")]
 		public void ItemNameIsFilename() {
-			Assert.AreEqual(Context.FILE_NAME, FileItem.Name);
+			Assert.AreEqual(Context.FILE_NAME, FileItem.Path);
 		}
-
-		[Test, DependsOn("CanSeeOneCodeFile")]
-		public void CanEditTheFile() {
-			var fileName = FileSystem.Combine(Context.PROJECT_ROOT, Context.FILE_NAME);
-			Assert.AreEqual(fileName, FileItem.PathRelativeToRepositoryRoot);
-			Assert.AreEqual("file", FileItem.Type);
-		}
-
-		public override IEnumerable<RepositoryItem> Act() {
+		
+		public override IEnumerable<FileItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
+			return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT);
 		}
 
-		public RepositoryItem FileItem {
+		public FileItem FileItem {
 			get { return Result.First(); }
 		}
 	}
@@ -53,12 +46,12 @@ namespace Chpokk.Tests.Exploring {
 				</Project>";
 	}
 
-	public class ParsingProjectContentWithAFileInASubfolder : BaseQueryTest<ProjectContentWithOneFileInASubfolderContext, IEnumerable<RepositoryItem>> {
-		public override IEnumerable<RepositoryItem> Act() {
-			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
-		}
-	}
+	//public class ParsingProjectContentWithAFileInASubfolder : BaseQueryTest<ProjectContentWithOneFileInASubfolderContext, IEnumerable<RepositoryItem>> {
+	//    public override IEnumerable<RepositoryItem> Act() {
+	//        var parser = Context.Container.Get<ProjectParser>();
+	//        return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT, Context.PROJECT_ROOT);
+	//    }
+	//}
 
 	public class ProjectContentWithOneFileInASubfolderContext : SimpleConfiguredContext {
 		public string PROJECT_ROOT = "root";
