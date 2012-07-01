@@ -45,6 +45,7 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			Assert.AreEqual(2, result.Count());
 
 			var folderItem1 = result.First();
+			folderItem1.Children.Each(item => Console.WriteLine(item.Name));
 			Assert.AreEqual(1, folderItem1.Children.Count);
 		}
 
@@ -70,7 +71,10 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			Assert.AreEqual("folder", folderItem.Type);
 			Assert.AreEqual(1, folderItem.Children.Count);
 
-			
+			var subFolderItem = folderItem.Children.Single();
+			Assert.AreEqual("Subfolder2", subFolderItem.Name);
+			Assert.AreEqual("folder", subFolderItem.Type);
+
 		}
 	}
 }
