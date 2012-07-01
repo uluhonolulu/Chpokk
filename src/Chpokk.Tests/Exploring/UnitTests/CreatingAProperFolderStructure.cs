@@ -29,7 +29,6 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			var folderItem = result.Single();
 
 			Assert.AreEqual("Subfolder", folderItem.Name);
-			Assert.AreEqual(@"root\Subfolder", folderItem.PathRelativeToRepositoryRoot);
 			Assert.AreEqual("folder", folderItem.Type);
 			Assert.AreEqual(1, folderItem.Children.Count);
 
@@ -67,7 +66,6 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			var folderItem = result.Single();
 
 			Assert.AreEqual("Subfolder1", folderItem.Name);
-			Assert.AreEqual(@"root\Subfolder1", folderItem.PathRelativeToRepositoryRoot);
 			Assert.AreEqual("folder", folderItem.Type);
 			Assert.AreEqual(1, folderItem.Children.Count);
 
