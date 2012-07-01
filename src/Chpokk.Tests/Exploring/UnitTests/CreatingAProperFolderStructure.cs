@@ -76,6 +76,11 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			Assert.AreEqual("folder", subFolderItem.Type);
 			Assert.AreEqual(1, subFolderItem.Children.Count);
 
+
+			var fileItem = subFolderItem.Children.Single();
+			Assert.AreEqual("Class", fileItem.Name);
+			Assert.AreEqual(@"root\Subfolder1\Subfolder2\Class", fileItem.PathRelativeToRepositoryRoot);
+			Assert.AreEqual("file", fileItem.Type);
 		}
 	}
 }
