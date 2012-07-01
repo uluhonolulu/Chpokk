@@ -33,6 +33,9 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			Assert.AreEqual("folder", folderItem.Type);
 			Assert.AreEqual(1, folderItem.Children.Count);
 
+			var fileItem = folderItem.Children.Single();
+			Assert.AreEqual("Class1", fileItem.Name);
+			Assert.AreEqual(@"root\Subfolder\Class1", fileItem.PathRelativeToRepositoryRoot);
 		}
 
 		[Test]
@@ -53,6 +56,21 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 			var folderItem = result.First();
 			Assert.AreEqual(2, folderItem.Children.Count);			
+		}
+
+		[Test]
+		public void SubSubFolder() {
+			var source = new[] {new FileItem {Path = @"Subfolder1\Subfolder2\Class"}};
+			var result = _converter.Convert(source, "root");
+			Assert.AreEqual(1, result.Count());
+			var folderItem = result.Single();
+
+			Assert.AreEqual("Subfolder1", folderItem.Name);
+			Assert.AreEqual(@"root\Subfolder1", folderItem.PathRelativeToRepositoryRoot);
+			Assert.AreEqual("folder", folderItem.Type);
+			Assert.AreEqual(1, folderItem.Children.Count);
+
+			
 		}
 	}
 }
