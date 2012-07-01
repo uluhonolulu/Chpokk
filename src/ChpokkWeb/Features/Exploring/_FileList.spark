@@ -5,31 +5,15 @@
 
 <div id="fileListWrapper"></div>
 
-
+<content name="head">
+	<Script src="browser.js" />
+</content>
 
 
 
 <content name="InlineScripts">
 	<script type="text/javascript">
 		
-		function build_li(item) {
-			var li = $('<li/>')
-				.attr('data-type', item.Type)
-				.attr('data-path', item.PathRelativeToRepositoryRoot)
-				.append($('<span/>').addClass(item.Type).text(item.Name));
-				if (item.Type === 'folder') {
-					li.append(build_ul(item.Children));
-				}
-			return li;
-		}
-
-		function build_ul(items) {
-			var ul = $('<ul/>');
-			$.each(items, function() {
-				ul.append(build_li(this));
-			});
-			return ul;
-		}
 
 		$(function () {
 			var fileListUrl = '${Urls.UrlFor<FileListInputModel>()}';
@@ -46,16 +30,5 @@
 			);
 		});
 		
-		function initTreeView(selector) {
-			$('li[data-type="file"]').click(function () {
-				window.location.hash = $(this).attr('data-path');
-			});
-
-			//$('li[data-type="file"]').addClass('');
-
-			$(selector).treeview({collapsed:true});
-			
-		}
-
 	</script>
 </content>

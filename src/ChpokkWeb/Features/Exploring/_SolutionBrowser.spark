@@ -5,6 +5,10 @@
 
 <div id="solutionBrowserWrapper"></div>
 
+<content name="head">
+	<Script src="browser.js" />
+</content>
+
 <content name="InlineScripts">
 	<script type="text/javascript">
 

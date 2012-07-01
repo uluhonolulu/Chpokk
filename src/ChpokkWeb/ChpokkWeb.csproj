@@ -165,6 +165,7 @@
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\scripts\browser.js" />
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
