@@ -10,7 +10,7 @@ namespace Chpokk.Tests.Exploring {
 		public IEnumerable<RepositoryItem> Convert(IEnumerable<FileItem> files, string projectFolderRelativeToRepositoryRoot) {
 			var folders = files.Select(item => item.Path.ParentDirectory());
 			var folderItems =
-				folders.Where(folder => folder.IsNotEmpty()).Select(folder => CreateFolderItem(folder, files, projectFolderRelativeToRepositoryRoot));
+				folders.Where(folder => folder.IsNotEmpty()).Distinct().Select(folder => CreateFolderItem(folder, files, projectFolderRelativeToRepositoryRoot));
 			var fileItems = files.Where(item => item.Path.ParentDirectory().IsEmpty()).Select(item => CreateFileItem(item, projectFolderRelativeToRepositoryRoot));
 			return folderItems.Concat(fileItems);
 		}

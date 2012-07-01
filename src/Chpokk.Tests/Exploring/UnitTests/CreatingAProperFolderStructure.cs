@@ -44,5 +44,15 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 			var folderItem1 = result.First();
 			Assert.AreEqual(1, folderItem1.Children.Count);
 		}
+
+		[Test]
+		public void TwoFilesInSameSubfolder() {
+			var source = new[] {new FileItem {Path = @"Subfolder\Class1"}, new FileItem {Path = @"Subfolder\Class2"}};
+			var result = _converter.Convert(source, "root");
+			Assert.AreEqual(1, result.Count());
+
+			var folderItem = result.First();
+			Assert.AreEqual(2, folderItem.Children.Count);			
+		}
 	}
 }
