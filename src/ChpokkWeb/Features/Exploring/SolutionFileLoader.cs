@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Chpokk.Tests.Exploring;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 
@@ -13,11 +14,13 @@ namespace ChpokkWeb.Features.Exploring {
 		[NotNull]
 		private readonly IFileSystem _fileSystem;
 		private readonly ProjectParser _projectParser;
+		private readonly FileItemToProjectItemConverter _converter;
 
-		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser) {
+		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter) {
 			_solutionParser = solutionParser;
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
+			_converter = converter;
 		}
 
 		public RepositoryItem CreateSolutionItem(string repositoryRoot, string filePath) {
@@ -44,8 +47,8 @@ namespace ChpokkWeb.Features.Exploring {
 			};
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolderRelativeToRepositoryRoot = projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot);
-			var fileItems = _projectParser.GetCompiledFiles(projectFileContent).Select(item => new RepositoryItem{Name = item.Path, PathRelativeToRepositoryRoot = FileSystem.Combine(projectFolderRelativeToRepositoryRoot, item.Path), Type = "file"});
-			projectRepositoryItem.Children.AddRange(fileItems);
+			var fileItems = _projectParser.GetCompiledFiles(projectFileContent);
+			projectRepositoryItem.Children.AddRange(_converter.Convert(fileItems, projectFolderRelativeToRepositoryRoot));
 			return projectRepositoryItem;
 		}
 
