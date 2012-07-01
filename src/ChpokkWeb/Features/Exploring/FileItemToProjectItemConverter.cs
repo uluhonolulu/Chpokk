@@ -24,17 +24,18 @@ namespace Chpokk.Tests.Exploring {
 		}
 
 		private RepositoryItem CreateFolderItem(string folder, IEnumerable<string> filePaths, string projectFolderRelativeToRepositoryRoot) { //folder -- currect piece of path (w/o a slash), files -- ones within that folder, relative to this folder
-			filePaths.Each(s => Console.WriteLine(folder + ": " + s));
-			var folderItem = new RepositoryItem {Name = folder, PathRelativeToRepositoryRoot = FileSystem.Combine(projectFolderRelativeToRepositoryRoot, folder), Type = "folder"};
+			projectFolderRelativeToRepositoryRoot = FileSystem.Combine(projectFolderRelativeToRepositoryRoot, folder);
+			var folderItem = new RepositoryItem {Name = folder, PathRelativeToRepositoryRoot = projectFolderRelativeToRepositoryRoot, Type = "folder"};
 			var folders = filePaths.Select(path => path.ParentDirectory()).Where(f => f.IsNotEmpty()); //subfolders relative to folder
 			var rootFolders = folders.Select(f => f.getPathParts()[0]).Distinct();
 			foreach (var rootFolder in rootFolders) {
 				var childFiles =
-					filePaths.Where(path => path.PathRelativeTo(folder).StartsWith(rootFolder + Path.DirectorySeparatorChar));
-				folderItem.Children.Add(new RepositoryItem{Name = "Subfolder2", Type = "folder"});
+					filePaths.Where(path => path.StartsWith(rootFolder + Path.DirectorySeparatorChar)).Select(path => path.PathRelativeTo(rootFolder));
+				var childFolderItem = CreateFolderItem(rootFolder, childFiles, projectFolderRelativeToRepositoryRoot);
+				folderItem.Children.Add(childFolderItem);
 			}
 			foreach (var filePath in filePaths.Where(path => path.ParentDirectory().IsEmpty())) {
-				folderItem.Children.Add(CreateFileItem(filePath, FileSystem.Combine(projectFolderRelativeToRepositoryRoot, folder)));
+				folderItem.Children.Add(CreateFileItem(filePath, projectFolderRelativeToRepositoryRoot));
 			}
 			return folderItem;
 		}
