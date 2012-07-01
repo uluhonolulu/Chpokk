@@ -30,12 +30,22 @@
 
 	</script>
 </content>
-<div id="fileContent" style="white-space: pre;">
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span9">
+			<div id="fileContent" style="white-space: pre;">
+			</div>		
+		</div>
+		<div class="span3">
+			<div class="pull-right well" style="min-height: 500px;">
+				!{this.Partial(new SolutionBrowserPartialModel{Name = Model.Name})}
+			</div>			
+		</div>
+	</div>
 </div>
 <div class="pull-right well" style="min-height: 500px; display: none;">
 	!{this.Partial(new FileListPartialModel{Name = Model.Name})}
 </div>
 
-<div class="pull-right well" style="min-height: 500px;">
-	!{this.Partial(new SolutionBrowserPartialModel{Name = Model.Name})}
-</div>
+
