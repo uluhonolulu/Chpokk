@@ -388,6 +388,7 @@
     <Compile Include="Features\Demo\SuggestController.cs" />
     <Compile Include="Features\Demo\SuggestionModel.cs" />
     <Compile Include="Features\Demo\SuggestionOutputModel.cs" />
+    <Compile Include="Features\DirChecker.cs" />
     <Compile Include="Features\Editor\Colorizer\ColorizerController.cs" />
     <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
