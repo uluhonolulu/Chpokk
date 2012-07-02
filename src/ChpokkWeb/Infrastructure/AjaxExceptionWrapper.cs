@@ -53,7 +53,7 @@ namespace ChpokkWeb.Infrastructure {
 				var continuation = new AjaxContinuation().ForException(exception);
 				//_request.Set(continuation);
 				_writer.Write(continuation, MimeType.Json.ToString());
-				_output.WriteResponseCode(HttpStatusCode.InternalServerError);
+				//_output.WriteResponseCode(HttpStatusCode.InternalServerError);
 			}
 		}
 	}
