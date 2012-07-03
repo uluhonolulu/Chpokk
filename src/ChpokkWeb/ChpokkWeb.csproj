@@ -157,6 +157,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\packages\LibGit2Sharp.0.8\NativeBinaries\x86\git2.dll">
+      <Link>Binaries\git2.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\boot\bootstrap-responsive.css" />
     <Content Include="Content\boot\bootstrap-responsive.min.css" />
