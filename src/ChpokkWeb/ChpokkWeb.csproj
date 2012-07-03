@@ -157,7 +157,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\LibGit2Sharp.0.8\NativeBinaries\x86\git2.dll">
+    <Content Include="..\packages\LibGit2Sharp.0.8\NativeBinaries\amd64\git2.dll">
       <Link>Binaries\git2.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
