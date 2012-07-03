@@ -13,6 +13,7 @@ namespace ChpokkWeb.Features {
 		}
 
 		public string Gimme(FileContentInputModel model) {
+			return _fileSystem.ChildDirectoriesFor(FileSystem.Combine(model.PhysicalApplicationPath, "bin")).Join(Environment.NewLine);
 			return _fileSystem.FindFiles(FileSystem.Combine(model.PhysicalApplicationPath, "bin"), FileSet.Everything()).Join(Environment.NewLine); 
 		}
 	}
