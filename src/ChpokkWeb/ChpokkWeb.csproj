@@ -374,6 +374,7 @@
     <Content Include="Content\styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\styles\themes\base\jquery-ui.css" />
     <Content Include="Thanks.txt" />
+    <Content Include="UserFiles\dummy.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -438,7 +439,6 @@
   <ItemGroup>
     <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
-    <Folder Include="UserFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Demo\DemoView.spark">
