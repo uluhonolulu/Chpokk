@@ -8,7 +8,7 @@
 		<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.CloneInputModel>()}">
 			<label>
 				Your repository URL</label>
-			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-Scratchpad.git")}
+			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-SampleSol.git")}
 		</form>
 	</div>
 	<div class="modal-footer">
