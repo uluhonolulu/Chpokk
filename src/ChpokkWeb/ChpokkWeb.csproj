@@ -474,11 +474,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>Echo $(OutDir)
-Echo $(TargetDir)
-if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
-start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
-start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
