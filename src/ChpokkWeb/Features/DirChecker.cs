@@ -18,5 +18,9 @@ namespace ChpokkWeb.Features {
 			public string PhysicalApplicationPath { get; set; }
 			public string RelativePath { get; set; }
 		}
+
+		public string GetPath() {
+			return Environment.GetEnvironmentVariable("PATH");
+		}
 	}
 }
