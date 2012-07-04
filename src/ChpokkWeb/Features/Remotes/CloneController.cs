@@ -41,7 +41,10 @@ namespace ChpokkWeb.Features.Remotes {
 		public string TestCloning(AppPathAwareInputModel model) {
 			var repoUrl = "git://github.com/uluhonolulu/Chpokk-SampleSol.git";
 			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, @"UserFiles\Chpokk-SampleSol");
-			Repository.Clone(repoUrl, repositoryPath);
+			var repository = Repository.Clone(repoUrl, repositoryPath);
+			var master = repository.Branches["master"];
+			repository.Checkout(master);
+			repository.Dispose();
 			return "success!";
 		} 
 	}
