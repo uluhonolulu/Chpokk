@@ -157,11 +157,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\LibGit2Sharp.0.8\NativeBinaries\amd64\git2.dll">
-      <Link>Binaries\git2.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="bin\NativeBinaries\x86\git2.dll" />
+    <Content Include="bin\NativeBinaries\x86\git2.pdb" />
     <Content Include="Content\boot\bootstrap-responsive.css" />
     <Content Include="Content\boot\bootstrap-responsive.min.css" />
     <Content Include="Content\boot\bootstrap.css" />
@@ -376,6 +374,7 @@
     <Content Include="Content\styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\styles\themes\base\jquery-ui.css" />
     <Content Include="Thanks.txt" />
+    <Content Include="UserFiles\dummy.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -438,7 +437,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\" />
+    <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
   </ItemGroup>
   <ItemGroup>
@@ -475,9 +474,17 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
+    <PostBuildEvent>Echo $(OutDir)
+Echo $(TargetDir)
+if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
 start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
 start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
+start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
