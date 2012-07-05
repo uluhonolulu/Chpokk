@@ -8,12 +8,12 @@
 		<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.CloneInputModel>()}">
 			<label>
 				Your repository URL</label>
-			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-SampleSol.git")}
+			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-SampleSol.git").Style("width", "100%")}
 		</form>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary close" id="openProjectButton">Open project</a> <a href="#" class="btn close">
-		                                                                                  	Cancel</a>
+		<a href="#" class="btn btn-primary" id="openProjectButton">Open project</a> 
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 		<div id="waitContainer" class="waitContainer"><Image src="loader.gif"/></div>
 		<div id="errorContainer" style="clear: both; color: red; font-size: smaller;"></div>
 	</div>
