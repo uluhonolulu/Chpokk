@@ -1,11 +1,11 @@
-﻿// jquery.continuations v0.3.8
+﻿// jquery.continuations v0.5.11
 //
 // Copyright (C)2011 Joshua Arnold, Jeremy Miller
 // Distributed Under Apache License, Version 2.0
 //
 // https://github.com/DarthFubuMVC/jquery-continuations
 
-(function ($, aggregator) {
+(function ($) {
 
     "use strict";
 
@@ -51,35 +51,68 @@
             $.continuations.windowService.navigateTo(continuation.navigatePage);
         };
     };
+    
+    var redirectPolicy = function () {
+        this.matches = function (continuation) {
+            // TODO -- Harden this against the proper statuses
+            return continuation.matchOnProperty('statusCode', function(c) { return c != 200; })
+                && continuation.matchOnProperty('response', function(r) { return r.getResponseHeader('Location'); });
+        };
+        this.execute = function (continuation) {
+            var url = continuation.response.getResponseHeader('Location');
+            $.continuations.windowService.navigateTo(url);
+        };
+    };
 
     var errorPolicy = function () {
         this.matches = function (continuation) {
             return continuation.errors && continuation.errors.length != 0;
         };
         this.execute = function (continuation) {
-            $.continuations.eventAggregator.publish('ContinuationError', continuation);
+            $.continuations.trigger('ContinuationError', continuation);
         };
     };
-
-    var payloadPolicy = function () {
+    
+    var httpErrorPolicy = function () {
         this.matches = function (continuation) {
-            return continuation.topic != null && continuation.payload != null;
+            return continuation.matchOnProperty('statusCode', function(code) { return code != 200; });
         };
         this.execute = function (continuation) {
-            $.continuations.eventAggregator.publish(continuation.topic, continuation.payload);
+            $.continuations.trigger('HttpError', continuation);
         };
     };
 
-    var continuations = function () { };
+    var continuations = function () { 
+        this.callbacks = {};
+    };
     continuations.prototype = {
+        // I'm calling YAGNI on the unbind since we have a reset
+        bind: function(topic, callback) {
+            if( !this.callbacks[topic] ) {
+                this.callbacks[topic] = [];
+            }
+            
+            this.callbacks[topic].push(callback);
+        },
+        // Mostly public for testing
+        trigger: function(topic, payload) {
+            if( !this.callbacks[topic] ) {
+                return;
+            }
+            
+            var actions = this.callbacks[topic];
+            for(var i = 0; i < actions.length; i++) {
+                actions[0](payload);
+            }
+        },
         init: function () {
+            var self = this;
             $(document).ajaxComplete(function (e, xhr, options) {
-                $.continuations.eventAggregator.publish('AjaxCompleted', {
+                self.trigger('AjaxCompleted', {
                     correlationId: xhr.getResponseHeader(CORRELATION_ID)
                 });
             });
-
-            var self = this;
+            
             $.ajaxSetup({
                 cache: false,
                 success: function (continuation, status, jqXHR) {
@@ -98,6 +131,9 @@
                         response: jqXHR
                     });
                 },
+                error: function(xhr, text, error) {
+                    self.onError(xhr, text, error);
+                },
                 beforeSend: function (xhr, settings) {
                     self.setupRequest(xhr, settings);
                 }
@@ -108,8 +144,26 @@
         setupDefaults: function () {
             this.applyPolicy(new refreshPolicy());
             this.applyPolicy(new navigatePolicy());
+            this.applyPolicy(new redirectPolicy());
             this.applyPolicy(new errorPolicy());
-            this.applyPolicy(new payloadPolicy());
+            this.applyPolicy(new httpErrorPolicy());
+        },
+        onError: function(xhr, text, error) {
+            var continuation = this.buildError(xhr, text, error);
+            this.process(continuation);
+        },
+        buildError: function(response, text, error) {
+            var continuation = new $.continuations.continuation();
+            continuation.success = false;
+            
+            if (response.getResponseHeader('Content-Type').indexOf('json') != -1) {
+                continuation = JSON.parse(response.responseText);
+            }
+            
+            continuation.response = response;
+            continuation.statusCode = response.status;
+            
+            return continuation;
         },
         onSuccess: function (msg) {
             var contentType = msg.response.getResponseHeader('Content-Type');
@@ -118,6 +172,8 @@
             }
 
             var continuation = msg.continuation;
+            continuation.statusCode = msg.response.status;
+            continuation.response = msg.response;
             continuation.correlationId = msg.response.getResponseHeader('X-Correlation-Id');
 			
 			if($.isFunction(msg.callback)) {
@@ -134,7 +190,7 @@
                 id = new Date().getTime().toString();
             }
             xhr.setRequestHeader(CORRELATION_ID, id);
-            $.continuations.eventAggregator.publish('AjaxStarted', {
+            $.continuations.trigger('AjaxStarted', {
                 correlationId: id
             });
         },
@@ -146,6 +202,7 @@
 		reset: function() {
 			policies.length = 0;
 			this.setupDefaults();
+            this.callbacks = {};
 		},
         process: function (continuation) {
 			var standardContinuation = new $.continuations.continuation();
@@ -161,9 +218,6 @@
             for (var i = 0; i < matchingPolicies.length; ++i) {
                 matchingPolicies[i].execute(continuation);
             }
-        },
-        useAmplify: function () {
-            $.continuations.eventAggregator = amplify;
         }
     };
 
@@ -175,23 +229,14 @@
             window.location = url;
         }
     };
-
-    continuations.prototype.eventAggregator = {
-        publish: function (topic, payload) {
-            // no-op
-        },
-		subscribe: function(topic, context, callback) {
-			// no-op
-		}
-    };
-
+    
     var module = new continuations();
     module.init();
 
 
-    // Make it global
+    // Exports
     $.continuations = module;
-	$.continuations.useAmplify();
+    $.continuations.fn = continuations.prototype;
 	$.continuations.continuation = theContinuation;
 	
 	$.fn.correlatedSubmit = function (options) {

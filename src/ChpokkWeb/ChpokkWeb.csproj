@@ -171,6 +171,7 @@
     <Content Include="Content\scripts\browser.js" />
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
+    <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
@@ -490,6 +491,6 @@ start /min xcopy /s /y /i /R "$(SolutionDir)packages\LibGit2Sharp.0.8\NativeBina
   </Target>
   -->
   <Target Name="AfterBuild">
-  <Message Text="AllowedReferenceRelatedFileExtensions: $(AllowedReferenceRelatedFileExtensions)"/>
+    <Message Text="AllowedReferenceRelatedFileExtensions: $(AllowedReferenceRelatedFileExtensions)" />
   </Target>
 </Project>
