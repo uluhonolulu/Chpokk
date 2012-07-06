@@ -50,7 +50,7 @@ namespace ChpokkWeb {
 			         		new JavascriptTransformerPolicy<UrlTransformer>(ActionType.Transformation, ".js"));
 			         });
 
-			ApplyConvention<AjaxExceptionWrappingConvention>();
+			//ApplyConvention<AjaxExceptionWrappingConvention>();
 		}
 
 		//internal class AssetPathResolver : IPathResolver {
