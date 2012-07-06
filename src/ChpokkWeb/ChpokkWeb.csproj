@@ -173,10 +173,15 @@
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
+    <Content Include="Content\scripts\lib\jquery.gritter.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
     <Content Include="Content\styles\lib\images\folder-closed.gif" />
     <Content Include="Content\styles\lib\images\folder.gif" />
+    <Content Include="Content\styles\lib\images\gritter-light.png" />
+    <Content Include="Content\styles\lib\images\gritter-long.png" />
+    <Content Include="Content\styles\lib\images\gritter.png" />
+    <Content Include="Content\styles\lib\images\ie-spacer.gif" />
     <Content Include="Content\styles\lib\images\minus.gif" />
     <Content Include="Content\styles\lib\images\plus.gif" />
     <Content Include="Content\styles\lib\images\treeview-black-line.gif" />
@@ -214,6 +219,7 @@
     <Content Include="Content\styles\lib\grid.less" />
     <Content Include="Content\styles\lib\hero-unit.less" />
     <Content Include="Content\styles\lib\jqtree.css" />
+    <Content Include="Content\styles\lib\jquery.gritter.css" />
     <Content Include="Content\styles\lib\jquery.treeview.css" />
     <Content Include="Content\styles\lib\labels.less" />
     <Content Include="Content\styles\lib\layouts.less" />
