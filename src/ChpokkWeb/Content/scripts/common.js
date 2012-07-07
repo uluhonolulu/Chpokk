@@ -1,17 +1,22 @@
 ﻿
 $(function () {
-	amplify.subscribe('ContinuationError', function (continuation) {
-		debugger;
-		$('#errorContainer').html(continuation.errors[0].message);
-		$('.waitContainer').hide();
-	});
+
 	$.continuations.bind('HttpError', function (continuation) {
+		var response = continuation.response;
+		var message = "Unknown error";
+		if (response.getResponseHeader('Content-Type').indexOf('text/html') != -1) {
+			message = $(response.responseText).find('i').text();
+		}
+		if (response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors > 0) {
+			message = continuation.errors[0].message;
+		}
+
 		$.gritter.add({
-			// (string | mandatory) the heading of the notification
 			title: 'Error!',
-			// (string | mandatory) the text inside the notification
-			text: 'This will fade out after a certain amount of time. '
+			text: message,
+			class_name: 'gritter-light'
 		});
+		
 		$('.waitContainer').hide();
 	});
 
