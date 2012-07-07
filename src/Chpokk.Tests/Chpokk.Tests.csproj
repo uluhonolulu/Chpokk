@@ -99,10 +99,14 @@
     <Reference Include="ICSharpCode.Core.Presentation">
       <HintPath>..\..\lib\ICSharpCode.Core.Presentation.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpDevelop, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpDevelop.Widgets">
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
     </Reference>
@@ -120,6 +124,9 @@
     </Reference>
     <Reference Include="LibGit2Sharp.Tests">
       <HintPath>..\..\..\..\libgit\LibGit2Sharp.Tests\bin\Debug\LibGit2Sharp.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Org.Mentalis.Security">
@@ -170,6 +177,7 @@
     <Compile Include="GitHub\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
+    <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Spikes\LessProblem.cs" />
     <Compile Include="Spikes\MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
