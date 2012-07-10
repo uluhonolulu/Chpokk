@@ -12,29 +12,16 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			if (input.Text == null) return null;
 			var resolver = new NRefactoryResolver(LanguageProperties.CSharp);
-			//Debug.Assert(input.Text == "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  \r\n }\r\n}\r\n");
 
-			TextReader textReader = new StringReader(input.Text);
-			ICompilationUnit compilationUnit;
+
+
+
 			var projectContent = DefaultProjectContent;
+			TextReader textReader = new StringReader(input.Text);
+			var compilationUnit = Compile(projectContent, textReader);
 
-			using (IParser p = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
-				// we only need to parse types and method definitions, no method bodies
-				// so speed up the parser and make it more resistent to syntax
-				// errors in methods
-				p.ParseMethodBodies = false;
-
-				p.Parse();
-				compilationUnit = this.ConvertCompilationUnit(p.CompilationUnit, projectContent);
-			}
-
-
-			// Remove information from lastCompilationUnit and add information from newCompilationUnit.
-			projectContent.UpdateCompilationUnit(null, compilationUnit, "fakefile.cs");
-			var parseInformation =  new ParseInformation(compilationUnit);
-			//_parseInformation = new ParseInformation(new DefaultCompilationUnit(projectContent));
 			var text = input.Text.Insert(input.Position, input.NewChar.ToString());
-			//Debug.Assert(text == "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  \r\n }\r\n}\r\n");
+			var parseInformation =  new ParseInformation(compilationUnit);
 			var expression = FindExpression(text, input.Position, parseInformation);
 			var resolveResult = resolver.Resolve(expression, parseInformation, text);
 			if (resolveResult == null) {
@@ -44,9 +31,21 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			if (completionData == null) {
 				return new IntelOutputModel{Message = "Completion Data is null"};
 			}
+
 			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Text = entry.Name, EntityType = entry.EntityType};
 			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().ToArray()};
 			return model;
+		}
+
+		private ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader) {
+			ICompilationUnit compilationUnit;
+			using (IParser parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
+				parser.ParseMethodBodies = false;
+				parser.Parse();
+				compilationUnit = this.ConvertCompilationUnit(parser.CompilationUnit, projectContent);
+			}
+			projectContent.UpdateCompilationUnit(null, compilationUnit, "fakefile.cs");
+			return compilationUnit;
 		}
 
 		private static DefaultProjectContent _projectContent;
