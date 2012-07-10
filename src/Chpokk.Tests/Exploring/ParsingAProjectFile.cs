@@ -12,7 +12,7 @@ using MbUnit.Framework.ContractVerifiers;
 
 namespace Chpokk.Tests.Exploring {
 	[TestFixture, DependsOn(typeof(ParsingTheSolutionFile))]
-	public class ParsingAProjectFile : BaseQueryTest<SolutionAndProjectWithSingleFileContext, IEnumerable<RepositoryItem>> {
+	public class ParsingAProjectFile : BaseQueryTest<SolutionAndProjectFileWithSingleEntryContext, IEnumerable<RepositoryItem>> {
 		[Test]
 		public void ShouldSeeOneFile() {
 			var files = ProjectItem.Children;
@@ -35,15 +35,17 @@ namespace Chpokk.Tests.Exploring {
 		}	
 	}
 
-	public class SolutionAndProjectWithSingleFileContext : SingleSolutionContext {
+	public class SolutionAndProjectFileWithSingleEntryContext : SingleSolutionContext {
+		public const string CODEFILE_NAME = "Class1.cs";
 		public string ProjectFolder { get; set; }
-			const string projectFileContent = 
-				@"<?xml version=""1.0"" encoding=""utf-8""?>
+		public string projectFileContent = 
+				string.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
 				  <ItemGroup>
-					<Compile Include=""Class1.cs"" />
+					<Compile Include=""{0}"" />
 				  </ItemGroup>
-				</Project>";
+				</Project>", CODEFILE_NAME);
+
 		public override void Create() {
 			base.Create();
 			var projectFilePath = FileSystem.Combine(SolutionFolder, this.PROJECT_PATH);

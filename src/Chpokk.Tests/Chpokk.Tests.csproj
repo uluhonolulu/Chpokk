@@ -167,6 +167,7 @@
     <Compile Include="Exploring\SeeingASolutionFile.cs" />
     <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
+    <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
