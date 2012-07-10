@@ -1,20 +1,66 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using Arractas;
-using ChpokkWeb;
-using ChpokkWeb.App_Start;
+using Chpokk.Tests.GitHub.Infrastructure;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
-using FubuMVC.Core;
-using FubuMVC.Core.Bootstrapping;
-using FubuMVC.Core.Urls;
-using FubuMVC.StructureMap;
-using Ivonna.Framework;
-using LibGit2Sharp;
+using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;
-using System.Linq;
 using StructureMap;
-using Ivonna.Framework.Generic;
+
+namespace Chpokk.Tests.Cloning {
+	public class WhenYouSendACloneCommandToAServer {
+		private string _fileName;
+		private string _targetFolder;
+
+		[FixtureSetUp]
+		public void Setup() {
+			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
+			// ARRANGE
+
+			// Create a random filename
+			_fileName = Guid.NewGuid().ToString();
+			// Commit a new file to the remote repository
+			var content = "stuff";
+			Api.CommitFile(_fileName, content);
+
+			// Prepare the target folder
+			// This is where we get the relative repository path 
+ 			// See discussion about Rule #2
+			var repositoryInfo = ObjectFactory.GetInstance<RepositoryInfo>();
+			_targetFolder = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
+			// We cannot clone into a nonempty directory, so delete it
+			if (Directory.Exists(_targetFolder))
+				DirectoryHelper.DeleteDirectory(_targetFolder);
+
+			// ACT
+
+			// Get an instance of our controller.
+			// I'm using a container so that I don't have to rewrite it
+			// each time I change the signature of the constructor.
+			// For unit tests, use automocking container.
+			var controller = ObjectFactory.GetInstance<CloneController>();
+			// Create a model for using with our Action Method.
+			// PhysicalApplicationPath is bound automatically,
+			// but in out test we need to submit it.
+			var model = new CloneInputModel 
+				{PhysicalApplicationPath = Path.GetFullPath(".."), 
+					RepoUrl = repoUrl};
+			// Finally, execute the Action method.
+			controller.CloneRepo(model);
+
+		}
+
+		[Test]
+		public void RepositoryFilesShouldAppearInTheDestinationFolder() {
+			var expectedFile = Path.Combine(_targetFolder, _fileName);
+			var existingFiles = Directory.GetFiles(_targetFolder);
+			Assert.AreElementsEqual(new[] { expectedFile }, existingFiles);
+			
+		}
+	}
+
+}
 
 namespace Chpokk.Tests.GitHub {
 	[TestFixture, Ignore("Long running test")]
@@ -40,20 +86,7 @@ namespace Chpokk.Tests.GitHub {
 
 	}
 
-	//[RunOnWeb]
 
-	//public class StructureMapWorks {
-	//    [Test]
-	//    public void CanGetTheDefaultInstance() {
-	//        var container = new Container();
-	//        var expr = FubuApplication.For<ConfigureFubuMVC>()
-	//            .StructureMap(container)
-	//            .Bootstrap()
-	//            ;
-	//        expr.Facility.Inject(typeof(IUrlRegistry), typeof(UrlRegistry));
-	//        var registry = expr.Facility.Get<IUrlRegistry>();
-	//    }
-	//}
 
 	//public static class CheckoutExtensions {
 	//    /// <summary>
