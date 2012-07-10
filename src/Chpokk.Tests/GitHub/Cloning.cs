@@ -47,7 +47,7 @@ namespace Chpokk.Tests.Cloning {
 				{PhysicalApplicationPath = Path.GetFullPath(".."), 
 					RepoUrl = repoUrl};
 			// Finally, execute the Action method.
-			controller.CloneRepo(model);
+			controller.CloneRepository(model);
 
 		}
 
@@ -68,7 +68,7 @@ namespace Chpokk.Tests.GitHub {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 			var model = new CloneInputModel {PhysicalApplicationPath = Path.GetFullPath(".."), RepoUrl = repoUrl};
-			Context.Container.Get<CloneController>().CloneRepo(model);
+			Context.Container.Get<CloneController>().CloneRepository(model);
 		}
 
 		[Test]
