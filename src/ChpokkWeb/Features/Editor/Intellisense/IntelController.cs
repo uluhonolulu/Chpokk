@@ -36,15 +36,13 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var text = input.Text.Insert(input.Position, input.NewChar.ToString());
 			//Debug.Assert(text == "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  \r\n }\r\n}\r\n");
 			var expression = FindExpression(text, input.Position, parseInformation);
-			var rr = resolver.Resolve(expression,
-													parseInformation,
-													text);
-			if (rr == null) {
-				return null;
+			var resolveResult = resolver.Resolve(expression, parseInformation, text);
+			if (resolveResult == null) {
+				return new IntelOutputModel{Message = "ResolveResult is null"};
 			}
-			var completionData = rr.GetCompletionData(projectContent);
+			var completionData = resolveResult.GetCompletionData(projectContent);
 			if (completionData == null) {
-				return null;
+				return new IntelOutputModel{Message = "Completion Data is null"};
 			}
 			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Text = entry.Name, EntityType = entry.EntityType};
 			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().ToArray()};

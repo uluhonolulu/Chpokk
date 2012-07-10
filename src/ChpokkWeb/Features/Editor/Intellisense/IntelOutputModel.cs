@@ -2,10 +2,11 @@
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelOutputModel {
-
 		public IntelModelItem[] Items { get; set; }
 
 		public string Message { get; set; }
+
+		public IntelOutputModel() {Items = new IntelModelItem[0];}
 
 		public class IntelModelItem {
 			public string Text { get; set; }
