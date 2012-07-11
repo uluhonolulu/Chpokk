@@ -69,7 +69,7 @@ namespace Chpokk.Tests.Spikes {
 			var resolver = new NRefactoryResolver(LanguageProperties.CSharp);
 			var result = resolver.Resolve(expression, parseInformation, text);
 			Assert.IsNotNull(result);
-			Assert.Equals("A", result.ResolvedType.Name);
+			Assert.AreEqual("A", result.ResolvedType.Name);
 			Console.WriteLine(result.ResolvedType.Name);
 			var completionData = result.GetCompletionData(projectContent);
 			completionData.Cast<IMember>().Each(member => Console.WriteLine(member.Name));
@@ -86,6 +86,30 @@ namespace Chpokk.Tests.Spikes {
 			var finder = new CSharpExpressionFinder(parseInformation);
 			var expression = finder.FindExpression(text, offset);
 			return expression;
+		}
+
+		[Test]
+		public void whatsupwiththecompilation() {
+			var pcRegistry = new ProjectContentRegistry();
+
+			var projectContent = new DefaultProjectContent() { Language = LanguageProperties.CSharp };
+			projectContent.AddReferencedContent(pcRegistry.Mscorlib);
+
+			var source = "public class X {public void Y(){}}";
+			var unit = Compile(projectContent, new StringReader(source));
+
+			Assert.AreEqual(1, unit.Classes.Count);
+		}
+
+		private ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader) {
+			ICompilationUnit compilationUnit;
+			using (ICSharpCode.NRefactory.IParser parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
+				parser.ParseMethodBodies = false;
+				parser.Parse();
+				compilationUnit = this.ConvertCompilationUnit(parser.CompilationUnit, projectContent);
+			}
+			projectContent.UpdateCompilationUnit(null, compilationUnit, "fakefile.cs");
+			return compilationUnit;
 		}
 	}
 }

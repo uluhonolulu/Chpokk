@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using FubuMVC.Core;
@@ -20,10 +21,20 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			TextReader textReader = new StringReader(input.Text);
 			var compilationUnit = Compile(projectContent, textReader);
 
-			var text = input.Text.Insert(input.Position, input.NewChar.ToString());
+			var classContent = @"public class A {
+									void B(){
+									}
+								}";
+			Compile(projectContent, new StringReader(classContent));
+
+			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var expression = FindExpression(text, input.Position, parseInformation);
 			var resolveResult = resolver.Resolve(expression, parseInformation, text);
+			Console.WriteLine(input.Text);
+			Console.WriteLine(compilationUnit);
+			Console.WriteLine(expression);
+			Console.WriteLine(resolveResult);
 			if (resolveResult == null) {
 				return new IntelOutputModel{Message = "ResolveResult is null"};
 			}
