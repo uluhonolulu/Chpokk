@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using FubuMVC.Core;
 using ICSharpCode.NRefactory;
@@ -10,7 +11,8 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelController {
-		private IFileSystem _fileSystem;
+		private readonly IFileSystem _fileSystem;
+		private ProjectParser _projectParser;
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
@@ -24,7 +26,17 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			TextReader textReader = new StringReader(input.Text);
 			var compilationUnit = Compile(projectContent, textReader);
 
-			var classContent = _fileSystem.ReadStringFromFile(@"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\src\ProjectName\Class1.cs");
+			var projectFileContent =
+				@"<?xml version=""1.0"" encoding=""utf-8""?>
+				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
+				  <ItemGroup>
+					<Compile Include=""Class1.cs"" />
+				  </ItemGroup>
+				</Project>";
+			var projectFolder = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\src\ProjectName";
+			var filePath = FileSystem.Combine(projectFolder, _projectParser.GetCompiledFiles(projectFileContent).First().Path);
+
+			var classContent = _fileSystem.ReadStringFromFile(filePath);
 			Compile(projectContent, new StringReader(classContent));
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
@@ -60,8 +72,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		}
 
 		private static DefaultProjectContent _projectContent;
-		public IntelController(IFileSystem fileSystem) {
+		public IntelController(IFileSystem fileSystem, ProjectParser projectParser) {
 			_fileSystem = fileSystem;
+			_projectParser = projectParser;
 		}
 
 		private static DefaultProjectContent DefaultProjectContent {
