@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var compilationUnit = Compile(projectContent, textReader);
 
 			var classContent = @"public class A {
-									void B(){
+									public void B(){
 									}
 								}";
 			Compile(projectContent, new StringReader(classContent));
