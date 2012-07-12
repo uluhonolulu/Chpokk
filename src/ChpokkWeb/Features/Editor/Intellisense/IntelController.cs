@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using FubuCore;
 using FubuMVC.Core;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Dom;
@@ -9,6 +10,8 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelController {
+		private IFileSystem _fileSystem;
+
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			if (input.Text == null) return null;
@@ -21,10 +24,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			TextReader textReader = new StringReader(input.Text);
 			var compilationUnit = Compile(projectContent, textReader);
 
-			var classContent = @"public class A {
-									public void B(){
-									}
-								}";
+			var classContent = _fileSystem.ReadStringFromFile(@"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\src\ProjectName\Class1.cs");
 			Compile(projectContent, new StringReader(classContent));
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
@@ -60,6 +60,10 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		}
 
 		private static DefaultProjectContent _projectContent;
+		public IntelController(IFileSystem fileSystem) {
+			_fileSystem = fileSystem;
+		}
+
 		private static DefaultProjectContent DefaultProjectContent {
 			get {
 				if (_projectContent == null) {

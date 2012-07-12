@@ -10,7 +10,7 @@ namespace Chpokk.Tests.Intellisense {
 		public override void Create() {
 			base.Create();
 			var classContent = @"public class A {
-									void B(){
+									public void B(){
 									}
 								}";
 			var fileSystem = Container.Get<FileSystem>();
