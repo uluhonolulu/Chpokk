@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Arractas;
 using ChpokkWeb.Features.Editor.Intellisense;
+using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -39,7 +40,14 @@ namespace Chpokk.Tests.Intellisense {
 			var source = "public class X {public void Y(){new A().}}";
 			var position = source.IndexOf('.');
 			var model = new IntelInputModel()
-			            {NewChar = '.', Position = position, Text = source, PhysicalApplicationPath = Path.GetFullPath("..")};
+			            {
+			            	NewChar = '.',
+			            	Position = position,
+			            	Text = source,
+			            	PhysicalApplicationPath = Path.GetFullPath(".."),
+			            	RepositoryName = Context.REPO_NAME,
+							ProjectPath = FileSystem.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
+			            };
 			return controller.GetIntellisenseData(model);
 		}
 	}

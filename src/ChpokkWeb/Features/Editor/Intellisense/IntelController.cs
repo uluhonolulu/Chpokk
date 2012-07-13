@@ -12,22 +12,20 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelController {
 		private readonly IFileSystem _fileSystem;
-		private ProjectParser _projectParser;
+		private readonly ProjectParser _projectParser;
+		private RepositoryManager _repositoryManager;
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			if (input.Text == null) return null;
 			var resolver = new NRefactoryResolver(LanguageProperties.CSharp);
 
-
-
-
 			var projectContent = DefaultProjectContent;
 			TextReader textReader = new StringReader(input.Text);
 			var compilationUnit = Compile(projectContent, textReader);
 
-			var projectFilePath = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\src\ProjectName\ProjectName.csproj";
-
+			var repositoryRoot = _repositoryManager.GetRepositoryInfo(input.RepositoryName).Path;
+			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolder = projectFilePath.ParentDirectory();
 			foreach (var fileItem in _projectParser.GetCompiledFiles(projectFileContent)) {
@@ -73,9 +71,10 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		}
 
 		private static DefaultProjectContent _projectContent;
-		public IntelController(IFileSystem fileSystem, ProjectParser projectParser) {
+		public IntelController(IFileSystem fileSystem, ProjectParser projectParser, RepositoryManager repositoryManager) {
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
+			_repositoryManager = repositoryManager;
 		}
 
 		private static DefaultProjectContent DefaultProjectContent {

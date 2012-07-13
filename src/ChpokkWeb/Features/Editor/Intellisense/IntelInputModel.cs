@@ -5,5 +5,7 @@
 		public int Position { get; set; }
 		public string Message { get; set; }
 		public string PhysicalApplicationPath { get; set; }		
+		public string RepositoryName { get; set; }
+		public string ProjectPath { get; set; }
 	}
 }
