@@ -4,5 +4,6 @@
 		public char NewChar { get; set; }
 		public int Position { get; set; }
 		public string Message { get; set; }
+		public string PhysicalApplicationPath { get; set; }		
 	}
 }

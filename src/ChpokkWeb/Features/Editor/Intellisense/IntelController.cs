@@ -26,18 +26,19 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			TextReader textReader = new StringReader(input.Text);
 			var compilationUnit = Compile(projectContent, textReader);
 
-			var projectFileContent =
-				@"<?xml version=""1.0"" encoding=""utf-8""?>
-				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
-				  <ItemGroup>
-					<Compile Include=""Class1.cs"" />
-				  </ItemGroup>
-				</Project>";
-			var projectFolder = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\src\ProjectName";
-			var filePath = FileSystem.Combine(projectFolder, _projectParser.GetCompiledFiles(projectFileContent).First().Path);
+			var projectFilePath = @"F:\Projects\Fubu\Chpokk\src\ChpokkWeb\Repka\src\ProjectName\ProjectName.csproj";
 
-			var classContent = _fileSystem.ReadStringFromFile(filePath);
-			Compile(projectContent, new StringReader(classContent));
+			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
+			var projectFolder = projectFilePath.ParentDirectory();
+			foreach (var fileItem in _projectParser.GetCompiledFiles(projectFileContent)) {
+				var filePath = FileSystem.Combine(projectFolder, fileItem.Path);
+				if (_fileSystem.FileExists(filePath)) {
+					var classContent = _fileSystem.ReadStringFromFile(filePath);
+					Compile(projectContent, new StringReader(classContent), filePath);						
+				}
+			
+			}
+
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			var parseInformation =  new ParseInformation(compilationUnit);
@@ -60,14 +61,14 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return model;
 		}
 
-		private ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader) {
+		private ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader, string fileName = "nofile") {
 			ICompilationUnit compilationUnit;
 			using (IParser parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
 				parser.ParseMethodBodies = false;
 				parser.Parse();
 				compilationUnit = this.ConvertCompilationUnit(parser.CompilationUnit, projectContent);
 			}
-			projectContent.UpdateCompilationUnit(null, compilationUnit, "fakefile.cs");
+			projectContent.UpdateCompilationUnit(null, compilationUnit, fileName);
 			return compilationUnit;
 		}
 

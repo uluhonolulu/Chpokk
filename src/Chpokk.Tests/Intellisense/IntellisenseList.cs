@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Arractas;
 using ChpokkWeb.Features.Editor.Intellisense;
@@ -37,7 +38,8 @@ namespace Chpokk.Tests.Intellisense {
 			var controller = Context.Container.Get<IntelController>();
 			var source = "public class X {public void Y(){new A().}}";
 			var position = source.IndexOf('.');
-			var model = new IntelInputModel() {NewChar = '.', Position = position, Text = source};
+			var model = new IntelInputModel()
+			            {NewChar = '.', Position = position, Text = source, PhysicalApplicationPath = Path.GetFullPath("..")};
 			return controller.GetIntellisenseData(model);
 		}
 	}
