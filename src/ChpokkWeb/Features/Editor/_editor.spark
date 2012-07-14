@@ -1,0 +1,7 @@
+﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
+
+<div id="code" contenteditable="true">${Model.Content}</div>
+
+<content name="head">
+
+</content>
