@@ -8,13 +8,17 @@
 	<script type="text/javascript">
 
 		$(function () {
-			amplify.subscribe('hashchange', function() {
+			amplify.subscribe('hashchange', function () {
 				_loadSelectedFile();
 			});
-			$(window).hashchange(function() {
+			$(window).hashchange(function () {
 				_loadSelectedFile();
 			});
 			$(window).hashchange();
+			
+			$('#fileContent').bind('DOMNodeInserted', function() {
+				amplify.publish('file_loaded');
+			});
 		});
 
 		function _loadSelectedFile() {

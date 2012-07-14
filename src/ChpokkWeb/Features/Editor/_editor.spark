@@ -3,5 +3,25 @@
 <div id="code" contenteditable="true">${Model.Content}</div>
 
 <content name="head">
+	<Stylesheet href="editor.css" />
+	<Script src="editor.js" />
 
+</content>
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+		$(function () {
+			amplify.subscribe('file_loaded', function() {
+				updateHtml();
+			});
+		});
+
+		function updateHtml() {
+			var text = $('#code').innerText;
+			var toHtmlUrl = 'editor/colorizer/tohtml'; //TODO: UrlFor
+			$('#code').load(toHtmlUrl, { Code: text });
+			//$('#html').show();
+			//setEditorPositions();
+		}
+	</script>
 </content>
