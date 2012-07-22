@@ -1,66 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Arractas;
-using Chpokk.Tests.GitHub.Infrastructure;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
-using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;
-using StructureMap;
-
-namespace Chpokk.Tests.Cloning {
-	public class WhenYouSendACloneCommandToAServer {
-		private string _fileName;
-		private string _targetFolder;
-
-		[FixtureSetUp]
-		public void Setup() {
-			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
-			// ARRANGE
-
-			// Create a random filename
-			_fileName = Guid.NewGuid().ToString();
-			// Commit a new file to the remote repository
-			var content = "stuff";
-			Api.CommitFile(_fileName, content);
-
-			// Prepare the target folder
-			// This is where we get the relative repository path 
- 			// See discussion about Rule #2
-			var repositoryInfo = ObjectFactory.GetInstance<RepositoryInfo>();
-			_targetFolder = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
-			// We cannot clone into a nonempty directory, so delete it
-			if (Directory.Exists(_targetFolder))
-				DirectoryHelper.DeleteDirectory(_targetFolder);
-
-			// ACT
-
-			// Get an instance of our controller.
-			// I'm using a container so that I don't have to rewrite it
-			// each time I change the signature of the constructor.
-			// For unit tests, use automocking container.
-			var controller = ObjectFactory.GetInstance<CloneController>();
-			// Create a model for using with our Action Method.
-			// PhysicalApplicationPath is bound automatically,
-			// but in out test we need to submit it.
-			var model = new CloneInputModel 
-				{PhysicalApplicationPath = Path.GetFullPath(".."), 
-					RepoUrl = repoUrl};
-			// Finally, execute the Action method.
-			controller.CloneRepository(model);
-
-		}
-
-		[Test]
-		public void RepositoryFilesShouldAppearInTheDestinationFolder() {
-			var expectedFile = Path.Combine(_targetFolder, _fileName);
-			var existingFiles = Directory.GetFiles(_targetFolder);
-			Assert.AreElementsEqual(new[] { expectedFile }, existingFiles);
-			
-		}
-	}
-
-}
 
 namespace Chpokk.Tests.GitHub {
 	[TestFixture, Ignore("Long running test")]
