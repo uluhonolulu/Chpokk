@@ -1,27 +1,22 @@
 ﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
 
 <div id="code" contenteditable="true">${Model.Content}</div>
-
-<content name="head">
-	<Stylesheet href="editor.css" />
-	<Script src="editor.js" />
-
-</content>
-
-<content name="InlineScripts">
-	<script type="text/javascript">
-		$(function () {
-			amplify.subscribe('file_loaded', function() {
-				updateHtml();
-			});
-		});
+	<script>
+		function init_editor() {
+			updateHtml();
+		}
 
 		function updateHtml() {
 			var text = $('#code').innerText;
-			var toHtmlUrl = 'editor/colorizer/tohtml'; //TODO: UrlFor
+			var toHtmlUrl = "${this.Urls.UrlFor<ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel>()}"; //  'editor/colorizer/tohtml'; //TODO: UrlFor
 			$('#code').load(toHtmlUrl, { Code: text });
 			//$('#html').show();
 			//setEditorPositions();
 		}
+
+
+		$(function () {
+			updateHtml();
+		});
 	</script>
-</content>
+

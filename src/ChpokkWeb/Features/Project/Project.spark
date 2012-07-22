@@ -15,10 +15,7 @@
 				_loadSelectedFile();
 			});
 			$(window).hashchange();
-			
-			$('#fileContent').bind('DOMNodeInserted', function() {
-				amplify.publish('file_loaded');
-			});
+
 		});
 
 		function _loadSelectedFile() {
@@ -29,7 +26,16 @@
 		}
 
 		function loadFile(path) {
-			$('#fileContent').load("${this.Urls.UrlFor<FileContentInputModel>()}", { ProjectName: "${Model.Name}", RelativePath: path });
+			$.ajax({
+				type: "GET",
+				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
+				data: { ProjectName: "${Model.Name}", RelativePath: path },
+				dataType: "html",
+				success: function (data) {
+					$('#fileContent').html(data);
+				}
+			});
+			//$('#fileContent').load("${this.Urls.UrlFor<FileContentInputModel>()}", { ProjectName: "${Model.Name}", RelativePath: path });
 		}
 
 	</script>
