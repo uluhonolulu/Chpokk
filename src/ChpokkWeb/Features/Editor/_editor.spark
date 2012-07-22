@@ -2,10 +2,7 @@
 
 <Stylesheet href="editor.css" />
 <div id="code" contenteditable="true">${Model.Content}</div>
-	<script>
-		function init_editor() {
-			updateHtml();
-		}
+	<script type="text/javascript">
 
 		function updateHtml() {
 			var text = $('#code').text();
@@ -16,6 +13,7 @@
 
 		$(function () {
 			updateHtml();
+			$('#code').keyup(function () { updateHtml(); });
 		});
 	</script>
 
