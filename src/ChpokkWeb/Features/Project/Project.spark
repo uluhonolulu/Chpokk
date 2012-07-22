@@ -4,6 +4,9 @@
 <use namespace="System.Reflection" />
 <viewdata model="ChpokkWeb.Features.Project.ProjectModel" />
 <content name="title">Project view</content>
+<content name="head">
+	<Stylesheet href="editor.css" />
+</content>
 <content name="InlineScripts">
 	<script type="text/javascript">
 
@@ -27,7 +30,7 @@
 
 		function loadFile(path) {
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
 				data: { ProjectName: "${Model.Name}", RelativePath: path },
 				dataType: "html",

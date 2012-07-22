@@ -11,8 +11,6 @@
 			var text = $('#code').text();
 			var toHtmlUrl = "${this.Urls.UrlFor<ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel>()}"; 
 			$('#code').load(toHtmlUrl, { Code: text });
-			//$('#html').show();
-			//setEditorPositions();
 		}
 
 

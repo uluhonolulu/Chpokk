@@ -25,18 +25,19 @@
 		.code0
 		{
 			margin: 0em;
+			color: rgb(163, 67, 95)
 		}
 		.code1
 		{
-			color: #008000;
+			color: #8ba343;
 		}
 		.code2
 		{
-			color: #ff0000;
+			color: #a34343;
 		}
 		.code3
 		{
-			color: #191970;
+			color: #4343a3;
 		}
 		.code4
 		{
