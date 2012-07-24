@@ -1,7 +1,22 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 <content name="head">
-<Script src="demo.js" />
+	<Script src="demo.js" />
+</content>
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+
+		$(function () {
+			$('.bootstrap-popover').each(function () {
+				var content = function() {
+					var contentSelector = this.hash;
+					return $(contentSelector).html();
+				};
+				$(this).popover({ content: content });
+			});
+		});
+	</script>
 </content>
 
 <div class="hero-unit">
