@@ -15,15 +15,16 @@
 		$(function () {
 			updateHtml();
 			$('#code').keyup(function () {
-				var html = $('#code').html();
-				$('#code').html(html + ' ');
 				var sel = window.getSelection();
+				var initialOffset = sel.anchorOffset;
+				var html = $('#code').html();
+				//debugger;
+				$('#code').html(html + ' ');
 				var range = sel.getRangeAt(0);
-				var currentNode = range.startContainer.childNodes[16].childNodes[0];
-				range.setStart(currentNode, 3);
+				var currentNode = range.startContainer.childNodes[range.startOffset].childNodes[0];
+				range.setStart(currentNode, initialOffset);
 				sel.removeAllRanges();
 				sel.addRange(range);
-				$('#code').focus();
 			});
 		});
 
