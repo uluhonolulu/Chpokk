@@ -15,28 +15,14 @@
 		$(function () {
 			updateHtml();
 			$('#code').keyup(function () {
-				//alert(getCaretPosition(this));
-				var savedRange = window.getSelection().getRangeAt(0);
-				var currentNode = savedRange.startContainer;
 				var html = $('#code').html();
-				//updateHtml();
-				savedRange = window.getSelection().getRangeAt(0);
 				$('#code').html(html + ' ');
-				savedRange.startContainer = currentNode;
-				savedRange.setStart(currentNode, 3);
-				var s = window.getSelection();
-				//				var sel = rangy.getSelection();
-				//				sel.setSingleRange(savedRange);
 				var sel = window.getSelection();
 				var range = sel.getRangeAt(0);
-				currentNode = range.startContainer.childNodes[16].childNodes[0];
+				var currentNode = range.startContainer.childNodes[16].childNodes[0];
 				range.setStart(currentNode, 3);
 				sel.removeAllRanges();
 				sel.addRange(range);
-				//debugger;
-				//				if (s.rangeCount > 0)
-				//					s.removeAllRanges();
-				//				s.addRange(savedRange);
 				$('#code').focus();
 			});
 		});
