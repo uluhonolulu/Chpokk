@@ -2,6 +2,7 @@
 
 <Stylesheet href="editor.css" />
 <div id="code" contenteditable="true">${Model.Content}</div>
+<div id="log"></div>
 	<script type="text/javascript">
 
 		function updateHtml() {
@@ -14,20 +15,57 @@
 		$(function () {
 			updateHtml();
 			$('#code').keyup(function () {
-				alert(getCaretPosition(this));
-				updateHtml();
 				//alert(getCaretPosition(this));
+				var savedRange = window.getSelection().getRangeAt(0);
+				var currentNode = savedRange.startContainer;
+				trace("savedRange.startContainer is " + savedRange.startContainer.toString());
+				var html = $('#code').html();
+				//updateHtml();
+				savedRange = window.getSelection().getRangeAt(0);
+				trace("savedRange.startContainer is " + savedRange.startContainer.toString());
+				$('#code').html(html + ' ');
+				trace("savedRange.startContainer is " + savedRange.startContainer.toString());
+				savedRange.startContainer = currentNode;
+				trace("savedRange.startContainer is " + savedRange.startContainer.toString());
+				savedRange.setStart(currentNode, 3);
+				trace("savedRange.startContainer is " + savedRange.startContainer.toString());
+				var s = window.getSelection();
+//				var sel = rangy.getSelection();
+//				sel.setSingleRange(savedRange);
+								var sel = window.getSelection();
+								var range = sel.getRangeAt(0);
+								trace("range.startContainer is " + range.startContainer.toString());
+								var newTextNode = document.createTextNode("hey");
+								range.insertNode(newTextNode);
+								range.setStartAfter(newTextNode);
+								trace("range.startContainer is " + range.startContainer.toString());
+								sel.removeAllRanges();
+								sel.addRange(range);
+				//debugger;
+//				if (s.rangeCount > 0)
+//					s.removeAllRanges();
+//				s.addRange(savedRange);
+				$('#code').focus();
 			});
 		});
 
 		function getCaretPosition(editableDiv) {
-			debugger;
 			var caretPos = 0, containerEl = null, sel, range;
 			if (window.getSelection) {
 				sel = window.getSelection();
 				if (sel.rangeCount) {
 					range = sel.getRangeAt(0);
-					if (range.commonAncestorContainer.parentNode == editableDiv) {
+					var parentNode = range.commonAncestorContainer.parentNode;
+					var grandParentNode = parentNode.parentNode;
+					var index = $.inArray(parentNode, grandParentNode.childNodes);
+					var length = 0;
+					for (var i = 0; i < index; i++) {
+						var node = grandParentNode.childNodes[i];
+						length += (node.nodeType === 3)? node.length : node.outerHTML.length;
+					}
+					caretPos = range.endOffset + length;
+					debugger;
+					if (parentNode == editableDiv) {
 						caretPos = range.endOffset;
 					}
 				}
@@ -45,5 +83,8 @@
 			return caretPos;
 		}
 
+		function trace(message) {
+			$('#log').html($('#log').html() + message + "<br/> ");
+		}
 	</script>
 
