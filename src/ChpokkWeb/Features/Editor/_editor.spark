@@ -19,14 +19,15 @@
 				//trace(sel.anchorNode.nodeName);
 				var initialOffset = sel.anchorOffset;
 				//trace(sel.getRangeAt(0).startOffset);
-				var parentNode = sel.anchorNode.parentNode; // span node
+				var currentNode = sel.anchorNode; // text node
+				var parentNode = currentNode.parentNode; // span node
 				var nodeIndex = getNodePosition(parentNode);
 				//debugger;
 				updateHtml(function(parameters) {
-					var range = sel.getRangeAt(0);
+					var range = window.getSelection().getRangeAt(0);
 					//trace(sel.anchorNode.nodeName);
 					//trace(nodeIndex);
-					var currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
+					currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
 					//debugger;
 					range.setStart(currentNode, initialOffset);
 					sel.removeAllRanges();
