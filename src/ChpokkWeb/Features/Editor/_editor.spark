@@ -27,17 +27,16 @@
 
 				var nodePositions = [];
 				if (isInTheRoot) {
-					nodePositions = [nodeIndex];
+					nodePositions.push(getNodePosition(currentNode));
 				} else {
-					nodePositions = [nodeIndex, 0];
+					nodePositions.push(getNodePosition(parentNode));
+					nodePositions.push(getNodePosition(currentNode));
 				}
 				//debugger;
 				updateHtml(function (parameters) {
 					var range = window.getSelection().getRangeAt(0);
 					//trace(sel.anchorNode.nodeName);
 					//trace(nodeIndex);
-					currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
-					if (isInTheRoot) currentNode = range.startContainer.childNodes[nodeIndex];
 					currentNode = range.startContainer;
 					for (var i = 0; i < nodePositions.length; i++) {
 						currentNode = currentNode.childNodes[nodePositions[i]];
