@@ -16,12 +16,20 @@
 			updateHtml();
 			$('#code').keyup(function () {
 				var sel = window.getSelection();
+				trace(sel.anchorNode.nodeName);
 				var initialOffset = sel.anchorOffset;
 				var html = $('#code').html();
+				trace(sel.getRangeAt(0).startOffset);
+				var parentNode = sel.anchorNode.parentNode;
+				var rootNode = parentNode.parentNode;
+				var nodeIndex = $.inArray(parentNode, rootNode.childNodes);
 				//debugger;
 				$('#code').html(html + ' ');
 				var range = sel.getRangeAt(0);
-				var currentNode = range.startContainer.childNodes[range.startOffset].childNodes[0];
+				trace(sel.anchorNode.nodeName);
+				trace(nodeIndex);
+				var currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
+				//debugger;
 				range.setStart(currentNode, initialOffset);
 				sel.removeAllRanges();
 				sel.addRange(range);
