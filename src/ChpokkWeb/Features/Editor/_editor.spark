@@ -20,19 +20,22 @@
 				var initialOffset = sel.anchorOffset;
 				//trace(sel.getRangeAt(0).startOffset);
 				var currentNode = sel.anchorNode; // text node
+				var isInTheRoot = currentNode.parentNode.id === this.id;
 				var parentNode = currentNode.parentNode; // span node
 				var nodeIndex = getNodePosition(parentNode);
+				if (isInTheRoot) nodeIndex = getNodePosition(currentNode);
 				//debugger;
-				updateHtml(function(parameters) {
+				updateHtml(function (parameters) {
 					var range = window.getSelection().getRangeAt(0);
 					//trace(sel.anchorNode.nodeName);
 					//trace(nodeIndex);
 					currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
+					if (isInTheRoot) currentNode = range.startContainer.childNodes[nodeIndex];
 					//debugger;
-					range.setStart(currentNode, initialOffset);
+					if (currentNode) range.setStart(currentNode, initialOffset);
 					sel.removeAllRanges();
 					sel.addRange(range);
-					
+
 				});
 			});
 		});
