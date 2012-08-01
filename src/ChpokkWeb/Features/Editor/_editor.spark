@@ -27,7 +27,11 @@
 
 				var nodePositions = [];
 				if (isInTheRoot) {
-					nodePositions.push(getNodePosition(currentNode));
+					while (currentNode.id !== this.id) {
+						nodePositions.push(getNodePosition(currentNode));
+						currentNode = currentNode.parentNode;						
+					}
+					//if (currentNode.id !== this.id) nodePositions.push(getNodePosition(currentNode));
 				} else {
 					nodePositions.push(getNodePosition(currentNode));
 					nodePositions.push(getNodePosition(parentNode));
