@@ -5,10 +5,10 @@
 <div id="log"></div>
 	<script type="text/javascript">
 
-		function updateHtml() {
+		function updateHtml(callback) {
 			var text = $('#code').text();
 			var toHtmlUrl = "${this.Urls.UrlFor<ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel>()}"; 
-			$('#code').load(toHtmlUrl, { Code: text });
+			$('#code').load(toHtmlUrl, { Code: text }, callback);
 		}
 
 
@@ -16,25 +16,31 @@
 			updateHtml();
 			$('#code').keyup(function () {
 				var sel = window.getSelection();
-				trace(sel.anchorNode.nodeName);
+				//trace(sel.anchorNode.nodeName);
 				var initialOffset = sel.anchorOffset;
-				var html = $('#code').html();
-				trace(sel.getRangeAt(0).startOffset);
-				var parentNode = sel.anchorNode.parentNode;
-				var rootNode = parentNode.parentNode;
-				var nodeIndex = $.inArray(parentNode, rootNode.childNodes);
+				//trace(sel.getRangeAt(0).startOffset);
+				var parentNode = sel.anchorNode.parentNode; // span node
+				var nodeIndex = getNodePosition(parentNode);
 				//debugger;
-				$('#code').html(html + ' ');
-				var range = sel.getRangeAt(0);
-				trace(sel.anchorNode.nodeName);
-				trace(nodeIndex);
-				var currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
-				//debugger;
-				range.setStart(currentNode, initialOffset);
-				sel.removeAllRanges();
-				sel.addRange(range);
+				updateHtml(function(parameters) {
+					var range = sel.getRangeAt(0);
+					//trace(sel.anchorNode.nodeName);
+					//trace(nodeIndex);
+					var currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
+					//debugger;
+					range.setStart(currentNode, initialOffset);
+					sel.removeAllRanges();
+					sel.addRange(range);
+					
+				});
 			});
 		});
+
+		function getNodePosition(node) {
+			var parentNode = node.parentNode;
+			if (parentNode === null) return -1;
+			return $.inArray(node, parentNode.childNodes);
+		}
 
 		function getCaretPosition(editableDiv) {
 			var caretPos = 0, containerEl = null, sel, range;
