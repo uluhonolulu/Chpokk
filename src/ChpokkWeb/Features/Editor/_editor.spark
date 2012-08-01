@@ -24,6 +24,13 @@
 				var parentNode = currentNode.parentNode; // span node
 				var nodeIndex = getNodePosition(parentNode);
 				if (isInTheRoot) nodeIndex = getNodePosition(currentNode);
+
+				var nodePositions = [];
+				if (isInTheRoot) {
+					nodePositions = [nodeIndex];
+				} else {
+					nodePositions = [nodeIndex, 0];
+				}
 				//debugger;
 				updateHtml(function (parameters) {
 					var range = window.getSelection().getRangeAt(0);
@@ -31,10 +38,18 @@
 					//trace(nodeIndex);
 					currentNode = range.startContainer.childNodes[nodeIndex].childNodes[0];
 					if (isInTheRoot) currentNode = range.startContainer.childNodes[nodeIndex];
+					currentNode = range.startContainer;
+					for (var i = 0; i < nodePositions.length; i++) {
+						currentNode = currentNode.childNodes[nodePositions[i]];
+					}
 					//debugger;
-					if (currentNode) range.setStart(currentNode, initialOffset);
-					sel.removeAllRanges();
-					sel.addRange(range);
+					try {
+						range.setStart(currentNode, initialOffset);
+						sel.removeAllRanges();
+						sel.addRange(range);
+					} catch (e) {
+						trace(e.toString());
+					}
 
 				});
 			});
