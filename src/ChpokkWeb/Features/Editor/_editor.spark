@@ -26,15 +26,9 @@
 				if (isInTheRoot) nodeIndex = getNodePosition(currentNode);
 
 				var nodePositions = [];
-				if (isInTheRoot) {
-					while (currentNode.id !== this.id) {
-						nodePositions.push(getNodePosition(currentNode));
-						currentNode = currentNode.parentNode;						
-					}
-					//if (currentNode.id !== this.id) nodePositions.push(getNodePosition(currentNode));
-				} else {
+				while (currentNode.id !== this.id) {
 					nodePositions.push(getNodePosition(currentNode));
-					nodePositions.push(getNodePosition(parentNode));
+					currentNode = currentNode.parentNode;						
 				}
 				//debugger;
 				updateHtml(function (parameters) {
