@@ -17,40 +17,38 @@
 			$('#code').keyup(function () {
 				var sel = window.getSelection();
 				//trace(sel.anchorNode.nodeName);
-				var initialOffset = sel.anchorOffset;
-				//trace(sel.getRangeAt(0).startOffset);
+				var caretPosition = sel.anchorOffset;
 				var currentNode = sel.anchorNode; // text node
-				var isInTheRoot = currentNode.parentNode.id === this.id;
-				var parentNode = currentNode.parentNode; // span node
-				var nodeIndex = getNodePosition(parentNode);
-				if (isInTheRoot) nodeIndex = getNodePosition(currentNode);
 
 				var nodePositions = [];
 				while (currentNode.id !== this.id) {
 					nodePositions.push(getNodePosition(currentNode));
-					currentNode = currentNode.parentNode;						
+					currentNode = currentNode.parentNode;
 				}
 				//debugger;
 				updateHtml(function (parameters) {
-					var range = window.getSelection().getRangeAt(0);
-					//trace(sel.anchorNode.nodeName);
-					//trace(nodeIndex);
-					currentNode = range.startContainer;
-					for (var i = nodePositions.length - 1; i >= 0 ; i--) {
-						currentNode = currentNode.childNodes[nodePositions[i]];
-					}
-					//debugger;
-					try {
-						range.setStart(currentNode, initialOffset);
-						sel.removeAllRanges();
-						sel.addRange(range);
-					} catch (e) {
-						trace(e.toString());
-					}
+					restoreSelection(nodePositions, caretPosition);
+
 
 				});
 			});
 		});
+
+		function restoreSelection(nodePositions, caretPosition) {
+			var selection = window.getSelection();
+			var range = selection.getRangeAt(0);
+			var currentNode = range.startContainer;
+			for (var i = nodePositions.length - 1; i >= 0; i--) {
+				currentNode = currentNode.childNodes[nodePositions[i]];
+			}
+			try {
+				range.setStart(currentNode, caretPosition);
+				selection.removeAllRanges();
+				selection.addRange(range);
+			} catch (e) {
+				trace(e.toString());
+			}			
+		}
 
 		function getNodePosition(node) {
 			var parentNode = node.parentNode;
