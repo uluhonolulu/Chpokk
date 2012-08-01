@@ -29,8 +29,8 @@
 				if (isInTheRoot) {
 					nodePositions.push(getNodePosition(currentNode));
 				} else {
-					nodePositions.push(getNodePosition(parentNode));
 					nodePositions.push(getNodePosition(currentNode));
+					nodePositions.push(getNodePosition(parentNode));
 				}
 				//debugger;
 				updateHtml(function (parameters) {
@@ -38,7 +38,7 @@
 					//trace(sel.anchorNode.nodeName);
 					//trace(nodeIndex);
 					currentNode = range.startContainer;
-					for (var i = 0; i < nodePositions.length; i++) {
+					for (var i = nodePositions.length - 1; i >= 0 ; i--) {
 						currentNode = currentNode.childNodes[nodePositions[i]];
 					}
 					//debugger;
