@@ -66,8 +66,7 @@
       <HintPath>..\packages\FubuKayak.0.9.5.926\lib\net40\FubuMVC.OwinHost.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.Spark.0.9.5.817\lib\net40\FubuMVC.Spark.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.5.926\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.StructureMap.dll</HintPath>
@@ -84,9 +83,9 @@
     <Reference Include="GitSharp.Core">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.1.0.72, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HtmlTags, Version=1.1.0.96, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlTags.1.1.0.72\lib\4.0\HtmlTags.dll</HintPath>
+      <HintPath>..\packages\HtmlTags.1.1.0.96\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -126,8 +125,9 @@
     <Reference Include="Serenity">
       <HintPath>..\packages\Serenity.0.9.5.927\lib\net40\Serenity.dll</HintPath>
     </Reference>
-    <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spark.1.6.1\lib\NET40\Spark.dll</HintPath>
+    <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spark.1.7.2.0\lib\NET40\Spark.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="StoryTeller">
       <HintPath>..\packages\Storyteller.1.1.0.496\lib\net40\StoryTeller.dll</HintPath>
@@ -263,6 +263,7 @@
     <Content Include="Features\Exploring\_FileList.spark" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
+    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />
@@ -318,7 +319,6 @@
     <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedStruct.png" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Reference.png" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Struct.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc.less.zip" />
     <Content Include="Content\bootstrap.asset.config" />
     <Content Include="Content\chpokk.asset.config">
