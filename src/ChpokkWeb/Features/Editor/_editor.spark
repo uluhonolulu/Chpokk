@@ -15,21 +15,27 @@
 		$(function () {
 		    updateHtml();
 		    $('#code').keyup(function () {
-		        var sel = window.getSelection();
-		        var caretPosition = sel.anchorOffset;
-		        var currentNode = sel.anchorNode; // text node
-
-		        var nodePositions = [];
-		        nodePositions.push(caretPosition);
-		        while (currentNode.id !== this.id) {
-		            nodePositions.push(getNodePosition(currentNode));
-		            currentNode = currentNode.parentNode;
-		        }
+		        var selection = window.getSelection();
+		        var nodePositions = saveSelection(selection, this);
+		        //debugger;
 		        updateHtml(function () {
 		            restoreSelection(nodePositions);
 		        });
 		    });
 		});
+
+		function saveSelection(selection, rootNode) {
+		    var caretPosition = selection.anchorOffset;
+		    var currentNode = selection.anchorNode;
+
+		    var nodePositions = [];
+		    nodePositions.push(caretPosition);
+		    while (currentNode.id !== rootNode.id) {
+		        nodePositions.push(getNodePosition(currentNode));
+		        currentNode = currentNode.parentNode;
+		    }
+		    return nodePositions;
+		}
 
 		function restoreSelection(nodePositions) {
 		    var caretPosition = nodePositions[0];
