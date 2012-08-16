@@ -170,10 +170,12 @@
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\scripts\browser.js" />
     <Content Include="Content\scripts\common.js" />
+    <Content Include="Content\scripts\editor.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\scripts\lib\jquery.gritter.js" />
+    <Content Include="Content\scripts\lib\jquery.keyz.js" />
     <Content Include="Content\scripts\lib\rangy-core.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
@@ -331,7 +333,7 @@
     <Content Include="Features\Project\Project.spark" />
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
-    <Content Include="Content\scripts\editor.js" />
+    <Content Include="Content\scripts\editor_demo.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />

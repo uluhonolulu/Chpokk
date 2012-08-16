@@ -24,7 +24,7 @@ namespace ChpokkWeb.Infrastructure {
 				                                                               	                	.First().Input.InputType;
 				                                                               	var parameters = new RouteParameters();
 				                                                               	parameters["ItemId"] = string.Empty;
-				                                                               	return urlRegistry.UrlFor(inputType, parameters).Substring(1);
+				                                                               	return urlRegistry.UrlFor(inputType, parameters);
 				});
 		}
 
