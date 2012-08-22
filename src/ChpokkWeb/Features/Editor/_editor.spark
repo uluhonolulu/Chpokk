@@ -3,6 +3,7 @@
 <Stylesheet href="editor.css" />
 <Script src="_editor.js" />
 <div id="code" contenteditable="true">${Model.Content}</div>
+<div id="intel_results"></div>
 <div id="log"></div>
 	<script type="text/javascript">
 

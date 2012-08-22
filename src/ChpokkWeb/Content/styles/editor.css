@@ -1,10 +1,10 @@
-﻿		#results a
+﻿		#intel_results a
 		{
 			font-size: 12px;
 			line-height: 1.2;
 			white-space: nowrap;
 		}
-		#results a img 
+		#intel_results a img 
 		{
 			position:relative;
 			top:6px;
