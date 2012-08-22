@@ -4,7 +4,31 @@
     $('#code').load(toHtmlUrl, { Code: text }, callback);
 }
 
+function initEditor() {
+    updateHtml();
+//    $('#code').keyup(function () {
+//        colorize(this);
+    //    });
+    var spaceCode = ' '.charCodeAt(0);
+    $.fn.keyz.keymap.space = spaceCode;
+    $('#code').keyz(null, null, {
+        'space': function (ctl, sft, alt, event) {
+            //debugger;
+            colorize(this);
+            return true;
+        }
+    });
+}
 
+function colorize(editor) {
+        var selection = window.getSelection();
+        var nodePositions = saveSelection(selection, editor);
+        //debugger;
+        updateHtml(function () {
+            restoreSelection(nodePositions);
+        });
+    
+}
 
 function saveSelection(selection, rootNode) {
     var caretPosition = selection.anchorOffset;
@@ -78,5 +102,5 @@ function getCaretPosition(editableDiv) {
 }
 
 function trace(message) {
-    $('#log').html($('#log').html() + message + "<br/> ");
+    $('#log').html($('#log').html() + message + "<br/>\r\n");
 }

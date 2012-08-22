@@ -8,15 +8,7 @@
 
 
 		$(function () {
-			updateHtml();
-			$('#code').keyup(function () {
-				var selection = window.getSelection();
-				var nodePositions = saveSelection(selection, this);
-				//debugger;
-				updateHtml(function () {
-				restoreSelection(nodePositions);
-				});
-			});
+		    initEditor();
 		});
 	</script>
 
