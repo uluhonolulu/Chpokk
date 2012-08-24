@@ -83,9 +83,9 @@
     <Reference Include="GitSharp.Core">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.1.0.96, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HtmlTags, Version=1.1.0.97, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlTags.1.1.0.96\lib\4.0\HtmlTags.dll</HintPath>
+      <HintPath>..\packages\HtmlTags.1.1.0.97\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -132,9 +132,9 @@
     <Reference Include="StoryTeller">
       <HintPath>..\packages\Storyteller.1.1.0.496\lib\net40\StoryTeller.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -268,6 +268,7 @@
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
+    <Content Include="fubu-content\fubumvc-testrunner.zip" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />

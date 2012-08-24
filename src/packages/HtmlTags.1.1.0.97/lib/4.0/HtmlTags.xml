@@ -165,6 +165,11 @@
             Setting this value will remove any existing value. Use <see cref="M:HtmlTags.HtmlTag.After(HtmlTags.HtmlTag)"/> if you wish to insert a new sibling before any existing sibling.
             </summary>
         </member>
+        <member name="T:HtmlTags.Conventions.TagRequest">
+            <summary>
+            Will always need to implement an Equals and GetHashCode in order for this thing to work
+            </summary>
+        </member>
         <member name="M:HtmlTags.JsonUtil.ToUnsafeJson(System.Object)">
             <summary>
               Allows you to use function names (via <see cref="M:HtmlTags.javascript.function(System.String)"/>) in the value of a property, which is against the JSON spec
