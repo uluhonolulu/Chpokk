@@ -172,11 +172,15 @@
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\editor.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
+    <Content Include="Content\scripts\lib\jasmine-jquery.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\scripts\lib\jquery.gritter.js" />
     <Content Include="Content\scripts\lib\jquery.keyz.js" />
     <Content Include="Content\scripts\lib\rangy-core.js" />
+    <Content Include="Content\scripts\lib\server.js" />
+    <Content Include="Content\scripts\lib\sinon-1.2.0.js" />
+    <Content Include="Content\scripts\tests\intel.tests.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
     <Content Include="Content\styles\lib\images\folder-closed.gif" />
@@ -269,6 +273,7 @@
     <Content Include="Global.asax" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc-testrunner.zip" />
+    <Content Include="Content\tests.asset.config" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />
