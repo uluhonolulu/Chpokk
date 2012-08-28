@@ -273,7 +273,9 @@
     <Content Include="Global.asax" />
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc-testrunner.zip" />
-    <Content Include="Content\tests.asset.config" />
+    <Content Include="Content\tests.asset.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />

@@ -3,7 +3,7 @@
 <html>
 <head>
     <title><use content="title"/> | Logistics Testing</title>
-    <link rel="shortcut icon" type="image/png" href="../styles/jasmine_favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/_content/images/jasmine_favicon.png"/>
 	<Stylesheet href="jasmine.css" />
 	<Script src="fubumvc-testrunner" />
 	<use content="scripts"/>

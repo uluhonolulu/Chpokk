@@ -14,10 +14,7 @@ describe("On pressing the period key", function () {
         var container = $('<div/>').hide().appendTo('body');
         var manager = new IntelManager(editor, container);
         Server.stubContinuation({
-            success: false,
-            errors: [
-                        { message: 'Required field', field: 'FirstName' }
-                    ]
+            success: true
         });
 
         //Act
