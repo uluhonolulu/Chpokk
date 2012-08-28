@@ -14,7 +14,7 @@ describe("On pressing the period key", function () {
         var container = $('<div/>').hide().appendTo('body');
         var manager = new IntelManager(editor, container);
         Server.stubContinuation({
-            success: true
+            Items: [{ Text: 'sample'}]
         });
 
         //Act
@@ -23,4 +23,24 @@ describe("On pressing the period key", function () {
         //Assert
         expect(container).toBeVisible();
     });
+
+    it("Should send data to server", function () {
+        // Arrange
+        var editor = $('<div/>').appendTo('body');
+        var container = $('<div/>').hide().appendTo('body');
+        var manager = new IntelManager(editor, container);
+        Server.stubContinuation({
+            Items: [{ Text: 'sample'}]
+        });
+        var callback = sinon.spy();
+
+        //Act
+        manager.showData();
+
+        Server.respond();
+        expect(callback.called).toBeTruthy();
+
+
+    });
 });
+
