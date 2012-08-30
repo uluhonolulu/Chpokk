@@ -45,8 +45,8 @@ describe("On pressing the period key", function () {
         manager.showData();
 
         //Server.respond();
-//        expect(spy.called).toBeTruthy();
-//        expect(spy.args[0][0].url).toBe('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel');
+        expect(spy.called).toBeTruthy();
+        expect(spy.args[0][0].url).toBe('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel');
 
     });
 });
