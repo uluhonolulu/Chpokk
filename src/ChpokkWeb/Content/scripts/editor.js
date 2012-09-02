@@ -6,10 +6,10 @@
 
 function initEditor() {
     updateHtml();
-//    $('#code').keyup(function () {
-//        colorize(this);
-    //    });
-    //var spaceCode = ' '.charCodeAt(0);
+    // CodeEditor has $('#code')
+    // and model: RepositoryName, ProjectPath
+    // model is initialized in _editor.spark
+    // and CodeEditor too
     $.fn.keyz.keymap.space = $.ui.keyCode.SPACE;
     var intelManager = new IntelManager($('#code'), $('#intel_results'));
     $('#code').keyz(null, null, {
