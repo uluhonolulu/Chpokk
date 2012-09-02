@@ -10,9 +10,6 @@ function initEditor() {
     // and model: RepositoryName, ProjectPath
     // model is initialized in _editor.spark
     // and CodeEditor too
-    $.fn.keyz.keymap.space = $.ui.keyCode.SPACE;
-    var intelManager = new IntelManager($('#code'), $('#intel_results'));
-
 }
 
 

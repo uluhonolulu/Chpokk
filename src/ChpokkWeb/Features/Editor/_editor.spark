@@ -9,8 +9,8 @@
 
 
 		$(function () {
-		    var editor = new CodeEditor($('#code'), { RepositoryName: 'Chpokk-SampleSol', ProjectPath: 'src\\ConsoleApplication1\\ConsoleApplication1.csproj' });
-			initEditor();
+			//updateHtml();
+			var editor = new CodeEditor($('#code'), { RepositoryName: 'Chpokk-SampleSol', ProjectPath: 'src\\ConsoleApplication1\\ConsoleApplication1.csproj' });
 		});
 	</script>
 
