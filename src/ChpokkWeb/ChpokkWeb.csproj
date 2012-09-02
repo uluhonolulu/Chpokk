@@ -171,6 +171,7 @@
     <Content Include="Content\scripts\browser.js" />
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\editor.js" />
+    <Content Include="Content\scripts\intellisense.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\jasmine-jquery.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />

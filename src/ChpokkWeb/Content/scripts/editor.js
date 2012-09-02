@@ -11,6 +11,7 @@ function initEditor() {
     //    });
     //var spaceCode = ' '.charCodeAt(0);
     $.fn.keyz.keymap.space = $.ui.keyCode.SPACE;
+    var intelManager = new IntelManager($('#code'), $('#intel_results'));
     $('#code').keyz(null, null, {
         'space': function (ctl, sft, alt, event) {
             colorize(this);
@@ -18,7 +19,8 @@ function initEditor() {
         },
 
         '.': function () {
-            displayIntellisense(this);
+            //displayIntellisense(this);
+            intelManager.showData();
             return true;
             function displayIntellisense(editor) {
                 var intelData = {
