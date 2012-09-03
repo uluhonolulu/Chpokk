@@ -2,7 +2,7 @@
 <use namespace="FubuMVC.Core.UI" />
 <use namespace="ChpokkWeb.Features.Exploring" />
 <use namespace="System.Reflection" />
-<viewdata model="ChpokkWeb.Features.Project.ProjectModel" />
+<viewdata model="ChpokkWeb.Features.Project.RepositoryModel" />
 <content name="title">Project view</content>
 <content name="head">
 	<Stylesheet href="editor.css" />

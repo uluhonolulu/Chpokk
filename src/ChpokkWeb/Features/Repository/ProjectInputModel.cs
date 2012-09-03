@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ChpokkWeb.Features.Project {
-	public class ProjectInputModel {
+﻿namespace ChpokkWeb.Features.Repository {
+	public class RepositoryInputModel {
 		public string Name { get; set; }
 	}
 }

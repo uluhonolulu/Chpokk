@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Web;
-using ChpokkWeb.Features.Project;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.Repository;
 using ChpokkWeb.Shared;
 using Elmah;
 using FubuMVC.Core;
@@ -9,6 +9,7 @@ using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
+using RepositoryInputModel = ChpokkWeb.Features.Repository.RepositoryInputModel;
 
 namespace ChpokkWeb.Features.Remotes {
 	public class CloneController {
@@ -28,7 +29,7 @@ namespace ChpokkWeb.Features.Remotes {
 			CloneGitRepository(repoUrl, repositoryPath);
 			var repositoryInfo = repositoryInfo1;
 			_repositoryManager.Register(repositoryInfo);
-			var projectUrl = _registry.UrlFor(new ProjectInputModel() { Name = repositoryInfo.Name });
+			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { Name = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
