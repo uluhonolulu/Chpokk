@@ -3,10 +3,10 @@
 });
 
 function CodeEditor(element, model) {
-    this.element = element;
-    this.intelContainer = $('#' + element.data('intelResults'));
-    var intelManager = new IntelManager($('#code'), $('#intel_results'));
-    $('#code').keyz(null, null, {
+    //this.element = element;
+    var intelContainer = $('#' + element.data('intelResults'));
+    var intelManager = new IntelManager(element, intelContainer, model);
+    element.keyz(null, null, {
         'space': function () {
             colorize(this);
             return true;
@@ -15,7 +15,6 @@ function CodeEditor(element, model) {
         '.': function () {
             intelManager.showData();
             return true;
-
         }
     });
 

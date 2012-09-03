@@ -10,6 +10,7 @@
 
 		$(function () {
 			//updateHtml();
+		    // TODO: remove hardcoded props
 			var editor = new CodeEditor($('#code'), { RepositoryName: 'Chpokk-SampleSol', ProjectPath: 'src\\ConsoleApplication1\\ConsoleApplication1.csproj' });
 		});
 	</script>
