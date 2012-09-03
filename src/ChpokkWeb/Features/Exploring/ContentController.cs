@@ -51,7 +51,7 @@ namespace ChpokkWeb.Features.Exploring {
 			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.ProjectName); 
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			var filePath = repositoryRoot.AppendPathMyWay(model.RelativePath);
-			return new CodeEditorModel{Content = _fileSystem.ReadStringFromFile(filePath)};
+			return new CodeEditorModel{Content = _fileSystem.ReadStringFromFile(filePath), ProjectPath = "src\\ConsoleApplication1\\ConsoleApplication1.csproj", RepositoryName = "Chpokk-SampleSol"};
 		}
 	}
 }
