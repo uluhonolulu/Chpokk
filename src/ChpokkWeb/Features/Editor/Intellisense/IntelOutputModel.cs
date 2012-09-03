@@ -11,7 +11,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		public class IntelModelItem {
 			public string Text { get; set; }
 
-			public EntityType EntityType { get; set; }
+			public string EntityType { get; set; }
 
 			public override bool Equals(object obj) {
 				var other = obj as IntelModelItem;

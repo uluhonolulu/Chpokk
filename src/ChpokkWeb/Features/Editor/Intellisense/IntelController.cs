@@ -54,7 +54,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				return new IntelOutputModel{Message = "Completion Data is null"};
 			}
 
-			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Text = entry.Name, EntityType = entry.EntityType};
+			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Text = entry.Name, EntityType = entry.EntityType.ToString()};
 			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().ToArray()};
 			return model;
 		}
