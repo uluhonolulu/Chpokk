@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ChpokkWeb.Features.Project;
 using FubuMVC.Core;
 
-namespace ChpokkWeb.Features.Project {
-	public class ProjectController {
-		[UrlPattern("Project/{Name}")]
+namespace ChpokkWeb.Features.Repository {
+	public class RepositoryController {
+		[UrlPattern("Repository/{Name}")]
 		public ProjectModel Get(ProjectInputModel input) {
 			return new ProjectModel(){Name = input.Name};
 		}
