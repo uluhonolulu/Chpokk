@@ -9,17 +9,29 @@ IntelManager.prototype.showData = function () {
     var intelUrl = 'url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel';
     var self = this;
     var text = this.editor.text();
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
+    var range = this.getSelectedRange();
     var position = getCaretPosition(range) - 1; // we need the position just before the typed char
     $.post(intelUrl, { Text: text, Position: position, NewChar: '.', RepositoryName: this.model.RepositoryName, ProjectPath: this.model.ProjectPath }, function (intelData) {
         self.showItems(intelData.Items);
     });
 };
 
-IntelManager.prototype.showItems = function(items) {
+IntelManager.prototype.showItems = function (items) {
+    this.items = items;
     $.tmpl(this.listItemTemplate, items).appendTo(this.container);
-    this.container.show(); 
+    if (items && items.length > 0) {
+        this.container.show();
+        this.selectItem(0);
+    }
+};
+
+IntelManager.prototype.selectItem = function(index) {
+    this.selectedItem = this.items[index];
+};
+
+IntelManager.prototype.getSelectedRange = function() {
+    var selection = window.getSelection();
+    return selection.getRangeAt(0);
 };
 
 

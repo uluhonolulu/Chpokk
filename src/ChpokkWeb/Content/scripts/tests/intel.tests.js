@@ -7,7 +7,13 @@
         editor = $('<div/>').appendTo('#fixture');
         container = $('<div/>').hide().appendTo('#fixture');
         manager = new IntelManager(editor, container, {});
+        sinon.stub(manager, 'getSelectedRange', function () {
+            var range = document.createRange();
+            range.setStart(editor[0], 0);
+            return range;
+        });
 
+        //IntelManager.prototype.getSelectedRange = ;
     });
 
     describe("If the returned list is not empty", function () {
@@ -35,6 +41,7 @@
         });
     });
 
+
     it("Should send data to server", function () {
         // Arrange
         Server.stubContinuation({});
@@ -51,6 +58,40 @@
     });
 });
 
+describe("When intellisense is open", function () {
+    var manager, editor, container, items = [{ "Text": "sample"}];
+    beforeEach(function () {
+        if ($('#fixture').length === 0) {
+            $('<div id = "fixture"/>').appendTo('body');
+        }
+        editor = $('<div/>').appendTo('#fixture');
+        container = $('<div/>').hide().appendTo('#fixture');
+        manager = new IntelManager(editor, container, {});
+        manager.showItems(items);
+    });
+
+    it("Should select the first item", function () {
+        expect(manager.selectedItem).toBe(items[0]);
+    });
+});
+
+describe("If the returned list is empty", function () {
+    var manager, editor, container;
+    beforeEach(function () {
+        if ($('#fixture').length === 0) {
+            $('<div id = "fixture"/>').appendTo('body');
+        }
+        editor = $('<div/>').appendTo('#fixture');
+        container = $('<div/>').hide().appendTo('#fixture');
+        manager = new IntelManager(editor, container, {});
+        manager.showItems([]);
+    });
+
+    it("The container shouldn't be visible", function () {
+        expect(container).toBeHidden();
+    });
+});
+
 describe("Selection suite", function () {
     var editor;
     var range = document.createRange();
@@ -60,14 +101,14 @@ describe("Selection suite", function () {
         }
         editor = $('<div/>').appendTo('#fixture');
     });
-    describe("When selecting the very start", function () {
-        it("The position should be zero", function () {
-            range.setStart(editor[0], 0);
-            range.collapse(true);
-            var position = getCaretPosition(range);
-            expect(position).toBe(0);
-        });
-    });
+//    describe("When selecting the very start", function () {
+//        it("The position should be zero", function () {
+//            range.setStart(editor[0], 0);
+//            range.collapse(true);
+//            var position = getCaretPosition(range);
+//            expect(position).toBe(0);
+//        });
+//    });
 
     describe("When there's a root text node", function () {
         it("The position should be the count of symbols since the start", function () {
