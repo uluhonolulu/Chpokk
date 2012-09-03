@@ -10,10 +10,8 @@ IntelManager.prototype.showData = function () {
     var self = this;
     var text = this.editor.text();
     var selection = window.getSelection();
-    var position = text.indexOf('""') + 2;
-    var recentChars = text.substring(position - 5, position);
-    trace(recentChars);
-    debugger;
+    var range = selection.getRangeAt(0);
+    var position = getCaretPosition(range) - 1; // we need the position just before the typed char
     $.post(intelUrl, { Text: text, Position: position, NewChar: '.', RepositoryName: this.model.RepositoryName, ProjectPath: this.model.ProjectPath }, function (intelData) {
         $.tmpl(self.listItemTemplate, intelData.Items).appendTo(self.container);
         self.container.show();
