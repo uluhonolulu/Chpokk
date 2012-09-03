@@ -33,13 +33,12 @@
 			$.ajax({
 				type: "POST",
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: { ProjectName: "${Model.Name}", RelativePath: path },
+				data: { ProjectName: "${Model.Name}", RelativePath: path, ProjectPath: "src\\ConsoleApplication1\\ConsoleApplication1.csproj", RepositoryName: "Chpokk-SampleSol" },
 				dataType: "html",
 				success: function (data) {
 					$('#fileContent').html(data);
 				}
 			});
-			//$('#fileContent').load("${this.Urls.UrlFor<FileContentInputModel>()}", { ProjectName: "${Model.Name}", RelativePath: path });
 		}
 
 	</script>
