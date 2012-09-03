@@ -9,7 +9,7 @@
 			position:relative;
 			top:6px;
 		}
-		#editorDialog .code
+		.code
 		{
 			font-family: Consolas,Courier,Monospace;
 			font-size: small;
