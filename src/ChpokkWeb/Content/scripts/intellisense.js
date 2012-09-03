@@ -21,3 +21,13 @@ IntelManager.prototype.showData = function () {
 };
 
 //IntelManager.prototype.showItems
+
+
+function getCaretPosition(range) {
+    var index = $.inArray(range.startContainer, range.startContainer.parentNode.childNodes);
+    var lengthOfPreviousNodes = 0;
+    for (var i = 0; i < index; i++) {
+        lengthOfPreviousNodes += range.startContainer.parentNode.childNodes[i].textContent.length;
+    }
+    return lengthOfPreviousNodes + range.startOffset;
+}
