@@ -1,9 +1,12 @@
 ﻿describe("On pressing the period key", function () {
     var manager, editor, container;
     beforeEach(function () {
-        editor = $('<div/>').appendTo('body');
-        container = $('<div/>').hide().appendTo('body');
-        manager = new IntelManager(editor, container);
+        if ($('#fixture').length === 0) {
+            $('<div id = "fixture"/>').appendTo('body');
+        }
+        editor = $('<div/>').appendTo('#fixture');
+        container = $('<div/>').hide().appendTo('#fixture');
+        manager = new IntelManager(editor, container, {});
 
     });
 
@@ -27,6 +30,9 @@
             expect(container.find('li').length).toBe(1);
         });
 
+        afterEach(function () {
+            $('#fixture').empty();
+        });
     });
 
     it("Should send data to server", function () {
@@ -45,3 +51,29 @@
     });
 });
 
+describe("Selection suite", function () {
+    var editor;
+    var range = document.createRange();
+    beforeEach(function () {
+        if ($('#fixture').length === 0) {
+            $('<div id = "fixture"/>').appendTo('body');
+        }
+        editor = $('<div/>').appendTo('#fixture')[0];
+    });
+    describe("When selecting the very start", function () {
+        it("The position should be zero", function () {
+            range.setStart(editor, 0);
+            range.collapse(true);
+            var position = getCaretPosition(range);
+            expect(position).toBe(0);
+        });
+    });
+
+    function getCaretPosition(range) {
+        return 0;
+    }
+
+    afterEach(function () {
+        $('#fixture').empty();
+    });
+});
