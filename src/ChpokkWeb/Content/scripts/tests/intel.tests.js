@@ -58,19 +58,49 @@ describe("Selection suite", function () {
         if ($('#fixture').length === 0) {
             $('<div id = "fixture"/>').appendTo('body');
         }
-        editor = $('<div/>').appendTo('#fixture')[0];
+        editor = $('<div/>').appendTo('#fixture');
     });
     describe("When selecting the very start", function () {
         it("The position should be zero", function () {
-            range.setStart(editor, 0);
+            range.setStart(editor[0], 0);
             range.collapse(true);
             var position = getCaretPosition(range);
             expect(position).toBe(0);
         });
     });
 
+    describe("When there's a root text node", function () {
+        it("The position should be the count of symbols since the start", function () {
+            editor.text("some");
+            range.setStart(editor[0].childNodes[0], 2);
+            range.collapse(true);
+            var position = getCaretPosition(range);
+            expect(position).toBe(2);
+        });
+    });
+
+    describe("When there's a root span node", function () {
+        it("The position should be the count of symbols since the start", function () {
+            editor.html("<span>some</span>");
+            range.setStart(editor[0].childNodes[0].childNodes[0], 2);
+            range.collapse(true);
+            var position = getCaretPosition(range);
+            expect(position).toBe(2);
+        });
+    });
+    
+//    describe("When there's a text after span node", function () {
+//        it("The position should be the count of symbols since the start plus the length of the span", function () {
+//            editor.html("<span>some</span>other");
+//            range.setStart(editor[0].childNodes[1], 2);
+//            range.collapse(true);
+//            var position = getCaretPosition(range);
+//            expect(position).toBe(6);
+//        });
+//    });
+    
     function getCaretPosition(range) {
-        return 0;
+        return range.startOffset;
     }
 
     afterEach(function () {
