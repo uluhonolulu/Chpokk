@@ -88,19 +88,34 @@ describe("Selection suite", function () {
             expect(position).toBe(2);
         });
     });
-    
-//    describe("When there's a text after span node", function () {
-//        it("The position should be the count of symbols since the start plus the length of the span", function () {
-//            editor.html("<span>some</span>other");
-//            range.setStart(editor[0].childNodes[1], 2);
-//            range.collapse(true);
-//            var position = getCaretPosition(range);
-//            expect(position).toBe(6);
-//        });
-//    });
-    
+
+    describe("When there's a text after span node", function () {
+        it("The position should be the count of symbols since the start plus the length of the span", function () {
+            editor.html("<span>some</span>other");
+            range.setStart(editor[0].childNodes[1], 2);
+            range.collapse(true);
+            var position = getCaretPosition(range);
+            expect(position).toBe(6);
+        });
+    });
+
+    describe("When there's a text after several nodes", function () {
+        it("The position should be the count of symbols since the start plus the combined length of the previous nodes", function () {
+            editor.html("<span>some</span>other<span>one</span>more");
+            range.setStart(editor[0].childNodes[3], 2);
+            range.collapse(true);
+            var position = getCaretPosition(range);
+            expect(position).toBe(14); //some + other + one + mo -> 4 + 5 + 3 + 2 = 14
+        });
+    });
+
     function getCaretPosition(range) {
-        return range.startOffset;
+        var index = $.inArray(range.startContainer, range.startContainer.parentNode.childNodes);
+        var lengthOfPreviousNodes = 0;
+        for (var i = 0; i < index; i++) {
+            lengthOfPreviousNodes += range.startContainer.parentNode.childNodes[i].textContent.length;  
+        }
+        return lengthOfPreviousNodes + range.startOffset;
     }
 
     afterEach(function () {
