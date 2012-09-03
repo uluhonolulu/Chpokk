@@ -342,7 +342,7 @@
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
     <Content Include="Features\Remotes\CloneInput.spark" />
-    <Content Include="Features\Repository\Project.spark" />
+    <Content Include="Features\Repository\Repository.spark" />
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Content\scripts\editor_demo.js" />
@@ -433,9 +433,9 @@
     <Compile Include="Features\Exploring\SolutionExplorerModel.cs" />
     <Compile Include="Features\Exploring\SolutionFileLoader.cs" />
     <Compile Include="Features\Exploring\SolutionParser.cs" />
-    <Compile Include="Features\Repository\ProjectController.cs" />
-    <Compile Include="Features\Repository\ProjectInputModel.cs" />
-    <Compile Include="Features\Repository\ProjectModel.cs" />
+    <Compile Include="Features\Repository\RepositoryController.cs" />
+    <Compile Include="Features\Repository\RepositoryInputModel.cs" />
+    <Compile Include="Features\Repository\RepositoryModel.cs" />
     <Compile Include="Features\Exploring\FileContentInputModel.cs" />
     <Compile Include="Features\Exploring\FileListModel.cs" />
     <Compile Include="Features\Exploring\RepositoryItem.cs" />
