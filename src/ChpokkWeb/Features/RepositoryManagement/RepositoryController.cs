@@ -1,6 +1,6 @@
 ﻿using FubuMVC.Core;
 
-namespace ChpokkWeb.Features.Repository {
+namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryController {
 		[UrlPattern("Repository/{Name}")]
 		public RepositoryModel Get(RepositoryInputModel input) {

@@ -135,8 +135,8 @@
     <Reference Include="Serenity, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.5.927\lib\net40\Serenity.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

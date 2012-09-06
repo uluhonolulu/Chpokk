@@ -1,15 +1,12 @@
 ﻿using System.IO;
-using System.Web;
 using ChpokkWeb.Features.Exploring;
-using ChpokkWeb.Features.Repository;
 using ChpokkWeb.Shared;
-using Elmah;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
-using RepositoryInputModel = ChpokkWeb.Features.Repository.RepositoryInputModel;
+using RepositoryInputModel = ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel;
 
 namespace ChpokkWeb.Features.Remotes {
 	public class CloneController {
