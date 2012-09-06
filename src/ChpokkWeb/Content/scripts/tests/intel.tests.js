@@ -1,11 +1,8 @@
 ﻿describe("On pressing the period key", function () {
     var manager, editor, container;
     beforeEach(function () {
-        if ($('#fixture').length === 0) {
-            $('<div id = "fixture"/>').appendTo('body');
-        }
-        editor = $('<div/>').appendTo('#fixture');
-        container = $('<div/>').hide().appendTo('#fixture');
+        editor = createEditor();
+        container = createContainer();
         manager = new IntelManager(editor, container, {});
         sinon.stub(manager, 'getSelectedRange', function () {
             var range = document.createRange();
@@ -61,11 +58,8 @@
 describe("When intellisense is open", function () {
     var manager, editor, container, items = [{ "Text": "sample"}];
     beforeEach(function () {
-        if ($('#fixture').length === 0) {
-            $('<div id = "fixture"/>').appendTo('body');
-        }
-        editor = $('<div/>').appendTo('#fixture');
-        container = $('<div/>').hide().appendTo('#fixture');
+        editor = createEditor();
+        container = createContainer();
         manager = new IntelManager(editor, container, {});
         manager.showItems(items);
     });
@@ -75,14 +69,13 @@ describe("When intellisense is open", function () {
     });
 });
 
+describe
+
 describe("If the returned list is empty", function () {
     var manager, editor, container;
     beforeEach(function () {
-        if ($('#fixture').length === 0) {
-            $('<div id = "fixture"/>').appendTo('body');
-        }
-        editor = $('<div/>').appendTo('#fixture');
-        container = $('<div/>').hide().appendTo('#fixture');
+        editor = createEditor();
+        container = createContainer();
         manager = new IntelManager(editor, container, {});
         manager.showItems([]);
     });
@@ -96,19 +89,8 @@ describe("Selection suite", function () {
     var editor;
     var range = document.createRange();
     beforeEach(function () {
-        if ($('#fixture').length === 0) {
-            $('<div id = "fixture"/>').appendTo('body');
-        }
-        editor = $('<div/>').appendTo('#fixture');
+        editor = createEditor();
     });
-//    describe("When selecting the very start", function () {
-//        it("The position should be zero", function () {
-//            range.setStart(editor[0], 0);
-//            range.collapse(true);
-//            var position = getCaretPosition(range);
-//            expect(position).toBe(0);
-//        });
-//    });
 
     describe("When there's a root text node", function () {
         it("The position should be the count of symbols since the start", function () {
@@ -154,3 +136,19 @@ describe("Selection suite", function () {
         $('#fixture').empty();
     });
 });
+
+function ensureFixture() {
+    if ($('#fixture').length === 0) {
+        $('<div id = "fixture"/>').appendTo('body');
+    }
+}
+
+function createEditor() {
+    ensureFixture();
+    return $('<div/>').appendTo('#fixture');
+}
+
+function createContainer() {
+    ensureFixture();
+    return $('<div/>').hide().appendTo('#fixture');
+}
