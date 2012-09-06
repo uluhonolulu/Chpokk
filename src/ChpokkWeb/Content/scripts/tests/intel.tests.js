@@ -56,11 +56,9 @@
 });
 
 describe("When intellisense is open", function () {
-    var manager, editor, container, items = [{ "Text": "sample"}];
+    var manager, items = [{ "Text": "sample"}];
     beforeEach(function () {
-        editor = createEditor();
-        container = createContainer();
-        manager = new IntelManager(editor, container, {});
+        manager = createManager();
         manager.showItems(items);
     });
 
@@ -69,7 +67,39 @@ describe("When intellisense is open", function () {
     });
 });
 
-describe
+describe("Mouseover", function () {
+    var manager, items = [{Name: "1"}, {Name: "2"}];
+    beforeEach(function () {
+        manager = createManager();
+        manager.showItems(items);
+
+        var li = manager.container.find('li')[1];
+        $(li).mouseover();
+    });
+    it("Selects the corresponding item", function () {
+        expect(manager.selectedItem).toBe(items[1]);
+    });
+});
+
+describe("Selecting an item", function () {
+    var manager, items = [{ Name: "1" }, { Name: "2"}];
+    beforeEach(function () {
+        manager = createManager();
+        manager.showItems(items);
+        manager.selectItem(1);
+    });
+    it("Adds the 'ui-state-hover' class to the link", function () {
+        var a = manager.container.find('li a')[1];
+        expect(a).toHaveClass('ui-state-hover');
+    });
+    it("Removes the 'ui-state-hover' class from everything else", function() {
+        var a = manager.container.find('li a')[0];
+        expect(a).not.toHaveClass('ui-state-hover');        
+    });
+    afterEach(function () {
+        $('#fixture').empty();
+    });
+});
 
 describe("If the returned list is empty", function () {
     var manager, editor, container;
@@ -151,4 +181,10 @@ function createEditor() {
 function createContainer() {
     ensureFixture();
     return $('<div/>').hide().appendTo('#fixture');
+}
+
+function createManager() {
+    var editor = createEditor();
+    var container = createContainer();
+    return new IntelManager(editor, container, {});
 }

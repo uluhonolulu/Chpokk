@@ -9,19 +9,19 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		public IntelOutputModel() {Items = new IntelModelItem[0];}
 
 		public class IntelModelItem {
-			public string Text { get; set; }
+			public string Name { get; set; }
 
 			public string EntityType { get; set; }
 
 			public override bool Equals(object obj) {
 				var other = obj as IntelModelItem;
 				if (other != null)
-					return other.Text == this.Text;
+					return other.Name == this.Name;
 				return base.Equals(obj);
 			}
 
 			public override int GetHashCode() {
-				return Text.GetHashCode();
+				return Name.GetHashCode();
 			}
 		}
 	}

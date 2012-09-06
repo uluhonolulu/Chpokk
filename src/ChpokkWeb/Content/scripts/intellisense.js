@@ -1,7 +1,7 @@
 ﻿function IntelManager(editor, container, model) {
     this.editor = editor;
     this.container = container;
-    this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Text}</a></li>");
+    this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Name}</a></li>");
     this.model = model;
 }
 
@@ -22,11 +22,25 @@ IntelManager.prototype.showItems = function (items) {
     if (items && items.length > 0) {
         this.container.show();
         this.selectItem(0);
+        var self = this;
+        this.container.find('li').each(function (index) {
+            $(this).hover(function () {
+                $(this).find('a').toggleClass();
+            });
+            $(this).mouseover(function () {
+                self.selectItem(index);
+            });
+        });
     }
 };
 
-IntelManager.prototype.selectItem = function(index) {
+IntelManager.prototype.selectItem = function (index) {
     this.selectedItem = this.items[index];
+    //remove the class from all items
+    var className = 'ui-state-hover';
+    this.container.find('li a').removeClass(className);
+    var a = this.container.find('li a')[index];
+    $(a).addClass(className);
 };
 
 IntelManager.prototype.getSelectedRange = function() {

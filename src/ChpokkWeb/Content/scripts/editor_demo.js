@@ -1,6 +1,6 @@
 ﻿$(function () {
 
-	var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityName}.png\" />&nbsp;${Text}</a></li>");
+	var listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityName}.png\" />&nbsp;${Name}</a></li>");
 	var intelItems = [];
 	var filteredItems = [];
 	var selectedIntelItem;

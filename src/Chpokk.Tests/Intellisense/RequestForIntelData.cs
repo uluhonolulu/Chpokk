@@ -21,7 +21,7 @@ namespace Chpokk.Tests.Intellisense {
 			var inputModel = new IntelInputModel {Text = text, Position = 58, NewChar = '.'};
 			var url = Registry.UrlFor<IntelInputModel>();
 			var output = session.PostJson<IntelOutputModel>(url, inputModel, encodeRequest:true);
-			var members = from item in output.Items select item.Text;
+			var members = from item in output.Items select item.Name;
 			Assert.Contains<string>(members.ToArray(), "ToString");
 			var toStrings = from member in members where member == "ToString" select member;
 			Assert.AreEqual(1, toStrings.Count());

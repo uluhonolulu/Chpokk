@@ -31,7 +31,7 @@ namespace Chpokk.Tests.Intellisense {
 		public void ContainsTheMethodOfTheClass() {
 			Console.WriteLine(Result.Message);
 			var items = Result.Items;
-			var memberNames = items.Select(item => item.Text);
+			var memberNames = items.Select(item => item.Name);
 			Assert.Contains(memberNames, "B");
 		}
 
