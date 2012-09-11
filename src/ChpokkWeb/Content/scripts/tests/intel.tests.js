@@ -162,9 +162,6 @@ describe("Selection suite", function () {
         });
     });
 
-    afterEach(function () {
-        $('#fixture').empty();
-    });
 });
 
 function ensureFixture() {
@@ -172,6 +169,11 @@ function ensureFixture() {
         $('<div id = "fixture"/>').appendTo('body');
     }
 }
+
+afterEach(function () {
+    $('#fixture').empty();
+});
+
 
 function createEditor() {
     ensureFixture();
