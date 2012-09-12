@@ -30,10 +30,14 @@
 		}
 
 		function loadFile(path) {
+			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
+			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
+			var li = $('#solutionBrowser ' + selector);
+			var projectPath = (li.length > 0)? li.data('ProjectPath') : '';
 			$.ajax({
 				type: "POST",
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: { RepositoryName: "${Model.Name}", RelativePath: path, ProjectPath: "src\\ConsoleApplication1\\ConsoleApplication1.csproj" },
+				data: { RepositoryName: "${Model.Name}", RelativePath: path, ProjectPath: projectPath },
 				dataType: "html",
 				success: function (data) {
 					$('#fileContent').html(data);

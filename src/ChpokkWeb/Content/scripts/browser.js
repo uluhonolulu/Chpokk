@@ -1,7 +1,7 @@
 ﻿function build_li(item, data) {
 	var li = $('<li/>')
-				.data('type', item.Type)
-				.data('path', item.PathRelativeToRepositoryRoot)
+				.attr('data-type', item.Type)
+				.attr('data-path', item.PathRelativeToRepositoryRoot)
 				.append($('<span/>').addClass(item.Type).text(item.Name));
 	// append data
 	if (data || item.Data) {
