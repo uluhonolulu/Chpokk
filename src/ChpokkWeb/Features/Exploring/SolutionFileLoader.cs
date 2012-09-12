@@ -45,7 +45,7 @@ namespace ChpokkWeb.Features.Exploring {
 			{
 				Name = projectItem.Name,
 				Type = "folder",
-				Data = new Dictionary<string, string> { { "ProjectPath", projectItem.Path} }
+				Data = new Dictionary<string, string> { { "ProjectPath", projectFilePath.PathRelativeTo(repositoryRoot)} }
 			};
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolderRelativeToRepositoryRoot = projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot);
