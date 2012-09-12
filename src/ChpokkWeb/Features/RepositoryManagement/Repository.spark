@@ -18,7 +18,7 @@
 			$(window).hashchange(function () {
 				_loadSelectedFile();
 			});
-			$(window).hashchange();
+			//$(window).hashchange(); -- delay until the browser loads
 
 		});
 
