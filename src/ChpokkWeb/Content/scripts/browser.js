@@ -1,8 +1,14 @@
 ﻿function build_li(item) {
 	var li = $('<li/>')
-				.attr('data-type', item.Type)
-				.attr('data-path', item.PathRelativeToRepositoryRoot)
+				.data('type', item.Type)
+				.data('path', item.PathRelativeToRepositoryRoot)
 				.append($('<span/>').addClass(item.Type).text(item.Name));
+	// append data
+	if (item.Data) {
+		for (var prop in item.Data) {
+			li.data(prop, item.Data[prop]);
+		}
+	}
 	if (item.Type === 'folder') {
 		li.append(build_ul(item.Children));
 	}

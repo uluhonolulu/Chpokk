@@ -7,7 +7,7 @@ using ChpokkWeb.Infrastructure.Treeview;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryItem : ICanHasChildren {
-		public RepositoryItem() { Children = new List<RepositoryItem>(); Data = new Dictionary<string, string>();}
+		public RepositoryItem() { Children = new List<RepositoryItem>(); }
 		public string Name { get; set; }
 		public string PathRelativeToRepositoryRoot { get; set; }
 		IEnumerable<ICanHasChildren> ICanHasChildren.Children {
@@ -19,6 +19,6 @@ namespace ChpokkWeb.Features.Exploring {
 
 		public string Type { get; set; }
 
-		public Dictionary<string, string> Data { get; private set; }
+		public Dictionary<string, string> Data { get; set; }
 	}
 }
