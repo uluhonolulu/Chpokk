@@ -3,7 +3,8 @@ using System.Linq;
 
 namespace ChpokkWeb.Infrastructure {
 	public static class PathExtensions {
-		public static string AppendPathMyWay(this string path, params string[] appended) {
+		[NotNull] 
+		public static string AppendPathMyWay(this string path, [NotNull] params string[] appended) {
 			foreach (var next in appended) {
 				var toAppend = next;
 				if (Path.IsPathRooted(next)) {
@@ -19,11 +20,13 @@ namespace ChpokkWeb.Infrastructure {
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
+		[NotNull] 
 		public static string GetFileNameUniversal([NotNull] this string path) {
 			var parts = path.Split('/', '\\');
 			return parts.Last();
 		}
 
+		[NotNull] 
 		public static string RemoveExtension([NotNull] this string name) {
 			return Path.GetFileNameWithoutExtension(name);
 		}

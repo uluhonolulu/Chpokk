@@ -17,7 +17,7 @@ namespace ChpokkWeb.Features.Exploring {
 		[NotNull] private readonly SolutionFileLoader _solutionFileLoader;
 
 		public SolutionContentController([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem, [NotNull
-		                                                                                                                ] SolutionParser solutionParser, SolutionFileLoader solutionFileLoader) {
+		                                                                                                                ] SolutionParser solutionParser, [NotNull] SolutionFileLoader solutionFileLoader) {
 			_repositoryManager = repositoryManager;
 			_fileSystem = fileSystem;
 			_solutionFileLoader = solutionFileLoader;
