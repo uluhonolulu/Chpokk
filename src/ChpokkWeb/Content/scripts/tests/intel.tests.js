@@ -84,14 +84,27 @@ describe("On pressing the period key", function () {
 		});
 		it("when the editor is simple text", function () {
 			editor.html('stuffhere');
-			bililiteRange(editor.get(0)).bounds('selection').bounds([5, 5]).select();
+			setPosition(5);
 			editor.sendkeys('.');
 			//typeDot();
 			wrapTheDot(editor);
 			expect(editor.html()).toBe('stuff<span id="wrapper">.</span>here');
 		});
 
+		it("when there's another dot already", function () {
+			editor.html('stuff.here');
+			setPosition(10);
+			editor.sendkeys('.');
+
+			wrapTheDot(editor);
+			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
+		});
+
 	});
+
+	function setPosition(position) {
+		bililiteRange(editor.get(0)).bounds('selection').bounds([position, position]).select();
+	}
 
 	function typeDot() {
 		var code = '.'.charCodeAt(0);

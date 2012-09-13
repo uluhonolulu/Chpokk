@@ -56,7 +56,10 @@ function restoreSelection(nodePositions) {
       }
 
 function wrapTheDot(editor) {
-	editor.html(editor.html().replace('.', '<span id=\'wrapper\'>.</span>'));
+	var html = editor.html();
+	var position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
+	html = html.substring(0, position - 1) + '<span id=\'wrapper\'>.</span>' + html.substring(position);
+	editor.html(html);
 }
 
 function getNodePosition(node) {
