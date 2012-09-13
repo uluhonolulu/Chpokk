@@ -68,23 +68,35 @@ describe("When intellisense is open", function () {
 });
 
 describe("On pressing the period key", function () {
-	var manager;
+	var editor;
 	beforeEach(function () {
-		manager = createManager();
+		editor = createManager().editor;
 		Server.stubContinuation({});
-		manager.editor.html('');
-//		manager.editor.keyup(function (e) {
-//			alert(e);
-//		});
 	});
-	it("Should surround the period with a span", function () {
-		var event = jQuery.Event("keyup");
-		event.which = 190;
-		manager.editor.trigger(event);
+	describe("Should surround the period with a span", function () {
+		it("when the editor is empty", function () {
+			editor.html('');
+			//typeDot();
+			editor.sendkeys('.');
+			wrapTheDot(editor);
 
-		expect(manager.editor.html()).toBe("<span id='wrapper'>.</span>");
+			expect(editor.html()).toBe('<span id="wrapper">.</span>');
+		});
+		it("when the editor is simple text", function () {
+			editor.html('stuffhere');
+			bililiteRange(editor.get(0)).bounds('selection').bounds([5, 5]).select();
+			editor.sendkeys('.');
+			//typeDot();
+			wrapTheDot(editor);
+			expect(editor.html()).toBe('stuff<span id="wrapper">.</span>here');
+		});
+
 	});
 
+	function typeDot() {
+		var code = '.'.charCodeAt(0);
+		editor.trigger({ type: 'keypress', keyCode: code, which: code, charCode: code });
+	}
 });
 
 describe("Mouseover", function () {

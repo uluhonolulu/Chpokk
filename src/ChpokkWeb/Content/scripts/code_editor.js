@@ -7,15 +7,15 @@ function CodeEditor(element, model) {
     var intelContainer = $('#' + element.data('intelResults'));
     var intelManager = new IntelManager(element, intelContainer, model);
     element.keyz(null, null, {
-        'space': function () {
-            colorize(this);
-            return true;
-        },
+    	'space': function () {
+    		colorize(this);
+    		return true;
+    	},
 
-        '.': function () {
-            intelManager.showData();
-            return true;
-        }
+    	'.': function () {
+    		intelManager.showData();
+    		return true;
+    	}
     });
 
     updateHtml();

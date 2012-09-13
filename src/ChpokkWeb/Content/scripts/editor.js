@@ -53,6 +53,10 @@ function restoreSelection(nodePositions) {
         debugger;
         trace(e.toString());
     }
+      }
+
+function wrapTheDot(editor) {
+	editor.html(editor.html().replace('.', '<span id=\'wrapper\'>.</span>'));
 }
 
 function getNodePosition(node) {
