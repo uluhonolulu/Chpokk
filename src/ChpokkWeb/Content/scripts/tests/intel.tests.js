@@ -73,9 +73,9 @@ describe("On pressing the period key", function () {
 		manager = createManager();
 		Server.stubContinuation({});
 		manager.editor.html('');
-		manager.editor.keyup(function (e) {
-			alert(e);
-		});
+//		manager.editor.keyup(function (e) {
+//			alert(e);
+//		});
 	});
 	it("Should surround the period with a span", function () {
 		var event = jQuery.Event("keyup");
@@ -136,51 +136,62 @@ describe("If the returned list is empty", function () {
 });
 
 describe("Selection suite", function () {
-    var editor;
-    var range = document.createRange();
-    beforeEach(function () {
-        editor = createEditor();
-    });
+	var editor;
+	var range = document.createRange();
+	beforeEach(function () {
+		editor = createEditor();
+	});
 
-    describe("When there's a root text node", function () {
-        it("The position should be the count of symbols since the start", function () {
-            editor.text("some");
-            range.setStart(editor[0].childNodes[0], 2);
-            range.collapse(true);
-            var position = getCaretPosition(range);
-            expect(position).toBe(2);
-        });
-    });
+	describe("When there's a root text node", function () {
+		it("The position should be the count of symbols since the start", function () {
+			editor.text("some");
+			range.setStart(editor[0].childNodes[0], 2);
+			range.collapse(true);
+			var position = getCaretPosition(range);
+			expect(position).toBe(2);
+		});
+	});
 
-    describe("When there's a root span node", function () {
-        it("The position should be the count of symbols since the start", function () {
-            editor.html("<span>some</span>");
-            range.setStart(editor[0].childNodes[0].childNodes[0], 2);
-            range.collapse(true);
-            var position = getCaretPosition(range);
-            expect(position).toBe(2);
-        });
-    });
+	describe("When there's a root span node", function () {
+		it("The position should be the count of symbols since the start", function () {
+			editor.html("<span>some</span>");
+			range.setStart(editor[0].childNodes[0].childNodes[0], 2);
+			range.collapse(true);
+			var position = getCaretPosition(range);
+			expect(position).toBe(2);
+		});
+	});
 
-    describe("When there's a text after span node", function () {
-        it("The position should be the count of symbols since the start plus the length of the span", function () {
-            editor.html("<span>some</span>other");
-            range.setStart(editor[0].childNodes[1], 2);
-            range.collapse(true);
-            var position = getCaretPosition(range);
-            expect(position).toBe(6);
-        });
-    });
+	describe("When there's a text after span node", function () {
+		it("The position should be the count of symbols since the start plus the length of the span", function () {
+			editor.html("<span>some</span>other");
+			range.setStart(editor[0].childNodes[1], 2);
+			range.collapse(true);
+			var position = getCaretPosition(range);
+			expect(position).toBe(6);
+		});
+	});
 
-    describe("When there's a text after several nodes", function () {
-        it("The position should be the count of symbols since the start plus the combined length of the previous nodes", function () {
-            editor.html("<span>some</span>other<span>one</span>more");
-            range.setStart(editor[0].childNodes[3], 2);
-            range.collapse(true);
-            var position = getCaretPosition(range);
-            expect(position).toBe(14); //some + other + one + mo -> 4 + 5 + 3 + 2 = 14
-        });
-    });
+	describe("When there's a text after several nodes", function () {
+		it("The position should be the count of symbols since the start plus the combined length of the previous nodes", function () {
+			editor.html("<span>some</span>other<span>one</span>more");
+			range.setStart(editor[0].childNodes[3], 2);
+			range.collapse(true);
+			var position = getCaretPosition(range);
+			expect(position).toBe(14); //some + other + one + mo -> 4 + 5 + 3 + 2 = 14
+
+			// let's test that new plugin
+			var s = window.getSelection();
+			if (s.rangeCount > 0)
+				s.removeAllRanges();
+			s.addRange(range);
+			var brange = bililiteRange(editor.get(0)).bounds('selection');
+			var bosition = brange.bounds()[0];
+			expect(bosition).toBe(14);
+		});
+
+
+	});
 
 });
 
