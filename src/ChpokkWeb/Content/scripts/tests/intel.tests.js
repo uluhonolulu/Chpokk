@@ -1,58 +1,58 @@
-﻿describe("On pressing the period key", function () {
-    var manager, editor, container;
-    beforeEach(function () {
-        editor = createEditor();
-        container = createContainer();
-        manager = new IntelManager(editor, container, {});
-        sinon.stub(manager, 'getSelectedRange', function () {
-            var range = document.createRange();
-            range.setStart(editor[0], 0);
-            return range;
-        });
+﻿describe("On requesting the intel data", function () {
+	var manager, editor, container;
+	beforeEach(function () {
+		editor = createEditor();
+		container = createContainer();
+		manager = new IntelManager(editor, container, {});
+		sinon.stub(manager, 'getSelectedRange', function () {
+			var range = document.createRange();
+			range.setStart(editor[0], 0);
+			return range;
+		});
 
-        //IntelManager.prototype.getSelectedRange = ;
-    });
+		//IntelManager.prototype.getSelectedRange = ;
+	});
 
-    describe("If the returned list is not empty", function () {
-        beforeEach(function () {
-            // Arrange
-            Server.stubContinuation({
-                Items: [{ 'Text': 'sample'}]
-            });
+	describe("If the returned list is not empty", function () {
+		beforeEach(function () {
+			// Arrange
+			Server.stubContinuation({
+				Items: [{ 'Text': 'sample'}]
+			});
 
-            //Act
-            manager.showData();
+			//Act
+			manager.showData();
 
-            Server.respond();
+			Server.respond();
 
-        });
-        it("Intellisense list should show up", function () {
-            expect(container).toBeVisible();
-        });
-        it("The list should contain the same number if items as the returned data", function () {
-            expect(container.find('li').length).toBe(1);
-        });
+		});
+		it("Intellisense list should show up", function () {
+			expect(container).toBeVisible();
+		});
+		it("The list should contain the same number if items as the returned data", function () {
+			expect(container.find('li').length).toBe(1);
+		});
 
-        afterEach(function () {
-            $('#fixture').empty();
-        });
-    });
+		afterEach(function () {
+			$('#fixture').empty();
+		});
+	});
 
 
-    it("Should send data to server", function () {
-        // Arrange
-        Server.stubContinuation({});
-        // Spy on jQuery's ajax method
-        var spy = sinon.spy(jQuery, 'ajax');
+	it("Should send data to server", function () {
+		// Arrange
+		Server.stubContinuation({});
+		// Spy on jQuery's ajax method
+		var spy = sinon.spy(jQuery, 'ajax');
 
-        //Act
-        manager.showData();
+		//Act
+		manager.showData();
 
-        //Server.respond();
-        expect(spy.called).toBeTruthy();
-        expect(spy.args[0][0].url).toBe('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel');
+		//Server.respond();
+		expect(spy.called).toBeTruthy();
+		expect(spy.args[0][0].url).toBe('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel');
 
-    });
+	});
 });
 
 describe("When intellisense is open", function () {
@@ -65,6 +65,26 @@ describe("When intellisense is open", function () {
     it("Should select the first item", function () {
         expect(manager.selectedItem).toBe(items[0]);
     });
+});
+
+describe("On pressing the period key", function () {
+	var manager;
+	beforeEach(function () {
+		manager = createManager();
+		Server.stubContinuation({});
+		manager.editor.html('');
+		manager.editor.keyup(function (e) {
+			alert(e);
+		});
+	});
+	it("Should surround the period with a span", function () {
+		var event = jQuery.Event("keyup");
+		event.which = 190;
+		manager.editor.trigger(event);
+
+		expect(manager.editor.html()).toBe("<span id='wrapper'>.</span>");
+	});
+
 });
 
 describe("Mouseover", function () {
