@@ -17,21 +17,22 @@ IntelManager.prototype.showData = function () {
 };
 
 IntelManager.prototype.showItems = function (items) {
-    this.items = items;
-    $.tmpl(this.listItemTemplate, items).appendTo(this.container);
-    if (items && items.length > 0) {
-        this.container.show();
-        this.selectItem(0);
-        var self = this;
-        this.container.find('li').each(function (index) {
-            $(this).hover(function () {
-                $(this).find('a').toggleClass();
-            });
-            $(this).mouseover(function () {
-                self.selectItem(index);
-            });
-        });
-    }
+	this.items = items;
+	$.tmpl(this.listItemTemplate, items).appendTo(this.container);
+	if (items && items.length > 0) {
+		this.container.show();
+		this.container.focus();
+		this.selectItem(0);
+		var self = this;
+		this.container.find('li').each(function (index) {
+			$(this).hover(function () {
+				$(this).find('a').toggleClass();
+			});
+			$(this).mouseover(function () {
+				self.selectItem(index);
+			});
+		});
+	}
 };
 
 IntelManager.prototype.selectItem = function (index) {
