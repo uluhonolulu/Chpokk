@@ -14,6 +14,9 @@ function CodeEditor(element, model) {
 
     	'.': function () {
     		intelManager.showData();
+    		wrapTheDot(element);
+    		var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
+    		$('#intel_results').css(offset);
     		return true;
     	}
     });
