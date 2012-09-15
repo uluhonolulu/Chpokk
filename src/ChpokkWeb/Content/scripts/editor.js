@@ -56,9 +56,25 @@ function restoreSelection(nodePositions) {
       }
 
 function wrapTheDot(editor) {
+	var wrappedDot = '<span id=\'wrapper\'>.</span>';
+	var range = bililiteRange(editor.get(0)).bounds('selection');
+	var position = range.bounds()[0];
+	range.bounds([0, position - 1]);
+	var fragment = range._nativeRange(range.bounds()).cloneContents();
+	var content = '';
+	for (var i = 0; i < fragment.childNodes.length; i++) {
+		var node = fragment.childNodes[i];
+		if (node.nodeType === 1) {
+			content += node.outerHTML;
+		}
+		else {
+			content += node.textContent;
+		}
+
+	}
+	//position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
 	var html = editor.html();
-	var position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
-	html = html.substring(0, position - 1) + '<span id=\'wrapper\'>.</span>' + html.substring(position);
+	html = content + wrappedDot + html.substring(content.length);
 	editor.html(html);
 }
 

@@ -100,6 +100,47 @@ describe("On pressing the period key", function () {
 			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
 		});
 
+		it("when there is an inner node before", function () {
+			editor.html('<span>stuff</span> here');
+			setPosition(10);
+			editor.sendkeys('.');
+
+			var position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
+			expect(position).toBe(11);
+			var rng = bililiteRange(editor.get(0)).bounds('selection');
+			rng.bounds([0, 10]);
+			var fragment = rng._nativeRange(rng.bounds()).extractContents();
+			var content = '';
+			for (var i = 0; i < fragment.childNodes.length; i++) {
+				var node = fragment.childNodes[i];
+				if (node.nodeType === 1) {
+					content += node.outerHTML;
+				}
+				else {
+					content += node.textContent;
+				}
+
+			}
+			expect(content).toBe('<span>stuff</span> here');
+			//wrapTheDot(editor);
+			var html = editor.html();
+			var wrappedDot = '<span id=\'wrapper\'>.</span>';
+			html = content + wrappedDot + html.substring(content.length);
+			editor.html(html);
+			expect(editor.html()).toBe('<span>stuff</span> here<span id="wrapper">.</span>');
+
+		});
+
+		it("when there's another *wrapped* dot, should remove the wrapper", function () {
+			editor.html('stuff<span id="wrapper">.</span>here');
+			setPosition(36);
+			editor.sendkeys('.');
+
+			wrapTheDot(editor);
+			//expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
+
+		});
+
 	});
 
 	function setPosition(position) {
