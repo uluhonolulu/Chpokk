@@ -74,7 +74,7 @@ function wrapTheDot(editor) {
 	}
 	//position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
 	var html = editor.html();
-	html = content + wrappedDot + html.substring(content.length);
+	html = content + wrappedDot + html.substring(content.length + 1);
 	editor.html(html);
 }
 

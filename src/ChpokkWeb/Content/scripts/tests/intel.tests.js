@@ -105,28 +105,7 @@ describe("On pressing the period key", function () {
 			setPosition(10);
 			editor.sendkeys('.');
 
-			var position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
-			expect(position).toBe(11);
-			var rng = bililiteRange(editor.get(0)).bounds('selection');
-			rng.bounds([0, 10]);
-			var fragment = rng._nativeRange(rng.bounds()).extractContents();
-			var content = '';
-			for (var i = 0; i < fragment.childNodes.length; i++) {
-				var node = fragment.childNodes[i];
-				if (node.nodeType === 1) {
-					content += node.outerHTML;
-				}
-				else {
-					content += node.textContent;
-				}
-
-			}
-			expect(content).toBe('<span>stuff</span> here');
-			//wrapTheDot(editor);
-			var html = editor.html();
-			var wrappedDot = '<span id=\'wrapper\'>.</span>';
-			html = content + wrappedDot + html.substring(content.length);
-			editor.html(html);
+			wrapTheDot(editor);
 			expect(editor.html()).toBe('<span>stuff</span> here<span id="wrapper">.</span>');
 
 		});
