@@ -17,9 +17,14 @@ function initEditor() {
 function colorize(editor) {
         var selection = window.getSelection();
         var nodePositions = saveSelection(selection, editor);
+
+
+        var range = bililiteRange(editor).bounds('selection'); //
+        var position = range.bounds()[0];
         //debugger;
         updateHtml(function () {
-            restoreSelection(nodePositions);
+        	//restoreSelection(nodePositions);
+        	range.bounds([position, position]).select();
         });
     
 }
