@@ -57,7 +57,7 @@ function restoreSelection(nodePositions) {
 
 function wrapTheDot(editor) {
 	var wrappedDot = '<span id=\'wrapper\'>.</span>';
-	var range = bililiteRange(editor.get(0)).bounds('selection');
+	var range = bililiteRange(editor.get(0)).bounds('selection');//
 	var position = range.bounds()[0];
 	range.bounds([0, position - 1]);
 	var fragment = range._nativeRange(range.bounds()).cloneContents();
@@ -65,6 +65,7 @@ function wrapTheDot(editor) {
 	//position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
 	var html = editor.html().replace(/&nbsp;/g, ' ');
 	html = content + wrappedDot + html.substring(content.length + 1);
+	html = html.replace(/<span id="wrapper">\.<\/span>/gi, '.');
 	editor.html(html);
 }
 

@@ -116,21 +116,14 @@ describe("On pressing the period key", function () {
 			setPosition(13);
 			editor.sendkeys('.');
 			wrapTheDot(editor);
-			expect(editor.html()).toBe('<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\r\n\r\n');
+			var html = editor.html();
+			var expected = '<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\n\n'; // note: \r disappears
+			for (var i = 0; i < html.length; i++) {
+				expect(html.substr(0, i) + i).toBe(expected.substr(0, i) + i);
+			}
+			expect(editor.html()).toBe('<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\n\n');
 
 		});
-
-//		it("can get &nbsp; in the fragment", function () {
-//			editor.html('<span class="code0">using</span>&nbsp;System;\r\n\r\n');
-//			setPosition(13);
-//			var range = bililiteRange(editor.get(0)).bounds('selection');
-//			var position = range.bounds()[0];
-//			range.bounds([0, position - 1]);
-//			var fragment = range._nativeRange(range.bounds()).cloneContents();
-//			var content = getFragmentSource(fragment);
-
-//			expect(content).toBe('<span class="code0">using</span>&nbsp;System;');
-//		});
 
 		it("when there's another *wrapped* dot, should remove the wrapper", function () {
 			editor.html('stuff<span id="wrapper">.</span>here');
@@ -138,7 +131,7 @@ describe("On pressing the period key", function () {
 			editor.sendkeys('.');
 
 			wrapTheDot(editor);
-			//expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
+			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
 
 		});
 
