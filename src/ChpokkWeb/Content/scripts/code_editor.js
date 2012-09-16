@@ -4,7 +4,8 @@
 
 function CodeEditor(element, model) {
     //this.element = element;
-    var intelContainer = $('#' + element.data('intelResults'));
+	var intelContainer = $('#' + element.data('intelResults'));
+	intelContainer.hide();
     var intelManager = new IntelManager(element, intelContainer, model);
     element.keyz(null, null, {
     	'space': function () {
@@ -16,7 +17,7 @@ function CodeEditor(element, model) {
     		intelManager.showData();
     		wrapTheDot(element);
     		var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
-    		$('#intel_results').css(offset);
+    		intelContainer.css(offset);
     		return true;
     	}
     });

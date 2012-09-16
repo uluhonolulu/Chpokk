@@ -110,6 +110,28 @@ describe("On pressing the period key", function () {
 
 		});
 
+
+		it("in the real life scenario", function () {
+			editor.html('<span class="code0">using</span>&nbsp;System;\r\n\r\n');
+			setPosition(13);
+			editor.sendkeys('.');
+			wrapTheDot(editor);
+			expect(editor.html()).toBe('<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\r\n\r\n');
+
+		});
+
+//		it("can get &nbsp; in the fragment", function () {
+//			editor.html('<span class="code0">using</span>&nbsp;System;\r\n\r\n');
+//			setPosition(13);
+//			var range = bililiteRange(editor.get(0)).bounds('selection');
+//			var position = range.bounds()[0];
+//			range.bounds([0, position - 1]);
+//			var fragment = range._nativeRange(range.bounds()).cloneContents();
+//			var content = getFragmentSource(fragment);
+
+//			expect(content).toBe('<span class="code0">using</span>&nbsp;System;');
+//		});
+
 		it("when there's another *wrapped* dot, should remove the wrapper", function () {
 			editor.html('stuff<span id="wrapper">.</span>here');
 			setPosition(36);
@@ -121,6 +143,7 @@ describe("On pressing the period key", function () {
 		});
 
 	});
+
 
 	function setPosition(position) {
 		bililiteRange(editor.get(0)).bounds('selection').bounds([position, position]).select();

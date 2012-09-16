@@ -61,6 +61,15 @@ function wrapTheDot(editor) {
 	var position = range.bounds()[0];
 	range.bounds([0, position - 1]);
 	var fragment = range._nativeRange(range.bounds()).cloneContents();
+	var content = getFragmentSource(fragment);
+	//position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
+	var html = editor.html().replace(/&nbsp;/g, ' ');
+	html = content + wrappedDot + html.substring(content.length + 1);
+	editor.html(html);
+}
+
+
+function getFragmentSource(fragment) {
 	var content = '';
 	for (var i = 0; i < fragment.childNodes.length; i++) {
 		var node = fragment.childNodes[i];
@@ -72,10 +81,7 @@ function wrapTheDot(editor) {
 		}
 
 	}
-	//position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
-	var html = editor.html();
-	html = content + wrappedDot + html.substring(content.length + 1);
-	editor.html(html);
+	return content;
 }
 
 function getNodePosition(node) {
