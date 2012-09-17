@@ -7,7 +7,7 @@ function CodeEditor(element, model) {
 	var intelContainer = $('#' + element.data('intelResults'));
 	intelContainer.hide();
     var intelManager = new IntelManager(element, intelContainer, model);
-    element.keyz(null, null, {
+    element.keyz({ 'enter': false }, { 'enter': false }, {
     	'space': function () {
     		colorize(this);
     		return true;
@@ -18,6 +18,11 @@ function CodeEditor(element, model) {
     		wrapTheDot(element);
     		var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
     		intelContainer.css(offset);
+    		return true;
+    	},
+    	'enter': function () {
+    		var range = bililiteRange(element.get(0)).bounds('selection');
+    		range.text('\r\n', 'after');
     		return true;
     	}
     });

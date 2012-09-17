@@ -6,24 +6,14 @@
 
 function initEditor() {
     updateHtml();
-    // CodeEditor has $('#code')
-    // and model: RepositoryName, ProjectPath
-    // model is initialized in _editor.spark
-    // and CodeEditor too
 }
 
 
 
 function colorize(editor) {
-        var selection = window.getSelection();
-        var nodePositions = saveSelection(selection, editor);
-
-
         var range = bililiteRange(editor).bounds('selection'); //
         var position = range.bounds()[0];
-        //debugger;
         updateHtml(function () {
-        	//restoreSelection(nodePositions);
         	range.bounds([position, position]).select();
         });
     
