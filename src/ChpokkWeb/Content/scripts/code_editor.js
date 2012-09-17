@@ -22,7 +22,7 @@ function CodeEditor(element, model) {
     	},
     	'enter': function () {
     		var range = bililiteRange(element.get(0)).bounds('selection');
-    		range.text('\r\n', 'after');
+    		range.text('\n', 'end');
     		return true;
     	}
     });
