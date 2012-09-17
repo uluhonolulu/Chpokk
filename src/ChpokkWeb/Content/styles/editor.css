@@ -9,18 +9,18 @@
 			position:relative;
 			top:6px;
 		}
-		.code
-		{
+	
+		#code {
 			font-family: Consolas,Courier,Monospace;
 			font-size: small;
 			white-space: pre;
-			width:560px;
-			border: none;
 			margin: 0px;
 			padding: 4px;
 			line-height: 16px;
-			position: absolute;
-			top: 0px; left: 0px;
+			
+		}
+		#code div {
+			display: inline;
 		}
 		.code0
 		{
