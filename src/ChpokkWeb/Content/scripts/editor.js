@@ -71,7 +71,14 @@ function wrapTheDot(editor) {
 	var html = editor.html().replace(/&nbsp;/g, ' ');
 	html = content + wrappedDot + html.substring(content.length + 1);
 	html = html.replace(/<span id="wrapper">\.<\/span>/gi, '.');
-	editor.html(html);
+	setEditorHtml(editor, html);
+}
+
+function setEditorHtml(editor, html) {
+    var range = bililiteRange(editor.get(0)).bounds('selection'); //
+    var position = range.bounds()[0];
+    editor.html(html);
+    range.bounds([position, position]).select();
 }
 
 
