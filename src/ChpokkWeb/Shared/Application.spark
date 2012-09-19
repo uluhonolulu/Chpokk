@@ -13,7 +13,10 @@
 	<Styles />
 
 	<use content="InlineScripts" />
+
 	<ga />
+
+	<userVoice />
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">

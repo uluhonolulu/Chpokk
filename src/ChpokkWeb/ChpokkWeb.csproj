@@ -255,6 +255,11 @@
     <Content Include="Content\styles\lib\wells.less" />
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
+    <Content Include="Copy of Shared\Application.spark" />
+    <Content Include="Copy of Shared\bindings.xml" />
+    <Content Include="Copy of Shared\_break.spark" />
+    <Content Include="Copy of Shared\_ga.spark" />
+    <Content Include="Copy of Shared\_WhereAreWe.spark" />
     <Content Include="Features\Demo\RegisteredForInvite.spark" />
     <Content Include="Features\Demo\_editor.spark">
       <SubType>Designer</SubType>
@@ -374,6 +379,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Shared\bindings.xml" />
+    <Content Include="Shared\_userVoice.spark" />
     <Content Include="Shared\_break.spark" />
     <Content Include="Shared\_ga.spark" />
     <Content Include="Content\styles\editor.css" />
