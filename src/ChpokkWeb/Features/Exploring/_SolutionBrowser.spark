@@ -23,6 +23,8 @@
 				$('#solutionBrowserWrapper').append(root);
 
 				initTreeView('#solutionBrowser');
+
+				$(window).hashchange(); // let the selected file load now, but we'll find a better way later.
 			}
 			);			
 		});

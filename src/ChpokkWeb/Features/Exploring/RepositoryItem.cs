@@ -18,5 +18,7 @@ namespace ChpokkWeb.Features.Exploring {
 		public IList<RepositoryItem> Children { get; private set; }
 
 		public string Type { get; set; }
+
+		public Dictionary<string, string> Data { get; set; }
 	}
 }

@@ -1,50 +1,51 @@
-﻿		#results a
+﻿		#intel_results a
 		{
 			font-size: 12px;
 			line-height: 1.2;
 			white-space: nowrap;
 		}
-		#results a img 
+		#intel_results a img 
 		{
 			position:relative;
 			top:6px;
 		}
-		#editorDialog .code
-		{
+	
+		#code {
 			font-family: Consolas,Courier,Monospace;
 			font-size: small;
 			white-space: pre;
-			width:560px;
-			border: none;
 			margin: 0px;
 			padding: 4px;
 			line-height: 16px;
-			position: absolute;
-			top: 0px; left: 0px;
+			
+		}
+		#code div {
+			display: inline;
 		}
 		.code0
 		{
 			margin: 0em;
+			color: rgb(163, 67, 95)
 		}
 		.code1
 		{
-			color: #008000;
+			color: #8ba343;
 		}
 		.code2
 		{
-			color: #ff0000;
+			color: #a34343;
 		}
 		.code3
 		{
-			color: #191970;
+			color: #4343a3;
 		}
 		.code4
 		{
-			color: #ff0000;
+			color: #a65844;
 		}
 		.code5
 		{
-			color: #0000ff;
+			color: #6643a3;
 		}
 		
 		#editorDialog #code {

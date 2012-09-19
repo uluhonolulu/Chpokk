@@ -1,20 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Arractas;
-using ChpokkWeb;
-using ChpokkWeb.App_Start;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
-using FubuMVC.Core;
-using FubuMVC.Core.Bootstrapping;
-using FubuMVC.Core.Urls;
-using FubuMVC.StructureMap;
-using Ivonna.Framework;
-using LibGit2Sharp;
 using MbUnit.Framework;
-using System.Linq;
-using StructureMap;
-using Ivonna.Framework.Generic;
 
 namespace Chpokk.Tests.GitHub {
 	[TestFixture, Ignore("Long running test")]
@@ -22,7 +10,7 @@ namespace Chpokk.Tests.GitHub {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 			var model = new CloneInputModel {PhysicalApplicationPath = Path.GetFullPath(".."), RepoUrl = repoUrl};
-			Context.Container.Get<CloneController>().CloneRepo(model);
+			Context.Container.Get<CloneController>().CloneRepository(model);
 		}
 
 		[Test]
@@ -40,20 +28,7 @@ namespace Chpokk.Tests.GitHub {
 
 	}
 
-	//[RunOnWeb]
 
-	//public class StructureMapWorks {
-	//    [Test]
-	//    public void CanGetTheDefaultInstance() {
-	//        var container = new Container();
-	//        var expr = FubuApplication.For<ConfigureFubuMVC>()
-	//            .StructureMap(container)
-	//            .Bootstrap()
-	//            ;
-	//        expr.Facility.Inject(typeof(IUrlRegistry), typeof(UrlRegistry));
-	//        var registry = expr.Facility.Get<IUrlRegistry>();
-	//    }
-	//}
 
 	//public static class CheckoutExtensions {
 	//    /// <summary>

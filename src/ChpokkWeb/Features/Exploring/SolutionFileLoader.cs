@@ -41,9 +41,11 @@ namespace ChpokkWeb.Features.Exploring {
 		public RepositoryItem CreateProjectItem(string solutionFolder, ProjectItem projectItem, string repositoryRoot) {
 			var projectFilePath = FileSystem.Combine(solutionFolder,
 													 projectItem.Path);
-			var projectRepositoryItem = new RepositoryItem() {
+			var projectRepositoryItem = new RepositoryItem()
+			{
 				Name = projectItem.Name,
-				Type = "folder"
+				Type = "folder",
+				Data = new Dictionary<string, string> { { "ProjectPath", projectFilePath.PathRelativeTo(repositoryRoot)} }
 			};
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolderRelativeToRepositoryRoot = projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot);

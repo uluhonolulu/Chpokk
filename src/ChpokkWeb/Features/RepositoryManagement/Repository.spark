@@ -1,0 +1,68 @@
+﻿<use namespace="ChpokkWeb.Features.Exploring" />
+<use namespace="FubuMVC.Core.UI" />
+<use namespace="ChpokkWeb.Features.Exploring" />
+<use namespace="System.Reflection" />
+<viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryModel" />
+<content name="title">Project view</content>
+<content name="head">
+	<Stylesheet href="editor.css" />
+	<Script src="editor.js" />
+</content>
+<content name="InlineScripts">
+	<script type="text/javascript">
+
+		$(function () {
+			amplify.subscribe('hashchange', function () {
+				_loadSelectedFile();
+			});
+			$(window).hashchange(function () {
+				_loadSelectedFile();
+			});
+			//$(window).hashchange(); -- delay until the browser loads
+
+		});
+
+		function _loadSelectedFile() {
+			var hash = window.location.hash;
+			if (hash !== '' && hash !== '#') {
+				loadFile(hash.substring(1));
+			}
+		}
+
+		function loadFile(path) {
+			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
+			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
+			var li = $('#solutionBrowser ' + selector);
+			var projectPath = (li.length > 0)? li.data('ProjectPath') : '';
+			$.ajax({
+				type: "POST",
+				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
+				data: { RepositoryName: "${Model.Name}", RelativePath: path, ProjectPath: projectPath },
+				dataType: "html",
+				success: function (data) {
+					$('#fileContent').html(data);
+				}
+			});
+		}
+
+	</script>
+</content>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span9">
+			<div id="fileContent" style="white-space: pre;">
+			</div>		
+		</div>
+		<div class="span3">
+			<div class="pull-right well" style="min-height: 500px;">
+				!{this.Partial(new SolutionBrowserPartialModel{Name = Model.Name})}
+			</div>			
+		</div>
+	</div>
+</div>
+<div class="pull-right well" style="min-height: 500px; display: none;">
+	!{this.Partial(new FileListPartialModel{Name = Model.Name})}
+</div>
+
+

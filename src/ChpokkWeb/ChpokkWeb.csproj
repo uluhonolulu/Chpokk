@@ -66,8 +66,7 @@
       <HintPath>..\packages\FubuKayak.0.9.5.926\lib\net40\FubuMVC.OwinHost.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.Spark.0.9.5.817\lib\net40\FubuMVC.Spark.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Spark.0.9.5.926\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.StructureMap.dll</HintPath>
@@ -84,9 +83,9 @@
     <Reference Include="GitSharp.Core">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=1.1.0.72, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HtmlTags, Version=1.1.0.97, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlTags.1.1.0.72\lib\4.0\HtmlTags.dll</HintPath>
+      <HintPath>..\packages\HtmlTags.1.1.0.97\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -126,15 +125,16 @@
     <Reference Include="Serenity">
       <HintPath>..\packages\Serenity.0.9.5.927\lib\net40\Serenity.dll</HintPath>
     </Reference>
-    <Reference Include="Spark, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spark.1.6.1\lib\NET40\Spark.dll</HintPath>
+    <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spark.1.7.2.0\lib\NET40\Spark.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="StoryTeller">
       <HintPath>..\packages\Storyteller.1.1.0.496\lib\net40\StoryTeller.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -169,11 +169,22 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\scripts\browser.js" />
+    <Content Include="Content\scripts\code_editor.js" />
     <Content Include="Content\scripts\common.js" />
+    <Content Include="Content\scripts\editor.js" />
+    <Content Include="Content\scripts\intellisense.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
+    <Content Include="Content\scripts\lib\bililiteRange.js" />
+    <Content Include="Content\scripts\lib\jasmine-jquery.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\scripts\lib\jquery.gritter.js" />
+    <Content Include="Content\scripts\lib\jquery.keyz.js" />
+    <Content Include="Content\scripts\lib\jquery.sendkeys.js" />
+    <Content Include="Content\scripts\lib\rangy-core.js" />
+    <Content Include="Content\scripts\lib\server.js" />
+    <Content Include="Content\scripts\lib\sinon-1.2.0.js" />
+    <Content Include="Content\scripts\tests\intel.tests.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />
     <Content Include="Content\styles\lib\images\folder-closed.gif" />
@@ -255,12 +266,20 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Demo\NB.txt" />
+    <Content Include="Features\Editor\_editor.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\Exploring\_SolutionBrowser.spark" />
     <Content Include="Features\MainScreen\Main.spark" />
     <Content Include="Features\Editor\Tests\MainFixture.html" />
     <Content Include="Features\Exploring\_FileList.spark" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
     <Content Include="Global.asax" />
+    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
+    <Content Include="fubu-content\fubumvc-testrunner.zip" />
+    <Content Include="Content\tests.asset.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />
@@ -316,7 +335,6 @@
     <Content Include="Content\images\Intellisense\Icons.16x16.ProtectedStruct.png" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Reference.png" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Struct.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <Content Include="fubu-content\fubumvc.less.zip" />
     <Content Include="Content\bootstrap.asset.config" />
     <Content Include="Content\chpokk.asset.config">
@@ -326,10 +344,10 @@
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
     <Content Include="Features\Remotes\CloneInput.spark" />
-    <Content Include="Features\Project\Project.spark" />
+    <Content Include="Features\RepositoryManagement\Repository.spark" />
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
-    <Content Include="Content\scripts\editor.js" />
+    <Content Include="Content\scripts\editor_demo.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -400,6 +418,7 @@
     <Compile Include="Features\Demo\SuggestionModel.cs" />
     <Compile Include="Features\Demo\SuggestionOutputModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
+    <Compile Include="Features\Editor\CodeEditorModel.cs" />
     <Compile Include="Features\Editor\Colorizer\ColorizerController.cs" />
     <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
@@ -416,9 +435,9 @@
     <Compile Include="Features\Exploring\SolutionExplorerModel.cs" />
     <Compile Include="Features\Exploring\SolutionFileLoader.cs" />
     <Compile Include="Features\Exploring\SolutionParser.cs" />
-    <Compile Include="Features\Project\ProjectController.cs" />
-    <Compile Include="Features\Project\ProjectInputModel.cs" />
-    <Compile Include="Features\Project\ProjectModel.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryController.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryInputModel.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryModel.cs" />
     <Compile Include="Features\Exploring\FileContentInputModel.cs" />
     <Compile Include="Features\Exploring\FileListModel.cs" />
     <Compile Include="Features\Exploring\RepositoryItem.cs" />

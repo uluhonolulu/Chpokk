@@ -2,17 +2,22 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using ChpokkWeb.Features.Editor;
 using ChpokkWeb.Infrastructure;
+using FubuCore;
 using FubuMVC.Core;
 using HtmlTags;
 using System.Linq;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ContentController {
+		private IFileSystem _fileSystem;
+
 		[NotNull]
 		private readonly RepositoryManager _repositoryManager;
-		public ContentController(RepositoryManager repositoryManager) {
+		public ContentController(RepositoryManager repositoryManager, IFileSystem fileSystem) {
 			_repositoryManager = repositoryManager;
+			_fileSystem = fileSystem;
 		}
 
 
@@ -42,11 +47,11 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		//[AsymmetricJson]
-		public string GetContent(FileContentInputModel model) {
-			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.ProjectName); 
+		public CodeEditorModel GetContent(FileContentInputModel model) {
+			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.RepositoryName); 
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			var filePath = repositoryRoot.AppendPathMyWay(model.RelativePath);
-			return File.ReadAllText(filePath, Encoding.Default);
+			return new CodeEditorModel{Content = _fileSystem.ReadStringFromFile(filePath), ProjectPath = model.ProjectPath, RepositoryName = model.RepositoryName};
 		}
 	}
 }

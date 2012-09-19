@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Exploring {
@@ -13,7 +10,7 @@ namespace ChpokkWeb.Features.Exploring {
 			this.Register(new RepositoryInfo(path, name));
 		}
 		private const string commonRepositoryFolder = "UserFiles";
-		public RepositoryInfo GetClonedRepositoryInfo(string url) {
+		public RepositoryInfo GetClonedRepositoryInfo([NotNull] string url) {
 			var name = url.GetFileNameUniversal().RemoveExtension();
 			var path = commonRepositoryFolder.AppendPathMyWay(name);
 			return new RepositoryInfo(path, name);
@@ -25,10 +22,12 @@ namespace ChpokkWeb.Features.Exploring {
 		public void Register([NotNull] RepositoryInfo info) {
 			_repositories[info.Name] = info;
 		}
-		public RepositoryInfo GetRepositoryInfo(string name) {
+
+		[NotNull] 
+		public RepositoryInfo GetRepositoryInfo([NotNull] string name) {
 			return _repositories[name];
 		}
-		public bool RepositoryNameIsValid(string name) {
+		public bool RepositoryNameIsValid([NotNull] string name) {
 			return _repositories.ContainsKey(name);
 		}
 	}

@@ -99,10 +99,14 @@
     <Reference Include="ICSharpCode.Core.Presentation">
       <HintPath>..\..\lib\ICSharpCode.Core.Presentation.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpDevelop, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpDevelop.Widgets">
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
     </Reference>
@@ -121,6 +125,9 @@
     <Reference Include="LibGit2Sharp.Tests">
       <HintPath>..\..\..\..\libgit\LibGit2Sharp.Tests\bin\Debug\LibGit2Sharp.Tests.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MbUnit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Org.Mentalis.Security">
       <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Org.Mentalis.Security.dll</HintPath>
@@ -128,8 +135,8 @@
     <Reference Include="Serenity, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.5.927\lib\net40\Serenity.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -160,6 +167,8 @@
     <Compile Include="Exploring\SeeingASolutionFile.cs" />
     <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
+    <Compile Include="Intellisense\IntellisenseList.cs" />
+    <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
@@ -170,6 +179,7 @@
     <Compile Include="GitHub\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
+    <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Spikes\LessProblem.cs" />
     <Compile Include="Spikes\MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

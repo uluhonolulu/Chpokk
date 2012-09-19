@@ -1,14 +1,12 @@
 ﻿using System.IO;
-using System.Web;
-using ChpokkWeb.Features.Project;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Shared;
-using Elmah;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
+using RepositoryInputModel = ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel;
 
 namespace ChpokkWeb.Features.Remotes {
 	public class CloneController {
@@ -21,21 +19,22 @@ namespace ChpokkWeb.Features.Remotes {
 		}
 
 		[JsonEndpoint]
-		public AjaxContinuation CloneRepo(CloneInputModel model) {
-			var repositoryInfo = CloneRepository(model);
+		public AjaxContinuation CloneRepository(CloneInputModel model) {
+			var repoUrl = model.RepoUrl;
+			var repositoryInfo1 = _repositoryManager.GetClonedRepositoryInfo(repoUrl);
+			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, repositoryInfo1.Path);
+			CloneGitRepository(repoUrl, repositoryPath);
+			var repositoryInfo = repositoryInfo1;
 			_repositoryManager.Register(repositoryInfo);
-			var projectUrl = _registry.UrlFor(new ProjectInputModel() { Name = repositoryInfo.Name });
+			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { Name = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
-		private RepositoryInfo CloneRepository(CloneInputModel input) {
-			var repositoryInfo = _repositoryManager.GetClonedRepositoryInfo(input.RepoUrl);
-			var repositoryPath = Path.Combine(input.PhysicalApplicationPath, repositoryInfo.Path);
-			var repository = Repository.Clone(input.RepoUrl, repositoryPath);
+		private static void CloneGitRepository(string repoUrl, string repositoryPath) {
+			var repository = Repository.Clone(repoUrl, repositoryPath);
 			var master = repository.Branches["master"];
 			repository.Checkout(master);
 			repository.Dispose();
-			return repositoryInfo;
 		}
 
 		public string TestCloning(AppPathAwareInputModel model) {

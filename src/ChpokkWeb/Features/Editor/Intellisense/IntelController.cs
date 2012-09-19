@@ -1,5 +1,8 @@
+using System;
 using System.IO;
 using System.Linq;
+using ChpokkWeb.Features.Exploring;
+using FubuCore;
 using FubuMVC.Core;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Dom;
@@ -8,50 +11,72 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelController {
+		private readonly IFileSystem _fileSystem;
+		private readonly ProjectParser _projectParser;
+		private RepositoryManager _repositoryManager;
+
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			if (input.Text == null) return null;
 			var resolver = new NRefactoryResolver(LanguageProperties.CSharp);
-			//Debug.Assert(input.Text == "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  \r\n }\r\n}\r\n");
 
-			TextReader textReader = new StringReader(input.Text);
-			ICompilationUnit compilationUnit;
 			var projectContent = DefaultProjectContent;
+			TextReader textReader = new StringReader(input.Text);
+			var compilationUnit = Compile(projectContent, textReader);
 
-			using (IParser p = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
-				// we only need to parse types and method definitions, no method bodies
-				// so speed up the parser and make it more resistent to syntax
-				// errors in methods
-				p.ParseMethodBodies = false;
-
-				p.Parse();
-				compilationUnit = this.ConvertCompilationUnit(p.CompilationUnit, projectContent);
+			var repositoryRoot = _repositoryManager.GetRepositoryInfo(input.RepositoryName).Path;
+			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
+			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
+			var projectFolder = projectFilePath.ParentDirectory();
+			foreach (var fileItem in _projectParser.GetCompiledFiles(projectFileContent)) {
+				var filePath = FileSystem.Combine(projectFolder, fileItem.Path);
+				if (_fileSystem.FileExists(filePath)) {
+					var classContent = _fileSystem.ReadStringFromFile(filePath);
+					Compile(projectContent, new StringReader(classContent), filePath);						
+				}
+			
 			}
 
 
-			// Remove information from lastCompilationUnit and add information from newCompilationUnit.
-			projectContent.UpdateCompilationUnit(null, compilationUnit, "fakefile.cs");
+			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			var parseInformation =  new ParseInformation(compilationUnit);
-			//_parseInformation = new ParseInformation(new DefaultCompilationUnit(projectContent));
-			var text = input.Text.Insert(input.Position, input.NewChar.ToString());
-			//Debug.Assert(text == "using System;\r\nclass A\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  \r\n }\r\n}\r\n");
 			var expression = FindExpression(text, input.Position, parseInformation);
-			var rr = resolver.Resolve(expression,
-													parseInformation,
-													text);
-			if (rr == null) {
-				return null;
+			var resolveResult = resolver.Resolve(expression, parseInformation, text);
+			Console.WriteLine(input.Text);
+			Console.WriteLine(compilationUnit);
+			Console.WriteLine(expression);
+			Console.WriteLine(resolveResult);
+			if (resolveResult == null) {
+				return new IntelOutputModel{Message = "ResolveResult is null"};
 			}
-			var completionData = rr.GetCompletionData(projectContent);
+			var completionData = resolveResult.GetCompletionData(projectContent);
 			if (completionData == null) {
-				return null;
+				return new IntelOutputModel{Message = "Completion Data is null"};
 			}
-			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Text = entry.Name, EntityType = entry.EntityType};
+
+			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Name = entry.Name, EntityType = entry.EntityType.ToString()};
 			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().ToArray()};
 			return model;
 		}
 
+		private ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader, string fileName = "nofile") {
+			ICompilationUnit compilationUnit;
+			using (IParser parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
+				parser.ParseMethodBodies = false;
+				parser.Parse();
+				compilationUnit = this.ConvertCompilationUnit(parser.CompilationUnit, projectContent);
+			}
+			projectContent.UpdateCompilationUnit(null, compilationUnit, fileName);
+			return compilationUnit;
+		}
+
 		private static DefaultProjectContent _projectContent;
+		public IntelController(IFileSystem fileSystem, ProjectParser projectParser, RepositoryManager repositoryManager) {
+			_fileSystem = fileSystem;
+			_projectParser = projectParser;
+			_repositoryManager = repositoryManager;
+		}
+
 		private static DefaultProjectContent DefaultProjectContent {
 			get {
 				if (_projectContent == null) {
