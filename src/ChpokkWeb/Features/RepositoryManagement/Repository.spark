@@ -50,8 +50,8 @@
 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span9">
-			<div id="fileContent" style="white-space: pre;">
+		<div class="span8">
+			<div id="fileContent" style="margin-right:50px;" class="well">
 			</div>		
 		</div>
 		<div class="span3">

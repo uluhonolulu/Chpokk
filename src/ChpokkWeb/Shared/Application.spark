@@ -22,7 +22,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<span class="brand">chpokk</span>
+				<span class="brand" id="brand">chpokk</span>
 				<use content="header">
 				  </use>
 			</div>

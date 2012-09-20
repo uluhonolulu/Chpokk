@@ -2,7 +2,7 @@
 
 <Stylesheet href="editor.css" />
 <Script src="_editor.js" />
-<div id="code" contenteditable="true" data-intel-results="intel_results">${Model.Content}</div>
+<div id="code" contenteditable="true" data-intel-results="intel_results" ">${Model.Content}</div>
 <ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"></ul>
 <div id="log"></div>
 	<script type="text/javascript">

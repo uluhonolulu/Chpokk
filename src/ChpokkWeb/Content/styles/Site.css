@@ -60,6 +60,11 @@ page width. Or, you can specify an exact pixel width. */
     font-size: .9em;
 }
 
+#brand 
+{
+	margin-left:24px;
+}
+
 /* TAB MENU   
 ----------------------------------------------------------*/
 ul#menu
