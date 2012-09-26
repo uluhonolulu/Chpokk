@@ -1,6 +1,8 @@
 ﻿<viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryListModel" />
-<div>
+<use namespace="ChpokkWeb.Features.RepositoryManagement"/>
+<div class="well span3" style="float:none; margin-left:0px; margin-top:10px;">
+	<h3>Your projects</h3>
 	<for each="var name in Model.RepositoryNames">
-		!{name}<br/> 
+		!{this.LinkTo(new RepositoryInputModel{Name = name}).Text(name)}<br/> 
 	</for>
 </div>
