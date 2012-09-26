@@ -6,12 +6,6 @@ using System.Linq;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryManager {
-		public RepositoryManager() {
-			// for local testing
-			var name = "Chpokk-SampleSol";
-			var path = GetPathFor(name);
-			this.Register(new RepositoryInfo(path, name));
-		}
 
 		private const string commonRepositoryFolder = "UserFiles";
 		// path for repository root, relative to AppRoot
@@ -26,27 +20,27 @@ namespace ChpokkWeb.Features.Exploring {
 			return new RepositoryInfo(path, name);
 		}
 
-		[NotNull]
-		private readonly Dictionary<string, RepositoryInfo> _repositories = new Dictionary<string, RepositoryInfo>();
+		//[NotNull]
+		//private readonly Dictionary<string, RepositoryInfo> _repositories = new Dictionary<string, RepositoryInfo>();
 
-		public void Register([NotNull] RepositoryInfo info) {
-			_repositories[info.Name] = info;
-		}
+		//public void Register([NotNull] RepositoryInfo info) {
+		//    _repositories[info.Name] = info;
+		//}
 
 		[NotNull] 
 		public RepositoryInfo GetRepositoryInfo([NotNull] string name) {
-			return _repositories[name];
+			return new RepositoryInfo(this.GetPathFor(name), name);
 		}
 
-		public bool RepositoryNameIsValid([NotNull] string name) {
-			return _repositories.ContainsKey(name);
+		public bool RepositoryNameIsValid([NotNull] string name, string approot) {
+			return this.GetRepositoryNames(approot).Contains(name);
 		}
 
 
+		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames(string approot) {
 			var userFolder = approot.AppendPath(commonRepositoryFolder);
-			return Directory.EnumerateDirectories(userFolder).Select(dir => Path.GetFileName(dir));
-			return Directory.GetDirectories(userFolder);
-		}
+			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
+ 		}
 	}
 }

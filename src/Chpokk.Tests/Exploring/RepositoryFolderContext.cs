@@ -20,7 +20,6 @@ namespace Chpokk.Tests.Exploring {
 			var repositoryManager = Container.Get<RepositoryManager>();
 			RepoPath = repositoryManager.GetPathFor(REPO_NAME);
 			var repositoryInfo = new RepositoryInfo(RepoPath, REPO_NAME);
-			repositoryManager.Register(repositoryInfo);
 			RepositoryRoot = Path.Combine(AppRoot, repositoryInfo.Path);
 			DirectoryHelper.DeleteSubdirectories(RepositoryRoot.ParentDirectory());
 			if (!Directory.Exists(RepositoryRoot))

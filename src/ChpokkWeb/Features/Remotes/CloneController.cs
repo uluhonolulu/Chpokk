@@ -21,11 +21,9 @@ namespace ChpokkWeb.Features.Remotes {
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepository(CloneInputModel model) {
 			var repoUrl = model.RepoUrl;
-			var repositoryInfo1 = _repositoryManager.GetClonedRepositoryInfo(repoUrl);
-			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, repositoryInfo1.Path);
+			var repositoryInfo = _repositoryManager.GetClonedRepositoryInfo(repoUrl);
+			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			CloneGitRepository(repoUrl, repositoryPath);
-			var repositoryInfo = repositoryInfo1;
-			_repositoryManager.Register(repositoryInfo);
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { Name = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}

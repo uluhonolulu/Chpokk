@@ -23,7 +23,7 @@ namespace Chpokk.Tests.GitHub {
 		[Test]
 		public void RepositoryIsRegisteredByTheManager() {
 			var manager = Context.Container.Get<RepositoryManager>();
-			Assert.IsTrue(manager.RepositoryNameIsValid(Context.RepositoryName));
+			Assert.IsTrue(manager.RepositoryNameIsValid(Context.RepositoryName, Context.AppRoot));
 		}
 
 	}
