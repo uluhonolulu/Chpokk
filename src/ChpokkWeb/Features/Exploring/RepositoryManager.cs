@@ -6,13 +6,20 @@ namespace ChpokkWeb.Features.Exploring {
 		public RepositoryManager() {
 			// for local testing
 			var name = "Chpokk-SampleSol";
-			var path = commonRepositoryFolder.AppendPathMyWay(name);
+			var path = GetPathFor(name);
 			this.Register(new RepositoryInfo(path, name));
 		}
+
 		private const string commonRepositoryFolder = "UserFiles";
+		// path for repository root, relative to AppRoot
+		[NotNull]
+		public string GetPathFor(string name) {
+			return commonRepositoryFolder.AppendPathMyWay(name);
+		}
+
 		public RepositoryInfo GetClonedRepositoryInfo([NotNull] string url) {
 			var name = url.GetFileNameUniversal().RemoveExtension();
-			var path = commonRepositoryFolder.AppendPathMyWay(name);
+			var path = GetPathFor(name);
 			return new RepositoryInfo(path, name);
 		}
 
@@ -27,8 +34,15 @@ namespace ChpokkWeb.Features.Exploring {
 		public RepositoryInfo GetRepositoryInfo([NotNull] string name) {
 			return _repositories[name];
 		}
+
 		public bool RepositoryNameIsValid([NotNull] string name) {
 			return _repositories.ContainsKey(name);
+		}
+
+
+		public IEnumerable<string> GetRepositories()
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }
