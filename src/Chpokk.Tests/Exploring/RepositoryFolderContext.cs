@@ -6,6 +6,7 @@ using System.Text;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
 using LibGit2Sharp.Tests.TestHelpers;
+using FubuCore;
 
 namespace Chpokk.Tests.Exploring {
 	public class RepositoryFolderContext : SimpleConfiguredContext, IDisposable {
@@ -21,6 +22,7 @@ namespace Chpokk.Tests.Exploring {
 			var repositoryInfo = new RepositoryInfo(RepoPath, REPO_NAME);
 			repositoryManager.Register(repositoryInfo);
 			RepositoryRoot = Path.Combine(AppRoot, repositoryInfo.Path);
+			DirectoryHelper.DeleteSubdirectories(RepositoryRoot.ParentDirectory());
 			if (!Directory.Exists(RepositoryRoot))
 				Directory.CreateDirectory(RepositoryRoot);
 		}

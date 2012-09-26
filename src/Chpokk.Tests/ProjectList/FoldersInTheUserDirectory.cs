@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
@@ -16,12 +17,12 @@ namespace Chpokk.Tests.ProjectList
 		[Test]
 		public void ProvideTheListOfRepositories  ()
 		{
-			Assert.AreElementsSameIgnoringOrder(new[] {Context.REPO_NAME}, Result);
+			Assert.AreElementsEqual(new[] {Context.REPO_NAME}, Result);
 		}
 
 		public override IEnumerable<string> Act() {
 			var manager = Context.Container.Get<RepositoryManager>();
-			return manager.GetRepositories();
+			return manager.GetRepositoryNames(Context.AppRoot);
 		}
 	}
 }
