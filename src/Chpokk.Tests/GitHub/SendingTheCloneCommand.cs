@@ -14,7 +14,7 @@ using MbUnit.Framework;
 using System.Linq;
 
 namespace Chpokk.Tests.GitHub {
-	[TestFixture, RunOnWeb]
+	[TestFixture, RunOnWeb, Ignore("Typemock")]
 	public class SendingTheCloneCommand : BaseQueryTest<SimpleConfiguredContext, Spy<CloneInputModel>> {
 		[Test]
 		public void Test() {

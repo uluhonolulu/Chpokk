@@ -182,7 +182,6 @@
     <Compile Include="Intellisense\RequestForIntelData.cs" />
     <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Spikes\LessProblem.cs" />
-    <Compile Include="Spikes\MainProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />

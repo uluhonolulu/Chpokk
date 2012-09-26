@@ -17,7 +17,7 @@ using StructureMap.Pipeline;
 using dotless.Core.Input;
 
 namespace Chpokk.Tests {
-	[TestFixture, RunOnWeb]
+	[TestFixture, RunOnWeb, Ignore("Spike")]
 	public class LessProblem {
 		public LessProblem() {
 			CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("AppDomain"), @"F:\tmp\" + AppDomain.CurrentDomain.FriendlyName + ".txt"));

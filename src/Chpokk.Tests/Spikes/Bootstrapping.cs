@@ -22,7 +22,7 @@ namespace Chpokk.Tests {
 // ReSharper restore PossibleNullReferenceException
 				.Bootstrap();
 			//var engine = container.GetInstance<ILessEngine>();
-			Console.WriteLine(container.WhatDoIHave());
+			//Console.WriteLine(container.WhatDoIHave());
 			
 		}
 	}

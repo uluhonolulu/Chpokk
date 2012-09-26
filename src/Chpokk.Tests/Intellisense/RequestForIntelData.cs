@@ -11,7 +11,7 @@ using MbUnit.Framework;
 using StructureMap;
 
 namespace Chpokk.Tests.Intellisense {
-	[TestFixture, RunOnWeb]
+	[TestFixture, RunOnWeb, Ignore("Typemock")]
 	public class RequestForIntelData {
 
 		[Test]
