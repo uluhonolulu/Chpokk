@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using ChpokkWeb.Infrastructure;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryManager {
@@ -40,9 +42,10 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 
-		public IEnumerable<string> GetRepositories()
-		{
-			throw new System.NotImplementedException();
+		public IEnumerable<string> GetRepositoryNames(string approot) {
+			var userFolder = approot.AppendPath(commonRepositoryFolder);
+			return Directory.EnumerateDirectories(userFolder);
+			return Directory.GetDirectories(userFolder);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Arractas;
@@ -36,6 +37,10 @@ namespace Chpokk.Tests.Infrastructure {
 					_container = SetupContainer();
 				return _container;
 			}
+		}
+
+		public string AppRoot {
+			get { return Path.GetFullPath(@".."); }
 		}
 
 	}

@@ -22,7 +22,7 @@ namespace Chpokk.Tests.GitHub {
 
 			var repositoryInfo = new RepositoryManager().GetClonedRepositoryInfo(REPO_URL);
 			RepositoryName = repositoryInfo.Name;
-			RepositoryPath  = Path.Combine(Path.GetFullPath(@".."), repositoryInfo.Path);
+			RepositoryPath  = Path.Combine(AppRoot, repositoryInfo.Path);
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
 			FileName = Guid.NewGuid().ToString();

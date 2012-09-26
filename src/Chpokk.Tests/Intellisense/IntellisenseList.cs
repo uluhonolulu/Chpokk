@@ -44,7 +44,7 @@ namespace Chpokk.Tests.Intellisense {
 			            	NewChar = '.',
 			            	Position = position,
 			            	Text = source,
-			            	PhysicalApplicationPath = Path.GetFullPath(".."),
+			            	PhysicalApplicationPath = Context.AppRoot,
 			            	RepositoryName = Context.REPO_NAME,
 							ProjectPath = FileSystem.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
 			            };
