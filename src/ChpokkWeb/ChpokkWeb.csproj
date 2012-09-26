@@ -269,6 +269,7 @@
     <Content Include="Features\Editor\_editor.spark">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\RepositoryManagement\_RepositoryList.spark" />
     <Content Include="Features\Exploring\_SolutionBrowser.spark" />
     <Content Include="Features\MainScreen\Main.spark" />
     <Content Include="Features\Editor\Tests\MainFixture.html" />

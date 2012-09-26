@@ -1,0 +1,6 @@
+﻿<viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryListModel" />
+<div>
+	<for each="var name in Model.RepositoryNames">
+		!{name}<br/> 
+	</for>
+</div>

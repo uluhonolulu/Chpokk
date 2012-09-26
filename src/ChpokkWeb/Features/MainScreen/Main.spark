@@ -1,6 +1,10 @@
 ﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+<use namespace="FubuMVC.Core.UI" />
+
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
 
 <a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Open a project</a>
 <render partial="Remotes\CloneInput" />
+
+${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
