@@ -20,10 +20,16 @@ IntelManager.prototype.showItems = function (items) {
 	this.items = items;
 	$.tmpl(this.listItemTemplate, items).appendTo(this.container);
 	if (items && items.length > 0) {
+		wrapTheDot(this.editor);
+		var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
+		this.container.css(offset);
 		this.container.show();
 		this.container.focus();
+
 		this.selectItem(0);
+		// handle item operations
 		var self = this;
+		var position = biliPosition(this.editor);
 		this.container.find('li').each(function (index) {
 			$(this).hover(function () {
 				$(this).find('a').toggleClass();
@@ -31,23 +37,33 @@ IntelManager.prototype.showItems = function (items) {
 			$(this).mouseover(function () {
 				self.selectItem(index);
 			});
+			$(this).click(function () {
+				self.useSelected(position);
+			});
 		});
 	}
 };
 
 IntelManager.prototype.selectItem = function (index) {
-    this.selectedItem = this.items[index];
-    //remove the class from all items
-    var className = 'ui-state-hover';
-    this.container.find('li a').removeClass(className);
-    var a = this.container.find('li a')[index];
-    $(a).addClass(className);
+	this.selectedItem = this.items[index];
+	//remove the class from all items
+	var className = 'ui-state-hover';
+	this.container.find('li a').removeClass(className);
+	var a = this.container.find('li a')[index];
+	$(a).addClass(className);
+};
+
+IntelManager.prototype.useSelected = function (position) {
+	var selectedText = this.selectedItem.Name;
+	insertHtml(this.editor, selectedText, position);
+	setCaretPosition(this.editor, position + selectedText.length);
 };
 
 IntelManager.prototype.getSelectedRange = function() {
     var selection = window.getSelection();
     return selection.getRangeAt(0);
 };
+
 
 
 function getCaretPosition(range) {
@@ -57,4 +73,12 @@ function getCaretPosition(range) {
         lengthOfPreviousNodes += range.startContainer.parentNode.childNodes[i].textContent.length;
     }
     return lengthOfPreviousNodes + range.startOffset;
+}
+
+function nativePosition() {
+	return getCaretPosition(window.getSelection().getRangeAt(0));
+}
+
+function biliPosition(editor) {
+	return bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
 }

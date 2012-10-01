@@ -182,6 +182,29 @@ describe("Selecting an item", function () {
     });
 });
 
+describe("Using the selected item", function () {
+	var manager, items = [{ Name: "1" }, { Name: "2"}];
+	beforeEach(function () {
+		manager = createManager();
+		manager.showItems(items);
+		manager.selectItem(1);
+	});
+	it("Adds the selected text to the editor", function () {
+		manager.useSelected(); //act
+		
+		expect(manager.editor.html()).toEqual(items[1].Name);
+	});
+	it("Inserts the selected text at the caret position", function () {
+		var editor = manager.editor;
+		editor.text("some");
+		setCaretPosition(editor, 2);
+		
+		manager.useSelected();//Act
+		expect(editor.html()).toEqual("so2me");
+
+	});
+});
+
 describe("If the returned list is empty", function () {
     var manager, editor, container;
     beforeEach(function () {

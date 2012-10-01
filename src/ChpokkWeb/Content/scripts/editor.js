@@ -69,8 +69,32 @@ function setEditorHtml(editor, html) {
     var position = range.bounds()[0];
     editor.html(html);
     range.bounds([position, position]).select();
+   }
+
+function insertHtml(editor, htmlToInsert, position) {
+    var range = bililiteRange(editor.get(0)).bounds('selection');
+//    var position = range.bounds()[0];
+    console.log("bililite: " + position); //apparently it reports a wrong position in real life
+	console.log("native: " + getCaretPosition(window.getSelection().getRangeAt(0)));
+	var fragment = range._nativeRange([0, position]).cloneContents();
+	var content = getFragmentSource(fragment);
+	//console.log(content);
+	var html = editor.html().replace(/&nbsp;/g, ' ');
+	html = content + htmlToInsert + html.substring(content.length + 0);
+	setEditorHtml(editor, html);
+	
 }
 
+function setCaretPosition(editor, position) {
+    var range = bililiteRange(editor.get(0)).bounds('selection');
+    range.bounds([position, position]);
+	range.select();
+}
+
+//function getCaretPosition(editor) {
+//    var range = bililiteRange(editor.get(0)).bounds('selection');
+//	return range.bounds()[0];
+//}
 
 function getFragmentSource(fragment) {
 	var content = '';
