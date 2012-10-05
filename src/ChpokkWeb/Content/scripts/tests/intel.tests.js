@@ -118,10 +118,11 @@ describe("On pressing the period key", function () {
 			wrapTheDot(editor);
 			var html = editor.html();
 			var expected = '<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\n\n'; // note: \r disappears
-			for (var i = 0; i < html.length; i++) {
+			var length = (html.length >= expected.length) ? html.length : expected.length;
+			for (var i = 0; i < length; i++) {
 				expect(html.substr(0, i) + i).toBe(expected.substr(0, i) + i);
 			}
-			expect(editor.html()).toBe('<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\n\n');
+			expect(editor.html()).toBe(expected);
 
 		});
 
@@ -189,17 +190,17 @@ describe("Using the selected item", function () {
 		manager.showItems(items);
 		manager.selectItem(1);
 	});
-	it("Adds the selected text to the editor", function () {
-		manager.useSelected(); //act
+	it("Adds the selected text to the editor", function () { //TODO: fix it by mocking the wrapthedot method
+		manager.useSelected(1); //act
 		
 		expect(manager.editor.html()).toEqual(items[1].Name);
 	});
 	it("Inserts the selected text at the caret position", function () {
 		var editor = manager.editor;
 		editor.text("some");
-		setCaretPosition(editor, 2);
+		//setCaretPosition(editor, 2);
 		
-		manager.useSelected();//Act
+		manager.useSelected(2);//Act
 		expect(editor.html()).toEqual("so2me");
 
 	});
@@ -277,6 +278,15 @@ describe("Selection suite", function () {
 
 	});
 
+});
+
+describe("When code contains angular brackets", function () {
+	it("keeps them after wrapping the dot", function () {
+		var fragment = document.createDocumentFragment();
+		fragment.appendChild(document.createTextNode("<..>"));
+		var result = getFragmentSource(fragment);
+		expect(result).toBe("&lt;..&gt;");
+	});
 });
 
 function ensureFixture() {

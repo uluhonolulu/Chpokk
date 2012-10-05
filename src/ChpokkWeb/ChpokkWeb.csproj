@@ -374,6 +374,7 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Shared\404.spark" />
     <Content Include="Shared\bindings.xml" />
     <Content Include="Shared\_userVoice.spark" />
     <Content Include="Shared\_break.spark" />

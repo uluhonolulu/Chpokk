@@ -54,14 +54,21 @@ function wrapTheDot(editor) {
 	var wrappedDot = '<span id=\'wrapper\'>.</span>';
 	var range = bililiteRange(editor.get(0)).bounds('selection');//
 	var position = range.bounds()[0];
-	range.bounds([0, position - 1]);
-	var fragment = range._nativeRange(range.bounds()).cloneContents();
-	var content = getFragmentSource(fragment);
-	//position = bililiteRange(editor.get(0)).bounds('selection').bounds()[0];
-	var html = editor.html().replace(/&nbsp;/g, ' ');
-	html = content + wrappedDot + html.substring(content.length + 1);
-	html = html.replace(/<span id="wrapper">\.<\/span>/gi, '.');
-	setEditorHtml(editor, html);
+	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
+	var endPosition = range.bounds('end').bounds()[1];
+	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
+//	var content = getFragmentSource(fragment);
+//	var html = editor.html().replace(/&nbsp;/g, ' ');
+//	console.log(content);
+//	html = content + wrappedDot + html.substring(content.length + 1);
+//	html = html.replace(/<span id="wrapper">\.<\/span>/gi, '.');
+//	setEditorHtml(editor, html);
+	//new stuff
+	editor.empty();
+	editor.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
+	var dotNode = $(wrappedDot).get(0);
+	editor.get(0).appendChild(dotNode);
+	editor.get(0).appendChild(postFragment);
 }
 
 function setEditorHtml(editor, html) {
@@ -74,8 +81,8 @@ function setEditorHtml(editor, html) {
 function insertHtml(editor, htmlToInsert, position) {
     var range = bililiteRange(editor.get(0)).bounds('selection');
 //    var position = range.bounds()[0];
-    console.log("bililite: " + position); //apparently it reports a wrong position in real life
-	console.log("native: " + getCaretPosition(window.getSelection().getRangeAt(0)));
+//    console.log("bililite: " + position); //apparently it reports a wrong position in real life
+//	console.log("native: " + getCaretPosition(window.getSelection().getRangeAt(0)));
 	var fragment = range._nativeRange([0, position]).cloneContents();
 	var content = getFragmentSource(fragment);
 	//console.log(content);
@@ -100,11 +107,14 @@ function getFragmentSource(fragment) {
 	var content = '';
 	for (var i = 0; i < fragment.childNodes.length; i++) {
 		var node = fragment.childNodes[i];
+		console.log(node.nodeType);
 		if (node.nodeType === 1) {
 			content += node.outerHTML;
+			console.log(node.outerHTML);
 		}
 		else {
-			content += node.textContent;
+			content += htmlEncode(node.textContent);
+			console.log(node.textContent);
 		}
 
 	}
@@ -115,6 +125,10 @@ function getNodePosition(node) {
     var parentNode = node.parentNode;
     if (parentNode === null) return -1;
     return $.inArray(node, parentNode.childNodes);
+   }
+
+function htmlEncode(value) {
+	return $('<pre/>').text(value).html();
 }
 
 function trace(message) {

@@ -18,9 +18,9 @@ IntelManager.prototype.showData = function () {
 
 IntelManager.prototype.showItems = function (items) {
 	this.items = items;
-	$.tmpl(this.listItemTemplate, items).appendTo(this.container);
 	if (items && items.length > 0) {
 		wrapTheDot(this.editor);
+		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
 		var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
 		this.container.css(offset);
 		this.container.show();
@@ -55,6 +55,10 @@ IntelManager.prototype.selectItem = function (index) {
 
 IntelManager.prototype.useSelected = function (position) {
 	var selectedText = this.selectedItem.Name;
+//	this.editor.focus();
+//	console.log("bililite: " + biliPosition(this.editor)); 
+//	console.log("native: " + getCaretPosition(window.getSelection().getRangeAt(0)));
+//	
 	insertHtml(this.editor, selectedText, position);
 	setCaretPosition(this.editor, position + selectedText.length);
 };
