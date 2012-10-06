@@ -55,12 +55,9 @@ IntelManager.prototype.selectItem = function (index) {
 
 IntelManager.prototype.useSelected = function (position) {
 	var selectedText = this.selectedItem.Name;
-//	this.editor.focus();
-//	console.log("bililite: " + biliPosition(this.editor)); 
-//	console.log("native: " + getCaretPosition(window.getSelection().getRangeAt(0)));
-//	
-	insertHtml(this.editor, selectedText, position);
-	setCaretPosition(this.editor, position + selectedText.length);
+	var range = bililiteRange(this.editor.get(0)).bounds('selection');
+	range.bounds([position, position]).select();
+	range.text(selectedText, 'end');
 };
 
 IntelManager.prototype.getSelectedRange = function() {
