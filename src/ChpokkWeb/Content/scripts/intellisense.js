@@ -39,6 +39,7 @@ IntelManager.prototype.showItems = function (items) {
 			});
 			$(this).click(function () {
 				self.useSelected(position);
+				self.hideItems();
 			});
 		});
 	}
@@ -65,7 +66,9 @@ IntelManager.prototype.getSelectedRange = function() {
     return selection.getRangeAt(0);
 };
 
-
+IntelManager.prototype.hideItems = function () {
+	this.container.hide();
+};
 
 function getCaretPosition(range) {
     var index = $.inArray(range.startContainer, range.startContainer.parentNode.childNodes);
