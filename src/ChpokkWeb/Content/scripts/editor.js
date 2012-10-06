@@ -57,18 +57,12 @@ function wrapTheDot(editor) {
 	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
 	var endPosition = range.bounds('end').bounds()[1];
 	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
-//	var content = getFragmentSource(fragment);
-//	var html = editor.html().replace(/&nbsp;/g, ' ');
-//	console.log(content);
-//	html = content + wrappedDot + html.substring(content.length + 1);
-//	html = html.replace(/<span id="wrapper">\.<\/span>/gi, '.');
-//	setEditorHtml(editor, html);
-	//new stuff
 	editor.empty();
 	editor.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
 	var dotNode = $(wrappedDot).get(0);
 	editor.get(0).appendChild(dotNode);
 	editor.get(0).appendChild(postFragment);
+    range.bounds([position, position]).select();
 }
 
 function setEditorHtml(editor, html) {
