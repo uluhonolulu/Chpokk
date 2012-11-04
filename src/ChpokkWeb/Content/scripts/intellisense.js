@@ -3,12 +3,13 @@
     this.container = container;
     this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Name}</a></li>");
     this.model = model;
+    this.htmlEditor = new HtmlEditor(editor);
 }
 
 IntelManager.prototype.showData = function () {
     var intelUrl = 'url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel';
     var self = this;
-    var text = this.editor.text();
+    var text = this.htmlEditor.editor.text();
     var range = this.getSelectedRange();
     var position = getCaretPosition(range) - 1; // we need the position just before the typed char
     $.post(intelUrl, { Text: text, Position: position, NewChar: '.', RepositoryName: this.model.RepositoryName, ProjectPath: this.model.ProjectPath }, function (intelData) {
@@ -19,7 +20,7 @@ IntelManager.prototype.showData = function () {
 IntelManager.prototype.showItems = function (items) {
 	this.items = items;
 	if (items && items.length > 0) {
-		wrapTheDot(this.editor);
+	    this.htmlEditor.wrapTheDot();
 		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
 		var offset = getDotOffset(this.editor);
 		this.container.css(offset);

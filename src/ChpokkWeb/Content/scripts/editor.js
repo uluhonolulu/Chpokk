@@ -54,22 +54,22 @@ HtmlEditor.prototype.colorize = function () {
 //    }
 //}
 
-function wrapTheDot(editor) {
+HtmlEditor.prototype.wrapTheDot = function() {
     var wrappedDot = '<span id=\'wrapper\'>.</span>';
-	var range = bililiteRange(editor.get(0)).bounds('selection');//
+	var range = bililiteRange(this.editor.get(0)).bounds('selection');//
 	var position = range.bounds()[0];
 	var endPosition = range.bounds('end').bounds()[1];
     // let's remove the existing wrappers
-    var html = editor.html();
+    var html = this.editor.html();
     html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
-    editor.html(html);
+    this.editor.html(html);
 	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
 	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
-	editor.empty();
-	editor.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
+	this.editor.empty();
+	this.editor.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
 	var dotNode = $(wrappedDot).get(0);
-	editor.get(0).appendChild(dotNode);
-	editor.get(0).appendChild(postFragment);
+	this.editor.get(0).appendChild(dotNode);
+	this.editor.get(0).appendChild(postFragment);
     range.bounds([position, position]).select();
 }
 

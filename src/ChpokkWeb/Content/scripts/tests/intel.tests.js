@@ -68,9 +68,10 @@ describe("When intellisense is open", function () {
 });
 
 describe("On pressing the period key", function () {
-	var editor;
+	var editor, manager;
 	beforeEach(function () {
-		editor = createManager().editor;
+	    manager = createManager();
+        editor = manager.editor;
 		Server.stubContinuation({});
 	});
 	describe("Should surround the period with a span", function () {
@@ -78,7 +79,7 @@ describe("On pressing the period key", function () {
 			editor.html('');
 			//typeDot();
 			editor.sendkeys('.');
-			wrapTheDot(editor);
+            manager.htmlEditor.wrapTheDot();
 
 			expect(editor.html()).toBe('<span id="wrapper">.</span>');
 		});
@@ -87,7 +88,7 @@ describe("On pressing the period key", function () {
 			setPosition(5);
 			editor.sendkeys('.');
 			//typeDot();
-			wrapTheDot(editor);
+			manager.htmlEditor.wrapTheDot();
 			expect(editor.html()).toBe('stuff<span id="wrapper">.</span>here');
 		});
 
@@ -96,7 +97,7 @@ describe("On pressing the period key", function () {
 			setPosition(10);
 			editor.sendkeys('.');
 
-			wrapTheDot(editor);
+			manager.htmlEditor.wrapTheDot();
 			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
 		});
 
@@ -105,7 +106,7 @@ describe("On pressing the period key", function () {
 			setPosition(10);
 			editor.sendkeys('.');
 
-			wrapTheDot(editor);
+			manager.htmlEditor.wrapTheDot();
 			expect(editor.html()).toBe('<span>stuff</span> here<span id="wrapper">.</span>');
 
 		});
@@ -115,7 +116,7 @@ describe("On pressing the period key", function () {
 			editor.html('<span class="code0">using</span>&nbsp;System;\r\n\r\n');
 			setPosition(13);
 			editor.sendkeys('.');
-			wrapTheDot(editor);
+			manager.htmlEditor.wrapTheDot();
 			var html = editor.html();
 			var expected = '<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\n\n'; // note: \r disappears
 			var length = (html.length >= expected.length) ? html.length : expected.length;
@@ -131,7 +132,7 @@ describe("On pressing the period key", function () {
 			setPosition(36);
 			editor.sendkeys('.');
 
-			wrapTheDot(editor);
+			manager.htmlEditor.wrapTheDot();
 			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
 
 		});
@@ -187,7 +188,7 @@ describe("Using the selected item", function () {
     var manager, items = [{ Name: "1" }, { Name: "2"}];
     beforeEach(function () {
         manager = createManager();
-        spyOn(window, 'wrapTheDot');
+        spyOn(manager.htmlEditor, 'wrapTheDot');
         spyOn(window, 'getDotOffset').andReturn({top:0, left:0});
         manager.showItems(items);
         manager.selectItem(1);
