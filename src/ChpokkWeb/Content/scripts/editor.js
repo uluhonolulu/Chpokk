@@ -23,36 +23,36 @@ HtmlEditor.prototype.colorize = function () {
 
 
 
-function saveSelection(selection, rootNode) {
-    var caretPosition = selection.anchorOffset;
-    var currentNode = selection.anchorNode;
+//function saveSelection(selection, rootNode) {
+//    var caretPosition = selection.anchorOffset;
+//    var currentNode = selection.anchorNode;
 
-    var nodePositions = [];
-    nodePositions.push(caretPosition);
-    while (currentNode.id !== rootNode.id) {
-        nodePositions.push(getNodePosition(currentNode));
-        currentNode = currentNode.parentNode;
-    }
-    return nodePositions;
-}
+//    var nodePositions = [];
+//    nodePositions.push(caretPosition);
+//    while (currentNode.id !== rootNode.id) {
+//        nodePositions.push(getNodePosition(currentNode));
+//        currentNode = currentNode.parentNode;
+//    }
+//    return nodePositions;
+//}
 
-function restoreSelection(nodePositions) {
-    var caretPosition = nodePositions[0];
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    var currentNode = range.startContainer;
-    for (var i = nodePositions.length - 1; i > 0; i--) {
-        currentNode = currentNode.childNodes[nodePositions[i]];
-    }
-    try {
-        range.setStart(currentNode, caretPosition);
-        selection.removeAllRanges();
-        selection.addRange(range);
-    } catch (e) {
-        debugger;
-        trace(e.toString());
-    }
-      }
+//function restoreSelection(nodePositions) {
+//    var caretPosition = nodePositions[0];
+//    var selection = window.getSelection();
+//    var range = selection.getRangeAt(0);
+//    var currentNode = range.startContainer;
+//    for (var i = nodePositions.length - 1; i > 0; i--) {
+//        currentNode = currentNode.childNodes[nodePositions[i]];
+//    }
+//    try {
+//        range.setStart(currentNode, caretPosition);
+//        selection.removeAllRanges();
+//        selection.addRange(range);
+//    } catch (e) {
+//        debugger;
+//        trace(e.toString());
+//    }
+//}
 
 function wrapTheDot(editor) {
     var wrappedDot = '<span id=\'wrapper\'>.</span>';
