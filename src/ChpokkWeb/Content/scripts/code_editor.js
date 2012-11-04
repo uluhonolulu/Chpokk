@@ -24,5 +24,5 @@ function CodeEditor(element, model) {
     	}
     });
 
-    updateHtml();
+    new HtmlEditor(element).updateHtml();
 }

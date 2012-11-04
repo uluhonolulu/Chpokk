@@ -1,14 +1,16 @@
-﻿function updateHtml(callback) {
-    var text = $('#code').text();
+﻿function HtmlEditor(jqueryElement) {
+    this.editor = jqueryElement;
+}
+
+HtmlEditor.prototype.updateHtml = function (callback) {
+    var text = this.editor.text();
     var toHtmlUrl = "url::ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel";
-    $('#code').load(toHtmlUrl, { Code: text }, callback);
-}
+    this.editor.load(toHtmlUrl, { Code: text }, callback);
+};
 
-function initEditor() {
-    updateHtml();
-}
-
-
+//HtmlEditor.prototype.initEditor = function () {
+//    updateHtml();
+//};
 
 function colorize(editor) {
         var range = bililiteRange(editor).bounds('selection'); //
