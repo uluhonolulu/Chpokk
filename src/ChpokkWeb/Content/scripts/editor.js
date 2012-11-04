@@ -12,14 +12,16 @@ HtmlEditor.prototype.updateHtml = function (callback) {
 //    updateHtml();
 //};
 
-function colorize(editor) {
-        var range = bililiteRange(editor).bounds('selection'); //
+HtmlEditor.prototype.colorize = function () {
+        var range = bililiteRange(this.editor).bounds('selection'); //
         var position = range.bounds()[0];
         updateHtml(function () {
         	range.bounds([position, position]).select();
         });
     
 }
+
+
 
 function saveSelection(selection, rootNode) {
     var caretPosition = selection.anchorOffset;
