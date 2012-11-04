@@ -69,6 +69,11 @@ function wrapTheDot(editor) {
     range.bounds([position, position]).select();
 }
 
+function getDotOffset(editor) {
+    var wrapper = editor.find('#wrapper');
+    return { top: wrapper.position().top + wrapper.height(), left: wrapper.position().left };
+}
+
 function setEditorHtml(editor, html) {
     var range = bililiteRange(editor.get(0)).bounds('selection'); //
     var position = range.bounds()[0];

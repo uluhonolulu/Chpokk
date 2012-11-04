@@ -21,7 +21,7 @@ IntelManager.prototype.showItems = function (items) {
 	if (items && items.length > 0) {
 		wrapTheDot(this.editor);
 		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
-		var offset = { top: $('#wrapper').position().top + $('#wrapper').height(), left: $('#wrapper').position().left };
+		var offset = getDotOffset(this.editor);
 		this.container.css(offset);
 		this.container.show();
 		this.container.focus();
