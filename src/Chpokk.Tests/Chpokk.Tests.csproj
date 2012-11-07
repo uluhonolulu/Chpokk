@@ -118,9 +118,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Ivonna\Ivonna\bin\Debug\Ivonna.dll</HintPath>
     </Reference>
-    <Reference Include="LibGit2Sharp, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LibGit2Sharp, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\libgit\LibGit2Sharp.Tests\bin\Debug\LibGit2Sharp.dll</HintPath>
+      <HintPath>..\packages\LibGit2Sharp.0.9.5\lib\net35\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="LibGit2Sharp.Tests">
       <HintPath>..\..\..\..\libgit\LibGit2Sharp.Tests\bin\Debug\LibGit2Sharp.Tests.dll</HintPath>
@@ -225,7 +225,12 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rem copy F:\Projects\Fubu\FubuMVC.AssetTransforms\src\FubuMVC.Less\bin\Debug\FubuMVC.Less.dll $(TargetDir)*.*</PostBuildEvent>
+    <PostBuildEvent>rem copy F:\Projects\Fubu\FubuMVC.AssetTransforms\src\FubuMVC.Less\bin\Debug\FubuMVC.Less.dll $(TargetDir)*.*
+if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
+if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.9.5\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.9.5\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
