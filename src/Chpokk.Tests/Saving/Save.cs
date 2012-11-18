@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Arractas;
+﻿using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.Editor.SaveCommit;
 using FubuCore;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using LibGit2Sharp.Tests.TestHelpers;
 
 namespace Chpokk.Tests.Saving {
@@ -24,24 +20,6 @@ namespace Chpokk.Tests.Saving {
 		public override void Act() {
 			var controller = Context.Container.Get<SaveCommitController>();
 			controller.Save(new SaveCommitModel() {Content = NEW_CONTENT, FilePath = Context.FilePath});
-			//var system = Context.Container.Get<FileSystem>();
-			//system.WriteStringToFile(Context.FilePath, NEW_CONTENT);
-		}
-	}
-
-	public class SaveCommitModel {
-		public string FilePath { get; set; }
-		public string Content { get; set; }
-	}
-
-	public class SaveCommitController {
-		private readonly FileSystem _fileSystem;
-		public SaveCommitController(FileSystem fileSystem) {
-			_fileSystem = fileSystem;
-		}
-
-		public void Save(SaveCommitModel saveCommitModel) {
-			_fileSystem.WriteStringToFile(saveCommitModel.FilePath, saveCommitModel.Content);
 		}
 	}
 }
