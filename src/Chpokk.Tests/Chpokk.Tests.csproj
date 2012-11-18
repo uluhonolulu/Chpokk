@@ -53,8 +53,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Arractas">
-      <HintPath>..\..\..\..\..\Разные штуки\Visual Studio 2008\Projects\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
+    <Reference Include="Arractas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
     </Reference>
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.0.9.1.274\lib\Bottles.dll</HintPath>
@@ -82,7 +82,7 @@
     <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="Gallio, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="GitSharp">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.dll</HintPath>
     </Reference>
@@ -128,7 +128,7 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\..\lib\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MbUnit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Org.Mentalis.Security">
       <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Org.Mentalis.Security.dll</HintPath>
     </Reference>
@@ -159,6 +159,8 @@
   <ItemGroup>
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
     <Compile Include="Exploring\ParsingProjectFile.cs" />
+    <Compile Include="Exploring\PhysicalCodeFileContext.cs" />
+    <Compile Include="Exploring\ProjectWithSingleRootFileContext.cs" />
     <Compile Include="Exploring\UnitTests\CreatingAProperFolderStructure.cs" />
     <Compile Include="Exploring\UnitTests\ParsingProjectContent.cs" />
     <Compile Include="Exploring\ParsingTheSolutionFile.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="Intellisense\IntellisenseList.cs" />
     <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
+    <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />

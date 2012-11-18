@@ -122,9 +122,6 @@
     <Reference Include="Selenium.WebDriverBackedSelenium">
       <HintPath>..\packages\Selenium.WebDriverBackedSelenium.2.21.0\lib\net40\Selenium.WebDriverBackedSelenium.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity">
-      <HintPath>..\packages\Serenity.0.9.5.927\lib\net40\Serenity.dll</HintPath>
-    </Reference>
     <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <HintPath>..\packages\Spark.1.7.2.0\lib\NET40\Spark.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
