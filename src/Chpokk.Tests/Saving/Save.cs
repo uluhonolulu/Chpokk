@@ -19,7 +19,15 @@ namespace Chpokk.Tests.Saving {
 
 		public override void Act() {
 			var controller = Context.Container.Get<SaveCommitController>();
-			controller.Save(new SaveCommitModel() {Content = NEW_CONTENT, FilePath = Context.FilePath});
+			controller.Save(new SaveCommitModel {Content = NEW_CONTENT, FilePath = Context.FilePath});
+		}
+	}
+
+	public class Commit : BaseCommandTest<PhysicalCodeFileContext> {
+		private const string NEW_CONTENT = "---";
+		public override void Act() {
+			var controller = Context.Container.Get<SaveCommitController>();
+			controller.Save(new SaveCommitModel {Content = NEW_CONTENT, FilePath = Context.FilePath, DoCommit = true, CommitMessage = "doesntmater"});			
 		}
 	}
 }
