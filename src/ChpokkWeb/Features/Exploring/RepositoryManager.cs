@@ -42,5 +42,12 @@ namespace ChpokkWeb.Features.Exploring {
 			var userFolder = approot.AppendPath(commonRepositoryFolder);
 			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
  		}
+
+		[NotNull]
+		public string GetPhysicalFilePath([NotNull] BaseFileModel info) {
+			var repositoryInfo = this.GetRepositoryInfo(info.RepositoryName);
+			var repositoryRoot = info.PhysicalApplicationPath.AppendPath(repositoryInfo.Path);
+			return repositoryRoot.AppendPathMyWay(info.PathRelativeToRepositoryRoot);
+		}
 	}
 }

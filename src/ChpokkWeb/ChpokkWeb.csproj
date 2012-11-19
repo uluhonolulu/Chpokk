@@ -427,6 +427,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\Editor\SaveCommit\SaveCommitController.cs" />
     <Compile Include="Features\Editor\SaveCommit\SaveCommitModel.cs" />
+    <Compile Include="Features\Exploring\BaseFileModel.cs" />
     <Compile Include="Features\Exploring\FileItemToProjectItemConverter.cs" />
     <Compile Include="Features\Exploring\FileListPartialModel.cs" />
     <Compile Include="Features\Exploring\ProjectParser.cs" />
