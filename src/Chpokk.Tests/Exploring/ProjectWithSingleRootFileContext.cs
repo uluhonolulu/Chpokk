@@ -2,7 +2,7 @@
 using FubuCore;
 
 namespace Chpokk.Tests.Exploring {
-	public class ProjectWithSingleRootFileContext : RepositoryFolderContext {
+	public class ProjectWithSingleRootFileContext : GitRepositoryContext {
 		public readonly string SOLUTION_FOLDER = "src";
 		//public string PROJECT_ROOT = "root";
 		public readonly string PROJECT_NAME = "ProjectName";

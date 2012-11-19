@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
+    <Compile Include="Exploring\GitRepositoryContext.cs" />
     <Compile Include="Exploring\ParsingProjectFile.cs" />
     <Compile Include="Exploring\PhysicalCodeFileContext.cs" />
     <Compile Include="Exploring\ProjectWithSingleRootFileContext.cs" />
