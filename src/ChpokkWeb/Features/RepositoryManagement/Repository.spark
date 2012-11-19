@@ -37,7 +37,7 @@
 			$.ajax({
 				type: "POST",
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: { RepositoryName: "${Model.Name}", RelativePath: path, ProjectPath: projectPath },
+				data: { RepositoryName: "${Model.Name}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath },
 				dataType: "html",
 				success: function (data) {
 					$('#fileContent').html(data);
