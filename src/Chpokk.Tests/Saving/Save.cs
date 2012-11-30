@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Editor.SaveCommit;
@@ -64,11 +65,9 @@ namespace Chpokk.Tests.Saving {
 		public void CommitShouldContainTheChangedFile() {
 			using (var repo = new Repository(Context.RepositoryRoot)) {
 				var commit = repo.Head.Tip;
-				commit.Tree.Count.ShouldEqual(1);
-				var treeEntry = commit.Tree.Single();
-				Console.WriteLine(treeEntry.Name);
-				//var blob = 
-				//repo.Commits.First()[Context.FilePath].Path
+				var blob = (Blob) commit[@"src\ProjectName\Class1.cs"].Target;
+				string content = Encoding.UTF8.GetString(blob.Content);
+				content.ShouldEqual("---");
 			}			
 		}
 	}
