@@ -1,17 +1,19 @@
 ﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
 
 <Stylesheet href="editor.css" />
-<Script src="_editor.js" />
-<div id="code" contenteditable="true" data-intel-results="intel_results" ">${Model.Content}</div>
+<button id="saveButton" class="btn btn-inverse">Save</button> <button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
+<div id="code" contenteditable="true" data-intel-results="intel_results">${Model.Content}</div>
 <ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"></ul>
 <div id="log"></div>
 	<script type="text/javascript">
 
 
 		$(function () {
-		//updateHtml();
-		// TODO: remove hardcoded props
-		var editor = new CodeEditor($('#code'), { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}' });
+			var editor = new CodeEditor($('#code'), { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}' });
+			$('#saveButton').click(function() {
+				var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.SaveCommit.SaveCommitModel>()}';
+				$.post(saveUrl, { Content: $('#code').text(), RepositoryName: "Chpokk-SampleSol", PathRelativeToRepositoryRoot: 'src\\ConsoleApplication1\\Program.cs' });
+			});
 		});
 	</script>
 
