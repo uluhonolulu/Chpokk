@@ -43,11 +43,10 @@ namespace Chpokk.Tests.Saving {
 		public override void Act() {
 			var controller = Context.Container.Get<SaveCommitController>();
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
-			controller.Save(new SaveCommitModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@".."), DoCommit = true, CommitMessage = "doesntmater" });
 			using (var repo = new Repository(Context.RepositoryRoot)) {
-				repo.Index.Stage(Context.FilePath);
-				repo.Commit("yo");					
+				repo.Index.Stage(Context.FilePath);				
 			}
+			controller.Save(new SaveCommitModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@".."), DoCommit = true, CommitMessage = "doesntmater" });
 
 		}
 

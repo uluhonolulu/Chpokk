@@ -59,9 +59,8 @@
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.0.9.1.274\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="CThru, Version=1.2.2.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
-      <HintPath>..\..\Ivonna\Ivonna\bin\Debug\CThru.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CThru">
+      <HintPath>..\..\..\CThru\CThru\CThruEngine\bin\Debug\CThru.dll</HintPath>
     </Reference>
     <Reference Include="DiffieHellman">
       <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\DiffieHellman.dll</HintPath>
@@ -114,9 +113,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Ivonna, Version=2.1.8.25329, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Ivonna\Ivonna\bin\Debug\Ivonna.dll</HintPath>
+    <Reference Include="Ivonna">
+      <HintPath>C:\Program Files (x86)\Ivonna\Ivonna.dll</HintPath>
     </Reference>
     <Reference Include="LibGit2Sharp, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
