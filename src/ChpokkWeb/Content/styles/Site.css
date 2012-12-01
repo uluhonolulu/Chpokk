@@ -314,3 +314,6 @@ div#title
 .waitContainer {
 	display: none;
 }
+
+/*misc*/
+.well-small { padding: 10px;}

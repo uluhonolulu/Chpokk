@@ -12,8 +12,8 @@
 		</form>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn btn-primary" id="openProjectButton">Open project</a> 
 		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+		<a href="#" class="btn btn-primary" id="openProjectButton">Clone</a> 
 		<div id="waitContainer" class="waitContainer"><Image src="loader.gif"/></div>
 		<div id="errorContainer" style="clear: both; color: red; font-size: smaller;"></div>
 	</div>
