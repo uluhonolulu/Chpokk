@@ -16,7 +16,9 @@ namespace ChpokkWeb.Features.Editor.SaveCommit {
 			var filePath = _manager.GetPhysicalFilePath(saveCommitModel);
 			_fileSystem.WriteStringToFile(filePath, saveCommitModel.Content);
 			if (saveCommitModel.DoCommit) {
-				using (var repo = new Repository(_manager.GetRepositoryInfo(saveCommitModel.RepositoryName).Path)) {
+				var repositoryInfo = _manager.GetRepositoryInfo(saveCommitModel.RepositoryName);
+				var repositoryPath = saveCommitModel.PhysicalApplicationPath.AppendPath(repositoryInfo.Path);
+				using (var repo = new Repository(repositoryPath)) {
 					repo.Commit(saveCommitModel.CommitMessage);
 				}
 			}
