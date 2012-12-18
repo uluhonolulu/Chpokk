@@ -9,14 +9,15 @@
 		$(function () {
 			var editor = new CodeEditor($('#code'), { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}' });
 			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.SaveCommit.SaveCommitModel>()}';
+			var saveModel = { RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
 			$('#saveButton').click(function() {
-				$.post(saveUrl, { Content: $('#code').text(), RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}', DoCommit: false });
+				$.post(saveUrl, saveModel.extend({ Content: $('#code').text(), DoCommit: false }));
 			});
 
 			$('#saveCommitButton').click(function() {
 				$('#commitDialog').modal();
 				$('#commitDialog #commitButton').one('click', function() {
-					$.post(saveUrl, { Content: $('#code').text(), RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}', DoCommit: true, CommitMessage: $('#commitMessage').val() });
+					$.post(saveUrl, saveModel.extend({ Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
 					$('#commitDialog').modal('hide');
 				});
 			});
