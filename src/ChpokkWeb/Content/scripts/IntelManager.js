@@ -3,7 +3,7 @@
     this.container = container;
     this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Name}</a></li>");
     this.model = model;
-    this.htmlEditor = new HtmlEditor(editor);
+    this.htmlEditor = new HtmlEditor(editor); //TODO: creating this here is the worstest idea eva
 }
 
 IntelManager.prototype.showData = function () {
