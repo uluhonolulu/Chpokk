@@ -292,6 +292,16 @@ describe("When code contains angular brackets", function () {
 	});
 });
 
+describe("all keyz hooks", function () {
+	it("doesn't throw", function () {
+		var editor = createEditor();
+		var codeEditor = new CodeEditor(editor, {});
+		var handlers = codeEditor.getKeyHandlers();
+		handlers.space();
+		expect(true).toBeTruthy();
+	});
+});
+
 function ensureFixture() {
     if ($('#fixture').length === 0) {
         $('<div id = "fixture"/>').appendTo('body');
