@@ -71,7 +71,7 @@ describe("On pressing the period key", function () {
 	var editor, manager;
 	beforeEach(function () {
 	    manager = createManager();
-        editor = manager.editor;
+        editor = manager.editorElement;
 		Server.stubContinuation({});
 	});
 	describe("Should surround the period with a span", function () {
@@ -196,10 +196,10 @@ describe("Using the selected item", function () {
     it("Adds the selected text to the editor", function () { //TODO: fix it by mocking the wrapthedot method
         manager.useSelected(1); //act
 
-        expect(manager.editor.html()).toEqual(items[1].Name);
+        expect(manager.editorElement.html()).toEqual(items[1].Name);
     });
     it("Inserts the selected text at the caret position", function () {
-        var editor = manager.editor;
+        var editor = manager.editorElement;
         editor.text("some");
         //setCaretPosition(editor, 2);
 

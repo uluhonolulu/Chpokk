@@ -1,11 +1,16 @@
-﻿function IntelManager(editor, container, model) {
-    this.editor = editor;
+﻿function IntelManager(editorElement, container, model) {
+    this.editorElement = editorElement;
     this.container = container;
     this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Name}</a></li>");
     this.model = model;
-    this.htmlEditor = new HtmlEditor(editor); //TODO: creating this here is the worstest idea eva
+    this.htmlEditor = new HtmlEditor(editorElement); //TODO: creating this here is the worstest idea eva
 }
-
+// _editor.spark creates CodeEditor
+// which creates IntelManager
+// which creates HtmlEditor
+// should CodeEditor create IM and HE
+// in IM editor rename to editorDiv
+// CodeEditor refers to colorize which is in HtmlEditor
 IntelManager.prototype.showData = function () {
     var intelUrl = 'url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel';
     var self = this;
@@ -22,7 +27,7 @@ IntelManager.prototype.showItems = function (items) {
 	if (items && items.length > 0) {
 	    this.htmlEditor.wrapTheDot();
 		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
-		var offset = getDotOffset(this.editor);
+		var offset = getDotOffset(this.editorElement);
 		this.container.css(offset);
 		this.container.show();
 		this.container.focus();
@@ -30,7 +35,7 @@ IntelManager.prototype.showItems = function (items) {
 		this.selectItem(0);
 		// handle item operations
 		var self = this;
-		var position = biliPosition(this.editor);
+		var position = biliPosition(this.editorElement);
 		this.container.find('li').each(function (index) {
 			$(this).hover(function () {
 				$(this).find('a').toggleClass();
@@ -57,7 +62,7 @@ IntelManager.prototype.selectItem = function (index) {
 
 IntelManager.prototype.useSelected = function (position) {
 	var selectedText = this.selectedItem.Name;
-	var range = bililiteRange(this.editor.get(0)).bounds('selection');
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
 	range.bounds([position, position]).select();
 	range.text(selectedText, 'end');
 };

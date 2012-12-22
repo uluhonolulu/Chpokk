@@ -166,10 +166,10 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\scripts\browser.js" />
-    <Content Include="Content\scripts\code_editor.js" />
+    <Content Include="Content\scripts\CodeEditor.js" />
     <Content Include="Content\scripts\common.js" />
-    <Content Include="Content\scripts\editor.js" />
-    <Content Include="Content\scripts\intellisense.js" />
+    <Content Include="Content\scripts\HtmlEditor.js" />
+    <Content Include="Content\scripts\IntelManager.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\bililiteRange.js" />
     <Content Include="Content\scripts\lib\jasmine-jquery.js" />
