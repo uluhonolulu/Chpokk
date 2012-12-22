@@ -301,6 +301,12 @@ describe("all keyz hooks", function () {
 	});
 });
 
+describe("initializing CodeEditor", function () {
+	it("doesn't throw", function () {
+		var _ = new CodeEditor(createEditor(), {});
+	});
+});
+
 function ensureFixture() {
     if ($('#fixture').length === 0) {
         $('<div id = "fixture"/>').appendTo('body');

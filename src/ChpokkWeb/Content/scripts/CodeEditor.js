@@ -5,6 +5,7 @@
 function CodeEditor(editorElement, model) {
 	//this.editorElement = editorElement
 	//TODO: add smoke tests for all keyz
+	debugger;
 	var intelContainer = $('[role="intelResults"]');
 	intelContainer.hide();
 	var htmlEditor = new HtmlEditor(editorElement); 
