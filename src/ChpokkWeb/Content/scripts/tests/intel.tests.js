@@ -1,12 +1,11 @@
 ﻿describe("On requesting the intel data", function () {
-	var manager, editor, container;
+	var manager, container;
 	beforeEach(function () {
-		editor = createEditor();
-		container = createContainer();
-		manager = new IntelManager(editor, container, {});
+		manager = createManager();
+		container = manager.container;
 		sinon.stub(manager, 'getSelectedRange', function () {
 			var range = document.createRange();
-			range.setStart(editor[0], 0);
+			range.setStart(manager.editorElement[0], 0);
 			return range;
 		});
 
@@ -326,5 +325,6 @@ function createContainer() {
 function createManager() {
     var editor = createEditor();
     var container = createContainer();
-    return new IntelManager(editor, container, {});
+    var htmlEditor = new HtmlEditor(editor); 
+    return new IntelManager(editor, container, htmlEditor, {});
 }

@@ -2,12 +2,13 @@
     $.fn.keyz.keymap.space = $.ui.keyCode.SPACE;
 });
 
-function CodeEditor(element, model) {
-	//this.element = element
+function CodeEditor(editorElement, model) {
+	//this.editorElement = editorElement
 	//TODO: add smoke tests for all keyz
-	var intelContainer = $('#' + element.data('intelResults'));
+	var intelContainer = $('[role="intelResults"]');
 	intelContainer.hide();
-	var intelManager = new IntelManager(element, intelContainer, model);
+	var htmlEditor = new HtmlEditor(editorElement); 
+	var intelManager = new IntelManager(editorElement, intelContainer, htmlEditor, model);
 	this.getKeyHandlers = function () {
 		return {
 			'space': function() {
@@ -20,7 +21,7 @@ function CodeEditor(element, model) {
 				return true;
 			},
 			'enter': function() {
-				var range = bililiteRange(element.get(0)).bounds('selection');
+				var range = bililiteRange(editorElement.get(0)).bounds('selection');
 				range.text('\n', 'end');
 				return true;
 			},
@@ -30,7 +31,7 @@ function CodeEditor(element, model) {
 			}
 		};
 	};
-    element.keyz({ 'enter': false, 'tab': false }, { 'enter': false }, this.getKeyHandlers());
+    editorElement.keyz({ 'enter': false, 'tab': false }, { 'enter': false }, this.getKeyHandlers());
 
-    new HtmlEditor(element).updateHtml();
+    new HtmlEditor(editorElement).updateHtml();
 }

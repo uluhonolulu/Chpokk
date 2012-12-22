@@ -1,20 +1,15 @@
-﻿function IntelManager(editorElement, container, model) {
+﻿function IntelManager(editorElement, container, htmlEditor, model) {
     this.editorElement = editorElement;
     this.container = container;
     this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Name}</a></li>");
     this.model = model;
-    this.htmlEditor = new HtmlEditor(editorElement); //TODO: creating this here is the worstest idea eva
+	this.htmlEditor = htmlEditor;
 }
-// _editor.spark creates CodeEditor
-// which creates IntelManager
-// which creates HtmlEditor
-// should CodeEditor create IM and HE
-// in IM editor rename to editorDiv
 // CodeEditor refers to colorize which is in HtmlEditor
 IntelManager.prototype.showData = function () {
     var intelUrl = 'url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel';
     var self = this;
-    var text = this.htmlEditor.editor.text();
+    var text = this.editorElement.text();
     var range = this.getSelectedRange();
     var position = getCaretPosition(range) - 1; // we need the position just before the typed char
     $.post(intelUrl, { Text: text, Position: position, NewChar: '.', RepositoryName: this.model.RepositoryName, ProjectPath: this.model.ProjectPath }, function (intelData) {
