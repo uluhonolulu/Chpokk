@@ -1,25 +1,25 @@
-﻿function HtmlEditor(jqueryElement) {
-    this.editor = jqueryElement;
+﻿function HtmlEditor(editorElement) {
+    this.editorElement = editorElement;
 }
 
 HtmlEditor.prototype.updateHtml = function (callback) {
-    var text = this.editor.text();
+    var text = this.editorElement.text();
     var toHtmlUrl = "url::ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel";
-    this.editor.load(toHtmlUrl, { Code: text }, callback);
+    this.editorElement.load(toHtmlUrl, { Code: text }, callback);
 };
 
 //HtmlEditor.prototype.initEditor = function () {
 //    updateHtml();
 //};
 
-HtmlEditor.prototype.colorize = function () {
-        var range = bililiteRange(this.editor).bounds('selection'); //
-        var position = range.bounds()[0];
-        updateHtml(function () {
-        	range.bounds([position, position]).select();
-        });
-    
-}
+HtmlEditor.prototype.colorize = function() {
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection'); //
+	var position = range.bounds()[0];
+	this.updateHtml(function() {
+		range.bounds([position, position]).select();
+	});
+
+};
 
 
 
@@ -56,20 +56,20 @@ HtmlEditor.prototype.colorize = function () {
 
 HtmlEditor.prototype.wrapTheDot = function() {
     var wrappedDot = '<span id=\'wrapper\'>.</span>';
-	var range = bililiteRange(this.editor.get(0)).bounds('selection');//
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');//
 	var position = range.bounds()[0];
 	var endPosition = range.bounds('end').bounds()[1];
     // let's remove the existing wrappers
-    var html = this.editor.html();
+    var html = this.editorElement.html();
     html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
-    this.editor.html(html);
+    this.editorElement.html(html);
 	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
 	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
-	this.editor.empty();
-	this.editor.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
+	this.editorElement.empty();
+	this.editorElement.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
 	var dotNode = $(wrappedDot).get(0);
-	this.editor.get(0).appendChild(dotNode);
-	this.editor.get(0).appendChild(postFragment);
+	this.editorElement.get(0).appendChild(dotNode);
+	this.editorElement.get(0).appendChild(postFragment);
     range.bounds([position, position]).select();
 }
 
@@ -105,8 +105,8 @@ function setCaretPosition(editor, position) {
 	range.select();
 }
 
-//function getCaretPosition(editor) {
-//    var range = bililiteRange(editor.get(0)).bounds('selection');
+//function getCaretPosition(editorElement) {
+//    var range = bililiteRange(editorElement.get(0)).bounds('selection');
 //	return range.bounds()[0];
 //}
 

@@ -12,7 +12,7 @@ function CodeEditor(editorElement, model) {
 	this.getKeyHandlers = function () {
 		return {
 			'space': function() {
-				colorize(this);
+				htmlEditor.colorize(this);
 				return true;
 			},
 
