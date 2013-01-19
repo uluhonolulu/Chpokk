@@ -27,6 +27,7 @@ function CodeEditor(editorElement, model) {
 				return true;
 			},
 			'tab': function() {
+				var range = bililiteRange(editorElement.get(0)).bounds('selection');
 				range.text('	', 'end');
 				return true;
 			}
