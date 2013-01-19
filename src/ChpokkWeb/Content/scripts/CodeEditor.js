@@ -27,7 +27,7 @@ function CodeEditor(editorElement, model) {
 				return true;
 			},
 			'tab': function() {
-				range.text('\t &#09;', 'end');
+				range.text('	', 'end');
 				return true;
 			}
 		};
