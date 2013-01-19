@@ -11,7 +11,7 @@
 			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.SaveCommit.SaveCommitModel>()}';
 			var saveModel = { RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
 			$('#saveButton').click(function() {
-				$.post(saveUrl, saveModel.extend({ Content: $('#code').text(), DoCommit: false }));
+				$.post(saveUrl, $.extend(saveModel, { Content: $('#code').text(), DoCommit: false }));
 			});
 
 			$('#saveCommitButton').click(function() {

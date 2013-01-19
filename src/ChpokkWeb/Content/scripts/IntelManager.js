@@ -3,7 +3,11 @@
     this.container = container;
     this.listItemTemplate = $.template(null, "<li class='ui-menu-item'><a class='ui-corner-all' nobr><img src=\"/_content/images/Intellisense/Icons.16x16.${EntityType}.png\" />&nbsp;${Name}</a></li>");
     this.model = model;
-	this.htmlEditor = htmlEditor;
+    this.htmlEditor = htmlEditor;
+    //this.createdAt = currentTime();
+    //if (model.RepositoryName == '') debugger;
+    //alert(this.createdAt);
+	//printStackTrace();
 }
 // CodeEditor refers to colorize which is in HtmlEditor
 IntelManager.prototype.showData = function () {
@@ -40,7 +44,6 @@ IntelManager.prototype.showItems = function (items) {
 			});
 			$(this).click(function () {
 				self.useSelected(position);
-				self.hideItems();
 			});
 		});
 	}
@@ -60,6 +63,8 @@ IntelManager.prototype.useSelected = function (position) {
 	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
 	range.bounds([position, position]).select();
 	range.text(selectedText, 'end');
+
+	this.hideItems();
 };
 
 IntelManager.prototype.getSelectedRange = function() {
@@ -68,6 +73,7 @@ IntelManager.prototype.getSelectedRange = function() {
 };
 
 IntelManager.prototype.hideItems = function () {
+	this.container.empty();
 	this.container.hide();
 };
 

@@ -63,7 +63,10 @@ HtmlEditor.prototype.wrapTheDot = function() {
     var html = this.editorElement.html();
     html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
     this.editorElement.html(html);
-	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
+    var preFragment = range._nativeRange([0, position - 1]).cloneContents();
+    // IE: range._nativeRange([0, position - 1]) returns TextRange, which has duplicate method, see
+    // http://msdn.microsoft.com/en-us/library/ms533042(v=vs.85).aspx
+    // http://habrahabr.ru/post/55922/
 	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
 	this.editorElement.empty();
 	this.editorElement.get(0).appendChild(preFragment); // or fragment.cloneNode(true)

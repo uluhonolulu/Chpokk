@@ -5,7 +5,7 @@
 function CodeEditor(editorElement, model) {
 	//this.editorElement = editorElement
 	//TODO: add smoke tests for all keyz
-	debugger;
+	//debugger;
 	var intelContainer = $('[role="intelResults"]');
 	intelContainer.hide();
 	var htmlEditor = new HtmlEditor(editorElement); 
@@ -27,7 +27,7 @@ function CodeEditor(editorElement, model) {
 				return true;
 			},
 			'tab': function() {
-				alert('tab');
+				range.text('\t &#09;', 'end');
 				return true;
 			}
 		};
