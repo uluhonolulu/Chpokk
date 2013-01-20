@@ -29,8 +29,7 @@ namespace ChpokkWeb.Features.Remotes {
 		}
 
 		private static void CloneGitRepository(string repoUrl, string repositoryPath) {
-		    var options = new CloneOptions() {TransferProgress = progress => { }};
-			var repository = Repository.Clone(repoUrl, repositoryPath, options);
+			var repository = Repository.Clone(repoUrl, repositoryPath);
 			//var master = repository.Branches["master"];
 			//repository.Checkout(master);
 			repository.Dispose();

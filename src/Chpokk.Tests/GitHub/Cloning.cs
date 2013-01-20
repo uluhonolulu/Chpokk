@@ -5,7 +5,7 @@ using ChpokkWeb.Features.Remotes;
 using MbUnit.Framework;
 
 namespace Chpokk.Tests.GitHub {
-	[TestFixture, Ignore("Long running test")]
+	[TestFixture]
 	public class Cloning: BaseCommandTest<RemoteRepositoryContext> {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";

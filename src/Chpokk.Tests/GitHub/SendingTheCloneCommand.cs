@@ -14,11 +14,17 @@ using MbUnit.Framework;
 using System.Linq;
 
 namespace Chpokk.Tests.GitHub {
-	[TestFixture, RunOnWeb, Ignore("Typemock")]
-	public class SendingTheCloneCommand : BaseQueryTest<SimpleConfiguredContext, Spy<CloneInputModel>> {
+	[TestFixture, RunOnWeb]
+	public class SendingTheCloneCommand : BaseQueryTest<SimpleConfiguredContext, Spy<string>> {
 		[Test]
-		public void Test() {
+		public void ShouldCallTheCloneCommandOnce() {
 			Assert.AreEqual(1, Result.Results.Count());
+		}
+
+		[Test]
+		public void ShouldCloneToThePathCorrespondingToTheRepoUrl() {
+			var path = Result.Results.First();
+			Assert.AreEqual(@"D:\projects\chpokk\src\ChpokkWeb\UserFiles\stub", path);
 		}
 
 		[FixtureSetUp]
@@ -27,10 +33,10 @@ namespace Chpokk.Tests.GitHub {
 		}
 
 		//[TestedMethod]
-		public override Spy<CloneInputModel> Act() {
-			var spy = new Spy<CloneInputModel>(info => info.TypeName.EndsWith("CloneController") && info.MethodName == "CloneRepository", args => (CloneInputModel) args.ParameterValues[0]);
+		public override Spy<string> Act() {
+			var spy = new Spy<string>(info => info.TypeName.EndsWith("CloneController") && info.MethodName == "CloneGitRepository", args => (string)args.ParameterValues[1]);
 			CThruEngine.AddAspect(spy);
-			CThruEngine.AddAspect(Stub.For<CloneController>("CloneRepository").Return(new RepositoryInfo("", "")));
+			CThruEngine.AddAspect(Stub.For<CloneController>("CloneGitRepository"));
 			var url = Context.Container.Get<IUrlRegistry>().UrlFor<CloneInputModel>();
 			new TestSession().Post(url, new CloneInputModel {RepoUrl = "stub"});
 			return spy;

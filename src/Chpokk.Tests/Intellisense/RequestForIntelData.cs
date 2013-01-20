@@ -11,11 +11,13 @@ using MbUnit.Framework;
 using StructureMap;
 
 namespace Chpokk.Tests.Intellisense {
-	[TestFixture, RunOnWeb, Ignore("Typemock")]
+	[TestFixture, RunOnWeb]
 	public class RequestForIntelData {
 
 		[Test]
 		public void ShouldReturnValidIntelForStrings() {
+			// throws here: input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath -- smth not defined
+			// ChpokkWeb.Features.Editor.Intellisense.IntelController.GetIntellisenseData(IntelInputModel input) in D:\Projects\Chpokk\src\ChpokkWeb\Features\Editor\Intellisense\IntelController.cs:28
 			var text = "using System;\r\nclass AClass\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  x\r\n }\r\n}\r\n";
 			var session = new TestSession();
 			var inputModel = new IntelInputModel {Text = text, Position = 58, NewChar = '.'};

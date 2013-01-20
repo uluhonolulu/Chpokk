@@ -12,7 +12,7 @@ using Ivonna.Framework.Generic;
 using System.Linq;
 
 namespace Chpokk.Tests.Exploring {
-	[TestFixture, RunOnWeb, Ignore("Typemock")]
+	[TestFixture, RunOnWeb]
 	public class ICanSeeIt {
 		[Test]
 		public void DoesntThrow() {
