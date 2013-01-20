@@ -24,16 +24,26 @@ IntelManager.prototype.showData = function () {
 IntelManager.prototype.showItems = function (items) {
 	this.items = items;
 	if (items && items.length > 0) {
-	    this.htmlEditor.wrapTheDot();
+		var self = this;
+		this.htmlEditor.wrapTheDot();
+
+		//add the items to the container
 		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
+
+		// position and display the container
 		var offset = getDotOffset(this.editorElement);
 		this.container.css(offset);
 		this.container.show();
 		this.container.focus();
 
+		//clicking the editor should hide the container
+		this.editorElement.click(function () {
+			self.hideItems();
+		});
+
+		//first item is already selected
 		this.selectItem(0);
 		// handle item operations
-		var self = this;
 		var position = biliPosition(this.editorElement);
 		this.container.find('li').each(function (index) {
 			$(this).hover(function () {

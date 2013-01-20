@@ -64,7 +64,22 @@ describe("When intellisense is open", function () {
     it("Should select the first item", function () {
         expect(manager.selectedItem).toBe(items[0]);
     });
-});
+      });
+
+      describe("When clicking off intel", function () {
+      	var manager, items = [{ "Text": "sample"}];
+      	beforeEach(function () {
+      		manager = createManager();
+      		manager.showItems(items);
+      		expect(manager.container).toBeVisible();
+      		manager.editorElement.click();
+      	});
+
+      	it("Should hide the intel container", function () {
+      		expect(manager.container).toBeHidden();
+      	});
+
+      });
 
 describe("On pressing the period key", function () {
 	var editor, manager;
