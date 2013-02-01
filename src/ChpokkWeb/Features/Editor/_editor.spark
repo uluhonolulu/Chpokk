@@ -2,8 +2,10 @@
 
 <Stylesheet href="editor.css" />
 <button id="saveButton" class="btn btn-inverse">Save</button> <button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
+<div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
 <div id="code" contenteditable="true">${Model.Content}</div>
 <ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="intelResults"></ul>
+</div>
 <div id="log"></div>
 	<script type="text/javascript">
 		$(function () {

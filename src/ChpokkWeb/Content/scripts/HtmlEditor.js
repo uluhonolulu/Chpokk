@@ -55,26 +55,30 @@ HtmlEditor.prototype.colorize = function() {
 //}
 
 HtmlEditor.prototype.wrapTheDot = function() {
-    var wrappedDot = '<span id=\'wrapper\'>.</span>';
-	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');//
+	var wrappedDot = '<span id=\'wrapper\'>.</span>';
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection'); //
 	var position = range.bounds()[0];
 	var endPosition = range.bounds('end').bounds()[1];
-    // let's remove the existing wrappers
-    var html = this.editorElement.html();
-    html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
-    this.editorElement.html(html);
-    var preFragment = range._nativeRange([0, position - 1]).cloneContents();
-    // IE: range._nativeRange([0, position - 1]) returns TextRange, which has duplicate method, see
-    // http://msdn.microsoft.com/en-us/library/ms533042(v=vs.85).aspx
-    // http://habrahabr.ru/post/55922/
-	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
+	// let's remove the existing wrappers
+	var html = this.editorElement.html();
+	html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
+	this.editorElement.html(html);
+	//var preFragment = range._nativeRange([0, position - 1]).cloneContents(); //DOM
+	var preFragment = range._nativeRange([0, position - 1]).duplicate();
+	var rangeType = typeof range._nativeRange([0, position - 1]);
+	//debugger;
+	// IE: range._nativeRange([0, position - 1]) returns TextRange, which has duplicate method, see
+	// http://msdn.microsoft.com/en-us/library/ms533042(v=vs.85).aspx
+	// http://habrahabr.ru/post/55922/
+	//var postFragment = range._nativeRange([position, endPosition]).cloneContents(); //DOM
+	var postFragment = range._nativeRange([position, endPosition]).duplicate();
 	this.editorElement.empty();
 	this.editorElement.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
 	var dotNode = $(wrappedDot).get(0);
 	this.editorElement.get(0).appendChild(dotNode);
 	this.editorElement.get(0).appendChild(postFragment);
-    range.bounds([position, position]).select();
-}
+	range.bounds([position, position]).select();
+};
 
 function getDotOffset(editor) {
     var wrapper = editor.find('#wrapper');

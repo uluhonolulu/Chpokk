@@ -25,13 +25,18 @@ IntelManager.prototype.showItems = function (items) {
 	this.items = items;
 	if (items && items.length > 0) {
 		var self = this;
-		this.htmlEditor.wrapTheDot();
 
 		//add the items to the container
 		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
 
 		// position and display the container
-		var offset = getDotOffset(this.editorElement);
+		//this.htmlEditor.wrapTheDot(); //IE
+		//var offset = getDotOffset(this.editorElement); //IE
+		var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
+		var position = range.bounds()[0];
+		var preFragment = range._nativeRange([236, 236]);
+		var parentBounds = preFragment.parentElement().getBoundingClientRect();
+		var offset = { top: preFragment.boundingTop + preFragment.boundingHeight - parentBounds.top, left: preFragment.offsetLeft - parentBounds.left };//
 		this.container.css(offset);
 		this.container.show();
 		this.container.focus();
