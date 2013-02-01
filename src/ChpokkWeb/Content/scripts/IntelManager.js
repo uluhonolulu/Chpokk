@@ -32,11 +32,14 @@ IntelManager.prototype.showItems = function (items) {
 		// position and display the container
 		//this.htmlEditor.wrapTheDot(); //IE
 		//var offset = getDotOffset(this.editorElement); //IE
+		// problem 1: position is wrong -- need to seethe original code
+		// problem 2: selects too much
 		var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
 		var position = range.bounds()[0];
 		var preFragment = range._nativeRange([236, 236]);
+		preFragment.findText('.');
 		var parentBounds = preFragment.parentElement().getBoundingClientRect();
-		var offset = { top: preFragment.boundingTop + preFragment.boundingHeight - parentBounds.top, left: preFragment.offsetLeft - parentBounds.left };//
+		var offset = { top: preFragment.boundingTop + preFragment.boundingHeight - parentBounds.top, left: preFragment.offsetLeft - parentBounds.left }; //
 		this.container.css(offset);
 		this.container.show();
 		this.container.focus();
