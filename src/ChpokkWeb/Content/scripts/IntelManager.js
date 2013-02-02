@@ -30,11 +30,8 @@ IntelManager.prototype.showItems = function (items) {
 		$.tmpl(this.listItemTemplate, items).appendTo(this.container);
 
 		// position and display the container
-		//this.htmlEditor.wrapTheDot(); //IE
-		var offset = this.htmlEditor.getDotOffset(); //IE
-		this.container.css(offset);
-		this.container.show();
-		this.container.focus();
+		var offset = this.htmlEditor.getDotOffset(); 
+		this.container.css(offset).show().focus();
 
 		//clicking the editor should hide the container
 		this.editorElement.click(function () {
