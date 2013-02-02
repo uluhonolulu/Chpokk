@@ -55,14 +55,14 @@ HtmlEditor.prototype.colorize = function() {
 //}
 
 HtmlEditor.prototype.wrapTheDot = function() {
-    var wrappedDot = '<span id=\'wrapper\'>.</span>';
-	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');//
+	var wrappedDot = '<span id=\'wrapper\'>.</span>';
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection'); //
 	var position = range.bounds()[0];
 	var endPosition = range.bounds('end').bounds()[1];
-    // let's remove the existing wrappers
-    var html = this.editorElement.html();
-    html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
-    this.editorElement.html(html);
+	// let's remove the existing wrappers
+	var html = this.editorElement.html();
+	html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
+	this.editorElement.html(html);
 	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
 	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
 	this.editorElement.empty();
@@ -70,13 +70,15 @@ HtmlEditor.prototype.wrapTheDot = function() {
 	var dotNode = $(wrappedDot).get(0);
 	this.editorElement.get(0).appendChild(dotNode);
 	this.editorElement.get(0).appendChild(postFragment);
-    range.bounds([position, position]).select();
-}
+	range.bounds([position, position]).select();
+};
 
-function getDotOffset(editor) {
-    var wrapper = editor.find('#wrapper');
-    return { top: wrapper.position().top + wrapper.height(), left: wrapper.position().left };
-}
+HtmlEditor.prototype.getDotOffset = function () {
+	this.wrapTheDot();
+	var editor = this.editorElement;
+	var wrapper = editor.find('#wrapper');
+	return { top: wrapper.position().top + wrapper.height(), left: wrapper.position().left };
+};
 
 function setEditorHtml(editor, html) {
     var range = bililiteRange(editor.get(0)).bounds('selection'); //

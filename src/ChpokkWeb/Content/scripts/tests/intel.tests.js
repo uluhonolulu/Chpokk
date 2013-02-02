@@ -202,8 +202,8 @@ describe("Using the selected item", function () {
 	var manager, items = [{ Name: "1" }, { Name: "2"}];
 	beforeEach(function () {
 		manager = createManager();
-		spyOn(manager.htmlEditor, 'wrapTheDot');
-		spyOn(window, 'getDotOffset').andReturn({ top: 0, left: 0 });
+		//spyOn(manager.htmlEditor, 'wrapTheDot');
+		spyOn(manager.htmlEditor, 'getDotOffset').andReturn({ top: 0, left: 0 });
 		manager.showItems(items);
 		manager.selectItem(1);
 	});
