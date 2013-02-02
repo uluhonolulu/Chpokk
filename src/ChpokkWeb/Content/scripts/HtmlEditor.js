@@ -74,11 +74,27 @@ HtmlEditor.prototype.wrapTheDot = function() {
 };
 
 HtmlEditor.prototype.getDotOffset = function () {
-	this.wrapTheDot();
-	var editor = this.editorElement;
-	var wrapper = editor.find('#wrapper');
-	return { top: wrapper.position().top + wrapper.height(), left: wrapper.position().left };
+	if (useStandardRange()) {
+		this.wrapTheDot();
+		var editor = this.editorElement;
+		var wrapper = editor.find('#wrapper');
+		return { top: wrapper.position().top + wrapper.height(), left: wrapper.position().left };
+	} else {
+		// problem 1: position is wrong -- need to seethe original code
+		// problem 2: selects too much
+		var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
+		var position = range.bounds()[0];
+		var preFragment = range._nativeRange([236, 236]);
+		preFragment.findText('.');
+		var parentBounds = preFragment.parentElement().getBoundingClientRect();
+		return  { top: preFragment.boundingTop + preFragment.boundingHeight - parentBounds.top, left: preFragment.offsetLeft - parentBounds.left }; //
+		
+	}
 };
+
+function useStandardRange() {
+	return window.getSelection != null;
+}
 
 function setEditorHtml(editor, html) {
     var range = bililiteRange(editor.get(0)).bounds('selection'); //
