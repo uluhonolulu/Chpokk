@@ -57,12 +57,14 @@ HtmlEditor.prototype.colorize = function() {
 HtmlEditor.prototype.wrapTheDot = function() {
 	var wrappedDot = '<span id=\'wrapper\'>.</span>';
 	var range = bililiteRange(this.editorElement.get(0)).bounds('selection'); //
+	//TODO: redefine Range.toString() so that it replaces \r\n with \n
+	// using Object.getPrototypeOf(rng)
 	var position = range.bounds()[0];
 	var endPosition = range.bounds('end').bounds()[1];
 	// let's remove the existing wrappers
 	var html = this.editorElement.html();
 	html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
-	this.editorElement.html(html);
+	//this.editorElement.html(html);
 	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
 	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
 	this.editorElement.empty();
@@ -82,18 +84,26 @@ HtmlEditor.prototype.getDotOffset = function () {
 	} else {
 		// problem 1: position is wrong -- need to seethe original code
 		// problem 2: selects too much
-		var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
-		var position = range.bounds()[0];
-		var preFragment = range._nativeRange([236, 236]);
-		preFragment.findText('.');
-		var parentBounds = preFragment.parentElement().getBoundingClientRect();
-		return  { top: preFragment.boundingTop + preFragment.boundingHeight - parentBounds.top, left: preFragment.offsetLeft - parentBounds.left }; //
-		
+		var rng = document.createRange().selectNodeContents(this.editorElement.get(0));
+		var sel = window.getSelection().getRangeAt(0);
+		sel.setStart(sel.startContainer, sel.startOffset - 1);
+		var selRect = sel.getBoundingClientRect();
+		//		var w3sel =  [
+		//			w3cstart(sel, rng),
+		//			w3cend(sel, rng)
+		//		];
+		//var position = range.bounds()[0];
+		//var preFragment = range._nativeRange([position, position]);
+		//preFragment.findText('.');
+		var parentBounds = this.editorElement.get(0).getBoundingClientRect();
+		//var gerai = window.getSelection().getBoundingClientRect();
+		return { top: selRect.bottom - parentBounds.top, left: selRect.left - parentBounds.left }; //
+
 	}
 };
 
 function useStandardRange() {
-	return window.getSelection != null;
+	return false;
 }
 
 function setEditorHtml(editor, html) {
