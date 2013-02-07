@@ -76,35 +76,12 @@ HtmlEditor.prototype.wrapTheDot = function() {
 };
 
 HtmlEditor.prototype.getDotOffset = function () {
-	if (useStandardRange()) {
-		this.wrapTheDot();
-		var editor = this.editorElement;
-		var wrapper = editor.find('#wrapper');
-		return { top: wrapper.position().top + wrapper.height(), left: wrapper.position().left };
-	} else {
-		// problem 1: position is wrong -- need to seethe original code
-		// problem 2: selects too much
-		var rng = document.createRange().selectNodeContents(this.editorElement.get(0));
-		var sel = window.getSelection().getRangeAt(0);
-		sel.setStart(sel.startContainer, sel.startOffset - 1);
-		var selRect = sel.getBoundingClientRect();
-		//		var w3sel =  [
-		//			w3cstart(sel, rng),
-		//			w3cend(sel, rng)
-		//		];
-		//var position = range.bounds()[0];
-		//var preFragment = range._nativeRange([position, position]);
-		//preFragment.findText('.');
-		var parentBounds = this.editorElement.get(0).getBoundingClientRect();
-		//var gerai = window.getSelection().getBoundingClientRect();
-		return { top: selRect.bottom - parentBounds.top, left: selRect.left - parentBounds.left }; //
-
-	}
+	var sel = window.getSelection().getRangeAt(0);
+	sel.setStart(sel.startContainer, sel.startOffset - 1); //so that it selects the last char -- otherwise it becomes a zero rect
+	var selRect = sel.getBoundingClientRect();
+	var parentBounds = this.editorElement.get(0).getBoundingClientRect();
+	return { top: selRect.bottom - parentBounds.top, left: selRect.left - parentBounds.left }; 
 };
-
-function useStandardRange() {
-	return false;
-}
 
 function setEditorHtml(editor, html) {
     var range = bililiteRange(editor.get(0)).bounds('selection'); //
