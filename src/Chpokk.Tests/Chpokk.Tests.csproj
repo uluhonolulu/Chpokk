@@ -146,6 +146,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AssertExtensions.cs" />
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
     <Compile Include="Exploring\GitRepositoryContext.cs" />
     <Compile Include="Exploring\ParsingProjectFile.cs" />
