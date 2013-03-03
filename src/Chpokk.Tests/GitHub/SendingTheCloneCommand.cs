@@ -24,7 +24,7 @@ namespace Chpokk.Tests.GitHub {
 		[Test]
 		public void ShouldCloneToThePathCorrespondingToTheRepoUrl() {
 			var path = Result.Results.First();
-			Assert.AreEqual(@"D:\projects\chpokk\src\ChpokkWeb\UserFiles\stub", path);
+			Assert.AreEqual(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\stub", path, StringComparison.InvariantCultureIgnoreCase);
 		}
 
 		[FixtureSetUp]
