@@ -161,6 +161,7 @@
     <Compile Include="Exploring\SeeingASolutionFile.cs" />
     <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
+    <Compile Include="Infrastructure\WebQueryTest.cs" />
     <Compile Include="Intellisense\IntellisenseList.cs" />
     <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
