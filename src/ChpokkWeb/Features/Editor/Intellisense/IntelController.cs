@@ -44,7 +44,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var resolveResult = resolver.Resolve(expression, parseInformation, text);
 			//Console.WriteLine(input.Text);
 			//Console.WriteLine(compilationUnit);
-			Console.WriteLine(expression.Expression);
+			//Console.WriteLine(expression.Expression);
 			//Console.WriteLine(resolveResult.ToString());
 			if (resolveResult == null) {
 				return new IntelOutputModel{Message = "ResolveResult is null"};
