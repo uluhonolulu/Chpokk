@@ -17,6 +17,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
+			//TODO: make it accept just a bunch of strings that are file contentses
 			if (input.Text == null) return null;
 			var resolver = new NRefactoryResolver(LanguageProperties.CSharp);
 
@@ -59,12 +60,12 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return model;
 		}
 
-		private ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader, string fileName = "nofile") {
+		public static ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader, string fileName = "nofile") {
 			ICompilationUnit compilationUnit;
 			using (IParser parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
 				parser.ParseMethodBodies = false;
 				parser.Parse();
-				compilationUnit = this.ConvertCompilationUnit(parser.CompilationUnit, projectContent);
+				compilationUnit = ConvertCompilationUnit(parser.CompilationUnit, projectContent);
 			}
 			projectContent.UpdateCompilationUnit(null, compilationUnit, fileName);
 			return compilationUnit;
@@ -77,7 +78,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			_repositoryManager = repositoryManager;
 		}
 
-		private static DefaultProjectContent DefaultProjectContent {
+		public static DefaultProjectContent DefaultProjectContent {
 			get {
 				if (_projectContent == null) {
 					var pcRegistry = new ProjectContentRegistry();
@@ -94,14 +95,14 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var x = IntelController.DefaultProjectContent;
 		}
 
-		private ExpressionResult FindExpression(string text, int offset, ParseInformation parseInformation) {
+		public static ExpressionResult FindExpression(string text, int offset, ParseInformation parseInformation) {
 			var finder = new CSharpExpressionFinder(parseInformation);
 			var expression = finder.FindExpression(text, offset);
 			return expression;
 			return new ExpressionResult();
 		}
 
-		ICompilationUnit ConvertCompilationUnit(ICSharpCode.NRefactory.Ast.CompilationUnit cu, IProjectContent projectContent) {
+		public static ICompilationUnit ConvertCompilationUnit(ICSharpCode.NRefactory.Ast.CompilationUnit cu, IProjectContent projectContent) {
 			var converter = new NRefactoryASTConvertVisitor(projectContent, SupportedLanguage.CSharp);
 			cu.AcceptVisitor(converter, null);
 			return converter.Cu;
