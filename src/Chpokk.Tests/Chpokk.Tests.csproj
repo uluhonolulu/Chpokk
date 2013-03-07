@@ -128,6 +128,9 @@
       <HintPath>..\..\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Engine" />
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Org.Mentalis.Security">
       <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Org.Mentalis.Security.dll</HintPath>
     </Reference>
