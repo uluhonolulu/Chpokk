@@ -54,26 +54,7 @@ HtmlEditor.prototype.colorize = function() {
 //    }
 //}
 
-HtmlEditor.prototype.wrapTheDot = function() {
-	var wrappedDot = '<span id=\'wrapper\'>.</span>';
-	var range = bililiteRange(this.editorElement.get(0)).bounds('selection'); //
-	//TODO: redefine Range.toString() so that it replaces \r\n with \n
-	// using Object.getPrototypeOf(rng)
-	var position = range.bounds()[0];
-	var endPosition = range.bounds('end').bounds()[1];
-	// let's remove the existing wrappers
-	var html = this.editorElement.html();
-	html = html.replace(/<span id="wrapper">\.<\/span>/g, '.');
-	//this.editorElement.html(html);
-	var preFragment = range._nativeRange([0, position - 1]).cloneContents();
-	var postFragment = range._nativeRange([position, endPosition]).cloneContents();
-	this.editorElement.empty();
-	this.editorElement.get(0).appendChild(preFragment); // or fragment.cloneNode(true)
-	var dotNode = $(wrappedDot).get(0);
-	this.editorElement.get(0).appendChild(dotNode);
-	this.editorElement.get(0).appendChild(postFragment);
-	range.bounds([position, position]).select();
-};
+
 
 HtmlEditor.prototype.getDotOffset = function () {
 	var sel = window.getSelection().getRangeAt(0);

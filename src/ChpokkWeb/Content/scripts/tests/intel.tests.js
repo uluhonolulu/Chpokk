@@ -2,14 +2,15 @@
 	var manager, container;
 	beforeEach(function () {
 		manager = createManager();
+		setFakeSelection(manager);
 		container = manager.container;
+
 		sinon.stub(manager, 'getSelectedRange', function () {
 			var range = document.createRange();
 			range.setStart(manager.editorElement[0], 0);
 			return range;
 		});
 
-		//IntelManager.prototype.getSelectedRange = ;
 	});
 
 	describe("If the returned list is not empty", function () {
@@ -55,31 +56,33 @@
 });
 
 describe("When intellisense is open", function () {
-    var manager, items = [{ "Text": "sample"}];
-    beforeEach(function () {
-        manager = createManager();
-        manager.showItems(items);
-    });
+	var manager, items = [{ "Text": "sample"}];
+	beforeEach(function () {
+		manager = createManager();
+		setFakeSelection(manager);
+		manager.showItems(items);
+	});
 
-    it("Should select the first item", function () {
-        expect(manager.selectedItem).toBe(items[0]);
-    });
-      });
+	it("Should select the first item", function () {
+		expect(manager.selectedItem).toBe(items[0]);
+	});
+});
 
-      describe("When clicking off intel", function () {
-      	var manager, items = [{ "Text": "sample"}];
-      	beforeEach(function () {
-      		manager = createManager();
-      		manager.showItems(items);
-      		expect(manager.container).toBeVisible();
-      		manager.editorElement.click();
-      	});
+describe("When clicking off intel", function () {
+	var manager, items = [{ "Text": "sample"}];
+	beforeEach(function () {
+		manager = createManager();
+		setFakeSelection(manager);
+		manager.showItems(items);
+		expect(manager.container).toBeVisible();
+		manager.editorElement.click();
+	});
 
-      	it("Should hide the intel container", function () {
-      		expect(manager.container).toBeHidden();
-      	});
+	it("Should hide the intel container", function () {
+		expect(manager.container).toBeHidden();
+	});
 
-      });
+});
 
 describe("On pressing the period key", function () {
 	var editor, manager;
@@ -88,114 +91,46 @@ describe("On pressing the period key", function () {
         editor = manager.editorElement;
 		Server.stubContinuation({});
 	});
-	describe("Should surround the period with a span", function () {
-		it("when the editor is empty", function () {
-			editor.html('');
-			//typeDot();
-			editor.sendkeys('.');
-            manager.htmlEditor.wrapTheDot();
-
-			expect(editor.html()).toBe('<span id="wrapper">.</span>');
-		});
-		it("when the editor is simple text", function () {
-			editor.html('stuffhere');
-			setPosition(5);
-			editor.sendkeys('.');
-			//typeDot();
-			manager.htmlEditor.wrapTheDot();
-			expect(editor.html()).toBe('stuff<span id="wrapper">.</span>here');
-		});
-
-		it("when there's another dot already", function () {
-			editor.html('stuff.here');
-			setPosition(10);
-			editor.sendkeys('.');
-
-			manager.htmlEditor.wrapTheDot();
-			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
-		});
-
-		it("when there is an inner node before", function () {
-			editor.html('<span>stuff</span> here');
-			setPosition(10);
-			editor.sendkeys('.');
-
-			manager.htmlEditor.wrapTheDot();
-			expect(editor.html()).toBe('<span>stuff</span> here<span id="wrapper">.</span>');
-
-		});
 
 
-		it("in the real life scenario", function () {
-			editor.html('<span class="code0">using</span>&nbsp;System;\r\n\r\n');
-			setPosition(13);
-			editor.sendkeys('.');
-			manager.htmlEditor.wrapTheDot();
-			var html = editor.html();
-			var expected = '<span class="code0">using</span>&nbsp;System;<span id="wrapper">.</span>\n\n'; // note: \r disappears
-			var length = (html.length >= expected.length) ? html.length : expected.length;
-			for (var i = 0; i < length; i++) {
-				expect(html.substr(0, i) + i).toBe(expected.substr(0, i) + i);
-			}
-			expect(editor.html()).toBe(expected);
-
-		});
-
-		it("when there's another *wrapped* dot, should remove the wrapper", function () {
-			editor.html('stuff<span id="wrapper">.</span>here');
-			setPosition(36);
-			editor.sendkeys('.');
-
-			manager.htmlEditor.wrapTheDot();
-			expect(editor.html()).toBe('stuff.here<span id="wrapper">.</span>');
-
-		});
-
-	});
 
 
-	function setPosition(position) {
-		bililiteRange(editor.get(0)).bounds('selection').bounds([position, position]).select();
-	}
-
-	function typeDot() {
-		var code = '.'.charCodeAt(0);
-		editor.trigger({ type: 'keypress', keyCode: code, which: code, charCode: code });
-	}
 });
 
 describe("Mouseover", function () {
-    var manager, items = [{Name: "1"}, {Name: "2"}];
-    beforeEach(function () {
-        manager = createManager();
-        manager.showItems(items);
+	var manager, items = [{ Name: "1" }, { Name: "2"}];
+	beforeEach(function () {
+		manager = createManager();
+		setFakeSelection(manager);
+		manager.showItems(items);
 
-        var li = manager.container.find('li')[1];
-        $(li).mouseover();
-    });
-    it("Selects the corresponding item", function () {
-        expect(manager.selectedItem).toBe(items[1]);
-    });
+		var li = manager.container.find('li')[1];
+		$(li).mouseover();
+	});
+	it("Selects the corresponding item", function () {
+		expect(manager.selectedItem).toBe(items[1]);
+	});
 });
 
 describe("Selecting an item", function () {
-    var manager, items = [{ Name: "1" }, { Name: "2"}];
-    beforeEach(function () {
-        manager = createManager();
-        manager.showItems(items);
-        manager.selectItem(1);
-    });
-    it("Adds the 'ui-state-hover' class to the link", function () {
-        var a = manager.container.find('li a')[1];
-        expect(a).toHaveClass('ui-state-hover');
-    });
-    it("Removes the 'ui-state-hover' class from everything else", function() {
-        var a = manager.container.find('li a')[0];
-        expect(a).not.toHaveClass('ui-state-hover');        
-    });
-    afterEach(function () {
-        $('#fixture').empty();
-    });
+	var manager, items = [{ Name: "1" }, { Name: "2"}];
+	beforeEach(function () {
+		manager = createManager();
+		setFakeSelection(manager);
+		manager.showItems(items);
+		manager.selectItem(1);
+	});
+	it("Adds the 'ui-state-hover' class to the link", function () {
+		var a = manager.container.find('li a')[1];
+		expect(a).toHaveClass('ui-state-hover');
+	});
+	it("Removes the 'ui-state-hover' class from everything else", function () {
+		var a = manager.container.find('li a')[0];
+		expect(a).not.toHaveClass('ui-state-hover');
+	});
+	afterEach(function () {
+		$('#fixture').empty();
+	});
 });
 
 describe("Using the selected item", function () {
@@ -354,4 +289,17 @@ function createManager() {
     var container = createContainer();
     var htmlEditor = new HtmlEditor(editor); 
     return new IntelManager(editor, container, htmlEditor, {});
+   }
+
+function setFakeSelection(manager) {
+	spyOn(manager.htmlEditor, 'getDotOffset').andReturn({ top: 0, left: 0 });
+}
+
+function setPosition(editor, position) {
+	bililiteRange(editor.get(0)).bounds('selection').bounds([position, position]).select();
+}
+
+function typeDot(editor) {
+	var code = '.'.charCodeAt(0);
+	editor.trigger({ type: 'keypress', keyCode: code, which: code, charCode: code });
 }
