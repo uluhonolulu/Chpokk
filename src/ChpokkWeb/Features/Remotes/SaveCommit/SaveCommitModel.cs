@@ -1,6 +1,6 @@
 ﻿using ChpokkWeb.Features.Exploring;
 
-namespace ChpokkWeb.Features.Editor.SaveCommit {
+namespace ChpokkWeb.Features.Remotes.SaveCommit {
 	public class SaveCommitModel : BaseFileModel {
 		public string Content { get; set; }
 		public bool DoCommit { get; set; }

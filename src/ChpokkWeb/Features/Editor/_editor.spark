@@ -10,7 +10,7 @@
 	<script type="text/javascript">
 		$(function () {
 			var editor = new CodeEditor($('#code'), { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}' });
-			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.SaveCommit.SaveCommitModel>()}';
+			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
 			var saveModel = { RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
 			$('#saveButton').click(function() {
 				$.post(saveUrl, $.extend(saveModel, { Content: $('#code').text(), DoCommit: false }));

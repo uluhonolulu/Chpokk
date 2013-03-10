@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
-using ChpokkWeb.Features.Editor.SaveCommit;
+using ChpokkWeb.Features.Remotes.SaveCommit;
 using FubuCore;
 using LibGit2Sharp;
 using MbUnit.Framework;

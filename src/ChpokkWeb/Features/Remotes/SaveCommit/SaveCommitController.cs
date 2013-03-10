@@ -1,9 +1,8 @@
-﻿using System;
-using ChpokkWeb.Features.Exploring;
+﻿using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using LibGit2Sharp;
 
-namespace ChpokkWeb.Features.Editor.SaveCommit {
+namespace ChpokkWeb.Features.Remotes.SaveCommit {
 	public class SaveCommitController {
 		private readonly FileSystem _fileSystem;
 		private RepositoryManager _manager;
