@@ -8,7 +8,7 @@ using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
 using RepositoryInputModel = ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel;
 
-namespace ChpokkWeb.Features.Remotes {
+namespace ChpokkWeb.Features.Remotes.Clone {
 	public class CloneController {
 
 		private IUrlRegistry _registry;

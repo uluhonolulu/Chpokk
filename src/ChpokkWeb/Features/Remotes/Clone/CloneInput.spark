@@ -5,10 +5,10 @@
 			Enter the address of your remote repository</h3>
 	</div>
 	<div class="modal-body">
-		<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.CloneInputModel>()}">
+		<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>()}">
 			<label>
 				Your repository URL</label>
-			!{this.InputFor<ChpokkWeb.Features.Remotes.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-SampleSol.git").Style("width", "100%")}
+			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "git://github.com/uluhonolulu/Chpokk-SampleSol.git").Style("width", "100%")}
 		</form>
 	</div>
 	<div class="modal-footer">
@@ -22,7 +22,7 @@
 <content name="InlineScripts">
 	<script type="text/javascript">
 
-		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.CloneInputModel>()}';
+		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>()}';
 		$(function () {
 			$("#openProjectButton").click(function () {
 				$('.waitContainer').show();

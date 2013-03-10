@@ -341,7 +341,7 @@
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
-    <Content Include="Features\Remotes\CloneInput.spark" />
+    <Content Include="Features\Remotes\Clone\CloneInput.spark" />
     <Content Include="Features\RepositoryManagement\Repository.spark" />
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
@@ -458,7 +458,7 @@
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Features\Remotes\CloneController.cs" />
+    <Compile Include="Features\Remotes\Clone\CloneController.cs" />
     <Compile Include="Features\Exploring\ContentController.cs" />
     <Compile Include="Features\Exploring\RepositoryInfo.cs" />
     <Compile Include="Features\Exploring\RepositoryInputModel.cs" />
