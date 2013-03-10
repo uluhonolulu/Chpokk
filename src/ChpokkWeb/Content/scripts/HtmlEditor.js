@@ -12,16 +12,28 @@ HtmlEditor.prototype.updateHtml = function (callback) {
 //    updateHtml();
 //};
 
-HtmlEditor.prototype.colorize = function() {
-	var range = bililiteRange(this.editorElement.get(0)).bounds('selection'); //
-	var position = range.bounds()[0];
-	this.updateHtml(function() {
-		range.bounds([position, position]).select();
+HtmlEditor.prototype.colorize = function () {
+	var position = this.getCursorPosition();
+	//alert(bililiteRange(this.editorElement.get(0))._nativeSelection()[0]);
+//	$.gritter.add({ text: bililiteRange(this.editorElement.get(0))._nativeSelection()[0] });
+//	var sel = window.getSelection().getRangeAt(0);
+//	$.gritter.add({ text: sel.startOffset });
+	var self = this;
+	this.updateHtml(function () {
+		self.setCursorPosition(position);
 	});
 
 };
 
+HtmlEditor.prototype.getCursorPosition = function() {
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
+	return range.bounds()[0];
+};
 
+HtmlEditor.prototype.setCursorPosition = function(position) {
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
+	range.bounds([position, position]).select();
+};
 
 //function saveSelection(selection, rootNode) {
 //    var caretPosition = selection.anchorOffset;
@@ -85,11 +97,6 @@ function insertHtml(editor, htmlToInsert, position) {
 	
 }
 
-function setCaretPosition(editor, position) {
-    var range = bililiteRange(editor.get(0)).bounds('selection');
-    range.bounds([position, position]);
-	range.select();
-}
 
 //function getCaretPosition(editorElement) {
 //    var range = bililiteRange(editorElement.get(0)).bounds('selection');

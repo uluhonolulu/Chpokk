@@ -263,6 +263,20 @@ describe("initializing CodeEditor", function () {
 	});
 });
 
+describex("first position after typing a space as defined by bililiteRange", function () {
+	it("should be 1", function () {
+		var editor = createEditor();
+		editor.text("\r123");
+		setPosition(editor, 1);
+		var range = bililiteRange(editor.get(0)).bounds('selection');
+		var position = range.bounds()[0];
+		expect(position).toBe(1);
+		position = bililiteRange(editor.get(0))._nativeSelection()[0];
+		alert("'" + editor.get(0).innerHTML + "'");
+		expect(position).toBe(1);
+	});
+});
+
 function ensureFixture() {
     if ($('#fixture').length === 0) {
         $('<div id = "fixture"/>').appendTo('body');
@@ -302,4 +316,13 @@ function setPosition(editor, position) {
 function typeDot(editor) {
 	var code = '.'.charCodeAt(0);
 	editor.trigger({ type: 'keypress', keyCode: code, which: code, charCode: code });
+	editor.trigger({ type: 'keyup', keyCode: code, which: code, charCode: code });
+	editor.trigger({ type: 'keydown', keyCode: code, which: code, charCode: code });
+}
+
+function typeChar(editor, char) {
+	var code = char.charCodeAt(0);
+	editor.trigger({ type: 'keypress', keyCode: code, which: code, charCode: code });
+	editor.trigger({ type: 'keydown', keyCode: code, which: code, charCode: code });
+	editor.trigger({ type: 'keyup', keyCode: code, which: code, charCode: code });
 }
