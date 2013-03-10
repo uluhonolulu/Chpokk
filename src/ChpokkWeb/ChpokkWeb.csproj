@@ -426,6 +426,8 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\Remotes\Push\PushController.cs" />
+    <Compile Include="Features\Remotes\Push\PushInputModel.cs" />
     <Compile Include="Features\Remotes\SaveCommit\SaveCommitController.cs" />
     <Compile Include="Features\Remotes\SaveCommit\SaveCommitModel.cs" />
     <Compile Include="Features\Exploring\BaseFileModel.cs" />
@@ -470,7 +472,6 @@
   <ItemGroup>
     <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
-    <Folder Include="Features\Remotes\Push\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Demo\DemoView.spark">

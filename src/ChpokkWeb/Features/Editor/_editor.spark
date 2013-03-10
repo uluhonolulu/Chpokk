@@ -1,7 +1,11 @@
 ﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
 
 <Stylesheet href="editor.css" />
-<button id="saveButton" class="btn btn-inverse">Save</button> <button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
+
+<button id="saveButton" class="btn btn-inverse">Save</button> 
+<button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
+<button id="pushButton" class="btn btn-inverse">Push</button> 
+
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
 <div id="code" contenteditable="true">${Model.Content}</div>
 <ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="intelResults"></ul>
@@ -12,17 +16,25 @@
 			var editor = new CodeEditor($('#code'), { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}' });
 			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
 			var saveModel = { RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
-			$('#saveButton').click(function() {
+			$('#saveButton').click(function () {
 				$.post(saveUrl, $.extend(saveModel, { Content: $('#code').text(), DoCommit: false }));
 			});
 
-			$('#saveCommitButton').click(function() {
+			$('#saveCommitButton').click(function () {
 				$('#commitDialog').modal();
-				$('#commitDialog #commitButton').one('click', function() {
-					$.post(saveUrl, saveModel.extend({ Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
+				$('#commitDialog #commitButton').one('click', function () {
+					$.post(saveUrl, $.extend(saveModel, { Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
 					$('#commitDialog').modal('hide');
 				});
 			});
+
+			var pushModel = { RepositoryName: '${Model.RepositoryName}', Username: 'uluhonolulu', Password: 'xd11SvG23' };
+			$('#pushButton').click(function () {
+				var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
+				$.post(pushUrl, pushModel, function () {
+					alert("Pushed successfully!");
+				});
+			})
 		});
 	</script>
 

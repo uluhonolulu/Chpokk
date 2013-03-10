@@ -82,3 +82,7 @@ function output(arr) {
 	// Output however you want
 	alert(arr.join('\n'));
 }
+
+window.alert = function (message) {
+	$.gritter.add({ text: message });
+}
