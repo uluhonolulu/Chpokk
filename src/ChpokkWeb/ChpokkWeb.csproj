@@ -278,6 +278,7 @@
     <Content Include="Content\tests.asset.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\Remotes\Push\_pushDialog.spark" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />

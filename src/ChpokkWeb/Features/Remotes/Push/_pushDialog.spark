@@ -1,0 +1,17 @@
+﻿<use namespace="ChpokkWeb.Features.Remotes.Push" />
+<viewdata model="ChpokkWeb.Features.Remotes.Push.PushInputModel" />
+
+<div id="pushDialog" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3>Your credentials please</h3>
+	</div>
+	<div class="modal-body">
+		<textarea id="commitMessage"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<button class="btn btn-primary" id="commitButton">Push</button>
+	</div>
+	
+</div>

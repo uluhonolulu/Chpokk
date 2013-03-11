@@ -30,11 +30,12 @@
 
 			var pushModel = { RepositoryName: '${Model.RepositoryName}', Username: 'uluhonolulu', Password: 'xd11SvG23' };
 			$('#pushButton').click(function () {
+				$('#pushDialog').modal();
 				var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
 				$.post(pushUrl, pushModel, function () {
 					alert("Pushed successfully!");
 				});
-			})
+			});
 		});
 	</script>
 
@@ -53,3 +54,5 @@
 		<button class="btn btn-primary" id="commitButton">Save and commit</button>
 	</div>
 </div>
+
+!{this.Partial<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}
