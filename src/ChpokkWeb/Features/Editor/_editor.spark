@@ -30,15 +30,7 @@
 			});
 
 			$('#pushButton').click(function () {
-				$('#pushDialog').modal();
-				$('#pushDialog #pushOkButton').one('click', function () {
-					var pushModel = { RepositoryName: '${Model.RepositoryName}', Username: $('#pushDialog [name="Username"]').val(), Password: $('#pushDialog [name="Password"]').val() };
-					var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
-					$.post(pushUrl, pushModel, function () {
-						alert("Pushed successfully!");
-					});
-					$('#pushDialog').modal('hide');
-				});
+				pushRepository('${Model.RepositoryName}');
 			});
 		});
 	</script>

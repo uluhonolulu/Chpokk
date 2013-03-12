@@ -18,3 +18,18 @@
 	</div>
 	
 </div>
+
+<script type="text/javascript">
+	function pushRepository(repositoryName) {
+		$('#pushDialog').modal();
+		$('#pushDialog #pushOkButton').one('click', function () {
+			var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [name="Username"]').val(), Password: $('#pushDialog [name="Password"]').val() };
+			var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
+			$.post(pushUrl, pushModel, function () {
+				alert("Pushed successfully!");
+			});
+			$('#pushDialog').modal('hide');
+		});
+		
+	}
+</script>
