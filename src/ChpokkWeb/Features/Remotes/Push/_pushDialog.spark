@@ -1,5 +1,5 @@
 ﻿<use namespace="ChpokkWeb.Features.Remotes.Push" />
-<viewdata model="ChpokkWeb.Features.Remotes.Push.PushInputModel" />
+<viewdata model="ChpokkWeb.Features.Remotes.Push.PushDialogModel" />
 
 <div id="pushDialog" class="modal hide fade">
 	<div class="modal-header">

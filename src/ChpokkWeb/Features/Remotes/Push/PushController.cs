@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.Remotes.Push {
 		}
 
 
-		public AjaxContinuation Push(PushInputModel model) {
+		public AjaxContinuation post_Push(PushInputModel model) {
 			var credentials = model.Username.IsEmpty()? null: new Credentials {Username = model.Username, Password = model.Password};
 			var path = FileSystem.Combine(model.PhysicalApplicationPath, _manager.GetPathFor(model.RepositoryName)) ;
 			var success = true;
@@ -31,5 +31,11 @@ namespace ChpokkWeb.Features.Remotes.Push {
 			}
 			return ajaxContinuation;
 		}
+
+		//hi josh
+		public PushDialogModel get_stuff(PushDialogModel model) {
+			return model;
+		}
+	
 	}
 }

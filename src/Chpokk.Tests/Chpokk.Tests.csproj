@@ -182,6 +182,7 @@
     <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Spikes\LessProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spikes\RenderPartial.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
   </ItemGroup>
