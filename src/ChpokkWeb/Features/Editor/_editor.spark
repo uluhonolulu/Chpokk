@@ -1,4 +1,5 @@
 ﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
+<use namespace="FubuMVC.Core.UI" />
 
 <Stylesheet href="editor.css" />
 
@@ -28,12 +29,15 @@
 				});
 			});
 
-			var pushModel = { RepositoryName: '${Model.RepositoryName}', Username: 'uluhonolulu', Password: 'xd11SvG23' };
 			$('#pushButton').click(function () {
 				$('#pushDialog').modal();
-				var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
-				$.post(pushUrl, pushModel, function () {
-					alert("Pushed successfully!");
+				$('#pushDialog #pushOkButton').one('click', function () {
+					var pushModel = { RepositoryName: '${Model.RepositoryName}', Username: $('#pushDialog [name="Username"]').val(), Password: $('#pushDialog [name="Password"]').val() };
+					var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
+					$.post(pushUrl, pushModel, function () {
+						alert("Pushed successfully!");
+					});
+					$('#pushDialog').modal('hide');
 				});
 			});
 		});

@@ -1,4 +1,5 @@
 ﻿<use namespace="ChpokkWeb.Features.Remotes.Push" />
+<use namespace="FubuMVC.Core.UI" />
 <viewdata model="ChpokkWeb.Features.Remotes.Push.PushDialogModel" />
 
 <div id="pushDialog" class="modal hide fade">
@@ -7,11 +8,13 @@
 		<h3>Your credentials please</h3>
 	</div>
 	<div class="modal-body">
-		<textarea id="commitMessage"></textarea>
+		!{this.LabelFor(m => m.Username)} !{this.InputFor(m => m.Username)} <br />
+		!{this.LabelFor(m => m.Password)} !{this.InputFor(m => m.Password)}<br />
+		
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button class="btn btn-primary" id="commitButton">Push</button>
+		<button class="btn btn-primary" id="pushOkButton">Push</button>
 	</div>
 	
 </div>
