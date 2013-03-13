@@ -20,7 +20,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
-			//TODO: make it accept just a bunch of strings that are file contentses
+
 			if (input.Text == null) return null;
 
 			var projectContent = Compiler.DefaultProjectContent;
@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				var filePath = FileSystem.Combine(projectFolder, fileItem.Path);
 				if (_fileSystem.FileExists(filePath)) {
 					var classContent = _fileSystem.ReadStringFromFile(filePath);
-					_compiler.Compile(projectContent, new StringReader(classContent), filePath);						
+					_compiler.Compile(projectContent, new StringReader(classContent));						
 				}
 			
 			}
@@ -45,10 +45,6 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var expression = Compiler.FindExpression(text, input.Position, parseInformation);
 			var resolveResult = _resolver.Resolve(expression, parseInformation, text);
-			//Console.WriteLine(input.Text);
-			//Console.WriteLine(compilationUnit);
-			//Console.WriteLine(expression.Expression);
-			//Console.WriteLine(resolveResult.ToString());
 			if (resolveResult == null) {
 				return new IntelOutputModel{Message = "ResolveResult is null"};
 			}

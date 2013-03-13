@@ -11,14 +11,14 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 
 namespace ChpokkWeb.Features.Editor.Compilation {
 	public class Compiler {
-		public ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader, string fileName = "nofile") {
+		public ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader) {
 			ICompilationUnit compilationUnit;
-			using (IParser parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
+			using (var parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
 				parser.ParseMethodBodies = false;
 				parser.Parse();
 				compilationUnit = ConvertCompilationUnit(parser.CompilationUnit, projectContent);
 			}
-			projectContent.UpdateCompilationUnit(null, compilationUnit, fileName);
+			projectContent.UpdateCompilationUnit(null, compilationUnit, null);
 			return compilationUnit;
 		}
 
