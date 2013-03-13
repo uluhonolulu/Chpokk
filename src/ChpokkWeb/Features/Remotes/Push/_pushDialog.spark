@@ -8,8 +8,8 @@
 		<h3>Your credentials please</h3>
 	</div>
 	<div class="modal-body">
-		!{this.LabelFor(m => m.Username)} !{this.InputFor(m => m.Username)} <br />
-		!{this.LabelFor(m => m.Password)} !{this.InputFor(m => m.Password)}<br />
+		!{this.Edit(m => m.Username)}
+		!{this.Edit(m => m.Password)}
 		
 	</div>
 	<div class="modal-footer">
