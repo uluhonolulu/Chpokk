@@ -5,6 +5,7 @@ using ChpokkWeb.Features.Editor.Compilation;
 using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using FubuMVC.Core;
+using ICSharpCode.AvalonEdit.Utils;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.CSharp;
@@ -34,8 +35,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			foreach (var fileItem in _projectParser.GetCompiledFiles(projectFileContent)) {
 				var filePath = FileSystem.Combine(projectFolder, fileItem.Path);
 				if (_fileSystem.FileExists(filePath)) {
-					var classContent = _fileSystem.ReadStringFromFile(filePath);
-					_compiler.Compile(projectContent, new StringReader(classContent));						
+					_compiler.Compile(projectContent, new StreamReader(filePath));						
 				}
 			
 			}
