@@ -3,7 +3,6 @@ using System.IO;
 using Chpokk.Tests.GitHub.Infrastructure;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
-using GitSharp;
 using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;
 
@@ -36,20 +35,21 @@ namespace Chpokk.Tests.GitHub {
 		}
 	}
 
-	public class ClonedRepositoryContext : RemoteRepositoryContext {
-		public new const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
-		public override void Create() {
-			base.Create();
-			Git.Clone(REPO_URL, RepositoryPath);
-		}
-	}
+	// could be used for push tests
+	//public class ClonedRepositoryContext : RemoteRepositoryContext {
+	//    public new const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
+	//    public override void Create() {
+	//        base.Create();
+	//        Git.Clone(REPO_URL, RepositoryPath);
+	//    }
+	//}
 
-	public class ModifiedRepositoryContext : ClonedRepositoryContext {
-		public override void Create() {
-			base.Create();
-			var content = File.ReadAllText(FilePath);
-			var newContent = content + Environment.NewLine + DateTime.Now.ToString();
-			File.WriteAllText(FilePath, newContent);
-		}
-	}
+	//public class ModifiedRepositoryContext : ClonedRepositoryContext {
+	//    public override void Create() {
+	//        base.Create();
+	//        var content = File.ReadAllText(FilePath);
+	//        var newContent = content + Environment.NewLine + DateTime.Now.ToString();
+	//        File.WriteAllText(FilePath, newContent);
+	//    }
+	//}
 }

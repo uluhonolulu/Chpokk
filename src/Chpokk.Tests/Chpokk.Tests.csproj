@@ -82,12 +82,6 @@
       <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="GitSharp">
-      <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="GitSharp.Core">
-      <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.Core.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlTags, Version=1.1.0.71, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlTags.1.1.0.71\lib\4.0\HtmlTags.dll</HintPath>
@@ -108,10 +102,6 @@
     <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpDevelop.Widgets">
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Ivonna, Version=3.0.9.35888, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Ivonna\Ivonna.dll</HintPath>
@@ -172,9 +162,7 @@
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
-    <Compile Include="GitHub\GitSharpCloningSpike.cs" />
     <Compile Include="GitHub\Cloning.cs" />
-    <Compile Include="GitHub\GitSharpPushingSpike.cs" />
     <Compile Include="GitHub\Infrastructure\Api.cs" />
     <Compile Include="GitHub\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
