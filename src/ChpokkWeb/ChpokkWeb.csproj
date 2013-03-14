@@ -428,6 +428,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectData.cs" />
+    <Compile Include="Features\ProjectManagement\ProjectFactory.cs" />
     <Compile Include="Features\Remotes\Push\PushController.cs" />
     <Compile Include="Features\Remotes\Push\PushDialogModel.cs" />
     <Compile Include="Features\Remotes\Push\PushInputModel.cs" />
