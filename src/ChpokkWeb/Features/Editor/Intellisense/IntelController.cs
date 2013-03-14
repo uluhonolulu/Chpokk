@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using ChpokkWeb.Features.Editor.Compilation;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement;
 using FubuCore;
 using FubuMVC.Core;
 using ICSharpCode.AvalonEdit.Utils;
@@ -24,7 +25,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 			if (input.Text == null) return null;
 
-			var projectContent = Compiler.DefaultProjectContent;
+			var projectContent = ProjectData.DefaultProjectContent;
 
 			var repositoryRoot = _repositoryManager.GetRepositoryInfo(input.RepositoryName).Path;
 			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
@@ -34,7 +35,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			TextReader textReader = new StringReader(text);
-			var compilationUnit = _compiler.Compile(projectContent, textReader);
+			var compilationUnit = _compiler.Compile(projectContent, textReader); //WARNING: we might have already added this class to the project content -- we need to just parse it here
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var expression = Compiler.FindExpression(text, input.Position, parseInformation);
 			var resolveResult = _resolver.Resolve(expression, parseInformation, text);

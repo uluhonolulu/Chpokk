@@ -42,3 +42,9 @@ namespace Chpokk.Tests.Intellisense {
 		}
 	}
 }
+
+//Unit testing: 
+			//var compilationUnit = _compiler.Compile(projectContent, textReader); 
+			//var expression = Compiler.FindExpression(text, input.Position, parseInformation);
+//then check that:
+//expression	{<x> ([DefaultExpressionContext: IdentifierExpected])}	ICSharpCode.SharpDevelop.Dom.ExpressionResult
