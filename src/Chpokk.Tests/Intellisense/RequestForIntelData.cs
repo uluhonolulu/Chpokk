@@ -21,8 +21,6 @@ namespace Chpokk.Tests.Intellisense {
 
 		[Test]
 		public void ShouldReturnToStringMethodForStrings() {
-			//TODO: until we implement single file scripts, it is absolutely necessary to provide a project file here;
-			// maybe a hint that we need to isolate it somehow
 			var members = from item in Result.Items select item.Name;
 			Assert.Contains<string>(members.ToArray(), "ToString");
 			var toStrings = from member in members where member == "ToString" select member;

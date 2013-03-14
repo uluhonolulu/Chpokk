@@ -11,7 +11,7 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 
 namespace ChpokkWeb.Features.Editor.Compilation {
 	public class Compiler {
-		public ICompilationUnit Compile(DefaultProjectContent projectContent, TextReader textReader) {
+		public ICompilationUnit Compile(IProjectContent projectContent, TextReader textReader) {
 			ICompilationUnit compilationUnit;
 			using (var parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
 				parser.ParseMethodBodies = false;
@@ -20,6 +20,12 @@ namespace ChpokkWeb.Features.Editor.Compilation {
 			}
 			projectContent.UpdateCompilationUnit(null, compilationUnit, null);
 			return compilationUnit;
+		}
+
+		public void CompileAll(IProjectContent projectContent, IEnumerable<TextReader> sources) {
+			foreach (var source in sources) {
+				this.Compile(projectContent, source);
+			}
 		}
 
 		private static DefaultProjectContent _projectContent;

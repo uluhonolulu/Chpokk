@@ -32,14 +32,12 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolder = projectFilePath.ParentDirectory();
-			foreach (var fileItem in _projectParser.GetCompiledFiles(projectFileContent)) {
-				var filePath = FileSystem.Combine(projectFolder, fileItem.Path);
-				if (_fileSystem.FileExists(filePath)) {
-					_compiler.Compile(projectContent, new StreamReader(filePath));						
-				}
-			
-			}
-
+			var compiledFiles = _projectParser.GetCompiledFiles(projectFileContent);
+			var filePaths = from fileItem in compiledFiles select FileSystem.Combine(projectFolder, fileItem.Path); //TODO: maybe move this to project parser?
+			var readers = from path in filePaths where _fileSystem.FileExists(path) select new StreamReader(path) as TextReader;
+			textReader = new StringReader("//");
+			readers = readers.Concat(new[] {textReader});
+			_compiler.CompileAll(projectContent, readers);
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			var parseInformation =  new ParseInformation(compilationUnit);
