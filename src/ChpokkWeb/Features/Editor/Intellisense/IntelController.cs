@@ -19,18 +19,18 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		private readonly RepositoryManager _repositoryManager;
 		private readonly Compiler _compiler;
 		private readonly NRefactoryResolver _resolver;
+		private ProjectFactory _projectFactory;
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 
 			if (input.Text == null) return null;
 
-			var projectContent = ProjectData.DefaultProjectContent;
 
-			var repositoryRoot = _repositoryManager.GetRepositoryInfo(input.RepositoryName).Path;
-			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
+			var projectFilePath = GetProjectFile(input);
 			var filePaths = _projectParser.GetFullPathsForCompiledFilesFromProjectFile(projectFilePath);
 			var readers = from path in filePaths where _fileSystem.FileExists(path) select new StreamReader(path) as TextReader;
+			var projectContent = _projectFactory.GetProjectData(projectFilePath).ProjectContent;
 			_compiler.CompileAll(projectContent, readers);
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
@@ -52,12 +52,19 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return model;
 		}
 
-		public IntelController(IFileSystem fileSystem, ProjectParser projectParser, RepositoryManager repositoryManager, Compiler compiler, NRefactoryResolver resolver) {
+		private string GetProjectFile(IntelInputModel input) {
+			var repositoryRoot = _repositoryManager.GetRepositoryInfo(input.RepositoryName).Path;
+			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
+			return projectFilePath;
+		}
+
+		public IntelController(IFileSystem fileSystem, ProjectParser projectParser, RepositoryManager repositoryManager, Compiler compiler, NRefactoryResolver resolver, ProjectFactory projectFactory) {
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
 			_compiler = compiler;
 			_resolver = resolver;
+			_projectFactory = projectFactory;
 		}
 	}
 }

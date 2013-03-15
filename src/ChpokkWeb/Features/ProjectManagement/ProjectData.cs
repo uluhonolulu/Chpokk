@@ -6,7 +6,13 @@ using ICSharpCode.SharpDevelop.Dom;
 
 namespace ChpokkWeb.Features.ProjectManagement {
 	public class ProjectData {
+
+		public IProjectContent ProjectContent {
+			get { return DefaultProjectContent; }
+		}
+
 		private static DefaultProjectContent _projectContent;
+		private IProjectContent _projectContent1;
 
 		public static DefaultProjectContent DefaultProjectContent {
 			get {
