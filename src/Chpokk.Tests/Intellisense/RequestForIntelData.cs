@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using Arractas;
+using CThru;
+using CThru.BuiltInAspects;
 using Chpokk.Tests.Exploring;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb;
@@ -10,6 +12,9 @@ using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
+using ICSharpCode.NRefactory.Visitors;
+using ICSharpCode.SharpDevelop.Dom;
+using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using Ivonna.Framework.Generic;
 using Ivonna.Framework;
 using MbUnit.Framework;
@@ -32,7 +37,7 @@ namespace Chpokk.Tests.Intellisense {
 		}
 
 		public override IntelOutputModel Act() {
-			const string text = "using System;\r\nclass AClass\r\n{\r\n void B()\r\n {\r\n  string x;\r\n  x.\r\n }\r\n}\r\n";
+			const string text = "class ABCClass { void BCD() {  string x;  x. }}\r\n";
 			var session = new TestSession();
 			var projectPathRelativeToRepositoryRoot = Path.Combine(Context.SOLUTION_FOLDER, Context.PROJECT_PATH);
 			var position = text.IndexOf('.');

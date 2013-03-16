@@ -157,6 +157,7 @@
     <Compile Include="Infrastructure\WebQueryTest.cs" />
     <Compile Include="Intellisense\IntellisenseList.cs" />
     <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
+    <Compile Include="Intellisense\UnitTests\BCL.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />

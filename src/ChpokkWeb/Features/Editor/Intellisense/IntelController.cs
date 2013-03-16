@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		private readonly RepositoryManager _repositoryManager;
 		private readonly Compiler _compiler;
 		private readonly NRefactoryResolver _resolver;
-		private ProjectFactory _projectFactory;
+		private readonly ProjectFactory _projectFactory;
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
