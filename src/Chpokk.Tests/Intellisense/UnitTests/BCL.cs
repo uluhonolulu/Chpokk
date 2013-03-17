@@ -31,7 +31,7 @@ namespace Chpokk.Tests.Intellisense.UnitTests {
 			var textReader = new StringReader(text);
 			var compiler = Context.Container.Get<Compiler>();
 			var projectContent = ProjectData.DefaultProjectContent;
-			var compilationUnit = compiler.Compile(projectContent, textReader);
+			var compilationUnit = compiler.ParseCode(projectContent, textReader);
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var _resolver = Context.Container.Get<NRefactoryResolver>();
 			var expression = Compiler.FindExpression(text, text.IndexOf('.'), parseInformation);

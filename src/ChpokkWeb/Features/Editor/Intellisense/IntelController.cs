@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			TextReader textReader = new StringReader(text);
-			var compilationUnit = _compiler.Compile(projectContent, textReader); //WARNING: we might have already added this class to the project content -- we need to just parse it here
+			var compilationUnit = _compiler.ParseCode(projectContent, textReader);
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var expression = Compiler.FindExpression(text, input.Position, parseInformation);
 			var resolveResult = _resolver.Resolve(expression, parseInformation, text);

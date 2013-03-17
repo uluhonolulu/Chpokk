@@ -7,23 +7,26 @@ using ICSharpCode.SharpDevelop.Dom;
 namespace ChpokkWeb.Features.ProjectManagement {
 	public class ProjectData {
 
+		//takes projectpath as ctor parameter
+		//responsible for 
+
 		public IProjectContent ProjectContent {
 			get { return DefaultProjectContent; }
 		}
 
-		private static DefaultProjectContent _projectContent;
-		private IProjectContent _projectContent1;
+		private static DefaultProjectContent projectContent;
+		private IProjectContent _projectContent;
 
 		public static DefaultProjectContent DefaultProjectContent {
 			get {
-				if (_projectContent == null) {
+				if (projectContent == null) {
 					var pcRegistry = new ProjectContentRegistry();
 
-					_projectContent = new DefaultProjectContent() {Language = LanguageProperties.CSharp};
-					_projectContent.AddReferencedContent(pcRegistry.Mscorlib);
+					projectContent = new DefaultProjectContent() {Language = LanguageProperties.CSharp};
+					projectContent.AddReferencedContent(pcRegistry.Mscorlib);
 					
 				}
-				return _projectContent;
+				return projectContent;
 			}
 		}
 

@@ -12,15 +12,21 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 namespace ChpokkWeb.Features.Editor.Compilation {
 	public class Compiler {
 		public ICompilationUnit Compile(IProjectContent projectContent, TextReader textReader) {
+			var compilationUnit = ParseCode(projectContent, textReader);
+			projectContent.UpdateCompilationUnit(null, compilationUnit, null);
+			return compilationUnit;
+		}
+
+		public ICompilationUnit ParseCode(IProjectContent projectContent, TextReader textReader) {
 			ICompilationUnit compilationUnit;
 			using (var parser = ParserFactory.CreateParser(SupportedLanguage.CSharp, textReader)) {
 				parser.ParseMethodBodies = false;
 				parser.Parse();
 				compilationUnit = ConvertCompilationUnit(parser.CompilationUnit, projectContent);
 			}
-			projectContent.UpdateCompilationUnit(null, compilationUnit, null);
 			return compilationUnit;
 		}
+
 
 		public void CompileAll(IProjectContent projectContent, IEnumerable<TextReader> sources) {
 			foreach (var source in sources) {
