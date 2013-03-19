@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Web;
 using Arractas;
 using CThru;
 using CThru.BuiltInAspects;
@@ -24,6 +25,7 @@ namespace Chpokk.Tests.Intellisense {
 	[TestFixture, RunOnWeb]
 	public class RequestForIntelData : WebQueryTest<ProjectWithSingleRootFileContext, IntelOutputModel> {
 
+
 		[Test]
 		public void ShouldReturnToStringMethodForStrings() {
 			var members = from item in Result.Items select item.Name;
@@ -39,6 +41,8 @@ namespace Chpokk.Tests.Intellisense {
 		public override IntelOutputModel Act() {
 			const string text = "class ABCClass { void BCD() {  string x;  x. }}\r\n";
 			var session = new TestSession();
+			session.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("Exception")));
+			//session.AddAspect(new TraceAspect(info => info.TargetInstance is HttpResponse));
 			var projectPathRelativeToRepositoryRoot = Path.Combine(Context.SOLUTION_FOLDER, Context.PROJECT_PATH);
 			var position = text.IndexOf('.');
 			var inputModel = new IntelInputModel {Text = text, Position = position, NewChar = '.', ProjectPath = projectPathRelativeToRepositoryRoot, RepositoryName = Context.REPO_NAME};

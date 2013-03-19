@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Features.Editor.Compilation;
+using ChpokkWeb.Features.Exploring;
+using FubuCore;
 using ICSharpCode.SharpDevelop.Dom;
 
 namespace ChpokkWeb.Features.ProjectManagement {
@@ -10,12 +14,16 @@ namespace ChpokkWeb.Features.ProjectManagement {
 		//takes projectpath as ctor parameter
 		//responsible for 
 
-		public IProjectContent ProjectContent {
-			get { return DefaultProjectContent; }
-		}
+		private string _projectFilePath;
+
+		public IProjectContent ProjectContent { get; private set; }
 
 		private static DefaultProjectContent projectContent;
-		private IProjectContent _projectContent;
+
+		public ProjectData(IProjectContent projectContent) {
+			ProjectContent = projectContent;
+		}
+
 
 		public static DefaultProjectContent DefaultProjectContent {
 			get {
@@ -29,6 +37,8 @@ namespace ChpokkWeb.Features.ProjectManagement {
 				return projectContent;
 			}
 		}
+
+
 
 		public static void WarmUp() {
 			var x = DefaultProjectContent;
