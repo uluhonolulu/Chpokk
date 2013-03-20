@@ -29,7 +29,7 @@ namespace Chpokk.Tests.Intellisense {
 		[Test]
 		public void ShouldReturnToStringMethodForStrings() {
 			var members = from item in Result.Items select item.Name;
-			Assert.Contains<string>(members.ToArray(), "ToString");
+			Assert.Contains(members.ToArray(), "ToString");
 			var toStrings = from member in members where member == "ToString" select member;
 			Assert.AreEqual(1, toStrings.Count());
 		}
