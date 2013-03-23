@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using Chpokk.Tests.Exploring;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 

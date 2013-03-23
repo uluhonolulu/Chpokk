@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using ChpokkWeb.Infrastructure;
+using ICSharpCode.SharpDevelop.Project;
 
-namespace Chpokk.Tests.Exploring {
+namespace ChpokkWeb.Features.Exploring {
 	public class FileItemToProjectItemConverter {
-		public IEnumerable<RepositoryItem> Convert(IEnumerable<FileItem> files, string projectFolderRelativeToRepositoryRoot) {
-			var filePaths = files.Select(item => item.Path);
+		public IEnumerable<RepositoryItem> Convert(IEnumerable<FileProjectItem> files, string projectFolderRelativeToRepositoryRoot) {
+			var filePaths = files.Select(item => item.FileName);
 			return GetChildItems(string.Empty, filePaths, projectFolderRelativeToRepositoryRoot);
 		}
 

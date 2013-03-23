@@ -2,12 +2,13 @@
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using ICSharpCode.SharpDevelop.Project;
 using MbUnit.Framework;
 using System.Linq;
 
 namespace Chpokk.Tests.Exploring.UnitTests {
 	[TestFixture]
-	public class ParsingProjectContent : BaseQueryTest<ProjectContentWithOneRootFileContext, IEnumerable<FileItem>> {
+	public class ParsingProjectContent : BaseQueryTest<ProjectContentWithOneRootFileContext, IEnumerable<FileProjectItem>> {
 
 		[Test]
 		public void CanSeeOneCodeFile() {
@@ -16,15 +17,15 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 		[Test, DependsOn("CanSeeOneCodeFile")]
 		public void ItemNameIsFilename() {
-			Assert.AreEqual(Context.FILE_NAME, FileItem.Path);
+			Assert.AreEqual(Context.FILE_NAME, FileItem.FileName);
 		}
-		
-		public override IEnumerable<FileItem> Act() {
+
+		public override IEnumerable<FileProjectItem> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
 			return parser.GetCompiledFiles(Context.PROJECT_FILE_CONTENT);
 		}
 
-		public FileItem FileItem {
+		public FileProjectItem FileItem {
 			get { return Result.First(); }
 		}
 	}

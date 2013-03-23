@@ -140,6 +140,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exploring\UnitTests\ParsingAssemblyReferences.cs" />
+    <Compile Include="Exploring\UnitTests\ParsingProjectReferences.cs" />
+    <Compile Include="Exploring\UnitTests\ProjectContentWithOneBclReferenceContext.cs" />
     <Compile Include="Infrastructure\AssertExtensions.cs" />
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
     <Compile Include="Exploring\GitRepositoryContext.cs" />

@@ -42,6 +42,6 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			projectContent.AddReferencedContent(_projectContentRegistry.Mscorlib);
 			return projectContent;
 		}
-		//TODO: we should be able to get a project w/o saving it to disk -- test references for example
+		
 	}
 }

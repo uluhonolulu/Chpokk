@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ChpokkWeb.Features.Exploring;
+using ICSharpCode.SharpDevelop.Project;
 using MbUnit.Framework;
 
 namespace Chpokk.Tests.Exploring.UnitTests {
@@ -11,7 +12,7 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 		[Test]
 		public void RootFileReturnsSingleFileItem() {
-			var source = new[] {new FileItem {Path = "Class1"}};
+			var source = new[] { new FileProjectItem(null, ItemType.Compile, "Class1") };
 			var result = _converter.Convert(source, "root");
 			Assert.AreEqual(1, result.Count());
 			var item = result.Single();
@@ -23,7 +24,7 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 		[Test]
 		public void FileInASubfolderReturnsSubfolderAndFileAsAChild() {
-			var source = new[] {new FileItem {Path = @"Subfolder\Class1"}};
+			var source = new[] {new FileProjectItem(null, ItemType.Compile, @"Subfolder\Class1")};
 			var result = _converter.Convert(source, "root");
 			Assert.AreEqual(1, result.Count());
 			var folderItem = result.Single();
@@ -39,7 +40,7 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 		[Test]
 		public void TwoFilesInTwoSubfolders() {
-			var source = new[] {new FileItem {Path = @"Subfolder1\Class1"}, new FileItem {Path = @"Subfolder2\Class2"}};
+			var source = new[] {new FileProjectItem(null, ItemType.Compile, @"Subfolder1\Class1"), new FileProjectItem(null, ItemType.Compile, @"Subfolder2\Class2")};
 			var result = _converter.Convert(source, "root");
 			Assert.AreEqual(2, result.Count());
 
@@ -50,7 +51,7 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 		[Test]
 		public void TwoFilesInSameSubfolder() {
-			var source = new[] {new FileItem {Path = @"Subfolder\Class1"}, new FileItem {Path = @"Subfolder\Class2"}};
+			var source = new[] {new FileProjectItem(null, ItemType.Compile, @"Subfolder\Class1"), new FileProjectItem(null, ItemType.Compile, @"Subfolder\Class2")};
 			var result = _converter.Convert(source, "root");
 			Assert.AreEqual(1, result.Count());
 
@@ -60,7 +61,7 @@ namespace Chpokk.Tests.Exploring.UnitTests {
 
 		[Test]
 		public void SubSubFolder() {
-			var source = new[] {new FileItem {Path = @"Subfolder1\Subfolder2\Class"}};
+			var source = new[] {new FileProjectItem(null, ItemType.Compile, @"Subfolder1\Subfolder2\Class")};
 			var result = _converter.Convert(source, "root");
 			Assert.AreEqual(1, result.Count());
 			var folderItem = result.Single();
