@@ -14,7 +14,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 		private readonly ProjectParser _projectParser;
 		private readonly IFileSystem _fileSystem;
 		private readonly Compiler _compiler;
-		private readonly ProjectContentRegistry _projectContentRegistry;
+		private readonly ProjectContentRegistry _projectContentRegistry; //todo: _projectContentRegistry.ActivatePersistence
 		private readonly Cache<string, ProjectData> _projects;
  
 		public ProjectFactory(ProjectParser projectParser, IFileSystem fileSystem, Compiler compiler, ProjectContentRegistry projectContentRegistry) {

@@ -163,6 +163,7 @@
     <Compile Include="Intellisense\UnitTests\BCL.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
     <Compile Include="Saving\Save.cs" />
+    <Compile Include="Spikes\AddinASystemRef.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
