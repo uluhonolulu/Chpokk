@@ -15,16 +15,24 @@ namespace Chpokk.Tests.Spikes {
 		[Test]
 		public void Test() {
 			//TODO: Add Mono.Cecil
-			CThruEngine.AddAspect(new TraceAspect(info => info.MethodName.StartsWith("Load")));
-			CThruEngine.StartListening();
+
+			
 			var registry = new ProjectContentRegistry();
-			var assembly = Assembly.LoadWithPartialName("System.Core");
-			Console.WriteLine(assembly.FullName);
-			var projectContent = registry.GetProjectContentForReference(assembly.FullName, assembly.Location);
+			var assemblyName = "System.Core";
+			//registry.GetProjectContentForReference(assemblyName, assemblyName);
+			//var assembly = Assembly.LoadWithPartialName(assemblyName);
+			//Console.WriteLine(assembly.FullName);
+			//Console.WriteLine();
+			//var projectContent = registry.GetProjectContentForReference(assembly.FullName, assembly.Location);
 			//Assert.IsNotNull(projectContent);
 
-			var other = GacInterop.FindBestMatchingAssemblyName("System.Core");
-			Assert.IsNotNull(other);
+			//var other = GacInterop.FindBestMatchingAssemblyName(assemblyName);
+			//Assert.IsNotNull(other);
+
+			var reference = GacInterop.FindBestMatchingAssemblyName(assemblyName);
+			var fileName = GacInterop.FindAssemblyInNetGac(reference);
+			var pc = registry.GetProjectContentForReference(assemblyName, fileName);
+			Assert.IsNotNull(pc);
 		}
 	}
 }

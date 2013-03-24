@@ -584,6 +584,14 @@
             Deserializes a <see cref="T:ICSharpCode.Core.TreePathNotFoundException"/>
             </summary>
         </member>
+        <member name="M:ICSharpCode.Core.ExtensionMethods.Flatten``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Converts a recursive data structure into a flat list.
+            </summary>
+            <param name="input">The root elements of the recursive data structure.</param>
+            <param name="recursion">The function that gets the children of an element.</param>
+            <returns>Iterator that enumerates the tree structure in preorder.</returns>
+        </member>
         <member name="T:ICSharpCode.Core.IAnalyticsMonitorTrackedFeature">
             <summary>
             Allows marking the end-time of feature uses.
@@ -724,13 +732,11 @@
             Combines baseDirectoryPath with relPath and normalizes the resulting path.
             </summary>
         </member>
-        <member name="M:ICSharpCode.Core.FileUtility.SearchDirectory(System.String,System.String,System.Collections.Generic.List{System.String},System.Boolean,System.Boolean)">
+        <member name="M:ICSharpCode.Core.FileUtility.SearchDirectoryInternal(System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             Finds all files which are valid to the mask <paramref name="filemask"/> in the path
             <paramref name="directory"/> and all subdirectories
             (if <paramref name="searchSubdirectories"/> is true).
-            The found files are added to the List&lt;string&gt;
-            <paramref name="collection"/>.
             If <paramref name="ignoreHidden"/> is true, hidden files and folders are ignored.
             </summary>
         </member>
@@ -783,6 +789,16 @@
         <member name="P:ICSharpCode.Core.FileUtility.WindowsSdk70InstallRoot">
             <summary>
             Location of the .NET 3.5 SP1 SDK (Windows SDK 7.0) install root.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.Core.FileUtility.WindowsSdk71InstallRoot">
+            <summary>
+            Location of the .NET 4.0 SDK (Windows SDK 7.1) install root.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.Core.FileUtility.WindowsSdk80NetFxTools">
+            <summary>
+            Location of the .NET 4.5 SDK (Windows SDK 8.0) install root.
             </summary>
         </member>
         <member name="T:ICSharpCode.Core.Services.TextWriterLoggingService">
@@ -1138,6 +1154,11 @@
             All environment variables are avaible under the name env.[NAME]
             where [NAME] represents the string under which it is avaiable in
             the environment.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.Core.StringParser.Escape(System.String)">
+            <summary>
+            Escapes all occurrences of '${' to '${$}{'.
             </summary>
         </member>
         <member name="M:ICSharpCode.Core.StringParser.Parse(System.String)">
