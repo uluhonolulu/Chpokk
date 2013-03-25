@@ -148,9 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exploring\ProjectFileContext.cs" />
-    <Compile Include="Exploring\UnitTests\ParsingAssemblyReferences.cs" />
-    <Compile Include="Exploring\UnitTests\ParsingProjectReferences.cs" />
-    <Compile Include="Exploring\UnitTests\ProjectContentWithOneBclReferenceContext.cs" />
+    <Compile Include="ProjectLoading\ParsingAssemblyReferences.cs" />
+    <Compile Include="ProjectLoading\ParsingProjectReferences.cs" />
+    <Compile Include="ProjectLoading\ProjectContentWithOneBclReferenceContext.cs" />
     <Compile Include="Infrastructure\AssertExtensions.cs" />
     <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
     <Compile Include="Exploring\GitRepositoryContext.cs" />
@@ -158,7 +158,7 @@
     <Compile Include="Exploring\PhysicalCodeFileContext.cs" />
     <Compile Include="Exploring\ProjectWithSingleRootFileContext.cs" />
     <Compile Include="Exploring\UnitTests\CreatingAProperFolderStructure.cs" />
-    <Compile Include="Exploring\UnitTests\ParsingProjectContent.cs" />
+    <Compile Include="ProjectLoading\ParsingProjectContent.cs" />
     <Compile Include="Exploring\ParsingTheSolutionFile.cs" />
     <Compile Include="Exploring\ParsingAProjectFile.cs" />
     <Compile Include="Exploring\RepositoryFolderContext.cs" />
