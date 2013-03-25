@@ -147,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\ParsingAssemblyReferences.cs" />
     <Compile Include="Exploring\UnitTests\ParsingProjectReferences.cs" />
     <Compile Include="Exploring\UnitTests\ProjectContentWithOneBclReferenceContext.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
     <Compile Include="Intellisense\UnitTests\BCL.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
+    <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
