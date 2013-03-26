@@ -34,10 +34,19 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			var readers = from path in filePaths where _fileSystem.FileExists(path) select new StreamReader(path) as TextReader;
 			var projectContent = CreateDefaultProjectContent();
 			_compiler.CompileAll(projectContent, readers);
+
+			//references
+			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
+			foreach (var assemblyReference in _projectParser.GetReferences(projectFileContent)) { 
+				var reference = GacInterop.FindBestMatchingAssemblyName(assemblyReference.Name);
+				var fileName = GacInterop.FindAssemblyInNetGac(reference);
+				var referencedContent = _projectContentRegistry.GetProjectContentForReference(assemblyReference.Name, fileName);
+				projectContent.AddReferencedContent(referencedContent);
+			}
 			return new ProjectData(projectContent);
 		}
 
-		private IProjectContent CreateDefaultProjectContent() {
+		private DefaultProjectContent CreateDefaultProjectContent() {
 			var projectContent = new DefaultProjectContent() { Language = LanguageProperties.CSharp };
 			projectContent.AddReferencedContent(_projectContentRegistry.Mscorlib);
 			return projectContent;
