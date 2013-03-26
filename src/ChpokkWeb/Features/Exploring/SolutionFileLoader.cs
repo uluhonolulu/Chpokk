@@ -30,7 +30,7 @@ namespace ChpokkWeb.Features.Exploring {
 			};
 			var content = _fileSystem.ReadStringFromFile(filePath);
 			var solutionFolder = filePath.ParentDirectory();
-			var projectItems = _solutionParser.GetProjectItems(content, filePath).Select(item => CreateProjectItem(solutionFolder, item, repositoryRoot)); 
+			var projectItems = _solutionParser.GetProjectItems(content, filePath).Select(item => CreateProjectItem(solutionFolder, item, repositoryRoot)).Where(item => item != null); 
 			solutionItem.Children.AddRange(projectItems);
 
 			return solutionItem;			
@@ -40,6 +40,9 @@ namespace ChpokkWeb.Features.Exploring {
 		public RepositoryItem CreateProjectItem(string solutionFolder, ProjectItem projectItem, string repositoryRoot) {
 			var projectFilePath = FileSystem.Combine(solutionFolder,
 													 projectItem.Path);
+			if (!_fileSystem.FileExists(projectFilePath)) {
+				return null;
+			}
 			var projectRepositoryItem = new RepositoryItem()
 			{
 				Name = projectItem.Name,
