@@ -10,11 +10,8 @@ namespace ChpokkWeb.Features.Exploring {
 		[NotNull] private static readonly Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
 
 		public IEnumerable<ProjectItem> GetProjectItems(string content, string solutionPath) {
-			return content
-				.Split(new[] {Environment.NewLine}, StringSplitOptions.None)
-				.Select(line => projectLinePattern.Match(line))
-				.Where(match => match.Success)
-				.Select(match => CreateProjectItem(match));
+			return from match in projectLinePattern.Matches(content).Cast<Match>()
+			       select CreateProjectItem(match);
 		}
 
 
