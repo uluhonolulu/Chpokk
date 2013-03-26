@@ -4,17 +4,10 @@ using System.IO;
 using System.Text.RegularExpressions;
 using ChpokkWeb.Infrastructure;
 using System.Linq;
-using FubuCore;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionParser {
 		[NotNull] private static readonly Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
-		private readonly ProjectParser _projectParser;
-		private readonly IFileSystem _fileSystem;
-		public SolutionParser(ProjectParser projectParser, IFileSystem fileSystem) {
-			_projectParser = projectParser;
-			_fileSystem = fileSystem;
-		}
 
 		public IEnumerable<ProjectItem> GetProjectItems(string content, string solutionPath) {
 			return content
@@ -24,12 +17,6 @@ namespace ChpokkWeb.Features.Exploring {
 				.Select(match => CreateProjectItem(match));
 		}
 
-		//, item => CreateRepositoryItem(solutionPath.ParentDirectory(), item)
-
-		private RepositoryItem CreateProjectItem([NotNull] Match match, [NotNull] Func<ProjectItem, RepositoryItem> projectLoader) {
-			var projectItem = CreateProjectItem(match);
-			return projectLoader(projectItem);
-		}
 
 		private ProjectItem CreateProjectItem(Match match) {
 			var projectTitle = match.Result("${Title}");
