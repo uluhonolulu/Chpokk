@@ -40,8 +40,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			foreach (var assemblyReference in _projectParser.GetReferences(projectFileContent)) { 
 				var fileName = GetAssemblyFileName(assemblyReference, projectFilePath.ParentDirectory());
-				fileName = Path.GetFullPath(fileName);
-				var exists = _fileSystem.FileExists(fileName);
+				var exists = _fileSystem.FileExists(fileName); //if (!exists) throw smth
 				var referencedContent = _projectContentRegistry.GetProjectContentForReference(assemblyReference.Name, fileName);
 				projectContent.AddReferencedContent(referencedContent);
 			}
@@ -50,7 +49,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 
 		private static string GetAssemblyFileName(ReferenceProjectItem assemblyReference, string projectFolder) {
 			if (assemblyReference.HintPath != null) {
-				return FileSystem.Combine(projectFolder, assemblyReference.HintPath);
+				return Path.GetFullPath(FileSystem.Combine(projectFolder, assemblyReference.HintPath));
 			}
 			else {
 				var reference = GacInterop.FindBestMatchingAssemblyName(assemblyReference.Name);
