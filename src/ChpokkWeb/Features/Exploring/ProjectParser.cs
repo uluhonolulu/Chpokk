@@ -14,7 +14,7 @@ namespace ChpokkWeb.Features.Exploring {
 		public IEnumerable<FileProjectItem> GetCompiledFiles(string projectFileContent) {
 			XmlNamespaceManager xmlNamespaceManager;
 			var doc = LoadXml(projectFileContent, out xmlNamespaceManager);
-			var nodes = GetNodes("Compile", doc, xmlNamespaceManager);
+			var nodes = GetIncludes("Compile", doc, xmlNamespaceManager);
 			var filePaths = nodes.Select(node => node.Value);
 			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);
 		}
@@ -30,18 +30,29 @@ namespace ChpokkWeb.Features.Exploring {
 		public IEnumerable<ReferenceProjectItem> GetReferences(string projectFileContent) {
 			XmlNamespaceManager xmlNamespaceManager;
 			var doc = LoadXml(projectFileContent, out xmlNamespaceManager);
-			var assemblyNodes = GetNodes("Reference", doc, xmlNamespaceManager);
-			var assemblyReferences = assemblyNodes.Select(node => new ReferenceProjectItem(null, node.Value));
-			var projectNodes = GetNodes("ProjectReference", doc, xmlNamespaceManager);
+			var assemblyElements = GetElements("Reference", doc, xmlNamespaceManager);
+			var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
+			var projectNodes = GetIncludes("ProjectReference", doc, xmlNamespaceManager);
 			var projectReferences = projectNodes.Select(node => new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(node.Value, string.Empty)){Include = node.Value});
 			return
 				assemblyReferences.Concat(projectReferences);
 		}
 
-		private IEnumerable<XmlNode> GetNodes(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
-			var xpath = "//ms:{0}/@Include".ToFormat(nodeName);
-			var nodes = doc.SelectNodes(xpath, xmlNamespaceManager).Cast<XmlNode>();
-			return nodes;
+		private ReferenceProjectItem CreateReferenceItem(XmlElement referenceElement) {
+			var hint =
+				(from child in referenceElement.ChildNodes.Cast<XmlNode>() where child.Name == "HintPath" select child).FirstOrDefault();
+			var hintPath = hint != null ? hint.InnerText : null;
+			return new ReferenceProjectItem(null, referenceElement.GetAttribute("Include")){HintPath = hintPath};
+		}
+
+		private IEnumerable<XmlNode> GetIncludes(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
+			var elements = GetElements(nodeName, doc, xmlNamespaceManager);
+			return elements.Select(element => element.GetAttributeNode("Include"));
+		}
+
+		private IEnumerable<XmlElement> GetElements(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
+			var xpath = "//ms:{0}".ToFormat(nodeName);
+			return doc.SelectNodes(xpath, xmlNamespaceManager).Cast<XmlElement>();
 		}
 
 		private XmlDocument LoadXml(string projectFileContent, out XmlNamespaceManager xmlNamespaceManager) {

@@ -125,6 +125,7 @@
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Engine" />
     <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Mono.Cecil">
       <HintPath>..\..\lib\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -149,6 +150,7 @@
   <ItemGroup>
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
+    <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\ParsingAssemblyReferences.cs" />
     <Compile Include="ProjectLoading\ParsingProjectReferences.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Intellisense\UnitTests\BCL.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
+    <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />

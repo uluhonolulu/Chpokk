@@ -8,6 +8,7 @@ using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using FubuCore.Util;
 using ICSharpCode.SharpDevelop.Dom;
+using ICSharpCode.SharpDevelop.Project;
 
 namespace ChpokkWeb.Features.ProjectManagement {
 	public class ProjectFactory {
@@ -38,12 +39,24 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			//references
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			foreach (var assemblyReference in _projectParser.GetReferences(projectFileContent)) { 
-				var reference = GacInterop.FindBestMatchingAssemblyName(assemblyReference.Name);
-				var fileName = GacInterop.FindAssemblyInNetGac(reference);
+				var fileName = GetAssemblyFileName(assemblyReference, projectFilePath.ParentDirectory());
+				fileName = Path.GetFullPath(fileName);
+				var exists = _fileSystem.FileExists(fileName);
 				var referencedContent = _projectContentRegistry.GetProjectContentForReference(assemblyReference.Name, fileName);
 				projectContent.AddReferencedContent(referencedContent);
 			}
 			return new ProjectData(projectContent);
+		}
+
+		private static string GetAssemblyFileName(ReferenceProjectItem assemblyReference, string projectFolder) {
+			if (assemblyReference.HintPath != null) {
+				return FileSystem.Combine(projectFolder, assemblyReference.HintPath);
+			}
+			else {
+				var reference = GacInterop.FindBestMatchingAssemblyName(assemblyReference.Name);
+				var fileName = GacInterop.FindAssemblyInNetGac(reference);
+				return fileName;				
+			}
 		}
 
 		private DefaultProjectContent CreateDefaultProjectContent() {
