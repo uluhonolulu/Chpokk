@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Arractas;
+using Chpokk.Tests.Exploring.UnitTests;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
 using Gallio.Framework;
 using ICSharpCode.SharpDevelop.Dom;

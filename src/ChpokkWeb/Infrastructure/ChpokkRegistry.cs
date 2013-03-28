@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using StructureMap.Configuration.DSL;
@@ -14,6 +15,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<RepositoryManager>().LifecycleIs(new HybridSessionLifecycle());
 			For<HttpContext>().Use(() => HttpContext.Current);
 			For<NRefactoryResolver>().Use(() => new NRefactoryResolver(LanguageProperties.CSharp));
+			For<ProjectFactory>().Singleton();
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 
@@ -12,14 +13,19 @@ namespace ChpokkWeb.Features.Exploring {
 		private readonly SolutionParser _solutionParser;
 		[NotNull]
 		private readonly IFileSystem _fileSystem;
+		[NotNull]
 		private readonly ProjectParser _projectParser;
+		[NotNull]
 		private readonly FileItemToProjectItemConverter _converter;
+		[NotNull]
+		private readonly ProjectFactory _projectFactory;
 
-		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter) {
+		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter, ProjectFactory projectFactory) {
 			_solutionParser = solutionParser;
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
 			_converter = converter;
+			_projectFactory = projectFactory;
 		}
 
 		public RepositoryItem CreateSolutionItem(string repositoryRoot, string filePath) {
@@ -43,6 +49,8 @@ namespace ChpokkWeb.Features.Exploring {
 			if (!_fileSystem.FileExists(projectFilePath)) {
 				return null;
 			}
+			// touch the project so that it is compiled
+			_projectFactory.GetProjectData(projectFilePath);
 			var projectRepositoryItem = new RepositoryItem()
 			{
 				Name = projectItem.Name,

@@ -48,7 +48,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 		}
 
 		private static string GetAssemblyFileName(ReferenceProjectItem assemblyReference, string projectFolder) {
-			if (assemblyReference.HintPath != null) {
+			if (assemblyReference.HintPath.IsNotEmpty()) {
 				return Path.GetFullPath(FileSystem.Combine(projectFolder, assemblyReference.HintPath));
 			}
 			else {
