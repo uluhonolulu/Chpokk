@@ -5,6 +5,7 @@
 
 <button id="saveButton" class="btn btn-inverse">Save</button> 
 <button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
+<button id="parseButton" class="btn btn-inverse">Parse</button>
 <button id="pushButton" class="btn btn-inverse">Push</button> 
 
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
@@ -31,6 +32,19 @@
 
 			$('#pushButton').click(function () {
 				pushRepository('${Model.RepositoryName}');
+			});
+
+			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
+			$('#parseButton').click(function () {
+				$.post(parseUrl, { Content: $('#code').text() }, function (continuation) {
+					if (continuation.success) {
+						alert('Code is clean!');
+					} else {
+						for (var error in continuation.errors) {
+							alert(continuation.errors[error].message);
+						}
+					}
+				});
 			});
 		});
 	</script>

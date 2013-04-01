@@ -94,10 +94,12 @@
       <HintPath>..\..\lib\ICSharpCode.Core.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="ICSharpCode.NewNRefactory, Version=5.0.0.6, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.NRefactory.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="ICSharpCode.NRefactory.CSharp, Version=5.0.0.6, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpDevelop, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -434,6 +436,8 @@
     <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
     <Compile Include="Features\Editor\Compilation\Compiler.cs" />
+    <Compile Include="Features\Editor\Compilation\ParserController.cs" />
+    <Compile Include="Features\Editor\Compilation\ParserInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
