@@ -229,7 +229,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ICSharpCode.NRefactory.CSharp.dll" />
     <Content Include="requirements.txt" />
     <Content Include="server stories.txt" />
   </ItemGroup>
