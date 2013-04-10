@@ -73,7 +73,9 @@ HtmlEditor.prototype.getDotOffset = function () {
 	sel.setStart(sel.startContainer, sel.startOffset - 1); //so that it selects the last char -- otherwise it becomes a zero rect
 	var selRect = sel.getBoundingClientRect();
 	var parentBounds = this.editorElement.get(0).getBoundingClientRect();
-	return { top: selRect.bottom - parentBounds.top, left: selRect.left - parentBounds.left }; 
+	var offset = { top: selRect.bottom - parentBounds.top, left: selRect.left - parentBounds.left };
+	sel.setStart(sel.startContainer, sel.endOffset); //set the selection back
+	return offset;
 };
 
 function setEditorHtml(editor, html) {
