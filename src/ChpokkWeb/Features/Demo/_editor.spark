@@ -38,7 +38,6 @@
 </div>
 <content name="head">
 	<Stylesheet href="editor.css" />
-	<Script src="editor.js" />
 </content>
 
 <content name="InlineScripts">
