@@ -6,6 +6,7 @@
 	</title>
 	<Script src="lib/bootstrap.js" />
 	<Script src="common.js"/>
+	<Script src="janrain.js"/>
 	<Stylesheet href="styles" />
 	<use content="head" />	
 

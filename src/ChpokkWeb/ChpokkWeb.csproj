@@ -95,16 +95,16 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="ICSharpCode.NewNRefactory, Version=5.0.0.6, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL">
-		<HintPath>..\..\lib\ICSharpCode.NewNRefactory.dll</HintPath>
-	</Reference>
-	  <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.NewNRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.NRefactory.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory.CSharp, Version=5.0.0.6, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL">
-		<HintPath>..\..\lib\ICSharpCode.NRefactory.CSharp.dll</HintPath>
-	</Reference>
-	  <Reference Include="ICSharpCode.SharpDevelop, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\ICSharpCode.NRefactory.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop, Version=4.2.0.8009, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -129,6 +129,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -186,6 +187,7 @@
     <Content Include="Content\scripts\common.js" />
     <Content Include="Content\scripts\HtmlEditor.js" />
     <Content Include="Content\scripts\IntelManager.js" />
+    <Content Include="Content\scripts\janrain.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\bililiteRange.js" />
     <Content Include="Content\scripts\lib\jasmine-jquery.js" />
@@ -268,6 +270,7 @@
     <Content Include="Content\styles\lib\wells.less" />
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
+    <Content Include="Features\Authorization\sample.txt" />
     <Content Include="Features\Demo\RegisteredForInvite.spark" />
     <Content Include="Features\Demo\_editor.spark">
       <SubType>Designer</SubType>
@@ -431,6 +434,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="Features\Authorization\LoginEndpoint.cs" />
     <Compile Include="Features\Demo\SuggestController.cs" />
     <Compile Include="Features\Demo\SuggestionModel.cs" />
     <Compile Include="Features\Demo\SuggestionOutputModel.cs" />

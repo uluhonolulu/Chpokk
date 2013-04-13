@@ -19,12 +19,14 @@ namespace ChpokkWeb {
 			// All public methods from concrete classes ending in "Controller"
 			// in this assembly are assumed to be action methods
 			Actions.IncludeClassesSuffixedWithController();
+			Actions.IncludeTypesNamed(name => name.EndsWith("Endpoint"));
 
 			// Policies
 			Routes
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
 				.IgnoreNamespaceText("Features")
+				.IgnoreClassSuffix("Endpoint")
 				;
 
 		
