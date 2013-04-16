@@ -3,14 +3,23 @@ using System.IO;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
+using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryManager {
+		private ISecurityContext _securityContext;
+		public RepositoryManager(ISecurityContext securityContext) {
+			_securityContext = securityContext;
+		}
 
 		private const string commonRepositoryFolder = "UserFiles";
 		// path for repository root, relative to AppRoot
 		[NotNull]
 		public string GetPathFor(string name) {
+			if (_securityContext.IsAuthenticated()) {
+				var repositoryFolder = commonRepositoryFolder.AppendPath(_securityContext.CurrentIdentity.Name);
+				return repositoryFolder.AppendPath(name);
+			}
 			return commonRepositoryFolder.AppendPathMyWay(name);
 		}
 

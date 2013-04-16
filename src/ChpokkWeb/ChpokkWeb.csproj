@@ -199,6 +199,7 @@
     <Content Include="Content\scripts\lib\rangy-core.js" />
     <Content Include="Content\scripts\lib\server.js" />
     <Content Include="Content\scripts\lib\sinon-1.2.0.js" />
+    <Content Include="Content\scripts\lib\URI.js" />
     <Content Include="Content\scripts\tests\intel.tests.js" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />
     <Content Include="Content\styles\lib\images\file.gif" />

@@ -7,4 +7,6 @@
 <a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Clone a repository</a>
 <render partial="Remotes\Clone\CloneInput" />
 
+<a class="janrainEngage btn btn-primary">Sign-In</a>
+
 ${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}

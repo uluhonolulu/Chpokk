@@ -8,6 +8,7 @@ using ChpokkWeb;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
+using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
 using StructureMap;
@@ -15,26 +16,38 @@ using StructureMap;
 namespace Chpokk.Tests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext{
 		public override void Create() {
-			//base.Create();
-			SetupContainer();
 		}
-		private IContainerFacility SetupContainer() {
+
+		private IContainerFacility CreateFacility() {
 			var container = new Container();
-			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
-			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
-			var runtime = FubuApplication.For<ConfigureFubuMVC>()
+			ConfigureContainer(container);
+			_registry = new ConfigureFubuMVC();
+			ConfigureFubuRegistry(_registry);
+			var runtime = FubuApplication.For(_registry)
 				.StructureMap(container)
 				.Bootstrap()
 				;
 			return runtime.Facility;
-			//_container.Inject(typeof(IUrlRegistry), typeof(UrlRegistry));
 		}
 
+		protected virtual void ConfigureFubuRegistry(ConfigureFubuMVC registry) {
+			_registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext, FakeSecurityContext>());
+		}
+
+		protected virtual void ConfigureContainer(Container container) {
+			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
+			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
+		}
+
+
+
 		private IContainerFacility _container;
+		private ConfigureFubuMVC _registry;
+
 		public IContainerFacility Container {
 			get {
 				if(_container == null)
-					_container = SetupContainer();
+					_container = CreateFacility();
 				return _container;
 			}
 		}
@@ -43,5 +56,16 @@ namespace Chpokk.Tests.Infrastructure {
 			get { return Path.GetFullPath(@".."); }
 		}
 
+		public FakeSecurityContext FakeSecurityContext { get; set; }
+
+		public void UseFakeSecurityContext() {
+			if (FakeSecurityContext == null) {
+				FakeSecurityContext = new FakeSecurityContext();
+			}
+			if (_registry == null) {
+				CreateFacility();
+			}
+			_registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext, FakeSecurityContext>());
+		}
 	}
 }

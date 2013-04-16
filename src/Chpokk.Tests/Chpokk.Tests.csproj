@@ -150,8 +150,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
+    <Compile Include="Authentication\DontSeeOthersRepos.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
+    <Compile Include="Infrastructure\FakeSecurityContext.cs" />
     <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\ParsingAssemblyReferences.cs" />
@@ -191,6 +194,7 @@
     <Compile Include="Spikes\CodeParser.cs" />
     <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
   </ItemGroup>

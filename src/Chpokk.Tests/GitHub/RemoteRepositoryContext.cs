@@ -3,12 +3,15 @@ using System.IO;
 using Chpokk.Tests.GitHub.Infrastructure;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using FubuMVC.Core.Security;
+using Ivonna.Framework;
+using Ivonna.Framework.Generic;
 using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;
 
 namespace Chpokk.Tests.GitHub {
 	public class RemoteRepositoryContext : SimpleConfiguredContext, IDisposable {
-		public const string REPO_URL = "git@github.com:uluhonolulu/Chpokk-Scratchpad.git"; // "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
+		public const string REPO_URL = "https://github.com/uluhonolulu/Chpokk-Scratchpad.git"; 
 		public string RepositoryPath { get; private set; }
 		public string RepositoryName { get; private set; }
 		public string FileName { get; private set; }
@@ -18,8 +21,10 @@ namespace Chpokk.Tests.GitHub {
 		[SetUp]
 		public override void Create() {
 			base.Create();
-
-			var repositoryInfo = new RepositoryManager().GetClonedRepositoryInfo(REPO_URL);
+			//var session = new TestSession();
+			//session.Get("");
+			var repositoryManager = Container.Get<RepositoryManager>();
+			var repositoryInfo = repositoryManager.GetClonedRepositoryInfo(REPO_URL);
 			RepositoryName = repositoryInfo.Name;
 			RepositoryPath  = Path.Combine(AppRoot, repositoryInfo.Path);
 			if (Directory.Exists(RepositoryPath))
@@ -32,6 +37,11 @@ namespace Chpokk.Tests.GitHub {
 		public void Dispose() {
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
+		}
+
+		protected override void ConfigureFubuRegistry(ChpokkWeb.ConfigureFubuMVC registry) {
+			base.ConfigureFubuRegistry(registry);
+			//registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext, FakeSecurityContext>());
 		}
 	}
 
