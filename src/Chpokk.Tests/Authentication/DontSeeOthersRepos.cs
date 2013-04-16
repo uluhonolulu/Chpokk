@@ -16,7 +16,7 @@ namespace Chpokk.Tests.Authentication {
 		[Test]
 		public void TheListOfRepositoriesShouldbeEmpty() {
 			Result.Each(s => Console.Write(s));
-			//Assert.IsEmpty(Result);
+			Assert.IsEmpty(Result);
 		}
 
 		public override IEnumerable<string> Act() {

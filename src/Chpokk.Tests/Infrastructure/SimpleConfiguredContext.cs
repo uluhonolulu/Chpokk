@@ -31,7 +31,6 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 
 		protected virtual void ConfigureFubuRegistry(ConfigureFubuMVC registry) {
-			_registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext, FakeSecurityContext>());
 		}
 
 		protected virtual void ConfigureContainer(Container container) {
@@ -58,14 +57,11 @@ namespace Chpokk.Tests.Infrastructure {
 
 		public FakeSecurityContext FakeSecurityContext { get; set; }
 
-		public void UseFakeSecurityContext() {
+		public void UseFakeSecurityContext(FubuRegistry registry) {
 			if (FakeSecurityContext == null) {
 				FakeSecurityContext = new FakeSecurityContext();
 			}
-			if (_registry == null) {
-				CreateFacility();
-			}
-			_registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext, FakeSecurityContext>());
+			registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext>(FakeSecurityContext));
 		}
 	}
 }

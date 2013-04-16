@@ -13,14 +13,11 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		private const string commonRepositoryFolder = "UserFiles";
+		private const string anonymousFolder = "__anonymous__";
 		// path for repository root, relative to AppRoot
 		[NotNull]
 		public string GetPathFor(string name) {
-			if (_securityContext.IsAuthenticated()) {
-				var repositoryFolder = commonRepositoryFolder.AppendPath(_securityContext.CurrentIdentity.Name);
-				return repositoryFolder.AppendPath(name);
-			}
-			return commonRepositoryFolder.AppendPathMyWay(name);
+			return this.RepositoryFolder.AppendPathMyWay(name);
 		}
 
 		public RepositoryInfo GetClonedRepositoryInfo([NotNull] string url) {
@@ -48,7 +45,8 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames(string approot) {
-			var userFolder = approot.AppendPath(commonRepositoryFolder);
+			var userFolder = approot.AppendPath(RepositoryFolder);
+			if (!Directory.Exists(RepositoryFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
  		}
 
@@ -57,6 +55,13 @@ namespace ChpokkWeb.Features.Exploring {
 			var repositoryInfo = this.GetRepositoryInfo(info.RepositoryName);
 			var repositoryRoot = info.PhysicalApplicationPath.AppendPath(repositoryInfo.Path);
 			return repositoryRoot.AppendPathMyWay(info.PathRelativeToRepositoryRoot);
+		}
+
+		public string RepositoryFolder {
+			get { 
+				var userFolder = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : anonymousFolder;
+				return commonRepositoryFolder.AppendPath(userFolder);
+			}
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -23,17 +24,22 @@ namespace Chpokk.Tests.Authentication.Context {
 			//CThruEngine.StartListening();
 			//var securityStub = Stub.For<ISecurityContext>("get_CurrentIdentity").Return(new GenericIdentity("name1"));
 
-			this.UseFakeSecurityContext();
-			FakeSecurityContext.UserName = "name1";
-
+			FakeSecurityContext = new FakeSecurityContext {UserName = "name1"};
+				
 			base.Create();
 
 
-			DirectoryHelper.DeleteSubdirectories(RepositoryPath.ParentDirectory());
+			if (Directory.Exists(RepositoryPath.ParentDirectory()) ) 
+				DirectoryHelper.DeleteSubdirectories(RepositoryPath.ParentDirectory());
 			Repository.Clone(REPO_URL, RepositoryPath);
 
 			//now let's see what a different user has
 			FakeSecurityContext.UserName = "name2";
+		}
+
+		protected override void ConfigureFubuRegistry(ChpokkWeb.ConfigureFubuMVC registry) {
+			base.ConfigureFubuRegistry(registry);
+			UseFakeSecurityContext(registry);
 		}
 
 
