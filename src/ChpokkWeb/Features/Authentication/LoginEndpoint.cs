@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using ChpokkWeb.Features.MainScreen;
-using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Security;
 using Newtonsoft.Json;
 
-namespace ChpokkWeb.Features.Authorization {
+namespace ChpokkWeb.Features.Authentication {
 	public class LoginEndpoint {
 		private readonly IAuthenticationContext _authenticationContext;
 		public LoginEndpoint(IAuthenticationContext authenticationContext) {
