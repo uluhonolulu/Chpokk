@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+﻿<viewdata model="ChpokkWeb.Features.MainScreen.MainDummyModel" />
 <use namespace="FubuMVC.Core.UI" />
 
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
