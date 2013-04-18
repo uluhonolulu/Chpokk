@@ -21,9 +21,9 @@ namespace Chpokk.Tests.Infrastructure {
 		private IContainerFacility CreateFacility() {
 			var container = new Container();
 			ConfigureContainer(container);
-			_registry = new ConfigureFubuMVC();
-			ConfigureFubuRegistry(_registry);
-			var runtime = FubuApplication.For(_registry)
+			var registry = new ConfigureFubuMVC();
+			ConfigureFubuRegistry(registry);
+			var runtime = FubuApplication.For(registry)
 				.StructureMap(container)
 				.Bootstrap()
 				;
@@ -41,7 +41,6 @@ namespace Chpokk.Tests.Infrastructure {
 
 
 		private IContainerFacility _container;
-		private ConfigureFubuMVC _registry;
 
 		public IContainerFacility Container {
 			get {

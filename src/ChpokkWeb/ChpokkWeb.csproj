@@ -299,6 +299,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Remotes\Push\_pushDialog.spark" />
+    <Content Include="Features\Authentication\_authenticated.spark" />
+    <Content Include="Features\Authentication\_anonymous.spark" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />
@@ -486,6 +488,7 @@
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
+    <Compile Include="Infrastructure\ModellessPartialExtension.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
