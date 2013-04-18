@@ -15,5 +15,9 @@ namespace ChpokkWeb.Features.Authentication {
 			}
 			return FubuContinuation.TransferTo<AnonymousStatusModel>();
 		}
+
+		public string MyStatus() {
+			return "ulka";
+		}
 	}
 }

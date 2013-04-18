@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FubuCore.Binding;
+using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.View;
 
 namespace ChpokkWeb.Infrastructure {
 	public static class ModellessPartialExtension {
-		public static string RenderAction<THandler>(this IFubuPage page, string methodName) {
-			var factory = page.Get<IPartialFactory>();
+		public static string Partial<THandler>(this IFubuPage page, string methodName) {
+			var factory = page.Get<IBehaviorFactory>();
 			var writer = page.Get<IOutputWriter>();
-			return RenderAction<THandler>(methodName, writer, factory);
+			var graph = page.Get<BehaviorGraph>();
+			var serviceArguments = page.Get<ServiceArguments>();
+			return Partial<THandler>(methodName, factory, graph, serviceArguments, writer);
 		}
 
-		public static string RenderAction<THandler>(string methodName, IOutputWriter writer, IPartialFactory factory) {
-			var actionCall = new ActionCall(typeof (THandler), typeof (THandler).GetMethod(methodName));
-			return writer.Record(() => factory.BuildPartial(actionCall).InvokePartial()).GetText();
+		public static string Partial<THandler>(string methodName, IBehaviorFactory behaviorFactory, BehaviorGraph graph, ServiceArguments serviceArguments, IOutputWriter writer) {
+			var thisChain =
+				graph.Behaviors.FirstOrDefault(
+					chain => {
+						var actionCall = chain.FirstCall();
+						return actionCall != null && actionCall.HandlerType == typeof(THandler) && actionCall.Method.Name == methodName;
+					});
+			var actionBehavior = behaviorFactory.BuildBehavior(serviceArguments, thisChain.UniqueId);
+			return writer.Record(() => actionBehavior.InvokePartial()).GetText();
 		}
 	}
 }
