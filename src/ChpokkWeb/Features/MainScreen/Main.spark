@@ -8,6 +8,6 @@
 <a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Clone a repository</a>
 <render partial="Remotes\Clone\CloneInput" />
 
-${this.Partial<LoginStatusEndpoint>("LoginStatus")}
+!{this.Partial<LoginStatusEndpoint>("LoginStatus")}
 
 ${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}

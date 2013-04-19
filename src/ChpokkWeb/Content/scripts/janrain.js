@@ -2,7 +2,7 @@
 	if (typeof window.janrain !== 'object') window.janrain = {};
 	if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
 
-	janrain.settings.tokenUrl = new URI("url::ChpokkWeb.Features.Authorization.LoginInputModel").resolve(new URI(location.href)).toString();
+	janrain.settings.tokenUrl = new URI("url::ChpokkWeb.Features.Authentication.LoginInputModel").resolve(new URI(location.href)).toString();
 
 	function isReady() { janrain.ready = true; };
 	if (document.addEventListener) {
