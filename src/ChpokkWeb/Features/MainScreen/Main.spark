@@ -1,12 +1,13 @@
 ﻿<viewdata model="ChpokkWeb.Features.MainScreen.MainDummyModel" />
 <use namespace="FubuMVC.Core.UI" />
+<use namespace="ChpokkWeb.Infrastructure" />
+<use namespace="ChpokkWeb.Features.Authentication" />
 
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
 <a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Clone a repository</a>
 <render partial="Remotes\Clone\CloneInput" />
 
-<a class="janrainEngage btn btn-primary">Sign-In</a>
-${ChpokkWeb.Infrastructure.ModellessPartialExtension.Partial<ChpokkWeb.Features.Authentication.LoginStatusEndpoint>(this, "MyStatus")} -
+${this.Partial<LoginStatusEndpoint>("LoginStatus")}
 
 ${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}

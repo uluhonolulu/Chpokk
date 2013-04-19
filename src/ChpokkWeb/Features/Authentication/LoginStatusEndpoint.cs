@@ -8,16 +8,13 @@ namespace ChpokkWeb.Features.Authentication {
 			_securityContext = securityContext;
 		}
 
-		public FubuContinuation LoginStatus() {
+		public string LoginStatus() {
 			if (_securityContext.IsAuthenticated()) {
-				return
-					FubuContinuation.TransferTo(new AuthenticatedStatusModel {UserName = _securityContext.CurrentIdentity.Name});
+				return _securityContext.CurrentIdentity.Name;
 			}
-			return FubuContinuation.TransferTo<AnonymousStatusModel>();
+			return "<a class=\"janrainEngage btn btn-primary\">Sign-In</a>";
 		}
 
-		public string MyStatus() {
-			return "ulka";
-		}
+
 	}
 }
