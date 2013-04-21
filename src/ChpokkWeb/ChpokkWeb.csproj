@@ -301,12 +301,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Remotes\Push\_pushDialog.spark" />
-    <Content Include="Handler1.ashx" />
-    <Content Include="Handler2.ashx" />
-    <None Include="HTMLPage1.htm" />
-    <None Include="HTMLPage2.htm" />
-    <None Include="HTMLPage3.htm" />
-    <None Include="HTMLPage4.htm" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Class.png" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Delegate.png" />
     <Content Include="Content\images\Intellisense\Icons.16x16.Enum.png" />
@@ -482,12 +476,6 @@
     <Compile Include="Features\Exploring\RepositoryItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Handler1.ashx.cs">
-      <DependentUpon>Handler1.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Handler2.ashx.cs">
-      <DependentUpon>Handler2.ashx</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AjaxExceptionWrapper.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
