@@ -13,11 +13,9 @@ HtmlEditor.prototype.updateHtml = function (callback) {
 //};
 
 HtmlEditor.prototype.colorize = function () {
+	var browser = BrowserDetect.browser;
+	if ('Explorer' === browser) return; //we'll deal with it later
 	var position = this.getCursorPosition();
-	//alert(bililiteRange(this.editorElement.get(0))._nativeSelection()[0]);
-//	$.gritter.add({ text: bililiteRange(this.editorElement.get(0))._nativeSelection()[0] });
-//	var sel = window.getSelection().getRangeAt(0);
-//	$.gritter.add({ text: sel.startOffset });
 	var self = this;
 	this.updateHtml(function () {
 		self.setCursorPosition(position);
