@@ -14,8 +14,8 @@ namespace ChpokkWeb.Features.Authentication {
 		}
 
 		public FubuContinuation Login(LoginInputModel model) {
-			_authenticationContext.ThisUserHasBeenAuthenticated("ulu", true);
-			return FubuContinuation.RedirectTo<ShowMeModel>();
+			//_authenticationContext.ThisUserHasBeenAuthenticated("ulu", true);
+			//return FubuContinuation.RedirectTo<ShowMeModel>();
 
 			var url = string.Format("https://rpxnow.com/api/v2/auth_info?apiKey={0}&token={1}", model.ApiKey, model.token);
 			var rawResponse =
