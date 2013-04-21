@@ -152,8 +152,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="Tamir.SharpSSH">
       <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Tamir.SharpSSH.dll</HintPath>
@@ -301,6 +303,8 @@
     <Content Include="Features\Remotes\Push\_pushDialog.spark" />
     <Content Include="Features\Authentication\_authenticated.spark" />
     <Content Include="Features\Authentication\_anonymous.spark" />
+    <Content Include="Handler1.ashx" />
+    <Content Include="Handler2.ashx" />
     <None Include="HTMLPage1.htm" />
     <None Include="HTMLPage2.htm" />
     <None Include="HTMLPage3.htm" />
@@ -482,6 +486,12 @@
     <Compile Include="Features\Exploring\RepositoryItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handler1.ashx.cs">
+      <DependentUpon>Handler1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler2.ashx.cs">
+      <DependentUpon>Handler2.ashx</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AjaxExceptionWrapper.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
