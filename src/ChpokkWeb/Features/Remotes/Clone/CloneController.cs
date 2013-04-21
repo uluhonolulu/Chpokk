@@ -30,8 +30,6 @@ namespace ChpokkWeb.Features.Remotes.Clone {
 
 		private static void CloneGitRepository(string repoUrl, string repositoryPath) {
 			var repository = Repository.Clone(repoUrl, repositoryPath);
-			//var master = repository.Branches["master"];
-			//repository.Checkout(master);
 			repository.Dispose();
 		}
 

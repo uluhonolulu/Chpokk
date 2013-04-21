@@ -7,7 +7,7 @@ using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class RepositoryManager {
-		private ISecurityContext _securityContext;
+		private readonly ISecurityContext _securityContext;
 		public RepositoryManager(ISecurityContext securityContext) {
 			_securityContext = securityContext;
 		}

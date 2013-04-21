@@ -301,8 +301,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Remotes\Push\_pushDialog.spark" />
-    <Content Include="Features\Authentication\_authenticated.spark" />
-    <Content Include="Features\Authentication\_anonymous.spark" />
     <Content Include="Handler1.ashx" />
     <Content Include="Handler2.ashx" />
     <None Include="HTMLPage1.htm" />
@@ -441,8 +439,6 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="Features\Authentication\AnonymousStatusModel.cs" />
-    <Compile Include="Features\Authentication\AuthenticatedStatusModel.cs" />
     <Compile Include="Features\Authentication\LoginEndpoint.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />
     <Compile Include="Features\Demo\SuggestController.cs" />
