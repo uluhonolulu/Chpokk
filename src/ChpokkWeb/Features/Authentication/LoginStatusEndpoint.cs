@@ -9,7 +9,7 @@ namespace ChpokkWeb.Features.Authentication {
 		}
 
 		public string LoginStatus() {
-			return "<a class=\"btn btn-primary\" href=\"/authentication/login\">Sign-In</a>";
+			//return "<a class=\"btn btn-primary\" href=\"/authentication/login\">Sign-In</a>";
 			if (_securityContext.IsAuthenticated()) {
 				return _securityContext.CurrentIdentity.Name;
 			}
