@@ -16,3 +16,42 @@
     }
   }
 }
+
+{
+  "stat": "ok",
+  "profile": {
+    "providerName": "Google",
+    "identifier": "https://www.google.com/profiles/115659377533159872579",
+    "verifiedEmail": "uluhonolulu@gmail.com",
+    "preferredUsername": "uluhonolulu",
+    "displayName": "Artem Smirnov",
+    "name": {
+      "formatted": "Artem Smirnov",
+      "givenName": "Artem",
+      "familyName": "Smirnov"
+    },
+    "email": "uluhonolulu@gmail.com",
+    "url": "https://www.google.com/profiles/115659377533159872579",
+    "googleUserId": "115659377533159872579",
+    "providerSpecifier": "google"
+  }
+}	
+
+{
+  "stat": "ok",
+  "profile": {
+    "providerName": "LinkedIn",
+    "identifier": "http://www.linkedin.com/profile?viewProfile=uUeqNtFecE",
+    "preferredUsername": "Artem Smirnov",
+    "displayName": "Artem Smirnov",
+    "name": {
+      "formatted": "Artem Smirnov",
+      "givenName": "Artem",
+      "familyName": "Smirnov"
+    },
+    "url": "http://sm-art.biz",
+    "photo": "http://m3.licdn.com/mpr/mprx/0_e0hbvSCshTeW34pPeVC4vfvJ850d342PoOq4vakwx8IJOyR1XJrwRmr5mIx9C0DxWpGMsW92f5sQ",
+    "birthday": "1970-05-23",
+    "providerSpecifier": "linkedin"
+  }
+}	dynamic {Newtonsoft.Json.Linq.JObject}
