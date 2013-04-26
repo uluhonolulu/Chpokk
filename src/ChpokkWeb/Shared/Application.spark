@@ -17,7 +17,6 @@
 
 	<ga />
 
-	<userVoice />
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
@@ -36,5 +35,7 @@
 			<a href="http://about.me/ulu" target="_blank">About me </a>
 		</div>
 	</div>
+
+	<userVoice />
 </body>
 </html>
