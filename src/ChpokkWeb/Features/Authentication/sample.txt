@@ -55,3 +55,22 @@
     "providerSpecifier": "linkedin"
   }
 }	dynamic {Newtonsoft.Json.Linq.JObject}
+
+{
+  "stat": "ok",
+  "profile": {
+    "providerName": "Google+",
+    "identifier": "https://www.google.com/profiles/115659377533159872579",
+    "displayName": "Artem Smirnov",
+    "name": {
+      "formatted": "Artem Smirnov",
+      "givenName": "Artem",
+      "familyName": "Smirnov"
+    },
+    "url": "https://plus.google.com/115659377533159872579",
+    "photo": "https://lh6.googleusercontent.com/-TVSpBjbSIe0/AAAAAAAAAAI/AAAAAAAAAEg/6CY4S20ULvk/photo.jpg?sz=50",
+    "gender": "male",
+    "googleUserId": "115659377533159872579",
+    "providerSpecifier": "googleplus"
+  }
+}

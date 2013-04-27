@@ -25,7 +25,7 @@ namespace ChpokkWeb.Features.Remotes.SaveCommit {
 				var author = new Signature(userName, userName, DateTimeOffset.Now);
 				using (var repo = new Repository(repositoryPath)) {
 					repo.Index.Stage(filePath);
-					repo.Commit(saveCommitModel.CommitMessage, author);
+					repo.Commit(saveCommitModel.CommitMessage, author, author);
 				}
 			}
 		}
