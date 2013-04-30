@@ -28,13 +28,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<use content="view" />
-		<div class="clearfix"></div>
-		<div class="pull-right" id="aboutme">
-			<a href="http://about.me/ulu" target="_blank">About me </a>
-		</div>
-	</div>
+	<use content="view" />
+
 
 	<userVoice />
 </body>

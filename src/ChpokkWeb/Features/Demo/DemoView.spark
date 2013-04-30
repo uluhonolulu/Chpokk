@@ -17,72 +17,93 @@
 		});
 	</script>
 </content>
-<div class="hero-unit">
-	<h1 style="margin-bottom: 20px;">
-		Chpokk, your cloud IDE</h1>
-	<div style="float: right; padding-top: 20px; padding-right: 40px;">
-		<a id="invitebutton" class="btn btn-primary btn-large" data-toggle="modal" href="#inviteDialog" style="padding: 12px 20px; font-size: 18px;">
-			Request an invite »</a>
-	</div>
-	<p style="width: 50%;">
-		Chpokk is an online .Net code editor with full Intellisense, refactoring, source
-		control integration, and test running capabilities.</p>
-</div>
-<div class="row">
-	<div class="span4" id="editInfo">
-		<h2>
-			Edit your code</h2>
-		<p>
-			Use it when you can't, or don't want to, fire up your IDE. Use a tablet, a smartphone,
-			or an Internet Cafe computer.</p>
-		<div class="hide popover" id="edit_info">
-			<ul>
-				<li>Need a quick fix, or a demo of your code? You can use Chpokk even in your smartphone.
-					Use Intellisense, refactoring, and all your favorite shortcuts.</li>
-				<li>Keep your code in GitHub, BitBucket, or another repository, access it from anywhere.
-					Or just upload a zipped project.</li>
-				<li>Use it in your blog and get Intellisense and code coloring.</li>
-				<li>Use NuGet or OpenWrap for adding references, or upload your own.</li>
-			</ul>
+<div class="container">
+	<div class="hero-unit">
+		<h1 style="margin-bottom: 20px;">
+			Chpokk, your cloud IDE</h1>
+		<div style="float: right; padding-top: 20px; padding-right: 40px;">
+			<a id="invitebutton" class="btn btn-primary btn-large" data-toggle="modal" href="#inviteDialog" style="padding: 12px 20px; font-size: 18px;">
+				Request an invite »</a>
 		</div>
-		<p>
-			<a href="#edit_info" class="btn bootstrap-popover" title="Edit your code">Learn more
-				»</a>
-		</p>
+		<p style="width: 50%;">
+			Chpokk is an online .Net code editor with full Intellisense, refactoring, source
+			control integration, and test running capabilities.</p>
 	</div>
-	<div class="span4" id="testInfo">
-		<h2>
-			Run the tests</h2>
-		<p>
-			When you're done, run your tests to verify that you haven't broken anything.
-		</p>
-		<div class="hide popover" id="run_info">
-			<ul>
-				<li>Run your tests manually, or in the background after each compile.</li>
-				<li>Use <a href="http://ivonna.biz">Ivonna</a> for Web tests.</li>
-				<li>Debug your test, set it to break on a breakpoint or an exception.</li>
-			</ul>
+	<div class="row">
+		<div class="span4" id="editInfo">
+			<h2>
+				Edit your code
+			</h2>
+			<p>
+				Use it when you can't, or don't want to, fire up your IDE. Use a tablet, a smartphone,
+				or an Internet Cafe computer.
+			</p>
+			<div class="hide popover" id="edit_info">
+				<ul>
+					<li>
+						Need a quick fix, or a demo of your code? You can use Chpokk even in your smartphone.
+						Use Intellisense, refactoring, and all your favorite shortcuts.
+					</li>
+					<li>
+						Keep your code in GitHub, BitBucket, or another repository, access it from anywhere.
+						Or just upload a zipped project.
+					</li>
+					<li>Use it in your blog and get Intellisense and code coloring.</li>
+					<li>Use NuGet or OpenWrap for adding references, or upload your own.</li>
+				</ul>
+			</div>
+			<p>
+				<a href="#edit_info" class="btn bootstrap-popover" title="Edit your code">
+					Learn more
+					»
+				</a>
+			</p>
 		</div>
-		<p>
-			<a href="#run_info" class="btn bootstrap-popover" title="Run the tests">Learn more »</a>
-		</p>
+		<div class="span4" id="testInfo">
+			<h2>
+				Run the tests
+			</h2>
+			<p>
+				When you're done, run your tests to verify that you haven't broken anything.
+			</p>
+			<div class="hide popover" id="run_info">
+				<ul>
+					<li>Run your tests manually, or in the background after each compile.</li>
+					<li>
+						Use <a href="http://ivonna.biz">Ivonna</a> for Web tests.
+					</li>
+					<li>Debug your test, set it to break on a breakpoint or an exception.</li>
+				</ul>
+			</div>
+			<p>
+				<a href="#run_info" class="btn bootstrap-popover" title="Run the tests">Learn more »</a>
+			</p>
+		</div>
+		<div class="span4" id="commitInfo">
+			<h2>
+				Commit and deploy
+			</h2>
+			<p>
+				Deploy automatically or manually using your favorite deployment scenario
+			</p>
+			<div class="hide popover" id="deploy_info">
+				<ul>
+					<li>Commit your changes manually or automatically, e.g. on each successfull test pass.</li>
+					<li>Publish to Azure, AppHarbor, or just push/FTP to your own server.</li>
+					<li>Use MsBuild, Rake scripts, Dropkick, or other tools for building and deployment.</li>
+				</ul>
+			</div>
+			<p>
+				<a href="#deploy_info" class="btn bootstrap-popover" title="Commit and deploy">
+					Learn
+					more »
+				</a>
+			</p>
+		</div>
 	</div>
-	<div class="span4" id="commitInfo">
-		<h2>
-			Commit and deploy</h2>
-		<p>
-			Deploy automatically or manually using your favorite deployment scenario</p>
-		<div class="hide popover" id="deploy_info">
-			<ul>
-				<li>Commit your changes manually or automatically, e.g. on each successfull test pass.</li>
-				<li>Publish to Azure, AppHarbor, or just push/FTP to your own server.</li>
-				<li>Use MsBuild, Rake scripts, Dropkick, or other tools for building and deployment.</li>
-			</ul>
-		</div>
-		<p>
-			<a href="#deploy_info" class="btn bootstrap-popover" title="Commit and deploy">Learn
-				more »</a>
-		</p>
+	<div class="clearfix"></div>
+	<div class="pull-right" id="aboutme">
+		<a href="http://about.me/ulu" target="_blank">About me </a>
 	</div>
 </div>
 <break />

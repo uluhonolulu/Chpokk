@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.Mail;
 using ChpokkWeb.Features.MainScreen;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Security;
@@ -7,9 +8,11 @@ using Newtonsoft.Json;
 namespace ChpokkWeb.Features.Authentication {
 	public class LoginEndpoint {
 		private readonly IAuthenticationContext _authenticationContext;
+		private readonly SmtpClient _mailer;
 
-		public LoginEndpoint(IAuthenticationContext authenticationContext) {
+		public LoginEndpoint(IAuthenticationContext authenticationContext, SmtpClient mailer) {
 			_authenticationContext = authenticationContext;
+			_mailer = mailer;
 		}
 
 		public FubuContinuation Login(LoginInputModel model) {
@@ -21,6 +24,7 @@ namespace ChpokkWeb.Features.Authentication {
 			if (response.stat.ToString() == "ok") {
 				var username = response.profile.preferredUsername.ToString();
 				_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
+				_mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
 				return FubuContinuation.RedirectTo<MainDummyModel>();
 			}
 			return FubuContinuation.EndWithStatusCode(HttpStatusCode.Unauthorized);
