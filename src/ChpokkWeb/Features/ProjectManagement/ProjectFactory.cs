@@ -40,9 +40,11 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			foreach (var assemblyReference in _projectParser.GetReferences(projectFileContent)) { 
 				var fileName = GetAssemblyFileName(assemblyReference, projectFilePath.ParentDirectory());
-				var exists = _fileSystem.FileExists(fileName); //if (!exists) throw smth
-				var referencedContent = _projectContentRegistry.GetProjectContentForReference(assemblyReference.Name, fileName);
-				projectContent.AddReferencedContent(referencedContent);
+				if (fileName != null && _fileSystem.FileExists(fileName)) {
+					var referencedContent = _projectContentRegistry.GetProjectContentForReference(assemblyReference.Name, fileName);
+					projectContent.AddReferencedContent(referencedContent);	
+				}
+				//else throw smth
 			}
 			return new ProjectData(projectContent);
 		}
@@ -53,8 +55,10 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			}
 			else {
 				var reference = GacInterop.FindBestMatchingAssemblyName(assemblyReference.Name);
-				var fileName = GacInterop.FindAssemblyInNetGac(reference);
-				return fileName;				
+				if (reference == null) {
+					return null;
+				}
+				return GacInterop.FindAssemblyInNetGac(reference);				
 			}
 		}
 

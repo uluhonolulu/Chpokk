@@ -361,7 +361,9 @@
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
     <Content Include="Features\Remotes\Clone\CloneInput.spark" />
-    <Content Include="Features\RepositoryManagement\Repository.spark" />
+    <Content Include="Features\RepositoryManagement\Repository.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\scripts\lib\browser.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Content\scripts\editor_demo.js" />
