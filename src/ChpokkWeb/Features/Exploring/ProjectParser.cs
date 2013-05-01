@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -33,7 +34,14 @@ namespace ChpokkWeb.Features.Exploring {
 			var assemblyElements = GetElements("Reference", doc, xmlNamespaceManager);
 			var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
 			var projectNodes = GetIncludes("ProjectReference", doc, xmlNamespaceManager);
-			var projectReferences = projectNodes.Select(node => new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(node.Value, string.Empty)){Include = node.Value});
+			//var projectReferences = projectNodes.Select(node => new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(node.Value, string.Empty)){Include = node.Value});
+			var projectReferences = new List<ReferenceProjectItem>();
+			foreach (var projectNode in projectNodes) {
+				try { projectReferences.Add(new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(projectNode.Value, string.Empty)) { Include = projectNode.Value }); }
+				catch (Exception) {
+					//do nothing for now
+				}
+			}
 			return
 				assemblyReferences.Concat(projectReferences);
 		}
