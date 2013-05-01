@@ -37,9 +37,10 @@ namespace ChpokkWeb.Features.Exploring {
 			//var projectReferences = projectNodes.Select(node => new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(node.Value, string.Empty)){Include = node.Value});
 			var projectReferences = new List<ReferenceProjectItem>();
 			foreach (var projectNode in projectNodes) {
-				try { projectReferences.Add(new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(projectNode.Value, string.Empty)) { Include = projectNode.Value }); }
+				try { projectReferences.Add(new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", string.Empty), new MissingProject(@"C:\something", string.Empty)) { Include = projectNode.Value }); }
 				catch (Exception) {
 					//do nothing for now
+					//TODO: filepaths should be real probably
 				}
 			}
 			return
