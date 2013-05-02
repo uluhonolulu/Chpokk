@@ -37,10 +37,7 @@ namespace Chpokk.Tests.Authentication.Context {
 			FakeSecurityContext.UserName = "name2";
 		}
 
-		protected override void ConfigureFubuRegistry(ChpokkWeb.ConfigureFubuMVC registry) {
-			base.ConfigureFubuRegistry(registry);
-			UseFakeSecurityContext(registry);
-		}
+
 
 
 		protected override void ConfigureContainer(Container container) {

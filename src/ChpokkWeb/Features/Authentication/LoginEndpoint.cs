@@ -24,7 +24,7 @@ namespace ChpokkWeb.Features.Authentication {
 			if (response.stat.ToString() == "ok") {
 				var username = response.profile.preferredUsername.ToString();
 				_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
-				_mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
+				if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
 				return FubuContinuation.RedirectTo<MainDummyModel>();
 			}
 			return FubuContinuation.EndWithStatusCode(HttpStatusCode.Unauthorized);

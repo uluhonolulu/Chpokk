@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Web.Hosting;
 using Arractas;
 using CThru;
@@ -25,7 +26,9 @@ namespace Chpokk.Tests.GitHub {
 		[Test]
 		public void ShouldCloneToThePathCorrespondingToTheRepoUrl() {
 			var path = Result.Results.First();
-			Assert.AreEqual(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\stub", path, StringComparison.InvariantCultureIgnoreCase);
+			var manager = Context.Container.Get<RepositoryManager>();
+			var expectedPath = Path.Combine("D:\\Projects\\Chpokk\\src\\ChpokkWeb", manager.GetPathFor("stub")) ;
+			Assert.AreEqual(expectedPath, path, StringComparison.InvariantCultureIgnoreCase);
 		}
 
 		[FixtureSetUp]

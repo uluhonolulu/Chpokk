@@ -31,6 +31,7 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 
 		protected virtual void ConfigureFubuRegistry(ConfigureFubuMVC registry) {
+			UseFakeSecurityContext(registry);
 		}
 
 		protected virtual void ConfigureContainer(Container container) {

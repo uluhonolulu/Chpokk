@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Web;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
@@ -60,6 +61,10 @@ namespace ChpokkWeb.Features.Exploring {
 		public string RepositoryFolder {
 			get { 
 				var userFolder = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : anonymousFolder;
+				if (HttpContext.Current != null) {
+					//BLOODY HELL THIS SHIT DOESNT WORK AS EXPECTED!!!
+					userFolder = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : anonymousFolder;
+				}
 				return commonRepositoryFolder.AppendPath(userFolder);
 			}
 		}
