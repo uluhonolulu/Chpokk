@@ -63,7 +63,7 @@ namespace ChpokkWeb.Features.Exploring {
 				var userFolder = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : anonymousFolder;
 				if (HttpContext.Current != null) {
 					//BLOODY HELL THIS SHIT DOESNT WORK AS EXPECTED!!!
-					userFolder = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : anonymousFolder;
+					userFolder = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : anonymousFolder;
 				}
 				return commonRepositoryFolder.AppendPath(userFolder);
 			}
