@@ -1,5 +1,0 @@
-﻿<viewdata model="FubuMVC.TestRunner.Suites.RunSuiteViewModel" />
-<content:title>${Model.Suite}</content:title>
-<content:scripts>
-  <Script src="${Model.Suite}" />
-</content:scripts>
