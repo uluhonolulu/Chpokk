@@ -3,6 +3,7 @@
   <metadata>
     <id>FubuMVC.Spark</id>
     <version>1.0.0.383</version>
+    <title>FubuMVC.Spark</title>
     <authors>Joshua Arnold,  Jaime Febres,  Alex Henning Johannessen,  Jeremy D. Miller</authors>
     <owners>Joshua Arnold,  Jaime Febres,  Alex Henning Johannessen,  Jeremy D. Miller</owners>
     <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
@@ -10,6 +11,9 @@
     <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Support for using the Spark view engine within a FubuMVC application.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
     <tags>fubumvc spark</tags>
     <dependencies>
       <dependency id="Spark" version="1.7.5.0" />

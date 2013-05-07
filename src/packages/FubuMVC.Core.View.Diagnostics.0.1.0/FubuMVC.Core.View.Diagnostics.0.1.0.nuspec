@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FubuMVC.Core.View.Diagnostics</id>
+    <version>0.1.0</version>
+    <title>FubuMVC.Core.View.Diagnostics</title>
+    <authors>Jaime Febres.</authors>
+    <owners>Jaime Febres.</owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/emiaj/FubuMVC.Core.View.Diagnostics</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Diagnostics to troubleshoot view attachment problems</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>fubumvc diagnostics views</tags>
+    <dependencies>
+      <dependency id="FubuMVC.Diagnostics" version="0.9.6.215" />
+    </dependencies>
+  </metadata>
+</package>

@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Remotes.Push {
 			var errorMessage = string.Empty;
 			var ajaxContinuation = AjaxContinuation.Successful();
 			using (var repo = new Repository(path)) {
-				var remote = repo.Remotes["origin"];
+				var remote = repo.Network.Remotes["origin"];
 				repo.Network.Push(remote, "refs/heads/master", error => {
 					ajaxContinuation.Success = false;
 					errorMessage = error.Reference + ": " + error.Message + "/r";
