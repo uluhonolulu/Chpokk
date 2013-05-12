@@ -8,6 +8,7 @@ using ChpokkWeb;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Bootstrapping;
+using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
@@ -16,6 +17,7 @@ using StructureMap;
 namespace Chpokk.Tests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext{
 		public override void Create() {
+			_container = new Lazy<IServiceFactory>(() => CreateFacility().BuildFactory());
 		}
 
 		private IContainerFacility CreateFacility() {
@@ -40,16 +42,8 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 
 
-
-		private IContainerFacility _container;
-
-		public IContainerFacility Container {
-			get {
-				if(_container == null)
-					_container = CreateFacility();
-				return _container;
-			}
-		}
+		private Lazy<IServiceFactory> _container;
+		public IServiceFactory Container { get { return _container.Value; } }
 
 		public string AppRoot {
 			get { return Path.GetFullPath(@".."); }

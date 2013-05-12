@@ -34,7 +34,7 @@ namespace Chpokk.Tests.Infrastructure.InfrastructureTests {
 			                          args => (string) args.ParameterValues[0]);
 			CThruEngine.AddAspect(spy);
 			CThruEngine.StartListening();
-			var behaviorFactory = Context.Container.Get<IBehaviorFactory>();
+			var behaviorFactory = Context.Container.Get<IServiceFactory>();
 			var arguments = Context.Container.Get<ServiceArguments>();
 			var graph = Context.Container.Get<BehaviorGraph>();
 			var writer = Context.Container.Get<IOutputWriter>();
