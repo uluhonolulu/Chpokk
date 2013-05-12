@@ -438,6 +438,7 @@
     <Compile Include="Features\Authentication\LoginEndpoint.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
+    <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
     <Compile Include="Features\Demo\SuggestController.cs" />
     <Compile Include="Features\Demo\SuggestionModel.cs" />
     <Compile Include="Features\Demo\SuggestionOutputModel.cs" />

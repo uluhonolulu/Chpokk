@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+﻿<viewdata model="ChpokkWeb.Features.Demo.RegisteredForInviteModel" />
 <content name="title">Thanks for participating!</content>
 
 <h2>Almost finished.</h2> 

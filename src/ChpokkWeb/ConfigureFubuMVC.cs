@@ -4,12 +4,23 @@ using Bottles.Diagnostics;
 using ChpokkWeb.Features.Demo;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Infrastructure;
-using ChpokkWeb.Shared;
 using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Assets.Content;
 using FubuMVC.Core.Registration.Routes;
 using Spark;
+
+//missing routes:
+//_FileList Features\Exploring\_FileList.spark
+//404 Shared\404.spark
+//authentication/login
+//authentication/loginstatus
+//Main
+//why push is not namespaced?
+//RegisteredForInvite Features\Demo\RegisteredForInvite.spark
+//Repository/{Name} Features\RepositoryManagement\Repository.spark
+//testing/suites/{Suite}
+
 
 namespace ChpokkWeb {
 	public class ConfigureFubuMVC : FubuRegistry {

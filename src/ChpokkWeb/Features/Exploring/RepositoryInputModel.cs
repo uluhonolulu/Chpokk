@@ -1,4 +1,4 @@
-﻿using ChpokkWeb.Shared;
+﻿using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Exploring {
