@@ -11,21 +11,21 @@ using FubuMVC.Core.View;
 namespace ChpokkWeb.Infrastructure {
 	public static class ModellessPartialExtension {
 		public static string Partial<THandler>(this IFubuPage page, string methodName) {
-			var factory = page.Get<IServiceFactory>();
+			var factory = page.Get<IPartialFactory>();
 			var writer = page.Get<IOutputWriter>();
 			var graph = page.Get<BehaviorGraph>();
 			var serviceArguments = page.Get<ServiceArguments>();
 			return Partial<THandler>(methodName, factory, graph, serviceArguments, writer);
 		}
 
-		public static string Partial<THandler>(string methodName, IServiceFactory serviceFactory, BehaviorGraph graph, ServiceArguments serviceArguments, IOutputWriter writer) {
+		public static string Partial<THandler>(string methodName, IPartialFactory partialFactory, BehaviorGraph graph, ServiceArguments serviceArguments, IOutputWriter writer) {
 			var thisChain =
 				graph.Behaviors.FirstOrDefault(
 					chain => {
 						var actionCall = chain.FirstCall();
 						return actionCall != null && actionCall.HandlerType == typeof(THandler) && actionCall.Method.Name == methodName;
 					});
-			var actionBehavior = serviceFactory.BuildBehavior(serviceArguments, thisChain.UniqueId);
+			var actionBehavior = partialFactory.BuildBehavior(thisChain);
 			return writer.Record(() => actionBehavior.InvokePartial()).GetText();
 		}
 	}
