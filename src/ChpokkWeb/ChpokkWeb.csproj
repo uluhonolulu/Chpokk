@@ -71,7 +71,7 @@
     <Reference Include="FubuMVC.Media">
       <HintPath>..\packages\FubuMVC.Media.0.9.5.318\lib\net40\FubuMVC.Media.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Navigation">
+    <Reference Include="FubuMVC.Navigation, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.Navigation.0.9.0.88\lib\net40\FubuMVC.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Razor">
@@ -86,7 +86,7 @@
     <Reference Include="FubuMVC.StructureMap">
       <HintPath>..\packages\FubuMVC.StructureMap.1.0.1.1410\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.TwitterBootstrap">
+    <Reference Include="FubuMVC.TwitterBootstrap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.433\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags, Version=1.2.0.150, Culture=neutral, processorArchitecture=MSIL">
@@ -432,6 +432,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.0.0.min.map" />
+    <None Include="Shared\_global.spark" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
