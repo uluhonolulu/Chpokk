@@ -10,18 +10,6 @@ using FubuMVC.Core.Assets.Content;
 using FubuMVC.Core.Registration.Routes;
 using Spark;
 
-//missing routes:
-//_FileList Features\Exploring\_FileList.spark
-//404 Shared\404.spark
-//authentication/login
-//authentication/loginstatus
-//Main
-//why push is not namespaced?
-//RegisteredForInvite Features\Demo\RegisteredForInvite.spark
-//Repository/{Name} Features\RepositoryManagement\Repository.spark
-//testing/suites/{Suite}
-
-
 namespace ChpokkWeb {
 	public class ConfigureFubuMVC : FubuRegistry {
 		public ConfigureFubuMVC() {
@@ -29,14 +17,16 @@ namespace ChpokkWeb {
 
 			// All public methods from concrete classes ending in "Controller"
 			// in this assembly are assumed to be action methods
-			Actions.IncludeClassesSuffixedWithController();
+			Actions
+				.IncludeClassesSuffixedWithController()
+				.IncludeClassesSuffixedWithEndpoint();
 
 			// Policies
 			Routes
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
 				.IgnoreNamespaceText("Features")
-				.IgnoreClassSuffix("Endpoint")
+				.HomeIs<DemoModel>()
 				;
 
 

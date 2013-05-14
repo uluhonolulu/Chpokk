@@ -227,7 +227,7 @@
     <Compile Include="Spikes\CodeParser.cs" />
     <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spikes\LessProblem.cs" />
+    <Compile Include="Spikes\RegisterEndpoints.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
