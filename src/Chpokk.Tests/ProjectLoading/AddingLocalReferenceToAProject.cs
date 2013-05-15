@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Arractas;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
 using ICSharpCode.SharpDevelop.Dom;
 using MbUnit.Framework;
@@ -24,6 +27,14 @@ namespace Chpokk.Tests.ProjectLoading {
 		public override IProjectContent Act() {
 			var factory = Context.Container.Get<ProjectFactory>();
 			return factory.GetProjectData(Context.ProjectPath).ProjectContent;
+		}
+
+		[Test]
+		public void ProjectParserCanAddTheLocalReference() {
+			var parser = Context.Container.Get<ProjectParser>();
+			var refs = parser.GetReferences(Context.ProjectFileContent);
+			Assert.AreEqual(1, refs.Count());
+			refs.Each(item => Console.WriteLine(item.Name));
 		}
 	}
 }
