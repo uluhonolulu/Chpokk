@@ -29,7 +29,7 @@ namespace Chpokk.Tests.ProjectLoading {
 			return factory.GetProjectData(Context.ProjectPath).ProjectContent;
 		}
 
-		[Test]
+		[Test]//TODO: separate this into a separate test
 		public void ProjectParserCanAddTheLocalReference() {
 			var parser = Context.Container.Get<ProjectParser>();
 			var refs = parser.GetReferences(Context.ProjectFileContent);

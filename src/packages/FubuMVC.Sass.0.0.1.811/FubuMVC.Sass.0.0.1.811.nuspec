@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FubuMVC.Sass</id>
+    <version>0.0.1.811</version>
+    <title>FubuMVC.Sass</title>
+    <authors>Alex Henning Johannessen,  et al.</authors>
+    <owners>Alex Henning Johannessen,  et al.</owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>http://mvc.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sass support for FubuMVC.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>fubumvc</tags>
+    <dependencies>
+      <dependency id="FubuMVC.Core.Assets" version="0.9.9.43" />
+    </dependencies>
+  </metadata>
+</package>
