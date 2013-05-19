@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Chpokk.Tests.Saving {
 	[TestFixture]
-	public class Save : BaseCommandTest<PhysicalCodeFileContext> {
+	public class Save : BaseCommandTest<PhysicalCodeFileInRepositoryContext> {
 		private const string NEW_CONTENT = "---";
 		[Test]
 		public void ShouldHaveFileContentsChangedToNew() {

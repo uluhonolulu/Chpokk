@@ -9,11 +9,13 @@ namespace Chpokk.Tests.Exploring {
 		public string FilePath { get; private set; }
 		public override void Create() {
 			base.Create();
+			CreateFile();
+		}
+
+		protected void CreateFile() {
 			FilePath = FileSystem.Combine(SolutionFolder, PROJECT_NAME, FILE_NAME);
 			Console.WriteLine("Writing to " + FilePath);
 			Container.Get<IFileSystem>().WriteStringToFile(FilePath, "");
-
 		}
-
 	}
 }
