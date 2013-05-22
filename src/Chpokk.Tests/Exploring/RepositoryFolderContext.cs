@@ -18,6 +18,7 @@ namespace Chpokk.Tests.Exploring {
 		public override void Create() {
 			base.Create();
 			var repositoryManager = Container.Get<RepositoryManager>();
+			this.FakeSecurityContext.UserName = "ulu";
 			RepoPath = repositoryManager.GetPathFor(REPO_NAME);
 			var repositoryInfo = new RepositoryInfo(RepoPath, REPO_NAME);
 			RepositoryRoot = Path.Combine(AppRoot, repositoryInfo.Path);

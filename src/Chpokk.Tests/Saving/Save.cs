@@ -38,11 +38,12 @@ namespace Chpokk.Tests.Saving {
 		}
 	}
 
-	public class Commit : BaseCommandTest<PhysicalCodeFileContext> {
+	public class Commit : BaseCommandTest<PhysicalCodeFileInRepositoryContext> {
 		private const string NEW_CONTENT = "---";
 		public override void Act() {
 			var controller = Context.Container.Get<SaveCommitController>();
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
+			//Context.FakeSecurityContext.UserName = "ulu";
 			using (var repo = new Repository(Context.RepositoryRoot)) {
 				repo.Index.Stage(Context.FilePath);				
 			}
