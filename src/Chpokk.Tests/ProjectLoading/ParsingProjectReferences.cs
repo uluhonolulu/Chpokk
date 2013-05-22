@@ -11,7 +11,7 @@ using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
 
 namespace Chpokk.Tests.Exploring.UnitTests {
-	[TestFixture]
+	[TestFixture, Ignore("Project references are not implemented")]
 	public class ParsingProjectReferences : BaseQueryTest<ProjectContentWithOneProjectReferenceContext, IEnumerable<ReferenceProjectItem>> {
 		[Test]
 		public void ReturnsSingleReference() {

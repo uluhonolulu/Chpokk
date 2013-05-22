@@ -56,35 +56,67 @@
     <Reference Include="Arractas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
     </Reference>
-    <Reference Include="Bottles">
-      <HintPath>..\packages\Bottles.0.9.1.274\lib\Bottles.dll</HintPath>
-    </Reference>
     <Reference Include="CThru, Version=1.2.3.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DiffieHellman">
-      <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\DiffieHellman.dll</HintPath>
-    </Reference>
-    <Reference Include="dotless.Core, Version=1.3.0.3, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\dotless.1.3.0.3\lib\dotless.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuCore, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.9.149\lib\FubuCore.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuLocalization">
-      <HintPath>..\packages\FubuLocalization.0.9.5.17\lib\FubuLocalization.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.5.926\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    <Reference Include="FubuMVC.Less, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuMVC.Less.0.0.1.870\lib\net40\FubuMVC.Less.dll</HintPath>
     </Reference>
     <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="HtmlTags, Version=1.1.0.71, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore.1.0.0.225\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\packages\FubuLocalization.0.9.5.126\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\packages\FubuMVC.Core.1.0.1.1410\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.Assets">
+      <HintPath>..\packages\FubuMVC.Core.Assets.0.9.9.325\lib\net40\FubuMVC.Core.Assets.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.UI">
+      <HintPath>..\packages\FubuMVC.Core.UI.1.0.1.351\lib\net40\FubuMVC.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.View">
+      <HintPath>..\packages\FubuMVC.Core.View.1.0.0.383\lib\net40\FubuMVC.Core.View.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core.View.Diagnostics">
+      <HintPath>..\packages\FubuMVC.Core.View.Diagnostics.0.1.0\lib\net40\FubuMVC.Core.View.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Diagnostics">
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.9.6.215\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.JQueryUI">
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.226\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Media">
+      <HintPath>..\packages\FubuMVC.Media.0.9.5.318\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Navigation">
+      <HintPath>..\packages\FubuMVC.Navigation.0.9.0.88\lib\net40\FubuMVC.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Razor">
+      <HintPath>..\packages\FubuMVC.Razor.1.0.0.325\lib\net40\FubuMVC.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.SlickGrid">
+      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.435\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Spark">
+      <HintPath>..\packages\FubuMVC.Spark.1.0.0.383\lib\net40\FubuMVC.Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\packages\FubuMVC.StructureMap.1.0.1.1410\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.TwitterBootstrap">
+      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.433\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags, Version=1.2.0.150, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlTags.1.1.0.71\lib\4.0\HtmlTags.dll</HintPath>
+      <HintPath>..\packages\HtmlTags.1.2.0.150\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.Core">
       <HintPath>..\..\lib\ICSharpCode.Core.dll</HintPath>
@@ -113,9 +145,9 @@
       <HintPath>C:\Program Files (x86)\Ivonna\Ivonna.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="LibGit2Sharp, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LibGit2Sharp, Version=0.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LibGit2Sharp.0.9.5\lib\net35\LibGit2Sharp.dll</HintPath>
+      <HintPath>..\packages\LibGit2Sharp.0.10\lib\net35\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="LibGit2Sharp.Tests">
       <HintPath>..\..\..\..\libgit\LibGit2Sharp.Tests\bin\Debug\LibGit2Sharp.Tests.dll</HintPath>
@@ -131,11 +163,11 @@
     <Reference Include="Mono.Cecil">
       <HintPath>..\..\lib\Mono.Cecil.dll</HintPath>
     </Reference>
-    <Reference Include="Org.Mentalis.Security">
-      <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Org.Mentalis.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+    <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -152,6 +184,7 @@
   <ItemGroup>
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
+    <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
@@ -195,6 +228,7 @@
     <Compile Include="Spikes\CodeParser.cs" />
     <Compile Include="Spikes\IntelSpike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spikes\RegisterEndpoints.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
@@ -232,9 +266,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-2.0.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="Scripts\jquery-2.0.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.0.0.js" />
+    <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="server stories.txt" />
   </ItemGroup>
   <ItemGroup />
@@ -243,9 +281,9 @@
     <PostBuildEvent>rem copy F:\Projects\Fubu\FubuMVC.AssetTransforms\src\FubuMVC.Less\bin\Debug\FubuMVC.Less.dll $(TargetDir)*.*
 if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
 if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.9.5\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.11.0.0\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
 if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.9.5\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.11.0.0\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

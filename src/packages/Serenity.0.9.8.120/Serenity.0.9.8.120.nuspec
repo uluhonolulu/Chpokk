@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Serenity</id>
+    <version>0.9.8.120</version>
+    <title>Serenity</title>
+    <authors>Jeremy D. Miller</authors>
+    <owners>Jeremy D. Miller</owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>http://mvc.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Giving you piece of mind by making it easy to integrate both Storyteller and Jasmine testing into your FubuMVC applications</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>web framework specification fubumvc</tags>
+    <dependencies>
+      <dependency id="FubuMVC.Core" />
+      <dependency id="FubuMVC.SelfHost" version="0.9.8.1220" />
+      <dependency id="Storyteller2" />
+      <dependency id="Selenium.RC" version="2.21.0" />
+      <dependency id="Selenium.Support" version="2.29.1" />
+      <dependency id="Selenium.WebDriver" version="2.29.1" />
+      <dependency id="Selenium.WebDriverBackedSelenium" version="2.29.1" />
+    </dependencies>
+  </metadata>
+</package>

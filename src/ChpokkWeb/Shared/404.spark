@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+﻿<viewdata model="ChpokkWeb.Infrastructure.A404Model" />
 <iframe frameborder="0" height="650" src="http://notfound-static.fwebservices.be/404/index.html?&amp;key=69dc55e72602a6294a7141620e9edca4"
 	width="100%"></iframe>
 

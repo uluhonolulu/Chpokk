@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Shared.DummyModel" />
+﻿<viewdata model="ChpokkWeb.Features.Demo.DemoModel" />
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 <content name="head">
 	<Script src="demo.js" />

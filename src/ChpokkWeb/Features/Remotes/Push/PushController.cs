@@ -15,14 +15,14 @@ namespace ChpokkWeb.Features.Remotes.Push {
 		}
 
 
-		public AjaxContinuation post_Push(PushInputModel model) {
+		public AjaxContinuation Push(PushInputModel model) {
 			var credentials = model.Username.IsEmpty()? null: new Credentials {Username = model.Username, Password = model.Password};
 			var path = FileSystem.Combine(model.PhysicalApplicationPath, _manager.GetPathFor(model.RepositoryName)) ;
 			var success = true;
 			var errorMessage = string.Empty;
 			var ajaxContinuation = AjaxContinuation.Successful();
 			using (var repo = new Repository(path)) {
-				var remote = repo.Remotes["origin"];
+				var remote = repo.Network.Remotes["origin"];
 				repo.Network.Push(remote, "refs/heads/master", error => {
 					ajaxContinuation.Success = false;
 					errorMessage = error.Reference + ": " + error.Message + "/r";
@@ -32,10 +32,7 @@ namespace ChpokkWeb.Features.Remotes.Push {
 			return ajaxContinuation;
 		}
 
-		//hi josh
-		public PushDialogModel get_stuff(PushDialogModel model) {
-			return model;
-		}
+
 	
 	}
 }

@@ -4,7 +4,7 @@
 	<title>
 		<use content="title">Default Title</use>
 	</title>
-	<Script src="lib/bootstrap.js" />
+	<Script src="twitterbootstrap" />
 	<Script src="common.js"/>
 	<Script src="janrain.js"/>
 	<Stylesheet href="styles" />

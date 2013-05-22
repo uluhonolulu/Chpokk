@@ -119,6 +119,7 @@ namespace Chpokk.Tests.GitHub.Infrastructure {
 			var authInfo = "uluhonolulu@gmail.com:xd11SvG23";
 			authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
 			request.Headers["Authorization"] = "Basic " + authInfo;
+			request.UserAgent = "chpokk";
 			return request;
 		}
 

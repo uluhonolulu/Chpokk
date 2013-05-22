@@ -47,7 +47,7 @@ namespace Chpokk.Tests.Intellisense {
 			var position = text.IndexOf('.');
 			var inputModel = new IntelInputModel {Text = text, Position = position, NewChar = '.', ProjectPath = projectPathRelativeToRepositoryRoot, RepositoryName = Context.REPO_NAME};
 			var url = Registry.UrlFor<IntelInputModel>();
-			return session.PostJson<IntelOutputModel>(url, inputModel, encodeRequest:true);
+			return session.PostJson<IntelOutputModel>(url, inputModel, encodeRequest:false);
 		}
 	}
 }

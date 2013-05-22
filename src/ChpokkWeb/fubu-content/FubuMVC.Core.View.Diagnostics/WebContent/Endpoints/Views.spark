@@ -1,0 +1,39 @@
+﻿<viewdata model="FubuMVC.Core.View.Diagnostics.Endpoints.ViewDiagnosticsModel" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3 well">
+            <p>
+                Views</p>
+        </div>
+        <div class="span9">
+            <for each="var problem in Model.Problems">
+                <ul>
+                    <li>
+                        <h3>${problem.Description}</h3>
+                    </li>
+                    <li>Affected Views</li>
+                        <for each="var item in problem.Items">
+                            <li>
+                                <dl>
+                                    <dt>File</dt>
+                                    <dd>${item.FilePath}</dd>
+                                    <dt>View</dt>
+                                    <dd>${item.ViewPath}</dd>
+                                    <dt>Origin</dt>
+                                    <dd>${item.Origin}</dd>
+                                </dl>
+                            </li>
+                        </for>
+                    <li>Workarounds</li>
+                        <for each="var item in problem.Workarounds">
+                            <li>
+                                <dl>
+                                    <dd>${item}</dd>
+                                </dl>
+                            </li>
+                        </for>
+                </ul>
+            </for>
+        </div>
+    </div>
+</div>

@@ -26,30 +26,25 @@ namespace Chpokk.Tests.Infrastructure.InfrastructureTests {
 
 		[Test]
 		public void OutputsTheActionOutput() {
-			Assert.AreEqual(Result, _expectedValue);
+			Assert.AreEqual(_expectedValue, Result);
 		}
 
 		public override string Act() {
-			var spy = new Spy<string>(info => info.TargetInstance is IHttpWriter && info.MethodName == "Write",
-			                          args => (string) args.ParameterValues[0]);
+			var spy = new Spy<string>(info => info.TargetInstance is IOutputWriter && info.MethodName == "Write",
+									  args =>
+									  {
+										  var index = (args.ParameterValues.Length == 1) ? 0 : 1; 
+										  return (string)args.ParameterValues[index]; 
+									  });
 			CThruEngine.AddAspect(spy);
 			CThruEngine.StartListening();
-			var behaviorFactory = Context.Container.Get<IBehaviorFactory>();
+			var partialFactory = Context.Container.Get<IPartialFactory>();
 			var arguments = Context.Container.Get<ServiceArguments>();
 			var graph = Context.Container.Get<BehaviorGraph>();
 			var writer = Context.Container.Get<IOutputWriter>();
 			var methodName = "TellMe";
-			var thisChain =
-				graph.Behaviors.FirstOrDefault(
-					chain =>
-					{
-						var actionCall = chain.FirstCall();
-						return actionCall != null && actionCall.HandlerType == typeof (SampleHandler) && actionCall.Method.Name == methodName;
-					});
-			var actionBehavior = behaviorFactory.BuildBehavior(arguments, thisChain.UniqueId);
-			;
-			//return spy.Results.FirstOrDefault();
-			return writer.Record(() => actionBehavior.InvokePartial()).GetText();
+			var result = ModellessPartialExtension.Partial<SampleHandler>(methodName, partialFactory, graph, arguments, writer);
+			return spy.Results.FirstOrDefault();
 		}
 
 		public class SampleHandler {

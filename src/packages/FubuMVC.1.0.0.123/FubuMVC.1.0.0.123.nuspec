@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FubuMVC</id>
+    <version>1.0.0.123</version>
+    <title>FubuMVC</title>
+    <authors>Jeremy D. Miller,  Joshua Arnold,  Corey Kaylor</authors>
+    <owners>Jeremy D. Miller,  Joshua Arnold,  Corey Kaylor</owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>http://mvc.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A quickstart package to quickly setup a project as a simple FubuMVC application with StructureMap as the IoC container and Razor as the view engine</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>web framework mvc</tags>
+    <dependencies>
+      <dependency id="FubuMVC.Core" />
+      <dependency id="FubuMVC.StructureMap" />
+      <dependency id="FubuMVC.Razor" />
+      <dependency id="FubuMVC.Core.UI" />
+      <dependency id="FubuMVC.Core.Assets" />
+      <dependency id="FubuMVC.Diagnostics" />
+      <dependency id="WebActivator" version="1.1" />
+    </dependencies>
+  </metadata>
+</package>
