@@ -38,6 +38,9 @@
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.1.0.0.225\lib\FubuCore.dll</HintPath>
     </Reference>
@@ -101,9 +104,6 @@
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah">
-      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="GitSharp">
       <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.dll</HintPath>
