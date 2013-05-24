@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<use namespace="FubuMVC.Core.Assets" />
+<!DOCTYPE html>
 <html>
 <head>
 	<title>
