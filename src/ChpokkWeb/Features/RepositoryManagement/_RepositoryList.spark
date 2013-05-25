@@ -5,4 +5,6 @@
 	<for each="var name in Model.RepositoryNames">
 		!{this.LinkTo(new RepositoryInputModel{Name = name}).Text(name)}<br/> 
 	</for>
+	<p>Note: while we're in beta, all repositories are overwritten on each deployment</p>
+	 
 </div>
