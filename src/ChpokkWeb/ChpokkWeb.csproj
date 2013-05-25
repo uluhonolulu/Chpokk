@@ -106,12 +106,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlTags.1.2.0.150\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
-    <Reference Include="GitSharp">
-      <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="GitSharp.Core">
-      <HintPath>..\packages\GitSharp.0.3\lib\GitSharp.Core.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.3.1.9416, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
@@ -356,6 +350,11 @@
     </Content>
     <Content Include="Features\Editor\Tests\MainFixture.html" />
     <Content Include="Features\Exploring\_FileList.spark" />
+    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery-1.8.2.min.js" />
+    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery.continuations.forms.js" />
+    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery.continuations.js" />
+    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery.form.js" />
+    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\underscore-min.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\tests.asset.config">
       <SubType>Designer</SubType>
@@ -416,6 +415,12 @@
     <Content Include="Content\chpokk.asset.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
+    <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
+    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="fubu-content\FubuMVC.Core.View.Diagnostics\WebContent\Endpoints\Views.spark" />
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
@@ -493,7 +498,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.0.0.min.map" />
-    <None Include="Shared\_global.spark" />
+    <Content Include="Shared\_global.spark" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
@@ -567,7 +572,6 @@
   <ItemGroup>
     <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
-    <Folder Include="fubu-content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Demo\DemoView.spark">
