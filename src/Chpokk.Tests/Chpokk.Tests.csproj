@@ -189,6 +189,7 @@
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
     <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
+    <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\ParsingAssemblyReferences.cs" />

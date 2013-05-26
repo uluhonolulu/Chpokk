@@ -36,7 +36,7 @@
 
 			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
 			$('#parseButton').click(function () {
-				$.post(parseUrl, { Content: $('#code').text() }, function (continuation) {
+				$.post(parseUrl, { Content: $('#code').text(), RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' }, function (continuation) {
 					if (continuation.success) {
 						alert('Code is clean!');
 					} else {

@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Features.LanguageSupport;
 using FubuMVC.Core.Ajax;
-using ICSharpCode.NRefactory.CSharp;
+using ICSharpCode.NRefactory;
 
 // use ICSharpCode.NRefactory.ParserFactory to create a parser based on filename
 
 namespace ChpokkWeb.Features.Editor.Compilation {
 	public class ParserController {
-		private CSharpParser _parser;
-		public ParserController(CSharpParser parser) {
-			_parser = parser;
+		private readonly LanguageDetector _languageDetector;
+		public ParserController(LanguageDetector languageDetector) {
+			_languageDetector = languageDetector;
 		}
 
 		public AjaxContinuation Parse(ParserInputModel input) {
-			var compilationUnit = _parser.Parse(input.Content, string.Empty);
-			if (compilationUnit.Errors.Count == 0) {
+			//var filePath = _repositoryManager.GetPhysicalFilePath(input);
+			var language = _languageDetector.GetLanguage(input.PathRelativeToRepositoryRoot);
+			var parser = ParserFactory.CreateParser(language, new StringReader(input.Content));
+			parser.Parse();
+			if (parser.Errors.Count == 0) {
 				return AjaxContinuation.Successful();
 			}
 			else {
 				var continuation = new AjaxContinuation();
-				foreach (var error in compilationUnit.Errors) {
-					continuation.Errors.Add(new AjaxError {message = error.Message});
-				}
+				continuation.Errors.Add(new AjaxError {message = parser.Errors.ErrorOutput});
 				return continuation;
 			}
 		}

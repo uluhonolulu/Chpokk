@@ -18,9 +18,9 @@ namespace Chpokk.Tests.Exploring {
 		public void DoesntThrow() {
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("CompilerError"), 5));
 			//CThruEngine.AddAspect(new TraceAspect(info => info.MethodName.EndsWith("ReferencedAssemblies"), 5));
-			AppDomain.CurrentDomain.AssemblyLoad += new AssemblyLoadEventHandler(CurrentDomain_AssemblyLoad);
-			CThruEngine.AddAspect(new LetsSeeMyAssemblies(info => info.MethodName.EndsWith("CompileAssemblyFromSource")));
-			CThruEngine.AddAspect(new TraceAspect(info => info.TypeName == "Microsoft.CSharp.CSharpCodeGenerator" && info.MethodName == "Compile", 5));
+			//AppDomain.CurrentDomain.AssemblyLoad += new AssemblyLoadEventHandler(CurrentDomain_AssemblyLoad);
+			//CThruEngine.AddAspect(new LetsSeeMyAssemblies(info => info.MethodName.EndsWith("CompileAssemblyFromSource")));
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName == "Microsoft.CSharp.CSharpCodeGenerator" && info.MethodName == "Compile", 5));
 			Assert.DoesNotThrow(() => new TestSession().Get("/Main"));  
 		}
 
