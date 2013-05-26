@@ -521,6 +521,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />
     <Compile Include="Features\MainScreen\MainDummyModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectData.cs" />
     <Compile Include="Features\ProjectManagement\ProjectFactory.cs" />

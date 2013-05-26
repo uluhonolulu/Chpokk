@@ -5,6 +5,8 @@ using System.Web;
 using FubuMVC.Core.Ajax;
 using ICSharpCode.NRefactory.CSharp;
 
+// use ICSharpCode.NRefactory.ParserFactory to create a parser based on filename
+
 namespace ChpokkWeb.Features.Editor.Compilation {
 	public class ParserController {
 		private CSharpParser _parser;
