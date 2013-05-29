@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using ChpokkWeb.Features.Editor.Compilation;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.LanguageSupport;
 using ChpokkWeb.Features.ProjectManagement;
 using FubuCore;
 using FubuMVC.Core;
@@ -18,27 +19,31 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		private readonly ProjectParser _projectParser;
 		private readonly RepositoryManager _repositoryManager;
 		private readonly Compiler _compiler;
-		private readonly NRefactoryResolver _resolver;
+		//private readonly NRefactoryResolver _resolver;
 		private readonly ProjectFactory _projectFactory;
+		private readonly LanguageDetector _languageDetector;
 
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 
 			if (input.Text == null) return null;
+			var language = _languageDetector.GetLanguage(input.PathRelativeToRepositoryRoot);
 
 
 			var projectFilePath = GetProjectFile(input);
 			var filePaths = _projectParser.GetFullPathsForCompiledFilesFromProjectFile(projectFilePath);
 			var readers = from path in filePaths where _fileSystem.FileExists(path) select new StreamReader(path) as TextReader;
 			var projectContent = _projectFactory.GetProjectData(projectFilePath).ProjectContent;
-			_compiler.CompileAll(projectContent, readers);
+			_compiler.CompileAll(projectContent, readers, language);
 
 			var text = input.Text;//.Insert(input.Position, input.NewChar.ToString());
 			TextReader textReader = new StringReader(text);
-			var compilationUnit = _compiler.ParseCode(projectContent, textReader);
+			var compilationUnit = _compiler.ParseCode(projectContent, textReader, language);
 			var parseInformation =  new ParseInformation(compilationUnit);
-			var expression = Compiler.FindExpression(text, input.Position, parseInformation);
-			var resolveResult = _resolver.Resolve(expression, parseInformation, text);
+			var expression = Compiler.FindExpression(text, input.Position, parseInformation, language);
+			var languageProperties = _languageDetector.GetLanguageProperties(input.PathRelativeToRepositoryRoot);
+			var resolver = new NRefactoryResolver(languageProperties);
+			var resolveResult = resolver.Resolve(expression, parseInformation, text);
 			if (resolveResult == null) {
 				return new IntelOutputModel{Message = "ResolveResult is null"};
 			}
@@ -58,13 +63,13 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return projectFilePath;
 		}
 
-		public IntelController(IFileSystem fileSystem, ProjectParser projectParser, RepositoryManager repositoryManager, Compiler compiler, NRefactoryResolver resolver, ProjectFactory projectFactory) {
+		public IntelController(IFileSystem fileSystem, ProjectParser projectParser, RepositoryManager repositoryManager, Compiler compiler, ProjectFactory projectFactory, LanguageDetector languageDetector) {
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
 			_compiler = compiler;
-			_resolver = resolver;
 			_projectFactory = projectFactory;
+			_languageDetector = languageDetector;
 		}
 	}
 }

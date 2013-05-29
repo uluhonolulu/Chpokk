@@ -16,7 +16,7 @@ IntelManager.prototype.showData = function () {
     var text = this.editorElement.text();
     var range = this.getSelectedRange();
     var position = getCaretPosition(range) - 1; // we need the position just before the typed char
-    $.post(intelUrl, { Text: text, Position: position, NewChar: '.', RepositoryName: this.model.RepositoryName, ProjectPath: this.model.ProjectPath }, function (intelData) {
+    $.post(intelUrl, { Text: text, Position: position, NewChar: '.', RepositoryName: this.model.RepositoryName, ProjectPath: this.model.ProjectPath, PathRelativeToRepositoryRoot: this.model.PathRelativeToRepositoryRoot }, function (intelData) {
         self.showItems(intelData.Items);
     });
 };

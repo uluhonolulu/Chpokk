@@ -45,7 +45,7 @@ namespace Chpokk.Tests.Intellisense {
 			//session.AddAspect(new TraceAspect(info => info.TargetInstance is HttpResponse));
 			var projectPathRelativeToRepositoryRoot = Path.Combine(Context.SOLUTION_FOLDER, Context.PROJECT_PATH);
 			var position = text.IndexOf('.');
-			var inputModel = new IntelInputModel {Text = text, Position = position, NewChar = '.', ProjectPath = projectPathRelativeToRepositoryRoot, RepositoryName = Context.REPO_NAME};
+			var inputModel = new IntelInputModel {Text = text, Position = position, NewChar = '.', ProjectPath = projectPathRelativeToRepositoryRoot, RepositoryName = Context.REPO_NAME, PathRelativeToRepositoryRoot = "file.cs"};
 			var url = Registry.UrlFor<IntelInputModel>();
 			return session.PostJson<IntelOutputModel>(url, inputModel, encodeRequest:false);
 		}

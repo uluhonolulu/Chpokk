@@ -15,17 +15,17 @@
 <div id="log"></div>
 	<script type="text/javascript">
 		$(function () {
-			var editor = new CodeEditor($('#code'), { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}' });
-			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
-			var saveModel = { RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
+		var model = { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
+		var editor = new CodeEditor($('#code'), model);
+		var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
 			$('#saveButton').click(function () {
-				$.post(saveUrl, $.extend(saveModel, { Content: $('#code').text(), DoCommit: false }));
+				$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: false }));
 			});
 
 			$('#saveCommitButton').click(function () {
 				$('#commitDialog').modal();
 				$('#commitDialog #commitButton').one('click', function () {
-					$.post(saveUrl, $.extend(saveModel, { Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
+					$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
 					$('#commitDialog').modal('hide');
 				});
 			});

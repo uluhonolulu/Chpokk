@@ -49,17 +49,17 @@ namespace ChpokkWeb {
 		//    } 
 		//}
 
-		public class SparkSettingsActivator : IActivator {
-			private readonly ISparkViewEngine _engine;
-			public SparkSettingsActivator(ISparkViewEngine engine) {
-				_engine = engine;
-			}
+		//public class SparkSettingsActivator : IActivator {
+		//    private readonly ISparkViewEngine _engine;
+		//    public SparkSettingsActivator(ISparkViewEngine engine) {
+		//        _engine = engine;
+		//    }
 
-			public void Activate(IEnumerable<IPackageInfo> packages, IPackageLog log) {
-				var settings = _engine.Settings.As<SparkSettings>();
-				settings.Debug = true;
-			}
-		}
+		//    public void Activate(IEnumerable<IPackageInfo> packages, IPackageLog log) {
+		//        var settings = _engine.Settings.As<SparkSettings>();
+		//        settings.Debug = true;
+		//    }
+		//}
 	}
 
 
