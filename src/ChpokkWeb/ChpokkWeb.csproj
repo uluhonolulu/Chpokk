@@ -35,6 +35,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK">
+      <HintPath>..\packages\AWSSDK.1.5.21.0\lib\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
     </Reference>
@@ -44,6 +47,9 @@
     </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Emkay.S3">
+      <HintPath>..\packages\Emkay.S3.0.9.0.44\lib\NET40\Emkay.S3.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.1.0.0.225\lib\FubuCore.dll</HintPath>
@@ -573,6 +579,7 @@
   <ItemGroup>
     <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
+    <Folder Include="Features\Amazon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Demo\DemoView.spark">

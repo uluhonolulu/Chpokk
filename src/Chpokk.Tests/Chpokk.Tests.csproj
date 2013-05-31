@@ -56,8 +56,14 @@
     <Reference Include="Arractas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>..\packages\AWSSDK.1.5.21.0\lib\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="CThru, Version=1.2.3.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Emkay.S3">
+      <HintPath>..\packages\Emkay.S3.0.9.0.44\lib\NET40\Emkay.S3.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Less, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.Less.0.0.1.870\lib\net40\FubuMVC.Less.dll</HintPath>
@@ -218,6 +224,7 @@
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
+    <Compile Include="Spikes\Amazon.cs" />
     <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
