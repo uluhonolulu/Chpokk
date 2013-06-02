@@ -3,9 +3,9 @@ using System.IO;
 using Emkay.S3;
 using FubuCore;
 
-namespace Chpokk.Tests.Amazon {
+namespace ChpokkWeb.Features.Storage {
 	public class Uploader {
-		private IS3Client _client;
+		private readonly IS3Client _client;
 		public Uploader(IS3Client client) {
 			_client = client;
 		}
@@ -16,7 +16,6 @@ namespace Chpokk.Tests.Amazon {
 				var pathRelativetoAppRoot = filePath.PathRelativeTo(appRoot);
 				var key = pathRelativetoAppRoot.Replace('\\', '/');
 				_client.PutFile("chpokk", key, filePath, true, 0);
-				Console.WriteLine(key); // full path here
 			}
 
 			foreach (var directory in Directory.GetDirectories(path)) {

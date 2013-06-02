@@ -553,6 +553,7 @@
     <Compile Include="Features\Exploring\FileContentInputModel.cs" />
     <Compile Include="Features\Exploring\FileListModel.cs" />
     <Compile Include="Features\Exploring\RepositoryItem.cs" />
+    <Compile Include="Features\Storage\Uploader.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -579,7 +580,6 @@
   <ItemGroup>
     <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
-    <Folder Include="Features\Amazon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Demo\DemoView.spark">

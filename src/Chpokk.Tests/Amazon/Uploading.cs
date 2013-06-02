@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.Storage;
 using Emkay.S3;
 using FubuCore;
 using Gallio.Framework;
@@ -18,18 +19,12 @@ namespace Chpokk.Tests.Amazon {
 		public void TheUploadedFolderAppearsOnS3() {
 			var client = Context.Container.Get<IS3Client>();
 			var allFiles = client.EnumerateChildren("chpokk");
-			foreach (var file in allFiles) {
-				Console.WriteLine(file);
-			}
 			Assert.Contains(allFiles, "UserFiles/ulu/" + Context.REPO_NAME + "/" + Context.RELATIVE_PATH);
 		}
 
 		public override void Act() {
 			var uploader =  Context.Container.Get<Uploader>();
-			Console.WriteLine("--");
-			var path = Context.RepositoryRoot;
-			uploader.PublishFolder(path, Context.AppRoot);
-			Console.WriteLine("--");
+			uploader.PublishFolder(Context.RepositoryRoot, Context.AppRoot);
 		}
 	}
 

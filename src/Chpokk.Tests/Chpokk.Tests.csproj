@@ -189,7 +189,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Amazon\Uploader.cs" />
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
