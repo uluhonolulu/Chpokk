@@ -20,8 +20,6 @@ namespace ChpokkWeb {
 				expr => { expr.For<SmtpClient>().Use(() => new SmtpClient()); expr.SelectConstructor(() => new SmtpClient());}
 				);
 
-			//warmup
-			ProjectData.WarmUp();
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {

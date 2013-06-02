@@ -17,6 +17,7 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 
+//looks like this is actually a spike
 namespace Chpokk.Tests.Intellisense.UnitTests {
 	[TestFixture]
 	public class CSharpBclReference : BaseQueryTest<SimpleConfiguredContext, ResolveResult> {
@@ -30,7 +31,7 @@ namespace Chpokk.Tests.Intellisense.UnitTests {
 			//const string text = "using System; class AClass {  void B()  {   BClass x; x. } }";
 			var textReader = new StringReader(text);
 			var compiler = Context.Container.Get<Compiler>();
-			var projectContent = ProjectData.DefaultProjectContent;
+			var projectContent = new DefaultProjectContent() { Language = LanguageProperties.CSharp };
 			var compilationUnit = compiler.ParseCode(projectContent, textReader, SupportedLanguage.CSharp);
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var _resolver = Context.Container.Get<NRefactoryResolver>();

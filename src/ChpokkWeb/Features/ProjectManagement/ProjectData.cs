@@ -18,30 +18,30 @@ namespace ChpokkWeb.Features.ProjectManagement {
 
 		public IProjectContent ProjectContent { get; private set; }
 
-		private static DefaultProjectContent projectContent;
+		//private static DefaultProjectContent projectContent;
 
 		public ProjectData(IProjectContent projectContent) {
 			ProjectContent = projectContent;
 		}
 
 
-		public static DefaultProjectContent DefaultProjectContent {
-			get {
-				if (projectContent == null) {
-					var pcRegistry = new ProjectContentRegistry();
+		//public static DefaultProjectContent DefaultProjectContent {
+		//    get {
+		//        if (projectContent == null) {
+		//            var pcRegistry = new ProjectContentRegistry();
 
-					projectContent = new DefaultProjectContent() {Language = LanguageProperties.CSharp};
-					projectContent.AddReferencedContent(pcRegistry.Mscorlib);
+		//            projectContent = new DefaultProjectContent() {Language = LanguageProperties.CSharp};
+		//            projectContent.AddReferencedContent(pcRegistry.Mscorlib);
 					
-				}
-				return projectContent;
-			}
-		}
+		//        }
+		//        return projectContent;
+		//    }
+		//}
 
 
 
-		public static void WarmUp() {
-			var x = DefaultProjectContent;
-		}
+		//public static void WarmUp() {
+		//    var x = DefaultProjectContent;
+		//}
 	}
 }
