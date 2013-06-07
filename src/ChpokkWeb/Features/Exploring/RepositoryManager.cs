@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
+using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
+using FubuCore.Util;
+using FubuMVC.Core;
 using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.Exploring {
@@ -46,6 +50,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames(string approot) {
+			HttpContext.Current.Session["time"] = DateTime.Now.TimeOfDay;
 			var userFolder = approot.AppendPath(RepositoryFolder);
 			if (!Directory.Exists(userFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
@@ -61,12 +66,40 @@ namespace ChpokkWeb.Features.Exploring {
 		public string RepositoryFolder {
 			get { 
 				var userFolder = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : anonymousFolder;
-				if (HttpContext.Current != null) {
-					//BLOODY HELL THIS SHIT DOESNT WORK AS EXPECTED!!!
-					userFolder = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : anonymousFolder;
-				}
+				//if (HttpContext.Current != null) {
+				//    //BLOODY HELL THIS SHIT DOESNT WORK AS EXPECTED!!!
+				//    userFolder = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : anonymousFolder;
+				//}
 				return commonRepositoryFolder.AppendPath(userFolder);
 			}
 		}
+
 	}
+
+	public class RepositoryCache : Cache<string, RepositoryInfo>, IDisposable  {
+		private Backup _backup;
+		private Uploader _uploader;
+		private ApplicationSettings _settings;
+
+		public RepositoryCache(Uploader uploader, ApplicationSettings settings) {
+			_uploader = uploader;
+			_settings = settings;
+			AppRoot = _settings.GetApplicationFolder();
+		}
+
+		public string AppRoot { get; set; }
+
+		public void Dispose() {
+			//var appRoot = _httpContextBase.Request.ApplicationPath
+			foreach (var repositoryInfo in this) {
+				_uploader.PublishFolder(Path.Combine(AppRoot, repositoryInfo.Path), AppRoot);
+			}
+		}
+	}
+
+	internal class Backup {}
 }
+
+
+
+//SessionScoped is actually RepositoryCache -- and IDisposable, depends on Uploader through Backup

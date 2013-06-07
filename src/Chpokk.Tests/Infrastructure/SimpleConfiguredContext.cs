@@ -41,7 +41,7 @@ namespace Chpokk.Tests.Infrastructure {
 			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
 		}
 
-
+		[NotNull]
 		private Lazy<IServiceFactory> _container;
 		public IServiceFactory Container { get { return _container.Value; } }
 

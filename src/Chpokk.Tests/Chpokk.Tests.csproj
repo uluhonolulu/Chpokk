@@ -189,6 +189,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amazon\AwClientExtensions.cs" />
+    <Compile Include="Amazon\Integration.cs" />
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />

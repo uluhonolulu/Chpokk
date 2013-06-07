@@ -11,12 +11,10 @@ namespace ChpokkWeb.App_Start
 {
     public static class AppStartFubuMVC
     {
-        public static void Start() {
+        public static FubuRuntime Start() {
         	var container = new Container();
         	container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
-        	FubuApplication.For<ConfigureFubuMVC>() 
-                .StructureMap(container)
-                .Bootstrap();
+	        return FubuApplication.For<ConfigureFubuMVC>().StructureMap(container).Bootstrap();
         }
     }
 }

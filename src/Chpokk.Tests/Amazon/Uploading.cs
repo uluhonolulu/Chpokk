@@ -18,13 +18,22 @@ namespace Chpokk.Tests.Amazon {
 		[Test]
 		public void TheUploadedFolderAppearsOnS3() {
 			var client = Context.Container.Get<IS3Client>();
-			var allFiles = client.EnumerateChildren("chpokk");
-			Assert.Contains(allFiles, "UserFiles/ulu/" + Context.REPO_NAME + "/" + Context.RELATIVE_PATH);
+			var path = Context.FilePathRelativeToAppRoot;
+			Assert.IsTrue(client.Exists(path));
 		}
 
 		public override void Act() {
 			var uploader =  Context.Container.Get<Uploader>();
 			uploader.PublishFolder(Context.RepositoryRoot, Context.AppRoot);
+		}
+
+		public override void CleanUp() {
+			base.CleanUp();
+			var client = Context.Container.Get<IS3Client>();
+			var path = Context.FilePathRelativeToAppRoot;
+			if (client.Exists(path)) {
+				client.DeleteObject("chpokk", path);
+			}
 		}
 	}
 
@@ -36,7 +45,11 @@ namespace Chpokk.Tests.Amazon {
 			FileFullPath = FileSystem.Combine(base.RepositoryRoot, RELATIVE_PATH);
 			new FileSystem().WriteStringToFile(FileFullPath, string.Empty);
 		}
-
+		public string FilePathRelativeToAppRoot {
+			get {
+				return "UserFiles/ulu/" + REPO_NAME + "/" + RELATIVE_PATH;
+			}
+		}
 		
 	}
 }

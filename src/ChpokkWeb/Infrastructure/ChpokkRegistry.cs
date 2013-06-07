@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
@@ -13,14 +15,19 @@ using StructureMap.Pipeline;
 namespace ChpokkWeb.Infrastructure {
 	public class ChpokkRegistry : Registry {
 		public ChpokkRegistry() {
-			For<RepositoryManager>().LifecycleIs(new HybridSessionLifecycle());
+			For<RepositoryCache>().LifecycleIs(new HybridSessionLifecycle());
 			For<HttpContext>().Use(() => HttpContext.Current);
 			For<NRefactoryResolver>().Use(() => new NRefactoryResolver(LanguageProperties.CSharp));
 			For<ProjectFactory>().Singleton();
-			For<IS3Client>()
+			For<SmtpClient>().Use(() => new SmtpClient()); //expr.SelectConstructor(() => new SmtpClient());
+			For<IS3Client>().Singleton()
 				.Use(
-					context =>
-					context.GetInstance<S3ClientFactory>().Create("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
+				() =>
+				{
+					var s3Client = new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM");
+					//Debugger.Break();
+					return s3Client;
+				});
 		}
 	}
 }
