@@ -77,27 +77,31 @@ namespace ChpokkWeb.Features.Exploring {
 	}
 
 	public class RepositoryCache : Cache<string, RepositoryInfo>, IDisposable  {
-		private Backup _backup;
-		private Uploader _uploader;
-		private ApplicationSettings _settings;
-
-		public RepositoryCache(Uploader uploader, ApplicationSettings settings) {
-			_uploader = uploader;
-			_settings = settings;
-			AppRoot = _settings.GetApplicationFolder();
+		private readonly Backup _backup;
+		public RepositoryCache(Backup backup) {
+			_backup = backup;
 		}
 
-		public string AppRoot { get; set; }
-
 		public void Dispose() {
-			//var appRoot = _httpContextBase.Request.ApplicationPath
 			foreach (var repositoryInfo in this) {
-				_uploader.PublishFolder(Path.Combine(AppRoot, repositoryInfo.Path), AppRoot);
+				_backup.PublishRepository(repositoryInfo);
+				
 			}
 		}
 	}
 
-	internal class Backup {}
+	public class Backup {
+		private Uploader _uploader;
+		public Backup(Uploader uploader, ApplicationSettings settings) {
+			_uploader = uploader;
+			AppRoot = settings.GetApplicationFolder();
+		}
+
+		private string AppRoot { get; set; }
+		public void PublishRepository(RepositoryInfo repositoryInfo) {
+			_uploader.PublishFolder(Path.Combine(AppRoot, repositoryInfo.Path), AppRoot);
+		}
+	}
 }
 
 

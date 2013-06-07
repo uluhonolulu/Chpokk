@@ -28,15 +28,10 @@ namespace Chpokk.Tests.Amazon {
 			var input = new ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel {Name = Context.REPO_NAME};
 			var controller = Context.Container.Get<RepositoryController>();
 			controller.Get(input);
-			//cache["ulu/Perka"] = new RepositoryInfo("UserFiles/ulu/Perka", "Perka");
+
 			// now abandon the session
 			var cache = Context.Container.Get<RepositoryCache>();
 			cache.Dispose();
-			//var uploader = Context.Container.Get<Uploader>();
-			//foreach (var repositoryInfo in cache) {
-			//    uploader.PublishFolder(Path.Combine(Context.AppRoot, repositoryInfo.Path), Context.AppRoot);
-			//}
-			
 		}
 
 		[FixtureSetUp]

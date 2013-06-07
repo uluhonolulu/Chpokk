@@ -21,13 +21,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<ProjectFactory>().Singleton();
 			For<SmtpClient>().Use(() => new SmtpClient()); //expr.SelectConstructor(() => new SmtpClient());
 			For<IS3Client>().Singleton()
-				.Use(
-				() =>
-				{
-					var s3Client = new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM");
-					//Debugger.Break();
-					return s3Client;
-				});
+				.Use(new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
 		}
 	}
 }
