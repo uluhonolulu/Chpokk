@@ -4,9 +4,9 @@ using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.RepositoryManagement {
-	public class RepositoryController {
+	public class RepositoryEndpoint {
 		[NotNull]
-		private RepositoryCache _repositoryCache;
+		private readonly RepositoryCache _repositoryCache;
 
 		[UrlPattern("Repository/{Name}")]
 		public RepositoryModel Get(RepositoryInputModel input) {
@@ -17,7 +17,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 		[NotNull]
 		private readonly RepositoryManager _manager;
-		public RepositoryController([NotNull]RepositoryManager manager, [NotNull]RepositoryCache repositoryCache) {
+		public RepositoryEndpoint([NotNull]RepositoryManager manager, [NotNull]RepositoryCache repositoryCache) {
 			_manager = manager;
 			_repositoryCache = repositoryCache;
 		}

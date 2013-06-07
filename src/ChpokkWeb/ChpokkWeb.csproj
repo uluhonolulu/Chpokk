@@ -547,7 +547,7 @@
     <Compile Include="Features\Exploring\SolutionExplorerModel.cs" />
     <Compile Include="Features\Exploring\SolutionFileLoader.cs" />
     <Compile Include="Features\Exploring\SolutionParser.cs" />
-    <Compile Include="Features\RepositoryManagement\RepositoryController.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryEndpoint.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryModel.cs" />
     <Compile Include="Features\Exploring\FileContentInputModel.cs" />

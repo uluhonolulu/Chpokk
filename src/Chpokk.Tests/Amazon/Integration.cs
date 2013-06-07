@@ -26,7 +26,7 @@ namespace Chpokk.Tests.Amazon {
 		public override void Act() {
 			// add it to the cache by calling the browser
 			var input = new ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel {Name = Context.REPO_NAME};
-			var controller = Context.Container.Get<RepositoryController>();
+			var controller = Context.Container.Get<RepositoryEndpoint>();
 			controller.Get(input);
 
 			// now abandon the session
