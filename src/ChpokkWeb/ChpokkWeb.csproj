@@ -528,6 +528,8 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
+    <Compile Include="Features\Storage\Backup.cs" />
     <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />
     <Compile Include="Features\MainScreen\MainDummyModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectData.cs" />
@@ -541,7 +543,7 @@
     <Compile Include="Features\Exploring\FileItemToProjectItemConverter.cs" />
     <Compile Include="Features\Exploring\FileListPartialModel.cs" />
     <Compile Include="Features\Exploring\ProjectParser.cs" />
-    <Compile Include="Features\Exploring\RepositoryManager.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryManager.cs" />
     <Compile Include="Features\Exploring\SolutionBrowserPartialModel.cs" />
     <Compile Include="Features\Exploring\SolutionContentController.cs" />
     <Compile Include="Features\Exploring\SolutionExplorerInputModel.cs" />
@@ -553,7 +555,7 @@
     <Compile Include="Features\RepositoryManagement\RepositoryModel.cs" />
     <Compile Include="Features\Exploring\FileContentInputModel.cs" />
     <Compile Include="Features\Exploring\FileListModel.cs" />
-    <Compile Include="Features\Exploring\RepositoryItem.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryItem.cs" />
     <Compile Include="Features\Storage\Downloader.cs" />
     <Compile Include="Features\Storage\Uploader.cs" />
     <Compile Include="Global.asax.cs">
@@ -572,7 +574,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Remotes\Clone\CloneController.cs" />
     <Compile Include="Features\Exploring\ContentController.cs" />
-    <Compile Include="Features\Exploring\RepositoryInfo.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryInfo.cs" />
     <Compile Include="Features\Exploring\RepositoryInputModel.cs" />
     <Compile Include="Infrastructure\DummyModel.cs" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
+using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
