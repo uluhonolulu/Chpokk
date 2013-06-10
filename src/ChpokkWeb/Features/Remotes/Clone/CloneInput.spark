@@ -9,6 +9,10 @@
 			<label>
 				Your repository URL</label>
 			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "https://github.com/uluhonolulu/Chpokk-SampleSol.git").Style("width", "100%")}
+			<label>Username (leave empty for public repositories)</label>
+				!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("span3").Style("width", "100%")}
+			<label>Password</label>
+				!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("span3").Style("width", "100%")}
 		</form>
 	</div>
 	<div class="modal-footer">

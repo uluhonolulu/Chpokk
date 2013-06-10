@@ -6,6 +6,7 @@ using FubuMVC.Core.Urls;
 using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
 using RepositoryInputModel = ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Remotes.Clone {
 	public class CloneController {
@@ -22,14 +23,14 @@ namespace ChpokkWeb.Features.Remotes.Clone {
 			var repoUrl = model.RepoUrl;
 			var repositoryInfo = _repositoryManager.GetClonedRepositoryInfo(repoUrl);
 			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
-			CloneGitRepository(repoUrl, repositoryPath);
+			var credentials = model.Username.IsNotEmpty()? new Credentials() {Username = model.Username, Password = model.Password} : null;
+			CloneGitRepository(repoUrl, repositoryPath, credentials);
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { Name = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
-		private static void CloneGitRepository(string repoUrl, string repositoryPath) {
-			var repository = Repository.Clone(repoUrl, repositoryPath);
-			repository.Dispose();
+		private static void CloneGitRepository(string repoUrl, string repositoryPath, Credentials credentials) {
+			Repository.Clone(repoUrl, repositoryPath, credentials:credentials).Dispose();
 		}
 
 		public string TestCloning(AppPathAwareInputModel model) {
@@ -46,6 +47,8 @@ namespace ChpokkWeb.Features.Remotes.Clone {
 	public class CloneInputModel : IDontNeedActionsModel {
 		public string RepoUrl { get; set; }
 		public string PhysicalApplicationPath { get; set; }
+		public string Username { get; set; }
+		public string Password { get; set; }
 	}
 
 	public class AppPathAwareInputModel {
