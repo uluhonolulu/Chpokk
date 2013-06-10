@@ -22,7 +22,9 @@ namespace Chpokk.Tests.Exploring {
 			RepoPath = repositoryManager.GetPathFor(REPO_NAME);
 			var repositoryInfo = new RepositoryInfo(RepoPath, REPO_NAME);
 			RepositoryRoot = Path.Combine(AppRoot, repositoryInfo.Path);
-			DirectoryHelper.DeleteSubdirectories(RepositoryRoot.ParentDirectory());
+			if (Directory.Exists(RepositoryRoot.ParentDirectory())) {
+				DirectoryHelper.DeleteSubdirectories(RepositoryRoot.ParentDirectory());	
+			}
 			if (!Directory.Exists(RepositoryRoot))
 				Directory.CreateDirectory(RepositoryRoot);
 		}

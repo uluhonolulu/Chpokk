@@ -35,8 +35,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AWSSDK">
-      <HintPath>..\packages\AWSSDK.1.5.21.0\lib\AWSSDK.dll</HintPath>
+    <Reference Include="AWSSDK, Version=1.5.22.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AWSSDK.1.5.22.0\lib\AWSSDK.dll</HintPath>
     </Reference>
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
@@ -553,6 +554,7 @@
     <Compile Include="Features\Exploring\FileContentInputModel.cs" />
     <Compile Include="Features\Exploring\FileListModel.cs" />
     <Compile Include="Features\Exploring\RepositoryItem.cs" />
+    <Compile Include="Features\Storage\Downloader.cs" />
     <Compile Include="Features\Storage\Uploader.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
