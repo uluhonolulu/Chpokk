@@ -34,18 +34,13 @@ namespace ChpokkWeb.Features.Exploring {
 			var assemblyElements = GetElements("Reference", doc, xmlNamespaceManager);
 			var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
 			var projectNodes = GetIncludes("ProjectReference", doc, xmlNamespaceManager);
-			//var projectReferences = projectNodes.Select(node => new ProjectReferenceProjectItem(new UnknownProject(".", string.Empty), new MissingProject(node.Value, string.Empty)){Include = node.Value});
-			//let's ignore project references for the moment
-			var projectReferences = new List<ReferenceProjectItem>();
-			//foreach (var projectNode in projectNodes) {
-			//    try { projectReferences.Add(new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", string.Empty), new MissingProject(@"C:\something", string.Empty)) { Include = projectNode.Value }); }
-			//    catch (Exception) {
-			//        //do nothing for now
-			//        //TODO: filepaths should be real probably
-			//    }
-			//}
+			var projectReferences = projectNodes.Select(node => CreateProjectReference(node));
 			return
 				assemblyReferences.Concat(projectReferences);
+		}
+
+		private ProjectReferenceProjectItem CreateProjectReference(XmlNode projectNode) {
+			return new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", string.Empty), new MissingProject(@"C:\something", string.Empty)) {Include = projectNode.Value};
 		}
 
 		private ReferenceProjectItem CreateReferenceItem(XmlElement referenceElement) {

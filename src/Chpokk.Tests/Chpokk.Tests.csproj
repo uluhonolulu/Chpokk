@@ -203,6 +203,7 @@
     <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
+    <Compile Include="ProjectLoading\AddingProjectReferencetoAProject.cs" />
     <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\ParsingAssemblyReferences.cs" />
     <Compile Include="ProjectLoading\ParsingProjectReferences.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
+    <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
     <Compile Include="Spikes\Amazon.cs" />

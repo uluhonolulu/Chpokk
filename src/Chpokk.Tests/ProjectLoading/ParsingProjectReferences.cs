@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
-using Gallio.Framework;
 using ICSharpCode.SharpDevelop.Project;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
 
-namespace Chpokk.Tests.Exploring.UnitTests {
-	[TestFixture, Ignore("Project references are not implemented")]
+namespace Chpokk.Tests.ProjectLoading {
+	[TestFixture]
 	public class ParsingProjectReferences : BaseQueryTest<ProjectContentWithOneProjectReferenceContext, IEnumerable<ReferenceProjectItem>> {
 		[Test]
 		public void ReturnsSingleReference() {

@@ -10,24 +10,18 @@ namespace ChpokkWeb.Features.LanguageSupport {
 	public class LanguageDetector {
 		public SupportedLanguage GetLanguage(string fileName) {
 			var ext = Path.GetExtension(fileName);
-			if (ext.Equals(".cs",StringComparison.InvariantCultureIgnoreCase)) {
+			if (ext.Equals(".cs", StringComparison.InvariantCultureIgnoreCase) || ext.Equals(".csproj", StringComparison.InvariantCultureIgnoreCase)) {
 				return SupportedLanguage.CSharp;
 			}
-			if (ext.Equals(".vb", StringComparison.InvariantCultureIgnoreCase)) {
+			if (ext.Equals(".vb", StringComparison.InvariantCultureIgnoreCase) || ext.Equals(".vbproj", StringComparison.InvariantCultureIgnoreCase)) {
 				return SupportedLanguage.VBNet;
 			}
 			throw new Exception("Language not detected for " + fileName);
 		}
 
 		public LanguageProperties GetLanguageProperties(string fileName) {
-			var ext = Path.GetExtension(fileName);
-			if (ext.Equals(".cs",StringComparison.InvariantCultureIgnoreCase)) {
-				return LanguageProperties.CSharp;
-			}
-			if (ext.Equals(".vb", StringComparison.InvariantCultureIgnoreCase)) {
-				return LanguageProperties.VBNet;
-			}
-			throw new Exception("Language not detected for " + fileName);			
+			var language = GetLanguage(fileName);
+			return (language == SupportedLanguage.CSharp) ? LanguageProperties.CSharp : LanguageProperties.VBNet;
 		}
 	}
 }
