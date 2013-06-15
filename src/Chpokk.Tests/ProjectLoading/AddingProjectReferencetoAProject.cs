@@ -21,8 +21,8 @@ namespace Chpokk.Tests.ProjectLoading {
 												where reference.AssemblyName != "mscorlib"
 												select reference;
 			Assert.AreEqual(1, referencesNotCountingMscorlib.Count()); // 
-			var projectReference = referencesNotCountingMscorlib.Single();
-			Assert.IsInstanceOfType<ParseProjectContent>(projectReference);
+			//var projectReference = referencesNotCountingMscorlib.Single();
+			//Assert.IsInstanceOfType<ParseProjectContent>(projectReference);
 		}
 
 		public override IProjectContent Act() {

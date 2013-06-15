@@ -21,7 +21,9 @@ namespace Chpokk.Tests.ProjectLoading {
 		public override void Create() {
 			base.Create();
 			var referencedProjectFilePath = FileSystem.Combine(this.ProjectPath.ParentDirectory(), referencedProjectFileName);
-			new FileSystem().WriteStringToFile(referencedProjectFilePath, string.Empty);
+			var referencedProjectContent = @"<?xml version=""1.0"" encoding=""utf-8""?>
+				<Project></Project>";
+			new FileSystem().WriteStringToFile(referencedProjectFilePath, referencedProjectContent);
 		}
 	}
 }

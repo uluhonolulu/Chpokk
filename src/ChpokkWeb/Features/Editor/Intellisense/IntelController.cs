@@ -45,7 +45,13 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var resolver = new NRefactoryResolver(languageProperties);
 			var resolveResult = resolver.Resolve(expression, parseInformation, text);
 			if (resolveResult == null) {
-				return new IntelOutputModel{Message = "ResolveResult is null"};
+				return new IntelOutputModel{Message = "ResolveResult is null"}; //TODO: when is it null, really?
+			}
+			if (!resolveResult.IsValid) {
+				if (resolveResult is UnknownIdentifierResolveResult) {
+					var message = "Unknown identifier: '{0}'".ToFormat(resolveResult.As<UnknownIdentifierResolveResult>().Identifier);
+					throw new InvalidDataException(message);
+				}
 			}
 			var completionData = resolveResult.GetCompletionData(projectContent);
 			if (completionData == null) {
