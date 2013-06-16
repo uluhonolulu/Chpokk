@@ -31,7 +31,7 @@ namespace Chpokk.Tests.Authentication.Context {
 
 			if (Directory.Exists(RepositoryPath.ParentDirectory()) ) 
 				DirectoryHelper.DeleteSubdirectories(RepositoryPath.ParentDirectory());
-			Repository.Clone(REPO_URL, RepositoryPath);
+			Repository.Clone(REPO_URL, RepositoryPath).Dispose();
 
 			//now let's see what a different user has
 			FakeSecurityContext.UserName = "name2";

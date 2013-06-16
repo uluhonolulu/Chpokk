@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Arractas;
+using CThru.BuiltInAspects;
 using ChpokkWeb.Features.Editor.Intellisense;
+using ChpokkWeb.Features.LanguageSupport;
 using FubuCore;
 using Gallio.Framework;
+using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
@@ -48,6 +51,8 @@ namespace Chpokk.Tests.Intellisense {
 			            	RepositoryName = Context.REPO_NAME,
 							ProjectPath = FileSystem.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
 			            };
+			CThru.CThruEngine.AddAspect(Stub.For<LanguageDetector>("GetLanguage").Return(SupportedLanguage.CSharp));
+			CThru.CThruEngine.StartListening();
 			return controller.GetIntellisenseData(model);
 		}
 	}

@@ -14,6 +14,9 @@ namespace Chpokk.Tests.Intellisense.UnitTests.VbParser {
 	public class ParsingValidFile: BaseQueryTest<SimpleConfiguredContext, AjaxContinuation> {
 		[Test]
 		public void ReturnsSuccess() {
+			if (!Result.Success) {
+				Console.WriteLine(Result.Errors[0].message);
+			}
 			Assert.IsTrue(Result.Success);
 		}
 
