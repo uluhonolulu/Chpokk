@@ -47,7 +47,6 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames(string approot) {
-			HttpContext.Current.Session["time"] = DateTime.Now.TimeOfDay;
 			var userFolder = approot.AppendPath(RepositoryFolder);
 			if (!Directory.Exists(userFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);

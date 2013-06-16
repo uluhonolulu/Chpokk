@@ -534,6 +534,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\Storage\Backup.cs" />
     <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />

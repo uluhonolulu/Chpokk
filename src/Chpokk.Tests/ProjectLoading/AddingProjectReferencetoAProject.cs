@@ -25,6 +25,13 @@ namespace Chpokk.Tests.ProjectLoading {
 			//Assert.IsInstanceOfType<ParseProjectContent>(projectReference);
 		}
 
+		[Test]
+		public void ProjectsAreAddedToTheCache() {
+			var cache = Context.Container.Get<ProjectCache>();
+			var projectCount = cache.Count;
+			Assert.AreEqual(2, projectCount);
+		}
+
 		public override IProjectContent Act() {
 			var factory = Context.Container.Get<ProjectFactory>();
 			return factory.GetProjectData(Context.ProjectPath).ProjectContent;

@@ -21,15 +21,16 @@ namespace ChpokkWeb.Features.ProjectManagement {
 		private readonly Compiler _compiler;
 		readonly LanguageDetector _languageDetector;
 		private readonly ProjectContentRegistry _projectContentRegistry; //todo: _projectContentRegistry.ActivatePersistence
-		private readonly Cache<string, ProjectData> _projects;
+		private readonly ProjectCache _projects;
  
-		public ProjectFactory(ProjectParser projectParser, IFileSystem fileSystem, Compiler compiler, ProjectContentRegistry projectContentRegistry, LanguageDetector languageDetector) {
+		public ProjectFactory(ProjectParser projectParser, IFileSystem fileSystem, Compiler compiler, ProjectContentRegistry projectContentRegistry, LanguageDetector languageDetector, ProjectCache projects) {
 			_projectParser = projectParser;
 			_fileSystem = fileSystem;
 			_compiler = compiler;
 			_projectContentRegistry = projectContentRegistry;
 			_languageDetector = languageDetector;
-			_projects = new Cache<string, ProjectData>(key => LoadProjectData(key));
+			_projects = projects;
+			_projects.OnMissing = LoadProjectData;
 		}
 
 		public ProjectData GetProjectData(string key) {
@@ -68,14 +69,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 				var fileName = projectReference.FileName;
 				fileName = Path.GetFullPath(Path.Combine(projectFilePath.ParentDirectory(), fileName));
 				if (fileName != null && _fileSystem.FileExists(fileName)) {
-					//var solution = new Solution(new ProjectFactory.DummyProjectChangeWatcher()) {};
-					////fileName =
-					////    @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu\Chpokk-SampleSol\src\ConsoleApplication1\ConsoleApplication1.csproj";
-					//var loadInfo = new ProjectLoadInformation(solution, fileName, String.Empty);
-					//var projectBinding = new CSharpProjectBinding();
-					//var newProject = projectBinding.LoadProject(loadInfo);
-					//var referencedContent = newProject.CreateProjectContent();
-					var referencedContent = LoadProject(fileName);
+					var referencedContent = GetProjectData(fileName).ProjectContent;
 					projectContent.AddReferencedContent(referencedContent);
 				}
 				else {

@@ -17,9 +17,11 @@ namespace ChpokkWeb.Infrastructure {
 	public class ChpokkRegistry : Registry {
 		public ChpokkRegistry() {
 			For<RepositoryCache>().LifecycleIs(new HybridSessionLifecycle());
+			For<ProjectContentRegistry>().Singleton();
+			For<ProjectCache>().LifecycleIs(new HybridSessionLifecycle());
 			For<HttpContext>().Use(() => HttpContext.Current);
 			For<NRefactoryResolver>().Use(() => new NRefactoryResolver(LanguageProperties.CSharp));
-			For<ProjectFactory>().Singleton();
+			//For<ProjectFactory>().Singleton();
 			For<SmtpClient>().Use(() => new SmtpClient()); //expr.SelectConstructor(() => new SmtpClient());
 			For<IS3Client>().Singleton()
 				.Use(new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
