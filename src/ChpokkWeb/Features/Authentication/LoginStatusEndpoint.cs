@@ -13,7 +13,7 @@ namespace ChpokkWeb.Features.Authentication {
 			if (_securityContext.IsAuthenticated()) {
 				return "<div style='padding-top:12px;'>" + _securityContext.CurrentIdentity.Name + "</div>";
 			}
-			return "<a class=\"janrainEngage btn btn-primary\" style='margin-top:50px;'>Sign-In</a>";
+			return "<a class=\"janrainEngage btn btn-primary\">Sign-In</a>";
 		}
 
 

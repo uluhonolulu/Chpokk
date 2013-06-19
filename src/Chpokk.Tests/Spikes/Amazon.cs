@@ -14,6 +14,7 @@ namespace Chpokk.Tests.Spikes {
 			var factory = new S3ClientFactory();
 			var client = factory.Create("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM");
 			client.EnumerateBuckets().Each(str => Console.WriteLine(str));
+			client.EnumerateChildren("chpokk").Each(str => Console.WriteLine(str));
 		}
 	}
 }
