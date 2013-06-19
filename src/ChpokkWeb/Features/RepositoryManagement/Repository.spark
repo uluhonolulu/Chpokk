@@ -50,11 +50,11 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span9">
-			<div id="fileContent" style="margin-right:50px;" class="well">
+			<div id="fileContent" style="margin-right:0px;" class="well">
 			</div>		
 		</div>
 		<div class="span3">
-			<div class="pull-right well" style="min-height: 500px;">
+			<div class="pull-right well" style="min-height: 500px; width: 90%;">
 				!{this.Partial(new SolutionBrowserPartialModel{Name = Model.Name})}
 			</div>			
 		</div>

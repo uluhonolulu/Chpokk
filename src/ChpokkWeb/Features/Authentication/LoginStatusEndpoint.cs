@@ -11,9 +11,9 @@ namespace ChpokkWeb.Features.Authentication {
 		public string LoginStatus() {
 			//return "<a class=\"btn btn-primary\" href=\"/authentication/login\">Sign-In</a>";
 			if (_securityContext.IsAuthenticated()) {
-				return _securityContext.CurrentIdentity.Name;
+				return "<div style='padding-top:12px;'>" + _securityContext.CurrentIdentity.Name + "</div>";
 			}
-			return "<a class=\"janrainEngage btn btn-primary\">Sign-In</a>";
+			return "<a class=\"janrainEngage btn btn-primary\" style='margin-top:50px;'>Sign-In</a>";
 		}
 
 

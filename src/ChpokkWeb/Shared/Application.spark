@@ -25,7 +25,8 @@
 			<div class="container">
 				<span class="brand" id="brand">chpokk</span>
 				<use content="header">
-				  </use>
+				</use>
+				<div class="pull-right"><use content="rightcorner"></use></div>
 			</div>
 		</div>
 	</div>
