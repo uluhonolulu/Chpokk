@@ -1,0 +1,3 @@
+﻿<use namespace="ChpokkWeb.Features.Authentication" />
+<viewdata model="ChpokkWeb.Features.Authentication.LoginStatusAnonModel" />
+<a class="janrainEngage btn btn-primary">Sign-In</a>

@@ -428,6 +428,8 @@
     <Content Include="Content\chpokk.asset.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\Authentication\_LoginStatusAuthenticated.spark" />
+    <Content Include="Features\Authentication\_LoginStatusAnon.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -517,6 +519,8 @@
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Features\Authentication\LoginEndpoint.cs" />
+    <Compile Include="Features\Authentication\LoginStatusAnonModel.cs" />
+    <Compile Include="Features\Authentication\LoginStatusAuthenticatedModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
     <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
@@ -536,6 +540,8 @@
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
+    <Compile Include="Features\RepositoryManagement\RepositoryListModel.cs" />
     <Compile Include="Features\Storage\Backup.cs" />
     <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />
     <Compile Include="Features\MainScreen\MainDummyModel.cs" />

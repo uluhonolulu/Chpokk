@@ -10,6 +10,7 @@ using CThru.BuiltInAspects;
 using ChpokkWeb.Infrastructure;
 using FubuCore.Binding;
 using FubuMVC.Core.Caching;
+using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
@@ -52,6 +53,12 @@ namespace Chpokk.Tests.Infrastructure.InfrastructureTests {
 				return _expectedValue;
 			}
 		}
+
+		//[Test]
+		//public void getDirector() {
+		//    var director = Context.Container.Get<ContinuationHandler>();
+		//    director.InvokeNextBehavior();
+		//}
 	}
 
 	public class NulloHttpContext: SimpleConfiguredContext {

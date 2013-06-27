@@ -8,12 +8,14 @@ namespace ChpokkWeb.Features.Authentication {
 			_securityContext = securityContext;
 		}
 
-		public string LoginStatus() {
+		public FubuContinuation LoginStatus() {
 			//return "<a class=\"btn btn-primary\" href=\"/authentication/login\">Sign-In</a>";
 			if (_securityContext.IsAuthenticated()) {
-				return "<div style='padding-top:12px;'>" + _securityContext.CurrentIdentity.Name + "</div>";
+				return FubuContinuation.TransferTo(new LoginStatusAuthenticatedModel());
+				//return "<div style='padding-top:12px;'>" + _securityContext.CurrentIdentity.Name + "</div>";
 			}
-			return "<a class=\"janrainEngage btn btn-primary\">Sign-In</a>";
+			return FubuContinuation.TransferTo(new LoginStatusAnonModel());
+			//return "<a class=\"janrainEngage btn btn-primary\">Sign-In</a>";
 		}
 
 

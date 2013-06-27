@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ChpokkWeb.Features.Exploring;
+﻿using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 
@@ -25,13 +24,5 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		public RepositoryListModel GetRepositoryList([NotNull]RepositoryListInputModel model) {
 			return new RepositoryListModel {RepositoryNames = _manager.GetRepositoryNames(model.PhysicalApplicationPath)};
 		}
-	}
-
-	public class RepositoryListModel {
-		public IEnumerable<string> RepositoryNames { get; set; }	
-	}
-
-	public class RepositoryListInputModel {
-		public string PhysicalApplicationPath { get; set; }	
 	}
 }

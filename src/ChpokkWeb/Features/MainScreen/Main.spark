@@ -9,9 +9,16 @@
 	<a data-toggle="modal" href="#openProjectDialog" class="btn btn-primary">Clone a repository</a>
 	<render partial="Remotes\Clone\CloneInput" />
 
-	
-
-	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
+		${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
 </div>
 
-<content name="rightcorner">!{this.Partial<LoginStatusEndpoint>("LoginStatus")}</content>
+<content name="rightcorner">
+	<var context="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
+	<if condition="context.IsAuthenticated()">
+		<div style='padding-top:12px;'>${context.CurrentIdentity.Name}</div>
+	</if>
+	<else>
+		<a class="janrainEngage btn btn-primary">Sign-In</a>
+	</else>	
+	
+</content>
