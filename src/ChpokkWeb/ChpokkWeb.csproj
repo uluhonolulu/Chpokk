@@ -429,7 +429,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Authentication\_LoginStatusAuthenticated.spark" />
-    <Content Include="Features\Authentication\_LoginStatusAnon.spark" />
+    <Content Include="Features\Authentication\_LoginStatusAnon.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">

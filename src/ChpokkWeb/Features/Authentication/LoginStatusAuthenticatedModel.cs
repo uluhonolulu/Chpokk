@@ -5,5 +5,6 @@ using System.Web;
 
 namespace ChpokkWeb.Features.Authentication {
 	public class LoginStatusAuthenticatedModel {
+		public string Username { get; set; }
 	}
 }

@@ -15,10 +15,10 @@
 <content name="rightcorner">
 	<var context="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
 	<if condition="context.IsAuthenticated()">
-		<div style='padding-top:12px;'>${context.CurrentIdentity.Name}</div>
+		!{this.Partial(new ChpokkWeb.Features.Authentication.LoginStatusAuthenticatedModel{Username=context.CurrentIdentity.Name})}
 	</if>
 	<else>
-		<a class="janrainEngage btn btn-primary">Sign-In</a>
+		!{this.Partial<ChpokkWeb.Features.Authentication.LoginStatusAnonModel>()}
 	</else>	
 	
 </content>
