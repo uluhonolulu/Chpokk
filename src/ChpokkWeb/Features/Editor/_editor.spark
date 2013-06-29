@@ -15,9 +15,9 @@
 <div id="log"></div>
 	<script type="text/javascript">
 		$(function () {
-		var model = { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
-		var editor = new CodeEditor($('#code'), model);
-		var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
+			var model = { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
+			var editor = new CodeEditor($('#code'), model);
+			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
 			$('#saveButton').click(function () {
 				$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: false }));
 			});
@@ -46,6 +46,15 @@
 					}
 				});
 			});
+			
+			//Keep Alive
+			var keepAlive = function(interval) {
+				$.get('/editor/keepalive');
+				window.setTimeout(function() {keepAlive(interval);}, interval);
+				//debugger;
+			};
+
+			keepAlive(20 * 1000);
 		});
 	</script>
 
