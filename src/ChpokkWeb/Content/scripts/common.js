@@ -5,10 +5,11 @@ $(function () {
 	$('.bootstrap-popover').each(function () {
 		var content = function () {
 			var contentSelector = $(this).attr('popover') || this.hash;
+			var placement = $(contentSelector).attr('placement') || 'right';
 			return $(contentSelector).html();
 		};
 		$(this).popover({ content: content });
-	});	
+	});
 
 
 	//bind continuation errors to Gritter
@@ -27,7 +28,7 @@ $(function () {
 			text: message,
 			class_name: 'gritter-light'
 		});
-		
+
 		$('.waitContainer').hide();
 	});
 

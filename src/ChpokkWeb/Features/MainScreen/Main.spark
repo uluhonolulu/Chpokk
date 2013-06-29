@@ -13,12 +13,5 @@
 </div>
 
 <content name="rightcorner">
-	<var context="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
-	<if condition="context.IsAuthenticated()">
-		!{this.Partial(new ChpokkWeb.Features.Authentication.LoginStatusAuthenticatedModel{Username=context.CurrentIdentity.Name})}
-	</if>
-	<else>
-		!{this.Partial<ChpokkWeb.Features.Authentication.LoginStatusAnonModel>()}
-	</else>	
-	
+	<render partial="Authentication\_LoginStatus" />
 </content>

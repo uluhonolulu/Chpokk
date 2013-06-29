@@ -24,7 +24,7 @@
 </div>
 
 <!-- tooltip -->
-<div class="popover hide" id="clone_info">
+<div class="popover hide" id="clone_info" placement="bottom">
 	<div class="popover-title">Clone a repository</div>
 	<div class="popover-content">
 		<p>Click this button to clone your Git repository. </p>
