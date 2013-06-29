@@ -1,6 +1,17 @@
 ﻿
 $(function () {
 
+	//popovers
+	$('.bootstrap-popover').each(function () {
+		var content = function () {
+			var contentSelector = $(this).attr('popover') || this.hash;
+			return $(contentSelector).html();
+		};
+		$(this).popover({ content: content });
+	});	
+
+
+	//bind continuation errors to Gritter
 	$.continuations.bind('HttpError', function (continuation) {
 		var response = continuation.response;
 		var message = "Unknown error";

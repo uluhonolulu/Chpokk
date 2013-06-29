@@ -7,13 +7,6 @@
 	<script type="text/javascript">
 
 		$(function () {
-			$('.bootstrap-popover').each(function () {
-				var content = function () {
-					var contentSelector = this.hash;
-					return $(contentSelector).html();
-				};
-				$(this).popover({ content: content });
-			});
 		});
 	</script>
 </content>

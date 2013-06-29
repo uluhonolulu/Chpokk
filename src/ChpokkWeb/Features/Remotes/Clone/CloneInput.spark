@@ -9,10 +9,10 @@
 			<label>
 				Your repository URL</label>
 			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "https://github.com/uluhonolulu/Chpokk-SampleSol.git").Style("width", "100%")}
-			<label>Username (leave empty for public repositories)</label>
-				!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("span3").Style("width", "100%")}
-			<label>Password</label>
-				!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("span3").Style("width", "100%")}
+			               <label>Username (leave empty for public repositories)</label>
+			               !{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("span3").Style("width", "100%")}
+			                              <label>Password</label>
+			                              !{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("span3").Style("width", "100%")}
 		</form>
 	</div>
 	<div class="modal-footer">
@@ -20,6 +20,16 @@
 		<a href="#" class="btn btn-primary" id="openProjectButton">Clone</a> 
 		<div id="waitContainer" class="waitContainer"><Image src="loader.gif"/></div>
 		<div id="errorContainer" style="clear: both; color: red; font-size: smaller;"></div>
+	</div>
+</div>
+
+<!-- tooltip -->
+<div class="popover hide" id="clone_info">
+	<div class="popover-title">Clone a repository</div>
+	<div class="popover-content">
+		<p>Click this button to clone your Git repository. </p>
+		<p>
+		If you want to suggest a source for your files, please add an idea or vote for existing one using the Feedback button at the right side of the screen. </p>
 	</div>
 </div>
 
