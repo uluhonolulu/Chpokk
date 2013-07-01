@@ -22,6 +22,15 @@ namespace ChpokkWeb.Features.Authentication {
 				new WebClient().DownloadString(url);
 			var response = JsonConvert.DeserializeObject<dynamic>(rawResponse);
 			if (response.stat.ToString() == "ok") {
+				//microsoft
+				/*+		response.profile	{
+				  "providerName": "Microsoft Account",
+				  "identifier": "http://cid-e5c68243cd4aed39.spaces.live.com/",
+				  "name": {},
+				  "email": "gamma@mnogomango.spb.ru",
+				  "providerSpecifier": "microsoftaccount"
+				}	dynamic {Newtonsoft.Json.Linq.JObject}
+				*/
 				var username = response.profile.preferredUsername.ToString();
 				_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
 				if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
@@ -34,6 +43,6 @@ namespace ChpokkWeb.Features.Authentication {
 
 	public class LoginInputModel {
 		public string token { get; set; }
-		public string ApiKey = "4730b35eb9361c5cccd8a9f14353e8531727f457";
+		public string ApiKey = "3a86d86155ae6ed54397f3e8a9aa09294151bd7b";
 	}
 }

@@ -68,5 +68,5 @@
 
 <content name="rightcorner">
 	<render partial="Authentication\_LoginStatus" />
-	!{this.LinkTo<ChpokkWeb.Features.MainScreen.MainDummyModel>().AddClasses("btn", "btn-primary").Text("Back to repository list")}
+	!{this.LinkTo<ChpokkWeb.Features.MainScreen.MainDummyModel>().Text("Back to repository list")}
 </content>
