@@ -31,7 +31,7 @@ namespace ChpokkWeb.Features.Authentication {
 				  "providerSpecifier": "microsoftaccount"
 				}	dynamic {Newtonsoft.Json.Linq.JObject}
 				*/
-				var username = response.profile.preferredUsername.ToString();
+				var username = (response.profile.preferredUsername != null) ? response.profile.preferredUsername.Value : response.profile.email.Value;
 				_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
 				if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
 				return FubuContinuation.RedirectTo<MainDummyModel>();
@@ -39,6 +39,9 @@ namespace ChpokkWeb.Features.Authentication {
 			return FubuContinuation.EndWithStatusCode(HttpStatusCode.Unauthorized);
 		}
 
+		private string GetUsernameFromEmail(string email) {
+			return null;
+		}
 	}
 
 	public class LoginInputModel {
