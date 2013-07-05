@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
 using ChpokkWeb.Features.MainScreen;
 using FubuMVC.Core.Continuations;
@@ -22,19 +23,16 @@ namespace ChpokkWeb.Features.Authentication {
 				new WebClient().DownloadString(url);
 			var response = JsonConvert.DeserializeObject<dynamic>(rawResponse);
 			if (response.stat.ToString() == "ok") {
-				//microsoft
-				/*+		response.profile	{
-				  "providerName": "Microsoft Account",
-				  "identifier": "http://cid-e5c68243cd4aed39.spaces.live.com/",
-				  "name": {},
-				  "email": "gamma@mnogomango.spb.ru",
-				  "providerSpecifier": "microsoftaccount"
-				}	dynamic {Newtonsoft.Json.Linq.JObject}
-				*/
-				var username = (response.profile.preferredUsername != null) ? response.profile.preferredUsername.Value : response.profile.email.Value;
-				_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
-				if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
-				return FubuContinuation.RedirectTo<MainDummyModel>();
+				try {
+					var username = (response.profile.preferredUsername != null) ? response.profile.preferredUsername.Value : response.profile.email.Value;
+					_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
+					if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
+					return FubuContinuation.RedirectTo<MainDummyModel>();
+				}
+				catch (Exception exception) {
+					if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Authentification error", rawResponse);
+					throw;
+				}
 			}
 			return FubuContinuation.EndWithStatusCode(HttpStatusCode.Unauthorized);
 		}

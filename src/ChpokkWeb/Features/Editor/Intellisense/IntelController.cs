@@ -12,6 +12,7 @@ using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.CSharp;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
+using ICSharpCode.SharpDevelop;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelController {
@@ -45,22 +46,32 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var resolver = new NRefactoryResolver(languageProperties);
 			var resolveResult = resolver.Resolve(expression, parseInformation, text);
 			if (resolveResult == null) {
-				return new IntelOutputModel{Message = "ResolveResult is null"}; //TODO: when is it null, really?
+				throw new InvalidDataException("ResolveResult is null"); //TODO: when is it null, really?
 			}
 			if (!resolveResult.IsValid) {
 				if (resolveResult is UnknownIdentifierResolveResult) {
 					var message = "Unknown identifier: '{0}'".ToFormat(resolveResult.As<UnknownIdentifierResolveResult>().Identifier);
 					throw new InvalidDataException(message);
 				}
+				return new IntelOutputModel { Message = "Resolve Result is invalid: " + resolveResult.ToString() };
 			}
 			var completionData = resolveResult.GetCompletionData(projectContent);
 			if (completionData == null) {
 				return new IntelOutputModel{Message = "Completion Data is null"};
 			}
 
-			var items = from entry in completionData.OfType<IMember>() select new IntelOutputModel.IntelModelItem {Name = entry.Name, EntityType = entry.EntityType.ToString()};
-			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().ToArray()};
+			var items = from entry in completionData select GetCompletionModel(entry);
+			var model = new IntelOutputModel {Message = input.Message, Items = items.Distinct().OrderBy(item => item.Name).ToArray()};
 			return model;
+		}
+
+		public IntelOutputModel.IntelModelItem GetCompletionModel(ICompletionEntry entry) {
+			var entityEntry = entry as IEntity;
+			if (entityEntry != null)
+				return new IntelOutputModel.IntelModelItem { Name = entry.Name, EntityType = entityEntry.EntityType.ToString() };
+			var entryType = entry.GetType().Name;
+			if (entryType.EndsWith("Entry")) entryType = entryType.CutoffEnd("Entry");
+			return new IntelOutputModel.IntelModelItem{EntityType = entryType, Name = entry.Name};
 		}
 
 		private string GetProjectFile(IntelInputModel input) {
