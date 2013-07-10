@@ -21,6 +21,9 @@ namespace ChpokkWeb {
 
 		protected void Application_Start(object sender, EventArgs e) {
 			_fubuRuntime = AppStartFubuMVC.Start();
+
+			//restore all files
+			_fubuRuntime.Factory.Get<Restore>().RestoreAll();
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {

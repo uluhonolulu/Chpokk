@@ -574,6 +574,7 @@
     <Compile Include="Features\Exploring\FileListModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryItem.cs" />
     <Compile Include="Features\Storage\Downloader.cs" />
+    <Compile Include="Features\Storage\Restore.cs" />
     <Compile Include="Features\Storage\RestoreEndpoint.cs" />
     <Compile Include="Features\Storage\Uploader.cs" />
     <Compile Include="Global.asax.cs">
