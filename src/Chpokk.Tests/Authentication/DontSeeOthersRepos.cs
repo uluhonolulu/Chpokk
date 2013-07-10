@@ -4,6 +4,7 @@ using System.Text;
 using Arractas;
 using Chpokk.Tests.Authentication.Context;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using Gallio.Framework;
 using Ivonna.Framework;
 using MbUnit.Framework;

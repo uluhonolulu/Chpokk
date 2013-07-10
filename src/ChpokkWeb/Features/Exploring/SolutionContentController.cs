@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using FubuMVC.Core;

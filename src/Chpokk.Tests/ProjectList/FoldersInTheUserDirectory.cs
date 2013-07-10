@@ -5,6 +5,7 @@ using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;

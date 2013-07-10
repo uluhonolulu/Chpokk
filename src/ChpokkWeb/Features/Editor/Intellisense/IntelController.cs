@@ -5,6 +5,7 @@ using ChpokkWeb.Features.Editor.Compilation;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.LanguageSupport;
 using ChpokkWeb.Features.ProjectManagement;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using FubuMVC.Core;
 using ICSharpCode.AvalonEdit.Utils;

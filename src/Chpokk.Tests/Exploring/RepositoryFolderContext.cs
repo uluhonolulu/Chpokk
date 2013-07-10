@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using LibGit2Sharp.Tests.TestHelpers;
 using FubuCore;
 

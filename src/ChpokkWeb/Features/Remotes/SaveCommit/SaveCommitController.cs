@@ -1,5 +1,6 @@
 ﻿using System;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using FubuMVC.Core.Security;
 using LibGit2Sharp;

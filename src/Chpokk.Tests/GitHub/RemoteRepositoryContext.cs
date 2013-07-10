@@ -3,6 +3,7 @@ using System.IO;
 using Chpokk.Tests.GitHub.Infrastructure;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core.Security;
 using Ivonna.Framework;
 using Ivonna.Framework.Generic;

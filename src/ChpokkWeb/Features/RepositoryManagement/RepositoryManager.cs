@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Web;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
 using FubuMVC.Core.Security;
 
-namespace ChpokkWeb.Features.Exploring {
+namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryManager {
 		private readonly ISecurityContext _securityContext;
 		public RepositoryManager(ISecurityContext securityContext) {
 			_securityContext = securityContext;
 		}
 
-		private const string commonRepositoryFolder = "UserFiles";
+		public const string COMMON_REPOSITORY_FOLDER = "UserFiles";
 		private const string anonymousFolder = "__anonymous__";
 		// path for repository root, relative to AppRoot
 		[NotNull]
@@ -66,7 +65,7 @@ namespace ChpokkWeb.Features.Exploring {
 				//    //BLOODY HELL THIS SHIT DOESNT WORK AS EXPECTED!!!
 				//    userFolder = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : anonymousFolder;
 				//}
-				return commonRepositoryFolder.AppendPath(userFolder);
+				return COMMON_REPOSITORY_FOLDER.AppendPath(userFolder);
 			}
 		}
 

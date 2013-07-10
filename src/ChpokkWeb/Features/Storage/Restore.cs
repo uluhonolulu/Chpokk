@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using FubuMVC.Core;
+using LibGit2Sharp;
 
 namespace ChpokkWeb.Features.Storage {
 	public class Restore {
@@ -17,13 +19,15 @@ namespace ChpokkWeb.Features.Storage {
 
 		protected string AppRoot { get; set; }
 
+		public string UserFilesDir { get { return FileSystem.Combine(AppRoot, RepositoryManager.COMMON_REPOSITORY_FOLDER); } }
+
 		public void RestoreAll() {
-			if(!Restored) 
-				_downloader.DownloadAllFiles(AppRoot);
+			if(!Restored)
+				_downloader.DownloadAllFiles(UserFilesDir);
 		}
 
 		public bool Restored {
-			get { return ChildDirectoriesExist(AppRoot); }
+			get { return ChildDirectoriesExist(UserFilesDir); }
 		}
 
 		private bool ChildDirectoriesExist(string parent) {

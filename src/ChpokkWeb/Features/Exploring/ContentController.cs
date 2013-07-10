@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using ChpokkWeb.Features.Editor;
+using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using FubuMVC.Core;
