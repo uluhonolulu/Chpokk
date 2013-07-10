@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FubuValidation</id>
+    <version>0.9.10.709</version>
+    <authors>Joshua Arnold,  Jeremy D. Miller,  et al.</authors>
+    <owners>Joshua Arnold,  Jeremy D. Miller,  et al.</owners>
+    <licenseUrl>https://raw.github.com/DarthFubuMVC/fubuvalidation/master/license.txt</licenseUrl>
+    <projectUrl>http://validation.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuValidation_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FubuValidation - have validation your way, whatever way that happens to be</description>
+    <tags>fubu validation fubumvc conventional</tags>
+    <dependencies>
+      <dependency id="FubuLocalization" />
+      <dependency id="HtmlTags" />
+      <dependency id="FubuCore" version="0.9.9.151" />
+    </dependencies>
+  </metadata>
+</package>
