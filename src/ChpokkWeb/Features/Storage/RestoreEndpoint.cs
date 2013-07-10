@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using ChpokkWeb.Infrastructure;
 
@@ -12,8 +13,9 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public string Restore(RestoreInputModel input) {
-			_downloader.DownloadAllFiles(input.PhysicalApplicationPath);
-			return "OK";
+			var builder = new StringBuilder();
+			_downloader.DownloadAllFiles(input.PhysicalApplicationPath, s => builder.AppendLine(s));
+			return builder.ToString();
 		}
 	}
 	public class RestoreInputModel {
