@@ -23,7 +23,7 @@ namespace ChpokkWeb.Features.Storage {
 
 		public void RestoreAll() {
 			if(!Restored)
-				_downloader.DownloadAllFiles(UserFilesDir);
+				_downloader.DownloadAllFiles(AppRoot);
 		}
 
 		public bool Restored {
