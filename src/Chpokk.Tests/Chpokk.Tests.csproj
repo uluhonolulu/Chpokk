@@ -85,6 +85,15 @@
     <Reference Include="FubuMVC.SelfHost, Version=1.0.1.1410, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.SelfHost.1.0.1.1410\lib\net40\FubuMVC.SelfHost.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Validation">
+      <HintPath>..\packages\FubuMVC.Validation.0.8.9.690\lib\FubuMVC.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuValidation">
+      <HintPath>..\packages\FubuValidation.0.9.10.709\lib\FubuValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuValidation.StructureMap">
+      <HintPath>..\packages\FubuValidation.0.9.10.709\lib\FubuValidation.StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
