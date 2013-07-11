@@ -122,11 +122,11 @@ describe("Selecting an item", function () {
 	});
 	it("Adds the 'ui-state-hover' class to the link", function () {
 		var a = manager.container.find('li a')[1];
-		expect(a).toHaveClass('ui-state-hover');
+		expect($(a)).toHaveClass('ui-state-hover');
 	});
 	it("Removes the 'ui-state-hover' class from everything else", function () {
 		var a = manager.container.find('li a')[0];
-		expect(a).not.toHaveClass('ui-state-hover');
+		expect($(a)).not.toHaveClass('ui-state-hover');
 	});
 	afterEach(function () {
 		$('#fixture').empty();
