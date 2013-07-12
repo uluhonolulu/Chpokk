@@ -176,7 +176,27 @@ describe("If the returned list is empty", function () {
     it("The container shouldn't be visible", function () {
         expect(container).toBeHidden();
     });
-});
+      });
+
+      describe("When pressing Enter", function () {
+      	var manager, editor;
+      	var emptySpace = '  \t  ';
+      	var contents = 'hmhmhm';
+
+      	beforeEach(function () {
+      		manager = createManager();
+      		editor = manager.htmlEditor.editorElement;
+      		editor.text(emptySpace + contents);
+      		manager.htmlEditor.onEnter();
+      	});
+
+      	it("Should position same white space as the previous line", function () {
+      		expect(editor.text()).toBe(emptySpace + contents + '\n' + emptySpace);
+      	});
+
+      	afterEach(function () {
+      	});
+      });
 
 describe("Selection suite", function () {
 	var editor;

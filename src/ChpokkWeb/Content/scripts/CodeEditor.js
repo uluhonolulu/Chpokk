@@ -12,21 +12,20 @@ function CodeEditor(editorElement, model) {
 	var intelManager = new IntelManager(editorElement, intelContainer, htmlEditor, model);
 	this.getKeyHandlers = function () {
 		return {
-			'space': function() {
+			'space': function () {
 				htmlEditor.colorize(this);
 				return true;
 			},
 
-			'.': function() {
+			'.': function () {
 				intelManager.showData();
 				return true;
 			},
-			'enter': function() {
-				var range = bililiteRange(editorElement.get(0)).bounds('selection');
-				range.text('\n', 'end');
+			'enter': function () {
+				htmlEditor.onEnter();
 				return true;
 			},
-			'tab': function() {
+			'tab': function () {
 				var range = bililiteRange(editorElement.get(0)).bounds('selection');
 				range.text('	', 'end');
 				return true;

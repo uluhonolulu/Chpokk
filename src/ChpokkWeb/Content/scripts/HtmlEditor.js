@@ -33,6 +33,21 @@ HtmlEditor.prototype.setCursorPosition = function(position) {
 	range.bounds([position, position]).select();
 };
 
+HtmlEditor.prototype.onEnter = function () {
+	var prevText = this.editorElement.text().substr(0, this.getCursorPosition());
+	var lines = prevText.split('\n');
+	var lastLine = lines[lines.length - 1];
+	var white = whiteSpaces(lastLine);
+	var range = bililiteRange(this.editorElement.get(0)).bounds('selection');
+	range.text('\n' + white, 'end');
+};
+
+function whiteSpaces(source) {
+	var tester = /^\s*/;
+	var result = tester.exec(source);
+	return result[0];
+}
+
 //function saveSelection(selection, rootNode) {
 //    var caretPosition = selection.anchorOffset;
 //    var currentNode = selection.anchorNode;
