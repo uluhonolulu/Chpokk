@@ -11,13 +11,9 @@
 	<script type="text/javascript">
 
 		$(function () {
-			amplify.subscribe('hashchange', function () {
-				_loadSelectedFile();
-			});
-			$(window).hashchange(function () {
-				_loadSelectedFile();
-			});
-			//$(window).hashchange(); -- delay until the browser loads
+			amplify.subscribe('hashchange', _loadSelectedFile);
+			amplify.subscribe('solutionLoaded', _loadSelectedFile);
+			$(window).hashchange(_loadSelectedFile);
 
 		});
 
@@ -61,12 +57,14 @@
 	</div>
 </div>
 <!--
-<div class="pull-right well" style="min-height: 500px; display: none;">
-	!{this.Partial(new FileListPartialModel{RepositoryName = Model.RepositoryName})}
-</div>
--->
+	<div class="pull-right well" style="min-height: 500px; display: none;">
+		!{this.Partial(new FileListPartialModel{RepositoryName = Model.RepositoryName})}
+	</div>
+	-->
 
-<content name="rightcorner">
+!{this.Partial<ChpokkWeb.Features.Remotes.Push.PushDialogModel>()}
+
+	<content name="rightcorner">
 	<render partial="Authentication\_LoginStatus" />
 	!{this.LinkTo<ChpokkWeb.Features.MainScreen.MainDummyModel>().Text("Back to repository list")}
 </content>
