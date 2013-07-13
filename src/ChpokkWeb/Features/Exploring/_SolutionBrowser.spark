@@ -4,6 +4,7 @@
 <use namespace="ChpokkWeb.Features.Exploring"/>
 
 <div id="solutionBrowserWrapper">Please wait while your solution is being loaded..</div>
+<button id="pushButton" class="btn btn-inverse hide">Push</button>
 
 <content name="head">
 	<Script src="browser.js" />
@@ -14,19 +15,25 @@
 
 		$(function () {
 			var fileListUrl = '${Urls.UrlFor<SolutionExplorerInputModel>()}';
-			var model = { Name: "${Model.Name}" };
+			var model = { Name: "${Model.RepositoryName}" };
 			$.post(fileListUrl, model, function (data) {
 				var items = data.Items;
 				var root = build_ul(items)
 					.attr('id', 'solutionBrowser')
 					.addClass('filetree');
-				$('#solutionBrowserWrapper').empty().append(root);
+				$('#solutionBrowserWrapper').empty().append($('#pushButton').show()).append(root);
 
 				initTreeView('#solutionBrowser');
 
 				$(window).hashchange(); // let the selected file load now, but we'll find a better way later.
 			}
-			);			
+			);	
+			
+			
+			$('#pushButton').click(function () {
+				pushRepository('${Model.RepositoryName}');
+			});
+
 		});
 	</script>
 </content>

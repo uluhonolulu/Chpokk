@@ -26,7 +26,7 @@ namespace ChpokkWeb.Features.Remotes.Clone {
 			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			var credentials = model.Username.IsNotEmpty()? new Credentials() {Username = model.Username, Password = model.Password} : null;
 			CloneGitRepository(repoUrl, repositoryPath, credentials);
-			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { Name = repositoryInfo.Name });
+			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { RepositoryName = repositoryInfo.Name });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 

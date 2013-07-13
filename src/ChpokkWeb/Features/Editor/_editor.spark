@@ -6,7 +6,6 @@
 <button id="saveButton" class="btn btn-inverse">Save</button> 
 <button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
 <button id="parseButton" class="btn btn-inverse">Parse</button>
-<button id="pushButton" class="btn btn-inverse">Push</button> 
 
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
 <div id="code" contenteditable="true">${Model.Content}</div>
@@ -30,10 +29,6 @@
 				});
 			});
 
-			$('#pushButton').click(function () {
-				pushRepository('${Model.RepositoryName}');
-			});
-
 			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
 			$('#parseButton').click(function () {
 				$.post(parseUrl, { Content: $('#code').text(), RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' }, function (continuation) {
@@ -47,14 +42,7 @@
 				});
 			});
 			
-			//Keep Alive
-			var keepAlive = function(interval) {
-				$.get('/editor/keepalive');
-				window.setTimeout(function() {keepAlive(interval);}, interval);
-				//debugger;
-			};
 
-			keepAlive(20 * 1000);
 		});
 	</script>
 

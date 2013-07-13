@@ -2,7 +2,7 @@
 using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Exploring {
-	[UrlPattern("/Repository/{Name}")]
+	[UrlPattern("/Repository/{RepositoryName}")]
 	public class RepositoryInputModel : IDontNeedActionsModel {
 		public string Name { get; set; }
 	}

@@ -31,7 +31,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		//private readonly Dictionary<string, RepositoryInfo> _repositories = new Dictionary<string, RepositoryInfo>();
 
 		//public void Register([NotNull] RepositoryInfo info) {
-		//    _repositories[info.Name] = info;
+		//    _repositories[info.RepositoryName] = info;
 		//}
 
 		[NotNull] 
@@ -63,7 +63,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 				var userFolder = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : anonymousFolder;
 				//if (HttpContext.Current != null) {
 				//    //BLOODY HELL THIS SHIT DOESNT WORK AS EXPECTED!!!
-				//    userFolder = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : anonymousFolder;
+				//    userFolder = HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.RepositoryName : anonymousFolder;
 				//}
 				return COMMON_REPOSITORY_FOLDER.AppendPath(userFolder);
 			}

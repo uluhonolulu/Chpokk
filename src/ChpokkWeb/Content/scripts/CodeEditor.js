@@ -35,4 +35,13 @@ function CodeEditor(editorElement, model) {
     editorElement.keyz({ 'enter': false, 'tab': false }, { 'enter': false }, this.getKeyHandlers());
 
     new HtmlEditor(editorElement).updateHtml();
+
+    //Keep Alive
+    var keepAlive = function (interval) {
+    	$.get('/editor/keepalive');
+    	window.setTimeout(function () { keepAlive(interval); }, interval);
+    };
+
+    keepAlive(20 * 1000);
+	
 }

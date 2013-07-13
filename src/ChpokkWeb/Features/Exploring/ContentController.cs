@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 
-		//[UrlPattern("Project/{Name}")]
+		//[UrlPattern("Project/{RepositoryName}")]
 		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
 			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.Name);

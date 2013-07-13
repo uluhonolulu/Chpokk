@@ -36,7 +36,7 @@
 			$.ajax({
 				type: "POST",
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: { RepositoryName: "${Model.Name}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath },
+				data: { RepositoryName: "${Model.RepositoryName}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath },
 				dataType: "html",
 				success: function (data) {
 					$('#fileContent').html(data);
@@ -55,14 +55,14 @@
 		</div>
 		<div class="span3">
 			<div class="pull-right well" style="min-height: 500px; width: 90%;">
-				!{this.Partial(new SolutionBrowserPartialModel{Name = Model.Name})}
+				!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}
 			</div>			
 		</div>
 	</div>
 </div>
 <!--
 <div class="pull-right well" style="min-height: 500px; display: none;">
-	!{this.Partial(new FileListPartialModel{Name = Model.Name})}
+	!{this.Partial(new FileListPartialModel{RepositoryName = Model.RepositoryName})}
 </div>
 -->
 

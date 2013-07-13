@@ -23,7 +23,7 @@
 	function pushRepository(repositoryName) {
 		$('#pushDialog').modal();
 		$('#pushDialog #pushOkButton').one('click', function () {
-			var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [name="Username"]').val(), Password: $('#pushDialog [name="Password"]').val() };
+			var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [RepositoryName="UserRepositoryName"]').val(), Password: $('#pushDialog [RepositoryName="Password"]').val() };
 			var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
 			$.post(pushUrl, pushModel, function () {
 				alert("Pushed successfully!");

@@ -3,7 +3,7 @@
 <div class="well well-small span3" style="float:none; margin-left:0px; margin-top:10px;">
 	<h4>Your repositories</h4>
 	<for each="var name in Model.RepositoryNames">
-		!{this.LinkTo(new RepositoryInputModel{Name = name}).Text(name)}<br/> 
+		!{this.LinkTo(new RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
 	</for>
 	 
 </div>

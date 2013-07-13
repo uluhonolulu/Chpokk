@@ -7,12 +7,12 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		[NotNull]
 		private readonly RepositoryCache _repositoryCache;
 
-		[UrlPattern("Repository/{Name}")]
+		[UrlPattern("Repository/{RepositoryName}")]
 		public RepositoryModel Get(RepositoryInputModel input) {
 			// let's add it to the cache first
-			var info = _manager.GetRepositoryInfo(input.Name);
+			var info = _manager.GetRepositoryInfo(input.RepositoryName);
 			_repositoryCache[info.Path] = info;
-			return new RepositoryModel(){Name = input.Name};
+			return new RepositoryModel() { RepositoryName = input.RepositoryName };
 		}
 		[NotNull]
 		private readonly RepositoryManager _manager;

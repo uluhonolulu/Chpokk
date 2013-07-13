@@ -6,6 +6,6 @@ using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionBrowserPartialModel : IDontNeedActionsModel {
-		public string Name { get; set; }
+		public string RepositoryName { get; set; }
 	}
 }
