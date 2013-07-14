@@ -1,6 +1,6 @@
 ﻿using ChpokkWeb.Infrastructure;
 
-namespace ChpokkWeb.Features.Exploring {
+namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryInfo {
 		public RepositoryInfo([NotNull] string path, [NotNull] string name) {
 			Name = name;

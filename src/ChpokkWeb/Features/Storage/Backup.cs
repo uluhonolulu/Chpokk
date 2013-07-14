@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Storage {
