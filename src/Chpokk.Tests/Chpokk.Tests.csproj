@@ -196,6 +196,9 @@
     <Reference Include="Serenity, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.8.120\lib\net40\Serenity.dll</HintPath>
     </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
+    </Reference>
     <Reference Include="StoryTeller, Version=2.0.0.14, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Storyteller2.2.0.0.14\lib\net40\StoryTeller.dll</HintPath>
     </Reference>
@@ -249,6 +252,7 @@
     <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
+    <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
     <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
@@ -280,6 +284,8 @@
     <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
+    <Compile Include="Retrieving\Folder.cs" />
+    <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
     <Compile Include="Spikes\Amazon.cs" />

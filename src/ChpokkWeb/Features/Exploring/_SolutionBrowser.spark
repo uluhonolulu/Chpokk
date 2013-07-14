@@ -5,8 +5,9 @@
 
 <div id="solutionBrowserWrapper">
 	<div id="solutionBrowserToolbar" class="hide">
-		<button id="pushButton" class="btn btn-inverse">Push</button>
-		<button id="downloadZipButton" class="btn btn-inverse">Download zip</button>		
+		<for each="var menuItem in Model.RetrieveActions">
+			<button id="${menuItem.Id}" class="btn btn-inverse">${menuItem.Caption}</button>
+		</for>		
 	</div>
 	<div id="solutionTreeContainer">Please wait while your solution is being loaded..</div>
 </div>
@@ -36,7 +37,7 @@
 			);	
 			
 			
-			$('#pushButton').click(function () {
+			$('#pusher').click(function () {
 				pushRepository('${Model.RepositoryName}');
 			});
 
