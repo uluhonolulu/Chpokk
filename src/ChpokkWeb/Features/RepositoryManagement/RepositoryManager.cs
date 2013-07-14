@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Remotes.Push;
 using ChpokkWeb.Infrastructure;
@@ -11,8 +12,10 @@ using FubuMVC.Core.Security;
 namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryManager {
 		private readonly ISecurityContext _securityContext;
-		public RepositoryManager(ISecurityContext securityContext) {
+		private IEnumerable<IRetrievePolicy> _retrievePolicies; 
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies) {
 			_securityContext = securityContext;
+			_retrievePolicies = retrievePolicies;
 		}
 
 		public const string COMMON_REPOSITORY_FOLDER = "UserFiles";
@@ -61,10 +64,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public MenuItem[] GetRetrieveActions(RepositoryInfo info, string approot) {
 			var menuItems = new List<MenuItem>();
-			menuItems.Add(new DownloadZipMenuItem());
-			var path = FileSystem.Combine(approot, info.Path, ".git");
-			if (Directory.Exists(path)) {
-				menuItems.Add(new PushMenuItem());
+			foreach (var policy in _retrievePolicies) {
+				if (policy.Matches(info, approot)) {
+					var menuItemSource = policy as IMenuItemSource;
+					if (menuItemSource != null) menuItems.Add(menuItemSource.GetMenuItem());
+				}
 			}
 			return menuItems.ToArray();
 		}

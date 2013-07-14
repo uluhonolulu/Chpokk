@@ -550,6 +550,7 @@
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipPolicy.cs" />
     <Compile Include="Features\Remotes\IRetrievePolicy.cs" />
     <Compile Include="Features\Remotes\Push\PushMenuItem.cs" />
+    <Compile Include="Features\Remotes\Push\PushPolicy.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListModel.cs" />

@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
+using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;
 using ICSharpCode.SharpDevelop.Dom;
@@ -25,6 +26,11 @@ namespace ChpokkWeb.Infrastructure {
 			For<SmtpClient>().Use(() => new SmtpClient()); //expr.SelectConstructor(() => new SmtpClient());
 			For<IS3Client>().Singleton()
 				.Use(new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
+			Scan(scanner =>
+			{
+				scanner.AssemblyContainingType<IRetrievePolicy>();
+				scanner.AddAllTypesOf<IRetrievePolicy>();
+			});
 		}
 	}
 }
