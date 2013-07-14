@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.Remotes.DownloadZip;
+using ChpokkWeb.Features.Remotes.Push;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
@@ -23,16 +25,8 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public RepositoryInfo GetClonedRepositoryInfo([NotNull] string url) {
 			var name = url.GetFileNameUniversal().RemoveExtension();
-			var path = GetPathFor(name);
-			return new RepositoryInfo(path, name);
+			return GetRepositoryInfo(name);
 		}
-
-		//[NotNull]
-		//private readonly Dictionary<string, RepositoryInfo> _repositories = new Dictionary<string, RepositoryInfo>();
-
-		//public void Register([NotNull] RepositoryInfo info) {
-		//    _repositories[info.RepositoryName] = info;
-		//}
 
 		[NotNull] 
 		public RepositoryInfo GetRepositoryInfo([NotNull] string name) {
@@ -65,6 +59,15 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			}
 		}
 
+		public MenuItem[] GetRetrieveActions(RepositoryInfo info, string approot) {
+			var menuItems = new List<MenuItem>();
+			menuItems.Add(new DownloadZipMenuItem());
+			var path = FileSystem.Combine(approot, info.Path, ".git");
+			if (Directory.Exists(path)) {
+				menuItems.Add(new PushMenuItem());
+			}
+			return menuItems.ToArray();
+		}
 	}
 }
 

@@ -27,7 +27,7 @@ namespace Chpokk.Tests.Retrieving {
 
 		public override IEnumerable<MenuItem> Act() {
 			var controller = Context.Container.Get<RepositoryEndpoint>();
-			var model = new RepositoryInputModel {RepositoryName = Context.REPO_NAME};
+			var model = new RepositoryInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot };
 			return controller.Get(model).RetrieveActions;
 		}
 	}

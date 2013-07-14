@@ -16,17 +16,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			// let's add it to the cache first
 			var info = _manager.GetRepositoryInfo(input.RepositoryName);
 			_repositoryCache[info.Path] = info;
-			return new RepositoryModel() { RepositoryName = input.RepositoryName, RetrieveActions = GetRetrieveActions() };
-		}
-
-		public static MenuItem[] GetRetrieveActions() {
-			var menuItems = new List<MenuItem>();
-			menuItems.Add(new DownloadZipMenuItem());
-			var path = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\Perka\.git";
-			if (Directory.Exists(path)) {
-				menuItems.Add(new PushMenuItem());
-			}
-			return menuItems.ToArray();
+			return new RepositoryModel() { RepositoryName = input.RepositoryName, RetrieveActions = _manager.GetRetrieveActions(info, input.PhysicalApplicationPath) };
 		}
 
 		[NotNull]

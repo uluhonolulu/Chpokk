@@ -547,6 +547,8 @@
     <Compile Include="Features\Editor\PingEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />
+    <Compile Include="Features\Remotes\DownloadZip\DownloadZipPolicy.cs" />
+    <Compile Include="Features\Remotes\IRetrievePolicy.cs" />
     <Compile Include="Features\Remotes\Push\PushMenuItem.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
@@ -590,6 +592,7 @@
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
+    <Compile Include="Infrastructure\IMenuItemSource.cs" />
     <Compile Include="Infrastructure\MenuItem.cs" />
     <Compile Include="Infrastructure\ModellessPartialExtension.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
