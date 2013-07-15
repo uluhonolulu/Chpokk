@@ -40,6 +40,7 @@ namespace ChpokkWeb {
 			         		new JavascriptTransformerPolicy<UrlTransformer>(ActionType.Transformation, ".js"));
 			         });
 
+			Policies.Add<DownloadDataConvention>();
 			//ApplyConvention<AjaxExceptionWrappingConvention>();
 		}
 

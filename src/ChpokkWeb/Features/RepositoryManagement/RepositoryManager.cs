@@ -12,7 +12,7 @@ using FubuMVC.Core.Security;
 namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryManager {
 		private readonly ISecurityContext _securityContext;
-		private IEnumerable<IRetrievePolicy> _retrievePolicies; 
+		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies; 
 		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
