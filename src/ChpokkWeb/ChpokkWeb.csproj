@@ -547,6 +547,7 @@
     <Compile Include="Features\Editor\PingEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
+    <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipPolicy.cs" />
     <Compile Include="Features\Remotes\IRetrievePolicy.cs" />

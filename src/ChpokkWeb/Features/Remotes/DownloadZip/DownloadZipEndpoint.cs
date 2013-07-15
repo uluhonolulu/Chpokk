@@ -4,37 +4,43 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Http;
 using ICSharpCode.SharpZipLib.Zip;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Remotes.DownloadZip {
 	public class DownloadZipEndpoint {
-		private IHttpWriter _writer;
-		private HttpContextBase _httpContextBase;
-		public DownloadZipEndpoint(IHttpWriter writer, HttpContextBase httpContextBase) {
+		private readonly IHttpWriter _writer;
+		private RepositoryManager _manager;
+
+		public DownloadZipEndpoint(IHttpWriter writer, HttpContextBase httpContextBase, RepositoryManager manager) {
 			_writer = writer;
-			_httpContextBase = httpContextBase;
+			_manager = manager;
 		}
 
-		public void Download(DownloadZipModel model) {
-			//return new DownloadDataModel() { MimeType = "text/plain", Filename = "x.txt"};
+		public void Download(DownloadZipInputModel inputModel) {
 			_writer.WriteContentType("application/zip");
-			_writer.AppendHeader("content-disposition", "attachment; filename=\"Download.zip\"");
-			_writer.Write(stream => DownloadZipToBrowser(@"C:\log.txt", stream));
+			_writer.AppendHeader("content-disposition", "attachment; filename=\"{0}\"".ToFormat(inputModel.RepositoryName));
+			var folderName = _manager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath);
+			_writer.Write(stream => DownloadZipedFolder(folderName, stream));
 		}
 
-		private void DownloadZipToBrowser(string fileName, Stream responseStream) {
+		private void DownloadZipedFolder(string folderName	, Stream responseStream) {
+			using (var zipOutputStream = new ZipOutputStream(responseStream)) {
+				foreach (var fileName in Directory.GetFiles(folderName, "*.*", SearchOption.AllDirectories)) {
+					ZipFile(fileName, folderName, zipOutputStream);
+				} 
+			}
+		}
 
-
+		private void ZipFile(string fileName, string root, ZipOutputStream zipOutputStream) {
 			var buffer = new byte[4096];
-			var zipOutputStream = new ZipOutputStream(responseStream);
-			zipOutputStream.SetLevel(3); //0-9, 9 being the highest level of compression
-
 			using (Stream fs = File.OpenRead(fileName)) {
-				var entry = new ZipEntry(ZipEntry.CleanName(fileName)) {Size = fs.Length};
+				var entry = new ZipEntry(ZipEntry.CleanName(fileName.PathRelativeTo(root))) {Size = fs.Length};
 				zipOutputStream.PutNextEntry(entry);
 				var count = fs.Read(buffer, 0, buffer.Length);
 				while (count > 0) {
@@ -42,11 +48,6 @@ namespace ChpokkWeb.Features.Remotes.DownloadZip {
 					count = fs.Read(buffer, 0, buffer.Length);
 				}
 			}
-
-			zipOutputStream.Close();
-
 		}
 	}
-
-	public class DownloadZipModel {}
 }
