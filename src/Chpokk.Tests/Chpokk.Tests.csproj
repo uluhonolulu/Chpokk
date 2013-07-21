@@ -164,6 +164,10 @@
     <Reference Include="ICSharpCode.SharpDevelop.Widgets">
       <HintPath>..\..\lib\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Ivonna, Version=3.0.9.35888, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Ivonna\Ivonna.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -255,6 +259,7 @@
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
     <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
+    <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\AddingProjectReferencetoAProject.cs" />
@@ -306,6 +311,7 @@
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
+    <Compile Include="Uploading\UploadingZippedRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -341,6 +347,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-2.0.0.min.map" />
+    <None Include="Uploading\Fixture\repo.zip" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
@@ -348,6 +355,7 @@
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="server stories.txt" />
+    <Content Include="Uploading\Fixture\Subfolder\sumfile.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

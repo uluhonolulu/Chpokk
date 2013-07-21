@@ -10,7 +10,7 @@ using LibGit2Sharp.Tests.TestHelpers;
 using FubuCore;
 
 namespace Chpokk.Tests.Exploring {
-	public class RepositoryFolderContext : SimpleConfiguredContext, IDisposable {
+	public class RepositoryFolderContext : SimpleAuthenticatedContext, IDisposable {
 		public readonly string REPO_NAME = "Perka";
 		public string RepositoryRoot { get; private set; }
 
@@ -19,7 +19,6 @@ namespace Chpokk.Tests.Exploring {
 		public override void Create() {
 			base.Create();
 			var repositoryManager = Container.Get<RepositoryManager>();
-			this.FakeSecurityContext.UserName = "ulu";
 			RepoPath = repositoryManager.GetPathFor(REPO_NAME);
 			var repositoryInfo = new RepositoryInfo(RepoPath, REPO_NAME);
 			RepositoryRoot = Path.Combine(AppRoot, repositoryInfo.Path);

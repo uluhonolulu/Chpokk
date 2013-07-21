@@ -17,7 +17,7 @@ using StructureMap;
 namespace Chpokk.Tests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext{
 		public override void Create() {
-			_container = new Lazy<IServiceFactory>(() => CreateFacility().BuildFactory());
+			_container = CreateFacility().BuildFactory();
 		}
 
 		private IContainerFacility CreateFacility() {
@@ -42,8 +42,9 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 
 		[NotNull]
-		private Lazy<IServiceFactory> _container;
-		public IServiceFactory Container { get { return _container.Value; } }
+		private IServiceFactory _container;
+
+		public IServiceFactory Container { get { return _container; } }
 
 		public string AppRoot {
 			get { return Path.GetFullPath(@".."); }

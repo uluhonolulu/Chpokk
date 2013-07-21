@@ -602,6 +602,7 @@
     <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
+    <Compile Include="Infrastructure\SimpleZip\Zipper.cs" />
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Remotes\Clone\CloneController.cs" />
