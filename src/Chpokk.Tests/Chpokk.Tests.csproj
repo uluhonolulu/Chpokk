@@ -239,6 +239,9 @@
     <Reference Include="TypeMock">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Typemock.ArrangeActAssert, Version=7.4.0.0, Culture=neutral, PublicKeyToken=3dae460033b8d8e2, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Typemock\Isolator\AAA\Typemock.ArrangeActAssert.dll</HintPath>
+    </Reference>
     <Reference Include="WebDriver, Version=2.29.1.0, Culture=neutral, PublicKeyToken=1c2bd1631853048f, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.2.29.1\lib\net40\WebDriver.dll</HintPath>
     </Reference>
@@ -311,6 +314,7 @@
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
+    <Compile Include="Uploading\UploadingZipFileContext.cs" />
     <Compile Include="Uploading\UploadingZippedRepo.cs" />
   </ItemGroup>
   <ItemGroup>

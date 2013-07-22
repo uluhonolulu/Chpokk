@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Web;
 using Arractas;
 using Bottles;
-using Chpokk.Tests.Infrastructure;
+using CThru.BuiltInAspects;
+using ChpokkWeb.Features.Remotes.UploadZip;
 using ChpokkWeb.Features.RepositoryManagement;
+using ChpokkWeb.Infrastructure.SimpleZip;
 using FubuCore;
 using Gallio.Framework;
 using ICSharpCode.SharpZipLib.Zip;
@@ -13,6 +15,7 @@ using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using LibGit2Sharp.Tests.TestHelpers;
 using Shouldly;
+using TypeMock.ArrangeActAssert;
 
 namespace Chpokk.Tests.Uploading {
 	[TestFixture]
@@ -41,26 +44,15 @@ namespace Chpokk.Tests.Uploading {
 
 		public override void Act() {
 			var fileSystem = Context.Container.Get<IFileSystem>();
+			var zipper = Context.Container.Get<Zipper>();
 			using (Stream fileStream = File.OpenRead(UploadingZipFileContext.ZIP_FILE_NAME)) {
-				using (var zipFile = new ZipFile(fileStream) {IsStreamOwner = true}) {
-					foreach (ZipEntry zipEntry in zipFile) {
-						if (!zipEntry.IsDirectory) {
-							var fileName = RepositoryPath.AppendPath(zipEntry.Name);
-							fileSystem.WriteStreamToFile(fileName, zipFile.GetInputStream(zipEntry));
-						}
-					}
-				}
+				var postedFile = Isolate.Fake.Instance<HttpPostedFileBase>(Members.MustSpecifyReturnValues);
+				Isolate.WhenCalled(() => postedFile.InputStream).WillReturn(fileStream);
+				var model = new UploadZipInputModel{ZippedRepository = postedFile, PhysicalApplicationPath = Context.AppRoot};
+				var endpoint = Context.Container.Get<UploadZipEndpoint>();
+				endpoint.Upload(model);
+				
 			}
-		}
-	}
-
-	public class UploadingZipFileContext: SimpleAuthenticatedContext, IDisposable {
-		public const string ZIP_FILE_NAME = @"D:\Projects\Chpokk\src\Chpokk.Tests\Uploading\Fixture\repo.zip";
-		public const string SOURCE_FILE_NAME = @"D:\Projects\Chpokk\src\Chpokk.Tests\Uploading\Fixture\Subfolder\sumfile.txt";
-		public void Dispose() {
-			var repositoryManager = this.Container.Get<RepositoryManager>();
-			var repoPath = repositoryManager.GetAbsolutePathFor("repo", AppRoot);
-			DirectoryHelper.DeleteDirectory(repoPath);
 		}
 	}
 }

@@ -1,0 +1,56 @@
+﻿<use namespace="ChpokkWeb.Features.Remotes.UploadZip" />
+<form method="POST" action="/remotes/uploadzip/upload" enctype="multipart/form-data">
+	<input type="file" name="ZippedRepository"/>
+	<input type="submit"/>
+</form>
+
+<!-- The fileinput-button span is used to style the file input field as button -->
+<span class="btn btn-success fileinput-button">
+	<i class="icon-plus icon-white"></i>
+	<span>Select files...</span>
+	<!-- The file input field used as target for the file upload widget -->
+	<input id="fileupload" type="file" name="ZippedRepository" multiple="">
+    </span>
+<br>
+	<br>
+		<!-- The global progress bar -->
+		<div id="progress" class="progress progress-success progress-striped">
+			<div class="bar"></div>
+		</div>
+		<!-- The container for the uploaded files -->
+		<div id="files" class="files"></div>
+		<br>
+
+<content name="head">
+	<Script src="lib/jquery.fileupload.js"/>
+	<Stylesheet href="lib/jquery.fileupload-ui.css" />
+</content>
+
+<content name="InlineScripts">
+<script>
+/*jslint unparam: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+	var url = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.UploadZip.UploadZipInputModel>()}';
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name).appendTo('#files');
+            });
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+</content>

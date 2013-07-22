@@ -8,8 +8,8 @@
 <div class="container">
 	<a data-toggle="modal" href="#openProjectDialog" popover="#clone_info" class="btn btn-primary bootstrap-popover">Clone a repository</a>
 	<render partial="Remotes\Clone\CloneInput" />
-
-		${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
+	<render partial="Remotes\UploadZip\UploadZip" />
+	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
 </div>
 
 <content name="rightcorner">

@@ -262,8 +262,10 @@
     <Content Include="Content\scripts\lib\bililiteRange.js" />
     <Content Include="Content\scripts\lib\jasmine-jquery.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
+    <Content Include="Content\scripts\lib\jquery.fileupload.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\scripts\lib\jquery.gritter.js" />
+    <Content Include="Content\scripts\lib\jquery.iframe-transport.js" />
     <Content Include="Content\scripts\lib\jquery.keyz.js" />
     <Content Include="Content\scripts\lib\jquery.sendkeys.js" />
     <Content Include="Content\scripts\lib\rangy-core.js" />
@@ -317,6 +319,7 @@
     <Content Include="Content\styles\lib\grid.less" />
     <Content Include="Content\styles\lib\hero-unit.less" />
     <Content Include="Content\styles\lib\jqtree.css" />
+    <Content Include="Content\styles\lib\jquery.fileupload-ui.css" />
     <Content Include="Content\styles\lib\jquery.gritter.css" />
     <Content Include="Content\styles\lib\jquery.treeview.css" />
     <Content Include="Content\styles\lib\labels.less" />
@@ -436,6 +439,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Authentication\_LoginStatus.spark" />
+    <Content Include="Features\Remotes\UploadZip\UploadZip.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -553,6 +557,8 @@
     <Compile Include="Features\Remotes\IRetrievePolicy.cs" />
     <Compile Include="Features\Remotes\Push\PushMenuItem.cs" />
     <Compile Include="Features\Remotes\Push\PushPolicy.cs" />
+    <Compile Include="Features\Remotes\UploadZip\UploadZipEndpoint.cs" />
+    <Compile Include="Features\Remotes\UploadZip\UploadZipInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListModel.cs" />
@@ -617,7 +623,6 @@
   <ItemGroup>
     <Folder Include="Binaries\" />
     <Folder Include="Content\less\" />
-    <Folder Include="Features\Remotes\UploadZip\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Demo\DemoView.spark">
