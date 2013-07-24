@@ -1,25 +1,17 @@
 ﻿<use namespace="ChpokkWeb.Features.Remotes.UploadZip" />
-<form method="POST" action="/remotes/uploadzip/upload" enctype="multipart/form-data">
-	<input type="file" name="ZippedRepository"/>
-	<input type="submit"/>
-</form>
 
 <!-- The fileinput-button span is used to style the file input field as button -->
-<span class="btn btn-success fileinput-button">
-	<i class="icon-plus icon-white"></i>
-	<span>Select files...</span>
+<span class="btn btn-primary fileinput-button">
+	<span>Upload zipped source</span>
 	<!-- The file input field used as target for the file upload widget -->
-	<input id="fileupload" type="file" name="ZippedRepository" multiple="">
+	<input id="fileupload" type="file" name="ZippedRepository"/>
     </span>
-<br>
-	<br>
-		<!-- The global progress bar -->
-		<div id="progress" class="progress progress-success progress-striped">
-			<div class="bar"></div>
-		</div>
-		<!-- The container for the uploaded files -->
-		<div id="files" class="files"></div>
-		<br>
+
+	<!-- The global progress bar -->
+	<div id="progress" class="progress progress-success progress-striped hide">
+		<div class="bar"></div>
+	</div>
+
 
 <content name="head">
 	<Script src="lib/jquery.fileupload.js"/>

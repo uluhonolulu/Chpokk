@@ -28,8 +28,6 @@
 	<div class="popover-title">Clone a repository</div>
 	<div class="popover-content">
 		<p>Click this button to clone your Git repository. </p>
-		<p>
-		If you want to suggest a source for your files, please add an idea or vote for existing one using the Feedback button at the right side of the screen. </p>
 	</div>
 </div>
 

@@ -23,5 +23,26 @@ namespace ChpokkWeb.Infrastructure.SimpleZip {
 				}
 			}
 		}
+
+		public void DownloadZippedFolder(string folderName	, Stream responseStream) {
+			using (var zipOutputStream = new ZipOutputStream(responseStream)) {
+				foreach (var fileName in Directory.GetFiles(folderName, "*.*", SearchOption.AllDirectories)) {
+					ZipFile(fileName, folderName, zipOutputStream);
+				} 
+			}
+		}
+
+		private void ZipFile(string fileName, string root, ZipOutputStream zipOutputStream) {
+			var buffer = new byte[4096];
+			using (Stream fs = File.OpenRead(fileName)) {
+				var entry = new ZipEntry(ZipEntry.CleanName(fileName.PathRelativeTo(root))) {Size = fs.Length};
+				zipOutputStream.PutNextEntry(entry);
+				var count = fs.Read(buffer, 0, buffer.Length);
+				while (count > 0) {
+					zipOutputStream.Write(buffer, 0, count);
+					count = fs.Read(buffer, 0, buffer.Length);
+				}
+			}
+		}
 	}
 }

@@ -439,7 +439,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Authentication\_LoginStatus.spark" />
-    <Content Include="Features\Remotes\UploadZip\UploadZip.spark" />
+    <Content Include="Features\Remotes\UploadZip\UploadZip.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
