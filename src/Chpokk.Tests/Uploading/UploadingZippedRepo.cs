@@ -48,6 +48,7 @@ namespace Chpokk.Tests.Uploading {
 			using (Stream fileStream = File.OpenRead(UploadingZipFileContext.ZIP_FILE_NAME)) {
 				var postedFile = Isolate.Fake.Instance<HttpPostedFileBase>(Members.MustSpecifyReturnValues);
 				Isolate.WhenCalled(() => postedFile.InputStream).WillReturn(fileStream);
+				Isolate.WhenCalled(() => postedFile.FileName).WillReturn(UploadingZipFileContext.ZIP_FILE_NAME);
 				var model = new UploadZipInputModel{ZippedRepository = postedFile, PhysicalApplicationPath = Context.AppRoot};
 				var endpoint = Context.Container.Get<UploadZipEndpoint>();
 				endpoint.Upload(model);

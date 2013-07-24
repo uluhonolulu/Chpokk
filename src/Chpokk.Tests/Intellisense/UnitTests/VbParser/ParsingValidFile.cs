@@ -16,6 +16,7 @@ namespace Chpokk.Tests.Intellisense.UnitTests.VbParser {
 		public void ReturnsSuccess() {
 			if (!Result.Success) {
 				Console.WriteLine(Result.Errors[0].message);
+				Console.WriteLine();
 			}
 			Assert.IsTrue(Result.Success);
 		}

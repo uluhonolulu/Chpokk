@@ -294,7 +294,6 @@
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
-    <Compile Include="Retrieving\ZipSpike.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
     <Compile Include="Spikes\Amazon.cs" />

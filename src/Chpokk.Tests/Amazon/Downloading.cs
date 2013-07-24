@@ -24,7 +24,9 @@ namespace Chpokk.Tests.Amazon {
 
 		public override void Act() {
 			var downloader = Context.Container.Get<Downloader>();
-			downloader.DownloadAllFiles(Context.AppRoot);
+			var subFolder = Context.RepositoryRoot.PathRelativeTo(Context.AppRoot);
+			Console.WriteLine("Looking in " + subFolder);
+			downloader.DownloadAllFiles(Context.AppRoot, subFolder, s => Console.WriteLine(s));
 		}
 	}
 
