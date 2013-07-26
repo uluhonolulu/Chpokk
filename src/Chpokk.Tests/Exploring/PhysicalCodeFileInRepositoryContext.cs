@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using LibGit2Sharp;
 
 namespace Chpokk.Tests.Exploring {
@@ -9,6 +10,7 @@ namespace Chpokk.Tests.Exploring {
 		public override void Create() {
 			base.Create();
 			Repository.Init(RepositoryRoot).Dispose();
+			Thread.Sleep(100);
 		}
 	}
 }

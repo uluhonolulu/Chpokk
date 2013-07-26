@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.GitHub;
@@ -32,6 +33,7 @@ namespace Chpokk.Tests.Authentication.Context {
 			if (Directory.Exists(RepositoryPath.ParentDirectory()) ) 
 				DirectoryHelper.DeleteSubdirectories(RepositoryPath.ParentDirectory());
 			Repository.Clone(REPO_URL, RepositoryPath).Dispose();
+			Thread.Sleep(100);
 
 			//now let's see what a different user has
 			FakeSecurityContext.UserName = "name2";
