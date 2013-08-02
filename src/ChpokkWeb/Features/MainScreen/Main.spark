@@ -6,7 +6,6 @@
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
 <div class="container">
-	<a data-toggle="modal" href="#openProjectDialog" popover="#clone_info" class="btn btn-primary bootstrap-popover">Clone a repository</a>
 	<render partial="Remotes\Clone\CloneInput" />
 	<render partial="Remotes\UploadZip\UploadZip" />
 	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}

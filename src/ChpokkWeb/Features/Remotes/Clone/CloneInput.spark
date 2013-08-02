@@ -1,4 +1,6 @@
-﻿<div class="modal hide fade" id="openProjectDialog">
+﻿<a data-toggle="modal" href="#openProjectDialog" popover="#clone_info" class="btn btn-primary bootstrap-popover">Clone a Git repository</a>
+
+<div class="modal hide" id="openProjectDialog">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">×</a>
 		<h3>
@@ -7,12 +9,12 @@
 	<div class="modal-body">
 		<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>()}">
 			<label>
-				Your repository URL</label>
+				Your repository URL (use the https://../*.git format)</label>
 			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("span3").Attr("value", "https://github.com/uluhonolulu/Chpokk-SampleSol.git").Style("width", "100%")}
-			               <label>Username (leave empty for public repositories)</label>
-			               !{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("span3").Style("width", "100%")}
-			                              <label>Password</label>
-			                              !{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("span3").Style("width", "100%")}
+			<label>Username (leave empty for public repositories, but you won't be able to push it back)</label>
+			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("span3").Style("width", "100%")}
+			<label>Password</label>
+			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("span3").Style("width", "100%")}
 		</form>
 	</div>
 	<div class="modal-footer">
