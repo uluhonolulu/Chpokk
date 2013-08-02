@@ -1,6 +1,6 @@
-﻿<a data-toggle="modal" href="#openProjectDialog" popover="#clone_info" class="btn btn-primary bootstrap-popover">Clone a Git repository</a>
+﻿<a data-toggle="modal" href="#openCloneDialog"  class="btn btn-primary" id="cloneDialogOpener">Clone a Git repository</a>
 
-<div class="modal hide" id="openProjectDialog">
+<div class="modal hide" id="openCloneDialog">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">×</a>
 		<h3>
