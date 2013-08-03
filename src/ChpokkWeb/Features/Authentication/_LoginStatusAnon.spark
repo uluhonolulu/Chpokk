@@ -2,6 +2,7 @@
 <viewdata model="ChpokkWeb.Features.Authentication.LoginStatusAnonModel" />
 <a class="janrainEngage btn btn-primary" id="janrainButton">Sign-In</a>
 <content name="InlineScripts">
+	<!-- _LoginStatusAnon.spark -->
 	<script type="text/javascript">
 		$(function() {
 			//we can't use the DomLoad event, since the janrain script loads after it.
