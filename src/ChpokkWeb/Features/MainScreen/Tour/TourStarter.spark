@@ -1,0 +1,6 @@
+﻿<viewdata model="ChpokkWeb.Features.MainScreen.Tour.TourModel" />
+<use namespace="ChpokkWeb.Features.MainScreen.Tour" />
+<content name="head">
+	<Script src="main_tour.js"  if="Model.IsAuthenticated"/>
+</content>
+

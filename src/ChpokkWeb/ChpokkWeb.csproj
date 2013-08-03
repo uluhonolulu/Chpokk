@@ -265,6 +265,7 @@
     <Content Include="Content\scripts\lib\server.js" />
     <Content Include="Content\scripts\lib\sinon-1.2.0.js" />
     <Content Include="Content\scripts\lib\URI.js" />
+    <Content Include="Content\scripts\main_tour.js" />
     <Content Include="Content\scripts\specs\IntelManager.spec.js" />
     <Content Include="Content\scripts\specs\white.spec.js" />
     <Content Include="Content\styles\lib\bootstrap-tour.css" />
@@ -437,6 +438,7 @@
     <Content Include="Features\Remotes\UploadZip\UploadZip.spark">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\MainScreen\Tour\TourStarter.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -548,6 +550,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\Editor\PingEndpoint.cs" />
+    <Compile Include="Features\MainScreen\Tour\TourModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
