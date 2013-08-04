@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.Remotes.SaveCommit {
 			_securityContext = securityContext;
 		}
 
-		public void Save(SaveCommitModel saveCommitModel) {
+		public void Save(SaveCommitInputModel saveCommitModel) {
 			var filePath = _manager.GetPhysicalFilePath(saveCommitModel);
 			_fileSystem.WriteStringToFile(filePath, saveCommitModel.Content);
 			if (saveCommitModel.DoCommit) {

@@ -5,7 +5,7 @@ using System.Web;
 using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Exploring {
-	public class BaseRepositoryModel {
+	public class BaseRepositoryInputModel {
 		[NotNull]
 		public string PhysicalApplicationPath { get; set; }
 		[NotNull]

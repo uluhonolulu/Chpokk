@@ -6,9 +6,11 @@
 </for>
 
 <content name="InlineScripts">
+	<!-- EditorMenu -->
 	<script type="text/javascript">
 		$(function() {
-			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
+			var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
+			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitInputModel>()}';
 			$('#saveButton').click(function () {
 				$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: false }));
 			});

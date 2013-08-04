@@ -1,5 +1,5 @@
 namespace ChpokkWeb.Features.Exploring {
-	public class FileContentInputModel : BaseFileModel {
+	public class FileContentInputModel : BaseFileInputModel {
 		public string ProjectPath { get; set; }
 	}
 }

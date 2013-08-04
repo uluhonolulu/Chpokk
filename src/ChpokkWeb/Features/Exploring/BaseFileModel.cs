@@ -5,7 +5,7 @@ using System.Web;
 using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Exploring {
-	public class BaseFileModel: BaseRepositoryModel {
+	public class BaseFileInputModel: BaseRepositoryInputModel {
 		[NotNull]
 		public string PathRelativeToRepositoryRoot { get; set; }
 	}
