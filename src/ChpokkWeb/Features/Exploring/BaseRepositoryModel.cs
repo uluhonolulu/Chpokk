@@ -5,8 +5,10 @@ using System.Web;
 using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Exploring {
-	public class BaseFileModel: BaseRepositoryModel {
+	public class BaseRepositoryModel {
 		[NotNull]
-		public string PathRelativeToRepositoryRoot { get; set; }
+		public string PhysicalApplicationPath { get; set; }
+		[NotNull]
+		public string RepositoryName { get; set; }
 	}
 }

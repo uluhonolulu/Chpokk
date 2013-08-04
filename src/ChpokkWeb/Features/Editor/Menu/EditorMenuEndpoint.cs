@@ -7,7 +7,7 @@ using ChpokkWeb.Features.RepositoryManagement;
 namespace ChpokkWeb.Features.Editor.Menu {
 	public class EditorMenuEndpoint {
 		private readonly IEnumerable<IEditorMenuPolicy> _menuPolicies;
-		private RepositoryManager _repositoryManager;
+		private readonly RepositoryManager _repositoryManager;
 		public EditorMenuEndpoint(IEnumerable<IEditorMenuPolicy> menuPolicies, RepositoryManager repositoryManager) {
 			_menuPolicies = menuPolicies;
 			_repositoryManager = repositoryManager;
@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.Editor.Menu {
 
 		public EditorMenuModel DoIt(EditorMenuInputModel model) {
 			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.RepositoryName);
-			var matchingPolicies = _menuPolicies.Where(policy => policy.Matches(repositoryInfo, model.PathRelativeToRepositoryRoot));
+			var matchingPolicies = _menuPolicies.Where(policy => policy.Matches(repositoryInfo, model.PhysicalApplicationPath));
 			var menuItemTokens = matchingPolicies.SelectMany(policy => policy.GetMenuItems());
 			return new EditorMenuModel(){MenuItems = menuItemTokens};
 		}

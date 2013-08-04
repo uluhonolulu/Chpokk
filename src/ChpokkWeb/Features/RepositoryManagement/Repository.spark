@@ -24,29 +24,14 @@
 			}
 		}
 
-		function loadFile(path) {
-			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
-			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
-			var li = $('#solutionBrowser ' + selector);
-			var projectPath = (li.length > 0)? li.data('ProjectPath') : '';
-			$.ajax({
-				type: "POST",
-				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: { RepositoryName: "${Model.RepositoryName}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath },
-				dataType: "html",
-				success: function (data) {
-					$('#fileContent').html(data);
-				}
-			});
-		}
-
 	</script>
 </content>
 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span9">
+		<div class="span9" style="height: 100%">
 			<div id="fileContent" style="margin-right:0px;" class="well">
+				<render partial="Editor\_editor" />
 			</div>		
 		</div>
 		<div class="span3">

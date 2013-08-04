@@ -439,7 +439,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\MainScreen\Tour\TourStarter.spark" />
-    <Content Include="Features\Editor\Menu\EditorMenu.spark" />
+    <Content Include="Features\Editor\Menu\EditorMenu.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -554,6 +556,7 @@
     <Compile Include="Features\Editor\Menu\EditorMenuInputModel.cs" />
     <Compile Include="Features\Editor\Menu\EditorMenuModel.cs" />
     <Compile Include="Features\Editor\PingEndpoint.cs" />
+    <Compile Include="Features\Exploring\BaseRepositoryModel.cs" />
     <Compile Include="Features\MainScreen\Tour\TourModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />

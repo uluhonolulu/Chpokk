@@ -1,36 +1,37 @@
-﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
+﻿
 <use namespace="FubuMVC.Core.UI" />
 <use namespace="ChpokkWeb.Features.Editor.Menu" />
 
 <Stylesheet href="editor.css" />
 
-!{this.Partial<EditorMenuInputModel>(new EditorMenuInputModel{RepositoryName = Model.RepositoryName})}
+!{this.Partial<EditorMenuInputModel>()}
 
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
-<div id="code" contenteditable="true">${Model.Content}</div>
+<div id="code" contenteditable="true" style="height: 100%;"></div>
 <ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="intelResults"></ul>
 </div>
 <div id="log"></div>
 	<script type="text/javascript">
 		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
 		$(function () {
-			var editor = new CodeEditor($('#code'), model);
 		});
+		function loadFile(path) {
+			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
+			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
+			var li = $('#solutionBrowser ' + selector);
+			var projectPath = (li.length > 0)? li.data('ProjectPath') : '';
+			$.ajax({
+				type: "POST",
+				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
+				data: { RepositoryName: "${Model.RepositoryName}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath },
+				success: function (data) {
+					$('#code').html(data.Content);
+					var editor = new CodeEditor($('#code'), model);
+				}
+			});
+		}		
 	</script>
 
 
-<!-- Modal -->
-<div id="commitDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">Enter the commit message</h3>
-	</div>
-	<div class="modal-body">
-		<textarea id="commitMessage"></textarea>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button class="btn btn-primary" id="commitButton">Save and commit</button>
-	</div>
-</div>
+
 

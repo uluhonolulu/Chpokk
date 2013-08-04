@@ -1,8 +1,8 @@
-﻿using ChpokkWeb.Infrastructure;
+﻿using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.RepositoryManagement {
-	public class RepositoryModel {
-		public string RepositoryName { get; set; }
+	public class RepositoryModel: BaseRepositoryModel {
 		public MenuItem[] RetrieveActions { get; set; }
 	}
 }

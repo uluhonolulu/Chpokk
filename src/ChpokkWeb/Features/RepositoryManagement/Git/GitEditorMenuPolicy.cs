@@ -10,9 +10,9 @@ using FubuMVC.Navigation;
 namespace ChpokkWeb.Features.RepositoryManagement.Git {
 	public class GitEditorMenuPolicy: IEditorMenuPolicy {
 		public bool Matches(RepositoryInfo info, string approot) {
-			//var path = FileSystem.Combine(approot, info.Path, ".git");
-			//return Directory.Exists(path);
-			return true;
+			var stoff = FubuCore.FileSystem.Combine("C:\\", info.Path);
+			var path = FubuCore.FileSystem.Combine(approot, info.Path, ".git");
+			return Directory.Exists(path);
 		}
 
 		public IEnumerable<MenuItemToken> GetMenuItems() {
