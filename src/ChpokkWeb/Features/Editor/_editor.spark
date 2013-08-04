@@ -27,6 +27,7 @@
 				success: function (data) {
 					$('#code').html(data.Content);
 					var editor = new CodeEditor($('#code'), model);
+					model.PathRelativeToRepositoryRoot = path;
 				}
 			});
 		}		
