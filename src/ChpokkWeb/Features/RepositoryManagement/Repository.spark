@@ -36,7 +36,7 @@
 		</div>
 		<div class="span3">
 			<div class="pull-right well" style="min-height: 500px; width: 90%;">
-				!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName, RetrieveActions = Model.RetrieveActions})}
+				!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}
 			</div>			
 		</div>
 	</div>

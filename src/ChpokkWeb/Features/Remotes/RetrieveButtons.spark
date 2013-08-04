@@ -1,0 +1,6 @@
+﻿<viewdata model="ChpokkWeb.Features.Remotes.RetrieveButtonsModel" />
+<use namespace="ChpokkWeb.Features.Remotes" />
+<!-- RetrieveButtons -->
+<for each="var menuItem in Model.RetrieveActions">
+	<button id="${menuItem.Id}" class="btn btn-inverse">${menuItem.Caption}</button>
+</for>

@@ -3,12 +3,11 @@
 <use namespace="System.Linq"/>
 <use namespace="ChpokkWeb.Features.Exploring"/>
 <use namespace="ChpokkWeb.Features.Remotes.DownloadZip"/>
+<use namespace="ChpokkWeb.Features.Remotes"/>
 
 <div id="solutionBrowserWrapper">
 	<div id="solutionBrowserToolbar" class="hide">
-		<for each="var menuItem in Model.RetrieveActions">
-			<button id="${menuItem.Id}" class="btn btn-inverse">${menuItem.Caption}</button>
-		</for>		
+		!{this.Partial<RetrieveButtonsInputModel>()}
 	</div>
 	<div id="solutionTreeContainer">Please wait while your solution is being loaded..</div>
 </div>

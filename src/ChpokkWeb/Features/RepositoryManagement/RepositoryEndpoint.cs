@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			// let's add it to the cache first
 			var info = _manager.GetRepositoryInfo(input.RepositoryName);
 			_repositoryCache[info.Path] = info;
-			return new RepositoryModel() { RepositoryName = input.RepositoryName, RetrieveActions = _manager.GetRetrieveActions(info, input.PhysicalApplicationPath) };
+			return new RepositoryModel() { RepositoryName = input.RepositoryName };
 		}
 
 		[NotNull]

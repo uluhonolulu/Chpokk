@@ -1,7 +1,6 @@
-﻿namespace ChpokkWeb.Features.RepositoryManagement {
-	public class RepositoryInputModel {
-		public string RepositoryName { get; set; }
+﻿using ChpokkWeb.Features.Exploring;
 
-		public string PhysicalApplicationPath { get; set; }
+namespace ChpokkWeb.Features.RepositoryManagement {
+	public class RepositoryInputModel: BaseRepositoryInputModel {
 	}
 }

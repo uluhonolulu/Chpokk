@@ -442,6 +442,7 @@
     <Content Include="Features\Editor\Menu\EditorMenu.spark">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\Remotes\RetrieveButtons.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -566,6 +567,9 @@
     <Compile Include="Features\Remotes\IRetrievePolicy.cs" />
     <Compile Include="Features\Remotes\Push\PushMenuItem.cs" />
     <Compile Include="Features\Remotes\Push\PushPolicy.cs" />
+    <Compile Include="Features\Remotes\RetrieveButtonsEndpoint.cs" />
+    <Compile Include="Features\Remotes\RetrieveButtonsInputModel.cs" />
+    <Compile Include="Features\Remotes\RetrieveButtonsModel.cs" />
     <Compile Include="Features\Remotes\UploadZip\UploadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\UploadZip\UploadZipInputModel.cs" />
     <Compile Include="Features\Editor\Menu\IEditorMenuPolicy.cs" />
