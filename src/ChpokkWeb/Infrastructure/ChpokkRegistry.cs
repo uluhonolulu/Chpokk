@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.Remotes;
@@ -30,6 +31,7 @@ namespace ChpokkWeb.Infrastructure {
 			{
 				scanner.AssemblyContainingType<IRetrievePolicy>();
 				scanner.AddAllTypesOf<IRetrievePolicy>();
+				scanner.AddAllTypesOf<IEditorMenuPolicy>();
 			});
 		}
 	}

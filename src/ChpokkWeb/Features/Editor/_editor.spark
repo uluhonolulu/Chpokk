@@ -1,11 +1,10 @@
 ﻿<viewdata model="ChpokkWeb.Features.Editor.CodeEditorModel" />
 <use namespace="FubuMVC.Core.UI" />
+<use namespace="ChpokkWeb.Features.Editor.Menu" />
 
 <Stylesheet href="editor.css" />
 
-<button id="saveButton" class="btn btn-inverse">Save</button> 
-<button id="saveCommitButton" class="btn btn-inverse">Save and commit</button>
-<button id="parseButton" class="btn btn-inverse">Parse</button>
+!{this.Partial<EditorMenuInputModel>(new EditorMenuInputModel{RepositoryName = Model.RepositoryName})}
 
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
 <div id="code" contenteditable="true">${Model.Content}</div>
@@ -13,36 +12,9 @@
 </div>
 <div id="log"></div>
 	<script type="text/javascript">
+		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
 		$(function () {
-			var model = { RepositoryName: '${Model.RepositoryName}', ProjectPath: '${Model.ProjectPath.Replace(@"\", @"\\")}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' };
 			var editor = new CodeEditor($('#code'), model);
-			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
-			$('#saveButton').click(function () {
-				$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: false }));
-			});
-
-			$('#saveCommitButton').click(function () {
-				$('#commitDialog').modal();
-				$('#commitDialog #commitButton').one('click', function () {
-					$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
-					$('#commitDialog').modal('hide');
-				});
-			});
-
-			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
-			$('#parseButton').click(function () {
-				$.post(parseUrl, { Content: $('#code').text(), RepositoryName: '${Model.RepositoryName}', PathRelativeToRepositoryRoot: '${Model.PathRelativeToRepositoryRoot.Replace(@"\", @"\\")}' }, function (continuation) {
-					if (continuation.success) {
-						alert('Code is clean!');
-					} else {
-						for (var error in continuation.errors) {
-							alert(continuation.errors[error].message);
-						}
-					}
-				});
-			});
-			
-
 		});
 	</script>
 

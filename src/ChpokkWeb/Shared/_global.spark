@@ -1,1 +1,2 @@
-﻿<use namespace="FubuMVC.Core.Assets" />
+﻿﻿<use namespace="FubuMVC.TwitterBootstrap" />
+<use namespace="FubuMVC.Core.Assets" />

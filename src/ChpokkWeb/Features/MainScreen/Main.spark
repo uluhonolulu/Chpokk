@@ -6,7 +6,6 @@
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
 
-${this.Partial<ChpokkWeb.Features.MainScreen.Tour.TourModel>()}
 <div class="container">
 	<render partial="Remotes\Clone\CloneInput" />
 	<render partial="Remotes\UploadZip\UploadZip" />
@@ -22,4 +21,6 @@ ${this.Partial<ChpokkWeb.Features.MainScreen.Tour.TourModel>()}
 	<script type="text/javascript">
 
 	</script>
-</content>
+</content
+
+>${this.Partial<ChpokkWeb.Features.MainScreen.Tour.TourModel>()}

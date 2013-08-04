@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Bottles;
 using Bottles.Diagnostics;
 using ChpokkWeb.Features.Demo;
+using ChpokkWeb.Features.Editor;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Infrastructure;
 using FubuCore;

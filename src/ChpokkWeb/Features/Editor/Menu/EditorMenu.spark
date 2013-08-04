@@ -1,0 +1,39 @@
+﻿<viewdata model="ChpokkWeb.Features.Editor.Menu.EditorMenuModel" />
+<use namespace="ChpokkWeb.Features.Editor.Menu" />
+
+<for each="var token in Model.MenuItems">
+	<button id="${token.Key}Button" class="btn btn-inverse">${token.Text}</button>
+</for>
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+		$(function() {
+			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitModel>()}';
+			$('#saveButton').click(function () {
+				$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: false }));
+			});
+
+			$('#saveCommitButton').click(function () {
+				$('#commitDialog').modal();
+				$('#commitDialog #commitButton').one('click', function () {
+					$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
+					$('#commitDialog').modal('hide');
+				});
+			});
+
+			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
+			$('#parseButton').click(function () {
+				$.post(parseUrl, $.extend(model, { Content: $('#code').text() }), function (continuation) {
+					if (continuation.success) {
+						alert('Code is clean!');
+					} else {
+						for (var error in continuation.errors) {
+							alert(continuation.errors[error].message);
+						}
+					}
+				});
+			});
+						
+		});
+	</script>
+</content>

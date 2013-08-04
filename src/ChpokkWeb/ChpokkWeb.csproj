@@ -439,6 +439,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\MainScreen\Tour\TourStarter.spark" />
+    <Content Include="Features\Editor\Menu\EditorMenu.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -549,6 +550,9 @@
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
+    <Compile Include="Features\Editor\Menu\EditorMenuEndpoint.cs" />
+    <Compile Include="Features\Editor\Menu\EditorMenuInputModel.cs" />
+    <Compile Include="Features\Editor\Menu\EditorMenuModel.cs" />
     <Compile Include="Features\Editor\PingEndpoint.cs" />
     <Compile Include="Features\MainScreen\Tour\TourModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
@@ -561,6 +565,9 @@
     <Compile Include="Features\Remotes\Push\PushPolicy.cs" />
     <Compile Include="Features\Remotes\UploadZip\UploadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\UploadZip\UploadZipInputModel.cs" />
+    <Compile Include="Features\Editor\Menu\IEditorMenuPolicy.cs" />
+    <Compile Include="Features\RepositoryManagement\FileSystem\StandardEditorMenuPolicy.cs" />
+    <Compile Include="Features\RepositoryManagement\Git\GitEditorMenuPolicy.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListModel.cs" />

@@ -12,6 +12,10 @@
 
 	<Scripts />
 	<Styles />
+	
+	<script type="text/javascript">
+		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
+	</script>
 
 	<use content="InlineScripts" />
 
