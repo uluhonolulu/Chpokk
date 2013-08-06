@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 			var project = new Project(projectFilePath);
 			project.AddItem("Compile", fileName);
 			project.Save();
-			return null;
+			return AjaxContinuation.Successful();
 		}
 	}
 
