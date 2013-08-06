@@ -39,12 +39,14 @@ namespace Chpokk.Tests.Exploring {
 			@"Project(""{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}"") = ""{0}"", ""{1}"", ""{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}""
 			EndProject";
 
+		public string ProjectFilePath { get; set; }
+
 		public override void CreateSolutionFile(string filePath) {
 			var fileSystem = Container.Get<FileSystem>();
 			fileSystem.WriteStringToFile(filePath, string.Format(_slnFileContent, PROJECT_NAME, PROJECT_PATH));
-			var projectFilePath = FileSystem.Combine(filePath.ParentDirectory(), PROJECT_PATH);
-			Console.WriteLine("Writing the project to " + projectFilePath);
-			fileSystem.WriteStringToFile(projectFilePath, "<root/>");
+			ProjectFilePath = FileSystem.Combine(filePath.ParentDirectory(), PROJECT_PATH);
+			Console.WriteLine("Writing the project to " + ProjectFilePath);
+			fileSystem.WriteStringToFile(ProjectFilePath, "<root/>");
 		}
 	}
 }

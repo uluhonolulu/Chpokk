@@ -5,6 +5,7 @@ using System.Linq;
 using Arractas;
 using Chpokk.Tests.Exploring;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Remotes.Push;
 using ChpokkWeb.Features.RepositoryManagement;
@@ -26,9 +27,9 @@ namespace Chpokk.Tests.Retrieving {
 		}
 
 		public override IEnumerable<MenuItem> Act() {
-			var controller = Context.Container.Get<RepositoryEndpoint>();
-			var model = new RepositoryInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot };
-			return controller.Get(model).RetrieveActions;
+			var controller = Context.Container.Get<RetrieveButtonsEndpoint>();
+			var model = new RetrieveButtonsInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot };
+			return controller.DoIt(model).RetrieveActions;
 		}
 	}
 }
