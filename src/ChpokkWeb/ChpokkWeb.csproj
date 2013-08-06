@@ -164,6 +164,7 @@
       <HintPath>..\..\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic">
       <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
@@ -549,6 +550,7 @@
     <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
     <Compile Include="Features\Editor\Compilation\Compiler.cs" />
+    <Compile Include="Features\Editor\Compilation\CompilerEndpoint.cs" />
     <Compile Include="Features\Editor\Compilation\ParserController.cs" />
     <Compile Include="Features\Editor\Compilation\ParserInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
