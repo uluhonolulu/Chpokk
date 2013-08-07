@@ -4,6 +4,7 @@
 <for each="var token in Model.MenuItems">
 	<button id="${token.Key}Button" class="btn btn-inverse">${token.Text}</button>
 </for>
+<button id="newItemButton" class="btn btn-inverse"></button>
 
 <content name="InlineScripts">
 	<!-- EditorMenu -->
@@ -34,12 +35,20 @@
 					}
 				});
 			});
-						
+
+			var additemUrl = '${Urls.UrlFor<ChpokkWeb.Features.ProjectManagement.AddItem.AddItemInputModel>()}';
+			$('#newItemButton').click(function() {
+				$('#newItemDialog').modal();
+				$('#newItemDialog #addSelectedItemButton').one('click', function() {
+					$.post(additemUrl, $.extend(model, { PathRelativeToRepositoryRoot: $('#fileName').val() }));
+				});
+			});
+
 		});
 	</script>
 </content>
 
-<!-- Modal -->
+<!-- Commit dialog -->
 <div id="commitDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -52,4 +61,19 @@
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 		<button class="btn btn-primary" id="commitButton">Save and commit</button>
 	</div>
+</div>
+
+<!-- New item dialog -->
+<div id="newItemDialog" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Choose the name and the path for the new file</h3>
+	</div>
+	<div class="modal-body">
+		<input type="text" name="fileName" id="fileName" size="25" />
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" id="addSelectedItemButton">Add it</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>	
 </div>
