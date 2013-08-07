@@ -4,6 +4,7 @@
 	<title>
 		<use content="title">Default Title</use>
 	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<Script src="lib/bootstrap.js" />
 	<Script src="common.js"/>
 	<Script src="janrain.js"/>

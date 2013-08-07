@@ -8,7 +8,7 @@ $(function () {
 			var placement = $(contentSelector).attr('placement') || 'right';
 			return $(contentSelector).html();
 		};
-		$(this).popover({ content: content });
+		$(this).popover({ content: content, html:true });
 	});
 
 
