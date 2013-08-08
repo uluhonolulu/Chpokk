@@ -22,13 +22,14 @@
 			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 			var li = $('#solutionBrowser ' + selector);
 			var projectPath = (li.length > 0)? li.data('ProjectPath') : '';
+			var fileData = { RepositoryName: "${Model.RepositoryName}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath };
 			$.ajax({
 				type: "POST",
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: { RepositoryName: "${Model.RepositoryName}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath },
+				data: fileData,
 				success: function (data) {
 					$('#code').html(data.Content);
-					var editor = new CodeEditor($('#code'), model);
+					var editor = new CodeEditor($('#code'), $.extend(model, fileData));
 					model.PathRelativeToRepositoryRoot = path;
 				}
 			});

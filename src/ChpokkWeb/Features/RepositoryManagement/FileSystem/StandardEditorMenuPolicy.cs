@@ -13,7 +13,6 @@ namespace ChpokkWeb.Features.RepositoryManagement.FileSystem {
 
 		public IEnumerable<MenuItemToken> GetMenuItems() {
 			yield return new MenuItemToken(){Text = "Save", Key = "save", MenuItemState = MenuItemState.Available};
-			yield return new MenuItemToken(){Text = "Parse", Key = "parse", MenuItemState = MenuItemState.Available};
 		}
 	}
 }

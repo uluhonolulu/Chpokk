@@ -76,6 +76,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		}
 
 		private string GetProjectFile(IntelInputModel input) {
+			if (input.ProjectPath.IsEmpty()) {
+				throw new InvalidDataException("Project path shouldn't be empty");
+			}
 			var repositoryRoot = _repositoryManager.GetRepositoryInfo(input.RepositoryName).Path;
 			var projectFilePath = FileSystem.Combine(input.PhysicalApplicationPath, repositoryRoot, input.ProjectPath);
 			return projectFilePath;
