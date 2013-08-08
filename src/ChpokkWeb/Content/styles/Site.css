@@ -315,4 +315,4 @@ div#title
 .popover-content ul { padding-left: 10px;}
 
 /*janrain popup fix*/
-#janrainModal { box-sizing: content-box;}
+#janrainModal, #janrainModal * { box-sizing: content-box;-moz-box-sizing: content-box;}
