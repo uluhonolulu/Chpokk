@@ -289,14 +289,6 @@ div#title
 	color: #404040;
 }
 
-/*
-#editInfo {
-	width: 340px;
-}
-
-#testInfo, #commitInfo {
-	width: 280px;
-}*/
 
 /* Project explorer */
 *[data-type="file"] {
@@ -321,3 +313,6 @@ div#title
 
 /*popover*/
 .popover-content ul { padding-left: 10px;}
+
+/*janrain popup fix*/
+#janrainModal { box-sizing: content-box;}
