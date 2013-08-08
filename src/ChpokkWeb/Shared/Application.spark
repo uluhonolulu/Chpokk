@@ -24,14 +24,12 @@
 
 </head>
 <body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<span class="brand" id="brand">chpokk</span>
-				<use content="header">
-				</use>
-				<div class="pull-right"><use content="rightcorner"></use></div>
-			</div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<span class="navbar-brand" id="brand">chpokk</span>
+			<use content="header">
+			</use>
+			<div class="pull-right"><use content="rightcorner"></use></div>
 		</div>
 	</div>
 	<use content="view" />
