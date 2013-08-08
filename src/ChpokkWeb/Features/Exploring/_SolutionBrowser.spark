@@ -5,8 +5,8 @@
 <use namespace="ChpokkWeb.Features.Remotes.DownloadZip"/>
 <use namespace="ChpokkWeb.Features.Remotes"/>
 
-<div id="solutionBrowserWrapper">
-	<div id="solutionBrowserToolbar" class="hide">
+<div id="solutionBrowserWrapper" class="panel">
+	<div id="solutionBrowserToolbar" class="panel-heading" style="display: none;">
 		!{this.Partial<RetrieveButtonsInputModel>()}
 	</div>
 	<div id="solutionTreeContainer">Please wait while your solution is being loaded..</div>

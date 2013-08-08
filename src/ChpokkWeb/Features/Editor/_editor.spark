@@ -4,11 +4,13 @@
 
 <Stylesheet href="editor.css" />
 
+<div class="panel-heading">
 !{this.Partial<EditorMenuInputModel>()}
+</div>
 
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
 <div id="code" contenteditable="true" style="height: 100%;"></div>
-<ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all hide" role="intelResults"></ul>
+<ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all " role="intelResults" style="display: none;"></ul>
 </div>
 <div id="log"></div>
 	<script type="text/javascript">
