@@ -140,17 +140,6 @@ textarea
     min-height: 75px;
 }
 
-input[type="text"] 
-{
-    width: 210px;
-    border: 1px solid #CCC;
-}
-
-input[type="password"] 
-{
-    width: 200px;
-    border: 1px solid #CCC;
-}
 
 /* TABLE
 ----------------------------------------------------------*/
@@ -316,3 +305,6 @@ div#title
 
 /*janrain popup fix*/
 #janrainModal, #janrainModal * { box-sizing: content-box;-moz-box-sizing: content-box;}
+
+/*dialogs*/
+.modal-dialog label { font-size: smaller;color: #404040;}
