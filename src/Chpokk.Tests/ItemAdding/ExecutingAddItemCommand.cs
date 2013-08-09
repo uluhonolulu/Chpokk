@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.ProjectManagement.AddItem;
+using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -16,16 +18,20 @@ namespace Chpokk.Tests.ItemAdding {
 	[TestFixture]
 	public class ExecutingAddItemCommand : BaseCommandTest<SolutionAndProjectFileWithSingleEntryContext> {
 		private Project _project;
+		private const string fileName = @"folder\filename";
 
 		[Test]
 		public void AddsAnItemToTheProjectFile() {
-			//var project = new Project(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu\Chpokk-SampleSol\src\ConsoleApplication1\ConsoleApplication1.csproj");
-			//project.Items.ShouldContain(item => item.EvaluatedInclude == "NewFile.cs");
-			var project =
-				ProjectCollection.GlobalProjectCollection.GetLoadedProjects(
-					@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu\Chpokk-SampleSol\src\ConsoleApplication1\ConsoleApplication1.csproj")
-				                 .Single();
-			project.Items.ShouldContain(item => item.EvaluatedInclude.StartsWith("NewClass"));
+			var xmlDocument = new XmlDocument();
+			xmlDocument.Load(Context.ProjectFilePath);
+			DocumentShouldHaveCompileEntryForTheNewFile(xmlDocument);
+		}
+
+		private void DocumentShouldHaveCompileEntryForTheNewFile(XmlDocument xmlDocument) {
+			var manager = new XmlNamespaceManager(xmlDocument.NameTable);
+			manager.AddNamespace("x", xmlDocument.DocumentElement.NamespaceURI);
+			var xpath = "//x:Compile[@Include='{0}']".ToFormat(fileName);
+			xmlDocument.SelectSingleNode(xpath, manager).ShouldNotBe(null);
 		}
 
 		public override void Act() {
@@ -34,7 +40,8 @@ namespace Chpokk.Tests.ItemAdding {
 			{
 				PhysicalApplicationPath = Context.AppRoot,
 				RepositoryName = Context.REPO_NAME,
-				PathRelativeToRepositoryRoot = "Class1.cs"
+				ProjectPathRelativeToRepositoryRoot = Context.ProjectPathRelativeToRepositoryRoot,
+				PathRelativeToRepositoryRoot = FileSystem.Combine(Context.ProjectFolderRelativeToRepositoryRoot, fileName) 
 			});
 			//_project.Save();
 			//project.Build(new ConsoleLogger());

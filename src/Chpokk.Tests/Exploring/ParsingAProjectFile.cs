@@ -38,6 +38,14 @@ namespace Chpokk.Tests.Exploring {
 	public class SolutionAndProjectFileWithSingleEntryContext : SingleSolutionContext {
 		public const string CODEFILE_NAME = "Class1.cs";
 		public string ProjectFolder { get; set; }
+
+		public string ProjectPathRelativeToRepositoryRoot {
+			get { return ProjectFilePath.PathRelativeTo(RepositoryRoot); }
+		}
+
+		public string ProjectFolderRelativeToRepositoryRoot {
+			get { return ProjectFolder.PathRelativeTo(RepositoryRoot); }
+		}
 		public string projectFileContent = 
 				string.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
@@ -46,13 +54,15 @@ namespace Chpokk.Tests.Exploring {
 				  </ItemGroup>
 				</Project>", CODEFILE_NAME);
 
+		private string _projectFilePath;
+
 		public override void Create() {
 			base.Create();
-			var projectFilePath = FileSystem.Combine(SolutionFolder, this.PROJECT_PATH);
-			ProjectFolder = projectFilePath.ParentDirectory();
+			_projectFilePath = FileSystem.Combine(SolutionFolder, this.PROJECT_PATH);
+			ProjectFolder = _projectFilePath.ParentDirectory();
 			var fileSystem = Container.Get<FileSystem>();
-			Console.WriteLine("Writing project to " + projectFilePath);
-			fileSystem.WriteStringToFile(projectFilePath, projectFileContent);
+			Console.WriteLine("Writing project to " + _projectFilePath);
+			fileSystem.WriteStringToFile(_projectFilePath, projectFileContent);
 		}
 	}
 }

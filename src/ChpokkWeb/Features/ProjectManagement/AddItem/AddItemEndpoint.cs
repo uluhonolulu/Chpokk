@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using FubuMVC.Core.Ajax;
 using Microsoft.Build.Evaluation;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 	public class AddItemEndpoint {
+		private RepositoryManager _repositoryManager;
+		public AddItemEndpoint(RepositoryManager repositoryManager) {
+			_repositoryManager = repositoryManager;
+		}
+
 		public AjaxContinuation DoIt(AddItemInputModel model) {
-			var projectFilePath = FileSystem.Combine(model.PhysicalApplicationPath,
-			                              @"UserFiles\uluhonolulu\Chpokk-SampleSol\src\ConsoleApplication1\ConsoleApplication1.csproj");
-			var fileName = string.Concat("NewClass", DateTime.Now.Millisecond.ToString(), ".cs");
+			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.RepositoryName);
+			var projectFilePath = FileSystem.Combine(model.PhysicalApplicationPath, repositoryInfo.Path,
+			                              model.ProjectPathRelativeToRepositoryRoot);
+			var fileName =
+				model.PathRelativeToRepositoryRoot.PathRelativeTo(model.ProjectPathRelativeToRepositoryRoot.ParentDirectory());
 			var project = new Project(projectFilePath);
 			project.AddItem("Compile", fileName);
 			project.Save();
@@ -20,5 +28,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 		}
 	}
 
-	public class AddItemInputModel: BaseFileInputModel {}
+	public class AddItemInputModel: BaseFileInputModel {
+		public string ProjectPathRelativeToRepositoryRoot { get; set; }
+	}
 }
