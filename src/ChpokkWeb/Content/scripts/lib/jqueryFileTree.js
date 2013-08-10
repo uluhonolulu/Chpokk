@@ -80,7 +80,7 @@ if (jQuery) (function ($) {
 				}
 
 				function bindTree(t) {
-					$(t).find('LI A').bind(o.folderEvent, function () {
+					$(t).find('LI A').bind(o.folderEvent, function (e) {
 						if ($(this).parent().hasClass('directory')) {
 							if ($(this).parent().hasClass('collapsed')) {
 								// Expand
@@ -91,24 +91,24 @@ if (jQuery) (function ($) {
 								if (o.lazy) {
 									$(this).parent().find('UL').remove(); // cleanup
 								}
-								showTree($(this).parent(), escape($(this).attr('rel').match(/.*\//)), o.lazy);
+								showTree($(this).parent(), escape(($(this).attr('rel') || '').match(/.*\//)), o.lazy);
 
 								$(this).parent().removeClass('collapsed').addClass('expanded');
 							} else {
 								// Collapse
 								var that = $(this).parent();
-								that.find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing }, function() {
-								});
-									that.removeClass('expanded').addClass('collapsed');
+								that.find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
+								that.removeClass('expanded').addClass('collapsed');
 
 							}
 						} else {
 							h($(this).attr('rel'));
 						}
-						return false;
+						//return false;
+						e.preventDefault();
 					});
 					// Prevent A from triggering the # on non-click events
-					if (o.folderEvent.toLowerCase != 'click') $(t).find('LI A').bind('click', function () { return false; });
+					if (o.folderEvent.toLowerCase != 'click') $(t).find('LI A').bind('click', function (e) { e.preventDefault(); });
 				}
 				// Loading message
 				$(this).html('<ul class="jqueryFileTree start"><li class="wait">' + o.loadMessage + '<li></ul>');

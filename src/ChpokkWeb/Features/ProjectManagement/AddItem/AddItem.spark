@@ -57,7 +57,7 @@
 									.addClass('directory')
 									.addClass('collapsed')
 									.appendTo(ul);
-								li.append($('<a/>').attr('rel', 'path').text(item.Name));
+								li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type));
 								$.each(item.Children, function(index, item) {
 									loadBranch(item, li);
 								});
@@ -70,7 +70,15 @@
 						 }
 					};
 					
-					$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function() {
+					$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function(path) {
+						$('#fileName').val(path);
+					});
+					$('#newItemDialog #folderBrowser').on('click', 'li.directory', function(e) {
+						var path = $(this).children('a').attr('rel');
+						if (path) {
+							$('#fileName').val(path);
+							e.stopPropagation();
+						}
 					});
 					$('#newItemDialog #addSelectedItemButton').one('click', function() {
 						$.post(additemUrl, 
