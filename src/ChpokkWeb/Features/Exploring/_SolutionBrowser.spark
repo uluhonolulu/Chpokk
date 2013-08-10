@@ -21,7 +21,7 @@
 
 		$(function () {
 			var fileListUrl = '${Urls.UrlFor<SolutionExplorerInputModel>()}';
-			var model = { Name: "${Model.RepositoryName}" };
+			var model = { RepositoryName: "${Model.RepositoryName}" };
 			$.post(fileListUrl, model, function (data) {
 				var items = data.Items;
 				var root = build_ul(items)

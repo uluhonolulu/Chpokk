@@ -31,7 +31,17 @@
 				$('#newItemButton').click(function() {
 					$('#newItemDialog').modal();
 					$('#newItemDialog #addSelectedItemButton').one('click', function() {
-						$.post(additemUrl, $.extend(model, { PathRelativeToRepositoryRoot: $('#fileName').val() , ProjectPathRelativeToRepositoryRoot: $('#projectName').val()}));
+						$.post(additemUrl, 
+							$.extend(model,
+								{
+									 PathRelativeToRepositoryRoot: $('#fileName').val() , 
+									 ProjectPathRelativeToRepositoryRoot: $('#projectName').val()
+								}),
+							function() {
+								amplify.publish('solutionChanged');
+								location.hash = $('#fileName').val();
+								$('#newItemDialog').modal('hide');
+							});
 					});
 				});
 		});

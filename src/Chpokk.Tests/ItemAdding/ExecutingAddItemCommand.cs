@@ -27,6 +27,11 @@ namespace Chpokk.Tests.ItemAdding {
 			DocumentShouldHaveCompileEntryForTheNewFile(xmlDocument);
 		}
 
+		[Test]
+		public void CreatesAPhysicalFile() {
+			Context.Container.Get<IFileSystem>().FileExists(Context.SolutionPath).ShouldBe(true);
+		}
+
 		private void DocumentShouldHaveCompileEntryForTheNewFile(XmlDocument xmlDocument) {
 			var manager = new XmlNamespaceManager(xmlDocument.NameTable);
 			manager.AddNamespace("x", xmlDocument.DocumentElement.NamespaceURI);

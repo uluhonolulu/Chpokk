@@ -602,7 +602,7 @@
     <Compile Include="Features\Exploring\ProjectParser.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryManager.cs" />
     <Compile Include="Features\Exploring\SolutionBrowserPartialModel.cs" />
-    <Compile Include="Features\Exploring\SolutionContentController.cs" />
+    <Compile Include="Features\Exploring\SolutionContentEndpoint.cs" />
     <Compile Include="Features\Exploring\SolutionExplorerInputModel.cs" />
     <Compile Include="Features\Exploring\SolutionExplorerModel.cs" />
     <Compile Include="Features\Exploring\SolutionFileLoader.cs" />
