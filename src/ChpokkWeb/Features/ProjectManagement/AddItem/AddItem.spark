@@ -46,8 +46,29 @@
 					// folder browser 
 					var folderBrowserOptions = {
 						 script:	'!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
-						 lazy:		false
+						 lazy:		false,
+						 loadHandler: function(data, container) {
+							loadBranch = function(item, container) {
+								var ul = $('<ul/>')
+									.addClass("jqueryFileTree")
+									.hide();
+								var li = $('<li/>')
+									.addClass('directory')
+									.addClass('collapsed')
+									.appendTo(ul);
+								li.append($('<a/>').attr('rel', 'path').text(item.Name));
+								$.each(item.Children, function(index, item) {
+									loadBranch(item, li);
+								});
+								container.append(ul);
+							};
+							container.html('');
+							$.each(data.Items, function(index, item) {
+								loadBranch(item, container);
+							});
+						 }
 					};
+					
 					$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function() {
 					});
 					$('#newItemDialog #addSelectedItemButton').one('click', function() {

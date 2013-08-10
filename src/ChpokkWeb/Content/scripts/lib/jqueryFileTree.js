@@ -19,7 +19,9 @@
 //           collapseEasing - easing function to use on collapse (optional)
 //           multiFolder    - whether or not to limit the browser to one subfolder at a time
 //           loadMessage    - Message to display while initial tree loads (can be HTML)
+//			 loadHandler	- custom handler to handle the loaded data
 //			 lazy			- if true, loads subfolders when a folder is expanded; if false, loads all tree at once
+//			 additionalData - additional data to be posted 
 //
 // History:
 //
@@ -47,6 +49,7 @@ if (jQuery) (function ($) {
 			if (o.multiFolder == undefined) o.multiFolder = true;
 			if (o.loadMessage == undefined) o.loadMessage = 'Loading...';
 			if (o.lazy == undefined) o.lazy = true;
+			if (!o.additionalData) o.additionalData = {};
 
 			$(this).each(function () {
 
@@ -54,12 +57,18 @@ if (jQuery) (function ($) {
 					$(".jqueryFileTree.start").remove();
 					if (loadFromServer) {
 						$(c).addClass('wait');
-						$.post(o.script, { dir: t }, function (data) {
+						$.post(o.script, $.extend({ dir: t }, o.additionalData), function (data) {
 							$(c).find('.start').html('');
-							$(c).removeClass('wait').append(data);
+							$(c).removeClass('wait');
+							if (o.loadHandler) {
+								o.loadHandler(data, $(c));
+							} else {
+								$(c).append(data);
+							}
+							
 							if (o.root == t) $(c).find('UL:hidden').show(); else $(c).find('UL:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
 							bindTree(c);
-							$(c).find('li.directory.collapsed').each(function(index, li) {
+							$(c).find('li.directory.collapsed').each(function (index, li) {
 								$(li).find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
 							});
 						});

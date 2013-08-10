@@ -38,15 +38,17 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		//[JsonEndpoint]
-		public HtmlTag GetSolutionFolders(SolutionFolderExplorerInputModel model) {
+		public SolutionExplorerModel GetSolutionFolders(SolutionFolderExplorerInputModel model) {
 			var ul = new HtmlTag("ul").AddClass("jqueryFileTree").Hide();
 			var li = ul.Add("li").AddClasses("directory", "collapsed");
 			li.Add("a").Attr("rel", "somepath").Text("Root stuff");
 			li = li.Add("ul").AddClass("jqueryFileTree").Hide().Add("li").AddClasses("directory", "collapsed");
 			li.Add("a").Attr("rel", "childpath").Text("Child stuff");
 
-			return ul;
-			//return new SolutionExplorerModel{Items = new[] {new RepositoryItem(){Name = "Stuff", Type = "folder"}}};
+			//return ul;
+			var solutionItem = new RepositoryItem() {Name = "Root Stuff", Type = "folder", PathRelativeToRepositoryRoot = "\\"};
+			solutionItem.Children.Add(new RepositoryItem{Name = "Child stuff", Type = "folder"});
+			return new SolutionExplorerModel{Items = new[] {solutionItem}};
 		}
 	}
 
