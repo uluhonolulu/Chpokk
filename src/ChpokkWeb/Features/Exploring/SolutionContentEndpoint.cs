@@ -27,28 +27,39 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
-			var info = _repositoryManager.GetRepositoryInfo(model.RepositoryName);
-			var folder = FileSystem.Combine(model.PhysicalApplicationPath, info.Path);
-			var files = _fileSystem.FindFiles(folder, new FileSet { Include = "*.sln" });
+			var items = GetSolutionRepositoryItems(model.RepositoryName, model.PhysicalApplicationPath);
+			return new SolutionExplorerModel {Items = items.ToArray()};
+		}
+
+		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName, string physicalApplicationPath) {
+			var info = _repositoryManager.GetRepositoryInfo(repositoryName);
+			var folder = FileSystem.Combine(physicalApplicationPath, info.Path);
+			var files = _fileSystem.FindFiles(folder, new FileSet {Include = "*.sln"});
 			var items =
 				files.Select(
 					filePath =>
 					_solutionFileLoader.CreateSolutionItem(folder, filePath));
-			return new SolutionExplorerModel {Items = items.ToArray()};
+			return items;
 		}
 
-		//[JsonEndpoint]
+		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutionFolders(SolutionFolderExplorerInputModel model) {
-			var ul = new HtmlTag("ul").AddClass("jqueryFileTree").Hide();
-			var li = ul.Add("li").AddClasses("directory", "collapsed");
-			li.Add("a").Attr("rel", "somepath").Text("Root stuff");
-			li = li.Add("ul").AddClass("jqueryFileTree").Hide().Add("li").AddClasses("directory", "collapsed");
-			li.Add("a").Attr("rel", "childpath").Text("Child stuff");
+			//var solutionItem = new RepositoryItem() {Name = "Root Stuff", Type = "folder", PathRelativeToRepositoryRoot = "\\"};
+			//solutionItem.Children.Add(new RepositoryItem{Name = "Child stuff", Type = "folder"});
+			var items = GetSolutionRepositoryItems(model.RepositoryName, model.PhysicalApplicationPath).ToArray();
+			foreach (var solutionItem in items) {
+				foreach (var projectItem in solutionItem.Children) {
+					RemoveLeaves(projectItem);
+				}
+			}
+			return new SolutionExplorerModel{Items = items.ToArray()};
+		}
 
-			//return ul;
-			var solutionItem = new RepositoryItem() {Name = "Root Stuff", Type = "folder", PathRelativeToRepositoryRoot = "\\"};
-			solutionItem.Children.Add(new RepositoryItem{Name = "Child stuff", Type = "folder"});
-			return new SolutionExplorerModel{Items = new[] {solutionItem}};
+		private void RemoveLeaves(RepositoryItem item) {
+			item.Children = item.Children.Where(childItem => childItem.Type == "folder").ToList();
+			foreach (var child in item.Children) {
+				RemoveLeaves(child);
+			}
 		}
 	}
 

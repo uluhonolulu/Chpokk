@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		[NotNull]
-		public IList<RepositoryItem> Children { get; private set; }
+		public IList<RepositoryItem> Children { get; set; }
 
 		public string Type { get; set; }
 

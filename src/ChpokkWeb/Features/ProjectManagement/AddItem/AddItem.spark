@@ -45,8 +45,9 @@
 					$('#newItemDialog').modal();
 					// folder browser 
 					var folderBrowserOptions = {
-						 script:	'!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
-						 lazy:		false,
+						 script:		'!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
+						 lazy:			false,
+						 additionalData:model, 
 						 loadHandler: function(data, container) {
 							loadBranch = function(item, container) {
 								var ul = $('<ul/>')

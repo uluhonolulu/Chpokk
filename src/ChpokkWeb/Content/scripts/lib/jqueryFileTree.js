@@ -65,16 +65,16 @@ if (jQuery) (function ($) {
 							} else {
 								$(c).append(data);
 							}
-							
-							if (o.root == t) $(c).find('UL:hidden').show(); else $(c).find('UL:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
+
+							if (o.root == t) $(c).children('ul:hidden').show(); else $(c).children('ul:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
 							bindTree(c);
 							$(c).find('li.directory.collapsed').each(function (index, li) {
 								$(li).find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
 							});
 						});
 					} else {
-						if (o.root == t) $(c).find('UL:hidden').show(); else $(c).find('UL:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
-						bindTree(c);
+						if (o.root == t) $(c).children('ul:hidden').show(); else $(c).children('ul:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
+						//bindTree(c);
 					}
 
 				}
@@ -96,8 +96,11 @@ if (jQuery) (function ($) {
 								$(this).parent().removeClass('collapsed').addClass('expanded');
 							} else {
 								// Collapse
-								$(this).parent().find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
-								$(this).parent().removeClass('expanded').addClass('collapsed');
+								var that = $(this).parent();
+								that.find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing }, function() {
+								});
+									that.removeClass('expanded').addClass('collapsed');
+
 							}
 						} else {
 							h($(this).attr('rel'));
