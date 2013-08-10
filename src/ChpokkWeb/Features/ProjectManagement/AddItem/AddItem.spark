@@ -1,4 +1,5 @@
 ﻿<use namespace="ChpokkWeb.Features.ProjectManagement.AddItem" />
+<use namespace="ChpokkWeb.Features.Exploring" />
 
 <!-- New item dialog -->
 <div class="modal fade" id="newItemDialog">
@@ -9,6 +10,18 @@
 				<h3 id="myModalLabel">Choose the name and the path for the new file</h3>
 			</div>
 			<div class="modal-body">
+				<div id="folderBrowser">
+					<ul class="jqueryFileTree" style="display: none;">
+						<li class="directory collapsed">
+							<a href="#" rel="/this/folder/">Solution Name</a>
+							<li class="directory collapsed">
+								<a href="#">Project name</a>
+							</li>
+						</li>
+					</ul>
+				</div>
+				
+				
 				<label>Name</label>
 				<input class="form-control" name="PathRelativeToRepositoryRoot" id="fileName"/>
 				<label>Project</label>
@@ -30,6 +43,13 @@
 			var additemUrl = '${Urls.UrlFor<AddItemInputModel>()}';
 				$('#newItemButton').click(function() {
 					$('#newItemDialog').modal();
+					// folder browser 
+					var folderBrowserOptions = {
+						 script:	'!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
+						 lazy:		false
+					};
+					$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function() {
+					});
 					$('#newItemDialog #addSelectedItemButton').one('click', function() {
 						$.post(additemUrl, 
 							$.extend(model,

@@ -166,6 +166,7 @@ table th
 
 /* MISC  
 ----------------------------------------------------------*/
+a { cursor: pointer;}
 .clear
 {
     clear: both;

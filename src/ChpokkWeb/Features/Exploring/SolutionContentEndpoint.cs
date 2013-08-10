@@ -8,6 +8,7 @@ using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using FubuMVC.Core;
+using HtmlTags;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionContentEndpoint {
@@ -35,5 +36,19 @@ namespace ChpokkWeb.Features.Exploring {
 					_solutionFileLoader.CreateSolutionItem(folder, filePath));
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
+
+		//[JsonEndpoint]
+		public HtmlTag GetSolutionFolders(SolutionFolderExplorerInputModel model) {
+			var ul = new HtmlTag("ul").AddClass("jqueryFileTree").Hide();
+			var li = ul.Add("li").AddClasses("directory", "collapsed");
+			li.Add("a").Attr("rel", "somepath").Text("Root stuff");
+			li = li.Add("ul").AddClass("jqueryFileTree").Hide().Add("li").AddClasses("directory", "collapsed");
+			li.Add("a").Attr("rel", "childpath").Text("Child stuff");
+
+			return ul;
+			//return new SolutionExplorerModel{Items = new[] {new RepositoryItem(){Name = "Stuff", Type = "folder"}}};
+		}
 	}
+
+	public class SolutionFolderExplorerInputModel: BaseRepositoryInputModel {}
 }
