@@ -44,11 +44,13 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutionFolders(SolutionFolderExplorerInputModel model) {
-			//var solutionItem = new RepositoryItem() {Name = "Root Stuff", Type = "folder", PathRelativeToRepositoryRoot = "\\"};
-			//solutionItem.Children.Add(new RepositoryItem{Name = "Child stuff", Type = "folder"});
 			var items = GetSolutionRepositoryItems(model.RepositoryName, model.PhysicalApplicationPath).ToArray();
 			foreach (var solutionItem in items) {
+				solutionItem.Type = "solution";
+				solutionItem.PathRelativeToRepositoryRoot = null;
 				foreach (var projectItem in solutionItem.Children) {
+					projectItem.Type = "project";
+					projectItem.PathRelativeToRepositoryRoot = projectItem.Data["ProjectPath"].ParentDirectory();
 					RemoveLeaves(projectItem);
 				}
 			}

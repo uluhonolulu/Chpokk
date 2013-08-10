@@ -57,7 +57,7 @@
 									.addClass('directory')
 									.addClass('collapsed')
 									.appendTo(ul);
-								li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type));
+								li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type).data({path: item.Data? item.Data.ProjectPath : null}));
 								$.each(item.Children, function(index, item) {
 									loadBranch(item, li);
 								});
@@ -79,6 +79,11 @@
 							$('#fileName').val(path);
 							e.stopPropagation();
 						}
+
+						var projectLink = $(this).parents(':has(>a[type="project"])').find('>a');
+						var projectPath = projectLink.data('path');
+						$('#projectName').val(projectPath);
+
 					});
 					$('#newItemDialog #addSelectedItemButton').one('click', function() {
 						$.post(additemUrl, 
