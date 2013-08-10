@@ -20,10 +20,10 @@ namespace Chpokk.Tests.Exploring {
 		}
 
 		public override IEnumerable<RepositoryItem> Act() {
-			var controller = Context.Container.Get<SolutionContentController>();
+			var controller = Context.Container.Get<SolutionContentEndpoint>();
 			return
 				controller.GetSolutions(new SolutionExplorerInputModel
-				                        {Name = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot}).Items;
+				                        {RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot}).Items;
 		}
 
 		public RepositoryItem SolutionItem {

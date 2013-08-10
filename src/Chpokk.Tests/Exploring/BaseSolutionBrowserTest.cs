@@ -13,8 +13,8 @@ namespace Chpokk.Tests.Exploring {
 	public abstract class BaseSolutionBrowserTest<TContext> : BaseQueryTest<TContext, IEnumerable<RepositoryItem>> where TContext : SingleSlnFileContext, new() {
 
 		public override IEnumerable<RepositoryItem> Act() {
-			var controller = Context.Container.Get<SolutionContentController>();
-			return controller.GetSolutions(new SolutionExplorerInputModel { Name = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") }).Items;
+			var controller = Context.Container.Get<SolutionContentEndpoint>();
+			return controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") }).Items;
 		}
 	}
 

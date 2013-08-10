@@ -10,14 +10,14 @@ using FubuCore;
 using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Exploring {
-	public class SolutionContentController {
+	public class SolutionContentEndpoint {
 		[NotNull] private readonly RepositoryManager _repositoryManager;
 
 		[NotNull] private readonly IFileSystem _fileSystem;
 
 		[NotNull] private readonly SolutionFileLoader _solutionFileLoader;
 
-		public SolutionContentController([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem, [NotNull
+		public SolutionContentEndpoint([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem, [NotNull
 		                                                                                                                ] SolutionParser solutionParser, [NotNull] SolutionFileLoader solutionFileLoader) {
 			_repositoryManager = repositoryManager;
 			_fileSystem = fileSystem;
@@ -26,7 +26,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
-			var info = _repositoryManager.GetRepositoryInfo(model.Name);
+			var info = _repositoryManager.GetRepositoryInfo(model.RepositoryName);
 			var folder = FileSystem.Combine(model.PhysicalApplicationPath, info.Path);
 			var files = _fileSystem.FindFiles(folder, new FileSet { Include = "*.sln" });
 			var items =
