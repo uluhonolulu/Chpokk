@@ -19,19 +19,19 @@ namespace Chpokk.Tests.Exploring {
 	}
 
 	public abstract class SingleSlnFileContext : RepositoryFolderContext {
-		public string FileName { get; set; }
-		public string FilePath { get; set; }
+		public string SolutionFileName { get; set; }
+		public string SolutionPath { get; set; }
 		public string SolutionFolder { get; set; }
 
 		public abstract void CreateSolutionFile(string filePath);
 
 		public override void Create() {
 			base.Create();
-			FileName = Guid.NewGuid().ToString() + ".sln";
+			SolutionFileName = Guid.NewGuid().ToString() + ".sln";
 			SolutionFolder = FileSystem.Combine(RepositoryRoot, "src");
-			FilePath = FileSystem.Combine(SolutionFolder, FileName);
-			Console.WriteLine("Writing solution to " + FilePath);
-			CreateSolutionFile(FilePath);
+			SolutionPath = FileSystem.Combine(SolutionFolder, SolutionFileName);
+			Console.WriteLine("Writing solution to " + SolutionPath);
+			CreateSolutionFile(SolutionPath);
 		}
 	}
 }

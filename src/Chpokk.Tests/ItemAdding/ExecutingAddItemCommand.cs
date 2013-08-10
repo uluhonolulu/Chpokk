@@ -16,9 +16,9 @@ using System.Linq;
 
 namespace Chpokk.Tests.ItemAdding {
 	[TestFixture]
-	public class ExecutingAddItemCommand : BaseCommandTest<SolutionAndProjectFileWithSingleEntryContext> {
+	public class ExecutingAddItemCommand : BaseCommandTest<SingleSolutionWithProjectFileContext> {
 		private Project _project;
-		private const string fileName = @"folder\filename";
+		private const string FILE_NAME = @"folder\filename";
 
 		[Test]
 		public void AddsAnItemToTheProjectFile() {
@@ -29,13 +29,14 @@ namespace Chpokk.Tests.ItemAdding {
 
 		[Test]
 		public void CreatesAPhysicalFile() {
-			Context.Container.Get<IFileSystem>().FileExists(Context.SolutionPath).ShouldBe(true);
+			Console.WriteLine("Checking " + Context.GetFilePath(FILE_NAME)); 
+			Context.Container.Get<IFileSystem>().FileExists(Context.GetFilePath(FILE_NAME)).ShouldBe(true);
 		}
 
 		private void DocumentShouldHaveCompileEntryForTheNewFile(XmlDocument xmlDocument) {
 			var manager = new XmlNamespaceManager(xmlDocument.NameTable);
 			manager.AddNamespace("x", xmlDocument.DocumentElement.NamespaceURI);
-			var xpath = "//x:Compile[@Include='{0}']".ToFormat(fileName);
+			var xpath = "//x:Compile[@Include='{0}']".ToFormat(FILE_NAME);
 			xmlDocument.SelectSingleNode(xpath, manager).ShouldNotBe(null);
 		}
 
@@ -46,7 +47,7 @@ namespace Chpokk.Tests.ItemAdding {
 				PhysicalApplicationPath = Context.AppRoot,
 				RepositoryName = Context.REPO_NAME,
 				ProjectPathRelativeToRepositoryRoot = Context.ProjectPathRelativeToRepositoryRoot,
-				PathRelativeToRepositoryRoot = FileSystem.Combine(Context.ProjectFolderRelativeToRepositoryRoot, fileName) 
+				PathRelativeToRepositoryRoot = FileSystem.Combine(Context.ProjectFolderRelativeToRepositoryRoot, FILE_NAME) 
 			});
 			//_project.Save();
 			//project.Build(new ConsoleLogger());

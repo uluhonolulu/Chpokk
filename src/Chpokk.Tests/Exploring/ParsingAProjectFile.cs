@@ -35,17 +35,9 @@ namespace Chpokk.Tests.Exploring {
 		}	
 	}
 
-	public class SolutionAndProjectFileWithSingleEntryContext : SingleSolutionContext {
+	public class SolutionAndProjectFileWithSingleEntryContext : SingleSolutionWithProjectFileContext {
 		public const string CODEFILE_NAME = "Class1.cs";
-		public string ProjectFolder { get; set; }
 
-		public string ProjectPathRelativeToRepositoryRoot {
-			get { return ProjectFilePath.PathRelativeTo(RepositoryRoot); }
-		}
-
-		public string ProjectFolderRelativeToRepositoryRoot {
-			get { return ProjectFolder.PathRelativeTo(RepositoryRoot); }
-		}
 		public string projectFileContent = 
 				string.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
 				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">

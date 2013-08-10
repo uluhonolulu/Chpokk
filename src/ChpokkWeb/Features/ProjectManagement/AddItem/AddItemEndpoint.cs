@@ -10,9 +10,11 @@ using Microsoft.Build.Evaluation;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 	public class AddItemEndpoint {
-		private RepositoryManager _repositoryManager;
-		public AddItemEndpoint(RepositoryManager repositoryManager) {
+		private readonly RepositoryManager _repositoryManager;
+		private readonly IFileSystem _fileSystem;
+		public AddItemEndpoint(RepositoryManager repositoryManager, IFileSystem fileSystem) {
 			_repositoryManager = repositoryManager;
+			_fileSystem = fileSystem;
 		}
 
 		public AjaxContinuation DoIt(AddItemInputModel model) {
@@ -24,6 +26,11 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 			var project = new Project(projectFilePath);
 			project.AddItem("Compile", fileName);
 			project.Save();
+
+			var filePath = _repositoryManager.GetPhysicalFilePath(model);
+			Console.WriteLine("Writing to " + filePath);
+			_fileSystem.WriteStringToFile(filePath, string.Empty);
+
 			return AjaxContinuation.Successful();
 		}
 	}

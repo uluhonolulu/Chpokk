@@ -18,7 +18,7 @@ namespace Chpokk.Tests.Exploring {
 		[Test]
 		public void CanSeeTheFile() {
 			var names = Result.Select(item => item.Name);
-			Assert.AreElementsEqual(new[]{Context.FileName}, names);
+			Assert.AreElementsEqual(new[]{Context.SolutionFileName}, names);
 		}
 
 
