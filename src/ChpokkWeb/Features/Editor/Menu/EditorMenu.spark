@@ -5,7 +5,7 @@
 	<button id="${token.Key}Button" class="btn btn-default">${token.Text}</button>
 </for>
 <button id="parseButton" class="btn btn-default">Parse</button>
-<button id="newItemButton" class="btn btn-default hide">New item</button>
+<button id="newItemButton" class="btn btn-default">New item</button>
 
 <content name="InlineScripts">
 	<!-- EditorMenu -->
@@ -37,13 +37,7 @@
 				});
 			});
 
-			var additemUrl = '${Urls.UrlFor<ChpokkWeb.Features.ProjectManagement.AddItem.AddItemInputModel>()}';
-			$('#newItemButton').click(function() {
-				$('#newItemDialog').modal();
-				$('#newItemDialog #addSelectedItemButton').one('click', function() {
-					$.post(additemUrl, $.extend(model, { PathRelativeToRepositoryRoot: $('#fileName').val() }));
-				});
-			});
+
 
 		});
 	</script>
@@ -64,17 +58,4 @@
 	</div>
 </div>
 
-<!-- New item dialog -->
-<div id="newItemDialog" class="modal hide fade">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">Choose the name and the path for the new file</h3>
-	</div>
-	<div class="modal-body">
-		<input type="text" name="fileName" id="fileName" size="25" />
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary" id="addSelectedItemButton">Add it</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	</div>	
-</div>
+<render partial="ProjectManagement\AddItem\AddItem" />

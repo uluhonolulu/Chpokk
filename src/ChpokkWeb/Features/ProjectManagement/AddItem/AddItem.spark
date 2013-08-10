@@ -1,0 +1,39 @@
+﻿<use namespace="ChpokkWeb.Features.ProjectManagement.AddItem" />
+
+<!-- New item dialog -->
+<div class="modal fade" id="newItemDialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Choose the name and the path for the new file</h3>
+			</div>
+			<div class="modal-body">
+				<label>Name</label>
+				<input class="form-control" name="PathRelativeToRepositoryRoot" id="fileName"/>
+				<label>Project</label>
+				<input class="form-control" name="ProjectPathRelativeToRepositoryRoot" id="projectName"/>
+	
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" id="addSelectedItemButton">Add it</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<content name="InlineScripts">
+	<script type="text/javascript">
+		$(function() {
+			var additemUrl = '${Urls.UrlFor<AddItemInputModel>()}';
+				$('#newItemButton').click(function() {
+					$('#newItemDialog').modal();
+					$('#newItemDialog #addSelectedItemButton').one('click', function() {
+						$.post(additemUrl, $.extend(model, { PathRelativeToRepositoryRoot: $('#fileName').val() , ProjectPathRelativeToRepositoryRoot: $('#projectName').val()}));
+					});
+				});
+		});
+	</script>
+</content>

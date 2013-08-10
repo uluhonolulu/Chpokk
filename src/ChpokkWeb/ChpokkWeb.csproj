@@ -343,6 +343,7 @@
     <Content Include="Content\styles\lib\bootstrap source\wells.less" />
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
+    <Content Include="favicon.ico" />
     <Content Include="Features\Authentication\sample.txt" />
     <Content Include="Features\Demo\RegisteredForInvite.spark" />
     <Content Include="Features\Demo\_editor.spark">
@@ -447,6 +448,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Remotes\RetrieveButtons.spark" />
+    <Content Include="Features\ProjectManagement\AddItem\AddItem.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
