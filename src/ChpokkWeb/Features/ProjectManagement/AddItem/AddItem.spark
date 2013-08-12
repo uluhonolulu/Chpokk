@@ -76,11 +76,14 @@
 					$('#newItemDialog #folderBrowser').on('click', 'li.directory', function(e) {
 						var path = $(this).children('a').attr('rel');
 						if (path) {
-							$('#fileName').val(path);
+							$('#fileName').val(path + '\\');
+							$('#fileName').focus();
 							e.stopPropagation();
 						}
 
-						var projectLink = $(this).parents(':has(>a[type="project"])').find('>a');
+						var projectLink = $(this).find('>a[type="project"]');
+						if(projectLink.length === 0)
+							projectLink = $(this).parents(':has(>a[type="project"])').find('>a');
 						var projectPath = projectLink.data('path');
 						$('#projectName').val(projectPath);
 
