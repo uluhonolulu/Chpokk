@@ -562,6 +562,7 @@
     </Content>
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Shared\_global.spark" />
+    <Content Include="Shared\_convert.spark" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
