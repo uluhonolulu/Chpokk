@@ -60,8 +60,9 @@ namespace ChpokkWeb.Features.ProjectManagement {
 					projectContent.AddReferencedContent(referencedContent);
 				}
 				else {
+					var displayedFileName = assemblyReference.HintPath ?? assemblyReference.Name;
 					throw new FileNotFoundException(
-						"Reference to '{0}' not found in project {1}".ToFormat(fileName, Path.GetFileName(projectFilePath)), fileName);
+						"Reference to '{0}' not found in project {1}".ToFormat(displayedFileName, Path.GetFileName(projectFilePath)), fileName);
 				}
 			}
 
@@ -74,7 +75,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 				}
 				else {
 					throw new FileNotFoundException(
-						"Reference to '{0}' not found in project {1}".ToFormat(fileName, Path.GetFileName(projectFilePath)), fileName);
+						"Reference to '{0}' not found in project {1}".ToFormat(projectReference.FileName, Path.GetFileName(projectFilePath)), fileName);
 				}
 			}
 			return projectContent;
