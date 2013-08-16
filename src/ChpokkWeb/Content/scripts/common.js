@@ -23,9 +23,8 @@ $(function () {
 			message = continuation.errors[0].message;
 		}
 
-		var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Error!</strong> ${message} </div>';
-		$.tmpl(alertTemplate, {message: message}).appendTo($('#alertContainer')); 
-
+		danger(message);
+		
 		$.gritter.add({
 			title: 'Error!',
 			text: message,
@@ -36,6 +35,16 @@ $(function () {
 	});
 
 });
+
+function danger(message) {
+	var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Error!</strong> ${message} </div>';
+	$.tmpl(alertTemplate, {message: message}).appendTo($('#alertContainer'));
+}
+
+function info(message) {
+	var infoTemplate = '<div class="alert alert-dismissable  alert-info"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> ${message} </div>';
+	$.tmpl(infoTemplate, {message: message}).appendTo($('#alertContainer'));
+}
 
 // util
 function currentTime() {

@@ -28,10 +28,10 @@
 			$('#parseButton').click(function () {
 				$.post(parseUrl, $.extend(model, { Content: $('#code').text() }), function (continuation) {
 					if (continuation.success) {
-						alert('Code is clean!');
+						info('Code is clean!');
 					} else {
 						for (var error in continuation.errors) {
-							alert(continuation.errors[error].message);
+							danger(continuation.errors[error].message);
 						}
 					}
 				});
