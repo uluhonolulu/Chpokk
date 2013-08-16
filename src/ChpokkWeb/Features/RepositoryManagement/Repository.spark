@@ -29,15 +29,13 @@
 
 <div class="container">
 	<div class="row-fluid">
+		<div class="col-lg-3">
+			!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}			
+		</div>
 		<div class="col-lg-9" style="height: 100%">
 			<div id="fileContent" style="margin-right:0px;" class="panel">
 				<render partial="Editor\_editor" />
 			</div>		
-		</div>
-		<div class="col-lg-3">
-			<div class="pull-right" style="min-height: 500px; width: 90%;">
-				!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}
-			</div>			
 		</div>
 	</div>
 </div>

@@ -8,11 +8,11 @@ $(function () {
 			var placement = $(contentSelector).attr('placement') || 'right';
 			return $(contentSelector).html();
 		};
-		$(this).popover({ content: content, html:true });
+		$(this).popover({ content: content, html: true });
 	});
 
 
-	//bind continuation errors to Gritter
+	//bind continuation errors to alerts
 	$.continuations.bind('HttpError', function (continuation) {
 		var response = continuation.response;
 		var message = "Unknown error";
@@ -22,6 +22,9 @@ $(function () {
 		if (response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors > 0) {
 			message = continuation.errors[0].message;
 		}
+
+		var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Error!</strong> ${message} </div>';
+		$.tmpl(alertTemplate, {message: message}).appendTo($('#alertContainer')); 
 
 		$.gritter.add({
 			title: 'Error!',
