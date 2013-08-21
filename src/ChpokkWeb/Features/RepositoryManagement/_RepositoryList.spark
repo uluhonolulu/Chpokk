@@ -1,9 +1,16 @@
 ﻿<viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryListModel" />
 <use namespace="ChpokkWeb.Features.RepositoryManagement"/>
-<div class="panel col-md-3" style="float:none; margin-left:0px; margin-top:10px;" id="repositoryList">
-	<h4 class="panel-heading">Your repositories</h4>
-	<for each="var name in Model.RepositoryNames">
-		!{this.LinkTo(new RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
-	</for>
-	 
+<div class='col-md-3' style='float:none;'>
+	<div class="panel panel-primary" style="margin-top:10px;" id="repositoryList">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				Your repositories</h4>
+		</div class="panel-heading">
+		<div class="panel-body">
+			<for each="var name in Model.RepositoryNames">
+				!{this.LinkTo(new RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
+			</for>
+		 </div>
+
+	</div>
 </div>
