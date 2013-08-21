@@ -5,12 +5,15 @@
 <use namespace="ChpokkWeb.Features.Remotes.DownloadZip"/>
 <use namespace="ChpokkWeb.Features.Remotes"/>
 
-<div id="solutionBrowserWrapper" class="panel">
-	<div id="solutionBrowserToolbar" class="panel-heading" style="display: none;">
-		!{this.Partial<RetrieveButtonsInputModel>()}
+
+	<div id="solutionBrowserWrapper" class="panel panel-default">
+		<div id="solutionBrowserToolbar" class="panel-heading" style="display: none;">
+			!{this.Partial<RetrieveButtonsInputModel>()}
+		</div>
+		<div id="solutionTreeContainer" class='panel-body'>
+			Please wait while your solution is being loaded..</div>
 	</div>
-	<div id="solutionTreeContainer">Please wait while your solution is being loaded..</div>
-</div>
+
 
 <content name="head">
 	<Script src="browser.js" />
