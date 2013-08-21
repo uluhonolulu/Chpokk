@@ -2,10 +2,10 @@
 <use namespace="ChpokkWeb.Features.Editor.Menu" />
 
 <for each="var token in Model.MenuItems">
-	<button id="${token.Key}Button" class="btn btn-default">${token.Text}</button>
+	<button id="${token.Key}Button" class="btn btn-default btn-sm">${token.Text}</button>
 </for>
-<button id="parseButton" class="btn btn-default">Parse</button>
-<button id="newItemButton" class="btn btn-default">New item</button>
+<button id="parseButton" class="btn btn-default btn-sm">Parse</button>
+<button id="newItemButton" class="btn btn-default btn-sm">New item</button>
 
 <content name="InlineScripts">
 	<!-- EditorMenu -->
