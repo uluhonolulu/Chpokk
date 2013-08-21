@@ -9,7 +9,8 @@
 				{
 					element: '#brand',
 					title: "Get started",
-					content: "Chpokk needs your .Net code to work with. Several options are supported."
+					content: "Chpokk needs your .Net code to work with. Several options are supported.",
+					placement: 'bottom'
 				},
 				{
 					element: "#cloneDialogOpener",
