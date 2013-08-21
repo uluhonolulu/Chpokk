@@ -1,6 +1,6 @@
 ﻿<viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryListModel" />
 <use namespace="ChpokkWeb.Features.RepositoryManagement"/>
-<div class="panel col-3" style="float:none; margin-left:0px; margin-top:10px;" id="repositoryList">
+<div class="panel col-md-3" style="float:none; margin-left:0px; margin-top:10px;" id="repositoryList">
 	<h4 class="panel-heading">Your repositories</h4>
 	<for each="var name in Model.RepositoryNames">
 		!{this.LinkTo(new RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
