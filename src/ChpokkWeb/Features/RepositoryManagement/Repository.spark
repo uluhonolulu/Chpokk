@@ -33,7 +33,7 @@
 			!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}			
 		</div>
 		<div class="col-lg-9" style="height: 100%">
-			<div id="fileContent" style="margin-right:0px;" class="panel">
+			<div id="fileContent" style="margin-right:0px;" class="panel panel-default">
 				<render partial="Editor\_editor" />
 			</div>		
 		</div>
