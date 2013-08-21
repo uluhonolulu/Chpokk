@@ -1,4 +1,4 @@
-﻿<a data-toggle="modal" href="#openCloneDialog"  class="btn btn-primary" id="cloneDialogOpener">Clone a Git repository</a>
+﻿<a data-toggle="modal" href="#openCloneDialog"  class="btn  btn-default btn-sm" id="cloneDialogOpener">Clone a Git repository</a>
 
 <div class="modal fade" id="openCloneDialog">
 	<div class="modal-dialog">

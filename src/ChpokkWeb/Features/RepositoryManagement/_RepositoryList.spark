@@ -1,7 +1,7 @@
 ﻿<viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryListModel" />
 <use namespace="ChpokkWeb.Features.RepositoryManagement"/>
 <div class='col-md-3' style='float:none;'>
-	<div class="panel panel-primary" style="margin-top:10px;" id="repositoryList">
+	<div class="panel panel-default" style="margin-top:10px;" id="repositoryList">
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				Your repositories</h4>
