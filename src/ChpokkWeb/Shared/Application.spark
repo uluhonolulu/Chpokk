@@ -26,12 +26,12 @@
 
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<span class="navbar-brand" id="brand">chpokk</span>
 			<use content="header">
 			</use>
-			<div class="pull-right"><use content="rightcorner"></use></div>
+			<div class="navbar-right"><use content="rightcorner"></use></div>
 		</div>
 	</div>
 	<use content="view" />

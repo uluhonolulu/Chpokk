@@ -1,14 +1,28 @@
 ﻿<use namespace="ChpokkWeb.Features.Authentication" />
 <viewdata model="ChpokkWeb.Features.Authentication.LoginStatusAnonModel" />
-<a class="janrainEngage btn btn-primary" id="janrainButton">Sign-In</a>
+<ul class="navbar-nav">
+	<li>
+		<a class="janrainEngage btn btn-inverse" id="janrainButton">Sign-In</a>
+	</li>
+</ul>
+
 <content name="InlineScripts">
 	<!-- _LoginStatusAnon.spark -->
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			//we can't use the DomLoad event, since the janrain script loads after it.
-			$(window).load(function() {
-				$('#janrainButton').click();
+			$(window).load(function () {
+				openLoginWidget();
 			});
+
+			function openLoginWidget() {
+				if (typeof $('#janrainButton')[0].onclick === 'function') {
+					$('#janrainButton').click();
+				}
+				else {
+					window.setTimeout(openLoginWidget, 100);
+				}
+			}
 		});
 	</script>
 </content>
