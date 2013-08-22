@@ -20,20 +20,20 @@
 		function _loadSelectedFile() {
 			var hash = window.location.hash;
 			if (hash !== '' && hash !== '#') {
-				loadFile(hash.substring(1));
+				amplify.publish('loadFileRequest', { path: hash.substring(1) });
 			}
 		}
 
 	</script>
 </content>
 
-<div class="container">
-	<div class="row-fluid">
+<div class="container" style="height: 100%;">
+	<div class="row-fluid" style="height: 100%;">
 		<div class="col-lg-3">
 			!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}			
 		</div>
 		<div class="col-lg-9" style="height: 100%">
-			<div id="fileContent" style="margin-right:0px;" class="panel panel-default">
+			<div id="fileContent" style="margin-right:0px;height: 100%;" class="panel panel-default">
 				<render partial="Editor\_editor" />
 			</div>		
 		</div>

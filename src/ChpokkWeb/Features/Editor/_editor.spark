@@ -5,19 +5,39 @@
 <Stylesheet href="editor.css" />
 
 <div class="panel-heading">
-!{this.Partial<EditorMenuInputModel>()}
+	!{this.Partial<EditorMenuInputModel>()}
 </div>
 
-<div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; margin-top: 10px;">
-<div id="code" contenteditable="true" style="height: 100%;"></div>
-<ul id="intel_results" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all " role="intelResults" style="display: none;"></ul>
+<div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; height: 100%;">
+	<div id="ace"/>
 </div>
 <div id="log"></div>
+
+
+<content name="InlineScripts">
+	<!-- _editor.spark -->
+	<style type="text/css">
+		    
+		html #ace { 
+			margin: 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+	</style>
 	<script type="text/javascript">
 		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
 		$(function () {
+			var editor = ace.edit("ace");
+			editor.setTheme("ace/theme/clouds");
+			editor.getSession().setMode("ace/mode/csharp");
+			amplify.subscribe('loadFileRequest', function(data) {
+				loadFile(data.path, editor);
+			});
 		});
-		function loadFile(path) {
+		function loadFile(path, editor) {
 			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
 			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 			var li = $('#solutionBrowser ' + selector);
@@ -28,14 +48,13 @@
 				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
 				data: fileData,
 				success: function (data) {
-					$('#code').html(data.Content);
-					var editor = new CodeEditor($('#code'), $.extend(model, fileData));
+					editor.setValue(data.Content);
+					editor.resize();
 					model.PathRelativeToRepositoryRoot = path;
 				}
 			});
 		}		
 	</script>
-
-
-
+	
+</content>
 

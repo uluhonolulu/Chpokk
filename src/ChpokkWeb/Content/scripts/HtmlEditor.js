@@ -5,7 +5,7 @@
 HtmlEditor.prototype.updateHtml = function (callback) {
     var text = this.editorElement.text();
     var toHtmlUrl = "url::ChpokkWeb.Features.Editor.Colorizer.ColorizerInputModel";
-    this.editorElement.load(toHtmlUrl, { Code: text }, callback);
+    //this.editorElement.load(toHtmlUrl, { Code: text }, callback);
 };
 
 //HtmlEditor.prototype.initEditor = function () {
