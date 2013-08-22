@@ -30,9 +30,15 @@
 	<script type="text/javascript">
 		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
 		$(function () {
+			ace.require("ace/ext/language_tools");
 			var editor = ace.edit("ace");
 			editor.setTheme("ace/theme/clouds");
 			editor.getSession().setMode("ace/mode/csharp");
+			// enable autocompletion and snippets
+			editor.setOptions({
+				enableBasicAutocompletion: true,
+				enableSnippets: true
+			});
 			amplify.subscribe('loadFileRequest', function(data) {
 				loadFile(data.path, editor);
 			});
