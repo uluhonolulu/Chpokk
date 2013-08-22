@@ -10,23 +10,29 @@
 <content name="InlineScripts">
 	<!-- EditorMenu -->
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitInputModel>()}';
 			$('#saveButton').click(function () {
-				$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: false }));
+				var editor = ace.edit("ace");
+				var content = editor.getValue();
+				$.post(saveUrl, $.extend(model, { Content: content, DoCommit: false }));
 			});
 
 			$('#saveCommitButton').click(function () {
 				$('#commitDialog').modal();
 				$('#commitDialog #commitButton').one('click', function () {
-					$.post(saveUrl, $.extend(model, { Content: $('#code').text(), DoCommit: true, CommitMessage: $('#commitMessage').val() }));
+					var editor = ace.edit("ace");
+					var content = editor.getValue();
+					$.post(saveUrl, $.extend(model, { Content: content, DoCommit: true, CommitMessage: $('#commitMessage').val() }));
 					$('#commitDialog').modal('hide');
 				});
 			});
 
 			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
 			$('#parseButton').click(function () {
-				$.post(parseUrl, $.extend(model, { Content: $('#code').text() }), function (continuation) {
+				var editor = ace.edit("ace");
+				var content = editor.getValue();
+				$.post(parseUrl, $.extend(model, { Content: content }), function (continuation) {
 					if (continuation.success) {
 						info('Code is clean!');
 					} else {
