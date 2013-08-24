@@ -24,13 +24,13 @@
 			control integration, and test running capabilities.</p>
 	</div>
 	<div class="row">
-		<div class="col-4" id="editInfo">
+		<div class="col-lg-4" id="editInfo">
 			<h2>
 				Edit your code
 			</h2>
 			<p>
 				Use it when you can't, or don't want to, fire up your IDE. Use a tablet, a smartphone,
-				or an Internet Cafe computer.
+				or any other computer.
 			</p>
 			<div class="hide popover" id="edit_info">
 				<ul>
@@ -56,7 +56,7 @@
 				</a>
 			</p>
 		</div>
-		<div class="col-4" id="testInfo">
+		<div class="col-lg-4" id="testInfo">
 			<h2>
 				Run the tests
 			</h2>
@@ -76,7 +76,7 @@
 				<a href="#run_info" class="btn btn-default bootstrap-popover" title="Run the tests">Learn more »</a>
 			</p>
 		</div>
-		<div class="col-4" id="commitInfo">
+		<div class="col-lg-4" id="commitInfo">
 			<h2>
 				Commit and deploy
 			</h2>
