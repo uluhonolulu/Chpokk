@@ -20,6 +20,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 		public void Record(ClickTrackerInputModel model) {
 			_log.Add(model);
+			_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Button clicked: " + model.ButtonName, string.Empty);
 		}
 
 		public void Dispose() {
