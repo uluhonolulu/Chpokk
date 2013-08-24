@@ -42,6 +42,8 @@
 			amplify.subscribe('loadFileRequest', function(data) {
 				loadFile(data.path, editor);
 			});
+			//editor.completers = [snippetCompleter, textCompleter, keyWordCompleter];
+			//gathering and sorting: 1054
 		});
 		function loadFile(path, editor) {
 			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow

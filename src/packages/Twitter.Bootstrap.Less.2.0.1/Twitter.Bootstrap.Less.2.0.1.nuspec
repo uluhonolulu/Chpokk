@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Twitter.Bootstrap.Less</id>
+    <version>2.0.1</version>
+    <title>Bootstrap, from Twitter Less Source</title>
+    <authors>Jacob Thornton, Mark Otto</authors>
+    <owners>Jacob Thornton, Mark Otto</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>http://twitter.github.com/bootstrap/</projectUrl>
+    <iconUrl>https://github.com/twitter/bootstrap/raw/master/docs/assets/img/bird.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+
+Nerd alert: Bootstrap is built with Less and was designed to work out of the gate with modern browsers in mind.
+
+less.js provided by http://lesscss.org/</description>
+    <summary>Copyright 2011 Twitter, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License</summary>
+    <releaseNotes>- Updated source files to v2.0.1 release.
+- Also including the latest version of less.js, v1.2.1 from http://lesscss.org/</releaseNotes>
+    <tags>twitter less css css3 html5</tags>
+  </metadata>
+</package>
