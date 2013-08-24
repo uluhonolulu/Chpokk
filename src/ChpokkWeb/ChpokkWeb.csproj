@@ -521,7 +521,7 @@
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery-2.0.0-vsdoc.js" />
-    <Content Include="Scripts\jquery-2.0.0.js" />
+    <Content Include="Content\scripts\lib\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
@@ -592,6 +592,8 @@
     <Compile Include="Features\Authentication\LoginStatusAnonModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusAuthenticatedModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
+    <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
     <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
     <Compile Include="Features\Demo\SuggestController.cs" />

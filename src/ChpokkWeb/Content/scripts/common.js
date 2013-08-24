@@ -24,14 +24,16 @@ $(function () {
 		}
 
 		danger(message);
-		
-		$.gritter.add({
-			title: 'Error!',
-			text: message,
-			class_name: 'gritter-light'
-		});
 
 		$('.waitContainer').hide();
+	});
+
+	//track button clicks
+	$('.btn').click(function (e) {
+		var button = e.target;
+		var data = { ButtonName: button.id, Url: window.location.toString() };
+		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
+		$.post(url, data);
 	});
 
 });
@@ -107,6 +109,6 @@ function output(arr) {
 	alert(arr.join('\n'));
 }
 
-window.alert = function (message) {
-	$.gritter.add({ text: message });
-}
+//window.alert = function (message) {
+//	$.gritter.add({ text: message });
+//}
