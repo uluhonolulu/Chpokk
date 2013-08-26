@@ -29,9 +29,9 @@ $(function () {
 	});
 
 	//track button clicks
-	$('.btn').click(function (e) {
+	$('.btn, a').click(function (e) {
 		var button = e.target;
-		var buttonId = (button.id != null) ? button.id : $(button).text();
+		var buttonId = button.id || $(button).text();
 		var data = { ButtonName: buttonId, Url: window.location.toString() };
 		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
 		$.post(url, data);
