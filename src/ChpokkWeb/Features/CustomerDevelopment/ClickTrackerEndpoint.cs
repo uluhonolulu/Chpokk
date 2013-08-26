@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.CustomerDevelopment {
 	public class ClickTrackerEndpoint {
 		private readonly ActivityTracker _activityTracker;
-		public ClickTrackerEndpoint(ActivityTracker activityTracker) {
+		private readonly ISecurityContext _securityContext;
+		public ClickTrackerEndpoint(ActivityTracker activityTracker, ISecurityContext securityContext) {
 			_activityTracker = activityTracker;
+			_securityContext = securityContext;
 		}
 
 		public void DoIt(ClickTrackerInputModel model) {
-			_activityTracker.Record(model);
+			var userName = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : null;
+			_activityTracker.Record(userName, model.ButtonName, model.Url);
 		}
 	}
 
