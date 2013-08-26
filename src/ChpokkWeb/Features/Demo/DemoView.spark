@@ -50,7 +50,7 @@
 				</ul>
 			</div>
 			<p>
-				<a href="#edit_info" class="btn btn-default bootstrap-popover" title="Edit your code">
+				<a href="#edit_info" id="editInfoButton" class="btn btn-default bootstrap-popover" title="Edit your code">
 					Learn more
 					»
 				</a>
@@ -73,7 +73,7 @@
 				</ul>
 			</div>
 			<p>
-				<a href="#run_info" class="btn btn-default bootstrap-popover" title="Run the tests">Learn more »</a>
+				<a href="#run_info" id="testInfoButton" class="btn btn-default bootstrap-popover" title="Run the tests">Learn more »</a>
 			</p>
 		</div>
 		<div class="col-lg-4" id="commitInfo">
@@ -91,7 +91,7 @@
 				</ul>
 			</div>
 			<p>
-				<a href="#deploy_info" class="btn btn-default bootstrap-popover" title="Commit and deploy">
+				<a href="#deploy_info" id="deployInfoButton" class="btn btn-default bootstrap-popover" title="Commit and deploy">
 					Learn
 					more »
 				</a>
@@ -103,7 +103,6 @@
 		<a href="http://about.me/ulu" target="_blank">About me </a>
 	</div>
 </div>
-<break />
 <invite />
 <suggest />
 <editor />
