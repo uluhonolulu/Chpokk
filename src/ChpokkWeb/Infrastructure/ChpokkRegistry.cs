@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.Exploring;
@@ -29,6 +30,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<IS3Client>().Singleton()
 				.Use(new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
 			For<ActivityTracker>().LifecycleIs(new HybridSessionLifecycle());
+			For<UserData>().LifecycleIs(new HybridSessionLifecycle());
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<IRetrievePolicy>();

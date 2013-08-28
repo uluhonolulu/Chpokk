@@ -4,8 +4,10 @@ using FubuMVC.Core.Security;
 namespace ChpokkWeb.Features.Authentication {
 	public class LoginStatusEndpoint {
 		private readonly ISecurityContext _securityContext;
-		public LoginStatusEndpoint(ISecurityContext securityContext) {
+		private UserData _userData;
+		public LoginStatusEndpoint(ISecurityContext securityContext, UserData userData) {
 			_securityContext = securityContext;
+			_userData = userData;
 		}
 
 		public FubuContinuation LoginStatus() {
