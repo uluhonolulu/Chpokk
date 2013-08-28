@@ -24,7 +24,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 		public void Dispose() {
 			var messageBuilder = new StringBuilder();
-			string userName = UserName?? "anonymous";
+			string userName = UserName?? "anonymous" + DateTime.Now.Second;
 			messageBuilder.AppendLine("User: " + userName);
 			foreach (var model in _log) {
 				messageBuilder.AppendLine("Url: {0}, button: {1}".ToFormat(model.Url, model.ButtonName));
