@@ -102,7 +102,7 @@
 									 ProjectPathRelativeToRepositoryRoot: $('#projectName').val()
 								}),
 							function() {
-								amplify.publish('solutionChanged');
+								amplify.publish('newItem', $('#fileName').val());
 								location.hash = $('#fileName').val();
 								$('#newItemDialog').modal('hide');
 							});

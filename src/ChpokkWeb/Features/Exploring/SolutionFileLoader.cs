@@ -32,6 +32,7 @@ namespace ChpokkWeb.Features.Exploring {
 			var solutionItem = new RepositoryItem {
 				Name = filePath.GetFileNameUniversal(),
 				PathRelativeToRepositoryRoot = filePath.PathRelativeTo(repositoryRoot),
+				Data = new Dictionary<string, string> {{"Folder", filePath.ParentDirectory().PathRelativeTo(repositoryRoot)}},
 				Type = "folder"
 			};
 			var content = _fileSystem.ReadStringFromFile(filePath);
@@ -55,7 +56,7 @@ namespace ChpokkWeb.Features.Exploring {
 			{
 				Name = projectItem.Name,
 				Type = "folder",
-				Data = new Dictionary<string, string> { { "ProjectPath", projectFilePath.PathRelativeTo(repositoryRoot)} }
+				Data = new Dictionary<string, string> { { "ProjectPath", projectFilePath.PathRelativeTo(repositoryRoot)}, {"Folder", projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot)} }
 			};
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolderRelativeToRepositoryRoot = projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot);

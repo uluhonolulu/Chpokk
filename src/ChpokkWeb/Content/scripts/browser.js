@@ -3,6 +3,9 @@
 				.attr('data-type', item.Type)
 				.attr('data-path', item.PathRelativeToRepositoryRoot)
 				.append($('<span/>').addClass(item.Type).text(item.Name));
+	// handle folder path for solutions and projects
+	if (item.Data && item.Data.Folder)
+		li.attr('data-path', item.Data.Folder);
 	// append data
 	if (data || item.Data) {
 		data = data || {};
@@ -31,3 +34,16 @@ function initTreeView(selector) {
 	});
 	$(selector).treeview({ collapsed: true });
 }
+
+function newItem(path) {
+	var pathParts = path.split('\\');
+	var fileName = pathParts[pathParts.length - 1];
+	var folderName = path.substr(0, path.length - fileName.length - 1);
+	var folderNameEscaped = folderName.replace(/\\/g, '\\\\');
+	var selector = 'li[data-path="{folderName}"] > ul'.replace('{folderName}', folderNameEscaped);
+	var ul = $(selector);
+	var item = { "Name": fileName, "PathRelativeToRepositoryRoot": path, "Type": "file" };
+	ul.append(build_li(item));
+}
+
+amplify.subscribe('newItem', newItem);
