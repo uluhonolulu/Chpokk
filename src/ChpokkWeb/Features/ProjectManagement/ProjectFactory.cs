@@ -61,21 +61,23 @@ namespace ChpokkWeb.Features.ProjectManagement {
 				}
 				else {
 					var displayedFileName = assemblyReference.HintPath ?? assemblyReference.Name;
-					throw new FileNotFoundException(
-						"Reference to '{0}' not found in project {1}".ToFormat(displayedFileName, Path.GetFileName(projectFilePath)), fileName);
+					//TODO: return information message
+					//throw new FileNotFoundException(
+					//    "Reference to '{0}' not found in project {1}".ToFormat(displayedFileName, Path.GetFileName(projectFilePath)), fileName);
 				}
 			}
 
 			foreach (var projectReference in projectReferences) {
 				var fileName = projectReference.FileName;
 				fileName = Path.GetFullPath(Path.Combine(projectFilePath.ParentDirectory(), fileName));
-				if (fileName != null && _fileSystem.FileExists(fileName)) {
+				if (_fileSystem.FileExists(fileName)) {
 					var referencedContent = GetProjectData(fileName).ProjectContent;
 					projectContent.AddReferencedContent(referencedContent);
 				}
 				else {
-					throw new FileNotFoundException(
-						"Reference to '{0}' not found in project {1}".ToFormat(projectReference.FileName, Path.GetFileName(projectFilePath)), fileName);
+					//TODO: return information message
+					//throw new FileNotFoundException(
+					//    "Reference to '{0}' not found in project {1}".ToFormat(projectReference.FileName, Path.GetFileName(projectFilePath)), fileName);
 				}
 			}
 			return projectContent;
