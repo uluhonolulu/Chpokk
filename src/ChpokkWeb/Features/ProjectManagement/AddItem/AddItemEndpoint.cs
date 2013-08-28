@@ -26,9 +26,10 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 			var project = new Project(projectFilePath);
 			project.AddItem("Compile", fileName);
 			project.Save();
+			ProjectCollection.GlobalProjectCollection.UnloadProject(project);
 
 			var filePath = _repositoryManager.GetPhysicalFilePath(model);
-			Console.WriteLine("Writing to " + filePath);
+			//Console.WriteLine("Writing to " + filePath);
 			_fileSystem.WriteStringToFile(filePath, string.Empty);
 
 			return AjaxContinuation.Successful();
