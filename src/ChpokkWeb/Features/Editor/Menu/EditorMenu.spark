@@ -4,7 +4,7 @@
 <for each="var token in Model.MenuItems">
 	<button id="${token.Key}Button" class="btn btn-default btn-sm">${token.Text}</button>
 </for>
-<button id="parseButton" class="btn btn-default btn-sm">Check for errors</button>
+<button id="parseButton" class="btn btn-default btn-sm">Syntax check</button>
 <button id="newItemButton" class="btn btn-default btn-sm">New item</button>
 
 <content name="InlineScripts">
@@ -13,34 +13,47 @@
 		$(function () {
 			var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitInputModel>()}';
 			$('#saveButton').click(function () {
-				var editor = ace.edit("ace");
-				var content = editor.getValue();
-				$.post(saveUrl, $.extend(model, { Content: content, DoCommit: false }));
+				if (model.PathRelativeToRepositoryRoot) {
+					var editor = ace.edit("ace");
+					var content = editor.getValue();
+					$.post(saveUrl, $.extend(model, { Content: content, DoCommit: false }));					
+				} else {
+					alert("Nothing to save");
+				}
 			});
 
 			$('#saveCommitButton').click(function () {
-				$('#commitDialog').modal();
-				$('#commitDialog #commitButton').one('click', function () {
-					var editor = ace.edit("ace");
-					var content = editor.getValue();
-					$.post(saveUrl, $.extend(model, { Content: content, DoCommit: true, CommitMessage: $('#commitMessage').val() }));
-					$('#commitDialog').modal('hide');
-				});
+				if (model.PathRelativeToRepositoryRoot) {
+					$('#commitDialog').modal();
+					$('#commitDialog #commitButton').one('click', function () {
+						var editor = ace.edit("ace");
+						var content = editor.getValue();
+						$.post(saveUrl, $.extend(model, { Content: content, DoCommit: true, CommitMessage: $('#commitMessage').val() }));
+						$('#commitDialog').modal('hide');
+					});
+				} else {
+					alert("Nothing to save");
+				}
 			});
 
 			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
 			$('#parseButton').click(function () {
-				var editor = ace.edit("ace");
-				var content = editor.getValue();
-				$.post(parseUrl, $.extend(model, { Content: content }), function (continuation) {
-					if (continuation.success) {
-						info('Code is clean!');
-					} else {
-						for (var error in continuation.errors) {
-							danger(continuation.errors[error].message);
+				if (model.PathRelativeToRepositoryRoot) {
+					var editor = ace.edit("ace");
+					var content = editor.getValue();
+					$.post(parseUrl, $.extend(model, { Content: content }), function (continuation) {
+						if (continuation.success) {
+							info('Code is perfect!');
+						} else {
+							for (var error in continuation.errors) {
+								danger(continuation.errors[error].message);
+							}
 						}
-					}
-				});
+					});
+				} else {
+					alert("Nothing to check");
+				}
+
 			});
 
 

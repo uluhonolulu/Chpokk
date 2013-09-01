@@ -40,7 +40,7 @@ $(function () {
 });
 
 function danger(message) {
-	var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Error!</strong> ${message} </div>';
+	var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
 	$.tmpl(alertTemplate, {message: message}).appendTo($('#alertContainer'));
 }
 
@@ -110,6 +110,4 @@ function output(arr) {
 	alert(arr.join('\n'));
 }
 
-//window.alert = function (message) {
-//	$.gritter.add({ text: message });
-//}
+window.alert = danger;
