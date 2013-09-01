@@ -249,6 +249,7 @@
     <Content Include="Content\scripts\browser.js" />
     <Content Include="Content\scripts\CodeEditor.js" />
     <Content Include="Content\scripts\common.js" />
+    <Content Include="Content\scripts\editor_tour.js" />
     <Content Include="Content\scripts\HtmlEditor.js" />
     <Content Include="Content\scripts\IntelManager.js" />
     <Content Include="Content\scripts\janrain.js" />
