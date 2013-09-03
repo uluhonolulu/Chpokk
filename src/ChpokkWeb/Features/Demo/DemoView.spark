@@ -17,10 +17,10 @@
 		<div style="float: right; padding-top: 20px; padding-right: 40px;">
 			<a id="invitebutton" class="btn btn-primary btn-large" data-toggle="modal" href="#inviteDialog" style="padding: 12px 20px; font-size: 18px;">
 				Request an invite »
-			<p style="font-size: x-small; text-align: left;">Get notified when it's ready</p></a>
+			</a>
 		</div>
 		<p style="width: 50%;">
-			Chpokk is an online .Net code editor with full Intellisense, refactoring, source
+			Chpokk is an online C# and VB.Net code editor with full Intellisense, refactoring, source
 			control integration, and test running capabilities.</p>
 	</div>
 	<div class="row">
