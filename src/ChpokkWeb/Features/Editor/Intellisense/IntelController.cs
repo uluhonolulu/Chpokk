@@ -28,6 +28,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 
+			//test
+			return new IntelOutputModel{Items = new IntelOutputModel.IntelModelItem[]{new IntelOutputModel.IntelModelItem{Name = "ahh"}}};
+
 			if (input.Text == null) return null;
 			var language = _languageDetector.GetLanguage(input.PathRelativeToRepositoryRoot);
 
