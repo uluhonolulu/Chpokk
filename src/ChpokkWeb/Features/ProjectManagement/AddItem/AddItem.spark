@@ -45,69 +45,86 @@
 
 <content name="InlineScripts">
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			var additemUrl = '${Urls.UrlFor<AddItemInputModel>()}';
-				$('#newItemButton').click(function() {
-					$('#newItemDialog').modal();
-					// folder browser 
-					var folderBrowserOptions = {
-						 script:		'!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
-						 lazy:			false,
-						 additionalData:model, 
-						 loadHandler: function(data, container) {
-							loadBranch = function(item, container) {
-								var ul = $('<ul/>')
+			$('#newItemButton').click(function () {
+				$('#newItemDialog').modal();
+				// folder browser 
+				var folderBrowserOptions = {
+					script: '!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
+					lazy: false,
+					additionalData: model,
+					loadHandler: function (data, container) {
+						loadBranch = function (item, container) {
+							var ul = $('<ul/>')
 									.addClass("jqueryFileTree")
 									.hide();
-								var li = $('<li/>')
+							var li = $('<li/>')
 									.addClass('directory')
 									.addClass('collapsed')
 									.appendTo(ul);
-								li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type).data({path: item.Data? item.Data.ProjectPath : null}));
-								$.each(item.Children, function(index, item) {
-									loadBranch(item, li);
-								});
-								container.append(ul);
-							};
-							container.html('');
-							$.each(data.Items, function(index, item) {
-								loadBranch(item, container);
+							li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type).data({ path: item.Data ? item.Data.ProjectPath : null }));
+							$.each(item.Children, function (index, item) {
+								loadBranch(item, li);
 							});
-						 }
-					};
-					
-					$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function(path) {
-						$('#fileName').val(path);
-					});
-					$('#newItemDialog #folderBrowser').on('click', 'li.directory', function(e) {
-						var path = $(this).children('a').attr('rel');
-						if (path) {
-							$('#fileName').val(path + '\\');
-							$('#fileName').focus();
-							e.stopPropagation();
-						}
+							container.append(ul);
+						};
+						container.html('');
+						$.each(data.Items, function (index, item) {
+							loadBranch(item, container);
+						});
+					}
+				};
 
-						var projectLink = $(this).find('>a[type="project"]');
-						if(projectLink.length === 0)
-							projectLink = $(this).parents(':has(>a[type="project"])').find('>a');
-						var projectPath = projectLink.data('path');
-						$('#projectName').val(projectPath);
+				$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function (path) {
+					$('#fileName').val(path);
+				});
+				$('#newItemDialog #folderBrowser').on('click', 'li.directory', function (e) {
+					var path = $(this).children('a').attr('rel');
+					if (path) {
+						$('#fileName').val(path + '\\');
+						$('#fileName').focus();
+						e.stopPropagation();
+					}
 
-					});
-					$('#newItemDialog #addSelectedItemButton').one('click', function() {
-						$.post(additemUrl, 
+					var projectLink = $(this).find('>a[type="project"]');
+					if (projectLink.length === 0)
+						projectLink = $(this).parents(':has(>a[type="project"])').find('>a');
+					var projectPath = projectLink.data('path');
+					$('#projectName').val(projectPath);
+
+				});
+				$('#newItemDialog #addSelectedItemButton').one('click', function () {
+					var validated = validateAddItemDialog();
+					if (!validated) {
+						$('#newItemDialog').modal('hide');
+						return;
+					}
+					$.post(additemUrl,
 							$.extend(model,
 								{
-									 PathRelativeToRepositoryRoot: $('#fileName').val() , 
-									 ProjectPathRelativeToRepositoryRoot: $('#projectName').val()
+									PathRelativeToRepositoryRoot: $('#fileName').val(),
+									ProjectPathRelativeToRepositoryRoot: $('#projectName').val()
 								}),
-							function() {
+							function () {
 								amplify.publish('newItem', $('#fileName').val());
 								location.hash = $('#fileName').val();
 								$('#newItemDialog').modal('hide');
 							});
-					});
 				});
-		});
+			});
+				});
+
+		function validateAddItemDialog() {
+			if (!$('#fileName').val() || $('#fileName').val().endsWith('\\')) {
+				alert("File name should't be empty");
+				return false;
+			}
+			if (!$('#projectName').val()) {
+				alert("Project name shouldn't be empty");
+				return false;
+			}
+			return true;
+		}
 	</script>
 </content>
