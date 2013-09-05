@@ -500,9 +500,9 @@
     </Content>
     <Content Include="Features\Remotes\RetrieveButtons.spark" />
     <Content Include="Features\ProjectManagement\AddItem\AddItem.spark" />
-    <None Include="Content\styles\fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Content\styles\fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="Content\styles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\styles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\styles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\styles\fonts\glyphicons-halflings-regular.woff" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
