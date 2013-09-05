@@ -116,15 +116,16 @@
 				});
 
 		function validateAddItemDialog() {
+			var valid = true;
 			if (!$('#fileName').val() || $('#fileName').val().endsWith('\\')) {
 				alert("File name should't be empty");
-				return false;
+				valid = false;
 			}
 			if (!$('#projectName').val()) {
 				alert("Project name shouldn't be empty");
-				return false;
+				valid = false;
 			}
-			return true;
+			return valid;
 		}
 	</script>
 </content>

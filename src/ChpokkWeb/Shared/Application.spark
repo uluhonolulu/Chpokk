@@ -36,7 +36,7 @@
 	</div>
 	<use content="view" />
 	
-	<div class="container" id="alertContainer" style="position: absolute; top:200px; left: 20%; z-index: 4;"></div>
+	<div class="container" id="alertContainer"></div>
 		
 	<!-- Dialogs -->
 	<use content="Dialogs" />

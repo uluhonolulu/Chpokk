@@ -303,6 +303,10 @@ div#title
 /*misc*/
 .well-small { padding: 10px;}
 
+
+#alertContainer {position: fixed; top:200px; z-index: 4; text-align: center; width: 90%;}
+
+
 /*popover*/
 .popover-content ul { padding-left: 10px;}
 
