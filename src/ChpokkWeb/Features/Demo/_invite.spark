@@ -76,7 +76,7 @@
 		{
 			line-height: 18px;
 		}
-		/*html #invitecontainer
+		html #invitecontainer
 		{
 			background-color: #FFFFFF;
 			width: 400px;

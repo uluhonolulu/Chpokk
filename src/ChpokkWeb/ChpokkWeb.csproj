@@ -294,6 +294,7 @@
     <Content Include="Content\scripts\main_tour.js" />
     <Content Include="Content\scripts\specs\IntelManager.spec.js" />
     <Content Include="Content\scripts\specs\white.spec.js" />
+    <Content Include="Content\styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\styles\lib\bootstrap-tour.css" />
     <Content Include="Content\styles\lib\bootstrap.css" />
     <Content Include="Content\styles\lib\bootstrap.min.css" />
@@ -499,6 +500,9 @@
     </Content>
     <Content Include="Features\Remotes\RetrieveButtons.spark" />
     <Content Include="Features\ProjectManagement\AddItem\AddItem.spark" />
+    <None Include="Content\styles\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Content\styles\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="Content\styles\fonts\glyphicons-halflings-regular.woff" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -586,6 +590,7 @@
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Shared\_global.spark" />
     <Content Include="Shared\_convert.spark" />
+    <Content Include="Shared\_Features.spark" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />

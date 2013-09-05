@@ -1,0 +1,283 @@
+﻿<h1>Feature availability</h1>
+<p>Don't forget that you can influence which features are implemented first! Just fote for existing ideas or add a new one <a href="https://chpokk.uservoice.com/forums/176999-general" target="_blank">here</a>.</p>
+<table id="features" class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>
+				At your service<br/>
+				<span style="font-size: smaller;">Request an invite and use this feature now</span>
+			</th>
+			<th>
+				Pretty soon<br/>
+				<span style="font-size: smaller;">September-October 2013</span>
+
+			</th>
+			<th>
+				Somewhat soon<br/>
+				<span style="font-size: smaller;">If you need this feature badly, leave a request for it</span>
+			</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th colspan="4">Language support</th>
+		</tr>
+		<tr>
+			<td>C#</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				VB.Net
+			</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				F#
+			</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IronRuby
+			</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Boo
+			</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Other (non-code) files: HTML, Javascript etc
+			</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="4">Editor features</th>
+		</tr>
+		<tr>
+			<td>Ace editor</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Syntax check</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Intellisense</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Refactoring</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="4">Project management</th>
+		</tr>
+		<tr>
+			<td>Adding a class</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Adding a project</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Editing project properties</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Adding file references</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Adding GAC references</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Adding NuGet references</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Creating a solution</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Compiling the solution</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Running the output as a console program</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+		<tr>
+			<td>Debugging your code</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+			<th colspan="4">Load existing code</th>
+		</tr>
+		<tr>
+			<td>From a zipped project</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>From a Git repository</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>From Dropbox</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>From a Subversion repository</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>From a Mercurial repository</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>From GDrive</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>From TFS</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="4">Other features</th>
+		</tr>
+		<tr>
+			<td>Interactive code window</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Unit testing</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+
+	</tbody>
+</table>
