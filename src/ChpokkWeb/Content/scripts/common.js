@@ -29,7 +29,7 @@ $(function () {
 	});
 
 	//track button clicks
-	$('.btn, a').click(function (e) {
+	$(document).on('click', '.btn, a', function (e) {
 		var button = e.target;
 		var buttonId = button.id || $(button).text();
 		var data = { ButtonName: buttonId, Url: window.location.toString() };
