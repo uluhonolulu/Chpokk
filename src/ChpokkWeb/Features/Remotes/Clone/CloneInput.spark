@@ -1,5 +1,7 @@
 ﻿<a data-toggle="modal" href="#openCloneDialog"  class="btn  btn-default btn-sm" id="cloneDialogOpener">Clone a Git repository</a>
 
+<content name="Dialogs">
+	<!--CloneInput-->
 <div class="modal fade" id="openCloneDialog">
 	<div class="modal-dialog">
 	<div class="modal-content">
@@ -18,7 +20,7 @@
 			<label>Username (leave empty for public repositories, but you won't be able to push it back)</label>
 			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
 			<label>Password</label>
-			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%")}
+			!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}
 			</form>
 		</div>
 		<div class="modal-footer">
@@ -33,6 +35,7 @@
 	</div>
 </div>
 
+</content>
 <!-- tooltip -->
 <div class="popover hide" id="clone_info" placement="bottom">
 	<div class="popover-title">Clone a repository</div>
