@@ -35,11 +35,23 @@
 			var editor = ace.edit("ace");
 			editor.setTheme("ace/theme/clouds");
 			editor.getSession().setMode("ace/mode/csharp");
+			var codeCompleter = {
+				getCompletions: function(editor, session, pos, prefix, callback) {
+					$.post('/editor/intellisense/getintellisensedata', {}, function(data) {
+						var items = [data.Items[0].Name];
+						var completionData = $.map(items, function(item) {
+							return { name: item, value: item + '()', score: 0, meta: 'code' };
+						});
+						callback(null, completionData);
+					});
+				}
+			};
 			// enable autocompletion and snippets
 			editor.setOptions({
 				enableBasicAutocompletion: true,
 				enableSnippets: true
 			});
+			editor.completers = [codeCompleter];
 			amplify.subscribe('loadFileRequest', function(data) {
 				loadFile(data.path, editor);
 			});
@@ -47,6 +59,7 @@
 			//gathering and sorting: 1054
 			//editor/intellisense/getintellisensedata
 		});
+
 		function loadFile(path, editor) {
 			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
 			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
