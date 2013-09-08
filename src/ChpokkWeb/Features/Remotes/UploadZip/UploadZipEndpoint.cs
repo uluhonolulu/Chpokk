@@ -21,6 +21,10 @@ namespace ChpokkWeb.Features.Remotes.UploadZip {
 		}
 
 		public AjaxContinuation Upload(UploadZipInputModel model) {
+			if (model.ZippedRepository == null) {
+				//no file
+				return AjaxContinuation.Successful();
+			}
 			var repositoryName = Path.GetFileNameWithoutExtension(model.ZippedRepository.FileName);
 			var repositoryPath = _repositoryManager.GetAbsolutePathFor(repositoryName, model.PhysicalApplicationPath);
 			_zipper.UnzipStream(repositoryPath, model.ZippedRepository.InputStream);
