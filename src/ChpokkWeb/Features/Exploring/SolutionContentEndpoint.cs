@@ -28,6 +28,9 @@ namespace ChpokkWeb.Features.Exploring {
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
 			var items = GetSolutionRepositoryItems(model.RepositoryName, model.PhysicalApplicationPath);
+			if (!items.Any()) {
+				throw new ApplicationException("No solution file found in the source. Please upload your files together with the solution file.");
+			}
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
 
