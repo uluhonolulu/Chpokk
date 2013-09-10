@@ -38,9 +38,8 @@
 			var codeCompleter = {
 				getCompletions: function(editor, session, pos, prefix, callback) {
 					$.post('/editor/intellisense/getintellisensedata', {}, function(data) {
-						var items = [data.Items[0].Name];
-						var completionData = $.map(items, function(item) {
-							return { name: item, value: item + '()', score: 0, meta: 'code' };
+						var completionData = $.map(data.Items, function(item) {
+							return { name: item.Name, value: item.Name, score: 0, meta: 'code' };
 						});
 						callback(null, completionData);
 					});
