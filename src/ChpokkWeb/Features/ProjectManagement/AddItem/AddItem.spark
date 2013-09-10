@@ -29,7 +29,8 @@
 				<label>File name</label>
 				<input class="form-control" name="PathRelativeToRepositoryRoot" id="fileName"/>
 				<label>Project</label>
-				<input class="form-control" name="ProjectPathRelativeToRepositoryRoot" id="projectName"/>
+				<span id="projectNameDisplay"></span>
+				<input type="hidden" name="ProjectPathRelativeToRepositoryRoot" id="projectName"/>
 	
 			</div>
 			<div class="modal-footer">
@@ -92,7 +93,7 @@
 						projectLink = $(this).parents(':has(>a[type="project"])').find('>a');
 					var projectPath = projectLink.data('path');
 					$('#projectName').val(projectPath);
-
+					$('#projectNameDisplay').html(projectPath);
 				});
 				$('#newItemDialog #addSelectedItemButton').one('click', function () {
 					var validated = validateAddItemDialog();
