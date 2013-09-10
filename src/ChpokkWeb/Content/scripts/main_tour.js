@@ -9,7 +9,7 @@
 				{
 					element: '#brand',
 					title: "Get started",
-					content: "Chpokk needs your .Net code to work with. Several options are supported.",
+					content: "Chpokk needs your .Net code to work with. You should upload your projects, including the *.sln and *.csproj/*.vbproj files, and referenced assemblies. Several options are supported.",
 					placement: 'bottom'
 				},
 				{
