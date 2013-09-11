@@ -34,8 +34,7 @@ namespace ChpokkWeb.Features.Authentication {
 					return FubuContinuation.RedirectTo<MainDummyModel>();
 				}
 				catch (Exception exception) {
-					if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Authentification error", rawResponse);
-					throw;
+					throw new ApplicationException("Authentification error: " + rawResponse, exception);
 				}
 			}
 			return FubuContinuation.EndWithStatusCode(HttpStatusCode.Unauthorized);
