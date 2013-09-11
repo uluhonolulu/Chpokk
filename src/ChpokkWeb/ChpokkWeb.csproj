@@ -292,6 +292,7 @@
     <Content Include="Content\scripts\lib\sinon-1.2.0.js" />
     <Content Include="Content\scripts\lib\URI.js" />
     <Content Include="Content\scripts\main_tour.js" />
+    <Content Include="Content\scripts\onerror.js" />
     <Content Include="Content\scripts\specs\IntelManager.spec.js" />
     <Content Include="Content\scripts\specs\white.spec.js" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.svg" />
