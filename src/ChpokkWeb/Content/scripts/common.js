@@ -39,6 +39,14 @@ $(function () {
 
 });
 
+//track errors
+window.onerror = function (exception, url, line) {
+	var data = { Message: exception, Url: url, LineNumber: line };
+	var targetUrl = 'url::ChpokkWeb.Features.CustomerDevelopment.ErrorModel';
+	$.post(targetUrl, data);
+};
+//throw new Error("Oh oh, an error has occured");
+
 function danger(message) {
 	var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
 	$.tmpl(alertTemplate, {message: message}).appendTo($('#alertContainer'));

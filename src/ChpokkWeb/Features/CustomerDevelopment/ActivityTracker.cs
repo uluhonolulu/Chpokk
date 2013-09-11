@@ -8,7 +8,7 @@ using FubuCore;
 
 namespace ChpokkWeb.Features.CustomerDevelopment {
 	public class ActivityTracker: IDisposable {
-		private readonly List<ClickTrackerInputModel> _log = new List<ClickTrackerInputModel>();
+		private readonly List<ITrack> _log = new List<ITrack>();
 		private readonly SmtpClient _mailer;
 		public ActivityTracker(SmtpClient mailer) {
 			_mailer = mailer;
@@ -27,12 +27,15 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			string userName = UserName?? "anonymous" + DateTime.Now.Second;
 			messageBuilder.AppendLine("User: " + userName);
 			foreach (var model in _log) {
-				messageBuilder.AppendLine("Url: {0}, button: {1}".ToFormat(model.Url, model.ButtonName));
+				messageBuilder.AppendLine(model.ToString());
 			}
 			if (_mailer.Host != null) _mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Actions for " + userName, messageBuilder.ToString());
 
 		}
 
 		public string UserName { get; set; }
+		public void RecordException(ErrorModel model) {
+			_log.Add(model);
+		}
 	}
 }
