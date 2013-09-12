@@ -36,6 +36,13 @@ $(function () {
 		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
 		$.post(url, data);
 	});
+	
+	//track janrain cancel
+	$(document).on('click', '#janrainModal > img', function (e) {
+		var data = { ButtonName: "Cancel login", Url: window.location.toString() };
+		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
+		$.post(url, data);
+	});
 
 });
 
