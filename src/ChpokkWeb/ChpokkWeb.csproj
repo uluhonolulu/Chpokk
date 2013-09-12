@@ -615,10 +615,10 @@
     <Compile Include="Features\Editor\Colorizer\ColorizerController.cs" />
     <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
     <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
-    <Compile Include="Features\Editor\Compilation\Compiler.cs" />
-    <Compile Include="Features\Editor\Compilation\CompilerEndpoint.cs" />
-    <Compile Include="Features\Editor\Compilation\ParserController.cs" />
-    <Compile Include="Features\Editor\Compilation\ParserInputModel.cs" />
+    <Compile Include="Features\Compilation\Compiler.cs" />
+    <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
+    <Compile Include="Features\Editor\Parsing\ParserController.cs" />
+    <Compile Include="Features\Editor\Parsing\ParserInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
