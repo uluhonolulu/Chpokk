@@ -15,6 +15,10 @@ try {
 }
 if (!localStorageOk) {
 	alert("Your browser's security settings are not compatible with some of the Chpokk's features. \r\nPlease run your browser as administrator, or use a different browser.");
+	$(function() {
+		throw new Error("Problem accessing window.localStorage");
+	});
+	
 }
 
 
