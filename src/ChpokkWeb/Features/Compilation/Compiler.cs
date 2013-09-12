@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using ChpokkWeb.Features.Editor.Intellisense;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.CSharp;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using ICSharpCode.SharpDevelop.Dom.VBNet;
 
-namespace ChpokkWeb.Features.Editor.Compilation {
+namespace ChpokkWeb.Features.Compilation {
 	public class Compiler {
 		public ICompilationUnit Compile(IProjectContent projectContent, TextReader textReader, SupportedLanguage language) {
 			var compilationUnit = ParseCode(projectContent, textReader, language);

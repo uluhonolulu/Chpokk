@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using ChpokkWeb.Features.Editor.Compilation;
 using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using ICSharpCode.SharpDevelop.Dom;

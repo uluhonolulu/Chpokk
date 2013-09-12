@@ -6,7 +6,7 @@ using Arractas;
 using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
-using ChpokkWeb.Features.Editor.Compilation;
+using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.ProjectManagement;
 using Gallio.Framework;
 using ICSharpCode.NRefactory;

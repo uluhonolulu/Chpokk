@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
-using ChpokkWeb.Features.Editor.Compilation;
+using ChpokkWeb.Features.Editor.Parsing;
 using FubuMVC.Core.Ajax;
 using Gallio.Framework;
 using MbUnit.Framework;
@@ -22,7 +22,7 @@ namespace Chpokk.Tests.Intellisense.UnitTests.VbParser {
 		}
 
 		public override AjaxContinuation Act() {
-			var controller = Context.Container.Get<ParserController>();
+			var controller = Context.Container.Get<ParserEndpoint>();
 			var content = "Class A" + Environment.NewLine + "End Class";
 			var model = new ParserInputModel() {Content = content, PathRelativeToRepositoryRoot = "stuff.vb", PhysicalApplicationPath = Context.AppRoot, RepositoryName = String.Empty};
 			return controller.Parse(model);

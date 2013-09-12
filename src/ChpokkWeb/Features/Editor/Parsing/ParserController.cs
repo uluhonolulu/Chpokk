@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
+﻿using System.IO;
 using ChpokkWeb.Features.LanguageSupport;
 using FubuMVC.Core.Ajax;
 using ICSharpCode.NRefactory;
 
 // use ICSharpCode.NRefactory.ParserFactory to create a parser based on filename
 
-namespace ChpokkWeb.Features.Editor.Compilation {
-	public class ParserController {
+namespace ChpokkWeb.Features.Editor.Parsing {
+	public class ParserEndpoint {
 		private readonly LanguageDetector _languageDetector;
-		public ParserController(LanguageDetector languageDetector) {
+		public ParserEndpoint(LanguageDetector languageDetector) {
 			_languageDetector = languageDetector;
 		}
 

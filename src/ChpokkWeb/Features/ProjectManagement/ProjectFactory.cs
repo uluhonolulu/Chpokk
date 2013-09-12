@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using CSharpBinding;
-using ChpokkWeb.Features.Editor.Compilation;
+using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.LanguageSupport;
 using FubuCore;

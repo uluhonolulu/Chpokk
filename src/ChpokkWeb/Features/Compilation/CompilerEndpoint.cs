@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using FubuMVC.Core.Ajax;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 
-namespace ChpokkWeb.Features.Editor.Compilation {
+namespace ChpokkWeb.Features.Compilation {
 	public class CompilerEndpoint {
 		public AjaxContinuation DoIt(CompileInputModel model) {
 			var projectCollection = ProjectCollection.GlobalProjectCollection;
