@@ -272,6 +272,8 @@
     <Content Include="Content\scripts\lib\ace\ext-whitespace.js" />
     <Content Include="Content\scripts\lib\ace\mode-csharp.js" />
     <Content Include="Content\scripts\lib\ace\mode-vbscript.js" />
+    <Content Include="Content\scripts\lib\ace\snippets\csharp.js" />
+    <Content Include="Content\scripts\lib\ace\snippets\vbscript.js" />
     <Content Include="Content\scripts\lib\ace\theme-clouds.js" />
     <Content Include="Content\scripts\lib\ace\theme-github.js" />
     <Content Include="Content\scripts\lib\ace\theme-twilight.js" />
