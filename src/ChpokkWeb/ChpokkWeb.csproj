@@ -630,6 +630,7 @@
     <Compile Include="Features\MainScreen\Tour\TourModel.cs" />
     <Compile Include="Features\ProjectManagement\AddItem\AddItemEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
+    <Compile Include="Features\ProjectManagement\ProjectLoader.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />

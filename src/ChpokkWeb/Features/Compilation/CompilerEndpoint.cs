@@ -8,22 +8,30 @@ using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class CompilerEndpoint {
+		private readonly ProjectCollection _projectCollection;
+		private readonly ChpokkLogger _logger;
+		public CompilerEndpoint(ProjectCollection projectCollection, ChpokkLogger logger) {
+			_projectCollection = projectCollection;
+			_logger = logger;
+		}
+
 		public AjaxContinuation DoIt(CompileInputModel model) {
-			var projectCollection = ProjectCollection.GlobalProjectCollection;
-			var logger = new ChpokkLogger();
-			projectCollection.RegisterLogger(logger);
-			var projectFilePath = FileSystem.Combine(model.PhysicalApplicationPath,
-										  @"UserFiles\uluhonolulu\Chpokk-SampleSol\src\ConsoleApplication1\ConsoleApplication1.csproj");
-			var project = projectCollection.LoadProject(projectFilePath);
+			_projectCollection.RegisterLogger(_logger);
+			var projectFilePath = FileSystem.Combine(model.PhysicalApplicationPath, model.ProjectPath);
+			var project = _projectCollection.LoadProject(projectFilePath);
 			bool result = project.Build();
+			_projectCollection.UnregisterAllLoggers();
+
 			var ajaxContinuation = AjaxContinuation.Successful();
 			ajaxContinuation.Message = "Success: " + result.ToString();
-			ajaxContinuation.Errors.AddRange(from message in logger.Messages select new AjaxError() {message = message});
+			ajaxContinuation.Errors.AddRange(from message in _logger.Messages select new AjaxError() {message = message});
 			return ajaxContinuation;
 		}
 	}
 
-	public class CompileInputModel: BaseRepositoryInputModel {}
+	public class CompileInputModel: BaseRepositoryInputModel {
+		public string ProjectPath { get; set; }
+	}
 
 	public class ChpokkLogger: ILogger {
 		public ChpokkLogger() {
