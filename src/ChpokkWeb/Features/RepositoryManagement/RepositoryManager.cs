@@ -31,6 +31,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			return appRoot.AppendPath(this.GetPathFor(repositoryName));
 		}
 
+		[NotNull]
+		public string GetAbsolutePathFor(string repositoryName, string appRoot, string pathRelativeToRepositoryRoot) {
+			return GetAbsolutePathFor(repositoryName, appRoot).AppendPath(pathRelativeToRepositoryRoot);
+		}
+
 		public RepositoryInfo GetClonedRepositoryInfo([NotNull] string url) {
 			var name = url.GetFileNameUniversal().RemoveExtension();
 			return GetRepositoryInfo(name);

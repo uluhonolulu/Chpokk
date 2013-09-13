@@ -6,6 +6,7 @@
 </for>
 <button id="parseButton" class="btn btn-default btn-sm">Syntax check</button>
 <button id="newItemButton" class="btn btn-default btn-sm">New item</button>
+<button id="compileButton" class="btn btn-default btn-sm">Compile</button>
 
 <content name="InlineScripts">
 	<!-- EditorMenu -->
@@ -36,7 +37,7 @@
 				}
 			});
 
-			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Compilation.ParserInputModel>()}';
+			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Parsing.ParserInputModel>()}';
 			$('#parseButton').click(function () {
 				if (model.PathRelativeToRepositoryRoot) {
 					var editor = ace.edit("ace");
@@ -56,8 +57,15 @@
 
 			});
 
+			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
+			$('#compileButton').click(function() {
+				$.post(compileUrl, model, function(continuation) {
+					for (var error in continuation.errors) {
+						info(continuation.errors[error].message);
+					}
 
-
+				});
+			});
 		});
 	</script>
 </content>

@@ -60,6 +60,7 @@
 					editor.setValue(data.Content);
 					editor.resize();
 					model.PathRelativeToRepositoryRoot = path;
+					model.ProjectPath = projectPath;
 				}
 			});
 		}		
