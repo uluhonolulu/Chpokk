@@ -29,8 +29,9 @@ namespace Chpokk.Tests.Exploring {
 				Directory.CreateDirectory(RepositoryRoot);
 		}
 
-		public void Dispose() {
+		public override void Dispose() {
 			DirectoryHelper.DeleteDirectory(RepositoryRoot);
+			base.Dispose();
 		}
 	}
 }

@@ -25,6 +25,7 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
+			font-family: droid-sans-mono, sans-serif;
 		}
 	</style>
 	<script type="text/javascript">
@@ -65,6 +66,8 @@
 			});
 		}		
 	</script>
+
+	<script src="//use.edgefonts.net/droid-sans-mono.js"></script>
 	
 </content>
 

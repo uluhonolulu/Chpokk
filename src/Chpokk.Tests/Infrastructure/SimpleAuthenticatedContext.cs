@@ -10,7 +10,7 @@ namespace Chpokk.Tests.Infrastructure {
 			this.FakeSecurityContext.UserName = "ulu";
 		}
 
-		public void Dispose() {
+		public virtual void Dispose() {
 			this.FakeSecurityContext.UserName = null;
 		}
 	}
