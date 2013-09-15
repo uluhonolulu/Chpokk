@@ -20,22 +20,17 @@ namespace ChpokkWeb.Features.Compilation {
 		}
 
 		public AjaxContinuation DoIt(CompileInputModel model) {
-			//_logger.Verbosity = LoggerVerbosity.Minimal;
-			_projectCollection.RegisterLogger(_logger);
-			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
-			                                                            model.ProjectPath);
-			var project = _projectCollection.LoadProject(projectFilePath);
-			var result = project.Build();
-			foreach (var @event in _logger.Events.OfType<BuildErrorEventArgs>()) {
-				Console.WriteLine(@event.ToString() + ": " + @event.Message);
+			try {
+				_projectCollection.RegisterLogger(_logger);
+				var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
+				                                                            model.ProjectPath);
+				var project = _projectCollection.LoadProject(projectFilePath);
+				var result = project.Build();
+				return new AjaxContinuation {Success = result, Message = _logger.GetLogMessage()};
 			}
-			_projectCollection.UnregisterAllLoggers();
-
-			var ajaxContinuation = AjaxContinuation.Successful();
-			ajaxContinuation.Success = result;
-			//ajaxContinuation.Message = "Success: " + result.ToString();
-			ajaxContinuation.Errors.AddRange(from message in _logger.Messages select new AjaxError() {message = message});
-			return ajaxContinuation;
+			finally {
+				_projectCollection.UnregisterAllLoggers();
+			}
 		}
 	}
 

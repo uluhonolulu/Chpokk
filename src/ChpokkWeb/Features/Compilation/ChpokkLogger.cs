@@ -1,31 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Microsoft.Build.Framework;
+using System.Linq;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class ChpokkLogger: ILogger {
 		public ChpokkLogger() {
-			Messages = new List<string>();
 			Events = new List<BuildEventArgs>();
+			Verbosity = LoggerVerbosity.Minimal;
 		}
 
-		public List<string> Messages { get; set; }
 		public List<BuildEventArgs> Events { get; set; }
 
 		public void Initialize(IEventSource eventSource) {
 			eventSource.AnyEventRaised += (sender, args) => Events.Add(args);
-			eventSource.MessageRaised += (sender, args) =>
-			{
-				if (args.Importance == MessageImportance.High) {
-					Messages.Add(args.Message);
-				}
-				
-			};
-			eventSource.ProjectFinished += (sender, args) => Messages.Add(args.Message);
-			eventSource.ErrorRaised += (sender, args) => Messages.Add("Error: " + args.Message);
 		}
 		public void Shutdown() {}
 		public LoggerVerbosity Verbosity { get; set; }
 		public string Parameters { get; set; }
+
+		public string GetLogMessage() {
+			var builder = new StringBuilder();
+			foreach (var @event in Events.OfType<BuildErrorEventArgs>()) {
+				var message = "Error: {0} ({1}, line {2})".ToFormat(@event.Message, @event.File, @event.LineNumber);
+				builder.AppendLine(message);
+			}
+			foreach (var @event in Events.OfType<ProjectFinishedEventArgs>()) {
+				builder.AppendLine(@event.Message);
+			}
+			foreach (var @event in Events.OfType<BuildFinishedEventArgs>()) {
+				builder.AppendLine(@event.Message);
+			}
+			return builder.ToString();
+		}
 	}
 }

@@ -20,7 +20,7 @@ namespace Chpokk.Tests.Compilation {
 		}
 	}
 
-	public class ProjectWithInvalidCodeFileContext : PhysicalCodeFileContext {
+	public class ProjectWithInvalidCodeFileContext : BuildableProjectWithSingleRootFileContext {
 		public override void Create() {
 			base.Create();
 			Container.Get<IFileSystem>().WriteStringToFile(FilePath, "blah blah error");
