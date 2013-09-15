@@ -14,7 +14,7 @@ namespace Chpokk.Tests.Run {
 		public void Test() {
 			var path =
 				@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\__anonymous__\Chpokk-SampleSol\src\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe";
-			var appDomain = AppDomain.CreateDomain("runner", null, @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\__anonymous__\Chpokk-SampleSol\src\ConsoleApplication1\bin\Debug\", "", false);
+			var appDomain = AppDomain.CreateDomain("runner");
 			var loader = (AssemblyLoader) appDomain.CreateInstanceFromAndUnwrap(typeof(AssemblyLoader).Assembly.CodeBase,
 			                                                                               typeof (AssemblyLoader).FullName, null);
 			Assert.DoesNotExist(AppDomain.CurrentDomain.GetAssemblies(), assembly => assembly.FullName.Contains("ConsoleApplication1"));
