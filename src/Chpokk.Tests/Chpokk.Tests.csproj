@@ -298,6 +298,7 @@
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
+    <Compile Include="Run\AssemblyLoader.cs" />
     <Compile Include="Run\RunningValidCode.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
