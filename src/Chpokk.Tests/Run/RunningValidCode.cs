@@ -18,7 +18,8 @@ namespace Chpokk.Tests.Run {
 			var loader = (AssemblyLoader) appDomain.CreateInstanceFromAndUnwrap(typeof(AssemblyLoader).Assembly.CodeBase,
 			                                                                               typeof (AssemblyLoader).FullName, null);
 			Assert.DoesNotExist(AppDomain.CurrentDomain.GetAssemblies(), assembly => assembly.FullName.Contains("ConsoleApplication1"));
-			//
+			loader.Run(path);
+			AppDomain.Unload(appDomain);
 		}
 	}
 
