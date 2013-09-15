@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using Arractas;
+using Chpokk.Tests.Exploring;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -10,13 +12,42 @@ using FubuCore;
 
 namespace Chpokk.Tests.Run {
 	[TestFixture]
-	public class RunningValidCode {
+	public class RunningValidCode : BaseCommandTest<CompiledExeContext> {
 		[Test]
-		public void CanCompile() {
-			var code = "class program {static void Main(){}}";
-			var path = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\program.cs";
-			var exePath = Compile(path, code);
-			Assert.IsTrue(File.Exists(exePath));
+		public void CanRunTheMainMethod() {
+		}
+
+		[Test, DependsOn("CanRunTheMainMethod")]
+		public void TheAssemblyIsNotLocked() {
+			Assert.DoesNotExist(AppDomain.CurrentDomain.GetAssemblies(), assembly => assembly.FullName.Contains(Path.GetFileNameWithoutExtension(Context.ExePath)));
+		}
+
+		public override void Act() {
+			var appDomain = AppDomain.CreateDomain("runner");
+			var exePath = Context.ExePath;
+			try {
+				var loader = (AssemblyLoader) appDomain.CreateInstanceFromAndUnwrap(typeof(AssemblyLoader).Assembly.CodeBase, typeof (AssemblyLoader).FullName, null);
+				loader.Run(exePath);
+			}
+			finally {
+				AppDomain.Unload(appDomain);			
+			}
+		}
+	}
+
+	public class CompiledExeContext: RepositoryFolderContext {
+
+		public override void Create() {
+			base.Create();
+			var code = Code;
+			var path = Path.Combine(this.RepositoryRoot, "program.cs");
+			this.ExePath = Compile(path, code);
+		}
+
+		public string ExePath { get; private set; }
+
+		protected virtual string Code {
+			get { return "class program {static void Main(){}}"; }
 		}
 
 		public static string Compile(string path, string code) {
@@ -40,18 +71,6 @@ namespace Chpokk.Tests.Run {
 			var exeFileName = Path.GetFileNameWithoutExtension(fileName) + ".exe";
 			var exePath = Path.Combine(path.ParentDirectory(), exeFileName);
 			return exePath;
-		}
-
-		[Test]
-		public void Test() {
-			var path =
-				@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\__anonymous__\Chpokk-SampleSol\src\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe";
-			var appDomain = AppDomain.CreateDomain("runner");
-			var loader = (AssemblyLoader) appDomain.CreateInstanceFromAndUnwrap(typeof(AssemblyLoader).Assembly.CodeBase,
-			                                                                               typeof (AssemblyLoader).FullName, null);
-			Assert.DoesNotExist(AppDomain.CurrentDomain.GetAssemblies(), assembly => assembly.FullName.Contains("ConsoleApplication1"));
-			loader.Run(path);
-			AppDomain.Unload(appDomain);
 		}
 	}
 }
