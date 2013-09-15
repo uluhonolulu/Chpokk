@@ -1,0 +1,23 @@
+﻿<content name="InlineScripts">
+	<!--Compile-->
+	<script type="text/javascript">
+		$(function() {
+			$('#compileButton').click(function() {
+				if (model.ProjectPath) {
+					var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
+					$.post(compileUrl, model, function(continuation) {
+						if (continuation.success) {
+							success(continuation.message);
+						} else {
+							danger(continuation.message);
+						}
+
+					});				
+				} else {
+					alert("Don't know what to compile. Please open a file first.");
+				}
+
+			});
+		})
+	</script>
+</content>

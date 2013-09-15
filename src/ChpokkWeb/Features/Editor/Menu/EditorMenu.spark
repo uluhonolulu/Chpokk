@@ -57,17 +57,6 @@
 
 			});
 
-			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
-			$('#compileButton').click(function() {
-				$.post(compileUrl, model, function(continuation) {
-					if (continuation.success) {
-						success(continuation.message);
-					} else {
-						danger(continuation.message);
-					}
-
-				});
-			});
 		});
 	</script>
 </content>
@@ -92,3 +81,4 @@
 </div>
 
 <render partial="ProjectManagement\AddItem\AddItem" />
+<render partial="Compilation\Compile" />

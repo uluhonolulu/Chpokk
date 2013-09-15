@@ -506,6 +506,7 @@
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Features\Compilation\Compile.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
