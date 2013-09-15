@@ -31,7 +31,7 @@ namespace ChpokkWeb.Features.Compilation {
 				builder.AppendLine(@event.Message);
 			}
 			foreach (var @event in Events.OfType<BuildFinishedEventArgs>()) {
-				builder.AppendLine(@event.Message);
+				//builder.AppendLine(@event.Message);
 			}
 			return builder.ToString();
 		}

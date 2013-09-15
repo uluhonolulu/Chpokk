@@ -60,8 +60,10 @@
 			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
 			$('#compileButton').click(function() {
 				$.post(compileUrl, model, function(continuation) {
-					for (var error in continuation.errors) {
-						info(continuation.errors[error].message);
+					if (continuation.success) {
+						success(continuation.message);
+					} else {
+						danger(continuation.message);
 					}
 
 				});

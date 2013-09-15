@@ -46,16 +46,18 @@ $(function () {
 
 });
 
+(function() {
+	var alertTemplate = '<div class="alert alert-dismissable alert-${type}" style=\'white-space:pre;\'> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
+	function getAlertFunction(type) {
+		return function(message) {
+			$.tmpl(alertTemplate, {type:type, message: message}).appendTo($('#alertContainer'));
+		};
+	}
 
-function danger(message) {
-	var alertTemplate = '<div class="alert alert-dismissable  alert-danger"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
-	$.tmpl(alertTemplate, {message: message}).appendTo($('#alertContainer'));
-}
-
-function info(message) {
-	var infoTemplate = '<div class="alert alert-dismissable  alert-info"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> ${message} </div>';
-	$.tmpl(infoTemplate, {message: message}).appendTo($('#alertContainer'));
-}
+	window.danger = getAlertFunction('danger');
+	window.success = getAlertFunction('success');
+	window.info = getAlertFunction('info');
+}());
 
 // util
 function currentTime() {
