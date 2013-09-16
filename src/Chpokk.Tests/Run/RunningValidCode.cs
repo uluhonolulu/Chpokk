@@ -23,15 +23,8 @@ namespace Chpokk.Tests.Run {
 		}
 
 		public override void Act() {
-			var appDomain = AppDomain.CreateDomain("runner");
 			var exePath = Context.ExePath;
-			try {
-				var loader = (AssemblyLoader) appDomain.CreateInstanceFromAndUnwrap(typeof(AssemblyLoader).Assembly.CodeBase, typeof (AssemblyLoader).FullName, null);
-				loader.Run(exePath);
-			}
-			finally {
-				AppDomain.Unload(appDomain);			
-			}
+			Context.Container.Get<ExeRunner>().RunMain(exePath);
 		}
 	}
 
