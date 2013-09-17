@@ -5,32 +5,24 @@ using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using FubuMVC.Core.Ajax;
-using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class CompilerEndpoint {
-		private readonly ProjectCollection _projectCollection;
 		private readonly ChpokkLogger _logger;
 		private readonly RepositoryManager _repositoryManager;
-		public CompilerEndpoint(ProjectCollection projectCollection, ChpokkLogger logger, RepositoryManager repositoryManager) {
-			_projectCollection = projectCollection;
+		private readonly MsBuildCompiler _compiler;
+		public CompilerEndpoint(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler) {
 			_logger = logger;
 			_repositoryManager = repositoryManager;
+			_compiler = compiler;
 		}
 
 		public AjaxContinuation DoIt(CompileInputModel model) {
-			try {
-				_projectCollection.RegisterLogger(_logger);
-				var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
-				                                                            model.ProjectPath);
-				var project = _projectCollection.LoadProject(projectFilePath);
-				var result = project.Build();
-				return new AjaxContinuation {Success = result, Message = _logger.GetLogMessage()};
-			}
-			finally {
-				_projectCollection.UnregisterAllLoggers();
-			}
+			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
+				                                                        model.ProjectPath);
+			var result = _compiler.Compile(projectFilePath);
+			return new AjaxContinuation {Success = result, Message = _logger.GetLogMessage()};
 		}
 	}
 
