@@ -651,6 +651,8 @@
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListModel.cs" />
+    <Compile Include="Features\Running\AssemblyLoader.cs" />
+    <Compile Include="Features\Running\ExeRunner.cs" />
     <Compile Include="Features\Storage\Backup.cs" />
     <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />
     <Compile Include="Features\MainScreen\MainDummyModel.cs" />
