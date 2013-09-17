@@ -11,6 +11,9 @@ namespace ChpokkWeb.Features.Running {
 		public object Run(string exePath) {
 			var assembly = Assembly.LoadFrom(exePath);
 			var entryPoint = assembly.EntryPoint;
+			if (entryPoint == null) {
+				throw new InvalidOperationException("Can't run a non-exe file.");
+			}
 			var parameters = entryPoint.GetParameters();
 			var arguments = from parameter in parameters select GetDefaultValue(parameter.ParameterType);
 			try {
