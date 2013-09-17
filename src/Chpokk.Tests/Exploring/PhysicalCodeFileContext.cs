@@ -15,7 +15,11 @@ namespace Chpokk.Tests.Exploring {
 		protected void CreateFile() {
 			FilePath = FileSystem.Combine(SolutionFolder, PROJECT_NAME, FILE_NAME);
 			Console.WriteLine("Writing to " + FilePath);
-			Container.Get<IFileSystem>().WriteStringToFile(FilePath, "");
+			Container.Get<IFileSystem>().WriteStringToFile(FilePath, FileContent);
+		}
+
+		protected virtual string FileContent {
+			get { return ""; }
 		}
 	}
 }

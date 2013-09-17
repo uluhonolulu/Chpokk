@@ -1,35 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using Arractas;
-using CThru;
-using CThru.BuiltInAspects;
-using Chpokk.Tests.Exploring;
-using ChpokkWeb.Features.Compilation;
-using FubuMVC.Core.Ajax;
-using Gallio.Framework;
-using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
-using FubuCore;
-using LibGit2Sharp.Tests.TestHelpers;
-using Microsoft.Build.Exceptions;
-using Microsoft.Build.Framework;
+using Chpokk.Tests.Compilation;
 
-namespace Chpokk.Tests.Compilation {
-	[TestFixture]
-	public class EmptyCode : BaseQueryTest<BuildableProjectWithSingleRootFileContext, AjaxContinuation> {
-		[Test]
-		public void ShouldBeSuccessfull() {
-			Result.Success.ShouldBeTrue();
-		}
-
-		public override AjaxContinuation Act() {
-			var endpoint = Context.Container.Get<CompilerEndpoint>();
-			return endpoint.Compile(new CompileInputModel(){PhysicalApplicationPath = Context.AppRoot, ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME});
-		}
-	}
-
-	public class BuildableProjectWithSingleRootFileContext : PhysicalCodeFileContext {
+namespace Chpokk.Tests.Run {
+	public class BuildableProjectWithExeOutput: BuildableProjectWithSingleRootFileContext {
 		public override string ProjectFileContent {
 			get {
 				return @"<?xml version=""1.0"" encoding=""utf-8""?>
@@ -41,10 +17,9 @@ namespace Chpokk.Tests.Compilation {
 					<ProductVersion>8.0.30703</ProductVersion>
 					<SchemaVersion>2.0</SchemaVersion>
 					<ProjectGuid>{6FEA811B-AABB-465F-932F-D0FB930AAAB5}</ProjectGuid>
-					<OutputType>Library</OutputType>
+					<OutputType>Exe</OutputType>
 					<AppDesignerFolder>Properties</AppDesignerFolder>
-					<RootNamespace>ClassLibrary1</RootNamespace>
-					<AssemblyName>ClassLibrary1</AssemblyName>
+					<AssemblyName>Program</AssemblyName>
 					<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
 					<FileAlignment>512</FileAlignment>
 				  </PropertyGroup>
@@ -63,6 +38,12 @@ namespace Chpokk.Tests.Compilation {
 				  </ItemGroup>
 				  <Import Project=""$(MSBuildToolsPath)\Microsoft.CSharp.targets"" />
 				</Project>";
+			}
+		}
+
+		protected override string FileContent {
+			get {
+				return "class program {static void Main(){System.Console.Write(\"message\");}}";
 			}
 		}
 	}

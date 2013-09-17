@@ -298,6 +298,8 @@
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
+    <Compile Include="Run\BuildableProjectWithExeOutput.cs" />
+    <Compile Include="Run\CompileAndRunIntegration.cs" />
     <Compile Include="Run\CompiledExeContext.cs" />
     <Compile Include="Run\RunningCodeAndReturningAValue.cs" />
     <Compile Include="Run\RunningCodeBase.cs" />
