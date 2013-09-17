@@ -303,6 +303,7 @@
     <Compile Include="Run\ExeRunner.cs" />
     <Compile Include="Run\RunningCodeAndReturningAValue.cs" />
     <Compile Include="Run\RunningCodeBase.cs" />
+    <Compile Include="Run\RunningCodeThatThrowsAnException.cs" />
     <Compile Include="Run\RunningCodeWithArguments.cs" />
     <Compile Include="Run\RunningCodeWithOutput.cs" />
     <Compile Include="Run\RunningValidCode.cs" />
