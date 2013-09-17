@@ -14,15 +14,24 @@ namespace ChpokkWeb.Features.Compilation {
 			_logger = logger;
 		}
 
-		public bool Compile(string projectFilePath) {
+		public BuildResult Compile(string projectFilePath) {
 			_projectCollection.RegisterLogger(_logger);
 			try {
 				var project = _projectCollection.LoadProject(projectFilePath);
-				return project.Build();
+				var outputProperty = project.AllEvaluatedProperties.First(property => property.Name == "TargetPath");
+				var outputFilePath = outputProperty.EvaluatedValue;
+
+				var buildResult = project.Build();
+				return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath};
 			}
 			finally {
 				_projectCollection.UnregisterAllLoggers();
 			}
 		}
+	}
+
+	public class BuildResult {
+		public bool Success { get; set; }
+		public string OutputFilePath { get; set; }
 	}
 }

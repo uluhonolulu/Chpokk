@@ -7,6 +7,7 @@
 <button id="parseButton" class="btn btn-default btn-sm">Syntax check</button>
 <button id="newItemButton" class="btn btn-default btn-sm">New item</button>
 <button id="compileButton" class="btn btn-default btn-sm">Compile</button>
+<button id="runButton" class="btn btn-default btn-sm">Compile and run</button>
 
 <content name="InlineScripts">
 	<!-- EditorMenu -->

@@ -25,23 +25,25 @@ namespace ChpokkWeb.Features.Compilation {
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
 			var result = _compiler.Compile(projectFilePath);
-			return new AjaxContinuation {Success = result, Message = _logger.GetLogMessage()};
+			return new AjaxContinuation {Success = result.Success, Message = _logger.GetLogMessage()};
 		}
 
 		public AjaxContinuation CompileAndRun(CompileAndRunInputModel model) {
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
 			var compilationResult = _compiler.Compile(projectFilePath);
-			if (!compilationResult) {
+			if (!compilationResult.Success) {
 				return new AjaxContinuation { Success = false, Message = _logger.GetLogMessage() };
 			}
 
 			//now, RUN!!!
-			var exePath = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\Perka\src\ProjectName\bin\Debug\Program.exe";
+			var exePath = compilationResult.OutputFilePath;
 			var runnerResult = _exeRunner.RunMain(exePath);
 			var success = runnerResult.ErrorOutput.IsEmpty();
-			var message = string.Concat(runnerResult.StandardOutput, runnerResult.ErrorOutput,
-			                            "The program exited with code " + runnerResult.Result?? "null");
+			var message = string.Concat(runnerResult.StandardOutput, runnerResult.ErrorOutput);
+			if (runnerResult.Result != null) {
+				message += "The program exited with code " + runnerResult.Result;
+			}
 			return new AjaxContinuation{Success = success, Message = message};
 		}
 	}

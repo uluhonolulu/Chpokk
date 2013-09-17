@@ -16,7 +16,21 @@
 				} else {
 					alert("Don't know what to compile. Please open a file first.");
 				}
+			});
+			$('#runButton').click(function() {
+				if (model.ProjectPath) {
+					var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
+					$.post(runUrl, model, function(continuation) {
+						if (continuation.success) {
+							success(continuation.message);
+						} else {
+							danger(continuation.message);
+						}
 
+					});				
+				} else {
+					alert("Don't know what to run. Please open a file first.");
+				}
 			});
 		})
 	</script>
