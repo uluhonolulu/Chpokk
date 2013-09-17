@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Arractas;
+using ChpokkWeb.Features.Running;
 using MbUnit.Framework;
 using LibGit2Sharp.Tests.TestHelpers;
 using Shouldly;

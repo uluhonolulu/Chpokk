@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Chpokk.Tests.Run {
+namespace ChpokkWeb.Features.Running {
 	public class ExeRunner {
 		public ExeRunnerOutput RunMain(string exePath) {
 			var standardOutput = new StringWriter();

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Chpokk.Tests.Run {
+namespace ChpokkWeb.Features.Running {
 	public class AssemblyLoader: MarshalByRefObject {
 		private TextWriter _standardOutput;
 		private TextWriter _errorOutput;
