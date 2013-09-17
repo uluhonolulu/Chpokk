@@ -299,7 +299,12 @@
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Run\AssemblyLoader.cs" />
+    <Compile Include="Run\CompiledExeContext.cs" />
     <Compile Include="Run\ExeRunner.cs" />
+    <Compile Include="Run\RunningCodeAndReturningAValue.cs" />
+    <Compile Include="Run\RunningCodeBase.cs" />
+    <Compile Include="Run\RunningCodeWithArguments.cs" />
+    <Compile Include="Run\RunningCodeWithOutput.cs" />
     <Compile Include="Run\RunningValidCode.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\AddinASystemRef.cs" />
