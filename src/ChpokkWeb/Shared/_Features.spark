@@ -94,6 +94,14 @@
 			<td></td>
 		</tr>
 		<tr>
+			<td>Multitab editing</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>Syntax check</td>
 			<td>
 				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
@@ -185,11 +193,19 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td>Running the output as a console program</td>
-			<td></td>
+			<td>Compiling a project</td>
 			<td>
 				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Running the output as a console program</td>
+			<td>
+				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
