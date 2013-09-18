@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Ace sample</title>
+	<script type="text/javascript" src="/_content/scripts/lib/ace/ace.js"></script>
+	<script type="text/javascript" src="/_content/scripts/lib/ace/ext-language_tools.js"></script>	<script type="text/javascript" src="/_content/scripts/lib/jquery-2.0.0.js"></script>
+	<script>
+		$(function() {
+			ace.require("ace/ext/language_tools");
+			var editor = ace.edit("ace");
+			editor.setTheme("ace/theme/clouds");
+			editor.getSession().setMode("ace/mode/csharp");
+			var codeCompleter = {
+				getCompletions: function (editor, session, pos, prefix, callback) {
+					$.post('/editor/intellisense/getintellisensedata', {}, function (data) {
+						// assuming that we return an object with the Items property, and each item has the Name property
+						var completionData = $.map(data.Items, function (item) {
+							return { name: item.Name, value: item.Name, score: 0, meta: 'code' }; //score is for client side sorting AFAIK
+						});
+						callback(null, completionData);
+					});
+				}
+			};
+			// enable autocompletion
+			editor.setOptions({
+				enableBasicAutocompletion: true,
+				enableSnippets: true
+			});
+			//editor.completers is an array of completers, and we have 3 built-in ones, but we're discarding them here
+			editor.completers = [codeCompleter];			
+		})
+	</script>
+</head>
+<body>
+<div id="ace" style="height: 500px;"/>
+</body>
+</html>
