@@ -27,7 +27,20 @@
 				{
 					element: '#newItemButton',
 					title: "Create a new item",
-					content: "Add a new code file to your project."
+					content: "Add a new code file to your project.",
+					placement: 'bottom'
+				},
+				{
+					element: '#compileButton',
+					title: "Compile your project",
+					content: "Compile the currently selected project (you must have an open file so that the system knows which project to compile).",
+					placement: 'bottom'
+				},
+				{
+					element: '#runButton',
+					title: "Compile and run your project",
+					content: "Compile and run the currently selected project, if it's a Console executable (you must have an open file so that the system knows which project to run).",
+					placement: 'bottom'
 				},
 				{
 					element: '#zipper',
