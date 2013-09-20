@@ -27,7 +27,7 @@
 		<tr>
 			<td>C#</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -37,7 +37,7 @@
 				VB.Net
 			</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -49,7 +49,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -59,7 +59,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -69,7 +69,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -79,7 +79,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -88,7 +88,7 @@
 		<tr>
 			<td>Ace editor</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -97,14 +97,14 @@
 			<td>Multitab editing</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>Syntax check</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -113,7 +113,7 @@
 			<td>Intellisense</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -122,7 +122,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -131,7 +131,7 @@
 		<tr>
 			<td>Adding a class</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -140,7 +140,7 @@
 			<td>Adding a project</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -148,7 +148,7 @@
 			<td>Editing project properties</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -156,7 +156,7 @@
 			<td>Adding file references</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -164,7 +164,7 @@
 			<td>Adding GAC references</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -172,7 +172,7 @@
 			<td>Adding NuGet references</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -180,7 +180,7 @@
 			<td>Creating a solution</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -188,14 +188,14 @@
 			<td>Compiling the solution</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>Compiling a project</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -203,7 +203,7 @@
 		<tr>
 			<td>Running the output as a console program</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -214,7 +214,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 			<th colspan="4">Load existing code</th>
@@ -222,7 +222,7 @@
 		<tr>
 			<td>From a zipped project</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -230,7 +230,7 @@
 		<tr>
 			<td>From a Git repository</td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 			<td></td>
@@ -239,7 +239,7 @@
 			<td>From Dropbox</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -248,7 +248,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -256,14 +256,14 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
 			<td>From GDrive</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -272,7 +272,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -282,7 +282,7 @@
 			<td>Interactive code window</td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 			<td></td>
 		</tr>
@@ -291,7 +291,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<span class="glyphicon glyphicon-check" style="font-size: 18px; color: #18bc9c;"></span>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
 
