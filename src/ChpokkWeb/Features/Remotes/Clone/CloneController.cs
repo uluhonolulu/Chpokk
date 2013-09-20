@@ -6,7 +6,6 @@ using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using LibGit2Sharp;
 using ChpokkWeb.Infrastructure;
-using RepositoryInputModel = ChpokkWeb.Features.RepositoryManagement.RepositoryInputModel;
 using FubuCore;
 
 namespace ChpokkWeb.Features.Remotes.Clone {
@@ -34,18 +33,9 @@ namespace ChpokkWeb.Features.Remotes.Clone {
 		}
 
 		private static void CloneGitRepository(string repoUrl, string repositoryPath, Credentials credentials) {
-			Repository.Clone(repoUrl, repositoryPath, credentials:credentials).Dispose();
+			Repository.Clone(repoUrl, repositoryPath, credentials:credentials);
 		}
 
-		public string TestCloning(AppPathAwareInputModel model) {
-			var repoUrl = "git://github.com/uluhonolulu/Chpokk-SampleSol.git";
-			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, @"UserFiles\Chpokk-SampleSol");
-			var repository = Repository.Clone(repoUrl, repositoryPath);
-			var master = repository.Branches["master"];
-			repository.Checkout(master);
-			repository.Dispose();
-			return "success!";
-		} 
 	}
 
 	public class CloneInputModel : IDontNeedActionsModel {

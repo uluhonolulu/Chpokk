@@ -25,7 +25,7 @@ namespace ChpokkWeb.Features.Exploring {
 		//[UrlPattern("Project/{RepositoryName}")]
 		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
-			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.Name);
+			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.RepositoryName);
 			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
 			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			ImportFolder(root, repositoryRoot);

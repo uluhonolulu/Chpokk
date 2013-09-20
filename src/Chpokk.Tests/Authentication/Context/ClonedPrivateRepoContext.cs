@@ -32,7 +32,7 @@ namespace Chpokk.Tests.Authentication.Context {
 
 			if (Directory.Exists(RepositoryPath.ParentDirectory()) ) 
 				DirectoryHelper.DeleteSubdirectories(RepositoryPath.ParentDirectory());
-			Repository.Clone(REPO_URL, RepositoryPath).Dispose();
+			Repository.Clone(REPO_URL, RepositoryPath);
 			Thread.Sleep(100);
 
 			//now let's see what a different user has

@@ -8,7 +8,7 @@
 		</div class="panel-heading">
 		<div class="panel-body">
 			<for each="var name in Model.RepositoryNames">
-				!{this.LinkTo(new RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
+				!{this.LinkTo(new ChpokkWeb.Features.Exploring.RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
 			</for>
 		 </div>
 

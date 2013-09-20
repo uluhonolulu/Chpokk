@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure.SimpleZip;
 using FubuMVC.Core.Ajax;

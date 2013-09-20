@@ -9,7 +9,7 @@ namespace Chpokk.Tests.Exploring {
 	public class PhysicalCodeFileInRepositoryContext : PhysicalCodeFileContext {
 		public override void Create() {
 			base.Create();
-			Repository.Init(RepositoryRoot).Dispose();
+			Repository.Init(RepositoryRoot);
 			Thread.Sleep(100);
 		}
 	}
