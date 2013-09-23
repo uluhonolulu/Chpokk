@@ -765,7 +765,10 @@ xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.0.0\NativeBinaries\x86\*.*
 if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
 xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.0.0\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"
 if not exist "$(ProjectDir)bin\NativeBinaries\amd64" md "$(ProjectDir)bin\NativeBinaries\amd64"
-rem $(OutputPath)</PostBuildEvent>
+rem $(OutputPath)
+rem $(TargetPath)
+rem $(TargetDir)
+rem $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
