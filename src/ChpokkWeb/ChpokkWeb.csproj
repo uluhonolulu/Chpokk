@@ -405,7 +405,9 @@
     <Content Include="Content\styles\lib\filetree\jqueryFileTree.css" />
     <Content Include="favicon.ico" />
     <Content Include="Features\Authentication\sample.txt" />
-    <Content Include="Features\Demo\RegisteredForInvite.spark" />
+    <Content Include="Features\Demo\RegisteredForInvite.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\Demo\_editor.spark">
       <SubType>Designer</SubType>
     </Content>
@@ -759,7 +761,7 @@
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
 if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.11.0.0\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.0.0\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
 if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
 xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.11.0.0\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"
 if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
