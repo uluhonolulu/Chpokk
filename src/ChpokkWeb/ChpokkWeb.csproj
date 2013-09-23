@@ -768,7 +768,8 @@ if not exist "$(ProjectDir)bin\NativeBinaries\amd64" md "$(ProjectDir)bin\Native
 rem $(OutputPath)
 rem $(TargetPath)
 rem $(TargetDir)
-rem $(ProjectDir)</PostBuildEvent>
+rem $(ProjectDir)
+rem $(WebProjectOutputDir)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
@@ -781,5 +782,11 @@ rem $(ProjectDir)</PostBuildEvent>
   -->
   <Target Name="AfterBuild">
     <Message Text="AllowedReferenceRelatedFileExtensions: $(AllowedReferenceRelatedFileExtensions)" />
+	<!-- copy any referenced assemblies to _PublishedWebsites\app\bin folder -->
+    <Copy SourceFiles="$(SolutionDir)packages\LibGit2Sharp.0.14.0.0\NativeBinaries\amd64\*.*"
+          DestinationFolder="$(WebProjectOutputDir)\bin"  
+          SkipUnchangedFiles="true" 
+          Retries="$(CopyRetryCount)"
+          RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)"/>
   </Target>
 </Project>
