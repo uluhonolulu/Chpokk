@@ -40,7 +40,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		public string Url { get; set; }
 		public int LineNumber  { get; set; }
 		public override string ToString() {
-			return "Url: {0}, error: {1}".ToFormat(this.Url, this.Message);
+			return "Url: {0} (line {2}), error: {1}".ToFormat(this.Url, this.Message, this.LineNumber);
 		}
 	}
 }
