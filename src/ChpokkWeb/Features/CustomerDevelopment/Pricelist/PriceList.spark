@@ -1,0 +1,46 @@
+﻿<viewdata model="ChpokkWeb.Features.CustomerDevelopment.Pricelist.PriceListInputModel" />
+<use namespace="ChpokkWeb.Features.CustomerDevelopment.Pricelist" />
+
+<div class="col-lg-4" style="text-align: center">
+	<div class="panel panel-success">
+		<div class="panel-heading"><h3>Cautious</h3>(3 months)</div>
+		<div class="panel-body">
+			Use Chpokk for 3 months for the price of 1.<br/>
+			Save 66%, or $36.
+			<h2>$18</h2>
+		</div>
+		<div class="panel-footer"><a class="btn btn-primary" href="#">I WANT IT!</a></div>
+	</div>
+</div>
+
+<div class="col-lg-4" style="text-align: center">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3>Sensible</h3>(1 year)
+		</div>
+		<div class="panel-body">
+			Use Chpokk for 1 year for the price of 2.5 months.<br/>
+			Save 66%, or $36.
+			<h2>$48</h2>
+		</div>
+		<div class="panel-footer">
+			<a class="btn btn-primary" href="#">I WANT IT!</a>
+		</div>
+	</div>
+</div>
+
+<div class="col-lg-4" style="text-align: center">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3>Bold</h3>(lifetime)
+		</div>
+		<div class="panel-body">
+			Use Chpokk for 3 months for the price of 1.<br/>
+			Save 66%, or $36.
+			<h2>$108</h2>
+		</div>
+		<div class="panel-footer">
+			<a class="btn btn-primary" href="#">I WANT IT!</a>
+		</div>
+	</div>
+</div>

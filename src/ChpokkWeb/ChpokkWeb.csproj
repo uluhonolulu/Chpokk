@@ -515,6 +515,9 @@
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Features\Compilation\Compile.spark" />
+    <Content Include="Features\CustomerDevelopment\Pricelist\PriceList.spark">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -618,6 +621,7 @@
     <Compile Include="Features\Compilation\MsBuildCompiler.cs" />
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
     <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
     <Compile Include="Features\Demo\SuggestController.cs" />
@@ -777,7 +781,7 @@ rem $(WebProjectOutputDir)</PostBuildEvent>
   -->
   <Target Name="AfterBuild">
     <Message Text="AllowedReferenceRelatedFileExtensions: $(AllowedReferenceRelatedFileExtensions)" />
-	<!-- copy any referenced assemblies to _PublishedWebsites\app\bin folder 
+    <!-- copy any referenced assemblies to _PublishedWebsites\app\bin folder 
     <Copy SourceFiles="$(SolutionDir)packages\LibGit2Sharp.0.14.0.0\NativeBinaries\amd64\*.*"
           DestinationFolder="$(WebProjectOutputDir)\bin\"  
           SkipUnchangedFiles="true" 
