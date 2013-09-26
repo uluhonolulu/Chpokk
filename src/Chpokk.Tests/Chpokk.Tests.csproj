@@ -266,6 +266,7 @@
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
     <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
+    <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommand.cs" />
