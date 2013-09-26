@@ -10,7 +10,7 @@
 			</th>
 			<th>
 				Pretty soon<br/>
-				<span style="font-size: smaller;">September-October 2013</span>
+				<span style="font-size: smaller;">October-November 2013</span>
 
 			</th>
 			<th>
@@ -124,6 +124,14 @@
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+		</tr>
+		<tr>
+			<td>Smartphone and tablet ready</td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+			<td></td>
 		</tr>
 		<tr>
 			<th colspan="4">Project management</th>
@@ -288,6 +296,14 @@
 		</tr>
 		<tr>
 			<td>Unit testing</td>
+			<td></td>
+			<td></td>
+			<td>
+				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>Real time collaboration</td>
 			<td></td>
 			<td></td>
 			<td>
