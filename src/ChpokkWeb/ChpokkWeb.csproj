@@ -534,6 +534,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\scripts\lib\browser.js" />
+    <Content Include="PayNow.htm" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dialog.js" />

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-		<use content="title">Default Title</use>
+		<use content="title">Chpokk, your online .Net editor</use>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<Script src="lib/bootstrap.js" />

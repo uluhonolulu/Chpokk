@@ -1,46 +1,186 @@
 ﻿<viewdata model="ChpokkWeb.Features.CustomerDevelopment.Pricelist.PriceListInputModel" />
 <use namespace="ChpokkWeb.Features.CustomerDevelopment.Pricelist" />
+<content name="title">Chpokk, your online .Net editor</content>
 
-<div class="col-lg-4" style="text-align: center">
-	<div class="panel panel-success">
-		<div class="panel-heading"><h3>Cautious</h3>(3 months)</div>
-		<div class="panel-body">
-			Use Chpokk for 3 months for the price of 1.<br/>
-			Save 66%, or $36.
-			<h2>$18</h2>
+<div class="container">
+	<h2>
+		Book your workplace now and get a discount
+	</h2>
+	<p>
+		Hi!
+	</p>
+	<p>
+		I'm awful in copywriting, to I'll be straight and to the point.
+	</p>
+	<p>
+		You need a good Web-based .Net code editor, and I'm building the best one. You believed
+		in my project since it was started, and you helped me a lot with your ideas, bug
+		reports, and even by just trying various features and watching the exception messages
+		('cause I saw them too). You deserve to use it for a better price (and a couple of
+		free months, too).
+	</p>
+	<p>
+		So, cards on the table. I'm firmly set on pricing the Basic plan at $18/month. By
+		paying the same money now, you're getting 3 months, which means <strong>$6/month</strong>.
+		For this money, you will be using Chpokk in its current state plus several important
+		features that will be added during the next month (click <a style="cursor: pointer;" data-toggle="modal" href="#featuresDialog">here</a> for the full list
+		of current and planned features).
+	</p>
+	<p>
+		<strong>This offer is valid only until October the 8th, 2013</strong>. On the 9th
+		of October, Chpokk becomes a public beta, and the rules change.
+	</p>
+	<p>
+		Below is some more information that will help you make a right decision. If you've
+		already made your mind, scroll down to the Big Buttons, or leave this page (please
+		don't).
+	</p>
+	<h3>
+		Chpokk is a right tool for you if you
+	</h3>
+	<ul>
+		<li>are often on the road, and don't want to carry a heavy laptop;</li>
+		<li>are taking your work home on a flash stick;</li>
+		<li>would prefer your projects to open in seconds, rather than minutes;</li>
+		<li>often need to quickly test a new idea, or make a quick fix to your project.</li>
+	</ul>
+	<h3>
+		You don't need Chpokk if you
+	</h3>
+	<ul>
+		<li>are more comfortable with drag-n-drop visual designers;</li>
+		<li>your job is to build rich GUIs for desktop or mobile applications;</li>
+		<li>you use only Microsoft and Microsoft-approved tools.</li>
+	</ul>
+	<h3>
+		What do you get, exactly?
+	</h3>
+	<p>
+		Depending on which option you choose, you'll get <strong>3 month</strong>, <strong>
+			                                                                           a
+			                                                                           year
+		                                                                           </strong>, or <strong>lifetime</strong> free usage of the basic plan for
+		Chpokk. If you ever wish to upgrade, you'll have 40% off any other plan.
+	</p>
+	<p>
+		For example, suppose you buy a year for $48. After 2 months of free Basic plan,
+		you realize you want to switch to Advanced, which is priced at $48/month. For the
+		remaining 10 months, you'll have to pay $28.8/month, saving $19.2/month (which is
+		40% from $48).
+	</p>
+	<p>
+		This is in addition to the bonus that you already have, i.e. a free month for testing
+		the site, plus a month for any feature suggestion or bug report.
+	</p>
+	<h3>
+		What's in it for you, besides saving your, or your company's, money?
+	</h3>
+	<ol>
+		<li>
+			You're becoming a "VIP customer" -- your support tickets and feature suggestions
+			move to the top of the queue. You can help define the shape of the product while
+			it doesn't hape a fixed one, and it's going to be the shape <strong>you</strong>
+			need, not the one I thought might be cool.
+		</li>
+		<li>
+			You speed up the development of Chpokk and help me add new features faster, which
+			makes your life happier and the world better.
+		</li>
+		<li>
+			Your company's logo will appear on the first page among the list of supporters (if
+			you don't object).
+		</li>
+	</ol>
+	<h3>
+		<span style="font-size: larger;">Some Questions That Might Bother You</span>
+	</h3>
+	<ul>
+		<li>
+			<strong>What if you just take our money and flee to Bahamas?</strong> In the unlikely
+			event of me stopping Chpokk development (you didn't really think I'd do that intentionally,
+			did you? anyway, I still might be hit by a car or something), you'll still be able
+			to use Chpokk in its current state. Since the operating costs are virtually zero,
+			it's going to be accessible forever.
+		</li>
+		<li>
+			<strong>What if I change my mind?</strong> I'm accepting moneyback requests while
+			Chpokk is in beta, which is until the end of October 2013 (or later).
+		</li>
+		<li>
+			<strong>What kind of support I'll have for my money?</strong> I'm not a Big Corp,
+			in fact, I'm still a one-man company. That means no 24x7 phone support, but it also
+			means no "I'll pass your message to our development team". The mere fact that you
+			volunteered to pay for my project while it's not Big and Famous yet makes you a
+			truly exceptional customer, deserving a truly exceptional support. So, <strong>do</strong>
+			expect me working late nights on a feature that you suggested, or a problem that
+			you encountered.
+		</li>
+	</ul>
+	<h3>
+		Choose your savings
+	</h3>
+
+	<div class="col-lg-4" style="text-align: center">
+		<div class="panel panel-success">
+			<div class="panel-heading"><h3>Cautious</h3>(3 months)</div>
+			<div class="panel-body">
+				Use Chpokk for 3 months for the price of 1.<br/>
+				Save 66%, or $36.
+				<h2>$18</h2>
+			</div>
+			<div class="panel-footer"><a class="btn btn-primary" href="#">I WANT IT!</a></div>
 		</div>
-		<div class="panel-footer"><a class="btn btn-primary" href="#">I WANT IT!</a></div>
 	</div>
+
+	<div class="col-lg-4" style="text-align: center">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3>Sensible</h3>(1 year)
+			</div>
+			<div class="panel-body">
+				Use Chpokk for 1 year for the price of 2.5 months.<br/>
+				Save 66%, or $36.
+				<h2>$48</h2>
+			</div>
+			<div class="panel-footer">
+				<a class="btn btn-primary" href="#">I WANT IT!</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-4" style="text-align: center">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3>Bold</h3>(lifetime)
+			</div>
+			<div class="panel-body">
+				Use Chpokk always.<br/>
+				&nbsp;
+				<h2>$108</h2>
+			</div>
+			<div class="panel-footer">
+				<a class="btn btn-primary" href="#">I WANT IT!</a>
+			</div>
+		</div>
+	</div>
+
+	<p style="clear: both;">
+		So, if you do love Chpokk and plan to use it actively, it's a good idea to pay a
+		little bit in advance. Just remember that you have to do it before the 9th of October,
+		and you'll still have more than 20 days to get your money back in case you change
+		your mind.
+	</p>
 </div>
 
-<div class="col-lg-4" style="text-align: center">
-	<div class="panel panel-success">
-		<div class="panel-heading">
-			<h3>Sensible</h3>(1 year)
-		</div>
-		<div class="panel-body">
-			Use Chpokk for 1 year for the price of 2.5 months.<br/>
-			Save 66%, or $36.
-			<h2>$48</h2>
-		</div>
-		<div class="panel-footer">
-			<a class="btn btn-primary" href="#">I WANT IT!</a>
+<content name="Dialogs">
+	<div class="modal fade" id="featuresDialog">
+		<div class="modal-dialog" style="min-width: 800px;">
+			<div class="modal-content">
+				<div class="modal-body"><Features/></div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal">Thank you</button>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-
-<div class="col-lg-4" style="text-align: center">
-	<div class="panel panel-success">
-		<div class="panel-heading">
-			<h3>Bold</h3>(lifetime)
-		</div>
-		<div class="panel-body">
-			Use Chpokk for 3 months for the price of 1.<br/>
-			Save 66%, or $36.
-			<h2>$108</h2>
-		</div>
-		<div class="panel-footer">
-			<a class="btn btn-primary" href="#">I WANT IT!</a>
-		</div>
-	</div>
-</div>
+</content>

@@ -165,6 +165,9 @@ table th
   background-color: #e8eef4; 
   border: solid 1px #e8eef4;   
 }
+.table thead > tr > th {
+	vertical-align: top;
+}
 
 /* MISC  
 ----------------------------------------------------------*/
