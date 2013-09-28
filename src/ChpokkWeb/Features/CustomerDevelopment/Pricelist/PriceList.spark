@@ -115,6 +115,10 @@
 			expect me working late nights on a feature that you suggested, or a problem that
 			you encountered.
 		</li>
+		<li>
+			<strong>Is my payment secure?</strong> Your payment is handled by FastSpring, and they're true experts in this field. 
+			Your credit card details never pass through my server, nor are they stored anywhere.
+		</li>
 	</ul>
 	<h3>
 		Choose your savings
@@ -128,7 +132,7 @@
 				Save 66%, or $36.
 				<h2>$18</h2>
 			</div>
-			<div class="panel-footer"><a class="btn btn-primary" href="#">I WANT IT!</a></div>
+			<div class="panel-footer"><a class="btn btn-primary" href="https://sites.fastspring.com/geeksoft/instant/chpokk3months">I WANT IT!</a></div>
 		</div>
 	</div>
 
@@ -143,7 +147,7 @@
 				<h2>$48</h2>
 			</div>
 			<div class="panel-footer">
-				<a class="btn btn-primary" href="#">I WANT IT!</a>
+				<a class="btn btn-primary" href="https://sites.fastspring.com/geeksoft/instant/chpokk1year">I WANT IT!</a>
 			</div>
 		</div>
 	</div>
@@ -159,7 +163,7 @@
 				<h2>$108</h2>
 			</div>
 			<div class="panel-footer">
-				<a class="btn btn-primary" href="#">I WANT IT!</a>
+				<a class="btn btn-primary" href="https://sites.fastspring.com/geeksoft/instant/chpokklifetime">I WANT IT!</a>
 			</div>
 		</div>
 	</div>
