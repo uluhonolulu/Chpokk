@@ -81,10 +81,10 @@
 			background-color: #FFFFFF;
 			width: 400px;
 			/*border: 1px solid #999999;*/
-			padding: 5 5 15 5;
+			padding: 5px 5px 15px 5px;
 			margin-left: auto;
 			margin-right: auto;
-		}*/
+		}
 		.pageTitle
 		{
 			background-color: #DDDDDD;
