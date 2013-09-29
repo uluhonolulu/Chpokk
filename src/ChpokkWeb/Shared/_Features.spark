@@ -217,7 +217,6 @@
 			<td></td>
 		</tr>
 		<tr>
-		<tr>
 			<td>Debugging your code</td>
 			<td></td>
 			<td></td>
@@ -225,6 +224,7 @@
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
 		</tr>
+		<tr>
 			<th colspan="4">Load existing code</th>
 		</tr>
 		<tr>
