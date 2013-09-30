@@ -4,16 +4,16 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th>
+			<th style='width: 250px;'>
 				At your service<br/>
-				<span style="font-size: smaller;">Request an invite and use this feature now</span>
+				<span style="font-size: smaller;">This feature is available now</span>
 			</th>
-			<th>
+			<th style='width: 250px;'>
 				Pretty&nbsp;soon<br/>
 				<span style="font-size: smaller;">October 2013</span>
 
 			</th>
-			<th>
+			<th style='width: 250px;'>
 				Somewhat soon<br/>
 				<span style="font-size: smaller;">If you need this feature badly, leave a request for it</span>
 			</th>
