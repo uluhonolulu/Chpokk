@@ -116,7 +116,7 @@ function printStackTrace() {
 			currentFunction = currentFunction.caller;
 		}
 	}
-	output(callstack);
+	return callstack;
 }
 
 function output(arr) {

@@ -1,7 +1,7 @@
 ﻿
 //track errors
 window.onerror = function (exception, url, line) {
-	var data = { Message: exception, Url: url, LineNumber: line };
+	var data = { Message: exception, Url: url, LineNumber: line, UserAgent: navigator.userAgent };
 	var targetUrl = 'url::ChpokkWeb.Features.CustomerDevelopment.ErrorModel';
 	$.post(targetUrl, data);
 };
