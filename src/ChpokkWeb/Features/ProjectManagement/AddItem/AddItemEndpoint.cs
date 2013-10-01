@@ -23,7 +23,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 			                              model.ProjectPathRelativeToRepositoryRoot);
 			var fileName =
 				model.PathRelativeToRepositoryRoot.PathRelativeTo(model.ProjectPathRelativeToRepositoryRoot.ParentDirectory());
-			var project = new Project(projectFilePath);
+			var project = ProjectCollection.GlobalProjectCollection.LoadProject(projectFilePath); //new Project(projectFilePath);
 			project.AddItem("Compile", fileName);
 			project.Save();
 			ProjectCollection.GlobalProjectCollection.UnloadProject(project);
