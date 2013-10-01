@@ -22,7 +22,10 @@ function getStackTrace() {
 			}
 			//Remove call to printStackTrace()
 			callstack.shift();
-			isCallstackPopulated = true;
+			if (callstack.length > 1) { //IE would put here just the onerror function
+				isCallstackPopulated = true;
+			}
+			
 		}
 		else if (window.opera && e.message) { //Opera
 			var lines = e.message.split('\n');

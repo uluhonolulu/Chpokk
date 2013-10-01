@@ -518,6 +518,7 @@
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Content\styles\fonts\DroidSansMono.ttf" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
