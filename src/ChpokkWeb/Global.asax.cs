@@ -10,6 +10,7 @@ using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.Storage;
 using FubuMVC.Core;
+using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
 using StructureMap;
 using StructureMap.Pipeline;
@@ -21,8 +22,11 @@ namespace ChpokkWeb {
 		protected void Application_Start(object sender, EventArgs e) {
 			_fubuRuntime = AppStartFubuMVC.Start();
 
+			RegisterFonts();
+
 			//restore all files
 			_fubuRuntime.Factory.Get<Restore>().RestoreAll();
+
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {
@@ -51,6 +55,13 @@ namespace ChpokkWeb {
 
 		protected void Application_End(object sender, EventArgs e) {
 
+		}
+
+		public static void RegisterFonts() {
+			MimeType.New("application/font-woff", ".woff");
+			MimeType.New("application/vnd.ms-fontobject", ".eot");
+			MimeType.New("image/svg+xml", ".svg");
+			
 		}
 	}
 }

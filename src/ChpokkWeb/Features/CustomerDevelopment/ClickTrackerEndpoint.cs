@@ -40,8 +40,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		public string Url { get; set; }
 		public int LineNumber  { get; set; }
 		public string UserAgent { get; set; }
+		public string StackTrace { get; set; }
 		public override string ToString() {
-			return "Url: {0} (line {2}), error: {1}, browser: {2}".ToFormat(this.Url, this.Message, this.LineNumber, this.UserAgent);
+			return "Url: {0} (line {2}), error: {1}, browser: {2}, \nstack: {3}".ToFormat(this.Url, this.Message, this.LineNumber, this.UserAgent, this.StackTrace);
 		}
 	}
 }
