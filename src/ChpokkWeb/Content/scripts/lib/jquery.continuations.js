@@ -156,7 +156,7 @@
             var continuation = new $.continuations.continuation();
             continuation.success = false;
             
-            if (response.getResponseHeader('Content-Type').indexOf('json') != -1) {
+            if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('json') != -1) {
                 continuation = JSON.parse(response.responseText);
             }
             
