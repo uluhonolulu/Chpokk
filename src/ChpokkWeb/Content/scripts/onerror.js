@@ -2,10 +2,49 @@
 //track errors
 window.onerror = function (exception, url, line) {
 	var data = { Message: exception, Url: url, LineNumber: line, StackTrace: getStackTrace().join('\n') };
-	var targetUrl = 'url::ChpokkWeb.Features.CustomerDevelopment.ErrorModel';
-	$.post(targetUrl, data);
+	reportException(data);
 };
 
+function reportException(data) {
+	var targetUrl = 'url::ChpokkWeb.Features.CustomerDevelopment.ErrorModel';
+	$.post(targetUrl, data);	
+}
+
+function reportErrorObject(e) {
+	var data = { Message: e.message, StackTrace: getStackForErrorObject(e).join('\n') };
+	reportException(data);
+}
+
+function getStackForErrorObject(e) {
+	var callstack = [];
+	if (e.stack) { //Firefox
+		var lines = e.stack.split('\n');
+		for (var i = 0, len = lines.length; i < len; i++) {
+			if (lines[i].match(/^[A-Za-z0-9\-_\$\s]+\(/)) {
+				callstack.push(lines[i]);
+			}
+		}
+		//Remove call to printStackTrace()
+		callstack.shift();
+		
+	}
+	else if (window.opera && e.message) { //Opera
+		var lines = e.message.split('\n');
+		for (var i = 0, len = lines.length; i < len; i++) {
+			if (lines[i].match(/^\s*[A-Za-z0-9\-_\$]+\(/)) {
+				var entry = lines[i];
+				//Append next line also since it has the file info
+				if (lines[i + 1]) {
+					entry += " at " + lines[i + 1];
+					i++;
+				}
+				callstack.push(entry);
+			}
+		}
+		//Remove call to printStackTrace()
+		callstack.shift();
+	}	
+}
 
 function getStackTrace() {
 	var callstack = [];

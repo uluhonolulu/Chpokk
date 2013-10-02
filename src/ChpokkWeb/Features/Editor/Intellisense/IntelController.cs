@@ -28,8 +28,10 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		[JsonEndpoint]
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 
+
+			// for the new implementation, see D:\Projects\OSS\QC\QCCodingServices.NET\NRefactoryTestApp\Views\ProjectView.xaml.cs line 258
 			//test
-			return new IntelOutputModel{Items = new IntelOutputModel.IntelModelItem[]{new IntelOutputModel.IntelModelItem{Name = "ahh"}}};
+			//return new IntelOutputModel{Items = new IntelOutputModel.IntelModelItem[]{new IntelOutputModel.IntelModelItem{Name = "ahh"}}};
 
 			if (input.Text == null) return null;
 			var language = _languageDetector.GetLanguage(input.PathRelativeToRepositoryRoot);
