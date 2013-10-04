@@ -48,6 +48,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var compilationUnit = _compiler.ParseCode(projectContent, textReader, language);
 			var parseInformation =  new ParseInformation(compilationUnit);
 			var expression = Compiler.FindExpression(text, input.Position, parseInformation, language);
+			if (expression.Expression == null) {
+				return new IntelOutputModel { Message = "Expression is null" };
+			}
 			var languageProperties = _languageDetector.GetLanguageProperties(input.PathRelativeToRepositoryRoot);
 			var resolver = new NRefactoryResolver(languageProperties);
 			var resolveResult = resolver.Resolve(expression, parseInformation, text);

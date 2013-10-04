@@ -2,7 +2,6 @@
 <use namespace="FubuMVC.Core.UI" />
 <use namespace="ChpokkWeb.Features.Editor.Menu" />
 
-<Stylesheet href="editor.css" />
 
 <div class="panel-heading">
 	!{this.Partial<EditorMenuInputModel>()}
@@ -13,70 +12,16 @@
 </div>
 <div id="log"></div>
 
+<content name="head">
+	<Stylesheet href="editor.css" />
+	<Script src="ace_support.js"/>
+
+</content>
 
 <content name="InlineScripts">
 	<!-- _editor.spark -->
-	<style type="text/css">
-		    
-		html #ace { 
-			margin: 0;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			font-family: droid-sans-mono, sans-serif;
-		}
-	</style>
 	<script type="text/javascript">
 		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
-		$(function () {
-			ace.require("ace/ext/language_tools");
-			var editor = ace.edit("ace");
-			editor.setTheme("ace/theme/clouds");
-			editor.getSession().setMode("ace/mode/csharp");
-			var codeCompleter = {
-				getCompletions: function(editor, session, pos, prefix, callback) {
-					$.post('/editor/intellisense/getintellisensedata', {}, function(data) {
-						var completionData = $.map(data.Items, function(item) {
-							return { name: item.Name, value: item.Name, score: 0, meta: 'code' };
-						});
-						callback(null, completionData);
-					});
-				}
-			};
-			// enable autocompletion and snippets
-			editor.setOptions({
-				enableBasicAutocompletion: true,
-				enableSnippets: true
-			});
-			editor.completers = [codeCompleter];
-			amplify.subscribe('loadFileRequest', function(data) {
-				loadFile(data.path, editor);
-			});
-			//editor.completers = [snippetCompleter, textCompleter, keyWordCompleter];
-			//gathering and sorting: 1054
-			//editor/intellisense/getintellisensedata
-		});
-
-		function loadFile(path, editor) {
-			// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
-			var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
-			var li = $('#solutionBrowser ' + selector);
-			var projectPath = (li.length > 0)? li.data('ProjectPath') : '';
-			var fileData = { RepositoryName: "${Model.RepositoryName}", PathRelativeToRepositoryRoot: path, ProjectPath: projectPath };
-			$.ajax({
-				type: "POST",
-				url: "${this.Urls.UrlFor<FileContentInputModel>()}",
-				data: fileData,
-				success: function (data) {
-					editor.setValue(data.Content);
-					editor.resize();
-					model.PathRelativeToRepositoryRoot = path;
-					model.ProjectPath = projectPath;
-				}
-			});
-		}		
 	</script>
 
 	<script src="//use.edgefonts.net/droid-sans-mono.js"></script>
