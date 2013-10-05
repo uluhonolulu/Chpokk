@@ -49,6 +49,7 @@
 !{this.Partial<ChpokkWeb.Features.Remotes.Push.PushDialogModel>()}
 
 	<content name="rightcorner">
+	<render partial="CustomerDevelopment\Pricelist\PriceListLink" />
 	<render partial="Authentication\_LoginStatus" />
 	<ul class="nav navbar-nav">
 		<li>

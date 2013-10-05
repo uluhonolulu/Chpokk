@@ -1,8 +1,8 @@
 ﻿<use namespace="ChpokkWeb.Features.Authentication" />
 <viewdata model="ChpokkWeb.Features.Authentication.LoginStatusAnonModel" />
 <ul class="nav navbar-nav">
-	<li>
-		<a class="janrainEngage btn btn-default" id="janrainButton">Sign-In</a>
+	<li class="active">
+		<a class="janrainEngage" id="janrainButton">Sign-In</a>
 	</li>
 </ul>
 

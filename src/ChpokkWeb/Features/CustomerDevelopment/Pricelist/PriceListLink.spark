@@ -1,0 +1,6 @@
+﻿<use namespace="ChpokkWeb.Features.CustomerDevelopment.Pricelist" />
+<ul class="nav navbar-nav">
+	<li>
+		<a class="alert-info" href="/pricing">Get a discount</a>
+	</li>
+</ul>
