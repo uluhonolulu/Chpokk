@@ -403,6 +403,7 @@
     <Content Include="Content\scripts\realstuff.js" />
     <Content Include="Content\scripts\sampletest.js" />
     <Content Include="Content\styles\lib\filetree\jqueryFileTree.css" />
+    <Content Include="Content\styles\pricing.css" />
     <Content Include="favicon.ico" />
     <Content Include="Features\Authentication\sample.txt" />
     <Content Include="Features\Demo\RegisteredForInvite.spark">

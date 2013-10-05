@@ -124,46 +124,61 @@
 		Choose your savings
 	</h3>
 
-	<div class="col-lg-4" style="text-align: center">
-		<div class="panel panel-success">
-			<div class="panel-heading"><h3>Cautious</h3>(3 months)</div>
-			<div class="panel-body">
-				Use Chpokk for 3 months for the price of 1.<br/>
-				Save 66%, or $36.
-				<h2>$18</h2>
-			</div>
-			<div class="panel-footer"><a class="btn btn-primary" href="https://sites.fastspring.com/geeksoft/instant/chpokk3months">I WANT IT!</a></div>
-		</div>
-	</div>
-
-	<div class="col-lg-4" style="text-align: center">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3>Sensible</h3>(1 year)
-			</div>
-			<div class="panel-body">
-				Use Chpokk for 1 year for the price of 2.5 months.<br/>
-				Save 77%, or $168.
-				<h2>$48</h2>
-			</div>
-			<div class="panel-footer">
-				<a class="btn btn-primary" href="https://sites.fastspring.com/geeksoft/instant/chpokk1year">I WANT IT!</a>
+	<div class="pricing-table container">
+		<div class="col-lg-4">
+			<div class=" plan">
+				<div class="plan-name-bronze">
+					<h2>Cautious</h2>
+					<span>(3 months)</span>
+				</div>
+				<ul>
+					<li class="plan-feature">Use Chpokk for 3 months <br/>for the price of 1</li>
+					<li class="plan-feature">Save 66%, or $36</li>
+					<li class="plan-feature price">$18</li>
+					<li class="plan-feature">
+						<a href="https://sites.fastspring.com/geeksoft/instant/chpokk3months" class="btn btn-primary btn-plan-select">
+							<i class="icon-white icon-ok"></i> I WANT IT!
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
-	</div>
-
-	<div class="col-lg-4" style="text-align: center">
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3>Bold</h3>(lifetime)
+		<div class="col-lg-4" style="padding-left: 10px; padding-right: 10px;">
+			<div class="plan">
+				<div class="plan-name-silver">
+					<h2>
+						Sensible
+					</h2>
+					<span>(1 year)</span>
+				</div>
+				<ul style="font-size: larger;">
+					<li class="plan-feature">Use Chpokk for 1 year <br/>for the price of 2.5 months</li>
+					<li class="plan-feature">Save 77%, or $168</li>
+					<li class="plan-feature price">$48</li>
+					<li class="plan-feature">
+						<a href="https://sites.fastspring.com/geeksoft/instant/chpokk1year" class="btn btn-primary btn-plan-select">
+							<i class="icon-white icon-ok"></i> I WANT IT!
+						</a>
+					</li>
+				</ul>
 			</div>
-			<div class="panel-body">
-				Use Chpokk always.<br/>
-				Save infinite amount of money.
-				<h2>$108</h2>
-			</div>
-			<div class="panel-footer">
-				<a class="btn btn-primary" href="https://sites.fastspring.com/geeksoft/instant/chpokklifetime">I WANT IT!</a>
+		</div>
+		<div class="col-lg-4">
+			<div class=" plan">
+				<div class="plan-name-gold">
+					<h2>Bold</h2>
+					<span>(lifetime)</span>
+				</div>
+				<ul>
+					<li class="plan-feature">Use Chpokk <strong>always</strong><br/>&nbsp;</li>
+					<li class="plan-feature">Save infinite amount of money</li>
+					<li class="plan-feature price">$108</li>
+					<li class="plan-feature">
+						<a href="https://sites.fastspring.com/geeksoft/instant/chpokklifetime" class="btn btn-primary btn-plan-select">
+							<i class="icon-white icon-ok"></i> I WANT IT!
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -187,4 +202,8 @@
 			</div>
 		</div>
 	</div>
+</content>
+
+<content name="head">
+	<Stylesheet href="pricing.css"/>
 </content>
