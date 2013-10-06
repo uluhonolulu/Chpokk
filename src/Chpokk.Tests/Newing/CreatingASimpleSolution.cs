@@ -66,7 +66,7 @@ namespace Chpokk.Tests.Newing {
 			//create a solution
 			var repositoryManager = RepositoryManager;
 			var fileSystem = Context.Container.Get<IFileSystem>();
-			CreateSolutionWithProject(repositoryManager, name, appRoot, fileSystem);
+			Context.Container.Get<SolutionFileLoader>().CreateSolutionWithProject(repositoryManager, name, appRoot, fileSystem);
 			//{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC} -- C#
 			//{F184B08F-C81C-45F6-A57F-5ABD9991F28F} -- VB.Net
 			//{349C5851-65DF-11DA-9384-00065B846F21} -- Web app
@@ -74,39 +74,13 @@ namespace Chpokk.Tests.Newing {
 
 
 			//create a project
-			var projectPath = RepositoryManager.GetAbsolutePathFor(name, appRoot, Path.Combine(name, name + ".csproj"));
-			var rootElement = ProjectRootElement.Create();
-			rootElement.AddImport(@"$(MSBuildToolsPath)\Microsoft.CSharp.targets");
 			var outputType = "Library"; //can be EXE
-			rootElement.AddProperty("OutputType", outputType);
-			rootElement.Save(projectPath);
+			var repositoryName = name;
+			ProjectParser.CreateProjectFile(repositoryManager, repositoryName, appRoot, name, outputType);
 
 			//TODO: cleanup
 		}
 
-
-
-		public static void CreateSolutionWithProject(RepositoryManager repositoryManager, string name, string appRoot,
-		                                             IFileSystem fileSystem) {
-			var solutionPath = repositoryManager.GetAbsolutePathFor(name, appRoot, name + ".sln");
-			CreateEmptySolution(fileSystem, solutionPath);
-			AddProjectToSolution(name, fileSystem, solutionPath);
-		}
-
-		public static void AddProjectToSolution(string name, IFileSystem fileSystem, string solutionPath) {
-			var projectTypeGuid = "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC";
-			var solutionContent = fileSystem.ReadStringFromFile(solutionPath);
-			solutionContent += Environment.NewLine;
-			solutionContent += @"Project(""{{{1}}}"") = ""{0}"", ""{0}\{0}.csproj"", ""{{{2}}}""
-EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid());
-			fileSystem.WriteStringToFile(solutionPath, solutionContent);
-		}
-
-		public static void CreateEmptySolution(IFileSystem fileSystem, string solutionPath) {
-			const string emptySolutionContent = @"Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010";
-			fileSystem.WriteStringToFile(solutionPath, emptySolutionContent);
-		}
 
 		RepositoryManager RepositoryManager { get { return Context.Container.Get<RepositoryManager>(); } }
 

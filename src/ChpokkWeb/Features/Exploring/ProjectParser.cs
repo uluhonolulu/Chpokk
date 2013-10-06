@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using ICSharpCode.SharpDevelop.Project;
+using Microsoft.Build.Construction;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
@@ -40,7 +43,7 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		private ProjectReferenceProjectItem CreateProjectReference(XmlNode projectNode) {
-			return new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", string.Empty), new MissingProject(@"C:\something", string.Empty)) {Include = projectNode.Value};
+			return new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", String.Empty), new MissingProject(@"C:\something", String.Empty)) {Include = projectNode.Value};
 		}
 
 		private ReferenceProjectItem CreateReferenceItem(XmlElement referenceElement) {
@@ -66,6 +69,24 @@ namespace ChpokkWeb.Features.Exploring {
 			xmlNamespaceManager = new XmlNamespaceManager(doc.NameTable);
 			xmlNamespaceManager.AddNamespace("ms", "http://schemas.microsoft.com/developer/msbuild/2003");
 			return doc;
+		}
+
+		public static void CreateProjectFile(RepositoryManager repositoryManager, string repositoryName, string appRoot,
+		                                     string name, string outputType) {
+			var projectPath = repositoryManager.GetAbsolutePathFor(repositoryName, appRoot, Path.Combine(name, name + ".csproj"));
+			var rootElement = ProjectRootElement.Create();
+			rootElement.AddImport(@"$(MSBuildToolsPath)\Microsoft.CSharp.targets");
+			rootElement.AddProperty("OutputType", outputType);
+			rootElement.Save(projectPath);
+		}
+
+		public void AddProjectToSolution(string name, string solutionPath) {
+			var projectTypeGuid = "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC";
+			var solutionContent = _fileSystem.ReadStringFromFile(solutionPath);
+			solutionContent += Environment.NewLine;
+			solutionContent += @"Project(""{{{1}}}"") = ""{0}"", ""{0}\{0}.csproj"", ""{{{2}}}""
+EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid());
+			_fileSystem.WriteStringToFile(solutionPath, solutionContent);
 		}
 	}
 

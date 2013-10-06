@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using System.Linq;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionParser {
@@ -21,8 +23,6 @@ namespace ChpokkWeb.Features.Exploring {
 			var projectItem = new ProjectItem {Name = projectTitle, Path = projectPath};
 			return projectItem;
 		}
-
-
 	}
 
 	public class ProjectItem {
