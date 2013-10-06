@@ -71,9 +71,7 @@ namespace ChpokkWeb.Features.Exploring {
 			return doc;
 		}
 
-		public static void CreateProjectFile(RepositoryManager repositoryManager, string repositoryName, string appRoot,
-		                                     string name, string outputType) {
-			var projectPath = repositoryManager.GetAbsolutePathFor(repositoryName, appRoot, Path.Combine(name, name + ".csproj"));
+		public void CreateProjectFile(string outputType, string projectPath) {
 			var rootElement = ProjectRootElement.Create();
 			rootElement.AddImport(@"$(MSBuildToolsPath)\Microsoft.CSharp.targets");
 			rootElement.AddProperty("OutputType", outputType);

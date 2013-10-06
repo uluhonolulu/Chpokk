@@ -66,7 +66,8 @@ namespace Chpokk.Tests.Newing {
 			//create a solution
 			var repositoryManager = RepositoryManager;
 			var fileSystem = Context.Container.Get<IFileSystem>();
-			Context.Container.Get<SolutionFileLoader>().CreateSolutionWithProject(repositoryManager, name, appRoot, fileSystem);
+			var solutionFileLoader = Context.Container.Get<SolutionFileLoader>();
+			solutionFileLoader.CreateSolutionWithProject(repositoryManager, name, appRoot, fileSystem);
 			//{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC} -- C#
 			//{F184B08F-C81C-45F6-A57F-5ABD9991F28F} -- VB.Net
 			//{349C5851-65DF-11DA-9384-00065B846F21} -- Web app
@@ -76,7 +77,8 @@ namespace Chpokk.Tests.Newing {
 			//create a project
 			var outputType = "Library"; //can be EXE
 			var repositoryName = name;
-			ProjectParser.CreateProjectFile(repositoryManager, repositoryName, appRoot, name, outputType);
+			var projectPath = repositoryManager.GetAbsolutePathFor(repositoryName, appRoot, Path.Combine(name, name + ".csproj"));
+			Context.Container.Get<ProjectParser>().CreateProjectFile(outputType, projectPath);
 
 			//TODO: cleanup
 		}
