@@ -271,6 +271,7 @@
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommand.cs" />
     <Compile Include="ItemAdding\FolderBrowser.cs" />
+    <Compile Include="Newing\CreatingASimpleSolution.cs" />
     <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\AddingProjectReferencetoAProject.cs" />
     <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />
