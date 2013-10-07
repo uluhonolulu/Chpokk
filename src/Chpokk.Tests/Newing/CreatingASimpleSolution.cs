@@ -5,6 +5,7 @@ using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using Gallio.Framework;
@@ -19,6 +20,8 @@ using Shouldly;
 using System.Linq;
 
 namespace Chpokk.Tests.Newing {
+
+
 	[TestFixture]
 	public class CreatingASimpleSolution : BaseCommandTest<CreatingASimpleSolution.RepositoryCleanupContext> {
 		public const string NAME = "Carramba";
@@ -45,13 +48,9 @@ namespace Chpokk.Tests.Newing {
 			File.Exists(ProjectPath).ShouldBe(true);
 		}
 
-		private string ProjectPath {
-			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, NAME + ".csproj")); }
-		}
-
 		[Test, DependsOn("CreatesAProjectFileInASubfolder")]
 		public void ProjectCanBeCompiled() {
-			new Project(ProjectPath).Build(new ConsoleBuildLogger()).ShouldBe(true);
+			new Project(ProjectPath).Build(new CreatingASimpleSolution.ConsoleBuildLogger()).ShouldBe(true);
 			var binPath = RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, "bin"));
 			Directory.Exists(binPath).ShouldBe(true);
 		}
@@ -60,27 +59,9 @@ namespace Chpokk.Tests.Newing {
 		public override void Act() {
 			var name = NAME;
 			var appRoot = Context.AppRoot;
-			//create a repo
-			//Directory.CreateDirectory(RepositoryManager.GetAbsolutePathFor(name, appRoot));
-
-			//create a solution
-			var repositoryManager = RepositoryManager;
-			var fileSystem = Context.Container.Get<IFileSystem>();
-			var solutionFileLoader = Context.Container.Get<SolutionFileLoader>();
-			solutionFileLoader.CreateSolutionWithProject(repositoryManager, name, appRoot, fileSystem);
-			//{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC} -- C#
-			//{F184B08F-C81C-45F6-A57F-5ABD9991F28F} -- VB.Net
-			//{349C5851-65DF-11DA-9384-00065B846F21} -- Web app
-			//{E24C65DC-7377-472B-9ABA-BC803B73C61A} -- Web site
-
-
-			//create a project
 			var outputType = "Library"; //can be EXE
-			var repositoryName = name;
-			var projectPath = repositoryManager.GetAbsolutePathFor(repositoryName, appRoot, Path.Combine(name, name + ".csproj"));
-			Context.Container.Get<ProjectParser>().CreateProjectFile(outputType, projectPath);
 
-			//TODO: cleanup
+			Context.Container.Get<AddSimpleProjectEndpoint>().DoIt(new AddSimpleProjectInputModel{AppRoot = appRoot, Name = name, OutputType = outputType});
 		}
 
 
@@ -88,6 +69,10 @@ namespace Chpokk.Tests.Newing {
 
 		private string SolutionPath {
 			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, NAME + ".sln"); }
+		}
+
+		private string ProjectPath {
+			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, NAME + ".csproj")); }
 		}
 
 		class ConsoleBuildLogger: ILogger {

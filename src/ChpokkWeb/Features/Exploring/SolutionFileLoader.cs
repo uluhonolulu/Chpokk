@@ -66,13 +66,6 @@ namespace ChpokkWeb.Features.Exploring {
 			return projectRepositoryItem;
 		}
 
-		public void CreateSolutionWithProject(RepositoryManager repositoryManager, string name, string appRoot,
-		                                             IFileSystem fileSystem) {
-			var solutionPath = repositoryManager.GetAbsolutePathFor(name, appRoot, name + ".sln");
-			CreateEmptySolution(_fileSystem, solutionPath);
-			_projectParser.AddProjectToSolution(name, solutionPath);
-		}
-
 		public void CreateEmptySolution(IFileSystem fileSystem, string solutionPath) {
 			const string emptySolutionContent = @"Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010";
