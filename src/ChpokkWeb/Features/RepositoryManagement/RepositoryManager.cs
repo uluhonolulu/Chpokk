@@ -60,9 +60,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull]
 		public string GetPhysicalFilePath([NotNull] BaseFileInputModel info) {
-			var repositoryInfo = this.GetRepositoryInfo(info.RepositoryName);
-			var repositoryRoot = info.PhysicalApplicationPath.AppendPath(repositoryInfo.Path);
-			return repositoryRoot.AppendPathMyWay(info.PathRelativeToRepositoryRoot);
+			return GetAbsolutePathFor(info.RepositoryName, info.PhysicalApplicationPath, info.PathRelativeToRepositoryRoot);
 		}
 
 		public string RepositoryFolder {

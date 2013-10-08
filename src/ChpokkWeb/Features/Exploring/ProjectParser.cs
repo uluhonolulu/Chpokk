@@ -71,18 +71,20 @@ namespace ChpokkWeb.Features.Exploring {
 			return doc;
 		}
 
-		public void CreateProjectFile(string outputType, string projectPath) {
+		public void CreateProjectFile(string outputType, string projectPath, Action<ProjectRootElement> modifier = null) {
 			var rootElement = ProjectRootElement.Create();
 			rootElement.AddImport(@"$(MSBuildToolsPath)\Microsoft.CSharp.targets");
 			rootElement.AddProperty("OutputType", outputType);
+			if (modifier != null) {
+				modifier(rootElement);
+			}
 			rootElement.Save(projectPath);
 		}
 
-		public void AddProjectToSolution(string name, string solutionPath) {
-			var projectTypeGuid = "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC";
+		public void AddProjectToSolution(string name, string solutionPath, string projectTypeGuid) {
 			var solutionContent = _fileSystem.ReadStringFromFile(solutionPath);
 			solutionContent += Environment.NewLine;
-			solutionContent += @"Project(""{{{1}}}"") = ""{0}"", ""{0}\{0}.csproj"", ""{{{2}}}""
+			solutionContent += @"Project(""{1}"") = ""{0}"", ""{0}\{0}.csproj"", ""{2}""
 EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid());
 			_fileSystem.WriteStringToFile(solutionPath, solutionContent);
 		}

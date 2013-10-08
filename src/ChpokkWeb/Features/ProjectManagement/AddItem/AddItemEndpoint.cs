@@ -28,11 +28,16 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 			project.Save();
 			ProjectCollection.GlobalProjectCollection.UnloadProject(project);
 
-			var filePath = _repositoryManager.GetPhysicalFilePath(model);
-			//Console.WriteLine("Writing to " + filePath);
-			_fileSystem.WriteStringToFile(filePath, string.Empty);
+			var filePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath, model.PathRelativeToRepositoryRoot);
+			var fileContent = string.Empty;
+			_fileSystem.WriteStringToFile(filePath, fileContent);
 
 			return AjaxContinuation.Successful();
+
+			//project absolute path
+			//file relative pth
+			//file content
+			//use ProjectRoot
 		}
 	}
 

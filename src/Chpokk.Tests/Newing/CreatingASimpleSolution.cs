@@ -23,7 +23,7 @@ namespace Chpokk.Tests.Newing {
 
 
 	[TestFixture]
-	public class CreatingASimpleSolution : BaseCommandTest<CreatingASimpleSolution.RepositoryCleanupContext> {
+	public class CreatingASimpleSolution : BaseCommandTest<RepositoryCleanupContext> {
 		public const string NAME = "Carramba";
 		[Test]
 		public void CreatesARepository() {
@@ -57,11 +57,8 @@ namespace Chpokk.Tests.Newing {
 	
 
 		public override void Act() {
-			var name = NAME;
-			var appRoot = Context.AppRoot;
-			var outputType = "Library"; //can be EXE
-
-			Context.Container.Get<AddSimpleProjectEndpoint>().DoIt(new AddSimpleProjectInputModel{AppRoot = appRoot, Name = name, OutputType = outputType});
+			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
+			endpoint.DoIt(new AddSimpleProjectInputModel{PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "Library"});
 		}
 
 
@@ -84,14 +81,13 @@ namespace Chpokk.Tests.Newing {
 			public LoggerVerbosity Verbosity { get; set; }
 			public string Parameters { get; set; }
 		}
-
-		public class RepositoryCleanupContext : SimpleConfiguredContext, IDisposable {
-			public void Dispose() {
-				var repositoryManager = Container.Get<RepositoryManager>();
-				var folder = repositoryManager.GetAbsolutePathFor(CreatingASimpleSolution.NAME, AppRoot);
-				DirectoryHelper.DeleteDirectory(folder);
-			}
-		}	
 	}
 
+	public class RepositoryCleanupContext : SimpleConfiguredContext, IDisposable {
+		public void Dispose() {
+			var repositoryManager = Container.Get<RepositoryManager>();
+			var folder = repositoryManager.GetAbsolutePathFor(CreatingASimpleSolution.NAME, AppRoot);
+			DirectoryHelper.DeleteDirectory(folder);
+		}
+	}
 }
