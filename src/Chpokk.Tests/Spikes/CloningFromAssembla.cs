@@ -22,5 +22,15 @@ namespace Chpokk.Tests.Spikes {
 			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private9";
 			Repository.Clone(url, targetFolder, credentials: new Credentials(){Username = userName, Password = password});
 		}
+
+		[Test]
+		public void CanCloneFromBitbucket() {
+			var url = "https://uluhonolulu@bitbucket.org/uluhonolulu/chpokk-test.git";
+			var userName = "uluhonolulu";
+			var password = "xd11SvG23";
+			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private2";
+			Repository.Clone(url, targetFolder, credentials: new Credentials(){Username = userName, Password = password});
+			
+		}
 	}
 }
