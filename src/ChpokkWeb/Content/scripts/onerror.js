@@ -11,7 +11,10 @@ function reportException(data) {
 }
 
 function reportErrorObject(e) {
-	var data = { Message: e.message, StackTrace: getStackForErrorObject(e).join('\n') };
+	var stackTrace = getStackForErrorObject(e);
+	if (!stackTrace) stackTrace = getStackTrace();
+	if (stackTrace) stackTrace = stackTrace.join('\n');
+	var data = { Message: e.message, StackTrace: stackTrace };
 	reportException(data);
 }
 

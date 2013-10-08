@@ -13,7 +13,6 @@
 </div>
 
 <content name="rightcorner">
-	<render partial="CustomerDevelopment\Pricelist\PriceListLink" />
 	<render partial="Authentication\_LoginStatus" />
 </content>
 
