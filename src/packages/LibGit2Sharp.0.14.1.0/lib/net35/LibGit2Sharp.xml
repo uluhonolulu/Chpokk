@@ -214,20 +214,6 @@
             <param name="encoding">The encoding of the text. (default: detected or UTF8)</param>
             <returns>Blob content as text.</returns>
         </member>
-        <member name="M:LibGit2Sharp.BlobExtensions.ContentAsUtf8(LibGit2Sharp.Blob)">
-            <summary>
-            Gets the blob content decoded as UTF-8.
-            </summary>
-            <param name="blob">The blob for which the content will be returned.</param>
-            <returns>Blob content as UTF-8</returns>
-        </member>
-        <member name="M:LibGit2Sharp.BlobExtensions.ContentAsUnicode(LibGit2Sharp.Blob)">
-            <summary>
-            Gets the blob content decoded as Unicode.
-            </summary>
-            <param name="blob">The blob for which the content will be returned.</param>
-            <returns>Blob content as unicode.</returns>
-        </member>
         <member name="T:LibGit2Sharp.Branch">
             <summary>
             A branch is a special kind of reference
@@ -541,7 +527,8 @@
             <summary>
             Gets the number of commits that exist in this local branch but don't exist in the tracked one.
             <para>
-              This property will return null if there is no tracked branch linked to this local branch.
+              This property will return <c>null</c> if this local branch has no upstream configuration
+              or if the upstream branch does not exist
             </para>
             </summary>
         </member>
@@ -549,7 +536,8 @@
             <summary>
             Gets the number of commits that exist in the tracked branch but don't exist in this local one.
             <para>
-              This property will return null if there is no tracked branch linked to this local branch.
+              This property will return <c>null</c> if this local branch has no upstream configuration
+              or if the upstream branch does not exist
             </para>
             </summary>
         </member>
@@ -557,8 +545,8 @@
             <summary>
             Gets the common ancestor of the local branch and its tracked remote branch.
             <para>
-              This property will return null if there is no tracked branch linked to this local branch,
-              or if either branch is an orphan.
+              This property will return <c>null</c> if this local branch has no upstream configuration,
+              the upstream branch does not exist, or either branch is an orphan.
             </para>
             </summary>
         </member>
@@ -916,6 +904,37 @@
             Flag to skip patch building. May be used if only file name and status required.
             (Default = false)
             </summary>
+        </member>
+        <member name="T:LibGit2Sharp.UnbornBranchException">
+            <summary>
+            The exception that is thrown when a operation requiring an existing
+            branch is performed against an unborn branch.
+            </summary>
+        </member>
+        <member name="M:LibGit2Sharp.UnbornBranchException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.OrphanedHeadException"/> class.
+            </summary>
+        </member>
+        <member name="M:LibGit2Sharp.UnbornBranchException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.UnbornBranchException"/> class with a specified error message.
+            </summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:LibGit2Sharp.UnbornBranchException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.UnbornBranchException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the <paramref name="innerException"/> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:LibGit2Sharp.UnbornBranchException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.UnbornBranchException"/> class with a serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
         </member>
         <member name="T:LibGit2Sharp.LockedFileException">
             <summary>
@@ -2649,7 +2668,7 @@
             Managed structure corresponding to git_transfer_progress native structure.
             </summary>
         </member>
-        <member name="M:LibGit2Sharp.Core.Proxy.git_submodule_lookup(LibGit2Sharp.Core.Handles.RepositorySafeHandle,System.String)">
+        <member name="M:LibGit2Sharp.Core.Proxy.git_submodule_lookup(LibGit2Sharp.Core.Handles.RepositorySafeHandle,LibGit2Sharp.Core.FilePath)">
             <summary>
             Returns a handle to the corresponding submodule,
             or an invalid handle if a submodule is not found.
@@ -3783,19 +3802,6 @@
             <param name="onCheckoutProgress"><see cref="T:LibGit2Sharp.Handlers.CheckoutProgressHandler"/> that checkout progress is reported through.</param>
             <param name="checkoutNotificationOptions"><see cref="T:LibGit2Sharp.CheckoutNotificationOptions"/> to manage checkout notifications.</param>
             <returns>The <see cref="T:LibGit2Sharp.Branch"/> that was checked out.</returns>
-        </member>
-        <member name="M:LibGit2Sharp.IRepository.CheckoutPaths(System.String,System.Collections.Generic.IList{System.String},LibGit2Sharp.CheckoutModifiers,LibGit2Sharp.Handlers.CheckoutProgressHandler,LibGit2Sharp.CheckoutNotificationOptions)">
-            <summary>
-            Checkout files from the specified branch, reference or SHA.
-            <para>
-            This method does not switch branches or update the current repository HEAD.
-            </para>
-            </summary>
-            <param name="committishOrBranchSpec">A revparse spec for the commit or branch to checkout paths from.</param>
-            <param name="paths">The paths to checkout.</param>
-            <param name="checkoutOptions">Options controlling checkout behavior.</param>
-            <param name="onCheckoutProgress">Callback method to report checkout progress updates through.</param>
-            <param name="checkoutNotificationOptions"><see cref="T:LibGit2Sharp.CheckoutNotificationOptions"/> to manage checkout notifications.</param>
         </member>
         <member name="M:LibGit2Sharp.IRepository.CheckoutPaths(System.String,System.Collections.Generic.IEnumerable{System.String},LibGit2Sharp.CheckoutOptions)">
             <summary>
@@ -5492,17 +5498,6 @@
             <param name="reference">The reference</param>
             <returns>a <see cref="T:LibGit2Sharp.ReflogCollection"/>, enumerable of <see cref="T:LibGit2Sharp.ReflogEntry"/></returns>
         </member>
-        <member name="M:LibGit2Sharp.ReferenceCollection.RewriteHistory(System.Collections.Generic.IEnumerable{LibGit2Sharp.Commit},System.Func{LibGit2Sharp.Commit,LibGit2Sharp.CommitRewriteInfo},System.Func{LibGit2Sharp.Commit,LibGit2Sharp.TreeDefinition},System.Func{System.String,System.Boolean,LibGit2Sharp.GitObject,System.String},System.Func{System.Collections.Generic.IEnumerable{LibGit2Sharp.Commit},System.Collections.Generic.IEnumerable{LibGit2Sharp.Commit}},System.String)">
-            <summary>
-            Rewrite some of the commits in the repository and all the references that can reach them.
-            </summary>
-            <param name="commitsToRewrite">The <see cref="T:LibGit2Sharp.Commit"/> objects to rewrite.</param>
-            <param name="commitHeaderRewriter">Visitor for rewriting commit metadata.</param>
-            <param name="commitTreeRewriter">Visitor for rewriting commit trees.</param>
-            <param name="tagNameRewriter">Visitor for renaming tags. This is called with (OldTag.Name, OldTag.IsAnnotated, OldTarget).</param>
-            <param name="commitParentsRewriter">Visitor for mangling parent links.</param>
-            <param name="backupRefsNamespace">Namespace where to store the rewritten references (defaults to "refs/original/")</param>
-        </member>
         <member name="M:LibGit2Sharp.ReferenceCollection.RewriteHistory(LibGit2Sharp.RewriteHistoryOptions,LibGit2Sharp.Commit[])">
             <summary>
             Rewrite some of the commits in the repository and all the references that can reach them.
@@ -5839,19 +5834,6 @@
             <param name="resetOptions">Flavor of reset operation to perform.</param>
             <param name="commit">The target commit object.</param>
         </member>
-        <member name="M:LibGit2Sharp.Repository.CheckoutPaths(System.String,System.Collections.Generic.IList{System.String},LibGit2Sharp.CheckoutModifiers,LibGit2Sharp.Handlers.CheckoutProgressHandler,LibGit2Sharp.CheckoutNotificationOptions)">
-            <summary>
-            Updates specifed paths in the index and working directory with the versions from the specified branch, reference, or SHA.
-            <para>
-            This method does not switch branches or update the current repository HEAD.
-            </para>
-            </summary>
-            <param name="committishOrBranchSpec">A revparse spec for the commit or branch to checkout paths from.</param>
-            <param name="paths">The paths to checkout.</param>
-            <param name="checkoutOptions">Options controlling checkout behavior.</param>
-            <param name="onCheckoutProgress">Callback method to report checkout progress updates through.</param>
-            <param name="checkoutNotificationOptions"><see cref="T:LibGit2Sharp.CheckoutNotificationOptions"/> to manage checkout notifications.</param>
-        </member>
         <member name="M:LibGit2Sharp.Repository.CheckoutPaths(System.String,System.Collections.Generic.IEnumerable{System.String},LibGit2Sharp.CheckoutOptions)">
             <summary>
             Updates specifed paths in the index and working directory with the versions from the specified branch, reference, or SHA.
@@ -6020,6 +6002,11 @@
             </summary>
         </member>
         <member name="P:LibGit2Sharp.RepositoryInformation.IsHeadOrphaned">
+            <summary>
+            Indicates whether the Head points to a reference which doesn't exist.
+            </summary>
+        </member>
+        <member name="P:LibGit2Sharp.RepositoryInformation.IsHeadUnborn">
             <summary>
             Indicates whether the Head points to a reference which doesn't exist.
             </summary>
