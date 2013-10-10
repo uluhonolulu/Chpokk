@@ -28,6 +28,14 @@ namespace ChpokkWeb.Features.Remotes.UploadZip {
 			}
 			var repositoryName = Path.GetFileNameWithoutExtension(model.ZippedRepository.FileName);
 			var repositoryPath = _repositoryManager.GetAbsolutePathFor(repositoryName, model.PhysicalApplicationPath);
+			var zipFileName =  _repositoryManager.GetAbsolutePathFor(repositoryName, model.PhysicalApplicationPath, model.ZippedRepository.FileName);
+			try {
+				model.ZippedRepository.SaveAs(zipFileName);
+			}
+			catch (Exception) {
+				//do nothing, just make sure we try and save it for the future
+				//throw;
+			}
 			_zipper.UnzipStream(repositoryPath, model.ZippedRepository.InputStream);
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { RepositoryName = repositoryName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
