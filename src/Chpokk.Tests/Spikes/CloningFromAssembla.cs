@@ -13,7 +13,7 @@ namespace Chpokk.Tests.Spikes {
 		public void CanCloneSuccessfully() {
 			var url = "https://rootgr1dorg@git.assembla.com/gr1dorg.git";
 			var userName = "rootgr1dorg";
-			var password = "5.25InchDisk";
+			var password = "5.25InchDisk ";
 			url = "https://git.assembla.com/chpokk-private.git";//https://@git.assembla.com/.git - See more at: http://blog.assembla.com/assemblablog/tabid/12618/bid/70667/Git-over-HTTP.aspx#sthash.H34TZqNQ.dpuf
 			userName = "uluhonolulu";
 			//password = "xd11SvG23";
@@ -28,7 +28,7 @@ namespace Chpokk.Tests.Spikes {
 			var url = "https://uluhonolulu@bitbucket.org/uluhonolulu/chpokk-test.git";
 			var userName = "uluhonolulu";
 			var password = "xd11SvG23";
-			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private2";
+			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private3";
 			Repository.Clone(url, targetFolder, credentials: new Credentials(){Username = userName, Password = password});
 			
 		}

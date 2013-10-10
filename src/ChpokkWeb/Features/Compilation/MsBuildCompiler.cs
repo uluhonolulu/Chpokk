@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using Microsoft.Build.Evaluation;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class MsBuildCompiler {
@@ -18,11 +20,15 @@ namespace ChpokkWeb.Features.Compilation {
 			_projectCollection.RegisterLogger(_logger);
 			try {
 				var project = _projectCollection.LoadProject(projectFilePath);
-				var outputProperty = project.AllEvaluatedProperties.First(property => property.Name == "TargetPath");
-				var outputFilePath = outputProperty.EvaluatedValue;
+				var outputPathProperty = project.AllEvaluatedProperties.First(property => property.Name == "OutputPath");
+				var targetProperty = project.AllEvaluatedProperties.First(property => property.Name == "TargetFileName");
+				var outputTypeProperty = project.AllEvaluatedProperties.First(property => property.Name == "OutputType");
+				var outputFilePath = Path.Combine(projectFilePath.ParentDirectory(), outputPathProperty.EvaluatedValue,
+				                                  targetProperty.EvaluatedValue);
+				var outputType = outputTypeProperty.EvaluatedValue;
 
 				var buildResult = project.Build();
-				return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath};
+				return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath, OutputType = outputType};
 			}
 			finally {
 				_projectCollection.UnregisterAllLoggers();
@@ -33,5 +39,6 @@ namespace ChpokkWeb.Features.Compilation {
 	public class BuildResult {
 		public bool Success { get; set; }
 		public string OutputFilePath { get; set; }
+		public string OutputType { get; set; }
 	}
 }
