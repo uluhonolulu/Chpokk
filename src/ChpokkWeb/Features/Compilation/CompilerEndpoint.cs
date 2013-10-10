@@ -37,13 +37,15 @@ namespace ChpokkWeb.Features.Compilation {
 			}
 
 			//now, RUN!!!
+			if (compilationResult.OutputType != "Exe") {
+				throw new InvalidOperationException("I can run only console apps");
+			}
 			var exePath = compilationResult.OutputFilePath;
 			var runnerResult = _exeRunner.RunMain(exePath);
 			var success = runnerResult.ErrorOutput.IsEmpty();
 			var message = string.Concat(runnerResult.StandardOutput, runnerResult.ErrorOutput);
-			if (runnerResult.Result != null) {
-				message += "The program exited with code " + runnerResult.Result;
-			}
+			var result = runnerResult.Result?? 0;
+			message += "The program exited with code " + result;
 			return new AjaxContinuation{Success = success, Message = message};
 		}
 	}
