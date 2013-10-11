@@ -12,6 +12,28 @@
 	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
 </div>
 
+<content name="menu">
+	<ul class="nav navbar-nav">
+		<li class="dropdown active">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				Repository <b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li>
+					<a id="newProject" href="#">New simple project</a>
+				</li>
+				<li>
+					<a href="#">Clone a Git repository</a>
+				</li>
+				<li>
+					<a href="#">Upload zipped source</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+</content>
+
 <content name="rightcorner">
 	<render partial="Authentication\_LoginStatus" />
 </content>
