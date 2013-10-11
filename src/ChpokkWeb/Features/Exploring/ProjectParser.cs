@@ -71,13 +71,10 @@ namespace ChpokkWeb.Features.Exploring {
 			return doc;
 		}
 
-		public void CreateProjectFile(string outputType, string projectPath, Action<ProjectRootElement> modifier = null) {
+		public void CreateProjectFile(string outputType, string projectPath) {
 			var rootElement = ProjectRootElement.Create();
 			rootElement.AddImport(@"$(MSBuildToolsPath)\Microsoft.CSharp.targets");
 			rootElement.AddProperty("OutputType", outputType);
-			if (modifier != null) {
-				modifier(rootElement);
-			}
 			rootElement.Save(projectPath);
 		}
 
@@ -87,6 +84,16 @@ namespace ChpokkWeb.Features.Exploring {
 			solutionContent += @"Project(""{1}"") = ""{0}"", ""{0}\{0}.csproj"", ""{2}""
 EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid());
 			_fileSystem.WriteStringToFile(solutionPath, solutionContent);
+		}
+
+		public void CreateItem(string projectFilePath, string fileName, string fileContent) {
+			var project = ProjectRootElement.Open(projectFilePath);
+			project.AddItem("Compile", fileName);
+			project.Save();
+			//ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+
+			var filePath = projectFilePath.ParentDirectory().AppendPath(fileName);
+			_fileSystem.WriteStringToFile(filePath, fileContent);
 		}
 	}
 

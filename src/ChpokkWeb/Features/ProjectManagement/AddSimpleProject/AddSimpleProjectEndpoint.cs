@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
@@ -31,8 +32,22 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 			//create a project
 			var projectPath = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath, Path.Combine(inputModel.RepositoryName, inputModel.RepositoryName + ".csproj"));
-			_projectParser.CreateProjectFile(inputModel.OutputType, projectPath, element => element.AddItem("Compile", "Program.cs"));
+			_projectParser.CreateProjectFile(inputModel.OutputType, projectPath);
+
+			//create Program.exe
+			if (inputModel.OutputType == "EXE") {
+				var filename = inputModel.Language == SupportedLanguage.CSharp? "Program.cs" : "Module1.vb" ;
+				var fileContent = FileContent(filename);
+				_projectParser.CreateItem(projectPath, filename, fileContent);
+			}
+
 			return AjaxContinuation.Successful();
+		}
+
+		private static string FileContent(string filename) {
+			var assembly = Assembly.GetExecutingAssembly();
+			var reader = new StreamReader(assembly.GetManifestResourceStream("ChpokkWeb.App_GlobalResources.FileTemplates." + filename));
+			return reader.ReadToEnd();
 		}
 	}
 
