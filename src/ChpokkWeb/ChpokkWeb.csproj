@@ -652,6 +652,7 @@
     <Compile Include="Features\MainScreen\Tour\TourModel.cs" />
     <Compile Include="Features\ProjectManagement\AddItem\AddItemEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddSimpleProject\AddSimpleProjectEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\AddSimpleProject\AddSimpleProjectInputModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\ProjectManagement\ProjectLoader.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTypeGuid.cs" />

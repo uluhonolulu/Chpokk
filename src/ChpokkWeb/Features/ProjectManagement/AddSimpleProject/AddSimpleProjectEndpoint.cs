@@ -50,9 +50,4 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			return reader.ReadToEnd();
 		}
 	}
-
-	public class AddSimpleProjectInputModel : BaseRepositoryInputModel {
-		public string OutputType { get; set; }
-		public SupportedLanguage Language { get; set; }
-	}
 }

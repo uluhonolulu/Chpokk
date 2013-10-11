@@ -2,6 +2,7 @@
 <use namespace="FubuMVC.Core.UI" />
 <use namespace="ChpokkWeb.Infrastructure" />
 <use namespace="ChpokkWeb.Features.Authentication" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.AddSimpleProject" />
 
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
@@ -41,7 +42,13 @@
 <content name="InlineScripts">
 	<!-- Main.spark -->
 	<script type="text/javascript">
-
+		$(function() {
+			$('#newProject').click(function() {
+				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
+				var model = $.extend(model, { RepositoryName: 'kalabaha', OutputType: 'Exe', Language: 'CSharp' });
+				$.post(url, model, success);
+			});
+		});
 	</script>
 </content>
 
