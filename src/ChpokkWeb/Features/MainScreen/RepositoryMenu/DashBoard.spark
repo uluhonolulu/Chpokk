@@ -35,8 +35,10 @@
 				$('#dashDialog').modal('show');
 			});
 			//pub/sub hack
-			if(window.noRepositories === true)
+			if(window.noRepositories === true) {
 				$('#dashDialog').modal('show');
+				tour.start();
+			}
 		})
 	</script>
 </content>

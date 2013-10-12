@@ -7,22 +7,28 @@
 	});
 	tour.addSteps([
 				{
-					element: '#brand',
+					element: '#dashDialog',
 					title: "Get started",
 					content: "Chpokk needs your .Net code to work with. You should upload your projects, including the *.sln and *.csproj/*.vbproj files, and referenced assemblies. Several options are supported.",
-					placement: 'bottom'
+					placement: 'top'
+				},
+				{
+					element: "#simpleProjectDialogOpener",
+					title: "Create a simple project",
+					content: "Create a console exe or library project using this button.",
+					placement: 'right'
 				},
 				{
 					element: "#cloneDialogOpener",
 					title: "Clone a Git repository",
 					content: "If your code is stored in a Git repository, clone it using this button.",
-					placement: 'bottom'
+					placement: 'left'
 				},
 				{
 					element: "#zipUploadInitiator",
 					title: "Upload a zipped project",
 					content: "If your code is stored on your device, zip it and upload it using this button.",
-					placement: 'bottom'
+					placement: 'right'
 				},
 				{
 					element: '#repositoryList',
@@ -30,5 +36,5 @@
 					content: "If you have uploaded your code previously, you'll find it in this list."
 				}
 			]);
-	tour.start();
+	//tour.start(); //let's start it on dashboard popup
 })
