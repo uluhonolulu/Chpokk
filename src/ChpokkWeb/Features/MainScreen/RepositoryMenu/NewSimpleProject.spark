@@ -1,0 +1,15 @@
+﻿<content name="InlineScripts">
+<!-- NewSimpleProject.spark -->
+	<script type="text/javascript">
+		$(function() {
+			var menuItem = $('<li/>').append($('<a/>').text("New simple project").click(newSimpleProject));
+			$('#repositoryMenu').append(menuItem);
+		});
+
+		function newSimpleProject() {
+			var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
+			var model = $.extend(model, { RepositoryName: 'kalabaha', OutputType: 'Exe', Language: 'CSharp' });
+			$.post(url, model, success);			
+		}
+	</script>
+</content>

@@ -54,6 +54,14 @@
 				$('#cloneForm').correlatedSubmit();
 				//$.post(cloneRepoUrl, { RepoUrl: $('#RepoUrl').val() });
 			});
+
+			var menuItem = $('<li/>').append($('<a/>').text("Clone a Git repository").click(openCloneDialog));
+			$('#repositoryMenu').append(menuItem);
+
 		});
+
+		function openCloneDialog() {
+			//#openCloneDialog
+		}
 	</script>
 </content>

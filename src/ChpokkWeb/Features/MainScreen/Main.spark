@@ -19,7 +19,7 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				Repository <b class="caret"></b>
 			</a>
-			<ul class="dropdown-menu">
+			<ul class="dropdown-menu" id="repositoryMenu">
 				<li>
 					<a id="newProject" href="#">New simple project</a>
 				</li>
@@ -32,24 +32,12 @@
 			</ul>
 		</li>
 	</ul>
+<use file="RepositoryMenu\NewSimpleProject"/>
 	
 </content>
 
 <content name="rightcorner">
 	<render partial="Authentication\_LoginStatus" />
-</content>
-
-<content name="InlineScripts">
-	<!-- Main.spark -->
-	<script type="text/javascript">
-		$(function() {
-			$('#newProject').click(function() {
-				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
-				var model = $.extend(model, { RepositoryName: 'kalabaha', OutputType: 'Exe', Language: 'CSharp' });
-				$.post(url, model, success);
-			});
-		});
-	</script>
 </content>
 
 ${this.Partial<ChpokkWeb.Features.MainScreen.Tour.TourModel>()}
