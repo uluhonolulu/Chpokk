@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
+using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Project;
 using Microsoft.Build.Construction;
 
@@ -71,13 +72,11 @@ namespace ChpokkWeb.Features.Exploring {
 			return doc;
 		}
 
-		public void CreateProjectFile(string outputType, string projectPath, string rootNamespace = null) {
+		public void CreateProjectFile(string outputType, string projectPath, SupportedLanguage language) {
 			var rootElement = ProjectRootElement.Create();
-			rootElement.AddImport(@"$(MSBuildToolsPath)\Microsoft.CSharp.targets");
+			var targetImport = @"$(MSBuildToolsPath)\Microsoft.{0}.targets".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
+			rootElement.AddImport(targetImport);
 			rootElement.AddProperty("OutputType", outputType);
-			if (rootNamespace != null) {
-				rootElement.AddProperty("RootNamespace", rootNamespace);
-			}
 			rootElement.Save(projectPath);
 		}
 

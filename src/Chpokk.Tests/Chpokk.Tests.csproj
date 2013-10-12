@@ -273,6 +273,7 @@
     <Compile Include="ItemAdding\FolderBrowser.cs" />
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />
     <Compile Include="Newing\CreatingASimpleSolution.cs" />
+    <Compile Include="Newing\CreatingASimpleVbExeSolution.cs" />
     <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\AddingProjectReferencetoAProject.cs" />
     <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />

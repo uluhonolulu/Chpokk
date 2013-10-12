@@ -72,7 +72,7 @@ namespace Chpokk.Tests.Newing {
 			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, NAME + ".csproj")); }
 		}
 
-		class ConsoleBuildLogger: ILogger {
+		public class ConsoleBuildLogger: ILogger {
 			public void Initialize(IEventSource eventSource) {
 				Verbosity = LoggerVerbosity.Minimal;
 				eventSource.ErrorRaised += (sender, args) => Console.WriteLine(args.Message);
@@ -87,7 +87,7 @@ namespace Chpokk.Tests.Newing {
 		public void Dispose() {
 			var repositoryManager = Container.Get<RepositoryManager>();
 			var folder = repositoryManager.GetAbsolutePathFor(CreatingASimpleSolution.NAME, AppRoot);
-			DirectoryHelper.DeleteDirectory(folder);
+			//DirectoryHelper.DeleteDirectory(folder);
 		}
 	}
 }

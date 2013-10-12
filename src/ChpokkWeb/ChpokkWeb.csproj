@@ -613,6 +613,7 @@
     <Content Include="Shared\_Features.spark">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Shared\_appfail.spark" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\FileTemplates\Program.cs" />

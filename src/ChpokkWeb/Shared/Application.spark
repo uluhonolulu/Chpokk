@@ -46,5 +46,7 @@
 	<use content="Dialogs" />
 
 	<userVoice />
+	
+	<appfail/>
 </body>
 </html>
