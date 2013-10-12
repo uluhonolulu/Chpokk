@@ -3,7 +3,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Create your first repository</h4>
+					<h3 class="modal-title">Create your first repository</h3>
 				</div>
 				<div class="modal-body">
 					<div style="text-align: center; margin-bottom: 5px;">
@@ -31,13 +31,12 @@
 <!-- DashBoard.spark  -->
 	<script type="text/javascript">
 		$(function () {
-			$('#dashDialog').modal('show');
-			$('#dashDialog aa').click(function() {
-				window.setTimeout(function() {
-					$('#dashDialog').modal('hide');
-				}, 200);
-
+			amplify.subscribe('noRepositories', function() {
+				$('#dashDialog').modal('show');
 			});
+			//pub/sub hack
+			if(window.noRepositories === true)
+				$('#dashDialog').modal('show');
 		})
 	</script>
 </content>

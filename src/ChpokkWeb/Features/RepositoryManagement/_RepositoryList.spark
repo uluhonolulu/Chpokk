@@ -10,7 +10,20 @@
 			<for each="var name in Model.RepositoryNames">
 				!{this.LinkTo(new ChpokkWeb.Features.Exploring.RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 
 			</for>
-		 </div>
+		</div>
 
 	</div>
 </div>
+
+<content name="InlineScripts">
+	<test if="!Model.RepositoryNames.Any()">
+		<script type="text/javascript">
+			$(function () {
+				amplify.publish('noRepositories');
+				//pub/sub hack
+				window.noRepositories = true;
+			});
+		</script>
+			
+	</test>
+</content>
