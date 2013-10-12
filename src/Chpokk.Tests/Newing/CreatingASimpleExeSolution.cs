@@ -6,6 +6,7 @@ using Arractas;
 using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
 using ChpokkWeb.Features.RepositoryManagement;
 using Gallio.Framework;
+using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using Microsoft.Build.Evaluation;
@@ -32,7 +33,7 @@ namespace Chpokk.Tests.Newing {
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
-			endpoint.DoIt(new AddSimpleProjectInputModel { PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "EXE" });
+			endpoint.DoIt(new AddSimpleProjectInputModel { PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "Exe", Language = SupportedLanguage.CSharp });
 		}
 
 		RepositoryManager RepositoryManager { get { return Context.Container.Get<RepositoryManager>(); } }

@@ -12,8 +12,8 @@ using FubuCore;
 namespace ChpokkWeb.Features.Remotes.Clone {
 	public class CloneController {
 
-		private IUrlRegistry _registry;
-		private RepositoryManager _repositoryManager;
+		private readonly IUrlRegistry _registry;
+		private readonly RepositoryManager _repositoryManager;
 		public CloneController(IUrlRegistry registry, RepositoryManager repositoryManager) {
 			_registry = registry;
 			_repositoryManager = repositoryManager;

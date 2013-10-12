@@ -45,7 +45,7 @@
 					var content = editor.getValue();
 					$.post(parseUrl, $.extend(model, { Content: content }), function (continuation) {
 						if (continuation.success) {
-							info('Code is perfect!');
+							success('Code is perfect!');
 						} else {
 							for (var error in continuation.errors) {
 								danger(continuation.errors[error].message);
