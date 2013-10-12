@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core;
@@ -21,6 +22,9 @@ namespace ChpokkWeb.Features.Remotes.Clone {
 		[JsonEndpoint]
 		public AjaxContinuation CloneRepository(CloneInputModel model) {
 			var repoUrl = model.RepoUrl;
+			if (repoUrl == null) {
+				throw new ArgumentException("Url shouldn't be null", "Repository URL");
+			}
 			var repositoryInfo = _repositoryManager.GetClonedRepositoryInfo(repoUrl);
 			var repositoryPath = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
 			if (Directory.Exists(repositoryPath)) {
