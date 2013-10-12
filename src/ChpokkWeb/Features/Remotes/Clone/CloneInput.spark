@@ -25,7 +25,7 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">Cancel</a>
-			<a href="#" class="btn btn-primary" id="openProjectButton">Clone</a>
+			<a href="#" class="btn btn-primary" id="cloneButton">Clone</a>
 			<div id="waitContainer" class="waitContainer">
 				<Image src="loader.gif"/>
 			</div>
@@ -49,19 +49,17 @@
 
 		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>()}';
 		$(function () {
-			$("#openProjectButton").click(function () {
+			$("#cloneButton").click(function () {
 				$('.waitContainer').show();
 				$('#cloneForm').correlatedSubmit();
 				//$.post(cloneRepoUrl, { RepoUrl: $('#RepoUrl').val() });
 			});
 
-			var menuItem = $('<li/>').append($('<a/>').text("Clone a Git repository").click(openCloneDialog));
-			$('#repositoryMenu').append(menuItem);
-
+			addRepositoryMenuItem("Clone a Git repository", openCloneDialog);
 		});
 
 		function openCloneDialog() {
-			//#openCloneDialog
+			$('#openCloneDialog').modal('show');
 		}
 	</script>
 </content>

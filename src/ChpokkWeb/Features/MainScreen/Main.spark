@@ -20,15 +20,6 @@
 				Repository <b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu" id="repositoryMenu">
-				<li>
-					<a id="newProject" href="#">New simple project</a>
-				</li>
-				<li>
-					<a href="#">Clone a Git repository</a>
-				</li>
-				<li>
-					<a href="#">Upload zipped source</a>
-				</li>
 			</ul>
 		</li>
 	</ul>
@@ -41,3 +32,18 @@
 </content>
 
 ${this.Partial<ChpokkWeb.Features.MainScreen.Tour.TourModel>()}
+
+              <content name="InlineScripts">
+	              <script type="text/javascript">
+              		function addRepositoryMenuItem(item, handler) {
+              			if (typeof item === "string") {
+              				item = $('<a/>').text(item);
+              			}
+              			if (handler) {
+              				item.click(handler);
+              			}
+              			var menuItem = $('<li/>').append(item);
+              			$('#repositoryMenu').append(menuItem);
+              		}
+              	</script>
+              </content>

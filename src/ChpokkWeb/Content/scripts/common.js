@@ -59,6 +59,7 @@ $(function () {
 	window.info = getAlertFunction('info');
 }());
 
+window.alert = danger;
 // util
 function currentTime() {
 	var dd = new Date();
@@ -72,6 +73,22 @@ String.prototype.endsWith = function (suffix) {
 	return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
-
-
-window.alert = danger;
+//serializing form data for submitting
+$.fn.serializeObject = function () {
+	var o = {};
+	var a = this.serializeArray();
+	$.each(a, function () {
+		if (o[this.name] !== undefined) {
+			if (!o[this.name].push) {
+				o[this.name] = [o[this.name]];
+			}
+			o[this.name].push(this.value || '');
+		} else {
+			o[this.name] = this.value || '';
+		}
+	});
+	// if model is defined, let's combine
+	if (model)
+		o = $.extend(model, o);
+	return o;
+};
