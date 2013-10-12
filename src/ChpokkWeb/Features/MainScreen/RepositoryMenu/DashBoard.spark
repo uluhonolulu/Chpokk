@@ -1,0 +1,39 @@
+﻿	<div class="modal fade" id="dashDialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Create your first repository</h4>
+				</div>
+				<div class="modal-body">
+					<div style="text-align: center">
+						<a href="#newSimpleProjectDialog"  class="btn  btn-default btn-sm" id="simpleProjectDialogOpener">Create a simple project</a>			
+					</div>
+					<br/>
+					<use file="CloneInput" />
+					<br/>
+					<use file="UploadZip" />
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+<content name="InlineScripts">
+<!-- DashBoard.spark  -->
+	<script type="text/javascript">
+		$(function () {
+			$('#dashDialog').modal('show');
+			$('#dashDialog aa').click(function() {
+				window.setTimeout(function() {
+					$('#dashDialog').modal('hide');
+				}, 200);
+
+			});
+		})
+	</script>
+</content>

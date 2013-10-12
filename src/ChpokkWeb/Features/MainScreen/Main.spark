@@ -8,10 +8,10 @@
 
 
 <div class="container">
-	<render partial="Remotes\Clone\CloneInput" />
-	<render partial="Remotes\UploadZip\UploadZip" />
 	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
 </div>
+
+<use file="RepositoryMenu\DashBoard"/>
 
 <content name="menu">
 	<ul class="nav navbar-nav">

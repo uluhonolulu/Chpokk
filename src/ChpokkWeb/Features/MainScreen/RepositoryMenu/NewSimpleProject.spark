@@ -3,16 +3,15 @@
 	<script type="text/javascript">
 		$(function () {
 			addRepositoryMenuItem("New simple project", newSimpleProject);
+			$('#createSimpleProjectButton').on('click', function() {
+				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
+				var model = $('#simpleProjectForm').serializeObject(); 
+				$.post(url, model);
+			});
 		});
 
 		function newSimpleProject() {
 			$('#newSimpleProjectDialog').modal('show');
-			$('#createSimpleProjectButton').one('click', function() {
-				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
-				var model = $('#simpleProjectForm').serializeObject(); //$.extend(model, { RepositoryName: 'kalabaha', OutputType: 'Exe', Language: 'CSharp' });
-				$.post(url, model);
-			});
-
 		}
 	</script>
 </content>

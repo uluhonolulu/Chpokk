@@ -504,7 +504,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Authentication\_LoginStatus.spark" />
-    <Content Include="Features\Remotes\UploadZip\UploadZip.spark">
+    <Content Include="Features\MainScreen\RepositoryMenu\UploadZip.spark">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\MainScreen\Tour\TourStarter.spark" />
@@ -523,6 +523,7 @@
     <None Include="Content\styles\fonts\DroidSansMono.ttf" />
     <Content Include="Features\CustomerDevelopment\Pricelist\PriceListLink.spark" />
     <Content Include="Features\MainScreen\RepositoryMenu\NewSimpleProject.spark" />
+    <Content Include="Features\MainScreen\RepositoryMenu\DashBoard.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -532,7 +533,7 @@
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
-    <Content Include="Features\Remotes\Clone\CloneInput.spark">
+    <Content Include="Features\MainScreen\RepositoryMenu\CloneInput.spark">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\RepositoryManagement\Repository.spark">
