@@ -49,10 +49,11 @@ namespace Chpokk.Tests.Intellisense {
 			            	Text = source,
 			            	PhysicalApplicationPath = Context.AppRoot,
 			            	RepositoryName = Context.REPO_NAME,
+							PathRelativeToRepositoryRoot = "x.cs",
 							ProjectPath = FileSystem.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
 			            };
-			CThru.CThruEngine.AddAspect(Stub.For<LanguageDetector>("GetLanguage").Return(SupportedLanguage.CSharp));
-			CThru.CThruEngine.StartListening();
+			//CThru.CThruEngine.AddAspect(Stub.For<LanguageDetector>("GetLanguage").Return(SupportedLanguage.CSharp));
+			//CThru.CThruEngine.StartListening();
 			return controller.GetIntellisenseData(model);
 		}
 	}
