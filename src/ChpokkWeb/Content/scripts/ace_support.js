@@ -2,21 +2,20 @@
 	ace.require("ace/ext/language_tools");
 	var editor = ace.edit("ace");
 	editor.setTheme("ace/theme/clouds");
-	editor.getSession().setMode("ace/mode/csharp"); //TODO: set language on load
 	var codeCompleter = {
 		getCompletions: function (editor, session, pos, prefix, callback) {
 			var position = getPosition(pos, editor) - 1;
 			var text = editor.getValue(); //text.substr(0,position) + '.' + text.substr(position)
 			var newChar = text.substr(position, 1);
-			if (newChar !== '.') { //autocomplete only on dot
-				callback(null, []);
+			if (newChar !== '.') { //autocomplete only on dot; actually we'll have to check for editor.completer.activated
+				callback(null, editor.completer.completions.all);
 				return;
 			}
-			//.ace_autocomplete -- popup
+
 			var editorData = $.extend(model, { Text: text, NewChar: newChar, Position: position }); //model + Text, NewChar, Position -- use stackoverflow.com/questions/18013109/retrieve-line-number-of-string-in-ace-editor
 			$.post('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel', editorData, function (data) {
 				var completionData = $.map(data.Items, function (item, index) {
-					return { name: item.Name, value: item.Name, score: data.Items.length - index, meta: 'code' };
+					return { name: item.Name + '_name', value: item.Name + '_value', caption: item.Name + '_caption', score: data.Items.length - index, meta: 'code' };
 				});
 				callback(null, completionData);
 			});
@@ -27,24 +26,17 @@
 		enableBasicAutocompletion: true,
 		enableSnippets: true
 	});
-	editor.completers = [codeCompleter, editor.completers[2]];
+	editor.completers = [codeCompleter];
 
 	// fire autocomplete on any char
-	editor.on('change', function (e) {
-		var eventData = e.data;
-		if (eventData.action === 'insertText' && eventData.text.length === 1) {
-			var regexp = /[a-zA-Z_0-9\.]/;
-			if (regexp.test(eventData.text)) {
-				//editor.commands.exec('startAutocomplete', editor);
-			}
-		}
-	});
-
 	$('#ace').keypress(function (e) {
 		var char = String.fromCharCode(e.which);
 		var regexp = /[a-zA-Z_0-9\.]/;
 		if (regexp.test(char)) {
-			editor.commands.exec('startAutocomplete', editor);
+			$('#ace').one('keyup', function() {
+				editor.commands.exec('startAutocomplete', editor);
+			});
+			
 		}
 	});
 
@@ -52,8 +44,6 @@
 		loadFile(data.path, editor);
 	});
 	//editor.completers = [snippetCompleter, textCompleter, keyWordCompleter];
-	//gathering and sorting: 1054
-	//editor/intellisense/getintellisensedata
 });
 
 function getPosition(rowColumn, editor) {
@@ -78,6 +68,8 @@ function loadFile(path, editor) {
 		data: fileData,
 		success: function (data) {
 			editor.setValue(data.Content);
+			var mode = path.endsWith('.vb') ? 'vbscript' : 'csharp';
+			editor.getSession().setMode("ace/mode/" + mode);
 			editor.resize();
 			model.PathRelativeToRepositoryRoot = path;
 			model.ProjectPath = projectPath;
