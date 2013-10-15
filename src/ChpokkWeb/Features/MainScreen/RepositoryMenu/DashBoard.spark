@@ -3,7 +3,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h3 class="modal-title">Create your first repository</h3>
+					<h3 class="modal-title" id='dashHeader'>Create your first repository</h3>
 				</div>
 				<div class="modal-body">
 					<div style="text-align: center; margin-bottom: 5px;">
@@ -35,7 +35,6 @@
 				$('#dashDialog').modal('show');
 			});
 			//pub/sub hack
-			window.noRepositories = true;
 			if (window.noRepositories === true) {
 				$('#dashDialog').modal('show');
 				tour.start();

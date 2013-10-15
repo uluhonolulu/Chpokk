@@ -7,7 +7,7 @@
 			var position = getPosition(pos, editor) - 1;
 			var text = editor.getValue(); //text.substr(0,position) + '.' + text.substr(position)
 			var newChar = text.substr(position, 1);
-			if (newChar !== '.') { //autocomplete only on dot; actually we'll have to check for editor.completer.activated
+			if (newChar !== '.') { //$('.ace_autocomplete').is(':visible')
 				var all = editor.completer.completions ? $.grep(editor.completer.completions.all, function (item) {
 					return item.caption.startsWithIgnoreCase(prefix);
 				}) : [];
