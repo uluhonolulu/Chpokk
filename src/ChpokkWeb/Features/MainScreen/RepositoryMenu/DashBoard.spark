@@ -31,11 +31,12 @@
 <!-- DashBoard.spark  -->
 	<script type="text/javascript">
 		$(function () {
-			amplify.subscribe('noRepositories', function() {
+			amplify.subscribe('noRepositories', function () {
 				$('#dashDialog').modal('show');
 			});
 			//pub/sub hack
-			if(window.noRepositories === true) {
+			window.noRepositories = true;
+			if (window.noRepositories === true) {
 				$('#dashDialog').modal('show');
 				tour.start();
 			}

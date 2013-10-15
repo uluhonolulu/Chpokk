@@ -12,6 +12,7 @@ using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
+using QuantConnect.CodingServices.Models;
 
 //fail: 
 //text: {public class X {public void Y(){new A().}}}
@@ -54,6 +55,19 @@ namespace Chpokk.Tests.Intellisense {
 			            };
 			//CThru.CThruEngine.AddAspect(Stub.For<LanguageDetector>("GetLanguage").Return(SupportedLanguage.CSharp));
 			//CThru.CThruEngine.StartListening();
+
+			var fileRequest = new FileOperationRequest()
+				{
+					CompleteCode = new FileCodeCompletionRequest()
+						{
+							AutoComplete = true,
+							ColumnNumber = position,
+							CtrlSpace = false,
+							LineNumber = 1,
+							Offset = position
+						}
+				};
+			//look at NRefactoryUtils.RunFullProjectAnalysis(analysisRequest);
 			return controller.GetIntellisenseData(model);
 		}
 	}

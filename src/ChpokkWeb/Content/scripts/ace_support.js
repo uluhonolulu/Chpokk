@@ -8,14 +8,17 @@
 			var text = editor.getValue(); //text.substr(0,position) + '.' + text.substr(position)
 			var newChar = text.substr(position, 1);
 			if (newChar !== '.') { //autocomplete only on dot; actually we'll have to check for editor.completer.activated
-				callback(null, editor.completer.completions.all);
+				var all = editor.completer.completions ? $.grep(editor.completer.completions.all, function (item) {
+					return item.caption.startsWithIgnoreCase(prefix);
+				}) : [];
+				callback(null, all);
 				return;
 			}
 
 			var editorData = $.extend(model, { Text: text, NewChar: newChar, Position: position }); //model + Text, NewChar, Position -- use stackoverflow.com/questions/18013109/retrieve-line-number-of-string-in-ace-editor
 			$.post('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel', editorData, function (data) {
 				var completionData = $.map(data.Items, function (item, index) {
-					return { name: item.Name + '_name', value: item.Name + '_value', caption: item.Name + '_caption', score: data.Items.length - index, meta: 'code' };
+					return { name: item.Name, value: item.Name + (item.EntityType == 'Method'? '()' : ''), caption: item.Name, score: data.Items.length - index, meta: item.EntityType };
 				});
 				callback(null, completionData);
 			});
@@ -33,10 +36,10 @@
 		var char = String.fromCharCode(e.which);
 		var regexp = /[a-zA-Z_0-9\.]/;
 		if (regexp.test(char)) {
-			$('#ace').one('keyup', function() {
+			$('#ace').one('keyup', function () {
 				editor.commands.exec('startAutocomplete', editor);
 			});
-			
+
 		}
 	});
 
@@ -50,12 +53,13 @@ function getPosition(rowColumn, editor) {
 	var lines = editor.session.doc.getAllLines();
 	var position = 0;
 	for (var row = 0; row < rowColumn.row; row++) {
-		position += lines[row].length + 1;
+		position += lines[row].length + 2;
 	}
 	position += rowColumn.column;
 	return position;
 }
 
+//TODO: normalize line endings
 function loadFile(path, editor) {
 	// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
