@@ -73,6 +73,14 @@ String.prototype.endsWith = function (suffix) {
 	return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
+String.prototype.startsWith = function(prefix) {
+	return this.indexOf(prefix) === 0;
+};
+
+String.prototype.startsWithIgnoreCase = function (prefix) {
+	return this.toLowerCase().startsWith(prefix.toLowerCase());
+}
+
 //serializing form data for submitting
 $.fn.serializeObject = function () {
 	var o = {};
