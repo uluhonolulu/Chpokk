@@ -12,20 +12,50 @@
 </content>
 <div class="container">
 	<div class="jumbotron">
-		<h1 style="margin-bottom: 20px;">
-			Chpokk, your cloud IDE</h1>
-		<div style="float: right; padding-top: 20px; padding-right: 40px;">
+		<h1 style="margin-bottom: 20px; float:left;">
+			chpokk</h1>
+		<div style="padding-top: 20px; padding-right: 40px; text-align: center;" class="clearfix">
 			<a id="invitebutton" class="btn btn-primary btn-large" href="/Main" style="padding: 12px 20px; font-size: 18px;">
 				Start coding. It's free.
 			</a>
 		</div>
-		<p style="width: 50%;">
-			Chpokk is an online C# and VB.Net IDE.</p>
+		<p>
+			A .Net IDE in your browser</p>
 	</div>
 	
 	<div class="clearfix"></div>
-	
-	<div class="well">
+	<div style="display:table">
+	<div class="col-xs-6" style="padding-left: 0;display: table-cell;">
+		<div class="panel panel-default" style=" min-height: 150px;">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Targeted for .Net developers</h4>
+			</div>
+			<div class="panel-body">
+				<p>
+					There are many online editors that would let you edit code in many languages.</p>
+				<p>
+					Chpokk has been designed specifically for .Net development, and supports .Net specific
+					features.</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6" style="padding-right: 0; display: table-cell;">
+		<div class="panel panel-default" style="min-height: 150px;">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Not just a code editor</h4>
+			</div>
+			<div class="panel-body">
+				<p>
+					Chpokk can compile your code and even run a console program.</p>
+				<p>
+					Coming soon: unit testing and deployment to AppHarbor and Azure.</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="well clear">
 		<Features/>
 	</div>
 
