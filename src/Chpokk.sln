@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chpokk.Tests", "Chpokk.Tests\Chpokk.Tests.csproj", "{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChpokkWeb", "ChpokkWeb\ChpokkWeb.csproj", "{244CBBEC-847E-4E0D-8857-05BB34878174}"
