@@ -5,6 +5,7 @@
 		<use content="title">Chpokk, your online .Net editor</use>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Chpokk is a Web-based C# and VB.Net IDE with support for intellisense, compilation, and running console programs"/>
 	<Script src="lib/bootstrap.js" />
 	<Script src="common.js"/>
 	<Script src="janrain.js"/>
