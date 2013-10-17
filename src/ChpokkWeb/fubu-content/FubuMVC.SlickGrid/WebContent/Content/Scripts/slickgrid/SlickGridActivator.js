@@ -116,8 +116,6 @@
 
 })(jQuery);
 
-
-
 function makeSlickGrid(div) {
     var columnJson = $(div).data('columns');
     eval('var columnData = ' + columnJson);
@@ -125,7 +123,6 @@ function makeSlickGrid(div) {
     var columns = Slick.GridColumns(columnData);
 
     var url = $(div).data('url');
-    var paged = $(div).data('paged');
 
     var options = {};
     var modification = function() {
@@ -254,22 +251,31 @@ function makeSlickGrid(div) {
         grid.getCellNode(row, column).attr('id', id);
     };
 
-    div.resizeColumns = function() {
-        grid.renderWithFrozenColumn();
+    div.update = function(query, dataLoaded) {
+        if (query == null) {
+            query = {};
+        }
 
-        if (gridOptions.autoresize) grid.autosizeColumns();
-    };
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'POST',
+            contentType: 'text/json',
+            data: JSON.stringify(query),
+            success: function(data) {
+                grid.setData(data); // A different, empty or sorted array.
+                grid.renderWithFrozenColumn();
 
-    var loader = new SlickGridDataLoader(div, grid, { url: url, paged: paged });
-    div.onDataLoading = loader.onDataLoading;
-    div.onDataLoaded = loader.onDataLoaded;
+                if (gridOptions.autoresize) {
+                    grid.autosizeColumns();
+                }
 
-    div.update = function (query, dataLoaded) {
-        loader.changeQuery(query, dataLoaded);
+                if ($.isFunction(dataLoaded)) {
+                    dataLoaded();
+                }
+            }
+        });
 
         modification(grid, div);
     };
 }
-
-
-
