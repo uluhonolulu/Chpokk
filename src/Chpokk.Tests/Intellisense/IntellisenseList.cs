@@ -53,21 +53,9 @@ namespace Chpokk.Tests.Intellisense {
 							PathRelativeToRepositoryRoot = "x.cs",
 							ProjectPath = FileSystem.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
 			            };
-			//CThru.CThruEngine.AddAspect(Stub.For<LanguageDetector>("GetLanguage").Return(SupportedLanguage.CSharp));
-			//CThru.CThruEngine.StartListening();
+			
+			//var tree = SyntaxTree
 
-			var fileRequest = new FileOperationRequest()
-				{
-					CompleteCode = new FileCodeCompletionRequest()
-						{
-							AutoComplete = true,
-							ColumnNumber = position,
-							CtrlSpace = false,
-							LineNumber = 1,
-							Offset = position
-						}
-				};
-			//look at NRefactoryUtils.RunFullProjectAnalysis(analysisRequest);
 			return controller.GetIntellisenseData(model);
 		}
 	}

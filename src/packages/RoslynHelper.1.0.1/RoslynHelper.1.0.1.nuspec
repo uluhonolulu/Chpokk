@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RoslynHelper</id>
+    <version>1.0.1</version>
+    <title>RoslynHelper</title>
+    <authors>Matthieu MEZIL</authors>
+    <owners>Matthieu MEZIL</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Adds some extension methods to have more fluent APIs on SyntaxRewriter</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>Roslyn</tags>
+    <dependencies>
+      <dependency id="Roslyn" version="1.0.11014.5" />
+    </dependencies>
+  </metadata>
+</package>

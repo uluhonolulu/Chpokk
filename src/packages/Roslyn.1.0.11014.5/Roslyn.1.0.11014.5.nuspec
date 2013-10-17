@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Roslyn</id>
+    <version>1.0.11014.5</version>
+    <title />
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkID=235993</licenseUrl>
+    <projectUrl>http://msdn.com/roslyn</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Traditionally, compilers are black boxes -- source code goes in one end, and object files or assemblies come out the other end. The Roslyn project changes that model by opening up the VB and C# compilers and providing a clean and powerful managed object model for code.  
+
+The Roslyn APIs expose the stages of the compiler pipeline: you can use the C#/VB parser to create syntax trees from text, transform trees using Visitors, get the semantic information and bind nodes to symbols, and generate IL assemblies from syntax trees and assembly references to disk or to an in-memory stream.</description>
+    <summary>Roslyn is a long lead project from Microsoft that exposes the C# and VB compiler API. The CTP includes an early preview of these APIs.</summary>
+    <releaseNotes>This release corresponds to the Roslyn CTP released on October 19, 2011 and contains a subset of the Roslyn assemblies that come with the CTP installer.
+
+This early preview allows you to try out the C# and Visual Basic compiler APIs. The current license is for evaluation and preview purposes only and does not allow redistribution of the Roslyn binaries.  You are allowed to share samples built on the Roslyn APIs, but you must direct users to download the Roslyn CTP or the Roslyn NuGet package.
+
+Only the Roslyn Compilers and Services assemblies are distributed through the NuGet package, which allows consumption of the core compiler API, but does not enable construction of any Visual Studio extensions or refactorings.</releaseNotes>
+    <copyright>Copyright © 2011 Microsoft Corporation</copyright>
+    <tags>Roslyn Compiler API CSharp VB VisualBasic Parser Scanner Lexer CodeGeneration Metadata IL Compilation Scripting Syntax Semantics</tags>
+  </metadata>
+</package>
