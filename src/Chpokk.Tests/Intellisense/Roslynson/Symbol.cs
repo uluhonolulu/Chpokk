@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MbUnit.Framework;
 using Roslyn.Compilers.CSharp;
+using Roslyn.Compilers.Common;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
@@ -21,15 +22,12 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 
 		}
 
-		private static IEnumerable<Roslyn.Compilers.CSharp.Symbol> GetSymbols(string source, int position) {
+		private static IEnumerable<ISymbol> GetSymbols(string source, int position) {
 			var tree = SyntaxTree.ParseCompilationUnit(source);
-			var compilation = Roslyn.Compilers.CSharp.Compilation.Create("Compilation", syntaxTrees: new[] { tree });
+			ICompilation compilation = Roslyn.Compilers.CSharp.Compilation.Create("Compilation", syntaxTrees: new[] { tree });
 			var semanticModel = compilation.GetSemanticModel(tree);
 			var declaredSymbol = GetContainingClass(position, tree, semanticModel);
-			//var identifier = tree.Root.FindToken(position-1).Parent;
-			//var semanticInfo = semanticModel.GetSemanticInfo(identifier as ExpressionSyntax);
-			//var type = semanticInfo.Type;
-			var symbols = semanticModel.LookupSymbols(position, declaredSymbol, options:LookupOptions.Default | LookupOptions.IncludeExtensionMethods);
+			var symbols = semanticModel.LookupSymbols(position, declaredSymbol);
 
 			Console.WriteLine();
 			Console.WriteLine("symbols:");
@@ -37,8 +35,11 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			return symbols;
 		}
 
-		private static NamedTypeSymbol GetContainingClass(int position, SyntaxTree tree, SemanticModel semanticModel) {
+		private static INamedTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
 			var syntaxToken = tree.Root.FindToken(position);
+			var nearestExpr = syntaxToken.Parent.AncestorsAndSelf().OfType<ExpressionSyntax>().FirstOrDefault();
+			if (nearestExpr != null) return semanticModel.GetDeclaredSymbol(nearestExpr).ContainingType;
+			return null;
 			Console.WriteLine("Token at position: " + syntaxToken);
 			var parent = syntaxToken.Parent;
 			while (parent != null) { // can also use var nearestExpr = token.Parent.AncestorsAndSelf().OfType<ExpressionSyntax>().First();var type = semModel.GetTypeInfo(nearestExpr).Type;
