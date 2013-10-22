@@ -55,16 +55,6 @@ namespace Chpokk.Tests.Intellisense {
 							ProjectPath = FileSystem.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
 			            };
 
-			var tree = SyntaxTree.ParseCompilationUnit(source);
-			var compilation = Roslyn.Compilers.CSharp.Compilation.Create("Compilation", syntaxTrees: new[] { tree });
-			var semanticModel = compilation.GetSemanticModel(tree);
-			var symbols = semanticModel.LookupSymbols(position);
-
-			Console.WriteLine("symbols:");
-			foreach (var symbol in symbols) {
-				Console.WriteLine(symbol);
-			}
-
 			return controller.GetIntellisenseData(model);
 		}
 	}

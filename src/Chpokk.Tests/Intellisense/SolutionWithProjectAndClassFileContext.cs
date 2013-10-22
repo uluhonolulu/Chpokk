@@ -7,16 +7,17 @@ using FubuCore;
 
 namespace Chpokk.Tests.Intellisense {
 	public class SolutionWithProjectAndClassFileContext : SolutionAndProjectFileWithSingleEntryContext {
-		public override void Create() {
-			base.Create();
-			var classContent = @"public class A {
+		public const string CLASS_CONTENT = @"public class A {
 									public void B(){
 									}
 								}";
+
+		public override void Create() {
+			base.Create();
 			var fileSystem = Container.Get<FileSystem>();
 			var classFilePath = FileSystem.Combine(ProjectFolder, CODEFILE_NAME);
 			Console.WriteLine("Writing file to " + classFilePath);
-			fileSystem.WriteStringToFile(classFilePath, classContent);
+			fileSystem.WriteStringToFile(classFilePath, CLASS_CONTENT);
 		}
 	}
 }
