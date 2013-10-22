@@ -13,7 +13,8 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 		public void HasMemberNamesInIntellisenseData() {
 			var source = "class ClassA { string field1; void method1(){this.} }";
 			var position = source.IndexOf("this.") + "this.".Length - 1;
-			var symbols = GetSymbols(source, position);
+			var symbols = new CompletionProvider().GetSymbols(source, position);
+			//symbols = GetSymbols(source, position);
 			symbols.Any(symbol => symbol.Name == "field1").ShouldBe(true);
 			symbols.Any(symbol => symbol.Name == "ClassA").ShouldBe(false);
 		}
