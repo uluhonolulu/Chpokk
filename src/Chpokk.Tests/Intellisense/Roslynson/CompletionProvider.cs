@@ -11,7 +11,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			ICompilation compilation = Roslyn.Compilers.CSharp.Compilation.Create("Compilation", syntaxTrees: new[] { tree });
 			var semanticModel = compilation.GetSemanticModel(tree);
 			var declaredSymbol = GetContainingClass(position, tree, semanticModel);
-			var symbols = semanticModel.LookupSymbols(position, declaredSymbol);
+			var symbols = semanticModel.LookupSymbols(position);
 
 			Console.WriteLine();
 			Console.WriteLine("symbols:");
@@ -27,7 +27,8 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 
 		private INamedTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
 			var syntaxToken = tree.Root.FindToken(position);
-			foreach (var syntaxNode in syntaxToken.Parent.AncestorsAndSelf()) {
+			var nodeHierarchy = syntaxToken.Parent.AncestorsAndSelf();
+			foreach (var syntaxNode in nodeHierarchy) {
 				var symbol = semanticModel.GetDeclaredSymbol(syntaxNode);
 				//Console.WriteLine(syntaxNode.Kind.ToString());
 				if (symbol != null) {

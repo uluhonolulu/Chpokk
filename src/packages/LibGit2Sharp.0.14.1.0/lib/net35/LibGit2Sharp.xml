@@ -913,7 +913,7 @@
         </member>
         <member name="M:LibGit2Sharp.UnbornBranchException.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:LibGit2Sharp.UnbornBranchException"/> class.
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.OrphanedHeadException"/> class.
             </summary>
         </member>
         <member name="M:LibGit2Sharp.UnbornBranchException.#ctor(System.String)">
@@ -1658,6 +1658,37 @@
             <summary>
             Gets the message associated to this <see cref="T:LibGit2Sharp.Stash"/>.
             </summary>
+        </member>
+        <member name="T:LibGit2Sharp.OrphanedHeadException">
+            <summary>
+            The exception that is thrown when a operation requiring an existing
+            branch is performed against an unborn branch.
+            </summary>
+        </member>
+        <member name="M:LibGit2Sharp.OrphanedHeadException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.OrphanedHeadException"/> class.
+            </summary>
+        </member>
+        <member name="M:LibGit2Sharp.OrphanedHeadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.OrphanedHeadException"/> class with a specified error message.
+            </summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:LibGit2Sharp.OrphanedHeadException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.OrphanedHeadException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the <paramref name="innerException"/> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:LibGit2Sharp.OrphanedHeadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LibGit2Sharp.OrphanedHeadException"/> class with a serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
         </member>
         <member name="T:LibGit2Sharp.StashCollection">
             <summary>
@@ -3117,17 +3148,6 @@
             Completion callback. Corresponds to libgit2 Completion callback.
             </summary>
         </member>
-        <member name="F:LibGit2Sharp.RemoteCallbacks.DownloadTransferProgress">
-            <summary>
-            Managed delegate to be called in response to a git_transfer_progress_callback callback from libgit2.
-            This will in turn call the user provided delegate.
-            </summary>
-        </member>
-        <member name="F:LibGit2Sharp.RemoteCallbacks.Credentials">
-            <summary>
-            The credentials to use for the credential callback.
-            </summary>
-        </member>
         <member name="M:LibGit2Sharp.RemoteCallbacks.GitProgressHandler(System.IntPtr,System.Int32,System.IntPtr)">
             <summary>
             Handler for libgit2 Progress callback. Converts values
@@ -3159,14 +3179,6 @@
             <param name="remoteCompletionType">Which operation completed.</param>
             <param name="data">IntPtr to optional payload passed back to the callback.</param>
             <returns>0 on success; a negative value to abort the process.</returns>
-        </member>
-        <member name="M:LibGit2Sharp.RemoteCallbacks.GitDownloadTransferProgressHandler(LibGit2Sharp.Core.GitTransferProgress@,System.IntPtr)">
-            <summary>
-            The delegate with the signature that matches the native git_transfer_progress_callback function's signature.
-            </summary>
-            <param name="progress"><see cref="T:LibGit2Sharp.Core.GitTransferProgress"/> structure containing progress information.</param>
-            <param name="payload">Payload data.</param>
-            <returns>the result of the wrapped <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/></returns>
         </member>
         <member name="T:LibGit2Sharp.RemoteCompletionType">
             <summary>
@@ -4122,6 +4134,40 @@
             All tags will be downloaded, but _only_ tags, along with
             all the objects these tags are pointing to.
             </summary>
+        </member>
+        <member name="T:LibGit2Sharp.TransferCallbacks">
+            <summary>
+            Class to handle the mapping between libgit2 git_transfer_progress_callback function and
+            a corresponding <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/>. Generates a delegate that
+            wraps the <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/> delegate with a delegate that matches
+            the git_transfer_progress_callback signature.
+            </summary>
+        </member>
+        <member name="F:LibGit2Sharp.TransferCallbacks.onTransferProgress">
+            <summary>
+            Managed delegate to be called in response to a git_transfer_progress_callback callback from libgit2.
+            </summary>
+        </member>
+        <member name="M:LibGit2Sharp.TransferCallbacks.#ctor(LibGit2Sharp.Handlers.TransferProgressHandler)">
+            <summary>
+            Constructor to set up the native callback given managed delegate.
+            </summary>
+            <param name="onTransferProgress">The <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/> delegate that the git_transfer_progress_callback will call.</param>
+        </member>
+        <member name="M:LibGit2Sharp.TransferCallbacks.GenerateCallback(LibGit2Sharp.Handlers.TransferProgressHandler)">
+            <summary>
+            Generates a delegate that matches the native git_transfer_progress_callback function's signature and wraps the <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/> delegate.
+            </summary>
+            <param name="onTransferProgress">The <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/> delegate to call in responde to a the native git_transfer_progress_callback callback.</param>
+            <returns>A delegate method with a signature that matches git_transfer_progress_callback.</returns>
+        </member>
+        <member name="M:LibGit2Sharp.TransferCallbacks.OnGitTransferProgress(LibGit2Sharp.Core.GitTransferProgress@,System.IntPtr)">
+            <summary>
+            The delegate with the signature that matches the native git_transfer_progress_callback function's signature.
+            </summary>
+            <param name="progress"><see cref="T:LibGit2Sharp.Core.GitTransferProgress"/> structure containing progress information.</param>
+            <param name="payload">Payload data.</param>
+            <returns>the result of the wrapped <see cref="T:LibGit2Sharp.Handlers.TransferProgressHandler"/></returns>
         </member>
         <member name="T:LibGit2Sharp.TransferProgress">
             <summary>
@@ -5953,6 +5999,11 @@
         <member name="P:LibGit2Sharp.RepositoryInformation.IsHeadDetached">
             <summary>
             Indicates whether the Head points to an arbitrary commit instead of the tip of a local branch.
+            </summary>
+        </member>
+        <member name="P:LibGit2Sharp.RepositoryInformation.IsHeadOrphaned">
+            <summary>
+            Indicates whether the Head points to a reference which doesn't exist.
             </summary>
         </member>
         <member name="P:LibGit2Sharp.RepositoryInformation.IsHeadUnborn">
