@@ -7,12 +7,22 @@ using Roslyn.Compilers.Common;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class CompletionProvider {
-		public IEnumerable<ISymbol> GetSymbols(string source, int position, LanguageNames language) {
-			var tree = SyntaxTree.ParseText(source);
+		public IEnumerable<ISymbol> GetSymbols(string source, int position, string language) {
+			CommonSyntaxTree tree;
+			CommonCompilation compilation;
+			IEnumerable<CommonSyntaxTree> syntaxTrees;
 			switch (language) {
-					
+				case LanguageNames.CSharp: 
+					tree = SyntaxTree.ParseText(source);
+					syntaxTrees = new[] {tree};
+					compilation = Roslyn.Compilers.CSharp.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast<SyntaxTree>());break;
+				case LanguageNames.VisualBasic:
+					tree = Roslyn.Compilers.VisualBasic.SyntaxTree.ParseText(source);
+					syntaxTrees = new[] {tree};
+					compilation = Roslyn.Compilers.VisualBasic.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast< Roslyn.Compilers.VisualBasic.SyntaxTree>()); break;
+				default: throw new NotSupportedException("Langueage '" + language + "' is not supported.");
 			}
-			CommonCompilation compilation = Roslyn.Compilers.CSharp.Compilation.Create("MyCompilation", syntaxTrees: new[] { tree });
+			
 			var semanticModel = compilation.GetSemanticModel(tree);
 			var declaredSymbol = GetContainingClass(position, tree, semanticModel);
 			var symbols = semanticModel.LookupSymbols(position, declaredSymbol);
