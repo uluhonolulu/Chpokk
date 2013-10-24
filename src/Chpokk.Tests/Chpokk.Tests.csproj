@@ -298,6 +298,7 @@
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Intellisense\Roslynson\CompletionProvider.cs" />
+    <Compile Include="Intellisense\Roslynson\Keywords.cs" />
     <Compile Include="Intellisense\Roslynson\OtherDotMember.cs" />
     <Compile Include="Intellisense\Roslynson\Symbol.cs" />
     <Compile Include="Intellisense\Roslynson\ThisDotMember.cs" />
