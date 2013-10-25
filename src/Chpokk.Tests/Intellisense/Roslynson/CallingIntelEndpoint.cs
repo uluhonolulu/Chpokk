@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Editor.Intellisense;
+using ChpokkWeb.Features.RepositoryManagement;
+using Roslyn.Compilers;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class CallingIntelEndpoint : BaseQueryTest<PhysicalCodeFileContext, IEnumerable<IntelOutputModel.IntelModelItem>> {
@@ -20,14 +22,24 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 	}
 
 	public class IntellisenseEndpoint {
-		private CompletionProvider _completionProvider;
-		public IntellisenseEndpoint(CompletionProvider completionProvider) {
+		private readonly CompletionProvider _completionProvider;
+		private readonly IntelDataLoader _intelDataLoader;
+		private readonly RepositoryManager _repositoryManager;
+		public IntellisenseEndpoint(CompletionProvider completionProvider, IntelDataLoader intelDataLoader, RepositoryManager repositoryManager) {
 			_completionProvider = completionProvider;
+			_intelDataLoader = intelDataLoader;
+			_repositoryManager = repositoryManager;
 		}
 
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
-			_completionProvider.GetSymbols(input.Text, input.Position, null, null, null)
-			return null;
+			var otherSources = new string[] {};
+			var projectPath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.ProjectPath);
+			var filePath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.PathRelativeToRepositoryRoot);
+			var intelData = _intelDataLoader.CreateIntelData(projectPath, filePath, input.Text);
+			var symbols = _completionProvider.GetSymbols(input.Text, input.Position, otherSources, intelData.ReferencePaths, LanguageNames.CSharp);
+			var completionItems = from symbol in symbols
+			                      select new IntelOutputModel.IntelModelItem {Name = symbol.Name, EntityType = symbol.Kind.ToString()};
+			return new IntelOutputModel { Items = completionItems.ToArray()};
 		}
 	}
 }
