@@ -16,6 +16,8 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			_languageDetector = languageDetector;
 		}
 
+		//TODO: Check what happens when "Console" or "Sys" or"System" 
+
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			var projectPath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.ProjectPath);
 			var filePath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.PathRelativeToRepositoryRoot);
