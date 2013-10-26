@@ -12,7 +12,7 @@
 </content>
 <div class="container">
 	<div class="jumbotron" style="padding-left: 111px; padding-top: 81px;">
-	    <Image src="chpokk_logo.png"/>
+	    <span style="vertical-align: bottom; font-size: small;"><Image src="chpokk_logo.png" style="vertical-align: bottom;"/>beta</span>
 		<div style="padding-top: 20px; padding-right: 40px; float: right;" class="clearfix">
 			<a id="invitebutton" class="btn btn-primary btn-large" href="/Main" style="padding: 12px 20px; font-size: 18px; position: absolute; left:50%; top: 213px; margin-left: 15px;">
 				Start coding. It's free.
