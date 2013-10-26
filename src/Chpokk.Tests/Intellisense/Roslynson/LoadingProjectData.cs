@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 using Shouldly;
 

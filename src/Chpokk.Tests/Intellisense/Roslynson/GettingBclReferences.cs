@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;

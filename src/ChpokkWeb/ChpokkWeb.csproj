@@ -694,7 +694,6 @@
     <Compile Include="Features\Editor\Intellisense\IntellisenseEndpoint.cs" />
     <Compile Include="Features\Editor\Parsing\ParserController.cs" />
     <Compile Include="Features\Editor\Parsing\ParserInputModel.cs" />
-    <Compile Include="Features\Editor\Intellisense\IntelController.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelOutputModel.cs" />
     <Compile Include="Features\Editor\Menu\EditorMenuEndpoint.cs" />

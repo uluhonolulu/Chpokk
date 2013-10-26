@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Chpokk.Tests.Intellisense.Roslynson;
 using ICSharpCode.SharpDevelop.Dom;
 using Microsoft.Build.Construction;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelDataLoader {
 		public IntelData CreateIntelData(string projectPath, string filePath, string content) {
 			var projectRoot = ProjectRootElement.Open(projectPath);

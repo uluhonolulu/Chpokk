@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using ChpokkWeb.Features.Editor.Intellisense;
+using Chpokk.Tests.Intellisense.Roslynson;
 using ChpokkWeb.Features.LanguageSupport;
 using ChpokkWeb.Features.RepositoryManagement;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntellisenseEndpoint {
 		private readonly CompletionProvider _completionProvider;
 		private readonly IntelDataLoader _intelDataLoader;

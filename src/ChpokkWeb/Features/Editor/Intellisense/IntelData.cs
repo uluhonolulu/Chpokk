@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelData {
 		public string CodeFilePath { get; set; }
 		public string Code { get; set; }
