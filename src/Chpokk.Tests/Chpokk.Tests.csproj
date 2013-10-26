@@ -298,13 +298,9 @@
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Intellisense\Roslynson\CallingIntelEndpoint.cs" />
-    <Compile Include="Intellisense\Roslynson\CompletionProvider.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />
     <Compile Include="Intellisense\Roslynson\GettingCodeFileSources.cs" />
     <Compile Include="Intellisense\Roslynson\GettingLocalReferences.cs" />
-    <Compile Include="Intellisense\Roslynson\IntelData.cs" />
-    <Compile Include="Intellisense\Roslynson\IntelDataLoader.cs" />
-    <Compile Include="Intellisense\Roslynson\IntellisenseEndpoint.cs" />
     <Compile Include="Intellisense\Roslynson\Keywords.cs" />
     <Compile Include="Intellisense\Roslynson\LoadingProjectData.cs" />
     <Compile Include="Intellisense\Roslynson\OtherDotMember.cs" />
