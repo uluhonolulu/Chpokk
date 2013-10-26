@@ -7,7 +7,7 @@ using FubuCore;
 
 namespace Chpokk.Tests.Intellisense {
 	public class SolutionWithProjectAndClassFileContext : SolutionAndProjectFileWithSingleEntryContext {
-		public const string CLASS_CONTENT = @"public class A {
+		public string CLASS_CONTENT = @"public class A {
 									public void B(){
 									}
 								}";

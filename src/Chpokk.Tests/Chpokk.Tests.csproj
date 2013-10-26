@@ -300,6 +300,7 @@
     <Compile Include="Intellisense\Roslynson\CallingIntelEndpoint.cs" />
     <Compile Include="Intellisense\Roslynson\CompletionProvider.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />
+    <Compile Include="Intellisense\Roslynson\GettingCodeFileSources.cs" />
     <Compile Include="Intellisense\Roslynson\GettingLocalReferences.cs" />
     <Compile Include="Intellisense\Roslynson\Keywords.cs" />
     <Compile Include="Intellisense\Roslynson\LoadingProjectData.cs" />

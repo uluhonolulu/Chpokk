@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Dom;
+using Roslyn.Compilers;
 
 namespace ChpokkWeb.Features.LanguageSupport {
 	public class LanguageDetector {
@@ -24,6 +25,19 @@ namespace ChpokkWeb.Features.LanguageSupport {
 		public LanguageProperties GetLanguageProperties(string fileName) {
 			var language = GetLanguage(fileName);
 			return (language == SupportedLanguage.CSharp) ? LanguageProperties.CSharp : LanguageProperties.VBNet;
+		}
+
+		public string GetRoslynLanguage(string fileName) {
+			var ext = Path.GetExtension(fileName);
+			if (ext != null) {
+				if (ext.Equals(".cs", StringComparison.InvariantCultureIgnoreCase) || ext.Equals(".csproj", StringComparison.InvariantCultureIgnoreCase)) {
+					return LanguageNames.CSharp;
+				}
+				if (ext.Equals(".vb", StringComparison.InvariantCultureIgnoreCase) || ext.Equals(".vbproj", StringComparison.InvariantCultureIgnoreCase)) {
+					return LanguageNames.VisualBasic;
+				} 
+			}
+			throw new Exception("Language not detected for " + fileName);			
 		}
 	}
 }

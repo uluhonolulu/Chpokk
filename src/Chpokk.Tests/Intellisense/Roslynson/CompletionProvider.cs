@@ -15,7 +15,8 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			switch (language) {
 				case LanguageNames.CSharp: 
 					tree = SyntaxTree.ParseText(source);
-					syntaxTrees = new[] {tree};
+					syntaxTrees = from code in otherSources select SyntaxTree.ParseText(code);
+					syntaxTrees = syntaxTrees.Union(new[] {tree});
 					compilation = Roslyn.Compilers.CSharp.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast<SyntaxTree>(), references: references);break;
 				case LanguageNames.VisualBasic:
 					tree = Roslyn.Compilers.VisualBasic.SyntaxTree.ParseText(source);

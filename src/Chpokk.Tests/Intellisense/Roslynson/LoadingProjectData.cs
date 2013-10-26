@@ -51,7 +51,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class IntelDataLoader {
 		public IntelData CreateIntelData(string projectPath, string filePath, string content) {
 			var projectRoot = ProjectRootElement.Open(projectPath);
-			return new IntelData() { CodeFilePath = filePath, Code = content, OtherContent = new string[] { }, ReferencePaths = GetReferencePaths(projectRoot) };
+			return new IntelData() { CodeFilePath = filePath, Code = content, OtherContent = GetSources(projectRoot, filePath), ReferencePaths = GetReferencePaths(projectRoot) };
 		}
 
 		public IEnumerable<string> GetReferencePaths(ProjectRootElement root) {
@@ -77,6 +77,20 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 				return null;
 			}
 			return GacInterop.FindAssemblyInNetGac(assemblyName);
+		}
+
+		public IEnumerable<string> GetSources(ProjectRootElement root, string pathToExclude) {
+			var compileItems = from item in root.Items 
+							   where item.ItemType == "Compile" 
+							   select item;
+			var paths = from item in compileItems select Path.Combine(root.DirectoryPath, item.Include);
+			Console.WriteLine("Paths:");
+			foreach (var path in paths) {
+				Console.WriteLine(path);
+			}
+			paths = paths.Except(new[] {pathToExclude});
+			return from path in paths
+			       select File.ReadAllText(path);
 		}
 	}
 }
