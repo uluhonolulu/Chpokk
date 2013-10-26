@@ -7,7 +7,7 @@
 			var position = getPosition(pos, editor) - 1;
 			var text = editor.getValue(); //text.substr(0,position) + '.' + text.substr(position)
 			var newChar = text.substr(position, 1);
-			if (newChar !== '.') { //$('.ace_autocomplete').is(':visible')
+			if ($('.ace_autocomplete').is(':visible')) { 
 				var all = editor.completer.completions ? $.grep(editor.completer.completions.all, function (item) {
 					return item.caption.startsWithIgnoreCase(prefix);
 				}) : [];
