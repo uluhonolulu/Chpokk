@@ -50,10 +50,13 @@
 });
 
 function getPosition(rowColumn, editor) {
-	var lines = editor.session.doc.getAllLines();
+    var lines = editor.session.doc.getAllLines();
+    var text = editor.getValue();
 	var position = 0;
 	for (var row = 0; row < rowColumn.row; row++) {
-		position += lines[row].length + 2;
+	    //we set the position to the start of the (row+1)th line
+	    //we look for the start of that line, starting from the end of the row-th line
+	    position = text.indexOf(lines[row + 1], position + lines[row].length);
 	}
 	position += rowColumn.column;
 	return position;
