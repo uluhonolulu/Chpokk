@@ -42,6 +42,7 @@
 
 		}
 	});
+    
 
 	amplify.subscribe('loadFileRequest', function (data) {
 		loadFile(data.path, editor);
@@ -62,9 +63,10 @@ function getPosition(rowColumn, editor) {
 	return position;
 }
 
-//TODO: normalize line endings
+
 function loadFile(path, editor) {
-	// this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
+    // this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
+    $('#fileContent').show();
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 	var li = $('#solutionBrowser ' + selector);
 	var projectPath = (li.length > 0) ? li.data('ProjectPath') : '';
