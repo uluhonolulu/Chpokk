@@ -37,7 +37,7 @@
 		var regexp = /[a-zA-Z_0-9\.]/;
 		if (regexp.test(char)) {
 			$('#ace').one('keyup', function () {
-				editor.commands.exec('startAutocomplete', editor);
+				//editor.commands.exec('startAutocomplete', editor); //temporarily disable the autocomplete
 			});
 
 		}
