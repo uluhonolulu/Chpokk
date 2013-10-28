@@ -6,8 +6,14 @@ using Roslyn.Compilers.CSharp;
 using Roslyn.Compilers.Common;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
+	
 	public class CompletionProvider {
-		public IEnumerable<ISymbol> GetSymbols(string source, int position, IEnumerable<string> otherSources, IEnumerable<string> assemblyPaths, string language) {
+		private KeywordProvider _keywordProvider;
+		public CompletionProvider(KeywordProvider keywordProvider) {
+			_keywordProvider = keywordProvider;
+		}
+
+		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(string source, int position, IEnumerable<string> otherSources, IEnumerable<string> assemblyPaths, string language) {
 			CommonSyntaxTree tree;
 			CommonCompilation compilation;
 			IEnumerable<CommonSyntaxTree> syntaxTrees;
@@ -43,7 +49,12 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				//Console.WriteLine();
 				//Name, Kind, OriginalDefinition
 			}
-			return symbols.OrderBy(symbol => symbol.Name);
+			var symbolItems = from s in symbols select new IntelOutputModel.IntelModelItem {Name = s.Name, EntityType = s.Kind.ToString()};
+			if (!this.IsDotCompletion(position, tree)) {
+				var keywords = from keyword in _keywordProvider.Keywords select new IntelOutputModel.IntelModelItem{Name = keyword, EntityType = "Keyword"};
+				symbolItems = symbolItems.Union(keywords);
+			}
+			return symbolItems.OrderBy(symbol => symbol.Name);
 		}
 
 		private INamedTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
