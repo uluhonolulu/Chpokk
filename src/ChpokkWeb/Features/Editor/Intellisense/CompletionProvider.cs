@@ -5,7 +5,7 @@ using Roslyn.Compilers;
 using Roslyn.Compilers.CSharp;
 using Roslyn.Compilers.Common;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class CompletionProvider {
 		public IEnumerable<ISymbol> GetSymbols(string source, int position, IEnumerable<string> otherSources, IEnumerable<string> assemblyPaths, string language) {
 			CommonSyntaxTree tree;
@@ -27,18 +27,23 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			
 			var semanticModel = compilation.GetSemanticModel(tree);
 			var declaredSymbol = GetContainingClass(position, tree, semanticModel);
-			var symbols = semanticModel.LookupSymbols(position, declaredSymbol);
+			var symbols = semanticModel.LookupSymbols(position, declaredSymbol).AsEnumerable();
+			if (declaredSymbol != null) {
+				var globals = semanticModel.LookupSymbols(position);
+				symbols = symbols.Union(globals.AsEnumerable());
+			}
 
-			//Console.WriteLine();
-			//Console.WriteLine("symbols:");
+			Console.WriteLine();
+			Console.WriteLine("symbols:");
 			foreach (var symbol in symbols) {
 				Console.WriteLine(symbol);
 				//foreach (var propertyInfo in typeof(ISymbol).GetProperties()) {
 				//	Console.WriteLine("\t" + propertyInfo.Name + ": " + propertyInfo.GetValue(symbol));
 				//}
 				//Console.WriteLine();
+				//Name, Kind, OriginalDefinition
 			}
-			return symbols.AsEnumerable();
+			return symbols.OrderBy(symbol => symbol.Name);
 		}
 
 		private INamedTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
@@ -46,21 +51,21 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			var nodeHierarchy = syntaxToken.Parent.AncestorsAndSelf();
 			foreach (var syntaxNode in nodeHierarchy) {
 				var thisNode = syntaxNode;
-				//Console.WriteLine(thisNode.GetText() + ": " + thisNode.GetType());
+				Console.WriteLine(thisNode.GetText() + ": " + thisNode.GetType());
 				if (syntaxNode is MemberAccessExpressionSyntax) {
 					thisNode = (syntaxNode as MemberAccessExpressionSyntax).Expression;
-					//Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
+					Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
 				}
 				var typeInfo = semanticModel.GetTypeInfo(thisNode);
-				//Console.WriteLine("Type: " + typeInfo.Type);
-				if (typeInfo.Type != null) {
+				Console.WriteLine("Type: " + typeInfo.Type);
+				if (typeInfo.Type != null && typeInfo.Type.TypeKind != CommonTypeKind.Error) {
 					return (INamedTypeSymbol) typeInfo.Type;
 				}
 				//not sure we need the next part
 				var symbol = semanticModel.GetDeclaredSymbol(thisNode);
 				if (symbol != null) {
-					//Console.WriteLine("Symbol: " + symbol);
-					//Console.WriteLine("Type: " + symbol.ContainingType);
+					Console.WriteLine("Symbol: " + symbol);
+					Console.WriteLine("Type: " + symbol.ContainingType);
 					return symbol.ContainingType;
 				}
 			}

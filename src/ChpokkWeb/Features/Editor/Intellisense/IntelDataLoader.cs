@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Chpokk.Tests.Intellisense.Roslynson;
 using ICSharpCode.SharpDevelop.Dom;
 using Microsoft.Build.Construction;
 

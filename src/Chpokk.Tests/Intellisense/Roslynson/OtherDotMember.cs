@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 using Roslyn.Compilers;
 using Shouldly;

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Chpokk.Tests.Intellisense.Roslynson;
 using ChpokkWeb.Features.LanguageSupport;
 using ChpokkWeb.Features.RepositoryManagement;
 
