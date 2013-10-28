@@ -7,6 +7,7 @@ using System.Web;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.CustomerDevelopment;
+using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
@@ -37,6 +38,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<ProjectLoader>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectCollection>().Singleton().Use(() => ProjectCollection.GlobalProjectCollection);
 			For<ILogger>().Use<ChpokkLogger>();
+			For<KeywordProvider>().Singleton();
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<IRetrievePolicy>();

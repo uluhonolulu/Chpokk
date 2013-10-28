@@ -10,14 +10,14 @@ using Roslyn.Compilers.CSharp;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
-	public class ThisDotMember {
+	public class ThisDotMember:BaseCompletionTest {
+		private const string TYPED_THIS_DOT_IN_A_METHOD = "class ClassA { string field1; void method1(){this.} }";
+
+		public ThisDotMember() : base(TYPED_THIS_DOT_IN_A_METHOD, "this.") { }
+
 		[Test]
 		public void HasMemberNamesInIntellisenseData() {
-			var source = "class ClassA { string field1; void method1(){this.} }";
-			var position = source.IndexOf("this.") + "this.".Length - 1;
-			var mscorlibPath = typeof(String).Assembly.Location;
-			var symbols = new CompletionProvider().GetSymbols(source, position, new string[] { }, new string[] { mscorlibPath }, LanguageNames.CSharp);
-			//symbols = GetSymbols(source, position);
+			var symbols = GetSymbols();
 			symbols.Any(symbol => symbol.Name == "field1").ShouldBe(true);
 			symbols.Any(symbol => symbol.Name == "ClassA").ShouldBe(false);
 		}

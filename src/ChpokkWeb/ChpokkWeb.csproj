@@ -697,6 +697,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelData.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelDataLoader.cs" />
     <Compile Include="Features\Editor\Intellisense\IntellisenseEndpoint.cs" />
+    <Compile Include="Features\Editor\Intellisense\KeywordProvider.cs" />
     <Compile Include="Features\Editor\Parsing\ParserController.cs" />
     <Compile Include="Features\Editor\Parsing\ParserInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />

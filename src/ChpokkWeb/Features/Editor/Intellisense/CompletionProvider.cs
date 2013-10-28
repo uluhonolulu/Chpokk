@@ -28,7 +28,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var semanticModel = compilation.GetSemanticModel(tree);
 			var declaredSymbol = GetContainingClass(position, tree, semanticModel);
 			var symbols = semanticModel.LookupSymbols(position, declaredSymbol).AsEnumerable();
-			if (declaredSymbol != null) {
+			if (declaredSymbol != null && !this.IsDotCompletion(position, tree)) {
 				var globals = semanticModel.LookupSymbols(position);
 				symbols = symbols.Union(globals.AsEnumerable());
 			}
@@ -70,6 +70,11 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				}
 			}
 			return null;
+		}
+
+		private bool IsDotCompletion(int position, CommonSyntaxTree tree) {
+			var syntaxToken = tree.GetRoot().FindToken(position);
+			return syntaxToken.Parent is MemberAccessExpressionSyntax;
 		}
 	}
 }
