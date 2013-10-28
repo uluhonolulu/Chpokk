@@ -22,9 +22,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var filePath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.PathRelativeToRepositoryRoot);
 			var intelData = _intelDataLoader.CreateIntelData(projectPath, filePath, input.Text);
 			var symbols = _completionProvider.GetSymbols(input.Text, input.Position, intelData.OtherContent, intelData.ReferencePaths, _languageDetector.GetRoslynLanguage(input.PathRelativeToRepositoryRoot));
-			var completionItems = from symbol in symbols
-			                      select new IntelOutputModel.IntelModelItem {Name = symbol.Name, EntityType = symbol.Kind.ToString()};
-			return new IntelOutputModel { Items = completionItems.Distinct().OrderBy(item => item.Name).ToArray()};
+			return new IntelOutputModel { Items = symbols.Distinct().OrderBy(item => item.Name).ToArray() };
 		}
 	}
 }

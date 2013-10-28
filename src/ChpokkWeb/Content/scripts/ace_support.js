@@ -17,7 +17,10 @@
 
 			var editorData = $.extend(model, { Text: text, NewChar: newChar, Position: position }); //model + Text, NewChar, Position -- use stackoverflow.com/questions/18013109/retrieve-line-number-of-string-in-ace-editor
 			$.post('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel', editorData, function (data) {
-				var completionData = $.map(data.Items, function (item, index) {
+			    var matchingItems = $.grep(data.Items, function(item) {
+			        return item.Name.startsWithIgnoreCase(prefix);
+			    });
+			    var completionData = $.map(matchingItems, function (item, index) {
 					return { name: item.Name, value: item.Name + (item.EntityType == 'Method'? '()' : ''), caption: item.Name, score: data.Items.length - index, meta: item.EntityType };
 				});
 				callback(null, completionData);
@@ -37,7 +40,7 @@
 		var regexp = /[a-zA-Z_0-9\.]/;
 		if (regexp.test(char)) {
 			$('#ace').one('keyup', function () {
-				//editor.commands.exec('startAutocomplete', editor); //temporarily disable the autocomplete
+				editor.commands.exec('startAutocomplete', editor); //temporarily disable the autocomplete
 			});
 
 		}
