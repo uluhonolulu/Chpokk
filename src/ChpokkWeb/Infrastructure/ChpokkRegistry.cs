@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using Chpokk.Tests.References;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.CustomerDevelopment;
@@ -39,6 +40,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<ProjectCollection>().Singleton().Use(() => ProjectCollection.GlobalProjectCollection);
 			For<ILogger>().Use<ChpokkLogger>();
 			For<KeywordProvider>().Singleton();
+			For<BclAssembliesProvider>().Singleton();
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<IRetrievePolicy>();
