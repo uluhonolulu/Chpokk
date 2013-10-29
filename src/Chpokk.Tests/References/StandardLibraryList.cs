@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using FubuCore;
-using ICSharpCode.NRefactory;
+﻿using ChpokkWeb.Features.ProjectManagement.References;
 using MbUnit.Framework;
-using Microsoft.Build.Construction;
-using Microsoft.Build.Evaluation;
 using Shouldly;
 
 namespace Chpokk.Tests.References {
