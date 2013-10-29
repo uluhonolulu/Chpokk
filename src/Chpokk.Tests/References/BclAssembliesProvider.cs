@@ -7,7 +7,9 @@ using Microsoft.Build.Evaluation;
 
 namespace Chpokk.Tests.References {
 	public class BclAssembliesProvider {
-		public IEnumerable<string> GetBclAssemblies() {
+		private readonly IEnumerable<string> _assemblies;
+
+		public BclAssembliesProvider() {
 			var rootElement = ProjectRootElement.Create();
 			var targetImport = @"$(MSBuildToolsPath)\Microsoft.CSharp.targets";
 			rootElement.AddImport(targetImport);
@@ -17,8 +19,12 @@ namespace Chpokk.Tests.References {
 			var assemblyFolder = property.EvaluatedValue;
 			var assemblyPaths = Directory.EnumerateFiles(assemblyFolder, "*.dll");
 			var assemblies = from path in assemblyPaths select Path.GetFileNameWithoutExtension(path);
-			assemblies = assemblies.Except(new[] {"mscorlib", "sysglobl"}).OrderBy(s => s);
-			return assemblies;
+			_assemblies = assemblies.Except(new[] {"mscorlib", "sysglobl"}).OrderBy(s => s);
+			
+		}
+
+		public IEnumerable<string> GetBclAssemblies() {
+			return _assemblies;
 		}
 	}
 }
