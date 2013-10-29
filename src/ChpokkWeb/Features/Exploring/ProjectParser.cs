@@ -98,6 +98,10 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 			var filePath = projectFilePath.ParentDirectory().AppendPath(fileName);
 			_fileSystem.WriteStringToFile(filePath, fileContent);
 		}
+
+		public void AddReference(ProjectRootElement projectRoot, string assemblyNameOrPath) {
+			projectRoot.AddItem("Reference", assemblyNameOrPath);
+		}
 	}
 
 }
