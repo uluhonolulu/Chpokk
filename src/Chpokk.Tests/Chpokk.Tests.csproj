@@ -199,6 +199,10 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NuGet, Version=2.0.30828.5, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NuGet.exe</HintPath>
+    </Reference>
     <Reference Include="QuantConnect.CodingServices.Worker">
       <HintPath>..\..\..\OSS\QC\QCCodingServices.NET\QuantConnect.CodingServices\bin\Debug\QuantConnect.CodingServices.Worker.exe</HintPath>
     </Reference>
@@ -370,6 +374,7 @@
     <Compile Include="Spikes\ContinuationSpike.cs" />
     <Compile Include="Spikes\FontProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spikes\GitSpike.cs" />
     <Compile Include="Spikes\RegisterEndpoints.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\Solution.cs" />
