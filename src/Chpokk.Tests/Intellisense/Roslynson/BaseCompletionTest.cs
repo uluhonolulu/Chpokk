@@ -16,10 +16,10 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			_completionText = completionText;
 		}
 
-		public IEnumerable<ISymbol> GetSymbols() {
+		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols() {
 			var position = _source.IndexOf(_completionText) + _completionText.Length - 1;
 			var mscorlibPath = typeof(String).Assembly.Location;
-			return new CompletionProvider().GetSymbols(_source, position, new string[] { }, new[] { mscorlibPath }, LanguageNames.CSharp);
+			return new CompletionProvider(new KeywordProvider()).GetSymbols(_source, position, new string[] { }, new[] { mscorlibPath }, LanguageNames.CSharp);
 
 		} 
 	}

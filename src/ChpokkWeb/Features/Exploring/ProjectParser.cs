@@ -72,12 +72,13 @@ namespace ChpokkWeb.Features.Exploring {
 			return doc;
 		}
 
-		public void CreateProjectFile(string outputType, string projectPath, SupportedLanguage language) {
+		public ProjectRootElement CreateProject(string outputType, SupportedLanguage language) {
 			var rootElement = ProjectRootElement.Create();
-			var targetImport = @"$(MSBuildToolsPath)\Microsoft.{0}.targets".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
+			var targetImport =
+				@"$(MSBuildToolsPath)\Microsoft.{0}.targets".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
 			rootElement.AddImport(targetImport);
 			rootElement.AddProperty("OutputType", outputType);
-			rootElement.Save(projectPath);
+			return rootElement;
 		}
 
 		public void AddProjectToSolution(string name, string solutionPath, string projectTypeGuid, string projectFileExtension) {

@@ -475,6 +475,7 @@
     <Content Include="Features\Editor\_editor.spark">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\Pokk\REPL.txt" />
     <Content Include="Features\RepositoryManagement\_RepositoryList.spark" />
     <Content Include="Features\Exploring\_SolutionBrowser.spark">
       <SubType>Designer</SubType>

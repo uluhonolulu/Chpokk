@@ -311,6 +311,7 @@
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommand.cs" />
     <Compile Include="ItemAdding\FolderBrowser.cs" />
+    <Compile Include="Newing\AddingABclReference.cs" />
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />
     <Compile Include="Newing\CreatingASimpleSolution.cs" />
     <Compile Include="Newing\CreatingASimpleVbExeSolution.cs" />
@@ -363,6 +364,7 @@
     <Compile Include="GitHub\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
+    <Compile Include="References\StandardLibraryList.cs" />
     <Compile Include="Spikes\CloningFromAssembla.cs" />
     <Compile Include="Spikes\CodeParser.cs" />
     <Compile Include="Spikes\ContinuationSpike.cs" />

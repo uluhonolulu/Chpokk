@@ -1,0 +1,15 @@
+﻿all symbols are in a dictionary
+1. before the libe, load all vars, declare and init them
+2. the line
+3. save all (including new) symbols
+
+need a script/strict mode
+in strict:
+object s = ""
+s.Length -> exception
+s = 1 -> ok
+
+in script:
+object s = ""
+s.Length works
+s = 1 -> exception
