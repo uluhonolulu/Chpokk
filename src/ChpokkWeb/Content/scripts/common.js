@@ -19,13 +19,14 @@ $(function () {
 		if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1) {
 			message = $(response.responseText).find('i').text();
 		}
-		if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors > 0) {
+		if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors.length > 0) {
 			message = continuation.errors[0].message;
 		}
 
 		if(message) danger(message);
 
 		$('.waitContainer').hide();
+	    $('.modal').modal('hide');
 	});
 
 	//track button clicks
