@@ -2,6 +2,9 @@
 <use namespace="ChpokkWeb.Features.ProjectManagement.References" />
 <use master=""/>
 
-<for each="var reference in Model.Assemblies">
-    reference <br/>
-</for>
+<div style="height: 200px; overflow-y: auto;">
+    <for each="var reference in Model.Assemblies">
+        <input type="checkbox" name="Assemblies" value="!{reference}" id="!{reference}"/>
+		<label for="!{reference}">!{reference}</label><br/>
+    </for>
+</div>

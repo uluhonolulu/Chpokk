@@ -7,7 +7,10 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane active">
+    <div class="tab-pane active" id="bcl">
         !{this.ModellessPartial<BclReferencesEndpoint>("DoIt")}
+    </div>
+    <div class="tab-pane" id="nuget">
+        NuGet
     </div>
 </div>
