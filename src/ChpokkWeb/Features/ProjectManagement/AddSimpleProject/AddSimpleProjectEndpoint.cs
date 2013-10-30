@@ -38,6 +38,9 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			//create a project
 			var projectPath = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath, Path.Combine(inputModel.RepositoryName, inputModel.RepositoryName + projectFileExtension));
 			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language);
+			foreach (var reference in inputModel.References) {
+				_projectParser.AddReference(rootElement, reference);
+			}
 			rootElement.Save(projectPath);
 
 			//create Program.exe
