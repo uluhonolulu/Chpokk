@@ -37,10 +37,12 @@
 						</select>
 						
 						<label for="language">Language</label>
-						<select name="Language" id="language" class="form-control">
-							<option value="CSharp">C#</option>
-							<option value="VBNet">VB.Net</option>
-						</select>
+					    <select name="Language" id="language" class="form-control">
+					        <option value="CSharp">C#</option>
+					        <option value="VBNet">VB.Net</option>
+					    </select>
+						
+					    <render partial="ProjectManagement\References\References"/>
 					</form>
 				</div>
 				<div class="modal-footer">

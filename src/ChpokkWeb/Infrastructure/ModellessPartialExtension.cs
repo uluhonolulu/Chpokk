@@ -10,7 +10,7 @@ using FubuMVC.Core.View;
 
 namespace ChpokkWeb.Infrastructure {
 	public static class ModellessPartialExtension {
-		public static string Partial<THandler>(this IFubuPage page, string methodName) {
+		public static string ModellessPartial<THandler>(this IFubuPage page, string methodName) {
 			var factory = page.Get<IPartialFactory>();
 			var writer = page.Get<IOutputWriter>();
 			var graph = page.Get<BehaviorGraph>();

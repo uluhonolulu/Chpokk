@@ -7,7 +7,7 @@ namespace Chpokk.Tests.References {
 
 		[Test]
 		public void CanRetrieveDisplaysBclAssemblies() {
-			var assemblies = new BclAssembliesProvider().GetBclAssemblies();
+			var assemblies = new BclAssembliesProvider().BclAssemblies;
 
 			assemblies.ShouldContain("System.Data");
 			//also use AdditionalExplicitAssemblyReferences to add references and maybe TargetFrameworkDirectory

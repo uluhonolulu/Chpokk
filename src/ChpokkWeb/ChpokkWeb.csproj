@@ -577,6 +577,10 @@
     <Content Include="Features\CustomerDevelopment\Pricelist\PriceListLink.spark" />
     <Content Include="Features\MainScreen\RepositoryMenu\NewSimpleProject.spark" />
     <Content Include="Features\MainScreen\RepositoryMenu\DashBoard.spark" />
+    <Content Include="Features\ProjectManagement\References\References.spark">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\ProjectManagement\References\BclReferences.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -717,6 +721,8 @@
     <Compile Include="Features\ProjectManagement\ProjectLoader.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTypeGuid.cs" />
     <Compile Include="Features\ProjectManagement\References\BclAssembliesProvider.cs" />
+    <Compile Include="Features\ProjectManagement\References\BclReferencesEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\References\BclReferencesModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />

@@ -23,8 +23,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References {
 			
 		}
 
-		public IEnumerable<string> GetBclAssemblies() {
-			return _assemblies;
+		public IEnumerable<string> BclAssemblies {
+			get { return _assemblies; }
 		}
 	}
 }

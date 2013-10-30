@@ -1,0 +1,7 @@
+﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.BclReferencesModel" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.References" />
+<use master=""/>
+
+<for each="var reference in Model.Assemblies">
+    reference <br/>
+</for>
