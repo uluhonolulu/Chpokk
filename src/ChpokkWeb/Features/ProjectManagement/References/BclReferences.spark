@@ -1,10 +1,11 @@
 ﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.BclReferencesModel" />
 <use namespace="ChpokkWeb.Features.ProjectManagement.References" />
+<use namespace=" System.Collections.Generic" />
 <use master=""/>
 
 <div style="height: 200px; overflow-y: auto;">
-    <for each="var reference in Model.Assemblies">
-        <input type="checkbox" name="Assemblies" value="!{reference}" id="!{reference}"/>
+	<for each="var reference in Model.Assemblies">
+        <input type="checkbox" name="References" value="!{reference}" id="!{reference}"/>
 		<label for="!{reference}">!{reference}</label><br/>
     </for>
 </div>

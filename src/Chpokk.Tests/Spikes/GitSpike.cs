@@ -16,29 +16,17 @@ namespace Chpokk.Tests.Spikes {
 	public class GitSpike {
 		[Test]
 		public void LetsSee() {
-			//NuGet.
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is ListCommand));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is CommandLineRepositoryFactory));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is ISettings));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is PackageSourceProvider, 4).DisplayFor<PackageSource[]>(sources =>
-			//{
-
-			//	var builder = new StringBuilder();
-			//	foreach(var packageSource in sources) {
-			//		builder.AppendLine(packageSource.ToString());
-			//	}
-			//	return builder.ToString();
-			//}));
-			//CThruEngine.StartListening();
-			NuGet.Common.Console console = new NuGet.Common.Console();
+			var console = new NuGet.Common.Console();
 			//PhysicalFileSystem physicalFileSystem = new PhysicalFileSystem(Directory.GetCurrentDirectory());
 			//program.Manager.RegisterCommand(command);
 			var settings = Settings.LoadDefaultSettings();
 			var sourceProvider = new PackageSourceProvider(settings, new[]{new PackageSource(NuGetConstants.DefaultFeedUrl)});
 			//var provider = new PackageSourceProvider(new Settings(new PhysicalFileSystem()))
-			var command = new ListCommand(new CommandLineRepositoryFactory(), sourceProvider);
-			command.Console = console;
-			command.Manager = new CommandManager();
+			var command = new ListCommand(new CommandLineRepositoryFactory(), sourceProvider)
+				{
+					Console = console,
+					Manager = new CommandManager()
+				};
 			command.Arguments.Add("elmah");
 			var packages = command.GetPackages();
 

@@ -23,7 +23,7 @@
 			</ul>
 		</li>
 	</ul>
-<use file="RepositoryMenu\NewSimpleProject"/>
+<use file="ProjectManagement\AddSimpleProject\NewSimpleProject"/>
 	
 </content>
 

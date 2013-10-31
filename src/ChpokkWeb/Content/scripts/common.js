@@ -28,6 +28,9 @@ $(function () {
 		$('.waitContainer').hide();
 	    $('.modal').modal('hide');
 	});
+    
+    //traditional ajaxsettings so that we don't screw up with arrays
+    $.ajaxSetup({ traditional: true });
 
 	//track button clicks
 	$(document).on('click', '.btn, a', function (e) {
@@ -99,5 +102,6 @@ $.fn.serializeObject = function () {
 	// if model is defined, let's combine
 	if (model)
 		o = $.extend(model, o);
-	return o;
+	//return JSON.stringify(o);
+    return o;
 };

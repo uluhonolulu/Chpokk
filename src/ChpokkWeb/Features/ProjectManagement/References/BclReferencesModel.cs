@@ -5,6 +5,6 @@ using System.Web;
 
 namespace ChpokkWeb.Features.ProjectManagement.References {
 	public class BclReferencesModel {
-		public string[] Assemblies { get; set; }
+		public IEnumerable<string> Assemblies { get; set; }
 	}
 }
