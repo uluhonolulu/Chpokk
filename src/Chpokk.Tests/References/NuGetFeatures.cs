@@ -11,11 +11,12 @@ using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
 using Console = System.Console;
+using Shouldly;
 
 namespace Chpokk.Tests.Spikes {
 	public class NuGetFeatures {
 		[Test]
-		public void LetsSee() {
+		public void CanGetTheListOfPackagesSearchingForElmah() {
 			var console = new NuGet.Common.Console();
 			//PhysicalFileSystem physicalFileSystem = new PhysicalFileSystem(Directory.GetCurrentDirectory());
 			//program.Manager.RegisterCommand(command);
@@ -30,9 +31,7 @@ namespace Chpokk.Tests.Spikes {
 			command.Arguments.Add("elmah");
 			var packages = command.GetPackages();
 
-			foreach (var package in packages) {
-				Console.WriteLine(package);
-			}
+			packages.Select(package => package.Id).ShouldContain("elmah");
 			//Program.Main(new[]{"list", "elmah"});
 		}
 	}
