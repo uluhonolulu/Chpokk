@@ -13,7 +13,7 @@ using NuGet.Common;
 using Console = System.Console;
 
 namespace Chpokk.Tests.Spikes {
-	public class GitSpike {
+	public class NuGetFeatures {
 		[Test]
 		public void LetsSee() {
 			var console = new NuGet.Common.Console();
