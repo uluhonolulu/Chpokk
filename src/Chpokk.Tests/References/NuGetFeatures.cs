@@ -3,6 +3,7 @@ using System.Linq;
 using CThru;
 using CThru.BuiltInAspects;
 using MbUnit.Framework;
+using Mono.Collections.Generic;
 using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
@@ -17,7 +18,7 @@ namespace Chpokk.Tests.References {
 			//PhysicalFileSystem physicalFileSystem = new PhysicalFileSystem(Directory.GetCurrentDirectory());
 			//program.Manager.RegisterCommand(command);
 			//var provider = new PackageSourceProvider(new Settings(new PhysicalFileSystem()))
-			var command = new ListCommand(new CommandLineRepositoryFactory(), PackageSourceProvider)
+			var command = new ListCommand()
 				{
 					Console = Console,
 					Manager = new CommandManager()
@@ -35,7 +36,7 @@ namespace Chpokk.Tests.References {
 			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IPackageManager));
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IPackageRepository, 2));
 
-			var command = new InstallCommand(new CommandLineRepositoryFactory(), PackageSourceProvider)
+			var command = new InstallCommand()
 				{
 					Console = Console,
 					Manager = new CommandManager(),
