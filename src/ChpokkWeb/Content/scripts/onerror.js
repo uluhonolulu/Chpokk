@@ -1,9 +1,9 @@
 ﻿
 //track errors
-window.onerror = function (exception, url, line) {
-	var data = { Message: exception, Url: url, LineNumber: line, StackTrace: getStackTrace().join('\n') };
-	reportException(data);
-};
+//window.onerror = function (exception, url, line) {
+//	var data = { Message: exception, Url: url, LineNumber: line, StackTrace: getStackTrace().join('\n') };
+//	reportException(data);
+//};
 
 function reportException(data) {
 	var targetUrl = 'url::ChpokkWeb.Features.CustomerDevelopment.ErrorModel';
