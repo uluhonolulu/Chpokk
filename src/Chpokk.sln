@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chpokk.Tests", "Chpokk.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChpokkWeb", "ChpokkWeb\ChpokkWeb.csproj", "{244CBBEC-847E-4E0D-8857-05BB34878174}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuNuNuGet", "NuNuNuGet\NuNuNuGet.csproj", "{0144BA90-2662-4A72-98B3-28BA68DB03BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{244CBBEC-847E-4E0D-8857-05BB34878174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244CBBEC-847E-4E0D-8857-05BB34878174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244CBBEC-847E-4E0D-8857-05BB34878174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

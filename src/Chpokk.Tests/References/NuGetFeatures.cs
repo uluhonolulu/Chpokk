@@ -2,6 +2,7 @@
 using System.Linq;
 using CThru;
 using CThru.BuiltInAspects;
+using ICSharpCode.PackageManagement.Cmdlets;
 using MbUnit.Framework;
 using Mono.Collections.Generic;
 using NuGet;
@@ -56,17 +57,17 @@ namespace Chpokk.Tests.References {
 			}
 		}
 
-		private static PackageSourceProvider PackageSourceProvider {
-			get {
-				var settings = Settings.LoadDefaultSettings();
-				var sourceProvider = new PackageSourceProvider(settings, new[] {new PackageSource(NuGetConstants.DefaultFeedUrl)});
-				return sourceProvider;
-			}
-		}
-
 		private static NuGet.Common.Console Console {
 			get { return new NuGet.Common.Console(); }
 		}
 
+		[Test]
+		public void RunningSharpDevelopVersion() {
+			var installPackageCmdlet = new InstallPackageCmdlet() { Id = "nunit", Solution = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Twitter\Chpokk-SampleSol\src\ChpokkSampleSolution.sln" };
+			var results = installPackageCmdlet.Invoke();
+			foreach (var result in results) {
+				System.Console.WriteLine(result);
+			}
+		}
 	}
 }

@@ -203,6 +203,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NuGet.exe</HintPath>
     </Reference>
+    <Reference Include="PackageManagement">
+      <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="PackageManagement.Cmdlets">
+      <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.Cmdlets.dll</HintPath>
+    </Reference>
     <Reference Include="QuantConnect.CodingServices.Worker">
       <HintPath>..\..\..\OSS\QC\QCCodingServices.NET\QuantConnect.CodingServices\bin\Debug\QuantConnect.CodingServices.Worker.exe</HintPath>
     </Reference>
@@ -250,6 +256,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
