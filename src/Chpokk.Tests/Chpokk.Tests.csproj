@@ -251,6 +251,7 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -353,6 +354,7 @@
     <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
+    <Compile Include="References\AddingAPackage.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Run\BuildableProjectWithExeOutput.cs" />

@@ -31,6 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.Core, Version=4.4.0.9701, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\OSS\SharpDevelop\bin\UnitTests\ICSharpCode.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop, Version=4.4.0.9701, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\OSS\SharpDevelop\bin\UnitTests\ICSharpCode.SharpDevelop.dll</HintPath>
+    </Reference>
     <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="NuGet.Core, Version=1.3.20419.9005, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -39,8 +47,15 @@
     <Reference Include="PackageManagement">
       <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.dll</HintPath>
     </Reference>
-    <Reference Include="PackageManagement.Cmdlets">
-      <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.Cmdlets.dll</HintPath>
+    <Reference Include="PackageManagement.Cmdlets, Version=4.1.0.7599, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ChpokkWeb\bin\PackageManagement.Cmdlets.dll</HintPath>
+    </Reference>
+    <Reference Include="PackageManagement.Cmdlets.Tests">
+      <HintPath>..\..\..\OSS\SharpDevelop\bin\UnitTests\PackageManagement.Cmdlets.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="PackageManagement.Tests">
+      <HintPath>..\..\..\OSS\SharpDevelop\bin\UnitTests\PackageManagement.Tests.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,7 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="LetsSee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

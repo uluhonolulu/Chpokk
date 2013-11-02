@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.IO;
 using System.Linq;
 using CThru;
 using CThru.BuiltInAspects;
@@ -24,6 +27,7 @@ namespace Chpokk.Tests.References {
 					Console = Console,
 					Manager = new CommandManager()
 				};
+			command.Source.Add(NuGetConstants.DefaultFeedUrl);
 			command.Arguments.Add("elmah");
 			var packages = command.GetPackages();
 
@@ -68,6 +72,37 @@ namespace Chpokk.Tests.References {
 			foreach (var result in results) {
 				System.Console.WriteLine(result);
 			}
+		}
+
+		[Test]
+		public void InitializingTheCommands() {
+			var console = new NuGet.Common.Console(){Verbosity = Verbosity.Normal};
+			var fileSystem = new PhysicalFileSystem(Directory.GetCurrentDirectory()){Logger = console};
+			var program = new Program();
+			Initialize(fileSystem, console, program);
+			program.Commands.ShouldContain(command => command is ListCommand);
+		}
+
+		private static void Initialize(IFileSystem fileSystem, IConsole console, object target) {
+			using (var catalog = new AggregateCatalog(new ComposablePartCatalog[]
+			  {
+				new AssemblyCatalog(typeof(Program).Assembly)
+			  })) {
+
+				using (var container = new CompositionContainer(catalog, new ExportProvider[0])) {
+					AttributedModelServices.ComposeExportedValue<IConsole>(container, console);
+					AttributedModelServices.ComposeExportedValue<IPackageRepositoryFactory>(container, (IPackageRepositoryFactory)new CommandLineRepositoryFactory(console));
+					AttributedModelServices.ComposeExportedValue<IFileSystem>(container, fileSystem);
+					//AttributedModelServices.ComposeExportedValue<ICommandManager>(container, new CommandManager());
+					//AttributedModelServices.ComposeExportedValue<HelpCommand>(container, new HelpCommand(new CommandManager()));
+					AttributedModelServices.ComposeParts(container, new object[1]
+          {
+            target
+          });
+				}
+			}
+
+			
 		}
 	}
 }

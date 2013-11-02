@@ -19,6 +19,7 @@ using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
+using NuGet.Common;
 using StructureMap.Configuration.DSL;
 using StructureMap.Pipeline;
 
@@ -46,7 +47,11 @@ namespace ChpokkWeb.Infrastructure {
 				scanner.AssemblyContainingType<IRetrievePolicy>();
 				scanner.AddAllTypesOf<IRetrievePolicy>();
 				scanner.AddAllTypesOf<IEditorMenuPolicy>();
+
+				scanner.WithDefaultConventions();
 			});
+			//NuGet
+			For<IConsole>().Use(new NuGet.Common.Console());
 		}
 	}
 }

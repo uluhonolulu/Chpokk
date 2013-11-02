@@ -203,6 +203,10 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NuGet, Version=2.7.40906.75, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NuGet.exe</HintPath>
+    </Reference>
     <Reference Include="QuantConnect.CodingServices.Worker">
       <HintPath>..\..\..\OSS\QC\QCCodingServices.NET\QuantConnect.CodingServices\bin\Debug\QuantConnect.CodingServices.Worker.exe</HintPath>
     </Reference>
