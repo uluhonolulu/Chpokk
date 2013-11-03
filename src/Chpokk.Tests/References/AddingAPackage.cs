@@ -46,12 +46,10 @@ namespace Chpokk.Tests.References {
 		}
 
 		public override void Act() {
-			CThruEngine.AddAspect(new DebugAspect(info => info.MethodName == "CreateAggregateRepositoryFromSources"));
-			var command = new InstallCommand() {
-				Console = Context.Container.Get<IConsole>(),
-				Manager = new CommandManager(),
-				OutputDirectory = TargetFolder
-			};
+			//CThruEngine.AddAspect(new DebugAspect(info => info.MethodName == "CreateAggregateRepositoryFromSources"));
+			var initializer = Context.Container.Get<NuGetInitializer>();
+			var command = initializer.CreateObject<InstallCommand>();
+			command.OutputDirectory = TargetFolder;
 			command.Source.Add(NuGetConstants.DefaultFeedUrl);
 			command.Arguments.Add("elmah");
 			command.ExecuteCommand();

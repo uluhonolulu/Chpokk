@@ -41,7 +41,6 @@ namespace Chpokk.Tests.References {
 			var sourceProvider = typeof(Command).Assembly.GetType("NuGet.PackageSourceBuilder").GetMethod("CreateSourceProvider", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { settings });
 			typeof(Command).GetProperty("SourceProvider", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(command, sourceProvider);
 			typeof(Command).GetProperty("RepositoryFactory", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(command, new CommandLineRepositoryFactory(command.Console));
-			//command.RepositoryFactory = new CommandLineRepositoryFactory(command.Console);
 		}
 	}
 }
