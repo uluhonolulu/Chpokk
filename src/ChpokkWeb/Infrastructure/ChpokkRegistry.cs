@@ -13,6 +13,7 @@ using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.ProjectManagement.References;
+using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;

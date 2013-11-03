@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 
-namespace ChpokkWeb.Features.ProjectManagement.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 	public class BclReferencesEndpoint {
 		private readonly BclAssembliesProvider _provider;
 		public BclReferencesEndpoint(BclAssembliesProvider provider) {

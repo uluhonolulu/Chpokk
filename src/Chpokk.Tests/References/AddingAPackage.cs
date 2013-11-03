@@ -5,6 +5,7 @@ using Arractas;
 using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;

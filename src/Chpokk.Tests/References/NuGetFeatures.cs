@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using CThru;
 using CThru.BuiltInAspects;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ICSharpCode.PackageManagement.Cmdlets;
 using MbUnit.Framework;
 using Mono.Collections.Generic;

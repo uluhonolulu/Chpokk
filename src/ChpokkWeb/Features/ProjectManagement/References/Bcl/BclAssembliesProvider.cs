@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 
-namespace ChpokkWeb.Features.ProjectManagement.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 	public class BclAssembliesProvider {
 		private readonly IEnumerable<string> _assemblies;
 

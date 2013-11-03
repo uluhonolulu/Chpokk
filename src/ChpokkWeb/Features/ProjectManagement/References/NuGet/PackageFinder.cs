@@ -2,7 +2,7 @@
 using NuGet;
 using NuGet.Commands;
 
-namespace Chpokk.Tests.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class PackageFinder {
 		private readonly NuGetInitializer _initializer;
 		public PackageFinder(NuGetInitializer initializer) {

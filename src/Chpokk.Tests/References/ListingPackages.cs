@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;

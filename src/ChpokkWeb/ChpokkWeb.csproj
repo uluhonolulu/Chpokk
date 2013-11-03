@@ -258,6 +258,7 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
@@ -730,6 +731,7 @@
     <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesModel.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\NuGetInitializer.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\NugetPackagesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\PackageFinder.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />

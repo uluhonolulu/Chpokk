@@ -1,4 +1,5 @@
 ﻿<use namespace="ChpokkWeb.Features.ProjectManagement.References" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.References.Bcl" />
 <h4>Project references</h4>
 
 <ul class="nav nav-tabs">

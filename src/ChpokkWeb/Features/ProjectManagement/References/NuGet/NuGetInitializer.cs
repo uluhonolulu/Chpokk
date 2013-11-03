@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.IO;
@@ -8,7 +7,7 @@ using NuGet;
 using NuGet.Commands;
 using NuGet.Common;
 
-namespace Chpokk.Tests.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class NuGetInitializer {
 		private readonly IFileSystem _fileSystem;
 		private readonly IConsole _console;

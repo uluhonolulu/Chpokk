@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace ChpokkWeb.Features.ProjectManagement.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 	public class BclReferencesModel {
 		public IEnumerable<string> Assemblies { get; set; }
 	}
