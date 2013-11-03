@@ -7,7 +7,6 @@ using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using NuGet;
-using NuGet.Commands;
 using Shouldly;
 
 namespace Chpokk.Tests.References {
@@ -19,12 +18,7 @@ namespace Chpokk.Tests.References {
 		}
 
 		public override IEnumerable<IPackage> Act() {
-			var initializer = Context.Container.Get<NuGetInitializer>();
-			var listCommand = initializer.CreateObject<ListCommand>();
-			listCommand.Source.Add(NuGetConstants.DefaultFeedUrl);
-			listCommand.Arguments.Add("elmah");
-			//Program.Main(new string[] {""});
-			return listCommand.GetPackages();
+			return Context.Container.Get<PackageFinder>().FindPackages("elmah");
 		}
 
 	}
