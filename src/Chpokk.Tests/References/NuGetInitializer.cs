@@ -1,7 +1,11 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.IO;
+using System.Reflection;
 using NuGet;
+using NuGet.Commands;
 using NuGet.Common;
 
 namespace Chpokk.Tests.References {
@@ -23,7 +27,21 @@ namespace Chpokk.Tests.References {
 					container.ComposeParts(new[]{(object) target});
 				}
 			}
+			var command = target as Command;
+			if (command != null) {
+				InitializeCommand(command);
+			}
 			return target;
+		}
+
+		private void InitializeCommand(Command command) {
+			//accessing private fields via reflection
+			var settings = !string.IsNullOrEmpty(command.ConfigFile) ? Settings.LoadDefaultSettings((IFileSystem) new PhysicalFileSystem(Path.GetDirectoryName(Path.GetFullPath(command.ConfigFile))), Path.GetFileName(command.ConfigFile), command.MachineWideSettings) : Settings.LoadDefaultSettings(command.FileSystem, null, command.MachineWideSettings);
+			typeof(Command).GetProperty("Settings", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(command, settings);
+			var sourceProvider = typeof(Command).Assembly.GetType("NuGet.PackageSourceBuilder").GetMethod("CreateSourceProvider", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { settings });
+			typeof(Command).GetProperty("SourceProvider", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(command, sourceProvider);
+			typeof(Command).GetProperty("RepositoryFactory", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(command, new CommandLineRepositoryFactory(command.Console));
+			//command.RepositoryFactory = new CommandLineRepositoryFactory(command.Console);
 		}
 	}
 }

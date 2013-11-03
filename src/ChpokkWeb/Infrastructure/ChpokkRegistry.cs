@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -18,10 +19,11 @@ using Emkay.S3;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using Microsoft.Build.Evaluation;
-using Microsoft.Build.Framework;
+using NuGet;
 using NuGet.Common;
 using StructureMap.Configuration.DSL;
 using StructureMap.Pipeline;
+using ILogger = Microsoft.Build.Framework.ILogger;
 
 namespace ChpokkWeb.Infrastructure {
 	public class ChpokkRegistry : Registry {
@@ -52,6 +54,8 @@ namespace ChpokkWeb.Infrastructure {
 			});
 			//NuGet
 			For<IConsole>().Use(new NuGet.Common.Console());
+			For<IFileSystem>()
+				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
 		}
 	}
 }
