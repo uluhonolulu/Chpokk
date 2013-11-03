@@ -584,7 +584,7 @@
     <Content Include="Features\ProjectManagement\References\References.spark">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Features\ProjectManagement\References\BclReferences.spark">
+    <Content Include="Features\ProjectManagement\References\Bcl\BclReferences.spark">
       <SubType>Designer</SubType>
     </Content>
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
@@ -726,11 +726,11 @@
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
     <Compile Include="Features\ProjectManagement\ProjectLoader.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTypeGuid.cs" />
-    <Compile Include="Features\ProjectManagement\References\BclAssembliesProvider.cs" />
-    <Compile Include="Features\ProjectManagement\References\BclReferencesEndpoint.cs" />
-    <Compile Include="Features\ProjectManagement\References\BclReferencesModel.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGetInitializer.cs" />
-    <Compile Include="Features\ProjectManagement\References\PackageFinder.cs" />
+    <Compile Include="Features\ProjectManagement\References\Bcl\BclAssembliesProvider.cs" />
+    <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesModel.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\NuGetInitializer.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\PackageFinder.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />
