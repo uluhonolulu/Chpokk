@@ -355,6 +355,7 @@
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
     <Compile Include="References\AddingAPackage.cs" />
+    <Compile Include="References\NuGetInitializer.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Run\BuildableProjectWithExeOutput.cs" />
