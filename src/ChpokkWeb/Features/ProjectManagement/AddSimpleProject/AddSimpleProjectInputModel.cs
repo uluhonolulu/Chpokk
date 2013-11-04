@@ -7,5 +7,6 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		public string OutputType { get; set; }
 		public SupportedLanguage Language { get; set; }
 		public IEnumerable<string> References { get; set; }
+		public IEnumerable<string> Packages { get; set; }
 	}
 }
