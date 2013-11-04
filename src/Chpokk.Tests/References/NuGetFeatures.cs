@@ -16,25 +16,8 @@ using Shouldly;
 
 namespace Chpokk.Tests.References {
 	public class NuGetFeatures {
-		private const string TARGET_FOLDER =
-			@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Twitter\Chpokk-SampleSol\src";// @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\temp";
-		[Test]
-		public void CanGetTheListOfPackagesSearchingForElmah() {
-			//PhysicalFileSystem physicalFileSystem = new PhysicalFileSystem(Directory.GetCurrentDirectory());
-			//program.Manager.RegisterCommand(command);
-			//var provider = new PackageSourceProvider(new Settings(new PhysicalFileSystem()))
-			var command = new ListCommand()
-				{
-					Console = Console,
-					Manager = new CommandManager()
-				};
-			command.Source.Add(NuGetConstants.DefaultFeedUrl);
-			command.Arguments.Add("elmah");
-			var packages = command.GetPackages();
+		private const string TARGET_FOLDER =  @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\temp";
 
-			packages.Select(package => package.Id).ShouldContain("elmah");
-			//Program.Main(new[]{"list", "elmah"});
-		}
 		[Test]
 		public void ExecutingTheInstallCommandInstallsThePackage() {
 
@@ -58,7 +41,7 @@ namespace Chpokk.Tests.References {
 		[TearDown]
 		public void Cleanup() {
 			if (Directory.Exists(TARGET_FOLDER)) {
-				//Directory.Delete(TARGET_FOLDER, true);
+				Directory.Delete(TARGET_FOLDER, true);
 			}
 		}
 
