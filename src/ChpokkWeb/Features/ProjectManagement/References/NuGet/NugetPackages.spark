@@ -29,10 +29,14 @@
                 findPackages($('#packageSearch').val());
             });
             function findPackages(query) {
+                //display loading animation
                 $('#packagesLoading').show();
+                //clean unchecked refs
+                $('#packagesContainer input:checkbox:not(:checked)').parent('div').remove();
                 var url = '!{this.Urls.UrlFor<NugetPackagesInputModel>()}';
                 var data = { Query: query };
                 $.post(url, data, function(result) {
+                    //TODO: filter out what's here already
                     var template = '<div><input type="checkbox" name="References" value=\'$${Id}\' id=\'$${Id}\'> <label for=\'$${Id}\' title="$${Description}">$${Id} $${Version}</label></div>';
                     $.tmpl(template, result.Packages).appendTo($('#packagesContainer'));
                     $('#packagesLoading').hide();
