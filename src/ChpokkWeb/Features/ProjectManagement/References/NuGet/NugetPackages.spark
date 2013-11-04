@@ -18,7 +18,6 @@
 <!-- NugetPackages.spark -->
     <script type="text/javascript">
         $(function() {
-            findPackages("elmah");
             $('#packageSearch').keyup(function(e) {
                 if (e.which == 13) {
                     findPackages($(e.target).val());
