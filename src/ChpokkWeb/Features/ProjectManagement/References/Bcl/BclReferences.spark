@@ -1,4 +1,4 @@
-﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.BclReferencesModel" />
+﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.Bcl.BclReferencesModel" />
 <use namespace="ChpokkWeb.Features.ProjectManagement.References" />
 <use namespace=" System.Collections.Generic" />
 <use master=""/>

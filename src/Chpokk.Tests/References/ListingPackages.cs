@@ -9,6 +9,7 @@ using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using NuGet;
 using Shouldly;
+using System.Linq;
 
 namespace Chpokk.Tests.References {
 	[TestFixture]

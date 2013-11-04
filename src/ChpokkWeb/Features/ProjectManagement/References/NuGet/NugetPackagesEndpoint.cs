@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class NugetPackagesEndpoint {
-		private PackageFinder _packageFinder;
+		private readonly PackageFinder _packageFinder;
 		public NugetPackagesEndpoint(PackageFinder packageFinder) {
 			_packageFinder = packageFinder;
 		}

@@ -1,0 +1,24 @@
+﻿<use namespace="ChpokkWeb.Features.ProjectManagement.References.NuGet" />
+<div id="packagesContainer" style="height: 200px; overflow-y: auto;">
+    
+</div>
+
+<content name="InlineScripts">
+<!-- NugetPackages.spark -->
+<ignoree>
+    <script type="text/javascript">
+        $(function() {
+            findPackages("elmah");
+            function findPackages(query) {
+                var url = '!{this.Urls.UrlFor<NugetPackagesInputModel>()}';
+                var data = { Query: query };
+                $.post(url, data, function(result) {
+                    var template = '<div><input type="checkbox" name="References" value=\'$${Id}\' id=\'$${Id}\'> <label for=\'$${Id}\' title="$${Description}">$${Id} $${Version}</label></div>';
+                    $.tmpl(template, result.Packages).appendTo($('#packagesContainer'));
+                });
+            }
+        });
+        
+    </script>
+</ignoree>
+</content>

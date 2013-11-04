@@ -12,6 +12,6 @@
         !{this.ModellessPartial<BclReferencesEndpoint>("DoIt")}
     </div>
     <div class="tab-pane" id="nuget">
-        NuGet
+        <use file="NuGet\NugetPackages.spark"/>
     </div>
 </div>
