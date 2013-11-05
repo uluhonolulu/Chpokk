@@ -14,6 +14,7 @@ using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.ProjectManagement.References;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;
@@ -57,7 +58,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<IConsole>().Use(new NuGet.Common.Console());
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
-			For<PackageIn>()
+			For<PackageInfoCache>().Singleton();
 		}
 	}
 }

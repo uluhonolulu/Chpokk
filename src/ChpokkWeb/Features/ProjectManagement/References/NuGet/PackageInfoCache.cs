@@ -8,7 +8,6 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		public void Keep(IEnumerable<IPackage> packages) {
 			foreach (var package in packages) {
 				_packages[package.Id] = package;
-				Console.WriteLine("Adding " + package.Id);
 			}
 		}
 

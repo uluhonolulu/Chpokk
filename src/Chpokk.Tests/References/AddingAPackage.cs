@@ -46,7 +46,8 @@ namespace Chpokk.Tests.References {
 			var packages = Context.Container.Get<PackageFinder>().FindPackages("elmah");
 			cache.Keep(packages);
 			var elmahPackage = FindPackage("elmah");
-			var references = CollectPackageDependencies(elmahPackage);
+			var walker = Context.Container.Get<PackageDependencyWalker>();
+			var references = walker.CollectPackageDependencies(elmahPackage);
 			foreach (var dependentPackage in references.Keys) {
 				if (references[dependentPackage].Any()) {
 					var assemblyRelativePath = references[dependentPackage].First();
@@ -58,22 +59,32 @@ namespace Chpokk.Tests.References {
 			File.Exists(assemblyPath).ShouldBe(true);
 		}
 
-		public IDictionary<IPackage, IEnumerable<string>> CollectPackageDependencies(IPackage mainPackage) {
-			var references = new Dictionary<IPackage, IEnumerable<string>>();
-			CollectPackageDependencies(references, mainPackage);
-			return references;
-		}
-
-		private void CollectPackageDependencies(IDictionary<IPackage, IEnumerable<string>> collection, IPackage mainPackage) {
-			var assemblies = mainPackage.AssemblyReferences;
-			collection.Add(mainPackage, from assembly in assemblies select assembly.Path);
-
-			var dependencies = mainPackage.DependencySets.SelectMany(set => set.Dependencies);
-			foreach (var dependency in dependencies) {
-				var dependentPackage = FindPackage(dependency.Id);
-				CollectPackageDependencies(collection, dependentPackage);
+		public class PackageDependencyWalker {
+			private readonly PackageInfoCache _cache;
+			public PackageDependencyWalker(PackageInfoCache cache) {
+				_cache = cache;
 			}
+
+			public IDictionary<IPackage, IEnumerable<string>> CollectPackageDependencies(IPackage mainPackage) {
+				var references = new Dictionary<IPackage, IEnumerable<string>>();
+				CollectPackageDependencies(references, mainPackage);
+				return references;
+			}
+
+			private void CollectPackageDependencies(IDictionary<IPackage, IEnumerable<string>> collection, IPackage mainPackage) {
+				var assemblies = mainPackage.AssemblyReferences;
+				collection.Add(mainPackage, from assembly in assemblies select assembly.Path);
+
+				var dependencies = mainPackage.DependencySets.SelectMany(set => set.Dependencies);
+				foreach (var dependency in dependencies) {
+					var dependentPackage = _cache[dependency.Id];
+					CollectPackageDependencies(collection, dependentPackage);
+				}
+			}
+
 		}
+
+
 
 		public override void Act() {
 			//CThruEngine.AddAspect(new DebugAspect(info => info.MethodName == "CreateAggregateRepositoryFromSources"));
