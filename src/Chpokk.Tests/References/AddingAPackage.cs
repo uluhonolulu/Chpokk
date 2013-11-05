@@ -30,8 +30,8 @@ namespace Chpokk.Tests.References {
 			Directory.EnumerateDirectories(targetFolder).ShouldContain(s => s.PathRelativeTo(targetFolder).StartsWith("elmah."));
 		}
 
-		IPackage FindPackage(string packageName, IEnumerable<IPackage> source) {
-			return source.First(package => package.Id == packageName);
+		IPackage FindPackage(string packageName) {
+			return Context.Container.Get<PackageInfoCache>()[packageName];
 		}
 
 		[Test]
@@ -41,38 +41,37 @@ namespace Chpokk.Tests.References {
 
 		[Test]
 		public void AddsAssemblyReference() {
+			var cache = Context.Container.Get<PackageInfoCache>();
 			string assemblyPath = null;
 			var packages = Context.Container.Get<PackageFinder>().FindPackages("elmah");
-			var elmahPackage = FindPackage("elmah", packages);
-			var references = new Dictionary<IPackage, IEnumerable<string>>();
-			CollectPackageDependencies(references, elmahPackage, packages);
+			cache.Keep(packages);
+			var elmahPackage = FindPackage("elmah");
+			var references = CollectPackageDependencies(elmahPackage);
 			foreach (var dependentPackage in references.Keys) {
 				if (references[dependentPackage].Any()) {
 					var assemblyRelativePath = references[dependentPackage].First();
 					assemblyPath = Path.Combine(TargetFolder, string.Concat(dependentPackage.Id, ".", dependentPackage.Version), assemblyRelativePath);
 				}
 			}
-			//var dependencies = elmahPackage.DependencySets.SelectMany(set => set.Dependencies);
-			//foreach (var dependency in dependencies) {
-			//	var dependentPackage = FindPackage(dependency.Id, packages);
-			//	var assemblies = dependentPackage.AssemblyReferences;
-			//	foreach (var assemblyReference in assemblies) {
-			//		assemblyPath = Path.Combine(TargetFolder, string.Concat(dependentPackage.Id, ".", dependentPackage.Version), assemblyReference.Path);
-			//	}
-			//}
+
 			assemblyPath.ShouldNotBe(null);
 			File.Exists(assemblyPath).ShouldBe(true);
 		}
 
-		public void CollectPackageDependencies(IDictionary<IPackage, IEnumerable<string>> collection, IPackage mainPackage,
-		                                                                         IEnumerable<IPackage> allPackages) {
+		public IDictionary<IPackage, IEnumerable<string>> CollectPackageDependencies(IPackage mainPackage) {
+			var references = new Dictionary<IPackage, IEnumerable<string>>();
+			CollectPackageDependencies(references, mainPackage);
+			return references;
+		}
+
+		private void CollectPackageDependencies(IDictionary<IPackage, IEnumerable<string>> collection, IPackage mainPackage) {
 			var assemblies = mainPackage.AssemblyReferences;
 			collection.Add(mainPackage, from assembly in assemblies select assembly.Path);
 
 			var dependencies = mainPackage.DependencySets.SelectMany(set => set.Dependencies);
 			foreach (var dependency in dependencies) {
-				var dependentPackage = FindPackage(dependency.Id, allPackages);
-				CollectPackageDependencies(collection, dependentPackage, allPackages);
+				var dependentPackage = FindPackage(dependency.Id);
+				CollectPackageDependencies(collection, dependentPackage);
 			}
 		}
 
@@ -89,5 +88,17 @@ namespace Chpokk.Tests.References {
 		private string TargetFolder {
 			get { return Context.SolutionFolder.AppendPath("packages"); }
 		}
+	}
+
+	public class PackageInfoCache {
+		private readonly IDictionary<string, IPackage> _packages = new Dictionary<string, IPackage>();
+		public void Keep(IEnumerable<IPackage> packages) {
+			foreach (var package in packages) {
+				_packages[package.Id] = package;
+				Console.WriteLine("Adding " + package.Id);
+			}
+		}
+
+		public IPackage this[string id] { get { return _packages[id]; } }
 	}
 }
