@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Arractas;
 using CThru;
@@ -24,16 +25,13 @@ namespace Chpokk.Tests.References {
 		public void CreatesThePackageFolder() {
 			var targetFolder = TargetFolder;
 			foreach (var directory in Directory.EnumerateDirectories(targetFolder)) {
-				Console.WriteLine(directory);
+				Console.WriteLine(directory.PathRelativeTo(targetFolder));
 			}
-			Directory.EnumerateDirectories(targetFolder).ShouldContain(s => s.Contains("elmah"));
+			Directory.EnumerateDirectories(targetFolder).ShouldContain(s => s.PathRelativeTo(targetFolder).StartsWith("elmah."));
 		}
 
-		[Test]
-		public void MaybeConsoleCommandWillWork() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.StartsWith("NuGet")));
-			CThruEngine.StartListening();
-			Program.Main(new[] { "install", "elmah", "-o", @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\name1" });
+		IPackage FindPackage(string packageName, IEnumerable<IPackage> source) {
+			return source.First(package => package.Id == packageName);
 		}
 
 		[Test]
@@ -43,7 +41,39 @@ namespace Chpokk.Tests.References {
 
 		[Test]
 		public void AddsAssemblyReference() {
-			
+			string assemblyPath = null;
+			var packages = Context.Container.Get<PackageFinder>().FindPackages("elmah");
+			var elmahPackage = FindPackage("elmah", packages);
+			var references = new Dictionary<IPackage, IEnumerable<string>>();
+			CollectPackageDependencies(references, elmahPackage, packages);
+			foreach (var dependentPackage in references.Keys) {
+				if (references[dependentPackage].Any()) {
+					var assemblyRelativePath = references[dependentPackage].First();
+					assemblyPath = Path.Combine(TargetFolder, string.Concat(dependentPackage.Id, ".", dependentPackage.Version), assemblyRelativePath);
+				}
+			}
+			//var dependencies = elmahPackage.DependencySets.SelectMany(set => set.Dependencies);
+			//foreach (var dependency in dependencies) {
+			//	var dependentPackage = FindPackage(dependency.Id, packages);
+			//	var assemblies = dependentPackage.AssemblyReferences;
+			//	foreach (var assemblyReference in assemblies) {
+			//		assemblyPath = Path.Combine(TargetFolder, string.Concat(dependentPackage.Id, ".", dependentPackage.Version), assemblyReference.Path);
+			//	}
+			//}
+			assemblyPath.ShouldNotBe(null);
+			File.Exists(assemblyPath).ShouldBe(true);
+		}
+
+		public void CollectPackageDependencies(IDictionary<IPackage, IEnumerable<string>> collection, IPackage mainPackage,
+		                                                                         IEnumerable<IPackage> allPackages) {
+			var assemblies = mainPackage.AssemblyReferences;
+			collection.Add(mainPackage, from assembly in assemblies select assembly.Path);
+
+			var dependencies = mainPackage.DependencySets.SelectMany(set => set.Dependencies);
+			foreach (var dependency in dependencies) {
+				var dependentPackage = FindPackage(dependency.Id, allPackages);
+				CollectPackageDependencies(collection, dependentPackage, allPackages);
+			}
 		}
 
 		public override void Act() {
