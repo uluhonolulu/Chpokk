@@ -48,12 +48,7 @@ namespace Chpokk.Tests.References {
 			var elmahPackage = FindPackage("elmah");
 			var walker = Context.Container.Get<PackageDependencyWalker>();
 			var references = walker.CollectPackageDependencies(elmahPackage);
-			foreach (var dependentPackage in references.Keys) {
-				if (references[dependentPackage].Any()) {
-					var assemblyRelativePath = references[dependentPackage].First();
-					assemblyPath = Path.Combine(TargetFolder, string.Concat(dependentPackage.Id, ".", dependentPackage.Version), assemblyRelativePath);
-				}
-			}
+			assemblyPath = walker.GetDependentAssemblyPaths(references, TargetFolder).First();
 
 			assemblyPath.ShouldNotBe(null);
 			File.Exists(assemblyPath).ShouldBe(true);
@@ -80,6 +75,18 @@ namespace Chpokk.Tests.References {
 					var dependentPackage = _cache[dependency.Id];
 					CollectPackageDependencies(collection, dependentPackage);
 				}
+			}
+
+			public IEnumerable<string> GetDependentAssemblyPaths(IDictionary<IPackage, IEnumerable<string>> dependencies, string rootPath) {
+				foreach (var package in dependencies.Keys) {
+					foreach (var assemblyRelativePath in dependencies[package])
+						yield return GetPackageAssemblyPath(package, rootPath, assemblyRelativePath);
+				}
+			}
+
+			public string GetPackageAssemblyPath(IPackage package, string rootPath, string assemblyRelativePath) {
+				return Path.Combine(rootPath, string.Concat(package.Id, ".", package.Version), assemblyRelativePath);
+				
 			}
 
 		}
