@@ -39,19 +39,7 @@ namespace Chpokk.Tests.References {
 
 		[Test]
 		public void AddsAssemblyReference() {
-			var elmahPackage = FindPackage("elmah");
-			var walker = Context.Container.Get<PackageDependencyWalker>();
-			var references = walker.GetDependentAssemblyPaths(elmahPackage);
-			var assemblyPath = TargetFolder.AppendPath(references.First());
-
-			assemblyPath.ShouldNotBe(null);
-			File.Exists(assemblyPath).ShouldBe(true);
-
 			var project = ProjectRootElement.Open(Context.ProjectPath);
-			var parser = Context.Container.Get<ProjectParser>();
-			foreach (var reference in references) {
-				parser.AddReference(project, TargetFolder.AppendPath(reference));
-			}
 			var projectReferences = project.Items.Where(element => element.ItemType == "Reference");
 			projectReferences.First().Include.ShouldBe("elmah", Case.Insensitive);
 		}
@@ -73,6 +61,15 @@ namespace Chpokk.Tests.References {
 			command.ExecuteCommand();
 
 			//add the damn reference
+			var elmahPackage = cache["elmah"];
+			var walker = Context.Container.Get<PackageDependencyWalker>();
+			var references = walker.GetDependentAssemblyPaths(elmahPackage);
+			
+			var project = ProjectRootElement.Open(Context.ProjectPath);
+			var parser = Context.Container.Get<ProjectParser>();
+			foreach (var reference in references) {
+				parser.AddReference(project, TargetFolder.AppendPath(reference));
+			}
 
 		}
 
