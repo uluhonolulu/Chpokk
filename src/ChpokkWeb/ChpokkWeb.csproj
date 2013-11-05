@@ -734,6 +734,7 @@
     <Compile Include="Features\ProjectManagement\References\NuGet\NuGetInitializer.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\NugetPackagesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\PackageFinder.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\PackageInfoCache.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />
