@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
@@ -10,7 +7,7 @@ using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using Shouldly;
 
-namespace Chpokk.Tests.Newing {
+namespace Chpokk.Tests.References {
 	public class AddingABclReference: BaseQueryTest<SimpleConfiguredContext, IEnumerable<string>> {
 		private const string ASSEMBLY_NAME = "System.Data";
 

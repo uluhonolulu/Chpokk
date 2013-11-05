@@ -354,6 +354,7 @@
     <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
+    <Compile Include="References\AddingAFileBasedReference.cs" />
     <Compile Include="References\AddingAPackage.cs" />
     <Compile Include="References\ListingPackages.cs" />
     <Compile Include="Retrieving\Folder.cs" />

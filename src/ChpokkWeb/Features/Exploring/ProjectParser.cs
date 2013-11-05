@@ -100,7 +100,15 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 		}
 
 		public void AddReference(ProjectRootElement projectRoot, string assemblyNameOrPath) {
-			projectRoot.AddItem("Reference", assemblyNameOrPath);
+			if (Path.IsPathRooted(assemblyNameOrPath)) {
+				var assemblyName = Path.GetFileNameWithoutExtension(assemblyNameOrPath);
+				var referenceElement = projectRoot.AddItem("Reference", assemblyName);
+				referenceElement.AddMetadata("HintPath", assemblyNameOrPath.PathRelativeTo(projectRoot.DirectoryPath));
+			}
+			else {
+				projectRoot.AddItem("Reference", assemblyNameOrPath);
+			}
+			
 		}
 	}
 
