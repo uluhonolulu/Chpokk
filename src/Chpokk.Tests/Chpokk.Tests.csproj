@@ -357,8 +357,6 @@
     <Compile Include="References\AddingAFileBasedReference.cs" />
     <Compile Include="References\AddingAPackage.cs" />
     <Compile Include="References\ListingPackages.cs" />
-    <Compile Include="References\PackageDependencyWalker.cs" />
-    <Compile Include="References\PackageInstaller.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Run\BuildableProjectWithExeOutput.cs" />
