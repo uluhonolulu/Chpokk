@@ -1,11 +1,10 @@
 ﻿using ChpokkWeb.Features.Exploring;
-using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using FubuCore;
 using Microsoft.Build.Construction;
 using NuGet;
 using NuGet.Commands;
 
-namespace Chpokk.Tests.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class PackageInstaller {
 		private readonly PackageDependencyWalker _walker;
 		private readonly PackageInfoCache _cache;

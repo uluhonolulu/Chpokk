@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using NuGet;
 
-namespace Chpokk.Tests.References {
+namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class PackageDependencyWalker {
 		private readonly PackageInfoCache _cache;
 		public PackageDependencyWalker(PackageInfoCache cache) {

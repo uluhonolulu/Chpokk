@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
@@ -20,12 +21,14 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		private readonly RepositoryManager _repositoryManager;
 		private readonly ProjectParser _projectParser;
 		private readonly IUrlRegistry _registry;
-		public AddSimpleProjectEndpoint(IFileSystem fileSystem, SolutionFileLoader solutionFileLoader, RepositoryManager repositoryManager, ProjectParser projectParser, IUrlRegistry registry) {
+		private PackageInstaller _packageInstaller;
+		public AddSimpleProjectEndpoint(IFileSystem fileSystem, SolutionFileLoader solutionFileLoader, RepositoryManager repositoryManager, ProjectParser projectParser, IUrlRegistry registry, PackageInstaller packageInstaller) {
 			_fileSystem = fileSystem;
 			_solutionFileLoader = solutionFileLoader;
 			_repositoryManager = repositoryManager;
 			_projectParser = projectParser;
 			_registry = registry;
+			_packageInstaller = packageInstaller;
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
@@ -46,15 +49,23 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			//create Program.exe
 			if (inputModel.OutputType == "Exe") {
 				var filename = inputModel.Language == SupportedLanguage.CSharp? "Program.cs" : "Module1.vb" ;
-				var fileContent = FileContent(filename);
+				var fileContent = GetFileContent(filename);
 				_projectParser.CreateItem(projectPath, filename, fileContent);
 			}
+
+			//install packages
+			var targetFolder = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName,
+			                                                         inputModel.PhysicalApplicationPath).AppendPath("packages");
+			foreach (var packageId in inputModel.Packages) {
+				_packageInstaller.InstallPackage(packageId, targetFolder, projectPath);
+			}
+			
 
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = inputModel.RepositoryName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 
-		private static string FileContent(string filename) {
+		private static string GetFileContent(string filename) {
 			var assembly = Assembly.GetExecutingAssembly();
 			var reader = new StreamReader(assembly.GetManifestResourceStream("ChpokkWeb.App_GlobalResources.FileTemplates." + filename));
 			return reader.ReadToEnd();
