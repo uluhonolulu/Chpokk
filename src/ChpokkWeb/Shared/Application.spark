@@ -30,7 +30,6 @@
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" style="height: 60px;">
 		<div class="container">
-			<span class="navbar-brand" id="brand">chpokk</span>
 
 			<use content="header">
 			</use>
