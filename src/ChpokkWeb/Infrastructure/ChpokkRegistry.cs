@@ -58,7 +58,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<IConsole>().Use(new NuGet.Common.Console());
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
-			For<PackageInfoCache>().Singleton();
+			For<PackageInfoCache>().LifecycleIs(new HybridSessionLifecycle());
 		}
 	}
 }
