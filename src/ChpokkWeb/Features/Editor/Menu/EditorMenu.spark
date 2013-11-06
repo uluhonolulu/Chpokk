@@ -62,24 +62,26 @@
 	</script>
 </content>
 
-<!-- Commit dialog -->
-<div class="modal fade" id="commitDialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">Enter the commit message</h3>				
-			</div>
-			<div class="modal-body">
-				<textarea id="commitMessage" class="form-control"></textarea>				
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-primary" id="commitButton">Save and commit</button>				
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
+<content name="Dialogs">
+    <!-- EditorMenu -->
+    <div class="modal fade" id="commitDialog">
+	    <div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Enter the commit message</h3>				
+			    </div>
+			    <div class="modal-body">
+				    <textarea id="commitMessage" class="form-control"></textarea>				
+			    </div>
+			    <div class="modal-footer">
+				    <button class="btn btn-primary" id="commitButton">Save and commit</button>				
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+</content>
 
 <render partial="ProjectManagement\AddItem\AddItem" />
 <render partial="Compilation\Compile" />
