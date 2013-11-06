@@ -7,7 +7,7 @@
         <span class="glyphicon glyphicon-search"></span>
     </button>
 </div>
-<div><img src="/_content/images/loader.gif" id="packagesLoading"></div>
+<div><img src="/_content/images/loader.gif" id="packagesLoading" style="display: none;"></div>
 
 
 <div id="packagesContainer" style="height: 200px; overflow-y: auto; clear: both;" class="clearfix">
