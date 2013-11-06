@@ -4,8 +4,20 @@
 <use master=""/>
 
 <div style="height: 200px; overflow-y: auto;">
-	<for each="var reference in Model.Assemblies">
+    <for each="var reference in Model.Assemblies">
         <input type="checkbox" name="References" value="!{reference}" id="!{reference}"/>
-		<label for="!{reference}">!{reference}</label><br/>
+        <label for="!{reference}">!{reference}</label><br/>
     </for>
 </div>
+
+<content name="InlineScripts">
+    <!-- BclReferences.spark -->
+    <script type="text/javascript">
+        $(function() {
+            var references = ["System", "System.Core"];
+            for (var reference in references) {
+                $(document.getElementById(references[reference])).prop('checked', true);
+            }
+        })
+    </script>
+</content>

@@ -59,7 +59,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			foreach (var packageId in inputModel.Packages) {
 				_packageInstaller.InstallPackage(packageId, targetFolder, projectPath);
 			}
-			
+			rootElement.Save(projectPath);
 
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = inputModel.RepositoryName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
