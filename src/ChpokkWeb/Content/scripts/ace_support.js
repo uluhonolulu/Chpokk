@@ -25,9 +25,9 @@
 			            name: item.Name,
 			            value: item.Name + (item.EntityType == 'Method' ? '()' : ''),
 			            caption: item.Name,
-			            className: 'completion_' + item.EntityType,
+			            className: 'completion_' + item.EntityType + ' completion',
 			            score: data.Items.length - index
-			        };
+			        };//TODO: .completer.insertMatch(this.editor); or if (data.snippet) snippetManager.insertSnippet(this.editor, data.snippet);
 				});
 				callback(null, completionData);
 			});

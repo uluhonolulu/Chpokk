@@ -7,19 +7,31 @@
 			right: 0;
 			font-family: droid-sans-mono, sans-serif;
 		}
-
-		#intel_results a
-		{
-			font-size: 12px;
-			line-height: 1.2;
-			white-space: nowrap;
+		.ace_autocomplete .completion {
+			display: block;
+			background-repeat: no-repeat;
+			padding-left: 20px;
 		}
-		#intel_results a img 
-		{
-			/*position:relative;
-			top:6px;*/
+
+		.ace_autocomplete .ace_completion_Keyword {
+			background-image: url(/_content/images/Intellisense/key_16xLG.png) ;
 		}
 	
+		.ace_autocomplete .ace_completion_Method {
+			background-image: url(/_content/images/Intellisense/Method_636.png) ;
+		}
+		.ace_autocomplete .ace_completion_Property {
+			background-image: url(/_content/images/Intellisense/PropertyIcon.png) ;
+		}
+		.ace_autocomplete .ace_completion_NamedType {
+			background-image: url(/_content/images/Intellisense/Class_489.png) ;
+		}
+		.ace_autocomplete .ace_completion_Namespace {
+			background-image: url(/_content/images/Intellisense/Namespace.png) ;
+		}
+		.ace_autocomplete .ace_completion_Field {
+			background-image: url(/_content/images/Intellisense/FieldIcon.png) ;
+		}
 		#code {
 			font-family: Consolas,Courier,Monospace;
 			font-size: small;
