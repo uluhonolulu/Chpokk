@@ -43,7 +43,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 						}
 					}
 					catch (Exception e) {
-						builder.AppendLine(projectProperty.Name + ": " + e.ToString());
+						builder.AppendLine(projectProperty.Name + ": " + projectProperty.EvaluatedValue + " - " + e.ToString());
 					}
 				}
 
