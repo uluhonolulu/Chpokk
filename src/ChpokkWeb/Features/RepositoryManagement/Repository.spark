@@ -60,7 +60,7 @@
     
               <content name="menu">
                   <ul class="nav navbar-nav">
-                      <li>
+                      <li class="active">
                           <a id="newItemButton">New item</a>
                       </li>
                   </ul>

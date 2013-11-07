@@ -13,6 +13,10 @@ to use a different color start by replacing all instances of
 			color: black;
 		}
 
+/* navbar */
+
+.navbar .container { padding-left: 30px; }
+
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
