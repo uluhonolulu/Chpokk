@@ -35,8 +35,13 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 				var builder = new StringBuilder();
 				foreach (var projectProperty in project.AllEvaluatedProperties) {
 					var value = projectProperty.EvaluatedValue;
-					if (Path.IsPathRooted(value) && File.Exists(value.AppendPath("mscorlib.dll"))) {
-						builder.AppendLine(projectProperty.Name + ": " + value);
+					try {
+						if (Path.IsPathRooted(value) && File.Exists(value.AppendPath("mscorlib.dll"))) {
+							builder.AppendLine(projectProperty.Name + ": " + value);
+						}
+					}
+					catch (Exception e) {
+						Console.WriteLine(e);
 					}
 				}
 				if (_mailer.Host != null) _mailer.Send("errors@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly folder", builder.ToString());
