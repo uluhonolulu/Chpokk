@@ -8,7 +8,7 @@ using Roslyn.Compilers.Common;
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	
 	public class CompletionProvider {
-		private KeywordProvider _keywordProvider;
+		private readonly KeywordProvider _keywordProvider;
 		public CompletionProvider(KeywordProvider keywordProvider) {
 			_keywordProvider = keywordProvider;
 		}
@@ -39,16 +39,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				symbols = symbols.Union(globals.AsEnumerable());
 			}
 
-			Console.WriteLine();
-			Console.WriteLine("symbols:");
-			foreach (var symbol in symbols) {
-				Console.WriteLine(symbol);
-				//foreach (var propertyInfo in typeof(ISymbol).GetProperties()) {
-				//	Console.WriteLine("\t" + propertyInfo.Name + ": " + propertyInfo.GetValue(symbol));
-				//}
-				//Console.WriteLine();
-				//Name, Kind, OriginalDefinition
-			}
+
 			var symbolItems = from s in symbols select new IntelOutputModel.IntelModelItem {Name = s.Name, EntityType = s.Kind.ToString()};
 			if (!this.IsDotCompletion(position, tree)) {
 				var keywords = from keyword in _keywordProvider.Keywords select new IntelOutputModel.IntelModelItem{Name = keyword, EntityType = "Keyword"};
@@ -57,7 +48,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return symbolItems.OrderBy(symbol => symbol.Name);
 		}
 
-		private INamedTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
+		private ITypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
 			var syntaxToken = tree.GetRoot().FindToken(position);
 			var nodeHierarchy = syntaxToken.Parent.AncestorsAndSelf();
 			foreach (var syntaxNode in nodeHierarchy) {
@@ -70,7 +61,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				var typeInfo = semanticModel.GetTypeInfo(thisNode);
 				Console.WriteLine("Type: " + typeInfo.Type);
 				if (typeInfo.Type != null && typeInfo.Type.TypeKind != CommonTypeKind.Error) {
-					return (INamedTypeSymbol) typeInfo.Type;
+					return typeInfo.Type;
 				}
 				//not sure we need the next part
 				var symbol = semanticModel.GetDeclaredSymbol(thisNode);
