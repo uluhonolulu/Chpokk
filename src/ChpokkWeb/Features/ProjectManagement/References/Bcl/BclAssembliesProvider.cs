@@ -29,7 +29,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 				var message = "Invalid path: " + assemblyFolder;
 				var wrapper = new ApplicationException(message, exception);
 				Elmah.ErrorSignal.FromCurrentContext().Raise(wrapper);
-				if (_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly error", wrapper);
+				if (_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly error", wrapper.ToString());
 				_assemblies = new string[]{};
 			}
 			
