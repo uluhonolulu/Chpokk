@@ -39,17 +39,17 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 					var value = projectProperty.EvaluatedValue;
 					try {
 						if (Path.IsPathRooted(value) && File.Exists(value.AppendPath("mscorlib.dll"))) {
-							builder.AppendLine(projectProperty.Name + ": " + value);
+							builder.AppendLine(projectProperty.Name + ": " + value + " - " + (projectProperty.Name == "FrameworkPathOverride").ToString());
 						}
 					}
 					catch (Exception e) {
-						Console.WriteLine(e);
+						builder.AppendLine(projectProperty.Name + ": " + e.ToString());
 					}
 				}
 
 				builder.AppendLine("what happened here:");
 				foreach (var projectProperty in project.AllEvaluatedProperties.Where(p => p.Name == "FrameworkPathOverride")) {
-					builder.AppendLine(projectProperty.Name + ": " + projectProperty.EvaluatedValue);
+					builder.AppendLine(projectProperty.Name + ": " + projectProperty.EvaluatedValue + " " + projectProperty.UnevaluatedValue);
 				}
 				if (_mailer.Host != null) _mailer.Send("errors@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly folder", builder.ToString());
 				_assemblies = new string[]{};
