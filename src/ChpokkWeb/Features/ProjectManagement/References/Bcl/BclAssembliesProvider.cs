@@ -33,6 +33,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 				var wrapper = new ApplicationException(message, exception);
 				Elmah.ErrorSignal.FromCurrentContext().Raise(wrapper);
 				var builder = new StringBuilder();
+				builder.AppendLine("we used: " + assemblyFolder);
+				builder.AppendLine(exception.ToString());
 				foreach (var projectProperty in project.AllEvaluatedProperties) {
 					var value = projectProperty.EvaluatedValue;
 					try {
