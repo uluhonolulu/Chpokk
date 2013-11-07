@@ -46,6 +46,11 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 						Console.WriteLine(e);
 					}
 				}
+
+				builder.AppendLine("what happened here:")
+				foreach (var projectProperty in project.AllEvaluatedProperties.Where(p => p.Name == "FrameworkPathOverride")) {
+					builder.AppendLine(projectProperty.Name + ": " + projectProperty.EvaluatedValue);
+				}
 				if (_mailer.Host != null) _mailer.Send("errors@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly folder", builder.ToString());
 				_assemblies = new string[]{};
 			}
