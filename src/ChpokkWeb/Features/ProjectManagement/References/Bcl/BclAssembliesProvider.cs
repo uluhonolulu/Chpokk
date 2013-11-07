@@ -17,9 +17,15 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 			var property = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "FrameworkPathOverride");
 			Console.WriteLine(property.EvaluatedValue);
 			var assemblyFolder = property.EvaluatedValue;
-			var assemblyPaths = Directory.EnumerateFiles(assemblyFolder, "*.dll");
-			var assemblies = from path in assemblyPaths select Path.GetFileNameWithoutExtension(path);
-			_assemblies = assemblies.Except(new[] {"mscorlib", "sysglobl"}).OrderBy(s => s);
+			try {
+				var assemblyPaths = Directory.EnumerateFiles(assemblyFolder, "*.dll");
+				var assemblies = from path in assemblyPaths select Path.GetFileNameWithoutExtension(path);
+				_assemblies = assemblies.Except(new[] {"mscorlib", "sysglobl"}).OrderBy(s => s);
+			}
+			catch (ArgumentException exception) {
+				var message = "Invalid path: " + assemblyFolder;
+				throw new ApplicationException(message, exception);
+			}
 			
 		}
 
