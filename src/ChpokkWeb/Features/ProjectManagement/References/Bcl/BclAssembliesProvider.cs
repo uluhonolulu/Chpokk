@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 			var targetImport = @"$(MSBuildToolsPath)\Microsoft.CSharp.targets";
 			rootElement.AddImport(targetImport);
 			var project = new Project(rootElement);
-			var property = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "FrameworkPathOverride");
+			var property = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "FrameworkPathOverride" && projectProperty.EvaluatedValue != "");
 			var other = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "MSBuildToolsPath");
 			Console.WriteLine(other.EvaluatedValue);
 			var assemblyFolder = property.EvaluatedValue;
