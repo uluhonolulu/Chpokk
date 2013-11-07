@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using FubuCore;
@@ -19,14 +20,16 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 			var targetImport = @"$(MSBuildToolsPath)\Microsoft.CSharp.targets";
 			rootElement.AddImport(targetImport);
 			var project = new Project(rootElement);
-			var property = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "FrameworkPathOverride" && projectProperty.EvaluatedValue != "");
+			var property = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "FrameworkPathOverride" && projectProperty.EvaluatedValue != null && projectProperty.EvaluatedValue != "");
 			var other = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "MSBuildToolsPath");
 			Console.WriteLine(other.EvaluatedValue);
 			var assemblyFolder = property.EvaluatedValue;
 			try {
 				var assemblyPaths = Directory.EnumerateFiles(assemblyFolder, "*.dll");
 				var assemblies = from path in assemblyPaths select Path.GetFileNameWithoutExtension(path);
-				_assemblies = assemblies.Except(new[] {"mscorlib", "sysglobl"}).OrderBy(s => s);
+				var assemblyTester = new Regex("^[A-Z][a-z]");
+				assemblies = assemblies.Where(s => assemblyTester.IsMatch(s));
+				_assemblies = assemblies.OrderBy(s => s);
 			}
 			catch (ArgumentException exception) {
 				var message = "Invalid path: " + assemblyFolder;
