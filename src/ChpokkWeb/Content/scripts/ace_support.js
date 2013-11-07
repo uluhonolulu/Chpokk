@@ -4,9 +4,6 @@
 	editor.setTheme("ace/theme/clouds");
 	var codeCompleter = {
 		getCompletions: function (editor, session, pos, prefix, callback) {
-			var position = getPosition(pos, editor) - 1;
-			var text = editor.getValue(); //text.substr(0,position) + '.' + text.substr(position)
-			var newChar = text.substr(position, 1);
 			if ($('.ace_autocomplete').is(':visible')) { 
 				var all = editor.completer.completions ? $.grep(editor.completer.completions.all, function (item) {
 					return item.caption.startsWithIgnoreCase(prefix);
@@ -15,13 +12,22 @@
 				return;
 			}
 
-			var editorData = $.extend(model, { Text: text, NewChar: newChar, Position: position }); //model + Text, NewChar, Position -- use stackoverflow.com/questions/18013109/retrieve-line-number-of-string-in-ace-editor
+			var position = getPosition(pos, editor) - 1;
+			var text = editor.getValue(); 
+			var newChar = text.substr(position, 1);
+			var editorData = $.extend(model, { Text: text, NewChar: newChar, Position: position }); 
 			$.post('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel', editorData, function (data) {
 			    var matchingItems = $.grep(data.Items, function(item) {
 			        return item.Name.startsWithIgnoreCase(prefix);
 			    });
 			    var completionData = $.map(matchingItems, function (item, index) {
-					return { name: item.Name, value: item.Name + (item.EntityType == 'Method'? '()' : ''), caption: item.Name, score: data.Items.length - index, meta: item.EntityType };
+			        return {
+			            name: item.Name,
+			            value: item.Name + (item.EntityType == 'Method' ? '()' : ''),
+			            caption: item.Name,
+			            className: 'completion_' + item.EntityType,
+			            score: data.Items.length - index
+			        };
 				});
 				callback(null, completionData);
 			});
@@ -33,6 +39,17 @@
 		enableSnippets: true
 	});
 	editor.completers = [codeCompleter];
+
+    var Autocomplete = ace.require("ace/autocomplete").Autocomplete;
+	if (!editor.completer)
+	    editor.completer = new Autocomplete();
+    if (!editor.completer.popup)
+        editor.completer.$init();
+    editor.completer.popup.on('show', function (e, popup) {
+        $(popup.container).find('.ace-line').each(function(i, line) {
+            $(line).addClass('line' + i);
+        });
+	});
 
 	// fire autocomplete on any char
 	$('#ace').keypress(function (e) {
