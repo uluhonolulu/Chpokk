@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Text;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
+using FubuCore;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 	public class BclAssembliesProvider {
@@ -18,7 +20,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 			rootElement.AddImport(targetImport);
 			var project = new Project(rootElement);
 			var property = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "FrameworkPathOverride");
-			Console.WriteLine(property.EvaluatedValue);
+			var other = project.AllEvaluatedProperties.First(projectProperty => projectProperty.Name == "MSBuildToolsPath");
+			Console.WriteLine(other.EvaluatedValue);
 			var assemblyFolder = property.EvaluatedValue;
 			try {
 				var assemblyPaths = Directory.EnumerateFiles(assemblyFolder, "*.dll");
@@ -29,7 +32,14 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 				var message = "Invalid path: " + assemblyFolder;
 				var wrapper = new ApplicationException(message, exception);
 				Elmah.ErrorSignal.FromCurrentContext().Raise(wrapper);
-				if (_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly error", wrapper.ToString());
+				var builder = new StringBuilder();
+				foreach (var projectProperty in project.AllEvaluatedProperties) {
+					var value = projectProperty.EvaluatedValue;
+					if (Path.IsPathRooted(value) && File.Exists(value.AppendPath("mscorlib.dll"))) {
+						builder.AppendLine(projectProperty.Name + ": " + value);
+					}
+				}
+				if (_mailer.Host != null) _mailer.Send("errors@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly folder", builder.ToString());
 				_assemblies = new string[]{};
 			}
 			
