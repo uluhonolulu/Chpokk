@@ -47,7 +47,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 					}
 				}
 
-				builder.AppendLine("what happened here:")
+				builder.AppendLine("what happened here:");
 				foreach (var projectProperty in project.AllEvaluatedProperties.Where(p => p.Name == "FrameworkPathOverride")) {
 					builder.AppendLine(projectProperty.Name + ": " + projectProperty.EvaluatedValue);
 				}
