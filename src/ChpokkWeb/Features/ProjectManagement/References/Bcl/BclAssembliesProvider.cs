@@ -24,7 +24,9 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 			}
 			catch (ArgumentException exception) {
 				var message = "Invalid path: " + assemblyFolder;
-				throw new ApplicationException(message, exception);
+				var wrapper = new ApplicationException(message, exception);
+				Elmah.ErrorSignal.FromCurrentContext().Raise(wrapper);
+				_assemblies = new string[]{};
 			}
 			
 		}
