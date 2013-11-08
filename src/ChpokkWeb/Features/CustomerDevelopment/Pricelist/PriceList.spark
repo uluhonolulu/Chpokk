@@ -51,7 +51,7 @@
 			<div class=" plan">
 				<div class="plan-name-bronze">
 					<h2>Cautious</h2>
-					<span>(3 months)</span>
+					<span>(1 month)</span>
 				</div>
 				<ul>
 					<li class="plan-feature">Use Chpokk for 1 month</li>
@@ -71,7 +71,7 @@
 					<h2>
 						Sensible
 					</h2>
-					<span>(1 year)</span>
+					<span>(3 months)</span>
 				</div>
 				<ul style="font-size: larger;">
 					<li class="plan-feature">Use Chpokk for 3 months</li>
@@ -89,7 +89,7 @@
 			<div class=" plan">
 				<div class="plan-name-gold">
 					<h2>Bold</h2>
-					<span>(lifetime)</span>
+					<span>(6 months)</span>
 				</div>
 				<ul>
 					<li class="plan-feature">Use Chpokk for 6 months</li>
