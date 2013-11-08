@@ -49,6 +49,11 @@
 !{this.Partial<ChpokkWeb.Features.Remotes.Push.PushDialogModel>()}
 
               <content name="rightcorner">
+                  <ul class="nav navbar-nav">
+                      <li style="background-color: #556b2f;">
+                          !{this.LinkTo<ChpokkWeb.Features.CustomerDevelopment.Pricelist.PriceListInputModel>().Text("Get a discount")}
+                      </li>
+                  </ul>
                   <render partial="Authentication\_LoginStatus" />
                   <ul class="nav navbar-nav">
                       <li>
@@ -64,4 +69,4 @@
                           <a id="newItemButton">New item</a>
                       </li>
                   </ul>
-              </content>
+          </content>

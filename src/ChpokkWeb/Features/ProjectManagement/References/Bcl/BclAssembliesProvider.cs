@@ -14,8 +14,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 		private readonly IEnumerable<string> _assemblies;
 		private readonly SmtpClient _mailer;
 
-		public BclAssembliesProvider(SmtpClient mailer) {
-			_mailer = mailer;
+		public BclAssembliesProvider() {
+			//_mailer = mailer;
 			var rootElement = ProjectRootElement.Create();
 			var targetImport = @"$(MSBuildToolsPath)\Microsoft.CSharp.targets";
 			rootElement.AddImport(targetImport);
@@ -54,7 +54,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Bcl {
 				foreach (var projectProperty in project.AllEvaluatedProperties.Where(p => p.Name == "FrameworkPathOverride")) {
 					builder.AppendLine(projectProperty.Name + ": " + projectProperty.EvaluatedValue + " " + projectProperty.UnevaluatedValue);
 				}
-				if (_mailer.Host != null) _mailer.Send("errors@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly folder", builder.ToString());
+				//if (_mailer.Host != null) _mailer.Send("errors@chpokk.apphb.com", "uluhonolulu@gmail.com", "Assembly folder", builder.ToString());
 				_assemblies = new string[]{};
 			}
 			

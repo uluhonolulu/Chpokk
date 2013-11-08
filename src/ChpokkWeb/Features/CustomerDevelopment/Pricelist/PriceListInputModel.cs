@@ -5,7 +5,7 @@ using System.Web;
 using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.CustomerDevelopment.Pricelist {
-	[UrlPattern("pricing_old")]
+	[UrlPattern("sale")]
 	public class PriceListInputModel {
 	}
 }
