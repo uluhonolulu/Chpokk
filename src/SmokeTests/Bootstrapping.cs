@@ -14,12 +14,12 @@ namespace SmokeTests {
 	public class Bootstrapping {
 		[Test]
 		public void CanGetAnInstance() {
-			var container = new Container();
-			FubuApplication.For<ConfigureFubuMVC>()
-				.StructureMap(container)
-				.Bootstrap();
-			//var engine = container.GetInstance<ILessEngine>();
-			Console.WriteLine(container.WhatDoIHave());
+			//var container = new Container();
+			//FubuApplication.For<ConfigureFubuMVC>()
+			//	.StructureMap(container)
+			//	.Bootstrap();
+			////var engine = container.GetInstance<ILessEngine>();
+			//Console.WriteLine(container.WhatDoIHave());
 
 		}
 	}
