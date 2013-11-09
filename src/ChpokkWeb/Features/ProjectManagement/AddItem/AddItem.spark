@@ -30,7 +30,7 @@
 				<input class="form-control" name="PathRelativeToRepositoryRoot" id="fileName"/>
 				<label>Project</label>
 				<span id="projectNameDisplay"></span>
-				<input type="hidden" name="ProjectPathRelativeToRepositoryRoot" id="projectName"/>
+				<input type="hidden" name="ProjectPath" id="projectName"/>
 	
 			</div>
 			<div class="modal-footer">

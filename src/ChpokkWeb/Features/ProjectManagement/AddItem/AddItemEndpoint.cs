@@ -22,9 +22,9 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 
 		public AjaxContinuation DoIt(AddItemInputModel model) {
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
-			                                                            model.ProjectPathRelativeToRepositoryRoot);
+			                                                            model.ProjectPath);
 			var fileName =
-				model.PathRelativeToRepositoryRoot.PathRelativeTo(model.ProjectPathRelativeToRepositoryRoot.ParentDirectory());
+				model.PathRelativeToRepositoryRoot.PathRelativeTo(model.ProjectPath.ParentDirectory());
 			_projectParser.CreateItem(projectFilePath, fileName, string.Empty);
 
 			return AjaxContinuation.Successful();
@@ -34,6 +34,6 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 	}
 
 	public class AddItemInputModel: BaseFileInputModel {
-		public string ProjectPathRelativeToRepositoryRoot { get; set; }
+		public string ProjectPath { get; set; }
 	}
 }
