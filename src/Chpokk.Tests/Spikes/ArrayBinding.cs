@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CThru.BuiltInAspects;
 using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
+using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Diagnostics.Runtime.Tracing;
 using Gallio.Framework;
 using ICSharpCode.NRefactory;
@@ -17,7 +18,8 @@ namespace Chpokk.Tests.Spikes {
 		[Test]
 		public void Test() {
 			var session = new TestSession();
-			session.AddAspect(new TraceAspect(info => info.TargetInstance is UnhandledFubuException, 10));
+			//session.AddAspect(new TraceAspect(info => info.TargetInstance is UnhandledFubuException, 10));
+			session.AddAspect(new TraceAspect(info => info.TargetInstance is ObjectDef));
 			var response = session.Post("projectmanagement/addsimpleproject", new AddSimpleProjectInputModel { References = new[] { "humm" }, RepositoryName = "Chpokk-SampleSol", Language = SupportedLanguage.CSharp, OutputType = "Exe"});
 			Console.WriteLine(response.BodyAsString);
 		}

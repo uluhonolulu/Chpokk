@@ -46,7 +46,7 @@ namespace Chpokk.Tests.ItemAdding {
 			{
 				PhysicalApplicationPath = Context.AppRoot,
 				RepositoryName = Context.REPO_NAME,
-				ProjectPathRelativeToRepositoryRoot = Context.ProjectPathRelativeToRepositoryRoot,
+				ProjectPath = Context.ProjectPathRelativeToRepositoryRoot,
 				PathRelativeToRepositoryRoot = FileSystem.Combine(Context.ProjectFolderRelativeToRepositoryRoot, FILE_NAME) 
 			});
 			//_project.Save();
