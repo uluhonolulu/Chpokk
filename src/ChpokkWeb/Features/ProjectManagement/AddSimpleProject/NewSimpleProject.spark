@@ -2,7 +2,7 @@
 	<!-- NewSimpleProject.spark -->
 	<script type="text/javascript">
 		$(function () {
-			addRepositoryMenuItem("New simple project", newSimpleProject);
+			addRepositoryMenuItem("New project", newSimpleProject);
 			$('#createSimpleProjectButton').on('click', function() {
 				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
 				var model = $('#simpleProjectForm').serializeObject(); 

@@ -17,6 +17,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		private IPackage FindPackage(string packageId) {
 			var packages = _packageFinder.FindPackages(packageId);
 			if (!packages.Any(package => package.Id == packageId)) {
+				var arrayOfPackages = packages.ToArray();
 				throw new InvalidDataException("Can't find package " + packageId);
 			}
 			return packages.First(package => package.Id == packageId);

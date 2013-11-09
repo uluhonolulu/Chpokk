@@ -23,7 +23,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 		private void CollectPackageDependencies(IDictionary<IPackage, IEnumerable<string>> collection, IPackage mainPackage) {
 			var assemblies = mainPackage.AssemblyReferences;
-			collection.Add(mainPackage, from assembly in assemblies select assembly.Path);
+			collection[mainPackage] = from assembly in assemblies select assembly.Path;
 
 			var dependencies = mainPackage.DependencySets.SelectMany(set => set.Dependencies);
 			foreach (var dependency in dependencies) {
