@@ -101,7 +101,8 @@ function loadFile(path, editor) {
 			editor.getSession().setMode("ace/mode/" + mode);
 			editor.resize();
 			model.PathRelativeToRepositoryRoot = path;
-			model.ProjectPath = projectPath;
+			if (projectPath)
+			    model.ProjectPath = projectPath;
 		}
 	});
 }

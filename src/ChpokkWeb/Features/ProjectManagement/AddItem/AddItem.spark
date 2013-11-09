@@ -105,7 +105,7 @@
 							$.extend(model,
 								{
 									PathRelativeToRepositoryRoot: $('#fileName').val(),
-									ProjectPathRelativeToRepositoryRoot: $('#projectName').val()
+									ProjectPath: $('#projectName').val()
 								}),
 							function () {
 								amplify.publish('newItem', $('#fileName').val());
