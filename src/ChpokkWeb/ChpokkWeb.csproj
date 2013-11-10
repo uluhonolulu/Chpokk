@@ -344,11 +344,17 @@
     <Content Include="Content\scripts\lib\ace\ext-themelist.js" />
     <Content Include="Content\scripts\lib\ace\ext-whitespace.js" />
     <Content Include="Content\scripts\lib\ace\mode-csharp.js" />
+    <Content Include="Content\scripts\lib\ace\mode-css.js" />
+    <Content Include="Content\scripts\lib\ace\mode-html.js" />
+    <Content Include="Content\scripts\lib\ace\mode-javascript.js" />
+    <Content Include="Content\scripts\lib\ace\mode-text.js" />
     <Content Include="Content\scripts\lib\ace\mode-vbscript.js" />
     <Content Include="Content\scripts\lib\ace\snippets\csharp.js" />
     <Content Include="Content\scripts\lib\ace\snippets\vbscript.js" />
     <Content Include="Content\scripts\lib\ace\theme-clouds.js" />
     <Content Include="Content\scripts\lib\ace\theme-github.js" />
+    <Content Include="Content\scripts\lib\ace\theme-idle_fingers.js" />
+    <Content Include="Content\scripts\lib\ace\theme-textmate.js" />
     <Content Include="Content\scripts\lib\ace\theme-twilight.js" />
     <Content Include="Content\scripts\lib\amplify.diagnostics.js" />
     <Content Include="Content\scripts\lib\bililiteRange.js" />

@@ -1,7 +1,10 @@
 ﻿$(function () {
-	ace.require("ace/ext/language_tools");
+    window.define = ace.define;
+    ace.require("ace/ext/language_tools");
 	var editor = ace.edit("ace");
-	editor.setTheme("ace/theme/clouds");
+	editor.setTheme("ace/theme/idle_fingers");
+    
+    //completion
 	var codeCompleter = {
 		getCompletions: function (editor, session, pos, prefix, callback) {
 			if ($('.ace_autocomplete').is(':visible')) { 
@@ -97,8 +100,9 @@ function loadFile(path, editor) {
 		data: fileData,
 		success: function (data) {
 			editor.setValue(data.Content);
-			var mode = path.endsWith('.vb') ? 'vbscript' : 'csharp';
-			editor.getSession().setMode("ace/mode/" + mode);
+			var modelist = ace.require('ace/ext/modelist');
+			var mode = modelist.getModeForPath(path).mode;
+			editor.getSession().setMode(mode);
 			editor.resize();
 			model.PathRelativeToRepositoryRoot = path;
 			if (projectPath)
