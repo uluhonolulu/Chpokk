@@ -51,8 +51,7 @@ namespace ChpokkWeb.Features.Exploring {
 			if (!_fileSystem.FileExists(projectFilePath)) {
 				return null;
 			}
-			// touch the project so that it is compiled
-			_projectFactory.GetProjectData(projectFilePath);
+
 			var projectRepositoryItem = new RepositoryItem()
 			{
 				Name = projectItem.Name,
@@ -61,7 +60,7 @@ namespace ChpokkWeb.Features.Exploring {
 			};
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolderRelativeToRepositoryRoot = projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot);
-			var fileItems = _projectParser.GetCompiledFiles(projectFileContent);
+			var fileItems = _projectParser.GetProjectFiles(projectFileContent);
 			projectRepositoryItem.Children.AddRange(_converter.Convert(fileItems, projectFolderRelativeToRepositoryRoot));
 			return projectRepositoryItem;
 		}

@@ -24,6 +24,14 @@ namespace ChpokkWeb.Features.Exploring {
 			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);
 		}
 
+		public IEnumerable<FileProjectItem> GetProjectFiles(string projectFileContent) {
+			XmlNamespaceManager xmlNamespaceManager;
+			var doc = LoadXml(projectFileContent, out xmlNamespaceManager);
+			var nodes = GetIncludes(new[] { "Compile", "Content", "Resource", "None" }, doc, xmlNamespaceManager);
+			var filePaths = nodes.Select(node => node.Value);
+			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);
+		}
+
 		public IEnumerable<string> GetFullPathsForCompiledFilesFromProjectFile(string projectFilePath) {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolder = projectFilePath.ParentDirectory();
@@ -57,6 +65,10 @@ namespace ChpokkWeb.Features.Exploring {
 		private IEnumerable<XmlNode> GetIncludes(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
 			var elements = GetElements(nodeName, doc, xmlNamespaceManager);
 			return elements.Select(element => element.GetAttributeNode("Include"));
+		}
+
+		private IEnumerable<XmlNode> GetIncludes(IEnumerable<string> nodeNames, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
+			return nodeNames.SelectMany(nodeName => GetIncludes(nodeName, doc, xmlNamespaceManager));
 		}
 
 		private IEnumerable<XmlElement> GetElements(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
