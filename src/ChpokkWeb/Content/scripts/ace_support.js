@@ -43,28 +43,20 @@
 	});
 	editor.completers = [codeCompleter];
 
-    var Autocomplete = ace.require("ace/autocomplete").Autocomplete;
-	if (!editor.completer)
-	    editor.completer = new Autocomplete();
-    if (!editor.completer.popup)
-        editor.completer.$init();
-    editor.completer.popup.on('show', function (e, popup) {
-        $(popup.container).find('.ace-line').each(function(i, line) {
-            $(line).addClass('line' + i);
-        });
-	});
-
-	// fire autocomplete on any char
+    // fire autocomplete on any char
 	$('#ace').keypress(function (e) {
-		var char = String.fromCharCode(e.which);
-		var regexp = /[a-zA-Z_0-9\.]/;
-		if (regexp.test(char)) {
-			$('#ace').one('keyup', function () {
-				editor.commands.exec('startAutocomplete', editor); //temporarily disable the autocomplete
-			});
+	    if (editor.enableIntellisense) {
+		    var char = String.fromCharCode(e.which);
+		    var regexp = /[a-zA-Z_0-9\.]/;
+		    if (regexp.test(char)) {
+			    $('#ace').one('keyup', function () {
+				    editor.commands.exec('startAutocomplete', editor); //temporarily disable the autocomplete
+			    });
 
-		}
-	});
+		    }
+        }
+	});        
+
     
 
 	amplify.subscribe('loadFileRequest', function (data) {
@@ -99,10 +91,15 @@ function loadFile(path, editor) {
 		url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
 		data: fileData,
 		success: function (data) {
-			editor.setValue(data.Content);
+		    editor.setValue(data.Content);
+		    
+            //highlighting
 			var modelist = ace.require('ace/ext/modelist');
 			var mode = modelist.getModeForPath(path).mode;
 			editor.getSession().setMode(mode);
+		    
+		    //enable/disable autocompletion
+		    editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
 			editor.resize();
 			model.PathRelativeToRepositoryRoot = path;
 			if (projectPath)
