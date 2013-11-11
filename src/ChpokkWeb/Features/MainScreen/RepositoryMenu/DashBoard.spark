@@ -37,7 +37,10 @@
 			//pub/sub hack
 			if (window.noRepositories === true) {
 				$('#dashDialog').modal('show');
-				tour.start();
+			    if (window.tour) {
+			        tour.start(true);
+			    }
+				
 			}
 		})
 	</script>
