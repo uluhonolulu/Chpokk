@@ -761,6 +761,7 @@
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />
+    <Compile Include="Infrastructure\ExceptionNotifier.cs" />
     <Compile Include="Infrastructure\IMenuItemSource.cs" />
     <Compile Include="Infrastructure\MenuItem.cs" />
     <Compile Include="Infrastructure\ModellessPartialExtension.cs" />

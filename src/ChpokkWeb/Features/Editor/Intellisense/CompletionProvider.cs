@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Roslyn.Compilers;
-using Roslyn.Compilers.CSharp;
+//using Roslyn.Compilers.CSharp;
 using Roslyn.Compilers.Common;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
@@ -19,15 +19,17 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			IEnumerable<CommonSyntaxTree> syntaxTrees;
 			var references = from assemblyPath in assemblyPaths select  new MetadataFileReference(assemblyPath);
 			switch (language) {
-				case LanguageNames.CSharp: 
-					tree = SyntaxTree.ParseText(source);
-					syntaxTrees = from code in otherSources select SyntaxTree.ParseText(code);
+				case LanguageNames.CSharp:
+					tree = Roslyn.Compilers.CSharp.SyntaxTree.ParseText(source);
+					syntaxTrees = from code in otherSources select Roslyn.Compilers.CSharp.SyntaxTree.ParseText(code);
 					syntaxTrees = syntaxTrees.Union(new[] {tree});
-					compilation = Roslyn.Compilers.CSharp.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast<SyntaxTree>(), references: references);break;
+					compilation = Roslyn.Compilers.CSharp.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast<Roslyn.Compilers.CSharp.SyntaxTree>(), references: references);break;
 				case LanguageNames.VisualBasic:
 					tree = Roslyn.Compilers.VisualBasic.SyntaxTree.ParseText(source);
+					syntaxTrees = from code in otherSources select Roslyn.Compilers.VisualBasic.SyntaxTree.ParseText(code);
+					syntaxTrees = syntaxTrees.Union(new[] {tree});
 					syntaxTrees = new[] {tree};
-					compilation = Roslyn.Compilers.VisualBasic.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast< Roslyn.Compilers.VisualBasic.SyntaxTree>(), references: references); break;
+					compilation = Roslyn.Compilers.VisualBasic.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast< Roslyn.Compilers.VisualBasic.SyntaxTree>()); break;
 				default: throw new NotSupportedException("Language '" + language + "' is not supported.");
 			}
 			
@@ -54,8 +56,12 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			foreach (var syntaxNode in nodeHierarchy) {
 				var thisNode = syntaxNode;
 				Console.WriteLine(thisNode.GetText() + ": " + thisNode.GetType());
-				if (syntaxNode is MemberAccessExpressionSyntax) {
-					thisNode = (syntaxNode as MemberAccessExpressionSyntax).Expression;
+				if (syntaxNode is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax) {
+					thisNode = (syntaxNode as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax).Expression;
+					Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
+				}
+				if (syntaxNode is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax) {
+					thisNode = (syntaxNode as Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax).Expression;
 					Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
 				}
 				var typeInfo = semanticModel.GetTypeInfo(thisNode);
@@ -76,7 +82,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 		private bool IsDotCompletion(int position, CommonSyntaxTree tree) {
 			var syntaxToken = tree.GetRoot().FindToken(position);
-			return syntaxToken.Parent is MemberAccessExpressionSyntax;
+			return syntaxToken.Parent is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax || syntaxToken.Parent is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
 		}
 	}
 }
