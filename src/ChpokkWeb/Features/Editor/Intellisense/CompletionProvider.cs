@@ -40,7 +40,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				var globals = semanticModel.LookupSymbols(position);
 				symbols = symbols.Union(globals.AsEnumerable());
 			}
-
+			//tinky-winky
 
 			var symbolItems = from s in symbols select new IntelOutputModel.IntelModelItem {Name = s.Name, EntityType = s.Kind.ToString()};
 			if (!this.IsDotCompletion(position, tree)) {
