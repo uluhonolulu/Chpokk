@@ -65,5 +65,6 @@ namespace Chpokk.Tests.References {
 			var command = new NuGetInitializer(fileSystem, console).CreateObject<ListCommand>();
 			command.FileSystem.ShouldBe(fileSystem);
 		}
+		//usik pusik
 	}
 }
