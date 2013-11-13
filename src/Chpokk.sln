@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChpokkWeb", "ChpokkWeb\Chpo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuNuNuGet", "NuNuNuGet\NuNuNuGet.csproj", "{0144BA90-2662-4A72-98B3-28BA68DB03BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynVb", "RoslynVb\RoslynVb.csproj", "{FC2DF84F-2887-4F15-A838-1FF10D03AC3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0144BA90-2662-4A72-98B3-28BA68DB03BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC2DF84F-2887-4F15-A838-1FF10D03AC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC2DF84F-2887-4F15-A838-1FF10D03AC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC2DF84F-2887-4F15-A838-1FF10D03AC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC2DF84F-2887-4F15-A838-1FF10D03AC3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
