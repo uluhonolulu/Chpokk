@@ -30,6 +30,7 @@ namespace ChpokkWeb.Features.Authentication {
 					_userData.Profile = profile;
 					var username = GetUsername(profile);
 					_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
+					//_restore.RestoreFilesForCurrentUser();
 					if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
 					return FubuContinuation.RedirectTo<MainDummyModel>();
 				}

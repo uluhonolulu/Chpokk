@@ -3,6 +3,7 @@ using System.IO;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Remotes.Push;
+using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 
@@ -10,6 +11,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryEndpoint {
 		[NotNull]
 		private readonly RepositoryCache _repositoryCache;
+		[NotNull]
+		private readonly RepositoryManager _manager;
+		private Restore _restore;
+
 
 		[UrlPattern("Repository/{RepositoryName}")]
 		public RepositoryModel Get(RepositoryInputModel input) {
@@ -19,14 +24,14 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			return new RepositoryModel() { RepositoryName = input.RepositoryName };
 		}
 
-		[NotNull]
-		private readonly RepositoryManager _manager;
-		public RepositoryEndpoint([NotNull]RepositoryManager manager, [NotNull]RepositoryCache repositoryCache) {
+		public RepositoryEndpoint([NotNull]RepositoryManager manager, [NotNull]RepositoryCache repositoryCache, Restore restore) {
 			_manager = manager;
 			_repositoryCache = repositoryCache;
+			_restore = restore;
 		}
 
 		public RepositoryListModel GetRepositoryList([NotNull]RepositoryListInputModel model) {
+			_restore.RestoreFilesForCurrentUser();
 			return new RepositoryListModel {RepositoryNames = _manager.GetRepositoryNames(model.PhysicalApplicationPath)};
 		}
 	}

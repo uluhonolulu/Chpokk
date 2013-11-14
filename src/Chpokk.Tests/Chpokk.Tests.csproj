@@ -206,12 +206,6 @@
     <Reference Include="PackageManagement">
       <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.dll</HintPath>
     </Reference>
-    <Reference Include="PackageManagement.Cmdlets">
-      <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.Cmdlets.dll</HintPath>
-    </Reference>
-    <Reference Include="QuantConnect.CodingServices.Worker">
-      <HintPath>..\..\..\OSS\QC\QCCodingServices.NET\QuantConnect.CodingServices\bin\Debug\QuantConnect.CodingServices.Worker.exe</HintPath>
-    </Reference>
     <Reference Include="Roslyn.Compilers">
       <HintPath>..\packages\Roslyn.Compilers.Common.1.2.20906.2\lib\net45\Roslyn.Compilers.dll</HintPath>
     </Reference>
@@ -284,6 +278,7 @@
     </Reference>
     <Reference Include="Typemock.ArrangeActAssert, Version=7.4.0.0, Culture=neutral, PublicKeyToken=3dae460033b8d8e2, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Typemock\Isolator\AAA\Typemock.ArrangeActAssert.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="WebDriver, Version=2.29.1.0, Culture=neutral, PublicKeyToken=1c2bd1631853048f, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.2.29.1\lib\net40\WebDriver.dll</HintPath>
@@ -327,9 +322,6 @@
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />
     <Compile Include="Newing\CreatingASimpleSolution.cs" />
     <Compile Include="Newing\CreatingASimpleVbExeSolution.cs" />
-    <Compile Include="ProjectLoading\AddingLocalReferenceToAProject.cs" />
-    <Compile Include="ProjectLoading\AddingProjectReferencetoAProject.cs" />
-    <Compile Include="ProjectLoading\AddsBclReferenceToAProject.cs" />
     <Compile Include="ProjectLoading\ParsingAssemblyReferences.cs" />
     <Compile Include="ProjectLoading\ParsingProjectReferences.cs" />
     <Compile Include="ProjectLoading\ProjectContentWithOneBclReferenceContext.cs" />

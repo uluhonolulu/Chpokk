@@ -25,7 +25,7 @@ namespace ChpokkWeb {
 			RegisterFonts();
 
 			//restore all files
-			_fubuRuntime.Factory.Get<Restore>().RestoreAll();
+			//_fubuRuntime.Factory.Get<Restore>().RestoreAll();
 
 		}
 

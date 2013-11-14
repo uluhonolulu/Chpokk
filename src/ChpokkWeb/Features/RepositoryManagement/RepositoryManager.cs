@@ -4,6 +4,7 @@ using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Remotes.Push;
+using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
@@ -12,13 +13,17 @@ using FubuMVC.Core.Security;
 namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryManager {
 		private readonly ISecurityContext _securityContext;
-		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies; 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies) {
+		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
+		private readonly FubuCore.FileSystem _fileSystem;
+		private readonly Downloader _downloader;
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, FubuCore.FileSystem fileSystem, Downloader downloader) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
+			_fileSystem = fileSystem;
+			_downloader = downloader;
 		}
 
-		public const string COMMON_REPOSITORY_FOLDER = "UserFiles";
+		private const string COMMON_REPOSITORY_FOLDER = @"..\UserFiles";
 		private const string anonymousFolder = "__anonymous__";
 		// path for repository root, relative to AppRoot
 		[NotNull]
@@ -28,7 +33,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull]
 		public string GetAbsolutePathFor(string repositoryName, string appRoot) {
-			return appRoot.AppendPath(this.GetPathFor(repositoryName));
+			return Path.GetFullPath(appRoot.AppendPath(this.GetPathFor(repositoryName))) ;
 		}
 
 		[NotNull]
@@ -53,10 +58,14 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames(string approot) {
-			var userFolder = approot.AppendPath(RepositoryFolder);
+			var userFolder = GetUserFolder(approot);
 			if (!Directory.Exists(userFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
  		}
+
+		public string GetUserFolder(string approot) {
+			return approot.AppendPath(RepositoryFolder);
+		}
 
 		[NotNull]
 		public string GetPhysicalFilePath([NotNull] BaseFileInputModel info) {
@@ -80,6 +89,31 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			}
 			return menuItems.ToArray();
 		}
+
+		public bool RepositoriesExist(string appRoot) {
+			var userFolder = GetCommonFolder(appRoot) ;
+			return ChildDirectoriesExist(userFolder);
+		}
+
+		public string GetCommonFolder(string appRoot) {
+			return Path.GetFullPath(appRoot.AppendPath(COMMON_REPOSITORY_FOLDER));
+		}
+
+		private bool ChildDirectoriesExist(string parent) {
+			return _fileSystem.ChildDirectoriesFor(parent).Any();
+		}
+
+		public bool RepositoriesOfCurrentUserExist(string appRoot) {
+			return GetRepositoryNames(appRoot).Any();
+		}
+
+		public void RestoreFilesForCurrentUser(string appRoot) {
+			var root = GetCommonFolder(appRoot).ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
+			var subFolder = RepositoryFolder.Substring(3); //HACK: we need to remove the "..\" from the start
+			_downloader.DownloadAllFiles(root, subFolder);
+		}
+
+		
 	}
 }
 

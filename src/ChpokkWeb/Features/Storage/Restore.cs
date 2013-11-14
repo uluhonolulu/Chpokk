@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.RepositoryManagement;
-using FubuCore;
 using FubuMVC.Core;
 using LibGit2Sharp;
 
 namespace ChpokkWeb.Features.Storage {
 	public class Restore {
 		private readonly Downloader _downloader;
-		private readonly FileSystem _fileSystem;
-		public Restore(Downloader downloader, ApplicationSettings settings, FileSystem fileSystem) {
+		private readonly RepositoryManager _repositoryManager;
+
+		public Restore(Downloader downloader, ApplicationSettings settings, RepositoryManager repositoryManager) {
 			_downloader = downloader;
-			_fileSystem = fileSystem;
+			_repositoryManager = repositoryManager;
 			AppRoot = settings.GetApplicationFolder();
 		}
 
 		protected string AppRoot { get; set; }
 
-		public string UserFilesDir { get { return FileSystem.Combine(AppRoot, RepositoryManager.COMMON_REPOSITORY_FOLDER); } }
-
 		public void RestoreAll() {
-			if(!Restored)
+			if (!_repositoryManager.RepositoriesExist(AppRoot))
 				_downloader.DownloadAllFiles(AppRoot);
 		}
 
-		public bool Restored {
-			get { return ChildDirectoriesExist(UserFilesDir); }
+		public void RestoreFilesForCurrentUser() {
+			if (!_repositoryManager.RepositoriesOfCurrentUserExist(AppRoot)) {
+				_repositoryManager.RestoreFilesForCurrentUser(AppRoot);
+			}
 		}
 
-		private bool ChildDirectoriesExist(string parent) {
-			return _fileSystem.ChildDirectoriesFor(parent).Any();
-		}
+
+
 	}
 }

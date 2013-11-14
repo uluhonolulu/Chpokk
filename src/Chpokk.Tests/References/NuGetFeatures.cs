@@ -1,17 +1,10 @@
-﻿using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using CThru;
 using CThru.BuiltInAspects;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
-using ICSharpCode.PackageManagement.Cmdlets;
 using MbUnit.Framework;
-using Mono.Collections.Generic;
 using NuGet;
 using NuGet.Commands;
-using NuGet.Common;
 using Shouldly;
 
 namespace Chpokk.Tests.References {
@@ -49,14 +42,7 @@ namespace Chpokk.Tests.References {
 			get { return new NuGet.Common.Console(); }
 		}
 
-		[Test]
-		public void RunningSharpDevelopVersion() {
-			var installPackageCmdlet = new InstallPackageCmdlet() { Id = "nunit", Solution = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Twitter\Chpokk-SampleSol\src\ChpokkSampleSolution.sln" };
-			var results = installPackageCmdlet.Invoke();
-			foreach (var result in results) {
-				System.Console.WriteLine(result);
-			}
-		}
+
 
 		[Test]
 		public void InitializingTheCommands() {
