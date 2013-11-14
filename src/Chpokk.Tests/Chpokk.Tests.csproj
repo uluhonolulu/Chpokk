@@ -317,6 +317,7 @@
     <Compile Include="Intellisense\Roslynson\ThisDotMember.cs" />
     <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommand.cs" />
+    <Compile Include="ItemAdding\ExecutingAddItemCommandForNonCodeFiles.cs" />
     <Compile Include="ItemAdding\FolderBrowser.cs" />
     <Compile Include="References\AddingABclReference.cs" />
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />

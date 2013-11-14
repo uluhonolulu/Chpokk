@@ -9,7 +9,6 @@ using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
-using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Shouldly;
 using System.Linq;
@@ -17,8 +16,7 @@ using System.Linq;
 namespace Chpokk.Tests.ItemAdding {
 	[TestFixture]
 	public class ExecutingAddItemCommand : BaseCommandTest<SingleSolutionWithProjectFileContext> {
-		private Project _project;
-		private const string FILE_NAME = @"folder\filename";
+		private const string FILE_NAME = @"folder\filename.cs";
 
 		[Test]
 		public void AddsAnItemToTheProjectFile() {

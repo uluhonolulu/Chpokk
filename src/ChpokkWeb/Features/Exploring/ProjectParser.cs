@@ -103,7 +103,12 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 
 		public void CreateItem(string projectFilePath, string fileName, string fileContent) {
 			var project = ProjectRootElement.Open(projectFilePath);
-			project.AddItem("Compile", fileName);
+			var extension = Path.GetExtension(fileName);
+			var buildAction = "Content";
+			if (extension == ".cs" || extension == ".vb") {
+				buildAction = "Compile";
+			}
+			project.AddItem(buildAction, fileName);
 			project.Save();
 			//ProjectCollection.GlobalProjectCollection.UnloadProject(project);
 

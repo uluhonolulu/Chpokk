@@ -23,7 +23,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			_downloader = downloader;
 		}
 
-		private const string COMMON_REPOSITORY_FOLDER = @"..\UserFiles";
+		private const string COMMON_REPOSITORY_FOLDER = @"UserFiles";
 		private const string anonymousFolder = "__anonymous__";
 		// path for repository root, relative to AppRoot
 		[NotNull]
@@ -109,7 +109,8 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public void RestoreFilesForCurrentUser(string appRoot) {
 			var root = GetCommonFolder(appRoot).ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
-			var subFolder = RepositoryFolder.Substring(3); //HACK: we need to remove the "..\" from the start
+			//now root is appRoot actually
+			var subFolder = RepositoryFolder; 
 			_downloader.DownloadAllFiles(root, subFolder);
 		}
 
