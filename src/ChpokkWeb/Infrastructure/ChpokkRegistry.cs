@@ -55,6 +55,7 @@ namespace ChpokkWeb.Infrastructure {
 				scanner.WithDefaultConventions();
 			});
 			//NuGet
+			For<IPackageRepository>().Singleton().Use(() => PackageRepositoryFactory.Default.CreateRepository(NuGetConstants.DefaultFeedUrl));
 			For<IConsole>().Use(new NuGet.Common.Console());
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});

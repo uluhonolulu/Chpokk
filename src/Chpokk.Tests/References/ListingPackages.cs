@@ -12,16 +12,28 @@ using Shouldly;
 using System.Linq;
 
 namespace Chpokk.Tests.References {
-	//[TestFixture]
-	//public class ListingPackages: BaseQueryTest<SimpleConfiguredContext, IEnumerable<IPackage>> {
-	//	[Test]
-	//	public void SearchingForElmahReturnsElmahPackage() {
-	//		Result.ShouldContain(package => package.Id == "elmah");
-	//	}
+	[TestFixture]
+	public class ListingPackages : BaseQueryTest<SimpleConfiguredContext, IEnumerable<IPackage>> {
+		[Test]
+		public void SearchingForElmahReturnsElmahPackage() {
+			foreach (var package in Result) {
+				//Console.WriteLine(package);
+			}
+			Result.ShouldContain(package => package.Id == "elmah");
+		}
 
-	//	public override IEnumerable<IPackage> Act() {
-	//		return Context.Container.Get<PackageFinder>().FindPackages("elmah");
-	//	}
+		[Test, DependsOn("SearchingForElmahReturnsElmahPackage")]
+		public void ShouldBeOnlyOnePackageForEachId() {
+			Result.Count(package => package.Id == "elmah").ShouldBe(1);
+		}
 
-	//}
+		public override IEnumerable<IPackage> Act() {
+			var packageFinder = Context.Container.Get<PackageFinder>();
+			const string searchTerm = "elma";
+			return packageFinder.FindPackages(searchTerm);
+
+
+		}
+
+	}
 }
