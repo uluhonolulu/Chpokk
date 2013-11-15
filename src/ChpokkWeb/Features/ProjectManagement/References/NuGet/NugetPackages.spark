@@ -15,7 +15,6 @@
 </div>
 
 <input type="hidden" name="Packages" value=""/> <!-- hack for Fubu binding of empty arrays -->
-<span style="font-size: smaller;">Note: NuGet support is incomplete. Only adding assembly references is supported. Other features will be added soon.</span>
 
 <content name="InlineScripts">
 <!-- NugetPackages.spark -->

@@ -57,7 +57,9 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			var targetFolder = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName,
 			                                                         inputModel.PhysicalApplicationPath).AppendPath("packages");
 			foreach (var packageId in inputModel.Packages) {
-				_packageInstaller.InstallPackage(packageId, targetFolder, projectPath);
+				if (packageId.IsNotEmpty()) {
+					_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
+				}
 			}
 			rootElement.Save(projectPath);
 

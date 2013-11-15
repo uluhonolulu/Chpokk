@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using Arractas;
 using Chpokk.Tests.Exploring;
@@ -19,7 +20,11 @@ namespace Chpokk.Tests.References {
 
 		[Test]
 		public void AddsPackageContent() {
-			
+			var project = ProjectRootElement.Open(Context.ProjectPath);
+			var contentFiles = project.Items.Where(element => element.ItemType == "Content");
+			foreach (var itemElement in contentFiles) {
+				Console.WriteLine(itemElement.Include);
+			}
 		}
 
 		[Test]
@@ -31,22 +36,14 @@ namespace Chpokk.Tests.References {
 
 
 		public override void Act() {
-			const string PackagesFolder = "packages";
 			const string packageId = "elmah";
-			var repository = PackageRepositoryFactory.Default.CreateRepository(NuGetConstants.DefaultFeedUrl);
-			var path = Context.SolutionFolder.AppendPath(PackagesFolder);
-			var packagePathResolver = new DefaultPackagePathResolver(path);
-			var localRepository = new LocalPackageRepository(packagePathResolver, new PhysicalFileSystem(path));
-			var projectSystem = new NuGet.Common.MSBuildProjectSystem(Context.ProjectPath);
-			var projectManager = new ProjectManager(repository, packagePathResolver, projectSystem,
-			                                        localRepository);
-
-			projectManager.AddPackageReference(packageId);
-			projectSystem.Save();
-
-
+			var projectPath = Context.ProjectPath;
+			var packageInstaller = Context.Container.Get<PackageInstaller>();
+			packageInstaller.InstallPackage(packageId, projectPath);
 
 		}
+
+
 
 		private string TargetFolder {
 			get { return Context.SolutionFolder.AppendPath("packages"); }
