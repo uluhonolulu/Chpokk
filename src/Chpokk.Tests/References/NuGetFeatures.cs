@@ -15,7 +15,7 @@ namespace Chpokk.Tests.References {
 		public void ExecutingTheInstallCommandInstallsThePackage() {
 
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is PackageOperation, 2));
-			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IPackageManager));
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IPackageManager));
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IPackageRepository, 2));
 
 			var command = new InstallCommand()

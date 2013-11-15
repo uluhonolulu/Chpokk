@@ -200,6 +200,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NuGet.exe</HintPath>
     </Reference>
+    <Reference Include="NuGet.Core, Version=1.6.30117.9648, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NuGet.Core.dll</HintPath>
+    </Reference>
     <Reference Include="QuantConnect.CodingServices.Worker">
       <HintPath>..\..\..\OSS\QC\QCCodingServices.NET\QuantConnect.CodingServices\bin\Debug\QuantConnect.CodingServices.Worker.exe</HintPath>
     </Reference>
@@ -689,12 +693,11 @@
     <Compile Include="Features\ProjectManagement\References\Bcl\BclAssembliesProvider.cs" />
     <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesModel.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\NuGetInitializer.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\NugetPackagesEndpoint.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\PackageDependencyWalker.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\PackageFinder.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\PackageInfoCache.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\PackageInstaller.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\PackageInstaller.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipEndpoint.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipInputModel.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />

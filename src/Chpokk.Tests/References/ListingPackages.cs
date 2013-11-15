@@ -12,16 +12,16 @@ using Shouldly;
 using System.Linq;
 
 namespace Chpokk.Tests.References {
-	[TestFixture]
-	public class ListingPackages: BaseQueryTest<SimpleConfiguredContext, IEnumerable<IPackage>> {
-		[Test]
-		public void SearchingForElmahReturnsElmahPackage() {
-			Result.ShouldContain(package => package.Id == "elmah");
-		}
+	//[TestFixture]
+	//public class ListingPackages: BaseQueryTest<SimpleConfiguredContext, IEnumerable<IPackage>> {
+	//	[Test]
+	//	public void SearchingForElmahReturnsElmahPackage() {
+	//		Result.ShouldContain(package => package.Id == "elmah");
+	//	}
 
-		public override IEnumerable<IPackage> Act() {
-			return Context.Container.Get<PackageFinder>().FindPackages("elmah");
-		}
+	//	public override IEnumerable<IPackage> Act() {
+	//		return Context.Container.Get<PackageFinder>().FindPackages("elmah");
+	//	}
 
-	}
+	//}
 }

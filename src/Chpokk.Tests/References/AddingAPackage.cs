@@ -1,20 +1,13 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Text;
 using Arractas;
-using CThru;
-using CThru.BuiltInAspects;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using FubuCore;
 using Microsoft.Build.Construction;
-using Mono.Collections.Generic;
-using NuGet.Common;
+using NuGet;
 using Shouldly;
-using Console = System.Console;
 
 namespace Chpokk.Tests.References {
 	[TestFixture]
@@ -37,16 +30,20 @@ namespace Chpokk.Tests.References {
 		}
 
 
-
 		public override void Act() {
-			//keep packages from the search session
-			var cache = Context.Container.Get<PackageInfoCache>();
-			var id = "elmah";
-			var packages = Context.Container.Get<PackageFinder>().FindPackages(id);
-			cache.Keep(packages);
+			const string PackagesFolder = "packages";
+			const string packageId = "elmah";
+			var repository = PackageRepositoryFactory.Default.CreateRepository(NuGetConstants.DefaultFeedUrl);
+			var path = Context.SolutionFolder.AppendPath(PackagesFolder);
+			var packagePathResolver = new DefaultPackagePathResolver(path);
+			var localRepository = new LocalPackageRepository(packagePathResolver, new PhysicalFileSystem(path));
+			var projectSystem = new NuGet.Common.MSBuildProjectSystem(Context.ProjectPath);
+			var projectManager = new ProjectManager(repository, packagePathResolver, projectSystem,
+			                                        localRepository);
 
-			var installer = Context.Container.Get<PackageInstaller>();
-			installer.InstallPackage(id, TargetFolder, Context.ProjectPath);
+			projectManager.AddPackageReference(packageId);
+			projectSystem.Save();
+
 
 
 		}
