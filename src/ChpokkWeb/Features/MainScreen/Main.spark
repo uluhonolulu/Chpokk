@@ -4,7 +4,7 @@
 <use namespace="ChpokkWeb.Features.Authentication" />
 <use namespace="ChpokkWeb.Features.ProjectManagement.AddSimpleProject" />
 
-<content name="title">Chpokk, an online C# and Vb.Net editor</content>
+<content name="title">Chpokk, an online C# and Vb.Net IDE</content>
 
 
 <div class="container">
@@ -31,7 +31,6 @@
 	<render partial="Authentication\_LoginStatus" />
 </content>
 
-${this.Partial<ChpokkWeb.Features.MainScreen.Tour.TourModel>()}
 
               <content name="InlineScripts">
 	              <script type="text/javascript">
