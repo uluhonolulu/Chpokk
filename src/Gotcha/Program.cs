@@ -20,7 +20,7 @@ namespace Gotcha {
 				var gimapster = new Gimapster("uluhonolulu@gmail.com", "xd11SvG23");
 
 				//receiveResponse("$ LIST " + "\"\"" + " \"*\"" + "\r\n");  
-				gimapster.SelectChpokkFolder();
+				gimapster.SelectFolder("chpokk");
 
 				//receiveResponse("$ FETCH 1 (X-GM-MSGID)\r\n"); 
 
@@ -29,7 +29,7 @@ namespace Gotcha {
 
 
 				//Console.WriteLine("enter the email number to fetch :"); 
-				var results = gimapster.GetSearchResults();
+				var results = gimapster.GetSearchResults("from:features");
 				foreach (var number in results) {
 					Console.WriteLine("header");
 					var header = gimapster.GetHeader(number);
