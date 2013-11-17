@@ -23,13 +23,15 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		public void Dispose() {
+			if (UserName == null) {
+				return; //don't send for anonymous
+			}
 			var messageBuilder = new StringBuilder();
-			string userName = UserName?? "anonymous" + DateTime.Now.Second;
-			messageBuilder.AppendLine("User: " + userName);
+			messageBuilder.AppendLine("User: " + UserName);
 			foreach (var model in _log) {
 				messageBuilder.AppendLine(model.ToString());
 			}
-			if (_mailer.Host != null) _mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Actions for " + userName, messageBuilder.ToString());
+			if (_mailer.Host != null) _mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Actions for " + UserName, messageBuilder.ToString());
 
 		}
 
