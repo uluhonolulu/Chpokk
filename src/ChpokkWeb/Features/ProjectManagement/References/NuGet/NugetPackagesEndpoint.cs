@@ -12,7 +12,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 		public NugetPackagesModel DoIt(NugetPackagesInputModel model) {
 			var packages = _packageFinder.FindPackages(model.Query).OrderBy(package => package.Id, StringComparer.InvariantCultureIgnoreCase);
-			return new NugetPackagesModel{Packages = from package in packages select new NugetPackageModel(){Id = package.Id, Version = package.Version.ToString(), Description = package.Description}};
+			var packageModels = (from package in packages select new NugetPackageModel() {Id = package.Id, Version = package.Version.ToString(), Description = package.Description}).Distinct(new NugetPackageModel.NugetPackageModelComparer());
+			return new NugetPackagesModel{Packages = packageModels};
 		}
 	}
 
@@ -28,5 +29,14 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		public string Id { get; set; }
 		public string Version { get; set; }
 		public string Description { get; set; }
+		public class NugetPackageModelComparer : IEqualityComparer<NugetPackageModel> {
+			public bool Equals(NugetPackageModel x, NugetPackageModel y) {
+				return x.Id == y.Id;
+			}
+
+			public int GetHashCode(NugetPackageModel obj) {
+				return obj.Id.GetHashCode();
+			}
+		}
 	}
 }
