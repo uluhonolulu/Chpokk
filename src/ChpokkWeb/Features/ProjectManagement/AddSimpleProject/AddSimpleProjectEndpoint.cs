@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
@@ -58,6 +59,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			                                                         inputModel.PhysicalApplicationPath).AppendPath("packages");
 			foreach (var packageId in inputModel.Packages) {
 				if (packageId.IsNotEmpty()) {
+					//new Thread(() => {_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);}).Start();
 					_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
 				}
 			}

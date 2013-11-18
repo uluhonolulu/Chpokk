@@ -4,7 +4,9 @@
 		$(function () {
 			addRepositoryMenuItem("New project", newSimpleProject);
 			$('#createSimpleProjectButton').on('click', function() {
-				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
+			    $('#createSimpleProjectButton').text("Please wait..");
+			    $('#createSimpleProjectButton').addClass('disabled');
+			    var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
 				var model = $('#simpleProjectForm').serializeObject(); 
 				$.post(url, model);
 			});
