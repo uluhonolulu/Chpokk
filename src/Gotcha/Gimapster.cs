@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FubuCore;
 
@@ -34,14 +35,15 @@ namespace Gotcha {
 		}
 
 		public string GetHeader(int number) {
-			return ReceiveResponse("$ FETCH " + number + " body[header]\r\n");
+			var header = ReceiveResponse("$ FETCH " + number + " body[header]\r\n");
+			return ParseResponse(header);
 			// response starts like * 2 FETCH (BODY[HEADER] {2488}\r\n
 			// ends with \r\n\r\n)\r\n$ OK Success
-
 		}
 
 		public string GetBody(int number) {
-			return ReceiveResponse("$ FETCH " + number + " body[text]\r\n");
+			var body = ReceiveResponse("$ FETCH " + number + " body[text]\r\n");
+			return ParseResponse(body);
 		}
 
 		private string ReceiveResponse(string command) {
@@ -72,6 +74,16 @@ namespace Gotcha {
 			catch (Exception ex) {
 				throw new ApplicationException(ex.Message);
 			}
+		}
+
+		private string ParseResponse(string output) {
+			var regExp = new Regex(@"\* \d* FETCH .* \{(?<size>\d*)\}\r\n");
+			var size = Int32.Parse(regExp.Matches(output)[0].Groups["size"].Value);
+			Console.WriteLine(regExp.Matches(output)[0]);
+			var startPos = regExp.Matches(output)[0].Length;
+			Console.WriteLine(output.Substring(startPos + size));
+			return output.Substring(startPos, size).Replace("=\r\n", "");
+			
 		}
 
 		public void Dispose() {
