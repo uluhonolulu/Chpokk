@@ -31,7 +31,8 @@ namespace Gotcha {
 		}
 
 		public void SelectFolder(string folderName) {
-			ReceiveResponse("$ SELECT {0}\r\n".ToFormat(folderName));
+			var receiveResponse = ReceiveResponse("$ LIST " + "\"\"" + " \"*\"" + "\r\n");
+			ReceiveResponse("$ SELECT \"{0}\"\r\n".ToFormat(folderName));
 		}
 
 		public string GetHeader(int number) {
@@ -65,6 +66,9 @@ namespace Gotcha {
 					var buffer = new byte[2048];
 					var bytes = _ssl.Read(buffer, 0, 2048);
 					sb.Append(Encoding.ASCII.GetString(buffer, 0, bytes));
+					if (sb.ToString().StartsWith("$ BAD")) {
+						throw new Exception("IMAP responded with " + sb.ToString());
+					}
 					if (sb.ToString().Contains("\r\n$ OK") || sb.ToString().StartsWith("* OK")) {
 						break;
 					}
