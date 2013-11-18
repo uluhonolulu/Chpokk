@@ -92,7 +92,12 @@ function getStackTrace() {
 		while (currentFunction) {
 			var fname = currentFunction.toString().split('\n')[0];
 			callstack.push(fname);
-			currentFunction = currentFunction.caller;
+		    try {
+				currentFunction = currentFunction.caller;     
+		    } catch(e) {
+		        callstack.push(e.message || e);
+		        currentFunction = null;
+		    } 
 		}
 	}
 	return callstack;
