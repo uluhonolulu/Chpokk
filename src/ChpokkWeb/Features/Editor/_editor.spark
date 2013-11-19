@@ -21,10 +21,21 @@
 <content name="InlineScripts">
 	<!-- _editor.spark -->
 	<script type="text/javascript">
-		var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
+	    var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
 	</script>
 
-	<script src="//use.edgefonts.net/droid-sans-mono.js"></script>
+    <script src="//use.edgefonts.net/droid-sans-mono.js"></script>
+    
+    <script type="text/javascript">
+        //Keep Alive
+        var keepAlive = function (interval) {
+            $.get('/editor/keepalive');
+            window.setTimeout(function () { keepAlive(interval); }, interval);
+        };
+
+        keepAlive(20 * 1000);
+	
+    </script>
 	
 </content>
 
