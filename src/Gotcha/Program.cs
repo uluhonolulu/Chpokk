@@ -9,8 +9,7 @@ using Simple.Data;
 namespace Gotcha {
 	class Program {
 		static void Main(string[] args) {
-
-			new Chimper().PrintListIDs();
+			var subscribeUser = new Chimper().SubscribeUser(null, null);
 		}
 	} 
 }
