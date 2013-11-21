@@ -35,7 +35,7 @@ function initTreeView(selector) {
 	$(selector).treeview({ collapsed: true });
 }
 
-function newItem(path) {
+function newItem(path) { //deprecated: we now reload all items
 	var pathParts = path.split('\\');
 	var fileName = pathParts[pathParts.length - 1];
 	var folderName = path.substr(0, path.length - fileName.length - 1);
@@ -46,4 +46,4 @@ function newItem(path) {
 	ul.append(build_li(item));
 }
 
-amplify.subscribe('newItem', newItem);
+//amplify.subscribe('newItem', newItem);//deprecated: we now reload all items

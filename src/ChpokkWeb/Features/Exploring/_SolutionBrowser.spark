@@ -23,8 +23,21 @@
 	<script type="text/javascript">
 
 		$(function () {
+		    loadSolutionExplorer();
+			
+			$('#pusher').click(function () {
+				pushRepository('${Model.RepositoryName}');
+			});
+
+			$('#zipper').click(function() {
+				document.location.href = '${Urls.UrlFor<DownloadZipInputModel>()}?RepositoryName=${Model.RepositoryName}';
+			});
+
+		});
+
+		function loadSolutionExplorer() {
 			var fileListUrl = '${Urls.UrlFor<SolutionExplorerInputModel>()}';
-			var model = { RepositoryName: "${Model.RepositoryName}" };
+			//var model = { RepositoryName: "${Model.RepositoryName}" };
 			$.post(fileListUrl, model, function (data) {
 				var items = data.Items;
 				var root = build_ul(items)
@@ -37,17 +50,9 @@
 
 				amplify.publish('solutionLoaded');
 			}
-			);	
-			
-			
-			$('#pusher').click(function () {
-				pushRepository('${Model.RepositoryName}');
-			});
-
-			$('#zipper').click(function() {
-				document.location.href = '${Urls.UrlFor<DownloadZipInputModel>()}?RepositoryName=${Model.RepositoryName}';
-			});
-
-		});
+			);
+		}
+		
+		amplify.subscribe('newItem', loadSolutionExplorer);
 	</script>
 </content>
