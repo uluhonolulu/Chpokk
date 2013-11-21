@@ -44,8 +44,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 			var symbolItems = from s in symbols select new IntelOutputModel.IntelModelItem {Name = s.Name, EntityType = s.Kind.ToString()};
 			if (!this.IsDotCompletion(position, tree)) {
-				var keywords = from keyword in _keywordProvider.Keywords select new IntelOutputModel.IntelModelItem{Name = keyword, EntityType = "Keyword"};
-				symbolItems = symbolItems.Union(keywords);
+				var keywords = language == LanguageNames.CSharp? _keywordProvider.CSharpKeywords : _keywordProvider.VBNetKeywords;
+				var keywordItems = from keyword in keywords select new IntelOutputModel.IntelModelItem{Name = keyword, EntityType = "Keyword"};
+				symbolItems = symbolItems.Union(keywordItems);
 			}
 			return symbolItems.OrderBy(symbol => symbol.Name);
 		}
