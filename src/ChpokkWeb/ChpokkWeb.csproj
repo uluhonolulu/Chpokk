@@ -599,8 +599,8 @@
     <Content Include="Scripts\jquery.bootstrappopover.js" />
     <Content Include="Content\scripts\lib\jquery.caret.1.02.js" />
     <Content Include="Content\scripts\lib\jquery.tmpl.js" />
-    <Content Include="Scripts\jquery.signalR-2.0.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.0.0.min.js" />
+    <Content Include="Content\scripts\lib\jquery.signalR-2.0.0.js" />
+    <Content Include="Content\scripts\lib\jquery.signalR-2.0.0.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
@@ -677,6 +677,8 @@
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
+    <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
+    <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
     <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
     <Compile Include="Features\Demo\SuggestController.cs" />
@@ -785,6 +787,7 @@
     <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
+    <Compile Include="Infrastructure\SignalRStarter.cs" />
     <Compile Include="Infrastructure\SimpleZip\Zipper.cs" />
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
