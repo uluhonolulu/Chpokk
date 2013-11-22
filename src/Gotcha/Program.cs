@@ -9,7 +9,15 @@ using Simple.Data;
 namespace Gotcha {
 	class Program {
 		static void Main(string[] args) {
-			var subscribeUser = new Chimper().SubscribeUser(null, null);
+			var chimper = new Chimper();
+			var db = Database.Open();
+			var users = db.Users.All();
+			foreach (var user in users) {
+				if (user.Email != null) {
+					chimper.SubscribeUser(user.Email, user.FullName);
+				}
+				
+			}
 		}
 	} 
 }

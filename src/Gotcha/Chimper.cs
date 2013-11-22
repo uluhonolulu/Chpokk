@@ -21,7 +21,7 @@ namespace Gotcha {
 
 		public dynamic SubscribeUser(string email, string fullName) {
 			var command = "/lists/subscribe";
-			var data = new { apikey = _apiKey, id = "749dced33c", email = new { email = "uluhonolulu@gmail.com" }, merge_vars = new { FULLNAME = "Ulu Honolulu" }, double_optin = false, send_welcome = true, update_existing = true };
+			var data = new { apikey = _apiKey, id = "749dced33c", email = new { email }, merge_vars = new { FULLNAME = fullName }, double_optin = false, send_welcome = true, update_existing = true };
 			return ExecuteCommand(command, data);			
 		}
 
