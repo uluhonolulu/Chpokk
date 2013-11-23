@@ -8,21 +8,38 @@
 
 <content name="InlineScripts">
 	<!-- _LoginStatusAnon.spark -->
-	<script type="text/javascript">
-		$(function () {
-			//we can't use the DomLoad event, since the janrain script loads after it.
-			$(window).load(function () {
-				openLoginWidget();
-			});
+    <script type="text/javascript">
+        function janrainWidgetOnload() {
+            $('#janrainButton').click();
+            janrain.events.onProviderLoginCancel.addHandler(function (response) {
+                pleaseLogin();
+            });
+            janrain.events.onModalClose.addHandler(function (response) {
+                pleaseLogin();
+            });
+        }
 
-			function openLoginWidget() {
-				if (typeof $('#janrainButton')[0].onclick === 'function') {
-					$('#janrainButton').click();
-				}
-				else {
-					window.setTimeout(openLoginWidget, 100);
-				}
-			}
-		});
-	</script>
+        function pleaseLogin() {
+            alert("Please sign in using one of the social identity providers. Use the Sign In button at the top.");
+        }
+        $(function () {
+            //we can't use the DomLoad event, since the janrain script loads after it.
+            $(window).load(function () {
+                openLoginWidget();
+            });
+
+            function openLoginWidget() {
+                if (typeof $('#janrainButton')[0].onclick === 'function') {
+                    //$('#janrainButton').click();
+                    janrainWidgetOnload();
+                }
+                else {
+                    window.setTimeout(openLoginWidget, 100);
+                }
+            }
+            
+            // hide the repository list
+            $('#repositoryList').hide();
+        });
+    </script>
 </content>

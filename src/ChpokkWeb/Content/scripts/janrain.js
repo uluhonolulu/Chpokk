@@ -3,7 +3,8 @@
 	if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
 
 	janrain.settings.tokenUrl = new URI("url::ChpokkWeb.Features.Authentication.LoginInputModel").resolve(new URI(location.href)).toString();
-
+	janrain.settings.actionText = "Sign in using";
+    
 	function isReady() { janrain.ready = true; };
 	if (document.addEventListener) {
 		document.addEventListener("DOMContentLoaded", isReady, false);
