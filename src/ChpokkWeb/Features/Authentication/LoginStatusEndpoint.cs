@@ -13,7 +13,7 @@ namespace ChpokkWeb.Features.Authentication {
 		public FubuContinuation LoginStatus() {
 			//return "<a class=\"btn btn-primary\" href=\"/authentication/login\">Sign-In</a>";
 			if (_securityContext.IsAuthenticated()) {
-				return FubuContinuation.TransferTo(new LoginStatusAuthenticatedModel());
+				return FubuContinuation.TransferTo(new LoginStatusAuthenticatedModel(_userData));
 				//return "<div style='padding-top:12px;'>" + _securityContext.CurrentIdentity.Name + "</div>";
 			}
 			return FubuContinuation.TransferTo(new LoginStatusAnonModel());

@@ -1,3 +1,6 @@
 ﻿<use namespace="ChpokkWeb.Features.Authentication" />
 <viewdata model="ChpokkWeb.Features.Authentication.LoginStatusAuthenticatedModel" />
-<div class='navbar-text'>!{Model.Username}</div>
+<div class='navbar-text'>
+    !{Model.UserData.DisplayName}
+    <img src="!{Model.UserData.Photo}"/>
+</div>

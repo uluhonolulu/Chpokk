@@ -1,7 +1,7 @@
 ﻿<use namespace="ChpokkWeb.Features.Authentication" />
 	<var context="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
 	<if condition="context.IsAuthenticated()">
-		!{this.Partial(new LoginStatusAuthenticatedModel{Username=context.CurrentIdentity.Name})}
+        !{this.ModellessPartial<LoginStatusEndpoint>("LoginStatus")}
 	</if>
 	<else>
 		!{this.Partial<LoginStatusAnonModel>()}
