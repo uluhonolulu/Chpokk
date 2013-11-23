@@ -640,6 +640,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Shared\_appfail.spark" />
+    <Content Include="Shared\_adconv.spark" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\FileTemplates\Program.cs" />
