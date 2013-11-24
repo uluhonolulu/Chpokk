@@ -18,6 +18,7 @@ using NuGet;
 using NuGet.Common;
 using StructureMap.Configuration.DSL;
 using StructureMap.Pipeline;
+using IDependencyResolver = Microsoft.AspNet.SignalR.IDependencyResolver;
 using ILogger = Microsoft.Build.Framework.ILogger;
 
 namespace ChpokkWeb.Infrastructure {
@@ -53,7 +54,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
 			//SignalR
-			For<IDependencyResolver>().Singleton().Add<StructureMapResolver>();
+			For<IDependencyResolver>().Singleton().Use<StructureMapResolver>();
 		}
 	}
 }

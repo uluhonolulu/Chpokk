@@ -9,9 +9,11 @@ using ChpokkWeb.App_Start;
 using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.Storage;
+using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
+using Microsoft.AspNet.SignalR;
 using StructureMap;
 using StructureMap.Pipeline;
 
@@ -23,6 +25,9 @@ namespace ChpokkWeb {
 			_fubuRuntime = AppStartFubuMVC.Start();
 
 			RegisterFonts();
+
+			GlobalHost.DependencyResolver = ObjectFactory.GetInstance<StructureMapResolver>();
+
 
 			//restore all files
 			//_fubuRuntime.Factory.Get<Restore>().RestoreAll();
