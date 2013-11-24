@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Authentication;
@@ -10,11 +6,8 @@ using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.Editor.Menu;
-using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement;
-using ChpokkWeb.Features.ProjectManagement.References;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
-using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;
@@ -59,6 +52,8 @@ namespace ChpokkWeb.Infrastructure {
 			For<IConsole>().Use(new NuGet.Common.Console());
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
+			//SignalR
+			For<IDependencyResolver>().Singleton().Add<StructureMapResolver>();
 		}
 	}
 }

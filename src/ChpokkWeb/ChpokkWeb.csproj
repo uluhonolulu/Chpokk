@@ -792,6 +792,7 @@
     <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
+    <Compile Include="Infrastructure\StructureMapResolver.cs" />
     <Compile Include="Infrastructure\SignalRStarter.cs" />
     <Compile Include="Infrastructure\SimpleZip\Zipper.cs" />
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />

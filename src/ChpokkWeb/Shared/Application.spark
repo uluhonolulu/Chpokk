@@ -30,6 +30,10 @@
 	        userHub.client.displayTrialInvitation = function() {
 	            success('its working!');
 	        };
+
+	        $.connection.hub.start().done(function() {
+	            userHub.server.displayTrialInvitation();
+	        });
 	    })
 	</script>
     
