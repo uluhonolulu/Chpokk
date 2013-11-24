@@ -261,6 +261,16 @@
     <Reference Include="Serenity">
       <HintPath>..\packages\Serenity.0.9.8.120\lib\net40\Serenity.dll</HintPath>
     </Reference>
+    <Reference Include="Simple.Data, Version=0.18.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.Ado">
+      <HintPath>..\packages\Simple.Data.Ado.0.18.3.1\lib\net40\Simple.Data.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.SqlServer">
+      <HintPath>..\packages\Simple.Data.SqlServer.0.18.3.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Spark">
       <HintPath>..\packages\Spark.1.7.5.1\lib\NET40\Spark.dll</HintPath>
     </Reference>
@@ -672,6 +682,7 @@
     <Compile Include="Features\Authentication\LoginStatusAuthenticatedModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />
     <Compile Include="Features\Authentication\UserData.cs" />
+    <Compile Include="Features\Authentication\UserManager.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
     <Compile Include="Features\Compilation\MsBuildCompiler.cs" />
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />

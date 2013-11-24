@@ -5,7 +5,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				Your repositories</h4>
-		</div class="panel-heading">
+		</div>
 		<div class="panel-body">
 			<for each="var name in Model.RepositoryNames">
 				!{this.LinkTo(new ChpokkWeb.Features.Exploring.RepositoryInputModel{RepositoryName = name}).Text(name)}<br/> 

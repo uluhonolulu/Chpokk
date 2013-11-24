@@ -11,5 +11,13 @@ namespace ChpokkWeb.Features.Authentication {
 
 		public UserData UserData { get; private set; }
 		public string Username { get; set; }
+		public string DisplayName {
+			get {
+				if (UserData != null && UserData.DisplayName != null) {
+					return UserData.DisplayName;
+				}
+				return Username;
+			}
+		}
 	}
 }

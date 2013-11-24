@@ -3,19 +3,16 @@ using System.Net;
 using System.Net.Mail;
 using ChpokkWeb.Features.MainScreen;
 using FubuMVC.Core.Continuations;
-using FubuMVC.Core.Security;
 using Newtonsoft.Json;
 
 namespace ChpokkWeb.Features.Authentication {
 	public class LoginEndpoint {
-		private readonly IAuthenticationContext _authenticationContext;
 		private readonly SmtpClient _mailer;
-		private readonly UserData _userData;
+		private readonly UserManager _userManager;
 
-		public LoginEndpoint(IAuthenticationContext authenticationContext, SmtpClient mailer, UserData userData) {
-			_authenticationContext = authenticationContext;
+		public LoginEndpoint(SmtpClient mailer, UserManager userManager) {
 			_mailer = mailer;
-			_userData = userData;
+			_userManager = userManager;
 		}
 
 		public FubuContinuation Login(LoginInputModel model) {
@@ -26,11 +23,7 @@ namespace ChpokkWeb.Features.Authentication {
 			var response = JsonConvert.DeserializeObject<dynamic>(rawResponse);
 			if (response.stat.ToString() == "ok") {
 				try {
-					dynamic profile = response.profile;
-					_userData.Profile = profile;
-					var username = GetUsername(profile);
-					_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
-					//_restore.RestoreFilesForCurrentUser();
+					var username = _userManager.SigninUser(response.profile, rawResponse);
 					if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
 					return FubuContinuation.RedirectTo<MainDummyModel>();
 				}
@@ -39,11 +32,6 @@ namespace ChpokkWeb.Features.Authentication {
 				}
 			}
 			return FubuContinuation.EndWithStatusCode(HttpStatusCode.Unauthorized);
-		}
-
-		private dynamic GetUsername(dynamic profile) {
-			var username = (profile.preferredUsername != null) ? profile.preferredUsername.Value : profile.email.Value;
-			return username.ToString() + "_" + profile.providerName;
 		}
 	}
 
