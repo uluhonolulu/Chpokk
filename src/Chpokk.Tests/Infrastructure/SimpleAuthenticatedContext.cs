@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 
 namespace Chpokk.Tests.Infrastructure {
-	public class SimpleAuthenticatedContext: SimpleConfiguredContext, IDisposable {
+	public class SimpleAuthenticatedContext: SimpleConfiguredContext {
 		public override void Create() {
 			base.Create();
 			this.FakeSecurityContext.UserName = "ulu";
 		}
 
-		public virtual void Dispose() {
+		public override void Dispose() {
+			base.Dispose();
 			this.FakeSecurityContext.UserName = null;
 		}
 	}

@@ -91,12 +91,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuMVC.Core.View.1.0.0.534\lib\net40\FubuMVC.Core.View.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core.View.Diagnostics">
-      <HintPath>..\packages\FubuMVC.Core.View.Diagnostics.0.1.0\lib\net40\FubuMVC.Core.View.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.Diagnostics, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.Diagnostics.0.9.6.300\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
-    </Reference>
     <Reference Include="FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.301\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>

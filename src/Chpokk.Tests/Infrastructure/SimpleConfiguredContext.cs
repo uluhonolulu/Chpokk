@@ -15,18 +15,17 @@ using FubuMVC.StructureMap;
 using StructureMap;
 
 namespace Chpokk.Tests.Infrastructure {
-	public class SimpleConfiguredContext : SimpleContext{
+	public class SimpleConfiguredContext : SimpleContext, IDisposable {
 		public override void Create() {
-			_container = CreateFacility().BuildFactory();
+			var childContainer = _container.GetNestedContainer();
+			_serviceFactory = CreateFacility(childContainer).BuildFactory();
 		}
 
-		private IContainerFacility CreateFacility() {
-			var container = new Container();
-			ConfigureContainer(container);
+		private IContainerFacility CreateFacility(IContainer childContainer) {
 			var registry = new ConfigureFubuMVC();
 			ConfigureFubuRegistry(registry);
 			var runtime = FubuApplication.For(registry)
-				.StructureMap(container)
+				.StructureMap(childContainer)
 				.Bootstrap()
 				;
 			return runtime.Facility;
@@ -36,15 +35,22 @@ namespace Chpokk.Tests.Infrastructure {
 			UseFakeSecurityContext(registry);
 		}
 
-		protected virtual void ConfigureContainer(Container container) {
+		private static void ConfigureContainer(Container container) {
 			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
 			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
 		}
 
 		[NotNull]
-		private IServiceFactory _container;
+		private IServiceFactory _serviceFactory;
 
-		public IServiceFactory Container { get { return _container; } }
+		private static readonly Container _container;
+
+		static SimpleConfiguredContext() {
+			_container = new Container();
+			ConfigureContainer(_container);
+		}
+
+		public IServiceFactory Container { get { return _serviceFactory; } }
 
 		public string AppRoot {
 			get { return Path.GetFullPath(@".."); }
@@ -57,6 +63,10 @@ namespace Chpokk.Tests.Infrastructure {
 				FakeSecurityContext = new FakeSecurityContext();
 			}
 			registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext>(FakeSecurityContext));
+		}
+
+		public virtual void Dispose() {
+			
 		}
 	}
 }

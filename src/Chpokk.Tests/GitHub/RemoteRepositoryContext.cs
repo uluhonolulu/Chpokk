@@ -39,11 +39,6 @@ namespace Chpokk.Tests.GitHub {
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
 		}
-
-		protected override void ConfigureFubuRegistry(ChpokkWeb.ConfigureFubuMVC registry) {
-			base.ConfigureFubuRegistry(registry);
-			//registry.Services(serviceRegistry => serviceRegistry.ReplaceService<ISecurityContext, FakeSecurityContext>());
-		}
 	}
 
 	// could be used for push tests
