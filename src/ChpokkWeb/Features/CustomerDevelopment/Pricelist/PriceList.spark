@@ -29,7 +29,7 @@
         <li>you use only Microsoft and Microsoft-approved tools.</li>
     </ul>
     <h3>What do you get, exactly?</h3>
-    <p>Depending on which option you choose, you'll get 1, 3, or 6 months of Chpokk service for <strong>$9/month</strong>, which is 50% off the regular price for the basic plan. You get a <strong>free upgrade</strong> to the Advanced plan when it is introduced.</p>
+    <p>Depending on which option you choose, you'll get 3, 6, or 12 months of Chpokk service for <strong>$9/month</strong>, which is 50% off the regular price for the basic plan. You get a <strong>free upgrade</strong> to the Advanced plan when it is introduced.</p>
     <p>Currently Chpokk is free. The clock starts ticking the moment Chpokk becomes a paid service, which is expected to be on <strong>December the 1st, 2013</strong> (but may be delayed of course, which means more free service for you). Those of you who participated in the private beta, you still have your bonus months.</p>
     If you want to prepay a longer period, please contact me at uluhonolulu@gmail.com, and we'll make a deal.
     <h3>What's in it for you, besides saving your, or your company's, money?</h3>
@@ -41,7 +41,7 @@
     <h3><span style="font-size: larger;">Some Questions That Might Bother You</span></h3>
     <ul>
         <li><strong>What if you just take our money and flee to Bahamas?</strong> In the unlikely event of me stopping Chpokk development (you didn't really think I'd do that intentionally, did you? anyway, I still might be hit by a car or something), you'll still be able to use Chpokk in its current state. Since the operating costs are virtually zero, it's going to be accessible forever.</li>
-        <li><strong>What if I change my mind?</strong> I'm accepting moneyback requests while Chpokk is in beta, which is until the end of November 2013 (or later).</li>
+        <li><strong>What if I change my mind?</strong> I'm accepting moneyback requests until the middle of Decempber 2013 -- you'll have more than 2 weeks to decide.</li>
         <li><strong>What kind of support I'll have for my money?</strong> I'm not a Big Corp, in fact, I'm still a one-man company. That means no 24x7 phone support, but it also means no "I'll pass your message to our development team". The mere fact that you volunteered to pay for my project while it's not Big and Famous yet makes you a truly exceptional customer, deserving a truly exceptional support. So, <strong>do</strong> expect me working late nights on a feature that you suggested, or a problem that you encountered.</li>
     </ul>
     <h3>Choose your savings</h3>
@@ -51,14 +51,14 @@
 			<div class=" plan">
 				<div class="plan-name-bronze">
 					<h2>Cautious</h2>
-					<span>(1 month)</span>
+					<span>(3 months)</span>
 				</div>
 				<ul>
-					<li class="plan-feature">Use Chpokk for 1 month</li>
-					<li class="plan-feature">Save $9</li>
-					<li class="plan-feature price">$9</li>
+					<li class="plan-feature">Use Chpokk for 3 months</li>
+					<li class="plan-feature">Save $27</li>
+					<li class="plan-feature price">$27</li>
 					<li class="plan-feature">
-						<a href="https://sites.fastspring.com/geeksoft/instant/2ndpresellchpokk1month" class="btn btn-primary btn-plan-select">
+						<a href="https://sites.fastspring.com/geeksoft/instant/2ndpresellchpokk3months" class="btn btn-primary btn-plan-select">
 							<i class="icon-white icon-ok"></i> I WANT IT!
 						</a>
 					</li>
@@ -71,27 +71,9 @@
 					<h2>
 						Sensible
 					</h2>
-					<span>(3 months)</span>
-				</div>
-				<ul style="font-size: larger;">
-					<li class="plan-feature">Use Chpokk for 3 months</li>
-					<li class="plan-feature">Save $27</li>
-					<li class="plan-feature price">$27</li>
-					<li class="plan-feature">
-						<a href="https://sites.fastspring.com/geeksoft/instant/2ndpresellchpokk3months" class="btn btn-primary btn-plan-select">
-							<i class="icon-white icon-ok"></i> I WANT IT!
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class=" plan">
-				<div class="plan-name-gold">
-					<h2>Bold</h2>
 					<span>(6 months)</span>
 				</div>
-				<ul>
+				<ul style="font-size: larger;">
 					<li class="plan-feature">Use Chpokk for 6 months</li>
 					<li class="plan-feature">Save $54</li>
 					<li class="plan-feature price">$54</li>
@@ -103,10 +85,28 @@
 				</ul>
 			</div>
 		</div>
+		<div class="col-lg-4">
+			<div class=" plan">
+				<div class="plan-name-gold">
+					<h2>Bold</h2>
+					<span>(1 year)</span>
+				</div>
+				<ul>
+					<li class="plan-feature">Use Chpokk for 1 year</li>
+					<li class="plan-feature">Save $108</li>
+					<li class="plan-feature price">$108</li>
+					<li class="plan-feature">
+						<a href="https://sites.fastspring.com/geeksoft/instant/2ndpresellchpokk1year" class="btn btn-primary btn-plan-select">
+							<i class="icon-white icon-ok"></i> I WANT IT!
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
-    <p style="clear: both;"><b>One important thing.</b> Because of the way my payment provider operates, I need the money to be on my account before November 15th, so <strong>this offer ends on November 14th</strong>. After that date, I'll remove this page.</p>
-    <p>So, if you do love Chpokk and plan to use it actively, it's a good idea to pay a little bit in advance. Just remember that you have to do it before the 14th of November, and you'll still have more than 15 days to get your money back in case you change your mind.</p>
+    <p style="clear: both;"><b>One important thing.</b> Because of the way my payment provider operates, I need the money to be on my account before December 1st, so <strong>this offer ends on November 30th</strong>. After that date, I'll remove this page.</p>
+    <p>So, if you do love Chpokk and plan to use it actively, it's a good idea to pay a little bit in advance. Just remember that you have to do it before the 30th of November, and you'll still have more than 15 days to get your money back in case you change your mind.</p>
 </div>
 
 <content name="Dialogs">
