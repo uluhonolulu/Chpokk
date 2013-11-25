@@ -1,0 +1,24 @@
+﻿<use master=""/>
+<viewdata model="ChpokkWeb.Features.CustomerDevelopment.TrialSignup.BeginEditorExperienceModel" />
+<use namespace="ChpokkWeb.Features.CustomerDevelopment.TrialSignup" />
+
+<content name="InlineScripts">
+    <!-- BeginEditorExperience.spark -->
+    <if condition="Model.ShouldStart">
+	    <script>
+	        //
+	        $(function () {
+	            var userHub = $.connection.userHub;
+	            userHub.client.displayTrialInvitation = function () {
+	                success('its working!');
+	            };
+
+	            $.connection.hub.start().done(function () {
+	                userHub.server.displayTrialInvitation();
+	            });
+	            alert('displaying start script');
+	        })
+	    </script>        
+    </if>
+
+</content>

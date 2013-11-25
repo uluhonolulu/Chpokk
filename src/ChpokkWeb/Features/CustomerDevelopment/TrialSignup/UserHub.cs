@@ -6,6 +6,11 @@ using Microsoft.AspNet.SignalR;
 
 namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class UserHub: Hub {
+
+		public void OnEditorOpened() {
+			
+		}
+
 		public void DisplayTrialInvitation() {
 			Clients.All.displayTrialInvitation();
 		}

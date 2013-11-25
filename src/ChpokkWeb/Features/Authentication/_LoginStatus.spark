@@ -1,7 +1,9 @@
 ﻿<use namespace="ChpokkWeb.Features.Authentication" />
+<use namespace="ChpokkWeb.Features.CustomerDevelopment.TrialSignup" />
 	<var context="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
 	<if condition="context.IsAuthenticated()">
         !{this.ModellessPartial<LoginStatusEndpoint>("LoginStatus")}
+        !{this.ModellessPartial<BeginEditorExperienceEndpoint>("DoIt")}
 	</if>
 	<else>
 		!{this.Partial<LoginStatusAnonModel>()}

@@ -26,12 +26,16 @@ namespace ChpokkWeb {
 
 			RegisterFonts();
 
-			GlobalHost.DependencyResolver = ObjectFactory.GetInstance<StructureMapResolver>();
+			RegisterSignalResolver();
 
 
 			//restore all files
 			//_fubuRuntime.Factory.Get<Restore>().RestoreAll();
 
+		}
+
+		private void RegisterSignalResolver() {
+			GlobalHost.DependencyResolver = ObjectFactory.GetInstance<StructureMapResolver>();
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {

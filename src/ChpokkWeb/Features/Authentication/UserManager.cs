@@ -17,15 +17,15 @@ namespace ChpokkWeb.Features.Authentication {
 
 		public string SigninUser(dynamic profile, string rawData) {
 			_userData.Profile = profile;
-			var username = GetUsername(profile);
-			_authenticationContext.ThisUserHasBeenAuthenticated(username, true);
+			var userName = GetUsername(profile);
+			_authenticationContext.ThisUserHasBeenAuthenticated(userName, true);
 
 			var db = Database.Open();
-			var user = db.Users.FindByUserId(username);
+			var user = db.Users.FindByUserId(userName);
 			if (user == null) {
-				db.Users.Insert(UserId: username, FullName: profile.displayName, Email: profile.email, Photo: profile.photo, Data: rawData);
+				db.Users.Insert(UserId: userName, FullName: profile.displayName, Email: profile.email, Photo: profile.photo, Data: rawData);
 			}
-			return username;
+			return userName;
 		}
 
 		public void EnsureUserData(string userName) {
@@ -34,6 +34,11 @@ namespace ChpokkWeb.Features.Authentication {
 				var user = db.Users.FindByUserId(userName);
 				_userData.Profile = JsonConvert.DeserializeObject<dynamic>(user.Data).profile;
 			}
+		}
+
+		public dynamic GetUser(string userName) {
+			var db = Database.Open();
+			return db.Users.FindByUserId(userName);
 		}
 
 

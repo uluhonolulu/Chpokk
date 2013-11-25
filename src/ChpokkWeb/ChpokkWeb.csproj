@@ -571,6 +571,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\ProjectManagement\References\NuGet\NugetPackages.spark" />
+    <Content Include="Features\CustomerDevelopment\TrialSignup\BeginEditorExperience.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -682,6 +683,7 @@
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
+    <Compile Include="Features\CustomerDevelopment\TrialSignup\BeginEditorExperienceEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
