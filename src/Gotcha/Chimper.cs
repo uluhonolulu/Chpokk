@@ -25,6 +25,13 @@ namespace Gotcha {
 			return ExecuteCommand(command, data);			
 		}
 
+		public dynamic UpdateUser(string email, DateTime paidUntil) {
+			Console.WriteLine(email);
+			var command = "/lists/update-member";
+			var data = new { apikey = _apiKey, id = "749dced33c", email = new { email }, merge_vars = new { PAIDUNTIL = paidUntil.ToString("yyyy-MM-dd") } };
+			return ExecuteCommand(command, data);				
+		}
+
 		private dynamic ExecuteCommand(string command, NameValueCollection data) {
 			var url = _urlRoot + command;
 			using (var wc = new WebClient()) {
@@ -39,8 +46,18 @@ namespace Gotcha {
 			var postedString = JsonConvert.SerializeObject(data);
 			using (var wc = new WebClient()) {
 				wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-				var response = wc.UploadString(url, WebRequestMethods.Http.Post, postedString);
-				return JsonConvert.DeserializeObject<dynamic>(response);
+				try {
+					var response = wc.UploadString(url, WebRequestMethods.Http.Post, postedString);
+					return JsonConvert.DeserializeObject<dynamic>(response);
+				}
+				catch (WebException exception) {
+					var responseStream = exception.Response.GetResponseStream();
+					var buffer = new byte[responseStream.Length];
+					responseStream.Read(buffer, 0, buffer.Length);
+					var response = JsonConvert.DeserializeObject<dynamic>(Encoding.ASCII.GetString(buffer));
+					Console.WriteLine(response.error);
+					return null;
+				}
 			}
 		}
 	}

@@ -13,8 +13,8 @@ namespace Gotcha {
 			var db = Database.Open();
 			var users = db.Users.All();
 			foreach (var user in users) {
-				if (user.Email != null) {
-					chimper.SubscribeUser(user.Email, user.FullName);
+				if (user.Email != null && user.PaidUntil != null) {
+					chimper.UpdateUser(user.Email, user.PaidUntil);
 				}
 				
 			}
