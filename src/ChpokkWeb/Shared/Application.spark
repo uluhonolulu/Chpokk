@@ -53,6 +53,8 @@
 
 	<userVoice />
 	
-	<appfail/>
+    <appfail/>
+    
+    <use file="Features\CustomerDevelopment\TrialSignup\TrialInvitation.spark" />
 </body>
 </html>

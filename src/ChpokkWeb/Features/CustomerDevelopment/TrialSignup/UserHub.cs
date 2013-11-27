@@ -14,10 +14,11 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 
 		public void OnStartPlayingWith() {
 			if (_interestDetector.ShouldStart()) {
+				Clients.Caller.displayTrialInvitation();
 				new Thread(() => {
-					Thread.Sleep(10000);
+					Thread.Sleep(1000);
 					Clients.Caller.displayTrialInvitation();
-				});				
+				}).Start();				
 			}
 		}
 

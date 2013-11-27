@@ -9,6 +9,7 @@ namespace ChpokkWeb.Features.Authentication {
 	public class LoginEndpoint {
 		private readonly SmtpClient _mailer;
 		private readonly UserManager _userManager;
+		private UserData _userData;
 
 		public LoginEndpoint(SmtpClient mailer, UserManager userManager) {
 			_mailer = mailer;
@@ -23,7 +24,7 @@ namespace ChpokkWeb.Features.Authentication {
 			var response = JsonConvert.DeserializeObject<dynamic>(rawResponse);
 			if (response.stat.ToString() == "ok") {
 				try {
-					var username = _userManager.SigninUser(response.profile, rawResponse);
+					var username = _userManager.SigninUser(response.profile, rawResponse, _userData);
 					if(_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
 					return FubuContinuation.RedirectTo<MainDummyModel>();
 				}

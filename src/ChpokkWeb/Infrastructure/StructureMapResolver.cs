@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Features.CustomerDevelopment.TrialSignup;
 using Microsoft.AspNet.SignalR;
 using StructureMap;
 
@@ -17,6 +18,10 @@ namespace ChpokkWeb.Infrastructure {
 			object service = null;
 			if (!serviceType.IsAbstract && !serviceType.IsInterface && serviceType.IsClass) {
 				// Concrete type resolution
+				if (serviceType == typeof(UserHub)) {
+					var test = _container.TryGetInstance<UserHub>();
+					Console.WriteLine(test);
+				}
 				service = _container.GetInstance(serviceType);
 			}
 			else {

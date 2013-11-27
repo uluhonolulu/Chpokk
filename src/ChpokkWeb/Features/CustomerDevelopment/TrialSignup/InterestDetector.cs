@@ -10,7 +10,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class InterestDetector {
 		private readonly ISecurityContext _securityContext;
 		private readonly UserManager _userManager;
-		public InterestDetector(UserHub userHub, ISecurityContext securityContext, UserManager userManager) {
+		public InterestDetector(ISecurityContext securityContext, UserManager userManager) {
 			_securityContext = securityContext;
 			_userManager = userManager;
 		}

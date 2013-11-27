@@ -35,7 +35,7 @@ namespace ChpokkWeb {
 		}
 
 		private void RegisterSignalResolver() {
-			GlobalHost.DependencyResolver = ObjectFactory.GetInstance<StructureMapResolver>();
+			GlobalHost.DependencyResolver = _fubuRuntime.Factory.Get<StructureMapResolver>();
 		}
 
 		protected void Session_Start(object sender, EventArgs e) {

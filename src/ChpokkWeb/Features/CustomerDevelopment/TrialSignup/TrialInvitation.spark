@@ -1,0 +1,12 @@
+﻿<use namespace="ChpokkWeb.Features.CustomerDevelopment.TrialSignup" />
+
+    <!-- TrialInvitation.spark -->
+    <script type="text/javascript">
+        $(function() {
+            var userHub = $.connection.userHub;
+            userHub.client.displayTrialInvitation = function () {
+                success('its working!');
+            };
+
+        });
+    </script>

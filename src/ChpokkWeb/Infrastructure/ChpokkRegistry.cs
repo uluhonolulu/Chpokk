@@ -55,6 +55,7 @@ namespace ChpokkWeb.Infrastructure {
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
 			//SignalR
 			For<IDependencyResolver>().Singleton().Use<StructureMapResolver>();
+			For<HttpContextBase>().Use(context => new HttpContextWrapper(context.GetInstance<HttpContext>()));
 		}
 	}
 }
