@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	}
 
 	public class BeginEditorExperienceModel {
-		public bool ShouldStart { get; set; }
+		public InterestStatus ShouldStart { get; set; }
 	}
 
 	public class BeginEditorExperienceDummyInputModel {}

@@ -16,22 +16,21 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 		}
 
 
-		public bool ShouldStart() {
-			bool shouldStart;
-			if (!_securityContext.IsAuthenticated()) shouldStart = false;
-			else {
-				var userName = _securityContext.CurrentIdentity.Name;
-				var user = _userManager.GetUser(userName);
-				shouldStart = user.Status == null;
-			}
-			return shouldStart;
+		public InterestStatus ShouldStart() {
+			if (!_securityContext.IsAuthenticated()) return InterestStatus.Newbie;
+			var userName = _securityContext.CurrentIdentity.Name;
+			var user = _userManager.GetUser(userName);
+			if (user.Status == null) return InterestStatus.Newbie;
+			if (user.Status.ToString() == "trial") return InterestStatus.TrialStarted;
+			return InterestStatus.TrialCanceled;
 		}
 
-		//public void StartWatching() {
-		//	new Thread(() => {
-		//		Thread.Sleep(10000);
-		//		_userHub.DisplayTrialInvitation();
-		//	});
-		//}
+
+	}
+
+	public enum InterestStatus {
+		Newbie,
+		TrialCanceled,
+		TrialStarted
 	}
 }

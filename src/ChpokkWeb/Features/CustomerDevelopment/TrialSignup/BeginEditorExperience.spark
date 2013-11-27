@@ -4,15 +4,21 @@
 
 <content name="InlineScripts">
     <!-- BeginEditorExperience.spark -->
-    <if condition="Model.ShouldStart">
+    <if condition="Model.ShouldStart == InterestStatus.Newbie">
 	    <script>
-	        //
 	        $(function () {
 	            var userHub = $.connection.userHub;
 	            $.connection.hub.start().done(function () {
 	                userHub.server.onStartPlayingWith();
 	            });
 	            alert('displaying start script');
+	        })
+	    </script>        
+    </if>
+    <if condition="Model.ShouldStart == InterestStatus.TrialCanceled">
+	    <script>
+	        $(function () {
+	            displayTrialInvitation();
 	        })
 	    </script>        
     </if>
