@@ -8,5 +8,34 @@
                 success('its working!');
             };
 
+            $('#startTrial').click(function() {
+                var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrialSignup.StartTrialDummyInputModel';
+                $.post(url);
+            });
+
+            $('#cancelTrial').click(function() {
+                var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrialSignup'
+            });
+
         });
     </script>
+<div class="modal fade" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Start your free trial</h4>
+            </div>
+            <div class="modal-body">
+                <p>By this time, you must have got your first impression about Chpokk.</p>
+                <p>Why not use it for free for a couple of days?</p>
+                <p>If you press the <i>right</i> button, you'll be able to continue working. No additional action required. You'll receive an email with more information.</p>
+                <p>If you press the other button, you'll be redirected to the start screen. I'll be happy if you drop by some day.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="cancelTrial">Stop using Chpokk</button>
+                <button type="button" class="btn btn-primary" id="startTrial" data-dismiss="modal">Continue your free trial</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

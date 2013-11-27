@@ -685,7 +685,9 @@
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\BeginEditorExperienceEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\TrialSignup\CancelTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
+    <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
     <Compile Include="Features\Demo\DemoModel.cs" />
     <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
@@ -784,6 +786,7 @@
     </Compile>
     <Compile Include="Infrastructure\AjaxExceptionWrapper.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
+    <Compile Include="Infrastructure\Chimper.cs" />
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
