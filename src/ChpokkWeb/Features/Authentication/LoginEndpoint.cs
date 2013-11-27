@@ -11,9 +11,10 @@ namespace ChpokkWeb.Features.Authentication {
 		private readonly UserManager _userManager;
 		private UserData _userData;
 
-		public LoginEndpoint(SmtpClient mailer, UserManager userManager) {
+		public LoginEndpoint(SmtpClient mailer, UserManager userManager, UserData userData) {
 			_mailer = mailer;
 			_userManager = userManager;
+			_userData = userData;
 		}
 
 		public FubuContinuation Login(LoginInputModel model) {

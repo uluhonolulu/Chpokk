@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			_chimper = chimper;
 		}
 
-		public AjaxContinuation DoIt(StartTrialDummyInputModel _) {
+		public AjaxContinuation StartTrial(StartTrialDummyInputModel _) {
 			UpdateUser();
 			var user = _userManager.GetCurrentUser();
 			_chimper.SubscribeUser(user.Email, user.FullName);

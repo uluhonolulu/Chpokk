@@ -5,16 +5,17 @@
         $(function() {
             var userHub = $.connection.userHub;
             userHub.client.displayTrialInvitation = function () {
-                success('its working!');
+                $('#trialDialog').modal();
             };
 
             $('#startTrial').click(function() {
-                var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrialSignup.StartTrialDummyInputModel';
+                var url = '!{this.Urls.UrlFor<StartTrialDummyInputModel>()}';
                 $.post(url);
             });
 
             $('#cancelTrial').click(function() {
-                var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrialSignup'
+                var url = '!{this.Urls.UrlFor<CancelTrialDummyInputModel>()}';
+                $.post(url);
             });
 
         });

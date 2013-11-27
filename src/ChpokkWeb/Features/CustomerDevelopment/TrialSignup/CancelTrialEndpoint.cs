@@ -13,7 +13,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			_userManager = userManager;
 		}
 
-		public AjaxContinuation DoIt(CancelTrialDummyInputModel _) {
+		public AjaxContinuation CancelTrial(CancelTrialDummyInputModel _) {
 			UpdateUser();
 			return new AjaxContinuation().NavigateTo("/");
 		}

@@ -11,7 +11,6 @@
 	            $.connection.hub.start().done(function () {
 	                userHub.server.onStartPlayingWith();
 	            });
-	            alert('displaying start script');
 	        })
 	    </script>        
     </if>
