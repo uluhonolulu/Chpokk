@@ -21,8 +21,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			var userName = _securityContext.CurrentIdentity.Name;
 			var user = _userManager.GetUser(userName);
 			if (user.Status == null) return InterestStatus.Newbie;
-			if (user.Status.ToString() == "trial") return InterestStatus.TrialStarted;
-			return InterestStatus.TrialCanceled;
+			if (user.Status.ToString() == "canceled") return InterestStatus.TrialCanceled;
+			return InterestStatus.TrialStarted;
 		}
 
 
