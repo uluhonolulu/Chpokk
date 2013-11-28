@@ -26,7 +26,7 @@
 				</div>
 				
 				
-				<label>File name</label>
+			    <label>File name</label>
 				<input class="form-control" name="PathRelativeToRepositoryRoot" id="fileName"/>
 				<label>Project</label>
 				<span id="projectNameDisplay"></span>
@@ -52,30 +52,47 @@
 				$('#newItemDialog').modal();
 				// folder browser 
 				var folderBrowserOptions = {
-					script: '!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
-					lazy: false,
-					additionalData: model,
-					loadHandler: function (data, container) {
-						loadBranch = function (item, container) {
-							var ul = $('<ul/>')
+				    script: '!{Urls.UrlFor<SolutionFolderExplorerInputModel>()}',
+				    lazy: false,
+				    additionalData: model,
+				    loadHandler: function (data, container) {
+				        loadBranch = function (item, container) {
+				            var ul = $('<ul/>')
 									.addClass("jqueryFileTree")
 									.hide();
-							var li = $('<li/>')
+				            var li = $('<li/>')
 									.addClass('directory')
 									.addClass('collapsed')
 									.appendTo(ul);
-							li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type).data({ path: item.Data ? item.Data.ProjectPath : null }));
-							$.each(item.Children, function (index, item) {
-								loadBranch(item, li);
-							});
-							container.append(ul);
-						};
-						container.html('');
-						$.each(data.Items, function (index, item) {
-							loadBranch(item, container);
-						});
-					}
+				            li.append($('<a/>').attr('rel', item.PathRelativeToRepositoryRoot).text(item.Name).attr('type', item.Type).data({ path: item.Data ? item.Data.ProjectPath : null }));
+				            $.each(item.Children, function (index, item) {
+				                loadBranch(item, li);
+				            });
+				            container.append(ul);
+				        };
+				        
+				        container.html('');
+				        $.each(data.Items, function (index, item) {
+				            loadBranch(item, container);
+				        });
+
+					    				        
+				    },
+				    onShow: expandDefault
 				};
+
+			    function expandDefault(tree) {
+			        //if there's only one solution, expand it
+			        var solutionElements = tree.find('[type="solution"]');
+			        if (solutionElements.length == 1) {
+			            solutionElements.click();
+			        }
+			        //same for projects
+			        var projectElements = tree.find('[type="project"]');
+			        if (projectElements.length == 1) {
+			            projectElements.click();
+			        }
+			    };
 
 				$('#newItemDialog #folderBrowser').fileTree(folderBrowserOptions, function (path) {
 					$('#fileName').val(path);

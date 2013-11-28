@@ -71,6 +71,9 @@ if (jQuery) (function ($) {
 							$(c).find('li.directory.collapsed').each(function (index, li) {
 								$(li).find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
 							});
+						    if (o.onShow) {
+						        o.onShow($(c));
+						    }
 						});
 					} else {
 						if (o.root == t) $(c).children('ul:hidden').show(); else $(c).children('ul:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
