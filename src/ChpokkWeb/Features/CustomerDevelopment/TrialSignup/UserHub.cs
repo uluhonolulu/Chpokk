@@ -17,10 +17,13 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 					case InterestStatus.Newbie:
 						new Thread(() => {
 							Thread.Sleep(TimeSpan.FromMinutes(1));
-							Clients.Caller.displayTrialInvitation();
+							if (_interestDetector.ShouldStart() == InterestStatus.Newbie) { //let's check again, just in case
+								Clients.Caller.displayTrialInvitation();
+							}
+							
 						}).Start(); break;
 					case InterestStatus.TrialCanceled:
-						Clients.Caller.displayTrialInvitation(); break;
+						Clients.Caller.displayTrialInvitation(); break; //typically this is handled on the client, but let's do a sanity check
 			}
 		}
 
