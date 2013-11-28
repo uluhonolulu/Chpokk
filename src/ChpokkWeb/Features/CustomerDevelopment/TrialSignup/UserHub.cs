@@ -8,6 +8,8 @@ using Microsoft.AspNet.SignalR;
 namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class UserHub: Hub {
 		private readonly InterestDetector _interestDetector;
+		private static readonly TimeSpan evaluationTime = TimeSpan.FromMinutes(1);
+
 		public UserHub(InterestDetector interestDetector) {
 			_interestDetector = interestDetector;
 		}
@@ -16,7 +18,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			switch (_interestDetector.ShouldStart()) {
 					case InterestStatus.Newbie:
 						new Thread(() => {
-							Thread.Sleep(TimeSpan.FromMinutes(1));
+							Thread.Sleep(evaluationTime);
 							if (_interestDetector.ShouldStart() == InterestStatus.Newbie) { //let's check again, just in case
 								Clients.Caller.displayTrialInvitation();
 							}
