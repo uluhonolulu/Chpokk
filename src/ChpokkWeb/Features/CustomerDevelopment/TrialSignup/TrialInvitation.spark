@@ -4,9 +4,7 @@
     <script type="text/javascript">
         $(function() {
             var userHub = $.connection.userHub;
-            userHub.client.displayTrialInvitation = function () {
-                $('#trialDialog').modal();
-            };
+            userHub.client.displayTrialInvitation = displayTrialInvitation;
 
             $('#startTrial').click(function() {
                 var url = '!{this.Urls.UrlFor<StartTrialDummyInputModel>()}';
@@ -19,6 +17,10 @@
             });
 
         });
+
+        function displayTrialInvitation() {
+            $('#trialDialog').modal();
+        }
     </script>
 <div class="modal fade" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">

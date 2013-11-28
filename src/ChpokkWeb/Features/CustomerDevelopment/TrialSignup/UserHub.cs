@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			switch (_interestDetector.ShouldStart()) {
 					case InterestStatus.Newbie:
 						new Thread(() => {
-							Thread.Sleep(1000);
+							Thread.Sleep(TimeSpan.FromMinutes(1));
 							Clients.Caller.displayTrialInvitation();
 						}).Start(); break;
 					case InterestStatus.TrialCanceled:
