@@ -33,6 +33,14 @@ function initTreeView(selector) {
 		window.location.hash = $(this).attr('data-path');
 	});
 	$(selector).treeview({ collapsed: true });
+    openItemIfSingle($(selector));
+}
+
+function openItemIfSingle(tree) {
+    var fileElements = tree.find('[data-type="file"]');
+    if (fileElements.length == 1) {
+        fileElements.click();
+    }
 }
 
 function newItem(path) { //deprecated: we now reload all items
