@@ -10,7 +10,7 @@
 			</th>
 			<th style='width: 250px;'>
 				Pretty&nbsp;soon<br/>
-				<span style="font-size: smaller;">October-November 2013</span>
+				<span style="font-size: smaller;">December 2013</span>
 
 			</th>
 			<th style='width: 250px;'>
@@ -111,10 +111,10 @@
 		</tr>
 		<tr>
 			<td>Intellisense</td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -146,10 +146,10 @@
 		</tr>
 		<tr>
 			<td>Adding a project</td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -170,18 +170,18 @@
 		</tr>
 		<tr>
 			<td>Adding GAC references</td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>Adding NuGet references</td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -297,10 +297,10 @@
 		<tr>
 			<td>Unit testing</td>
 			<td></td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>Real time collaboration</td>
