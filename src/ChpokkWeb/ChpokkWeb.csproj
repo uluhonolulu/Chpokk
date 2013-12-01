@@ -342,6 +342,7 @@
     <Content Include="Content\scripts\editor_tour.js" />
     <Content Include="Content\scripts\evergage.js" />
     <Content Include="Content\scripts\HtmlEditor.js" />
+    <Content Include="Content\scripts\hubs.js" />
     <Content Include="Content\scripts\IntelManager.js" />
     <Content Include="Content\scripts\janrain.js" />
     <Content Include="Content\scripts\lib\ace\ace.js" />

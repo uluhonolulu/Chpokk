@@ -363,7 +363,6 @@
     <Compile Include="Run\RunningValidCode.cs" />
     <Compile Include="Saving\Save.cs" />
     <Compile Include="Spikes\Amazon.cs" />
-    <Compile Include="Spikes\Bootstrapping.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
     <Compile Include="GitHub\Cloning.cs" />
