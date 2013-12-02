@@ -24,7 +24,7 @@ namespace Chpokk.Tests.Spikes {
 			//session.AddAspect(new TraceAspect(info => info.TypeName.Contains("Continuation")));
 			//session.AddAspect(new TraceResultAspect(info => info.MethodName == "IsRedirectable"));
 			//session.AddAspect(new TraceAspect(info => info.TargetInstance is IActionBehavior));
-			session.AddAspect(new TraceResultAspect(info => info.MethodName == "get_InsideBehavior"));
+			//session.AddAspect(new TraceResultAspect(info => info.MethodName == "get_InsideBehavior")); 
 			//session.AddAspect(new TraceAspect(info => info.MethodName == "Partial"));
 			session.AddAspect(new TraceClassAspect(info => info.TargetInstance is ContinuationHandler));
 			//session.AddAspect(new TraceClassAspect(info => info.MethodName.Contains("Invoke")));
