@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using ChpokkWeb.Features.MainScreen;
 using FubuMVC.Core.Continuations;
 using Newtonsoft.Json;
@@ -21,7 +22,7 @@ namespace ChpokkWeb.Features.Authentication {
 
 			var url = string.Format("https://rpxnow.com/api/v2/auth_info?apiKey={0}&token={1}", model.ApiKey, model.token);
 			var rawResponse =
-				new WebClient().DownloadString(url);
+				new WebClient(){Encoding = Encoding.UTF8}.DownloadString(url);
 			var response = JsonConvert.DeserializeObject<dynamic>(rawResponse);
 			if (response.stat.ToString() == "ok") {
 				try {

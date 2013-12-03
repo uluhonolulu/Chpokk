@@ -3,7 +3,7 @@
 <div class='navbar-text'>
     !{Model.DisplayName}
     <if condition="Model.UserData.Photo != null">
-        <img src="!{Model.UserData.Photo}"/>
+        <img src="!{Model.UserData.Photo}" style="max-height: 60px;"/>
     </if>
     
 </div>
