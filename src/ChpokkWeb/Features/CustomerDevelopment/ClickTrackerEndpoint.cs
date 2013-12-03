@@ -26,10 +26,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 	}
 
 	public class ClickTrackerInputModel: ITrack {
+		public ClickTrackerInputModel() {
+			When = DateTime.Now;
+		}
 		public string ButtonName { get; set; }
 		public string Url { get; set; }
+		public DateTime When { get; private set; }
 		public override string ToString() {
-			return "Url: {0}, button: {1}".ToFormat(this.Url, this.ButtonName);
+			return "{2}: Url: {0}, button: {1}".ToFormat(this.When.ToString("HH:mm:ss"), this.Url, this.ButtonName);
 		}
 	}
 

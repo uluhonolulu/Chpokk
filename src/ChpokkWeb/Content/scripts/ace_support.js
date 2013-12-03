@@ -4,6 +4,8 @@
 	var editor = ace.edit("ace");
 	editor.setTheme("ace/theme/idle_fingers");
     
+    //bug: .ace_content too narrow in IE
+    
     //completion
 	var codeCompleter = {
 		getCompletions: function (editor, session, pos, prefix, callback) {
