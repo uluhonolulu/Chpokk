@@ -34,7 +34,12 @@
 			            score: data.Items.length - index
 			        };//TODO: .completer.insertMatch(this.editor); or if (data.snippet) snippetManager.insertSnippet(this.editor, data.snippet);
 				});
-				callback(null, completionData);
+			    callback(null, completionData);
+			    //size fix here //ace 12696
+			    editor.completer.popup.renderer.desiredHeight = undefined;
+			    editor.completer.popup.renderer.onResize(true);
+			    editor.completer.popup.renderer.$textLayer.checkForSizeChanges();
+
 			});
 		}
 	};
