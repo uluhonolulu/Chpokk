@@ -20,8 +20,10 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 
 		private void UpdateUser() {
 			var user = _userManager.GetCurrentUser();
-			user.Status = (string)UserStatus.Canceled;
-			_userManager.UpdateUser(user);
+			if (user != null) {
+				user.Status = (string)UserStatus.Canceled;
+				_userManager.UpdateUser(user);
+			}
 		}
 	}
 
