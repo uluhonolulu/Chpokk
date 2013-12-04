@@ -33,7 +33,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		public string Url { get; set; }
 		public DateTime When { get; private set; }
 		public override string ToString() {
-			return "{2}: Url: {0}, button: {1}".ToFormat(this.When.ToString("HH:mm:ss"), this.Url, this.ButtonName);
+			return "{2}: Url: {0}, button: {1}".ToFormat(this.Url, this.ButtonName, this.When.ToString("HH:mm:ss"));
 		}
 	}
 
