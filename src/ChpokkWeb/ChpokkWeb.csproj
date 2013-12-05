@@ -214,9 +214,6 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="QuantConnect.CodingServices.Worker">
-      <HintPath>..\..\..\OSS\QC\QCCodingServices.NET\QuantConnect.CodingServices\bin\Debug\QuantConnect.CodingServices.Worker.exe</HintPath>
-    </Reference>
     <Reference Include="Roslyn.Compilers, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Roslyn.Compilers.Common.1.2.20906.2\lib\net45\Roslyn.Compilers.dll</HintPath>
