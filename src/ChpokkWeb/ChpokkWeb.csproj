@@ -696,11 +696,10 @@
     <Compile Include="Features\Demo\SuggestionModel.cs" />
     <Compile Include="Features\Demo\SuggestionOutputModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
+    <Compile Include="Features\Files\SaveFileInputModel.cs" />
+    <Compile Include="Features\Files\Savior.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
     <Compile Include="Features\Editor\CodeEditorModel.cs" />
-    <Compile Include="Features\Editor\Colorizer\ColorizerController.cs" />
-    <Compile Include="Features\Editor\Colorizer\ColorizerInputModel.cs" />
-    <Compile Include="Features\Editor\Colorizer\HtmlWriter.cs" />
     <Compile Include="Features\Compilation\Compiler.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
     <Compile Include="Features\Editor\Intellisense\CompletionProvider.cs" />

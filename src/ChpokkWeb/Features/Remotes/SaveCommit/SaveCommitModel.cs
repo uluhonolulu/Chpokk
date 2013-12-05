@@ -1,9 +1,8 @@
 ﻿using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.Files;
 
 namespace ChpokkWeb.Features.Remotes.SaveCommit {
-	public class SaveCommitInputModel : BaseFileInputModel {
-		public string Content { get; set; }
-		public bool DoCommit { get; set; }
+	public class SaveCommitInputModel : SaveFileInputModel {
 		public string CommitMessage { get; set; }
 	}
 }
