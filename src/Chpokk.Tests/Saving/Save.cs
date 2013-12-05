@@ -32,7 +32,7 @@ namespace Chpokk.Tests.Saving {
 		}
 
 		public override void Act() {
-			var controller = Context.Container.Get<SaveCommitController>();
+			var controller = Context.Container.Get<SaveCommitEndpoint>();
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
 			controller.Save(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@"..") });
 		}
@@ -41,7 +41,7 @@ namespace Chpokk.Tests.Saving {
 	public class Commit : BaseCommandTest<PhysicalCodeFileInRepositoryContext> {
 		private const string NEW_CONTENT = "---";
 		public override void Act() {
-			var controller = Context.Container.Get<SaveCommitController>();
+			var controller = Context.Container.Get<SaveCommitEndpoint>();
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
 			//Context.FakeSecurityContext.UserName = "ulu";
 			using (var repo = new Repository(Context.RepositoryRoot)) {

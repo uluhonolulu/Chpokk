@@ -496,6 +496,7 @@
     <Content Include="Content\scripts\sampletest.js" />
     <Content Include="Content\styles\lib\filetree\jqueryFileTree.css" />
     <Content Include="Content\styles\pricing.css" />
+    <Content Include="Content\Targets\Microsoft.WebApplication.Build.Tasks.Dll" />
     <Content Include="favicon.ico" />
     <Content Include="Features\Authentication\sample.txt" />
     <Content Include="Features\Demo\RegisteredForInvite.spark">
@@ -574,6 +575,7 @@
     <Content Include="Features\ProjectManagement\References\NuGet\NugetPackages.spark" />
     <Content Include="Features\CustomerDevelopment\TrialSignup\BeginEditorExperience.spark" />
     <Content Include="Features\CustomerDevelopment\TrialSignup\TrialInvitation.spark" />
+    <Content Include="Content\Targets\Microsoft.WebApplication.targets" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -696,6 +698,7 @@
     <Compile Include="Features\Demo\SuggestionModel.cs" />
     <Compile Include="Features\Demo\SuggestionOutputModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
+    <Compile Include="Features\Files\SaveEndpoint.cs" />
     <Compile Include="Features\Files\SaveFileInputModel.cs" />
     <Compile Include="Features\Files\Savior.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
@@ -759,7 +762,7 @@
     <Compile Include="Features\Remotes\Push\PushController.cs" />
     <Compile Include="Features\Remotes\Push\PushDialogModel.cs" />
     <Compile Include="Features\Remotes\Push\PushInputModel.cs" />
-    <Compile Include="Features\Remotes\SaveCommit\SaveCommitController.cs" />
+    <Compile Include="Features\Remotes\SaveCommit\SaveCommitEndpoint.cs" />
     <Compile Include="Features\Remotes\SaveCommit\SaveCommitModel.cs" />
     <Compile Include="Features\Exploring\BaseFileModel.cs" />
     <Compile Include="Features\Exploring\FileItemToProjectItemConverter.cs" />

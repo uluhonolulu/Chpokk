@@ -7,11 +7,11 @@ using FubuMVC.Core.Security;
 using LibGit2Sharp;
 
 namespace ChpokkWeb.Features.Remotes.SaveCommit {
-	public class SaveCommitController {
+	public class SaveCommitEndpoint {
 		private readonly RepositoryManager _manager;
 		private readonly ISecurityContext _securityContext;
 		private readonly Savior _savior;
-		public SaveCommitController(RepositoryManager manager, ISecurityContext securityContext, Savior savior) {
+		public SaveCommitEndpoint(RepositoryManager manager, ISecurityContext securityContext, Savior savior) {
 			_manager = manager;
 			_securityContext = securityContext;
 			_savior = savior;
