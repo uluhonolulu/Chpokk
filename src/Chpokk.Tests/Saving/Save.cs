@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.Files;
 using ChpokkWeb.Features.Remotes.SaveCommit;
 using FubuCore;
 using LibGit2Sharp;
@@ -32,9 +33,9 @@ namespace Chpokk.Tests.Saving {
 		}
 
 		public override void Act() {
-			var controller = Context.Container.Get<SaveCommitEndpoint>();
+			var controller = Context.Container.Get<SaveEndpoint>();
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
-			controller.Save(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@"..") });
+			controller.DoIt(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@"..") });
 		}
 	}
 
@@ -47,7 +48,7 @@ namespace Chpokk.Tests.Saving {
 			using (var repo = new Repository(Context.RepositoryRoot)) {
 				repo.Index.Stage(Context.FilePath);				
 			}
-			controller.Save(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@".."), DoCommit = true, CommitMessage = "doesntmater" });
+			controller.SaveCommit(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@".."), CommitMessage = "doesntmater" });
 
 		}
 
