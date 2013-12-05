@@ -11,7 +11,7 @@ using Ivonna.Framework.Generic;
 
 namespace Chpokk.Tests.Spikes {
 	[TestFixture, RunOnWeb]
-	public class WhyDoesPartialHaveAMaster: IExecuteInOriginalAppdomain {
+	public class WhyDoesPartialHaveAMaster {
 		[Test]
 		public void Test() {
 			var session = new TestSession();
