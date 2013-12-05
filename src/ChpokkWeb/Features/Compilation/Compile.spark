@@ -4,8 +4,9 @@
 		$(function() {
 			$('#compileButton').click(function() {
 				if (model.ProjectPath) {
-					var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
-					$.post(compileUrl, model, function(continuation) {
+				    var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
+				    var editor = ace.edit("ace");
+				    $.post(compileUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
 						if (continuation.success) {
 							success(continuation.message);
 						} else {
@@ -20,7 +21,8 @@
 			$('#runButton').click(function() {
 				if (model.ProjectPath) {
 					var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
-					$.post(runUrl, model, function(continuation) {
+				    var editor = ace.edit("ace");
+				    $.post(runUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
 						if (continuation.success) {
 							success(continuation.message);
 						} else {

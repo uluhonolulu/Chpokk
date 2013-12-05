@@ -24,9 +24,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			var projectPath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.ProjectPath);
 			var filePath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.PathRelativeToRepositoryRoot);
-			var intelData = _intelDataLoader.CreateIntelData(projectPath, filePath, input.Text);
+			var intelData = _intelDataLoader.CreateIntelData(projectPath, filePath, input.Content);
 			try {
-				var symbols = _completionProvider.GetSymbols(input.Text, input.Position, intelData.OtherContent, intelData.ReferencePaths, _languageDetector.GetRoslynLanguage(input.PathRelativeToRepositoryRoot));
+				var symbols = _completionProvider.GetSymbols(input.Content, input.Position, intelData.OtherContent, intelData.ReferencePaths, _languageDetector.GetRoslynLanguage(input.PathRelativeToRepositoryRoot));
 				return new IntelOutputModel { Items = symbols.Distinct().OrderBy(item => item.Name).ToArray() };
 			}
 			catch (Exception exception) {

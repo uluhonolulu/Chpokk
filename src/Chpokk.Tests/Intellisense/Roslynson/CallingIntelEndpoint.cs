@@ -20,7 +20,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			            {
 			            	NewChar = '.',
 			            	Position = position,
-			            	Text = source,
+			            	Content = source,
 			            	PhysicalApplicationPath = Context.AppRoot,
 			            	RepositoryName = Context.REPO_NAME,
 							PathRelativeToRepositoryRoot = "x.cs",

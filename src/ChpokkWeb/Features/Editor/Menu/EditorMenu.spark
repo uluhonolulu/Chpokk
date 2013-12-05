@@ -18,7 +18,7 @@
 				if (model.PathRelativeToRepositoryRoot) {
 					var editor = ace.edit("ace");
 					var content = editor.getValue();
-					$.post(saveUrl, $.extend(model, { Content: content }));					
+					$.post(saveUrl, $.extend({}, model, { Content: content }));					
 				} else {
 					alert("Nothing to save");
 				}
@@ -31,7 +31,7 @@
 					$('#commitDialog #commitButton').one('click', function () {
 						var editor = ace.edit("ace");
 						var content = editor.getValue();
-						$.post(saveUrl, $.extend(model, { Content: content, CommitMessage: $('#commitMessage').val() }));
+						$.post(saveUrl, $.extend({}, model, { Content: content, CommitMessage: $('#commitMessage').val() }));
 						$('#commitDialog').modal('hide');
 					});
 				} else {

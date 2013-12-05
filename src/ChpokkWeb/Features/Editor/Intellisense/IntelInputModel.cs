@@ -2,7 +2,7 @@
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelInputModel:BaseFileInputModel {
-		public string Text { get; set; }
+		public string Content { get; set; }
 		public char NewChar { get; set; }
 		public int Position { get; set; }
 		public string Message { get; set; }
