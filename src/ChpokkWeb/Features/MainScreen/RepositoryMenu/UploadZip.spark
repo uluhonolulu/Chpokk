@@ -19,21 +19,18 @@
 </content>
 
 <content name="InlineScripts">
-<script>
-/*jslint unparam: true */
-/*global window, $ */
-	$(function () {
-		// Change this to the location of your server-side upload handler:
-		var url = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.UploadZip.UploadZipInputModel>()}';
-		$('#fileupload').fileupload({
-			url: url,
-			dataType: 'json'
-		}).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-
-		//menu item
-		var menuItem = $('<a class="fileinput-button"><span>Upload zipped source</span><input id="fileupload" type="file" name="ZippedRepository"/></a>');
-		addRepositoryMenuItem(menuItem);
-	});
-</script>
+    <!-- UploadZip.spark -->
+    <script>
+        $(function () {
+            //menu item
+            var menuItem = $('<a class="fileinput-button"><span>Upload zipped source</span><input id="fileupload" type="file" name="ZippedRepository"/></a>');
+            addRepositoryMenuItem(menuItem);
+            var url = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.UploadZip.UploadZipInputModel>()}';
+            $('#fileupload').fileupload({
+                url: url,
+                dataType: 'json'
+            }).prop('disabled', !$.support.fileInput)
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        });
+    </script>
 </content>
