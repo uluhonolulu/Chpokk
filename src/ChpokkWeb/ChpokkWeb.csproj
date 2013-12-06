@@ -317,10 +317,10 @@
     <Content Include="Content\boot\bootstrap-responsive.min.css" />
     <Content Include="Content\boot\bootstrap.css" />
     <Content Include="Content\boot\bootstrap.min.css" />
+    <Content Include="Content\images\chpokk-logo.png" />
     <Content Include="Content\images\chpokk_logo.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
-    <Content Include="Content\images\image_сайт.png" />
     <Content Include="Content\images\Intellisense\class_16xLG.png" />
     <Content Include="Content\images\Intellisense\Class_489.png" />
     <Content Include="Content\images\Intellisense\Enum_582.png" />
@@ -332,6 +332,7 @@
     <Content Include="Content\images\Intellisense\Namespace.png" />
     <Content Include="Content\images\Intellisense\PropertyIcon.png" />
     <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\verst_doska.jpg" />
     <Content Include="Content\scripts\ace_support.js" />
     <Content Include="Content\scripts\browser.js" />
     <Content Include="Content\scripts\CodeEditor.js" />
@@ -496,19 +497,7 @@
     <Content Include="Content\Targets\WebApplications\Microsoft.WebApplication.Build.Tasks.Dll" />
     <Content Include="favicon.ico" />
     <Content Include="Features\Authentication\sample.txt" />
-    <Content Include="Features\Demo\RegisteredForInvite.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Features\Demo\_editor.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Features\Demo\_invite.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Features\Demo\_suggest.spark">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Features\Demo\NB.txt" />
+    <Content Include="Features\Home\NB.txt" />
     <Content Include="Features\Editor\_editor.spark">
       <SubType>Designer</SubType>
     </Content>
@@ -689,11 +678,7 @@
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
-    <Compile Include="Features\Demo\DemoModel.cs" />
-    <Compile Include="Features\Demo\RegisteredForInviteModel.cs" />
-    <Compile Include="Features\Demo\SuggestController.cs" />
-    <Compile Include="Features\Demo\SuggestionModel.cs" />
-    <Compile Include="Features\Demo\SuggestionOutputModel.cs" />
+    <Compile Include="Features\Home\DemoModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
     <Compile Include="Features\Files\SaveEndpoint.cs" />
     <Compile Include="Features\Files\SaveFileInputModel.cs" />
@@ -818,7 +803,7 @@
     <Folder Include="Content\less\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\Demo\DemoView.spark">
+    <Content Include="Features\Home\DemoView.spark">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Shared\Application.spark" />
