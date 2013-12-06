@@ -42,9 +42,10 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			//create a project
 			var projectPath = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath, Path.Combine(inputModel.RepositoryName, inputModel.RepositoryName + projectFileExtension));
 			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language);
-			foreach (var reference in inputModel.References) {
-				_projectParser.AddReference(rootElement, reference);
-			}
+			if (inputModel.References != null)
+				foreach (var reference in inputModel.References) {
+					_projectParser.AddReference(rootElement, reference);
+				}
 			rootElement.Save(projectPath);
 
 			//create Program.exe
@@ -57,10 +58,12 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			//install packages
 			var targetFolder = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName,
 			                                                         inputModel.PhysicalApplicationPath).AppendPath("packages");
-			foreach (var packageId in inputModel.Packages) {
-				if (packageId.IsNotEmpty()) {
-					//new Thread(() => {_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);}).Start();
-					_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
+			if (inputModel.Packages != null) {
+				foreach (var packageId in inputModel.Packages) {
+					if (packageId.IsNotEmpty()) {
+						//new Thread(() => {_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);}).Start();
+						_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
+					}
 				}
 			}
 			rootElement.Save(projectPath);

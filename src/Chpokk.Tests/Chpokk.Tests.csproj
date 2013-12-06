@@ -371,7 +371,6 @@
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
     <Compile Include="References\StandardLibraryList.cs" />
-    <Compile Include="Spikes\CanIDebugOrNot.cs" />
     <Compile Include="Spikes\CloningFromAssembla.cs" />
     <Compile Include="Spikes\CodeParser.cs" />
     <Compile Include="Spikes\ContinuationSpike.cs" />
