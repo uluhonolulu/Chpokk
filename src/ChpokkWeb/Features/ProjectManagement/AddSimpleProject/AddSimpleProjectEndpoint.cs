@@ -14,6 +14,7 @@ using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Project;
+using Microsoft.Build.Evaluation;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 	public class AddSimpleProjectEndpoint {
@@ -47,6 +48,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 					_projectParser.AddReference(rootElement, reference);
 				}
 			rootElement.Save(projectPath);
+			ProjectCollection.GlobalProjectCollection.UnloadProject(rootElement);
 
 			//create Program.exe
 			if (inputModel.OutputType == "Exe") {
