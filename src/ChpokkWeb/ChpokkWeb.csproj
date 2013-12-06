@@ -441,7 +441,6 @@
     <Content Include="Content\styles\lib\images\treeview-gray.gif" />
     <Content Include="Content\styles\lib\images\treeview-red-line.gif" />
     <Content Include="Content\styles\lib\images\treeview-red.gif" />
-    <Content Include="Content\scripts\demo.js" />
     <Content Include="Content\scripts\lib\amplify-vsdoc.js" />
     <Content Include="Content\scripts\lib\amplify.core.min.js" />
     <Content Include="Content\scripts\lib\amplify.js" />
