@@ -5,6 +5,27 @@
 //	reportException(data);
 //};
 
+//bind continuation errors to alerts
+$.continuations.bind('HttpError', function (continuation) {
+    var response = continuation.response;
+    var message;
+    if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1) {
+        message = $(response.responseText).find('i').text();
+        if (!message) {
+            message = $(response.responseText).filter('title').text();
+        }
+    }
+    if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors.length > 0) {
+        message = continuation.errors[0].message;
+    }
+
+    if (message) danger(message);
+
+    $('.waitContainer').hide();
+    $('.modal').modal('hide');
+});
+
+
 function reportException(data) {
 	var targetUrl = 'url::ChpokkWeb.Features.CustomerDevelopment.ErrorModel';
 	$.post(targetUrl, data);	
