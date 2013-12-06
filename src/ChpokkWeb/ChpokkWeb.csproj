@@ -318,7 +318,6 @@
     <Content Include="Content\boot\bootstrap.css" />
     <Content Include="Content\boot\bootstrap.min.css" />
     <Content Include="Content\images\chpokk-logo.png" />
-    <Content Include="Content\images\chpokk_logo.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\Intellisense\class_16xLG.png" />

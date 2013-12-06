@@ -34,7 +34,11 @@
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" style="height: 60px;">
-		<div class="container">
+	    <use content="logo">
+	        <a href="/"><img src="/_content/images/chpokk-logo.png" style="position: absolute; border: none;"></a>
+	    </use>
+        
+        <div class="container">
 
 			<use content="header">
 			</use>

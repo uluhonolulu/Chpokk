@@ -11,18 +11,14 @@
 	</script>
 </content>
 <div class="container">
-	<div class="jumbotron" style="padding-left: 111px; padding-top: 81px;">
-	    <span style="vertical-align: bottom; font-size: small;"><Image src="chpokk_logo.png" style="vertical-align: bottom;"/>beta</span>
-		<div style="padding-top: 20px; padding-right: 40px; float: right;" class="clearfix">
-			<a id="invitebutton" class="btn btn-primary btn-large" href="/Main" style="padding: 12px 20px; font-size: 18px; position: absolute; left:50%; top: 213px; margin-left: 15px;">
-				Start coding. It's free.
-			</a>
-		</div>
-		<h1 style="margin-left: 111px; font-size: 24px; margin-top: 0;">
-			A .Net IDE in your browser</h1>
-	</div>
+    <div>
+        <img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
+		<a id="startButton" href="/Main" style="position: absolute; left:785px; top: 158px; width: 300px; height: 100px; "> </a>
+    </div>
+    
+
 	
-	<div class="clearfix"></div>
+	<div class="clearfix" style="margin-bottom: 20px;"></div>
 	<div style="display:table">
 	<div class="col-xs-6" style="padding-left: 0;display: table-cell;">
 		<div class="panel panel-default" style=" min-height: 150px;">
@@ -65,9 +61,4 @@
 
 </div>
 <invite />
-<content name="InlineScripts">
-	<script>
-		
-	</script>
-	
-</content>
+<content name="logo"><!-- no logo --></content>
