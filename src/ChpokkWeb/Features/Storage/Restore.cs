@@ -20,7 +20,7 @@ namespace ChpokkWeb.Features.Storage {
 		protected string AppRoot { get; set; }
 
 		public void RestoreAll() {
-			if (!_repositoryManager.RepositoriesExist(AppRoot))
+			if (!_repositoryManager.RepositoriesExist())
 				_downloader.DownloadAllFiles(AppRoot);
 		}
 

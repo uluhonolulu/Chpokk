@@ -23,7 +23,7 @@ namespace Chpokk.Tests.Authentication {
 		public override IEnumerable<string> Act() {
 
 			var manager = Context.Container.Get<RepositoryManager>();
-			return manager.GetRepositoryNames(Context.AppRoot);
+			return manager.GetRepositoryNames();
 		}
 	}
 

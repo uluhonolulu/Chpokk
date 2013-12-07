@@ -24,7 +24,7 @@ namespace Chpokk.Tests.Uploading {
 		public void CreatesARepositoryWithNameSameAsZipFileName() {
 			var repoName = Path.GetFileNameWithoutExtension(UploadingZipFileContext.ZIP_FILE_NAME);
 			var repositoryManager = Context.Container.Get<RepositoryManager>();
-			repositoryManager.GetRepositoryNames(Context.AppRoot).ShouldContain(repoName);
+			repositoryManager.GetRepositoryNames().ShouldContain(repoName);
 		}
 
 		[Test, DependsOn("CreatesARepositoryWithNameSameAsZipFileName")]

@@ -8,6 +8,7 @@ using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
+using FubuMVC.Core;
 using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.RepositoryManagement {
@@ -16,11 +17,14 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
 		private readonly FubuCore.FileSystem _fileSystem;
 		private readonly Downloader _downloader;
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, FubuCore.FileSystem fileSystem, Downloader downloader) {
+		private readonly ApplicationSettings _applicationSettings;
+
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, FubuCore.FileSystem fileSystem, Downloader downloader, ApplicationSettings applicationSettings) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
 			_downloader = downloader;
+			_applicationSettings = applicationSettings;
 		}
 
 		private const string COMMON_REPOSITORY_FOLDER = @"UserFiles";
@@ -33,7 +37,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull]
 		public string GetAbsolutePathFor(string repositoryName, string appRoot) {
-			return Path.GetFullPath(appRoot.AppendPath(this.GetPathFor(repositoryName))) ;
+			return Path.GetFullPath(AppRoot.AppendPath(this.GetPathFor(repositoryName)));
+		}
+
+		private string AppRoot {
+			get { return _applicationSettings.GetApplicationFolder(); }
 		}
 
 		[NotNull]
@@ -52,19 +60,19 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public bool RepositoryNameIsValid([NotNull] string name, string approot) {
-			return this.GetRepositoryNames(approot).Contains(name);
+			return this.GetRepositoryNames().Contains(name);
 		}
 
 
 		[NotNull] 
-		public IEnumerable<string> GetRepositoryNames(string approot) {
-			var userFolder = GetUserFolder(approot);
+		public IEnumerable<string> GetRepositoryNames() {
+			var userFolder = GetUserFolder();
 			if (!Directory.Exists(userFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
  		}
 
-		public string GetUserFolder(string approot) {
-			return approot.AppendPath(RepositoryFolder);
+		public string GetUserFolder() {
+			return AppRoot.AppendPath(RepositoryFolder);
 		}
 
 		[NotNull]
@@ -90,13 +98,13 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			return menuItems.ToArray();
 		}
 
-		public bool RepositoriesExist(string appRoot) {
-			var userFolder = GetCommonFolder(appRoot) ;
+		public bool RepositoriesExist() {
+			var userFolder = GetCommonFolder() ;
 			return ChildDirectoriesExist(userFolder);
 		}
 
-		public string GetCommonFolder(string appRoot) {
-			return Path.GetFullPath(appRoot.AppendPath(COMMON_REPOSITORY_FOLDER));
+		public string GetCommonFolder() {
+			return Path.GetFullPath(AppRoot.AppendPath(COMMON_REPOSITORY_FOLDER));
 		}
 
 		private bool ChildDirectoriesExist(string parent) {
@@ -104,11 +112,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public bool RepositoriesOfCurrentUserExist(string appRoot) {
-			return GetRepositoryNames(appRoot).Any();
+			return GetRepositoryNames().Any();
 		}
 
 		public void RestoreFilesForCurrentUser(string appRoot) {
-			var root = GetCommonFolder(appRoot).ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
+			var root = GetCommonFolder().ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
 			//now root is appRoot actually
 			var subFolder = RepositoryFolder; 
 			_downloader.DownloadAllFiles(root, subFolder);

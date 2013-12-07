@@ -5,6 +5,8 @@ using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Exploring;
 using Gallio.Framework;
+using ICSharpCode.NRefactory;
+using ICSharpCode.SharpDevelop.Project;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using System.Linq;
@@ -21,7 +23,10 @@ namespace Chpokk.Tests.Newing {
 		}
 
 		public override void Act() {
-			
+			var projectGuid = ProjectTypeGuids.CSharp;
+			var projectFileExtension =  ".csproj";
+			var projectParser = Context.Container.Get<ProjectParser>();
+			projectParser.AddProjectToSolution(Context.REPO_NAME, Context.SolutionPath, projectGuid, projectFileExtension);			
 		}
 	}
 }

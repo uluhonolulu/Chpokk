@@ -32,7 +32,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public RepositoryListModel GetRepositoryList([NotNull]RepositoryListInputModel model) {
 			_restore.RestoreFilesForCurrentUser();
-			return new RepositoryListModel {RepositoryNames = _manager.GetRepositoryNames(model.PhysicalApplicationPath)};
+			return new RepositoryListModel {RepositoryNames = _manager.GetRepositoryNames()};
 		}
 	}
 }

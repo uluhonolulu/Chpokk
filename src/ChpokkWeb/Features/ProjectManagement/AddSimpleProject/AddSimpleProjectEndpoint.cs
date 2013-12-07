@@ -34,31 +34,35 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
-			var solutionPath = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath, inputModel.RepositoryName + ".sln");
+			var repositoryName = inputModel.RepositoryName;
+			var solutionPath = _repositoryManager.GetAbsolutePathFor(repositoryName, inputModel.PhysicalApplicationPath, repositoryName + ".sln");
 			_solutionFileLoader.CreateEmptySolution(solutionPath);
-			var projectGuid = inputModel.Language == SupportedLanguage.CSharp ? ProjectTypeGuids.CSharp : ProjectTypeGuids.VBNet;
-			var projectFileExtension = inputModel.Language == SupportedLanguage.CSharp ? ".csproj" : ".vbproj";
-			_projectParser.AddProjectToSolution(inputModel.RepositoryName, solutionPath, projectGuid, projectFileExtension);
+
+			var outputType = inputModel.OutputType;
+			var language = inputModel.Language;
+
+			var projectGuid = language == SupportedLanguage.CSharp ? ProjectTypeGuids.CSharp : ProjectTypeGuids.VBNet;
+			var projectFileExtension = language == SupportedLanguage.CSharp ? ".csproj" : ".vbproj";
+			_projectParser.AddProjectToSolution(repositoryName, solutionPath, projectGuid, projectFileExtension);
 
 			//create a project
-			var projectPath = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath, Path.Combine(inputModel.RepositoryName, inputModel.RepositoryName + projectFileExtension));
-			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language);
+			var projectPath = _repositoryManager.GetAbsolutePathFor(repositoryName, inputModel.PhysicalApplicationPath, Path.Combine(repositoryName, repositoryName + projectFileExtension));
+			var rootElement = _projectParser.CreateProject(outputType, language);
+			rootElement.Save(projectPath);
+
 			if (inputModel.References != null)
 				foreach (var reference in inputModel.References) {
 					_projectParser.AddReference(rootElement, reference);
 				}
-			rootElement.Save(projectPath);
 			ProjectCollection.GlobalProjectCollection.UnloadProject(rootElement);
 
-			//create Program.exe
-			if (inputModel.OutputType == "Exe") {
-				var filename = inputModel.Language == SupportedLanguage.CSharp? "Program.cs" : "Module1.vb" ;
-				var fileContent = GetFileContent(filename);
-				_projectParser.CreateItem(projectPath, filename, fileContent);
+			//create Program.cs
+			if (outputType == "Exe") {
+				CreateProgramFile(language, projectPath);
 			}
 
 			//install packages
-			var targetFolder = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName,
+			var targetFolder = _repositoryManager.GetAbsolutePathFor(repositoryName,
 			                                                         inputModel.PhysicalApplicationPath).AppendPath("packages");
 			if (inputModel.Packages != null) {
 				foreach (var packageId in inputModel.Packages) {
@@ -68,10 +72,16 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 					}
 				}
 			}
-			rootElement.Save(projectPath);
+			rootElement.Save();
 
-			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = inputModel.RepositoryName });
+			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = repositoryName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
+		}
+
+		private void CreateProgramFile(SupportedLanguage language, string projectPath) {
+			var filename = language == SupportedLanguage.CSharp ? "Program.cs" : "Module1.vb";
+			var fileContent = GetFileContent(filename);
+			_projectParser.CreateItem(projectPath, filename, fileContent);
 		}
 
 		private static string GetFileContent(string filename) {
