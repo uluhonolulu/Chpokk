@@ -45,7 +45,8 @@ namespace Chpokk.Tests.Exploring {
 
 	public class EmptySlnFileContext : SingleSlnFileContext {
 		public override void CreateSolutionFile([NotNull] string filePath) {
-			Container.Get<FileSystem>().WriteStringToFile(filePath, string.Empty);
+			Container.Get<SolutionFileLoader>().CreateEmptySolution(filePath);
 		}
 	}
+
 }

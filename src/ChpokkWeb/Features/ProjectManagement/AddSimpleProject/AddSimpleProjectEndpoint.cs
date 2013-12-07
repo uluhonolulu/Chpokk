@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
 			var solutionPath = _repositoryManager.GetAbsolutePathFor(inputModel.RepositoryName, inputModel.PhysicalApplicationPath, inputModel.RepositoryName + ".sln");
-			_solutionFileLoader.CreateEmptySolution(_fileSystem, solutionPath);
+			_solutionFileLoader.CreateEmptySolution(solutionPath);
 			var projectGuid = inputModel.Language == SupportedLanguage.CSharp ? ProjectTypeGuids.CSharp : ProjectTypeGuids.VBNet;
 			var projectFileExtension = inputModel.Language == SupportedLanguage.CSharp ? ".csproj" : ".vbproj";
 			_projectParser.AddProjectToSolution(inputModel.RepositoryName, solutionPath, projectGuid, projectFileExtension);

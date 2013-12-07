@@ -36,9 +36,9 @@ namespace ChpokkWeb.Features.Exploring {
 				Data = new Dictionary<string, string> {{"Folder", filePath.ParentDirectory().PathRelativeTo(repositoryRoot)}},
 				Type = "folder"
 			};
-			var content = _fileSystem.ReadStringFromFile(filePath);
+			_fileSystem.ReadStringFromFile(filePath);
 			var solutionFolder = filePath.ParentDirectory();
-			var projectItems = _solutionParser.GetProjectItems(content, filePath).Select(item => CreateProjectItem(solutionFolder, item, repositoryRoot)).Where(item => item != null); 
+			var projectItems = _solutionParser.ParseSolutionContent(filePath).Select(item => CreateProjectItem(solutionFolder, item, repositoryRoot)).Where(item => item != null); 
 			solutionItem.Children.AddRange(projectItems);
 
 			return solutionItem;			
@@ -65,7 +65,7 @@ namespace ChpokkWeb.Features.Exploring {
 			return projectRepositoryItem;
 		}
 
-		public void CreateEmptySolution(IFileSystem fileSystem, string solutionPath) {
+		public void CreateEmptySolution(string solutionPath) {
 			const string emptySolutionContent = @"Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010";
 			_fileSystem.WriteStringToFile(solutionPath, emptySolutionContent);

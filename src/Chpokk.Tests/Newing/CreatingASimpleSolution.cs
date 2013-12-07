@@ -37,8 +37,8 @@ namespace Chpokk.Tests.Newing {
 
 		[Test, DependsOn("CreatesASolutionFile")]
 		public void TheSolutionFileHasAProjectOfTheSameName() {
-			var parser = new SolutionParser();
-			var projects = parser.GetProjectItems(File.ReadAllText(SolutionPath), SolutionPath);
+			var parser = Context.Container.Get<SolutionParser>();
+			var projects = parser.ParseSolutionContent(SolutionPath);
 			projects.Count().ShouldBe(1);
 			projects.First().Name.ShouldBe(NAME);
 		}

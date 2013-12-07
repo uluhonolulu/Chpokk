@@ -9,13 +9,20 @@ using FubuCore;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionParser {
+		private IFileSystem _fileSystem;
 		[NotNull] private static readonly Regex projectLinePattern = new Regex("Project\\(\"(?<ProjectGuid>.*)\"\\)\\s+=\\s+\"(?<Title>.*)\",\\s*\"(?<Location>.*)\",\\s*\"(?<Guid>.*)\"", RegexOptions.Compiled);
+		public SolutionParser(IFileSystem fileSystem) {
+			_fileSystem = fileSystem;
+		}
 
-		public IEnumerable<ProjectItem> GetProjectItems(string content, string solutionPath) {
+		public IEnumerable<ProjectItem> ParseSolutionContent(string content) {
 			return from match in projectLinePattern.Matches(content).Cast<Match>()
 			       select CreateProjectItem(match);
 		}
 
+		public IEnumerable<ProjectItem> GetProjectItems(string solutionPath) {
+			return ParseSolutionContent(_fileSystem.ReadStringFromFile(solutionPath));
+		}
 
 		private ProjectItem CreateProjectItem(Match match) {
 			var projectTitle = match.Result("${Title}");
