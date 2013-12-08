@@ -1,19 +1,19 @@
 ﻿using System.IO;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
-using FubuMVC.Core;
+using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Storage {
 	public class Backup {
 		private readonly Uploader _uploader;
-		public Backup(Uploader uploader, ApplicationSettings settings) {
+		private readonly IAppRootProvider _rootProvider;
+		public Backup(Uploader uploader, IAppRootProvider rootProvider) {
 			_uploader = uploader;
-			AppRoot = settings.GetApplicationFolder();
+			_rootProvider = rootProvider;
 		}
 
-		private string AppRoot { get; set; }
 		public void PublishRepository(RepositoryInfo repositoryInfo) {
-			_uploader.PublishFolder(Path.Combine(AppRoot, repositoryInfo.Path), AppRoot);
+			_uploader.PublishFolder(Path.Combine(_rootProvider.AppRoot, repositoryInfo.Path), _rootProvider.AppRoot);
 		}
 	}
 }

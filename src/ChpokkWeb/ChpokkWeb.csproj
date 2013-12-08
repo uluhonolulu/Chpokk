@@ -681,6 +681,8 @@
     <Compile Include="Features\Files\SaveEndpoint.cs" />
     <Compile Include="Features\Files\SaveFileInputModel.cs" />
     <Compile Include="Features\Files\Savior.cs" />
+    <Compile Include="Features\ProjectManagement\AddProject\AddProjectEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
     <Compile Include="Features\Editor\CodeEditorModel.cs" />
     <Compile Include="Features\Compilation\Compiler.cs" />
@@ -769,13 +771,16 @@
     </Compile>
     <Compile Include="Infrastructure\AjaxExceptionWrapper.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
+    <Compile Include="Infrastructure\AspNetAppRootProvider.cs" />
     <Compile Include="Infrastructure\Chimper.cs" />
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
     <Compile Include="Infrastructure\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />
     <Compile Include="Infrastructure\ExceptionNotifier.cs" />
+    <Compile Include="Infrastructure\IAppRootProvider.cs" />
     <Compile Include="Infrastructure\IMenuItemSource.cs" />
+    <Compile Include="Infrastructure\LanguageExtensions.cs" />
     <Compile Include="Infrastructure\MenuItem.cs" />
     <Compile Include="Infrastructure\ModellessPartialExtension.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />

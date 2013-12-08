@@ -41,12 +41,10 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			var outputType = inputModel.OutputType;
 			var language = inputModel.Language;
 
-			var projectGuid = language == SupportedLanguage.CSharp ? ProjectTypeGuids.CSharp : ProjectTypeGuids.VBNet;
-			var projectFileExtension = language == SupportedLanguage.CSharp ? ".csproj" : ".vbproj";
-			_projectParser.AddProjectToSolution(repositoryName, solutionPath, projectGuid, projectFileExtension);
+			_projectParser.AddProjectToSolution(repositoryName, solutionPath, language);
 
 			//create a project
-			var projectPath = _repositoryManager.GetAbsolutePathFor(repositoryName, inputModel.PhysicalApplicationPath, Path.Combine(repositoryName, repositoryName + projectFileExtension));
+			var projectPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, Path.Combine(repositoryName, repositoryName + language.GetProjectExtension()));
 			var rootElement = _projectParser.CreateProject(outputType, language);
 			rootElement.Save(projectPath);
 
@@ -77,6 +75,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = repositoryName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
+
 
 		private void CreateProgramFile(SupportedLanguage language, string projectPath) {
 			var filename = language == SupportedLanguage.CSharp ? "Program.cs" : "Module1.vb";

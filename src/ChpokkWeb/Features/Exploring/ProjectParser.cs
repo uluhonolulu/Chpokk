@@ -8,6 +8,7 @@ using FubuCore;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Project;
 using Microsoft.Build.Construction;
+using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
@@ -92,6 +93,10 @@ namespace ChpokkWeb.Features.Exploring {
 			rootElement.AddProperty("OutputType", outputType);
 			return rootElement;
 		}
+
+		public void AddProjectToSolution(string name, string solutionPath, SupportedLanguage language) {
+			AddProjectToSolution(name, solutionPath, language.GetProjectGuid(), language.GetProjectExtension());
+		} 
 
 		public void AddProjectToSolution(string name, string solutionPath, string projectTypeGuid, string projectFileExtension) {
 			var solutionContent = _fileSystem.ReadStringFromFile(solutionPath);

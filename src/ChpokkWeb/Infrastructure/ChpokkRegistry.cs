@@ -56,6 +56,8 @@ namespace ChpokkWeb.Infrastructure {
 			//SignalR
 			For<IDependencyResolver>().Singleton().Use<StructureMapResolver>();
 			For<HttpContextBase>().Use(context => new HttpContextWrapper(context.GetInstance<HttpContext>()));
+
+			For<IAppRootProvider>().Use<AspNetAppRootProvider>();
 		}
 	}
 }
