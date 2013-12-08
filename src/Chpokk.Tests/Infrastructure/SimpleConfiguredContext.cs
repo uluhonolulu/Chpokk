@@ -38,6 +38,7 @@ namespace Chpokk.Tests.Infrastructure {
 		private static void ConfigureContainer(Container container) {
 			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
 			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
+			container.Configure(expression => expression.For<IAppRootProvider>().Use<TestAppRootProvider>());
 		}
 
 		[NotNull]

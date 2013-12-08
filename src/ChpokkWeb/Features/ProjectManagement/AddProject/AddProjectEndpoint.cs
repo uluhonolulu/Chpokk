@@ -23,7 +23,9 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.SolutionPath);
 			_projectParser.AddProjectToSolution(inputModel.RepositoryName, solutionPath, inputModel.Language);
 			//create a project
-			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, Path.Combine(inputModel.SolutionPath.ParentDirectory(), inputModel.ProjectName + inputModel.Language.GetProjectExtension()));
+			var projectFileName = inputModel.ProjectName + inputModel.Language.GetProjectExtension();
+			var relativeProjectPath = Path.Combine(inputModel.SolutionPath.ParentDirectory(), inputModel.ProjectName, projectFileName);
+			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, relativeProjectPath);
 			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language);
 			rootElement.Save(projectPath);
 

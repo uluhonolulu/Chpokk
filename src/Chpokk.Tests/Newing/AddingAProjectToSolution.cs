@@ -29,6 +29,9 @@ namespace Chpokk.Tests.Newing {
 		[Test]
 		public void ProjectFileShouldBeCreated() {
 			var projectPath = Context.SolutionFolder.AppendPath(@"AiLuLu\AiLuLu.csproj");
+			foreach (var file in Directory.EnumerateFiles(Context.SolutionFolder, "*.csproj", SearchOption.AllDirectories)) {
+				Console.WriteLine(file);
+			}
 			File.Exists(projectPath).ShouldBe(true);
 		}
 
@@ -41,7 +44,6 @@ namespace Chpokk.Tests.Newing {
 					ProjectName = PROJECT_NAME,
 					SolutionPath = Context.SolutionPath.PathRelativeTo(Context.RepositoryRoot) //TODO:relative path
 				};
-			Console.WriteLine("SolutionPath is: " + model.SolutionPath);
 			var endpoint = Context.Container.Get<AddProjectEndpoint>();
 			endpoint.DoIt(model);
 

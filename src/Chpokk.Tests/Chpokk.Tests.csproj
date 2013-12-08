@@ -305,6 +305,7 @@
     <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
+    <Compile Include="Infrastructure\TestAppRootProvider.cs" />
     <Compile Include="Intellisense\Roslynson\BaseCompletionTest.cs" />
     <Compile Include="Intellisense\Roslynson\CallingIntelEndpoint.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />

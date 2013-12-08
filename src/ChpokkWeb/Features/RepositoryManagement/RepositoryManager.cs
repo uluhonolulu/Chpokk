@@ -8,7 +8,6 @@ using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using System.Linq;
-using FubuMVC.Core;
 using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.RepositoryManagement {
@@ -17,14 +16,14 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
 		private readonly FubuCore.FileSystem _fileSystem;
 		private readonly Downloader _downloader;
-		private readonly ApplicationSettings _applicationSettings;
+		private readonly IAppRootProvider _rootProvider;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, FubuCore.FileSystem fileSystem, Downloader downloader, ApplicationSettings applicationSettings) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, FubuCore.FileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
 			_downloader = downloader;
-			_applicationSettings = applicationSettings;
+			_rootProvider = rootProvider;
 		}
 
 		private const string COMMON_REPOSITORY_FOLDER = @"UserFiles";
@@ -41,7 +40,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		private string AppRoot {
-			get { return _applicationSettings.GetApplicationFolder(); }
+			get { return _rootProvider.AppRoot; }
 		}
 
 		[NotNull]
