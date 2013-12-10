@@ -12,7 +12,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 		public NugetPackagesModel DoIt(NugetPackagesInputModel model) {
 			var packages = _packageFinder.FindPackages(model.Query).OrderBy(package => package.Id, StringComparer.InvariantCultureIgnoreCase);
-			var packageModels = (from package in packages select new NugetPackageModel() {Id = package.Id, Version = package.Version.ToString(), Description = package.Description}).Distinct(new NugetPackageModel.NugetPackageModelComparer());
+			var packageModels = (from package in packages.ToArray() select new NugetPackageModel() {Id = package.Id, Version = package.Version.ToString(), Description = package.Description}).Distinct(new NugetPackageModel.NugetPackageModelComparer());
 			return new NugetPackagesModel{Packages = packageModels};
 		}
 	}

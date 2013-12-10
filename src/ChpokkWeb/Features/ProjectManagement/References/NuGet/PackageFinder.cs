@@ -11,7 +11,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		}
 
 		public IEnumerable<IPackage> FindPackages(string searchTerm) {
-			return _packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion);
+			return _packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion).ToArray();
 		}
 	}
 }

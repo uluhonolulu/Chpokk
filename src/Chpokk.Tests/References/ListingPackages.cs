@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Arractas;
+using CThru;
+using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using Gallio.Framework;
@@ -28,6 +30,8 @@ namespace Chpokk.Tests.References {
 		}
 
 		public override IEnumerable<IPackage> Act() {
+			CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Atom") || info.MethodName.StartsWith("Resolve"), @"C:\pack.txt"));
+			CThruEngine.StartListening();
 			var packageFinder = Context.Container.Get<PackageFinder>();
 			const string searchTerm = "elma";
 			return packageFinder.FindPackages(searchTerm);
