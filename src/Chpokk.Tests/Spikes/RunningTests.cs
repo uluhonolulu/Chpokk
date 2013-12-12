@@ -13,6 +13,9 @@ namespace Chpokk.Tests.Spikes {
 			//Must use Gallio.Runner.TestLauncher
 			//Look at EchoProgram.RunTests(ILogger logger)
 			//
+			//gallio.models.helpers.simpletestdriver.runassembly
+			//Gallio.dll!Gallio.Framework.Pattern.PatternTestInstanceState.InvokeFixtureMethod(Gallio.Common.Reflection.IMethodInfo method = {Gallio.Common.Reflection.Impl.NativeMethodWrapper}, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePai...
+
 		}
 	}
 }

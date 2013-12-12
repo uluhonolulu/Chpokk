@@ -1,3 +1,4 @@
 ﻿﻿<use namespace="FubuMVC.TwitterBootstrap" />
 <use namespace="FubuMVC.Core.Assets" />
 <use namespace="ChpokkWeb.Infrastructure" />
+<use namespace="FubuMVC.Core.View" />

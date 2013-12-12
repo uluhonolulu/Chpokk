@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Services.Client;
+using System.Reflection;
 using System.Text;
 using Arractas;
 using CThru;
@@ -26,14 +28,19 @@ namespace Chpokk.Tests.References {
 
 		[Test, DependsOn("SearchingForElmahReturnsElmahPackage")]
 		public void ShouldBeOnlyOnePackageForEachId() {
+			Console.WriteLine(DateTime.Now);
 			Result.Count(package => package.Id == "elmah").ShouldBe(1);
+			Console.WriteLine(DateTime.Now);
 		}
 
 		public override IEnumerable<IPackage> Act() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("Atom") || info.MethodName.StartsWith("Resolve"), @"C:\pack.txt"));
-			CThruEngine.StartListening();
+			Console.WriteLine(DateTime.Now);
 			var packageFinder = Context.Container.Get<PackageFinder>();
 			const string searchTerm = "elma";
+			packageFinder.FindPackages(searchTerm);
+			Console.WriteLine(DateTime.Now);
+			CThruEngine.AddAspect(new TimingTraceAspect(info => info.TargetInstance is IPackage || info.TypeName.EndsWith("ClientType"), @"C:\nugget.txt"));
+			CThruEngine.StartListening();
 			return packageFinder.FindPackages(searchTerm);
 
 

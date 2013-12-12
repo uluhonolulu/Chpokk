@@ -250,6 +250,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -306,6 +307,7 @@
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
+    <Compile Include="Infrastructure\TimingTraceAspect.cs" />
     <Compile Include="Intellisense\Roslynson\BaseCompletionTest.cs" />
     <Compile Include="Intellisense\Roslynson\CallingIntelEndpoint.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />

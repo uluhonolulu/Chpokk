@@ -8,6 +8,7 @@ using System.Web.SessionState;
 using ChpokkWeb.App_Start;
 using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.ProjectManagement;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
@@ -32,6 +33,8 @@ namespace ChpokkWeb {
 			//restore all files
 			//_fubuRuntime.Factory.Get<Restore>().RestoreAll();
 
+			//prewarm NuGet
+			_fubuRuntime.Factory.Get<Prewarmer>().PrewarmAsync();
 		}
 
 		private void RegisterSignalResolver() {

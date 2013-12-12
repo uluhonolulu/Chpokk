@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using FubuMVC.Core;
+using ChpokkWeb.Infrastructure;
 using Microsoft.Build.Evaluation;
 using FubuCore;
 
@@ -11,12 +11,12 @@ namespace ChpokkWeb.Features.Compilation {
 	public class MsBuildCompiler {
 		private readonly ProjectCollection _projectCollection;
 		private readonly ChpokkLogger _logger;
-		private ApplicationSettings _settings;
+		private readonly IAppRootProvider _rootProvider;
 
-		public MsBuildCompiler(ProjectCollection projectCollection, ChpokkLogger logger, ApplicationSettings settings) {
+		public MsBuildCompiler(ProjectCollection projectCollection, ChpokkLogger logger, IAppRootProvider rootProvider) {
 			_projectCollection = projectCollection;
 			_logger = logger;
-			_settings = settings;
+			_rootProvider = rootProvider;
 		}
 
 		public BuildResult Compile(string projectFilePath) {
@@ -24,7 +24,7 @@ namespace ChpokkWeb.Features.Compilation {
 			try {
 				var customProperties = new Dictionary<string, string>()
 					{
-						{"VSToolsPath", _settings.GetApplicationFolder().AppendPath(@"Content\Targets") }
+						{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"Content\Targets") }
 					};
 				var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
 				//var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
