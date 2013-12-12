@@ -30,6 +30,8 @@
 	<ga />
 
 	<convert/>
+    
+	<iAgreeToCookies/>
 
 </head>
 <body>
