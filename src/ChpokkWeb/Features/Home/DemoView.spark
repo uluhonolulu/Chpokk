@@ -11,7 +11,7 @@
 <div class="container">
     <div>
         <img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
-		<a id="startButton" href="/Main" style="position: absolute; left:785px; top: 158px; width: 300px; height: 100px; "> </a>
+		<a id="startButton" href="/Main" style="position: absolute; left:785px; top: 158px; width: 300px; height: 100px; ">&nbsp;</a>
     </div>
     
 
