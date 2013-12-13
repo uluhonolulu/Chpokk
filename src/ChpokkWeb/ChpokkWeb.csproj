@@ -516,9 +516,6 @@
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery.form.js" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\underscore-min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Content\tests.asset.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Features\Remotes\Push\_pushDialog.spark" />
     <Content Include="Content\bootstrap.asset.config">
       <SubType>Designer</SubType>
