@@ -7,16 +7,17 @@ using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Running;
 using FubuCore;
 using FubuMVC.Core.Ajax;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
-	public class CompilerEndpoint {
+	public class CompilerHub: Hub  {
 		private readonly ChpokkLogger _logger;
 		private readonly RepositoryManager _repositoryManager;
 		private readonly MsBuildCompiler _compiler;
 		private readonly ExeRunner _exeRunner;
-		private Savior _savior;
-		public CompilerEndpoint(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior) {
+		private readonly Savior _savior;
+		public CompilerHub(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior) {
 			_logger = logger;
 			_repositoryManager = repositoryManager;
 			_compiler = compiler;
@@ -25,12 +26,14 @@ namespace ChpokkWeb.Features.Compilation {
 		}
 
 		public AjaxContinuation Compile(CompileInputModel model) {
+			Clients.Caller.alert("alerdt");
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
 			var result = _compiler.Compile(projectFilePath);
+			Clients.Caller.success(_logger.GetLogMessage());
 			return new AjaxContinuation {Success = result.Success, Message = _logger.GetLogMessage()};
 		}
 
@@ -55,6 +58,7 @@ namespace ChpokkWeb.Features.Compilation {
 			var message = string.Concat(runnerResult.StandardOutput, runnerResult.ErrorOutput);
 			var result = runnerResult.Result?? 0;
 			message += "The program exited with code " + result;
+			Clients.Caller.success(message);
 			return new AjaxContinuation{Success = success, Message = message};
 		}
 	}

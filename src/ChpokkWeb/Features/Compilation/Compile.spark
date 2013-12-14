@@ -2,25 +2,27 @@
 	<!--Compile-->
 	<script type="text/javascript">
 		$(function() {
-			$('#compileButton').click(function() {
-				if (model.ProjectPath) {
-				    var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
-				    var editor = ace.edit("ace");
-				    $.post(compileUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
-						if (continuation.success) {
-							success(continuation.message);
-						} else {
-							danger(continuation.message);
-						}
-
-					});				
-				} else {
-					alert("Don't know what to compile. Please open a file first.");
-				}
+		    var compilerHub = $.connection.compilerHub;
+		    compilerHub.client.alert = alert;
+		    compilerHub.client.success = success;
+		    $('#compileButton').click(function () {
+		        debugger;
+		        $.connection.hub.start().done(function() {
+			        if (model.ProjectPath) {
+				        var editor = ace.edit("ace");
+				        compilerHub.server.compile($.extend({}, model, { Content: editor.getValue() }));
+			
+			        } else {
+				        alert("Don't know what to compile. Please open a file first.");
+			        }
+		        
+		        }).fail(function() {
+		            alert(arguments.length);
+		        });
 			});
 			$('#runButton').click(function() {
 				if (model.ProjectPath) {
-					var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
+					
 				    var editor = ace.edit("ace");
 				    $.post(runUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
 						if (continuation.success) {

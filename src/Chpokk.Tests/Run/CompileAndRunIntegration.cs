@@ -29,7 +29,7 @@ namespace Chpokk.Tests.Run {
 		}
 
 		public override AjaxContinuation Act() {
-			var endpoint = Context.Container.Get<CompilerEndpoint>();
+			var endpoint = Context.Container.Get<CompilerHub>();
 			return endpoint.CompileAndRun(new CompileAndRunInputModel { PhysicalApplicationPath = Context.AppRoot, ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME });
 		}
 	}

@@ -78,6 +78,18 @@
             registerHubProxies(proxies, false);
         });
 
+        proxies.compilerHub = this.createHubProxy('compilerHub');
+        proxies.compilerHub.client = {};
+        proxies.compilerHub.server = {
+            compile: function (model) {
+                return proxies.compilerHub.invoke.apply(proxies.compilerHub, $.merge(["Compile"], $.makeArray(arguments)));
+            },
+
+            compileAndRun: function (model) {
+                return proxies.compilerHub.invoke.apply(proxies.compilerHub, $.merge(["CompileAndRun"], $.makeArray(arguments)));
+            }
+        };
+
         proxies.userHub = this.createHubProxy('userHub');
         proxies.userHub.client = {};
         proxies.userHub.server = {

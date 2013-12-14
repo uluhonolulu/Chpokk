@@ -693,7 +693,7 @@
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
     <Compile Include="Features\Editor\CodeEditorModel.cs" />
     <Compile Include="Features\Compilation\Compiler.cs" />
-    <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
+    <Compile Include="Features\Compilation\CompilerHub.cs" />
     <Compile Include="Features\Editor\Intellisense\CompletionProvider.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelData.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelDataLoader.cs" />
