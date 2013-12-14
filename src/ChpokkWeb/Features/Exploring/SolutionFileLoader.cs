@@ -38,7 +38,7 @@ namespace ChpokkWeb.Features.Exploring {
 			};
 			_fileSystem.ReadStringFromFile(filePath);
 			var solutionFolder = filePath.ParentDirectory();
-			var projectItems = _solutionParser.ParseSolutionContent(filePath).Select(item => CreateProjectItem(solutionFolder, item, repositoryRoot)).Where(item => item != null); 
+			var projectItems = _solutionParser.GetProjectItems(filePath).Select(item => CreateProjectItem(solutionFolder, item, repositoryRoot)).Where(item => item != null); 
 			solutionItem.Children.AddRange(projectItems);
 
 			return solutionItem;			
