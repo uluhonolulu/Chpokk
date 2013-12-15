@@ -322,3 +322,22 @@ div#title
 
 /*dialogs*/
 .modal-dialog label { font-size: smaller;color: #404040;}
+
+/*logs*/
+#output {
+    background-color: #191919;
+    /*font-family: monospace;*/
+	padding-left: 3px;
+	height: 200px;
+	overflow-y: scroll;
+	font-size: smaller;
+}
+#output .info {
+	/*color: #929292;*/
+}
+#output .danger {
+    color: #E92E2E;
+}
+#output .success {
+    color: #46A609;
+}

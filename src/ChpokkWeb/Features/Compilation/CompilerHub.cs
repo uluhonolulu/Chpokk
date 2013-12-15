@@ -76,21 +76,21 @@ namespace ChpokkWeb.Features.Compilation {
 		}
 
 		public void Initialize(IEventSource eventSource) {
-			Verbosity = LoggerVerbosity.Normal;
-			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message + " - BuildStarted");
-			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message + " - ProjectStarted"); // much more info here
+			Verbosity = LoggerVerbosity.Quiet;
+			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message);
+			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message); // much more info here
 			//eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised");
 			eventSource.ProjectFinished += (sender, args) =>
 			{
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
-				SendMessage(args.Message + " - " + args.GetType(), messageType);
+				SendMessage(args.Message);
 			};
-			eventSource.MessageRaised += (sender, args) => SendMessage(args.Message + " - MessageRaised");
-			eventSource.ErrorRaised += (sender, args) => SendMessage(args.Message, MessageType.Error);
+			eventSource.MessageRaised += (sender, args) => SendMessage(args.Message);
+			eventSource.ErrorRaised += (sender, args) => SendMessage(args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, MessageType.Error);
 			eventSource.BuildFinished += (sender, args) =>
 			{
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
-				SendMessage(args.Message + " - " + args.GetType(), messageType);
+				SendMessage(args.Message, messageType);
 			};
 		}
 		public void Shutdown() {}
