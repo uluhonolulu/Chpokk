@@ -11,30 +11,25 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
-	public class CompilerHub: Hub  {
-		private readonly ChpokkLogger _logger;
+	public class CompilerHub : Hub, ILogger {
 		private readonly RepositoryManager _repositoryManager;
 		private readonly MsBuildCompiler _compiler;
 		private readonly ExeRunner _exeRunner;
 		private readonly Savior _savior;
-		public CompilerHub(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior) {
-			_logger = logger;
+		public CompilerHub(RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior) {
 			_repositoryManager = repositoryManager;
 			_compiler = compiler;
 			_exeRunner = exeRunner;
 			_savior = savior;
 		}
 
-		public AjaxContinuation Compile(CompileInputModel model) {
-			Clients.Caller.alert("alerdt");
+		public void Compile(CompileInputModel model) {
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
-			var result = _compiler.Compile(projectFilePath);
-			Clients.Caller.success(_logger.GetLogMessage());
-			return new AjaxContinuation {Success = result.Success, Message = _logger.GetLogMessage()};
+			_compiler.Compile(projectFilePath, this);
 		}
 
 		public AjaxContinuation CompileAndRun(CompileAndRunInputModel model) {
@@ -43,9 +38,9 @@ namespace ChpokkWeb.Features.Compilation {
 			}
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
-			var compilationResult = _compiler.Compile(projectFilePath);
+			var compilationResult = _compiler.Compile(projectFilePath, this);
 			if (!compilationResult.Success) {
-				return new AjaxContinuation { Success = false, Message = _logger.GetLogMessage() };
+				return new AjaxContinuation { Success = false};
 			}
 
 			//now, RUN!!!
@@ -61,6 +56,46 @@ namespace ChpokkWeb.Features.Compilation {
 			Clients.Caller.success(message);
 			return new AjaxContinuation{Success = success, Message = message};
 		}
+
+		private enum MessageType {
+			Info, Error, Success
+		}
+
+		private void SendMessage(string text, MessageType type = MessageType.Info) {
+			switch (type) {
+				case MessageType.Success:
+					Clients.Caller.success(text);
+					break;
+				case MessageType.Info:
+					Clients.Caller.info(text);
+					break;
+				case MessageType.Error:
+					Clients.Caller.danger(text);
+					break;
+			}
+		}
+
+		public void Initialize(IEventSource eventSource) {
+			Verbosity = LoggerVerbosity.Normal;
+			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message + " - BuildStarted");
+			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message + " - ProjectStarted"); // much more info here
+			//eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised");
+			eventSource.ProjectFinished += (sender, args) =>
+			{
+				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
+				SendMessage(args.Message + " - " + args.GetType(), messageType);
+			};
+			eventSource.MessageRaised += (sender, args) => SendMessage(args.Message + " - MessageRaised");
+			eventSource.ErrorRaised += (sender, args) => SendMessage(args.Message, MessageType.Error);
+			eventSource.BuildFinished += (sender, args) =>
+			{
+				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
+				SendMessage(args.Message + " - " + args.GetType(), messageType);
+			};
+		}
+		public void Shutdown() {}
+		public LoggerVerbosity Verbosity { get; set; }
+		public string Parameters { get; set; }
 	}
 
 	public class CompileInputModel : SaveFileInputModel {

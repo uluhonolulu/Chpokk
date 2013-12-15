@@ -37,7 +37,6 @@ namespace ChpokkWeb.Infrastructure {
 			For<UserData>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectLoader>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectCollection>().Singleton().Use(() => ProjectCollection.GlobalProjectCollection);
-			For<ILogger>().Use<ChpokkLogger>();
 			For<KeywordProvider>().Singleton();
 			For<BclAssembliesProvider>().Singleton();
 			Scan(scanner =>

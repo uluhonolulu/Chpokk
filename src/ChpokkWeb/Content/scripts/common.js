@@ -37,8 +37,13 @@ $(function () {
 (function() {
 	var alertTemplate = '<div class="alert alert-dismissable alert-${type}" style=\'white-space:pre;\'> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
 	function getAlertFunction(type) {
-		return function(message) {
-			$.tmpl(alertTemplate, {type:type, message: message}).appendTo($('#alertContainer'));
+	    return function (message) {
+	        var messageDiv = $.tmpl(alertTemplate, { type: type, message: message });
+			messageDiv.appendTo($('#alertContainer'));
+	        var messageDivHtml = messageDiv.get(0);
+	        if (messageDivHtml.scrollWidth > messageDivHtml.clientWidth) {
+	            messageDiv.css('white-space', 'normal').css('text-align', 'left');
+	        }
 		};
 	}
 

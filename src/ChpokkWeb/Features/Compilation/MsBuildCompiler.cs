@@ -6,21 +6,20 @@ using System.Web;
 using ChpokkWeb.Infrastructure;
 using Microsoft.Build.Evaluation;
 using FubuCore;
+using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class MsBuildCompiler {
 		private readonly ProjectCollection _projectCollection;
-		private readonly ChpokkLogger _logger;
 		private readonly IAppRootProvider _rootProvider;
 
-		public MsBuildCompiler(ProjectCollection projectCollection, ChpokkLogger logger, IAppRootProvider rootProvider) {
+		public MsBuildCompiler(ProjectCollection projectCollection, IAppRootProvider rootProvider) {
 			_projectCollection = projectCollection;
-			_logger = logger;
 			_rootProvider = rootProvider;
 		}
 
-		public BuildResult Compile(string projectFilePath) {
-			_projectCollection.RegisterLogger(_logger);
+		public BuildResult Compile(string projectFilePath, ILogger logger) {
+			_projectCollection.RegisterLogger(logger);
 			try {
 				var customProperties = new Dictionary<string, string>()
 					{

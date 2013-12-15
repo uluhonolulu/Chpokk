@@ -3,10 +3,12 @@
 	<script type="text/javascript">
 		$(function() {
 		    var compilerHub = $.connection.compilerHub;
-		    compilerHub.client.alert = alert;
+		    compilerHub.client.danger = danger;
 		    compilerHub.client.success = success;
+		    compilerHub.client.info = info;
 		    $('#compileButton').click(function () {
-		        debugger;
+		        //debugger;
+		        $.connection.hub.logging = true;
 		        $.connection.hub.start().done(function() {
 			        if (model.ProjectPath) {
 				        var editor = ace.edit("ace");
