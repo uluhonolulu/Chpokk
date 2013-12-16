@@ -329,7 +329,7 @@ div#title
     /*font-family: monospace;*/
 	padding-left: 3px;
 	height: 200px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	font-size: smaller;
 }
 #output .info {

@@ -786,6 +786,7 @@
     <Compile Include="Infrastructure\ExceptionNotifier.cs" />
     <Compile Include="Infrastructure\IAppRootProvider.cs" />
     <Compile Include="Infrastructure\IMenuItemSource.cs" />
+    <Compile Include="Infrastructure\LambdaTextWriter.cs" />
     <Compile Include="Infrastructure\LanguageExtensions.cs" />
     <Compile Include="Infrastructure\MenuItem.cs" />
     <Compile Include="Infrastructure\ModellessPartialExtension.cs" />

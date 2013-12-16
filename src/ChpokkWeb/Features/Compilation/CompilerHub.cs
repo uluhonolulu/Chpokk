@@ -27,20 +27,18 @@ namespace ChpokkWeb.Features.Compilation {
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
-			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
-				                                                        model.ProjectPath);
+			var projectFilePath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath);
 			_compiler.Compile(projectFilePath, this);
 		}
 
-		public AjaxContinuation CompileAndRun(CompileAndRunInputModel model) {
+		public void CompileAndRun(CompileAndRunInputModel model) {
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
-			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
-				                                                        model.ProjectPath);
+			var projectFilePath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath);
 			var compilationResult = _compiler.Compile(projectFilePath, this);
 			if (!compilationResult.Success) {
-				return new AjaxContinuation { Success = false};
+				return;
 			}
 
 			//now, RUN!!!
@@ -48,13 +46,9 @@ namespace ChpokkWeb.Features.Compilation {
 				throw new InvalidOperationException("I can run only console apps");
 			}
 			var exePath = compilationResult.OutputFilePath;
-			var runnerResult = _exeRunner.RunMain(exePath);
-			var success = runnerResult.ErrorOutput.IsEmpty();
-			var message = string.Concat(runnerResult.StandardOutput, runnerResult.ErrorOutput);
-			var result = runnerResult.Result?? 0;
-			message += "The program exited with code " + result;
-			Clients.Caller.success(message);
-			return new AjaxContinuation{Success = success, Message = message};
+			var runnerResult = _exeRunner.RunMain(exePath, c => SendMessage(c.ToString(), MessageType.Info), c => SendMessage(c.ToString(), MessageType.Error));
+			runnerResult = runnerResult ?? "null";
+			SendMessage("The program returned " + runnerResult);
 		}
 
 		private enum MessageType {
@@ -79,13 +73,13 @@ namespace ChpokkWeb.Features.Compilation {
 			Verbosity = LoggerVerbosity.Quiet;
 			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message);
 			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message); // much more info here
-			//eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised");
+			eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised, " + args.SenderName);
 			eventSource.ProjectFinished += (sender, args) =>
 			{
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
-				SendMessage(args.Message);
+				SendMessage(args.Message, messageType);
 			};
-			eventSource.MessageRaised += (sender, args) => SendMessage(args.Message);
+			eventSource.MessageRaised += (sender, args) => SendMessage(args.Message + " Importance:" + args.Importance + " Category:" + args.Subcategory);
 			eventSource.ErrorRaised += (sender, args) => SendMessage(args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, MessageType.Error);
 			eventSource.BuildFinished += (sender, args) =>
 			{

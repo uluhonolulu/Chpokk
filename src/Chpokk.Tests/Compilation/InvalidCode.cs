@@ -7,18 +7,18 @@ using MbUnit.Framework;
 using LibGit2Sharp.Tests.TestHelpers;
 
 namespace Chpokk.Tests.Compilation {
-	[TestFixture]
-	public class InvalidCode: BaseQueryTest<ProjectWithInvalidCodeFileContext, AjaxContinuation> {
-		[Test]
-		public void ShouldReturnErrorStatus() {
-			Result.Success.ShouldBeFalse();
-		}
+	//[TestFixture]
+	//public class InvalidCode: BaseQueryTest<ProjectWithInvalidCodeFileContext, AjaxContinuation> {
+	//	[Test]
+	//	public void ShouldReturnErrorStatus() {
+	//		Result.Success.ShouldBeFalse();
+	//	}
 
-		public override AjaxContinuation Act() {
-			var endpoint = Context.Container.Get<CompilerHub>();
-			return endpoint.Compile(new CompileInputModel() { PhysicalApplicationPath = Context.AppRoot, ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME });
-		}
-	}
+	//	public override AjaxContinuation Act() {
+	//		var endpoint = Context.Container.Get<CompilerHub>();
+	//		return endpoint.Compile(new CompileInputModel() { PhysicalApplicationPath = Context.AppRoot, ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME });
+	//	}
+	//}
 
 	public class ProjectWithInvalidCodeFileContext : BuildableProjectWithSingleRootFileContext {
 		public override void Create() {

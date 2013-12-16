@@ -316,6 +316,7 @@
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
     <Compile Include="Infrastructure\TimingTraceAspect.cs" />
+    <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="Intellisense\Roslynson\BaseCompletionTest.cs" />
     <Compile Include="Intellisense\Roslynson\CallingIntelEndpoint.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />

@@ -16,18 +16,18 @@ using Microsoft.Build.Exceptions;
 using Microsoft.Build.Framework;
 
 namespace Chpokk.Tests.Compilation {
-	[TestFixture]
-	public class EmptyCode : BaseQueryTest<BuildableProjectWithSingleRootFileContext, AjaxContinuation> {
-		[Test]
-		public void ShouldBeSuccessfull() {
-			Result.Success.ShouldBeTrue();
-		}
+	//[TestFixture]
+	//public class EmptyCode : BaseQueryTest<BuildableProjectWithSingleRootFileContext, AjaxContinuation> {
+	//	[Test]
+	//	public void ShouldBeSuccessfull() {
+	//		Result.Success.ShouldBeTrue();
+	//	}
 
-		public override AjaxContinuation Act() {
-			var endpoint = Context.Container.Get<CompilerHub>();
-			return endpoint.Compile(new CompileInputModel(){PhysicalApplicationPath = Context.AppRoot, ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME});
-		}
-	}
+	//	public override AjaxContinuation Act() {
+	//		var endpoint = Context.Container.Get<CompilerHub>();
+	//		return endpoint.Compile(new CompileInputModel(){PhysicalApplicationPath = Context.AppRoot, ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME});
+	//	}
+	//}
 
 	public class BuildableProjectWithSingleRootFileContext : PhysicalCodeFileContext {
 		public override string ProjectFileContent {

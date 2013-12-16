@@ -1,26 +1,23 @@
 ﻿using System;
 using System.IO;
+using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.Running {
 	public class ExeRunner {
-		public ExeRunnerOutput RunMain(string exePath) {
-			var standardOutput = new StringWriter();
-			var errorOutput = new StringWriter();
+		public object RunMain(string exePath, Action<char> standardOutput, Action<char> errorOutput) {
 			var appDomain = AppDomain.CreateDomain("runner");
-			object result;
 			try {
 				var loader =
 					(AssemblyLoader)
 					appDomain.CreateInstanceFromAndUnwrap(typeof (AssemblyLoader).Assembly.CodeBase, typeof (AssemblyLoader).FullName,
-					                                      null);
-				loader.StandardOutput = standardOutput;
-				loader.ErrorOutput = errorOutput;
-				result = loader.Run(exePath);
+					                                      null); //TODO: low trust
+				loader.StandardOutput = new LambdaTextWriter(standardOutput);
+				loader.ErrorOutput = new LambdaTextWriter(errorOutput);
+				return loader.Run(exePath);
 			}
 			finally {
 				AppDomain.Unload(appDomain);
 			}
-			return new ExeRunnerOutput{Result = result, StandardOutput = standardOutput.ToString(), ErrorOutput = errorOutput.ToString()};
 		}
 	}
 
