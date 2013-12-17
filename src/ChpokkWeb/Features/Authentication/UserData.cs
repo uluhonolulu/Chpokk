@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Authentication {
 				if (_profile == null && _securityContext.IsAuthenticated()) {
 					var userName = _securityContext.CurrentIdentity.Name;
 					var user = _userManager.GetUser(userName);
-					Profile = JsonConvert.DeserializeObject<dynamic>(user.Data).profile;
+					if (user != null) Profile = JsonConvert.DeserializeObject<dynamic>(user.Data).profile;
 				}
 				return _profile;
 			}

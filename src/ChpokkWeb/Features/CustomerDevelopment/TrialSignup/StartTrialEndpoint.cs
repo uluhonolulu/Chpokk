@@ -8,9 +8,9 @@ using Gotcha;
 
 namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class StartTrialEndpoint {
-		private readonly UserManager _userManager;
-		private Chimper _chimper;
-		public StartTrialEndpoint(UserManager userManager, Chimper chimper) {
+		private readonly UserManagerInContext _userManager;
+		private readonly Chimper _chimper;
+		public StartTrialEndpoint(UserManagerInContext userManager, Chimper chimper) {
 			_userManager = userManager;
 			_chimper = chimper;
 		}

@@ -9,11 +9,9 @@ using Simple.Data;
 namespace ChpokkWeb.Features.Authentication {
 	public class UserManager {
 		private readonly IAuthenticationContext _authenticationContext;
-		private ISecurityContext _securityContext;
 
-		public UserManager(IAuthenticationContext authenticationContext, ISecurityContext securityContext) {
+		public UserManager(IAuthenticationContext authenticationContext) {
 			_authenticationContext = authenticationContext;
-			_securityContext = securityContext;
 		}
 
 		public string SigninUser(dynamic profile, string rawData, UserData userData) {
@@ -34,14 +32,6 @@ namespace ChpokkWeb.Features.Authentication {
 			return db.Users.FindByUserId(userName);
 		}
 
-		public dynamic GetCurrentUser() {
-			if (!_securityContext.IsAuthenticated()) {
-				return null;
-			}
-			var userName = _securityContext.CurrentIdentity.Name;
-			return GetUser(userName);
-		}
-
 		public void UpdateUser(dynamic user) {
 			var db = Database.Open();
 			db.Users.Update(user);
@@ -50,6 +40,22 @@ namespace ChpokkWeb.Features.Authentication {
 		private dynamic GetUsername(dynamic profile) {
 			var username = (profile.preferredUsername != null) ? profile.preferredUsername.Value : profile.email.Value;
 			return username.ToString() + "_" + profile.providerName;
+		}
+	}
+
+	public class UserManagerInContext: UserManager {
+		private readonly ISecurityContext _securityContext;
+
+		public UserManagerInContext(IAuthenticationContext authenticationContext, ISecurityContext securityContext) : base(authenticationContext) {
+			_securityContext = securityContext;
+		}
+
+		public dynamic GetCurrentUser() {
+			if (!_securityContext.IsAuthenticated()) {
+				return null;
+			}
+			var userName = _securityContext.CurrentIdentity.Name;
+			return GetUser(userName);
 		}
 	}
 

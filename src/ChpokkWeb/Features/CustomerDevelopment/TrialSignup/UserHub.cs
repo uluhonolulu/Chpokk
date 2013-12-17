@@ -15,11 +15,12 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 		}
 
 		public void OnStartPlayingWith() {
-			switch (_interestDetector.ShouldStart()) {
+			switch (_interestDetector.ShouldStart(Context.User.Identity)) {
 					case InterestStatus.Newbie:
+						var userIdentity = Context.User.Identity;
 						new Thread(() => {
 							Thread.Sleep(evaluationTime);
-							if (_interestDetector.ShouldStart() == InterestStatus.Newbie) { //let's check again, just in case
+							if (_interestDetector.ShouldStart(userIdentity) == InterestStatus.Newbie) { //let's check again, just in case
 								Clients.Caller.displayTrialInvitation();
 							}
 							

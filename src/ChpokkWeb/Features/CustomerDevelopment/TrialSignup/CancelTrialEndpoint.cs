@@ -8,8 +8,8 @@ using ChpokkWeb.Infrastructure;
 
 namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class CancelTrialEndpoint {
-		private readonly UserManager _userManager;
-		public CancelTrialEndpoint(UserManager userManager) {
+		private readonly UserManagerInContext _userManager;
+		public CancelTrialEndpoint(UserManagerInContext userManager) {
 			_userManager = userManager;
 		}
 

@@ -34,7 +34,7 @@ namespace ChpokkWeb {
 			//_fubuRuntime.Factory.Get<Restore>().RestoreAll();
 
 			//prewarm NuGet
-			_fubuRuntime.Factory.Get<Prewarmer>().PrewarmAsync();
+			//_fubuRuntime.Factory.Get<Prewarmer>().PrewarmAsync();
 		}
 
 		private void RegisterSignalResolver() {
