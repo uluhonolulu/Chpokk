@@ -34,7 +34,7 @@
 
 </head>
 <body>
-	<div class="navbar navbar-default navbar-fixed-top" style="height: 60px;">
+    <div class="navbar navbar-default navbar-fixed-top" style="height: 60px;">
 	    <use content="logo">
 	        <a href="/"><img src="/_content/images/chpokk-logo.png" style="position: absolute; border: none;"></a>
 	    </use>
@@ -58,7 +58,7 @@
 
 	<userVoice />
 	
-    <appfail/>
+    <appfail if="!HttpContext.Current.Request.IsLocal"/>
     
     <use file="Features\CustomerDevelopment\TrialSignup\TrialInvitation.spark" />
 </body>

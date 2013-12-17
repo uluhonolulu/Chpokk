@@ -73,7 +73,7 @@ namespace ChpokkWeb.Features.Compilation {
 			Verbosity = LoggerVerbosity.Quiet;
 			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message);
 			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message); // much more info here
-			eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised, " + args.SenderName);
+			eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised, sender: " + args.SenderName);
 			eventSource.ProjectFinished += (sender, args) =>
 			{
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
