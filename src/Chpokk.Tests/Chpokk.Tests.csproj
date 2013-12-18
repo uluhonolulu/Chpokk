@@ -366,6 +366,7 @@
     <Compile Include="Run\RunningCodeWithOutput.cs" />
     <Compile Include="Run\RunningValidCode.cs" />
     <Compile Include="Saving\Save.cs" />
+    <Compile Include="Spikes\ActionlessBehavior.cs" />
     <Compile Include="Spikes\Amazon.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />

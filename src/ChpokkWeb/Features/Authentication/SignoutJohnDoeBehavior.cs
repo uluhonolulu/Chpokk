@@ -17,6 +17,8 @@ namespace ChpokkWeb.Features.Authentication {
 			_userManager.ForceUnregisteredUserToSignout();
 			_inner.Invoke();
 		}
-		public void InvokePartial() {}
+		public void InvokePartial() {
+			_inner.InvokePartial();
+		}
 	}
 }
