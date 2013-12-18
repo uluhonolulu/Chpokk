@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using ChpokkWeb.App_Start;
+using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
@@ -48,10 +49,11 @@ namespace ChpokkWeb {
 		protected void Application_BeginRequest(object sender, EventArgs e) {
 		}
 
-		protected void Application_AuthenticateRequest(object sender, EventArgs e) {
-			
+		//protected void Application_AuthenticateRequest(object sender, EventArgs e) {
+		//	// if the user is authenticated, but not in the database, force it to log out so that it signs in via Janrain
+		//	_fubuRuntime.Factory.Get<UserManagerInContext>().ForceUnregisteredUserToSignout();
 
-		}
+		//}
 
 		protected void Application_Error(object sender, EventArgs e) {
 

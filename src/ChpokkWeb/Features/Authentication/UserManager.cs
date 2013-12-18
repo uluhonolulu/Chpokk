@@ -8,7 +8,7 @@ using Simple.Data;
 
 namespace ChpokkWeb.Features.Authentication {
 	public class UserManager {
-		private readonly IAuthenticationContext _authenticationContext;
+		protected readonly IAuthenticationContext _authenticationContext;
 
 		public UserManager(IAuthenticationContext authenticationContext) {
 			_authenticationContext = authenticationContext;
@@ -56,6 +56,15 @@ namespace ChpokkWeb.Features.Authentication {
 			}
 			var userName = _securityContext.CurrentIdentity.Name;
 			return GetUser(userName);
+		}
+
+		public void ForceUnregisteredUserToSignout() {
+			if (!_securityContext.IsAuthenticated()) {
+				return;
+			}
+			if (GetCurrentUser() == null) {
+				_authenticationContext.SignOut();
+			}
 		}
 	}
 
