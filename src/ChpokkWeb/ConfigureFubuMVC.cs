@@ -44,7 +44,7 @@ namespace ChpokkWeb {
 			         });
 
 			Policies.Add<DownloadDataConvention>();
-			Configure(graph => graph.Actions().Each(call => call.WrapWith<SignoutJohnDoeBehavior>())); // if the user is authenticated, but not in the database, force it to log out so that it signs in via Janrain
+			//Configure(graph => graph.Actions().Each(call => call.WrapWith<SignoutJohnDoeBehavior>())); // if the user is authenticated, but not in the database, force it to log out so that it signs in via Janrain
 			//ApplyConvention<AjaxExceptionWrappingConvention>();
 		}
 
