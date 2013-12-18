@@ -25,7 +25,7 @@ namespace Chpokk.Tests.Spikes {
 		public override void Act() {
 			var graph = Context.Container.Get<BehaviorGraph>();
 			Console.WriteLine(graph.Behaviors.Count());
-			var behavior = graph.BehaviorFor(typeof (MainDummyModel));
+			//var behavior = graph.BehaviorFor(typeof (MainDummyModel));
 			graph = BehaviorGraph.BuildFrom<ConfigureFubuMVC>();
 			Console.WriteLine(graph.Behaviors.Count());
 		}
