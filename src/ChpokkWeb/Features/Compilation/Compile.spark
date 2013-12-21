@@ -3,15 +3,16 @@
     <script type="text/javascript">
         $(function() {
             var compilerHub = $.connection.compilerHub;
-            compilerHub.client.danger = function (message) { log(message, 'danger'); };
-            compilerHub.client.success = function (message) { log(message, 'success'); };
-            compilerHub.client.info = function (message) { log(message, 'info'); };
+            compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
+            compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
+            compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
             function connectThenDo(continuation) {
                 $('#output').empty();
                 $('#output').get(0).scrollIntoView(top);
+                log("Please wait..");
                 $.connection.hub.logging = true;
                 $.connection.hub
-                    .start({ transport: 'longPolling' })
+                    .start()
                     .done(continuation)
                     .fail(function () {
                         alert("Failed to connect");
@@ -40,8 +41,15 @@
                 }
             });
 		    
-            function log(message, category) {
-                $('<div/>').text(message).addClass(category).appendTo($('#output'));
+            function log(message, category, wrapped) {
+                if (wrapped === undefined) wrapped = true;
+                if (wrapped) {
+                    $('<div/>').text(message).addClass(category).appendTo($('#output'));
+                } else {
+                
+                    $('<span/>').text(message).addClass(category).appendTo($('#output'));
+                }
+                
                 //scroll to bottom
                 var outputElement = $('#output').get(0);
                 outputElement.scrollTop = outputElement.scrollHeight;

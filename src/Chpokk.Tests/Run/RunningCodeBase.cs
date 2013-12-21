@@ -18,7 +18,9 @@ namespace Chpokk.Tests.Run {
 			File.Exists(exePath).ShouldBe(true);
 			DoesNotThrow = true;
 			try {
-				return Context.Container.Get<ExeRunner>().RunMain(exePath);
+				var consoleOutput = string.Empty;
+				var errorOutput = string.Empty;
+				return new ExeRunnerOutput{Result = Context.Container.Get<ExeRunner>().RunMain(exePath, c => consoleOutput += c, c => errorOutput += c), StandardOutput = consoleOutput, ErrorOutput = errorOutput}; ;
 			}
 			catch (Exception exception) {
 				Console.WriteLine(exception);

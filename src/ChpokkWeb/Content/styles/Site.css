@@ -331,6 +331,7 @@ div#title
 	height: 200px;
 	overflow-y: auto;
 	font-size: smaller;
+	white-space: pre;
 }
 #output .info {
 	/*color: #929292;*/

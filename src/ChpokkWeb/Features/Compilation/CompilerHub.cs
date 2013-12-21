@@ -42,11 +42,13 @@ namespace ChpokkWeb.Features.Compilation {
 			}
 
 			//now, RUN!!!
+			SendMessage("");
+			SendMessage("Running..");
 			if (compilationResult.OutputType != "Exe") {
 				throw new InvalidOperationException("I can run only console apps");
 			}
 			var exePath = compilationResult.OutputFilePath;
-			var runnerResult = _exeRunner.RunMain(exePath, c => SendMessage(c.ToString(), MessageType.Info), c => SendMessage(c.ToString(), MessageType.Error));
+			var runnerResult = _exeRunner.RunMain(exePath, c => SendMessage(c.ToString(), MessageType.Info, false), c => SendMessage(c.ToString(), MessageType.Error, false));
 			runnerResult = runnerResult ?? "null";
 			SendMessage("The program returned " + runnerResult);
 		}
@@ -55,16 +57,16 @@ namespace ChpokkWeb.Features.Compilation {
 			Info, Error, Success
 		}
 
-		private void SendMessage(string text, MessageType type = MessageType.Info) {
+		private void SendMessage(string text, MessageType type = MessageType.Info, bool wrap = true) {
 			switch (type) {
 				case MessageType.Success:
-					Clients.Caller.success(text);
+					Clients.Caller.success(text, wrap);
 					break;
 				case MessageType.Info:
-					Clients.Caller.info(text);
+					Clients.Caller.info(text, wrap);
 					break;
 				case MessageType.Error:
-					Clients.Caller.danger(text);
+					Clients.Caller.danger(text, wrap);
 					break;
 			}
 		}
@@ -73,13 +75,16 @@ namespace ChpokkWeb.Features.Compilation {
 			Verbosity = LoggerVerbosity.Quiet;
 			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message);
 			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message); // much more info here
-			eventSource.StatusEventRaised += (sender, args) => SendMessage(args.Message + " - StatusEventRaised, sender: " + args.SenderName);
 			eventSource.ProjectFinished += (sender, args) =>
 			{
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
 				SendMessage(args.Message, messageType);
 			};
-			eventSource.MessageRaised += (sender, args) => SendMessage(args.Message + " Importance:" + args.Importance + " Category:" + args.Subcategory);
+			eventSource.MessageRaised += (sender, args) => {
+				if (args.Importance > MessageImportance.Normal) {
+					SendMessage(args.Message);
+				}
+			};
 			eventSource.ErrorRaised += (sender, args) => SendMessage(args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, MessageType.Error);
 			eventSource.BuildFinished += (sender, args) =>
 			{
