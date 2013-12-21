@@ -48,7 +48,7 @@ namespace ChpokkWeb.Features.Compilation {
 				throw new InvalidOperationException("I can run only console apps");
 			}
 			var exePath = compilationResult.OutputFilePath;
-			var runnerResult = _exeRunner.RunMain(exePath, c => SendMessage(c.ToString(), MessageType.Info, false), c => SendMessage(c.ToString(), MessageType.Error, false));
+			var runnerResult = _exeRunner.RunMain(exePath, c => SendMessage(c.ToString(), MessageType.Success, false), c => SendMessage(c.ToString(), MessageType.Error, false));
 			runnerResult = runnerResult ?? "null";
 			SendMessage("The program returned " + runnerResult);
 		}
