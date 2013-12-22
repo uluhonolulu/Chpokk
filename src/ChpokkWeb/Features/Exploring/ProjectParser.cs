@@ -7,8 +7,9 @@ using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Project;
-using Microsoft.Build.Construction;
 using ChpokkWeb.Infrastructure;
+using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
@@ -18,20 +19,24 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		public IEnumerable<FileProjectItem> GetCompiledFiles(string projectFileContent) {
-			XmlNamespaceManager xmlNamespaceManager;
-			var doc = LoadXml(projectFileContent, out xmlNamespaceManager);
-			var nodes = GetIncludes("Compile", doc, xmlNamespaceManager);
-			var filePaths = nodes.Select(node => node.Value);
-			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);
+			return GetIncludesOfType(projectFileContent, "Compile");
 		}
 
 		public IEnumerable<FileProjectItem> GetProjectFiles(string projectFileContent) {
-			XmlNamespaceManager xmlNamespaceManager;
-			var doc = LoadXml(projectFileContent, out xmlNamespaceManager);
-			var nodes = GetIncludes(new[] { "Compile", "Content", "Resource", "None" }, doc, xmlNamespaceManager);
-			var filePaths = nodes.Select(node => node.Value);
-			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);
+			return GetIncludes(projectFileContent, "Compile", "Content", "Resource", "None");
 		}
+
+		public IEnumerable<FileProjectItem> GetIncludes(string projectFileContent, params string[] includeTypes) {
+			return includeTypes.SelectMany(includeType => GetIncludesOfType(projectFileContent, includeType));
+		}
+		
+		public IEnumerable<FileProjectItem> GetIncludesOfType(string projectFileContent, string includeType) {
+			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
+			var filePaths = root.Items.Where(element => element.ItemType == includeType).Select(element => element.Include);
+			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);			
+		}
+
+
 
 		public IEnumerable<string> GetFullPathsForCompiledFilesFromProjectFile(string projectFilePath) {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
