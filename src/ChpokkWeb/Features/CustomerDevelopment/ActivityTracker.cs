@@ -31,8 +31,17 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			foreach (var model in _log) {
 				messageBuilder.AppendLine(model.ToString());
 			}
-			if (_mailer.Host != null) _mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Actions for " + UserName, messageBuilder.ToString());
-
+			if (_mailer.Host != null) {
+				var subject = "Actions for " + UserName;
+				var body = messageBuilder.ToString();
+				if (body.Contains("startTrial")) {
+					subject += " (started trial!!!)";
+				}
+				if (body.Contains("cancelTrial")) {
+					subject += " (canceled trial!!!)";
+				}
+				_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
+			}
 		}
 
 		public string UserName { get; set; }
