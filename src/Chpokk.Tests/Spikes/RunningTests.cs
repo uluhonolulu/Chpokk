@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using CThru;
 using CThru.BuiltInAspects;
+using Gallio.Common.Diagnostics;
 using Gallio.Framework;
 using Gallio.Runner;
 using Gallio.Runtime.ConsoleSupport;
@@ -33,7 +34,23 @@ namespace Chpokk.Tests.Spikes {
 			//
 			//gallio.models.helpers.simpletestdriver.runassembly
 			//Gallio.dll!Gallio.Framework.Pattern.PatternTestInstanceState.InvokeFixtureMethod(Gallio.Common.Reflection.IMethodInfo method = {Gallio.Common.Reflection.Impl.NativeMethodWrapper}, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePai...
+			var testLauncher = new Gallio.Runner.TestLauncher(){Logger = new ConsoleLogger(), ProgressMonitorProvider = new LogProgressMonitorProvider(new ConsoleLogger())};
+			testLauncher.AddFilePattern(@"D:\Projects\libgit2sharp\LibGit2Sharp.Tests\bin\Release\LibGit2Sharp.Tests.dll");
+			testLauncher.EchoResults = true;
+			//testLauncher.ProgressMonitorProvider = new ProgressProvider();
+			testLauncher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local;
+			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IProgressMonitor || info.TargetInstance is IProgressMonitorPresenter || info.TargetInstance is IProgressMonitorProvider));
+			//CThruEngine.StartListening();
+			var result = testLauncher.Run();
+			Console.WriteLine(result.ResultSummary);
+			Console.WriteLine(result.Statistics.FormatTestCaseResultSummary());
+		}
+	}
 
+	class ConsoleLogger: ILogger {
+		public void Log(LogSeverity severity, string message) {
+			if (severity >= LogSeverity.Info) {
+				Console.WriteLine(message);
 		}
 
 		public class WebConsole: IRichConsole {
