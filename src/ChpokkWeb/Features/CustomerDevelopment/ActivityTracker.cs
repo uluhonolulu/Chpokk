@@ -4,22 +4,25 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
+using ChpokkWeb.Features.Authentication;
 using FubuCore;
+using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.CustomerDevelopment {
 	public class ActivityTracker: IDisposable {
 		private readonly List<ITrack> _log = new List<ITrack>();
 		private readonly SmtpClient _mailer;
-		public ActivityTracker(SmtpClient mailer) {
+		private readonly UsageRecorder _usageRecorder;
+		private ISecurityContext _securityContext;
+		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder) {
 			_mailer = mailer;
+			_usageRecorder = usageRecorder;
 		}
 
 
 		public void Record(string userName, string caption, string url) {
 			_log.Add(new ClickTrackerInputModel{ButtonName = caption, Url = url});
-			if (userName != null) {
-				UserName = userName;
-			}
+			UserName = userName ?? _securityContext.CurrentIdentity.Name;
 		}
 
 		public void Dispose() {
@@ -42,6 +45,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				}
 				_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
 			}
+
+			_usageRecorder.AddUsage(UserName, messageBuilder.ToString());
 		}
 
 		public string UserName { get; set; }
