@@ -13,10 +13,11 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly List<ITrack> _log = new List<ITrack>();
 		private readonly SmtpClient _mailer;
 		private readonly UsageRecorder _usageRecorder;
-		private ISecurityContext _securityContext;
-		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder) {
+		private readonly ISecurityContext _securityContext;
+		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext) {
 			_mailer = mailer;
 			_usageRecorder = usageRecorder;
+			_securityContext = securityContext;
 		}
 
 
@@ -26,7 +27,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		public void Dispose() {
-			if (UserName == null) {
+			if (UserName.IsEmpty()) {
 				return; //don't send for anonymous
 			}
 			var messageBuilder = new StringBuilder();
