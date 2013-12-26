@@ -660,6 +660,7 @@
     <Content Include="Shared\_appfail.spark" />
     <Content Include="Shared\_adconv.spark" />
     <Content Include="Shared\_iAgreeToCookies.spark" />
+    <Content Include="Shared\_mouseflow.spark" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\FileTemplates\Program.cs" />

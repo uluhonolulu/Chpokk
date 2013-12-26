@@ -61,5 +61,7 @@
     <appfail if="!HttpContext.Current.Request.IsLocal"/>
     
     <use file="Features\CustomerDevelopment\TrialSignup\TrialInvitation.spark" />
+    
+    <mouseflow />
 </body>
 </html>
