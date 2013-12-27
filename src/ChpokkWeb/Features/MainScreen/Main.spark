@@ -16,7 +16,7 @@
 <content name="menu">
 	<ul class="nav navbar-nav">
 		<li class="dropdown active">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<a id="repositoryLink" href="#" class="dropdown-toggle" data-toggle="dropdown">
 				Repository <b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu" id="repositoryMenu">

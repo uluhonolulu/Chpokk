@@ -40,6 +40,8 @@
             
             // hide the repository list
             $('#repositoryList').hide();
+            //hide the menu
+            $('#repositoryLink').hide();
         });
     </script>
 </content>
