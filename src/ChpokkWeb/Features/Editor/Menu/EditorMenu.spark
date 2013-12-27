@@ -5,7 +5,6 @@
 	<button id="${token.Key}Button" class="btn btn-default btn-sm">${token.Text}</button>
 </for>
 <button id="parseButton" class="btn btn-default btn-sm">Syntax check</button>
-<button id="newItemButton" class="btn btn-default btn-sm">New item</button>
 <button id="compileButton" class="btn btn-default btn-sm">Compile</button>
 <button id="runButton" class="btn btn-default btn-sm">Compile and run</button>
 
