@@ -20,11 +20,11 @@ using StructureMap;
 using StructureMap.Pipeline;
 
 namespace ChpokkWeb {
-	public class Global : System.Web.HttpApplication {
+	public class Global : HttpApplication {
 		private FubuRuntime _fubuRuntime;
 
 		protected void Application_Start(object sender, EventArgs e) {
-			_fubuRuntime = AppStartFubuMVC.Start();
+			_fubuRuntime = FubuApplication.BootstrapApplication<ChpokkApplication>();
 
 			RegisterFonts();
 

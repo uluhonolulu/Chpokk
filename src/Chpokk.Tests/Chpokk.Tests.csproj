@@ -77,6 +77,10 @@
     <Reference Include="Emkay.S3">
       <HintPath>..\packages\Emkay.S3.0.9.0.44\lib\NET40\Emkay.S3.dll</HintPath>
     </Reference>
+    <Reference Include="Fubu, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Tools\Ruby193\lib\ruby\gems\1.9.1\gems\fubu-0.9.9.370\bin\Fubu.exe</HintPath>
+    </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.1.2.0.272\lib\FubuCore.dll</HintPath>
       <Private>True</Private>
@@ -389,6 +393,7 @@
     <Compile Include="Spikes\CompilerLogs.cs" />
     <Compile Include="Spikes\ContinuationSpike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spikes\FubuRun.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\RunningTests.cs" />
     <Compile Include="Spikes\Security.cs" />

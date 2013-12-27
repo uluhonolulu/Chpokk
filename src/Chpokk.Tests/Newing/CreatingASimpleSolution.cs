@@ -38,7 +38,7 @@ namespace Chpokk.Tests.Newing {
 		[Test, DependsOn("CreatesASolutionFile")]
 		public void TheSolutionFileHasAProjectOfTheSameName() {
 			var parser = Context.Container.Get<SolutionParser>();
-			var projects = parser.ParseSolutionContent(SolutionPath);
+			var projects = parser.GetProjectItems(SolutionPath);
 			projects.Count().ShouldBe(1);
 			projects.First().Name.ShouldBe(NAME);
 		}
@@ -50,7 +50,7 @@ namespace Chpokk.Tests.Newing {
 
 		[Test, DependsOn("CreatesAProjectFileInASubfolder")]
 		public void ProjectCanBeCompiled() {
-			new Project(ProjectPath).Build(new CreatingASimpleSolution.ConsoleBuildLogger()).ShouldBe(true);
+			ProjectCollection.GlobalProjectCollection.LoadProject(ProjectPath).Build(new CreatingASimpleSolution.ConsoleBuildLogger()).ShouldBe(true);
 			var binPath = RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, "bin"));
 			Directory.Exists(binPath).ShouldBe(true);
 		}

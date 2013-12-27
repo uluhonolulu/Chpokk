@@ -9,6 +9,7 @@ using Gallio.Framework;
 using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Shouldly;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace Chpokk.Tests.Newing {
 			var project = ProjectCollection.GlobalProjectCollection.LoadProject(ProjectPath);
 			project.GetItems("Compile").Count.ShouldBe(1);
 			project.GetItems("Compile").First().EvaluatedInclude.ShouldBe("Program.cs");
+			var root = ProjectRootElement.Open(ProjectPath);
+			root.Items.Count(element => element.ItemType == "Compile").ShouldBe(1);
 		}
 
 		[Test]

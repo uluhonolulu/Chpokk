@@ -52,7 +52,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 				foreach (var reference in inputModel.References) {
 					_projectParser.AddReference(rootElement, reference);
 				}
-			ProjectCollection.GlobalProjectCollection.UnloadProject(rootElement);
+			//ProjectCollection.GlobalProjectCollection.UnloadProject(rootElement);
 
 			//create Program.cs
 			if (outputType == "Exe") {

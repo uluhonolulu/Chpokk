@@ -664,6 +664,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\FileTemplates\Program.cs" />
+    <Compile Include="App_Start\ChpokkApplication.cs" />
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Features\Authentication\LoginEndpoint.cs" />

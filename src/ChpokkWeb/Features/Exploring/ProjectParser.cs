@@ -48,8 +48,6 @@ namespace ChpokkWeb.Features.Exploring {
 
 		public IEnumerable<ReferenceProjectItem> GetReferences(string projectFileContent) {
 			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
-			XmlNamespaceManager xmlNamespaceManager;
-			var doc = LoadXml(projectFileContent, out xmlNamespaceManager);
 			var assemblyElements = root.Items.Where(element => element.ItemType == "Reference");
 			var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
 			var projectNodes = root.Items.Where(element => element.ItemType == "ProjectReference"); 
@@ -72,19 +70,6 @@ namespace ChpokkWeb.Features.Exploring {
 		//	var elements = GetElements(nodeName, doc, xmlNamespaceManager);
 		//	return elements.Select(element => element.GetAttributeNode("Include"));
 		//}
-
-		private IEnumerable<XmlElement> GetElements(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
-			var xpath = "//ms:{0}".ToFormat(nodeName);
-			return doc.SelectNodes(xpath, xmlNamespaceManager).Cast<XmlElement>();
-		}
-
-		private XmlDocument LoadXml(string projectFileContent, out XmlNamespaceManager xmlNamespaceManager) {
-			var doc = new XmlDocument();
-			doc.LoadXml(projectFileContent);
-			xmlNamespaceManager = new XmlNamespaceManager(doc.NameTable);
-			xmlNamespaceManager.AddNamespace("ms", "http://schemas.microsoft.com/developer/msbuild/2003");
-			return doc;
-		}
 
 		public ProjectRootElement CreateProject(string outputType, SupportedLanguage language) {
 			var rootElement = ProjectRootElement.Create();
