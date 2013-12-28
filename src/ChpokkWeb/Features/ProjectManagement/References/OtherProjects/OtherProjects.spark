@@ -1,0 +1,12 @@
+﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.OtherProjects.OtherProjectsModel" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.References.OtherProjects" />
+<use namespace=" System.Collections.Generic" />
+<use master=""/>
+
+<div>
+    <for each="var project in Model.Projects">
+        <input type="checkbox" name="Projects" value="!{project.Path}" id="!{project.Name}"/>
+        <label for="!{project.Name}">!{project.Name}</label><br/>
+    </for>
+</div>
+

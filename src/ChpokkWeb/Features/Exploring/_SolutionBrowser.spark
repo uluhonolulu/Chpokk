@@ -49,6 +49,9 @@
 				initTreeView('#solutionBrowser');
 
 				amplify.publish('solutionLoaded');
+			    
+			    //keep the data in a global variable
+			    window.repositoryItems = data;
 			}
 			);
 		}

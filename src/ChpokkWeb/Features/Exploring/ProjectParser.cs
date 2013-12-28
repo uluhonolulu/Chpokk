@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
@@ -71,14 +72,20 @@ namespace ChpokkWeb.Features.Exploring {
 		//	return elements.Select(element => element.GetAttributeNode("Include"));
 		//}
 
-		public ProjectRootElement CreateProject(string outputType, SupportedLanguage language) {
+		public ProjectRootElement CreateProject(string outputType, SupportedLanguage language, string projectPath = null) {
 			var rootElement = ProjectRootElement.Create();
 			var targetImport =
 				@"$(MSBuildToolsPath)\Microsoft.{0}.targets".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
 			rootElement.AddImport(targetImport);
 			rootElement.AddProperty("OutputType", outputType);
+			if (projectPath != null) rootElement.Save(projectPath);
+			//create Program.cs
+			if (outputType == "Exe") {
+				CreateProgramFile(language, rootElement);
+			}
 			return rootElement;
 		}
+
 
 		public void AddProjectToSolution(string name, string solutionPath, SupportedLanguage language) {
 			AddProjectToSolution(name, solutionPath, language.GetProjectGuid(), language.GetProjectExtension());
@@ -94,16 +101,18 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 
 		public void CreateItem(string projectFilePath, string fileName, string fileContent) {
 			var project = ProjectRootElement.Open(projectFilePath);
+			CreateItem(fileName, fileContent, project);
+		}
+
+		private void CreateItem(string fileName, string fileContent, ProjectRootElement project) {
 			var extension = Path.GetExtension(fileName);
 			var buildAction = "Content";
-			if (extension == ".cs" || extension == ".vb") {
-				buildAction = "Compile";
-			}
+			if (extension == ".cs" || extension == ".vb") buildAction = "Compile";
 			project.AddItem(buildAction, fileName);
 			project.Save();
 			//ProjectCollection.GlobalProjectCollection.UnloadProject(project);
 
-			var filePath = projectFilePath.ParentDirectory().AppendPath(fileName);
+			var filePath = project.FullPath.ParentDirectory().AppendPath(fileName);
 			_fileSystem.WriteStringToFile(filePath, fileContent);
 		}
 
@@ -117,6 +126,22 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 				projectRoot.AddItem("Reference", assemblyNameOrPath);
 			}
 			
+		}
+
+
+		private void CreateProgramFile(SupportedLanguage language, string projectPath) {
+			var filename = language == SupportedLanguage.CSharp ? "Program.cs" : "Module1.vb";
+			var fileContent = GetFileContent(filename);
+			this.CreateItem(projectPath, filename, fileContent);
+		}
+		private void CreateProgramFile(SupportedLanguage language, ProjectRootElement rootElement) {
+			CreateProgramFile(language, rootElement.FullPath);
+		}
+
+		private static string GetFileContent(string filename) {
+			var assembly = Assembly.GetExecutingAssembly();
+			var reader = new StreamReader(assembly.GetManifestResourceStream("ChpokkWeb.App_GlobalResources.FileTemplates." + filename));
+			return reader.ReadToEnd();
 		}
 	}
 

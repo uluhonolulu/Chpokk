@@ -4,7 +4,7 @@
 <use namespace="System.Reflection" />
 <use namespace="ChpokkWeb.Features.CustomerDevelopment.TrialSignup" />
 <viewdata model="ChpokkWeb.Features.RepositoryManagement.RepositoryModel" />
-<content name="title">Project view</content>
+<content name="title">!{Model.RepositoryName}</content>
 <content name="head">
 	<Stylesheet href="editor.css" />
 </content>
@@ -48,29 +48,35 @@
 
 !{this.Partial<ChpokkWeb.Features.Remotes.Push.PushDialogModel>()}
 !{this.ModellessPartial<BeginEditorExperienceEndpoint>("DoIt")}
+<render partial="ProjectManagement\AddProject\AddProject.spark" />
 
-              <content name="rightcorner">
-                  <!--ul class="nav navbar-nav">
-                               <li style="background-color: #556b2f;">
-                                   !{this.LinkTo<ChpokkWeb.Features.CustomerDevelopment.Pricelist.PriceListInputModel>().Text("Get a discount")}
-                               </li>
-                           </ul>-->
-                  <render partial="Authentication\_LoginStatus" />
-                  <ul class="nav navbar-nav">
-                      <li>
-                          !{this.LinkTo<ChpokkWeb.Features.MainScreen.MainDummyModel>().Text("Back to repository list").AddClass("btn")}
-                      </li>
-                  </ul>
+<content name="rightcorner">
+    <!--ul class="nav navbar-nav">
+                <li style="background-color: #556b2f;">
+                    !{this.LinkTo<ChpokkWeb.Features.CustomerDevelopment.Pricelist.PriceListInputModel>().Text("Get a discount")}
+                </li>
+            </ul>-->
+    <render partial="Authentication\_LoginStatus" />
+    <ul class="nav navbar-nav">
+        <li>
+            !{this.LinkTo<ChpokkWeb.Features.MainScreen.MainDummyModel>().Text("Back to repository list").AddClass("btn")}
+        </li>
+    </ul>
 	
-              </content>
+</content>
     
-              <content name="menu">
-                  <ul class="nav navbar-nav">
-                      <li class="active">
-                          <a id="newItemButton">New item</a>
-                      </li>
-                  </ul>
-          </content>
+<content name="menu">
+    <ul class="nav navbar-nav">
+        <li class="active">
+            <a id="newItemButton">New item</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav">
+        <li class="navbar-default">
+            <a id="newProjectButton">New Project</a>
+        </li>
+    </ul>
+</content>
 
     
               <adconv/>

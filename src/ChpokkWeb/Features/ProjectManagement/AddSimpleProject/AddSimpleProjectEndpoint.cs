@@ -45,8 +45,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 			//create a project
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, Path.Combine(repositoryName, repositoryName + language.GetProjectExtension()));
-			var rootElement = _projectParser.CreateProject(outputType, language);
-			rootElement.Save(projectPath);
+			var rootElement = _projectParser.CreateProject(outputType, language, projectPath);
 
 			if (inputModel.References != null)
 				foreach (var reference in inputModel.References) {
@@ -54,10 +53,6 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 				}
 			//ProjectCollection.GlobalProjectCollection.UnloadProject(rootElement);
 
-			//create Program.cs
-			if (outputType == "Exe") {
-				CreateProgramFile(language, projectPath);
-			}
 
 			//install packages
 			var targetFolder = _repositoryManager.GetAbsolutePathFor(repositoryName,
@@ -77,16 +72,5 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		}
 
 
-		private void CreateProgramFile(SupportedLanguage language, string projectPath) {
-			var filename = language == SupportedLanguage.CSharp ? "Program.cs" : "Module1.vb";
-			var fileContent = GetFileContent(filename);
-			_projectParser.CreateItem(projectPath, filename, fileContent);
-		}
-
-		private static string GetFileContent(string filename) {
-			var assembly = Assembly.GetExecutingAssembly();
-			var reader = new StreamReader(assembly.GetManifestResourceStream("ChpokkWeb.App_GlobalResources.FileTemplates." + filename));
-			return reader.ReadToEnd();
-		}
 	}
 }

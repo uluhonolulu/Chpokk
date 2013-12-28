@@ -21,15 +21,14 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 
 		public AjaxContinuation DoIt(AddProjectInputModel inputModel) {
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.SolutionPath);
-			_projectParser.AddProjectToSolution(inputModel.RepositoryName, solutionPath, inputModel.Language);
+			_projectParser.AddProjectToSolution(inputModel.ProjectName, solutionPath, inputModel.Language);
 			//create a project
 			var projectFileName = inputModel.ProjectName + inputModel.Language.GetProjectExtension();
 			var relativeProjectPath = Path.Combine(inputModel.SolutionPath.ParentDirectory(), inputModel.ProjectName, projectFileName);
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, relativeProjectPath);
-			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language);
-			rootElement.Save(projectPath);
+			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language, projectPath);
 
-			return AjaxContinuation.Successful();
+			return new AjaxContinuation(){ShouldRefresh = true};
 
 
 		}

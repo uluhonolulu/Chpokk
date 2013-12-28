@@ -1,0 +1,64 @@
+﻿<use namespace="ChpokkWeb.Features.ProjectManagement.AddProject" />
+
+<content name="InlineScripts">
+    <!-- AddProject.spark -->
+    <script type="text/javascript">
+        $(function() {
+            $('#newProjectButton').click(function() {
+                $('#addProjectDialog').modal('show');
+            });
+            
+            //handle the creation
+            $('#createProjectButton').on('click', function () {
+                $('#createProjectButton').text("Please wait..");
+                $('#createProjectButton').addClass('disabled');
+                var url = '${Urls.UrlFor<AddProjectInputModel>()}';
+                var model = $('#projectForm').serializeObject();
+                $.post(url, model);
+            });
+
+        })
+    </script>
+</content>
+
+<content name="Dialogs">
+    <!-- AddProject.spark -->
+    <div class="modal fade" id="addProjectDialog" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add a project to the solution</h4>
+                </div>
+                <div class="modal-body">
+					<form class="well" id="projectForm">
+						<label for="projectName">Project name</label>
+						<input name="ProjectName" id="projectName" type="text" class="form-control"/>
+						
+					    <label for="projectType">Project type</label>
+                        <div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
+						<select name="OutputType" id="projectType" class="form-control">
+							<option>Exe</option>
+							<option>Library</option>
+						</select>
+						
+						<label for="language">Language</label>
+					    <select name="Language" id="language" class="form-control">
+					        <option value="CSharp">C#</option>
+					        <option value="VBNet">VB.Net</option>
+					    </select>
+						
+					    <render partial="ProjectManagement\References\References"/>
+						<input name="RepositoryName" value="!{Model.RepositoryName}" type="hidden"/>
+						<input name="SolutionPath" type="hidden" value="src\ChpokkSampleSolution.sln"/>
+					</form>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="createProjectButton">Create</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</content>

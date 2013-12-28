@@ -22,6 +22,7 @@ namespace Chpokk.Tests.Exploring {
 		public string SolutionFileName { get; set; }
 		public string SolutionPath { get; set; }
 		public string SolutionFolder { get; set; }
+		public string RelativeSolutionPath { get; set; }
 
 		public abstract void CreateSolutionFile(string filePath);
 
@@ -29,6 +30,7 @@ namespace Chpokk.Tests.Exploring {
 			base.Create();
 			SolutionFileName = Guid.NewGuid().ToString() + ".sln";
 			SolutionFolder = FileSystem.Combine(RepositoryRoot, "src");
+			RelativeSolutionPath = "src".AppendPath(SolutionFileName);
 			SolutionPath = FileSystem.Combine(SolutionFolder, SolutionFileName);
 			Console.WriteLine("Writing solution to " + SolutionPath);
 			CreateSolutionFile(SolutionPath);

@@ -336,6 +336,7 @@
     <Compile Include="ItemAdding\ExecutingAddItemCommand.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommandForNonCodeFiles.cs" />
     <Compile Include="Newing\AddingAProjectToSolution.cs" />
+    <Compile Include="Newing\GettingTheListOfExistingProjects.cs" />
     <Compile Include="References\AddingABclReference.cs" />
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />
     <Compile Include="Newing\CreatingASimpleSolution.cs" />
