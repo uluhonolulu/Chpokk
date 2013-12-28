@@ -5,6 +5,7 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#bcl" data-toggle="tab">Standard</a></li>
     <li><a href="#nuget" data-toggle="tab">NuGet</a></li>
+    <li><a href="#projects" data-toggle="tab">Projects</a></li>
 </ul>
 
 <div class="tab-content">
@@ -13,5 +14,8 @@
     </div>
     <div class="tab-pane" id="nuget" style="padding-top: 10px;">
         <use file="NuGet\NugetPackages.spark"/>
+    </div>
+    <div class="tab-pane" id="projects" style="padding-top: 10px;">
+        <use file="OtherProjects\OtherProjects.spark"/>
     </div>
 </div>

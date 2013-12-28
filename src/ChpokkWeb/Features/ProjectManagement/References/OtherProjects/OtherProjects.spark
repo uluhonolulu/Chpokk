@@ -1,12 +1,22 @@
-﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.OtherProjects.OtherProjectsModel" />
-<use namespace="ChpokkWeb.Features.ProjectManagement.References.OtherProjects" />
+﻿<use namespace="ChpokkWeb.Features.ProjectManagement.References.OtherProjects" />
 <use namespace=" System.Collections.Generic" />
 <use master=""/>
 
-<div>
-    <for each="var project in Model.Projects">
-        <input type="checkbox" name="Projects" value="!{project.Path}" id="!{project.Name}"/>
-        <label for="!{project.Name}">!{project.Name}</label><br/>
-    </for>
+<div id="referencedProjects">
+
 </div>
 
+<content name="InlineScripts">
+    <!-- OtherProjects.spark -->
+    <script type="text/javascript">
+        amplify.subscribe('solutionLoaded', function(solutionData) {
+            var url = '${Urls.UrlFor<OtherProjectsInputModel>()}';
+            var solutionPath = solutionData.Items[0].PathRelativeToRepositoryRoot;
+            $.post(url, $.extend({}, model, { SolutionPath: solutionPath }), function (data) {
+                var template = '<input type="checkbox" name="Projects" value=\'`${Path}\' id=\'`${Name}\'/> <label for=\'`${Name}\'>`${Name}</label><br/>';
+                $.tmpl(template, data.Projects).appendTo($('#referencedProjects'));
+            });
+
+        });
+    </script>
+</content>

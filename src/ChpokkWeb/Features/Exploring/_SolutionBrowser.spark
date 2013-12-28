@@ -48,10 +48,11 @@
 
 				initTreeView('#solutionBrowser');
 
-				amplify.publish('solutionLoaded');
-			    
 			    //keep the data in a global variable
-			    window.repositoryItems = data;
+				window.repositoryItems = data;
+			    
+                //tell everybody
+				amplify.publish('solutionLoaded', data);
 			}
 			);
 		}

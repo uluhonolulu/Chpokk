@@ -7,8 +7,8 @@ using ChpokkWeb.Features.RepositoryManagement;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.OtherProjects {
 	public class OtherProjectsEndPoint {
-		private SolutionParser _solutionParser;
-		private RepositoryManager _repositoryManager;
+		private readonly SolutionParser _solutionParser;
+		private readonly RepositoryManager _repositoryManager;
 		public OtherProjectsEndPoint(SolutionParser solutionParser, RepositoryManager repositoryManager) {
 			_solutionParser = solutionParser;
 			_repositoryManager = repositoryManager;
