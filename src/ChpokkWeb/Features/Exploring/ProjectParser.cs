@@ -49,9 +49,13 @@ namespace ChpokkWeb.Features.Exploring {
 
 		public IEnumerable<ReferenceProjectItem> GetReferences(string projectFileContent) {
 			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
+			return GetReferences(root);
+		}
+
+		public IEnumerable<ReferenceProjectItem> GetReferences(ProjectRootElement root) {
 			var assemblyElements = root.Items.Where(element => element.ItemType == "Reference");
 			var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
-			var projectNodes = root.Items.Where(element => element.ItemType == "ProjectReference"); 
+			var projectNodes = root.Items.Where(element => element.ItemType == "ProjectReference");
 			var projectReferences = projectNodes.Select(node => CreateProjectReference(node));
 			return
 				assemblyReferences.Concat(projectReferences);
@@ -72,12 +76,14 @@ namespace ChpokkWeb.Features.Exploring {
 		//	return elements.Select(element => element.GetAttributeNode("Include"));
 		//}
 
-		public ProjectRootElement CreateProject(string outputType, SupportedLanguage language, string projectPath = null) {
+		public ProjectRootElement CreateProject(string outputType, SupportedLanguage language, string projectPath = null, string projectName = null) {
 			var rootElement = ProjectRootElement.Create();
 			var targetImport =
 				@"$(MSBuildToolsPath)\Microsoft.{0}.targets".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
 			rootElement.AddImport(targetImport);
 			rootElement.AddProperty("OutputType", outputType);
+			rootElement.AddProperty("OutputPath", @"bin\Debug\");
+			if (projectName != null) rootElement.AddProperty("RootNamespace", projectName);
 			if (projectPath != null) rootElement.Save(projectPath);
 			//create Program.cs
 			if (outputType == "Exe") {
@@ -143,6 +149,20 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 			var reader = new StreamReader(assembly.GetManifestResourceStream("ChpokkWeb.App_GlobalResources.FileTemplates." + filename));
 			return reader.ReadToEnd();
 		}
+
+		public void AddProjectReference(ProjectRootElement targetProject, ProjectRootElement referencedProject) {
+			var relativePath = referencedProject.FullPath.PathRelativeTo(targetProject.FullPath.ParentDirectory());
+			var referenceItem = targetProject.AddItem("ProjectReference", relativePath);
+			var nameProperty = referencedProject.Properties.FirstOrDefault(element => element.Name == "AssemblyName");
+			if (nameProperty != null) referenceItem.AddMetadata("Name", nameProperty.Value);
+			targetProject.Save();
+		}
+
+		public void AddProjectReference(ProjectRootElement targetProject, string referencedPath) {
+			var referencedProject = ProjectRootElement.Open(referencedPath);
+			AddProjectReference(targetProject, referencedProject);
+		}
+
 	}
 
 }

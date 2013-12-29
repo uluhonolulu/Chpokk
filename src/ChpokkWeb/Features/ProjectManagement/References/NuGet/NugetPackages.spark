@@ -14,8 +14,6 @@
     
 </div>
 
-<input type="hidden" name="Packages" value=""/> <!-- hack for Fubu binding of empty arrays -->
-
 <content name="InlineScripts">
 <!-- NugetPackages.spark -->
     <script type="text/javascript">

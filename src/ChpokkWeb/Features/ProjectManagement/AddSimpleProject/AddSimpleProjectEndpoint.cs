@@ -23,7 +23,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		private readonly RepositoryManager _repositoryManager;
 		private readonly ProjectParser _projectParser;
 		private readonly IUrlRegistry _registry;
-		private PackageInstaller _packageInstaller;
+		private readonly PackageInstaller _packageInstaller;
 		public AddSimpleProjectEndpoint(IFileSystem fileSystem, SolutionFileLoader solutionFileLoader, RepositoryManager repositoryManager, ProjectParser projectParser, IUrlRegistry registry, PackageInstaller packageInstaller) {
 			_fileSystem = fileSystem;
 			_solutionFileLoader = solutionFileLoader;
@@ -45,7 +45,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 			//create a project
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, Path.Combine(repositoryName, repositoryName + language.GetProjectExtension()));
-			var rootElement = _projectParser.CreateProject(outputType, language, projectPath);
+			var rootElement = _projectParser.CreateProject(outputType, language, projectPath, repositoryName);
 
 			if (inputModel.References != null)
 				foreach (var reference in inputModel.References) {
