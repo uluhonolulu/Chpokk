@@ -19,7 +19,7 @@ $(function () {
 	//track button clicks
 	$(document).on('click', '.btn, a, input:checkbox', function (e) {
 		var button = e.target;
-		var buttonId = $(button).text() + ' (' + button.id + ')';
+		var buttonId = $(button).text().trim() + ' (' + button.id + ')';
 		var data = { ButtonName: buttonId, Url: window.location.toString() };
 		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
 		$.post(url, data);
