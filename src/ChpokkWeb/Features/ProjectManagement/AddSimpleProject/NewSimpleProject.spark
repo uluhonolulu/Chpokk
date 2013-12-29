@@ -32,7 +32,7 @@
 						<label for="projectName">Project name</label>
 						<input name="RepositoryName" id="projectName" type="text" class="form-control"/>
 						
-					    <label for="projectType">Project type</label>
+					    <label for="projectType">Project type (only console and library projects are supported)</label>
                         <div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
 						<select name="OutputType" id="projectType" class="form-control">
 							<option>Exe</option>
