@@ -17,9 +17,9 @@ $(function () {
     $.ajaxSetup({ traditional: true });
 
 	//track button clicks
-	$(document).on('click', '.btn, a', function (e) {
+	$(document).on('click', '.btn, a, input:checkbox', function (e) {
 		var button = e.target;
-		var buttonId = button.id || $(button).text();
+		var buttonId = $(button).text() + ' (' + button.id + ')';
 		var data = { ButtonName: buttonId, Url: window.location.toString() };
 		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
 		$.post(url, data);
