@@ -1,9 +1,6 @@
-﻿using System.IO;
-using ChpokkWeb.Features.Exploring;
-using FubuCore;
+﻿using FubuCore;
 using Microsoft.Build.Construction;
 using NuGet;
-using NuGet.Commands;
 using NuGet.Common;
 using System.Collections.Generic;
 
@@ -36,56 +33,30 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 				args.Package.GetLibFiles()
 				    .Each(file =>
 				    {
-					    var targetPath = args.InstallPath.AppendPath(file.Path);
-					    var relativePath = targetPath.PathRelativeTo(args.FileSystem.Root);
-						projectSystem.AddFile(relativePath, file.GetStream());
+						SaveAssemblyFile(targetFolder, args.InstallPath, file, packagesFolderFileSystem);
 				    });
 				args.Package.GetContentFiles().Each(file =>
 				{
-					var targetPath = args.InstallPath.AppendPath(file.Path);
-					var relativePath = targetPath.PathRelativeTo(args.FileSystem.Root);
-					var rootElement = ProjectRootElement.Open(projectPath);
-					rootElement.AddItem("Content", file.EffectivePath);
-					rootElement.Save();
+					AddContentToProject(projectPath, file);
 				});
 			};
 			projectManager.AddPackageReference(packageId);
 			projectSystem.Save();
+		}
 
+		private void AddContentToProject(string projectPath, IPackageFile file) {
+			var rootElement = ProjectRootElement.Open(projectPath);
+			rootElement.AddItem("Content", file.EffectivePath);
+			rootElement.Save();
+		}
 
-			//var command = _initializer.CreateObject<InstallCommand>();
-			//command.OutputDirectory = targetFolder;
-			//command.Source.Add(NuGetConstants.DefaultFeedUrl);
-			//command.Arguments.Add(packageId);
-			var repository = new CommandLineRepositoryFactory(_console).CreateRepository(NuGetConstants.DefaultFeedUrl);
-			var packageManager = new PackageManager(repository, packagePathResolver, packagesFolderFileSystem, localRepository){}; // ILogger
-			//using (packageManager.SourceRepository.StartOperation(
-			//   RepositoryOperationNames.Install,
-			//   packageId,
-			//   null)) {
-			//	packageManager.InstallPackage(packageId, null);
-			//}
-			//command.PackageSaveMode = PackageSaveModes.Nupkg.ToString() + ";" + PackageSaveModes.Nuspec.ToString();
-			//command.ExecuteCommand();
-			
-			//command + project: no files
-			//command: no reference, no content, no cotent files
-	
+		private void SaveAssemblyFile(string targetFolder, string installPath, IPackageFile file,
+									  PhysicalFileSystem packagesFolderFileSystem) {
+			var targetPath = installPath.AppendPath(file.Path);
+			var relativePath = targetPath.PathRelativeTo(targetFolder);
+			packagesFolderFileSystem.AddFile(relativePath, file.GetStream());
 		}
 	}
 
-	public class BetterThanMSBuildProjectSystem : MSBuildProjectSystem {
 
-		public override void AddFile(string path, System.IO.Stream stream) {
-			base.AddFile(path, stream);
-			//var rootElement = ProjectRootElement.Open(ProjectPath);
-			//rootElement.AddItem("Content", path);
-		}
-
-		public string ProjectPath { get; private set; }
-
-		public BetterThanMSBuildProjectSystem(string projectFile) : base(projectFile) {
-			ProjectPath = projectFile;
-		}
-	}
 }
