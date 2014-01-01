@@ -399,6 +399,7 @@
     <Compile Include="Spikes\FubuRun.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\RunningTests.cs" />
+    <Compile Include="Spikes\SearchingForNuSpec.cs" />
     <Compile Include="Spikes\Security.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />

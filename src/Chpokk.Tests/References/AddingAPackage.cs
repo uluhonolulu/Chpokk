@@ -21,10 +21,14 @@ namespace Chpokk.Tests.References {
 		[Test]
 		public void AddsPackageContent() {
 			var project = ProjectRootElement.Open(Context.ProjectPath);
-			var contentFiles = project.Items.Where(element => element.ItemType == "Content");
-			foreach (var itemElement in contentFiles) {
-				Console.WriteLine(itemElement.Include);
-			}
+			var contentFiles = project.Items.Where(element => element.ItemType == "Content").Select(element => element.Include);
+			contentFiles.ShouldContain(@"App_Readme\Elmah.txt");
+		}
+
+		[Test]
+		public void AddsContentFiles() {
+			var contentFilePath = Context.ProjectPath.ParentDirectory().AppendPath(@"App_Readme\Elmah.txt");
+			File.Exists(contentFilePath).ShouldBe(true);
 		}
 
 		[Test]
@@ -32,6 +36,11 @@ namespace Chpokk.Tests.References {
 			var project = ProjectRootElement.Open(Context.ProjectPath);
 			var projectReferences = project.Items.Where(element => element.ItemType == "Reference");
 			projectReferences.First().Include.ShouldBe("elmah", Case.Insensitive);
+		}
+
+		[Test]
+		public void AddsReferencedFiles() {
+			Directory.EnumerateFiles(TargetFolder, "Elmah.dll", SearchOption.AllDirectories).Any().ShouldBe(true);
 		}
 
 

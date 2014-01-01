@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Services.Client;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Web;
-using NuGet;
-using NuGetGallery;
+﻿using System.Threading;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class Prewarmer {
