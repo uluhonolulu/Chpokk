@@ -27,33 +27,15 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
 			var projectSystem = new BetterThanMSBuildProjectSystem(projectPath) { Logger = _console };
 			var projectManager = new ProjectManager(_packageRepository, packagePathResolver, projectSystem,
-													localRepository);
+													localRepository) {Logger = _console};
 
-			projectManager.Logger = _console;
-			projectManager.PackageReferenceAdded += (sender, args) =>
-			{
-				args.Package.GetLibFiles()
-				    .Each(file =>
-				    {
-						SaveAssemblyFile(targetFolder, args.InstallPath, file, packagesFolderFileSystem);
-				    });
-				args.Package.GetContentFiles().Each(file =>
-				{
-					//AddContentToProject(projectPath, file);
-				});
-			};
+			projectManager.PackageReferenceAdded += (sender, args) => args.Package.GetLibFiles()
+			                                                              .Each(file => SaveAssemblyFile(args.InstallPath, file));
 			projectManager.AddPackageReference(packageId);
 			projectSystem.Save();
 		}
 
-		private void AddContentToProject(string projectPath, IPackageFile file) {
-			var rootElement = ProjectRootElement.Open(projectPath);
-			rootElement.AddItem("Content", file.EffectivePath);
-			rootElement.Save();
-		}
-
-		private void SaveAssemblyFile(string targetFolder, string installPath, IPackageFile file,
-									  PhysicalFileSystem packagesFolderFileSystem) {
+		private void SaveAssemblyFile(string installPath, IPackageFile file) {
 			var targetPath = installPath.AppendPath(file.Path);
 			Directory.CreateDirectory(targetPath.ParentDirectory());
 			using (Stream outputStream = File.Create(targetPath)){
