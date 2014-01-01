@@ -15,37 +15,38 @@ namespace Chpokk.Tests.References {
 	public class AddingAPackage : BaseCommandTest<ProjectFileContext> {
 		[Test]
 		public void CreatesThePackageFolder() {
-			Directory.EnumerateDirectories(TargetFolder).ShouldContain(s => s.PathRelativeTo(TargetFolder).StartsWith("elmah."));
+			Directory.EnumerateDirectories(TargetFolder).ShouldContain(s => s.PathRelativeTo(TargetFolder).StartsWith("FubuMVC."));
 		}
 
 		[Test]
 		public void AddsPackageContent() {
 			var project = ProjectRootElement.Open(Context.ProjectPath);
 			var contentFiles = project.Items.Where(element => element.ItemType == "Content").Select(element => element.Include);
-			contentFiles.ShouldContain(@"App_Readme\Elmah.txt");
+			contentFiles.ShouldContain(@"ConfigureFubuMVC.cs");
 		}
 
 		[Test]
 		public void AddsContentFiles() {
-			var contentFilePath = Context.ProjectPath.ParentDirectory().AppendPath(@"App_Readme\Elmah.txt");
-			File.Exists(contentFilePath).ShouldBe(true);
+			var contentFiles = Directory.EnumerateFiles(Context.ProjectPath.ParentDirectory(), "*.*", SearchOption.AllDirectories).Select(path => path.PathRelativeTo(Context.ProjectPath.ParentDirectory()));
+			contentFiles.ShouldContain("ConfigureFubuMVC.cs");
 		}
 
 		[Test]
 		public void AddsAssemblyReference() {
 			var project = ProjectRootElement.Open(Context.ProjectPath);
-			var projectReferences = project.Items.Where(element => element.ItemType == "Reference");
-			projectReferences.First().Include.ShouldBe("elmah", Case.Insensitive);
+			var projectReferences = project.Items.Where(element => element.ItemType == "Reference").Select(element => element.Include);
+			projectReferences.ShouldContain("FubuMVC.Core");
 		}
 
 		[Test]
 		public void AddsReferencedFiles() {
-			Directory.EnumerateFiles(TargetFolder, "Elmah.dll", SearchOption.AllDirectories).Any().ShouldBe(true);
+			var assemblyFiles = Directory.EnumerateFiles(TargetFolder, "*.dll", SearchOption.AllDirectories);
+			assemblyFiles.ShouldContain(path => path.EndsWith("FubuMVC.Core.dll"));
 		}
 
 
 		public override void Act() {
-			const string packageId = "elmah";
+			const string packageId = "FubuMvc";
 			var projectPath = Context.ProjectPath;
 			var packageInstaller = Context.Container.Get<PackageInstaller>();
 			packageInstaller.InstallPackage(packageId, projectPath);
