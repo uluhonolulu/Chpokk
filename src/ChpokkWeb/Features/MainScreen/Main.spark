@@ -13,6 +13,7 @@
 
 <use file="RepositoryMenu\DashBoard"/>
 
+
 <content name="menu">
 	<ul class="nav navbar-nav">
 		<li class="dropdown active">
@@ -46,3 +47,5 @@
               		}
               	</script>
               </content>
+
+<keepalive/>

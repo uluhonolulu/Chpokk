@@ -1,0 +1,14 @@
+﻿<content name="InlineScripts">
+    <!-- keepalive.spark -->
+    <script type="text/javascript">
+        //Keep Alive
+        var keepAlive = function (interval) {
+            $.get('/keepalive');
+            window.setTimeout(function () { keepAlive(interval); }, interval);
+        };
+        $(function () {
+            keepAlive(20 * 1000);
+        });
+    </script> 
+</content>
+

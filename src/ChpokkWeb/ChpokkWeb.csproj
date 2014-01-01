@@ -664,6 +664,7 @@
     <Content Include="Shared\_iAgreeToCookies.spark" />
     <Content Include="Shared\_mouseflow.spark" />
     <Content Include="UserFiles\NuGet.config" />
+    <Content Include="Shared\_keepalive.spark" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\FileTemplates\Program.cs" />
@@ -795,6 +796,7 @@
     <Compile Include="Infrastructure\ExceptionNotifier.cs" />
     <Compile Include="Infrastructure\IAppRootProvider.cs" />
     <Compile Include="Infrastructure\IMenuItemSource.cs" />
+    <Compile Include="Infrastructure\KeepAliveEndpoint.cs" />
     <Compile Include="Infrastructure\LambdaTextWriter.cs" />
     <Compile Include="Infrastructure\LanguageExtensions.cs" />
     <Compile Include="Infrastructure\MenuItem.cs" />

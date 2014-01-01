@@ -36,12 +36,4 @@ function CodeEditor(editorElement, model) {
 
     new HtmlEditor(editorElement).updateHtml();
 
-    //Keep Alive
-    var keepAlive = function (interval) {
-    	$.get('/editor/keepalive');
-    	window.setTimeout(function () { keepAlive(interval); }, interval);
-    };
-
-    keepAlive(20 * 1000);
-	
 }

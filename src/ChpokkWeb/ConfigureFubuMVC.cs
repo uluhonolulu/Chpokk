@@ -31,6 +31,7 @@ namespace ChpokkWeb {
 				.IgnoreControllerNamesEntirely()
 				.RootAtAssemblyNamespace()
 				.IgnoreNamespaceText("Features")
+				.IgnoreNamespaceText("Infrastructure")
 				.IgnoreMethodsNamed("DoIt")
 				.HomeIs<DemoModel>()
 				;

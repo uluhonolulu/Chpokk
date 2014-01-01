@@ -26,16 +26,5 @@
 
     <script src="//use.edgefonts.net/droid-sans-mono.js"></script>
     
-    <script type="text/javascript">
-        //Keep Alive
-        var keepAlive = function (interval) {
-            $.get('/editor/keepalive');
-            window.setTimeout(function () { keepAlive(interval); }, interval);
-        };
-
-        keepAlive(20 * 1000);
-	
-    </script>
-	
 </content>
 
