@@ -695,6 +695,8 @@
     <Compile Include="Features\Files\Savior.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\Spike\ConsoleBase.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\Spike\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
