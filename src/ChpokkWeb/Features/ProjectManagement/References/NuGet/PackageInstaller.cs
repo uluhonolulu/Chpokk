@@ -9,11 +9,9 @@ using Console = System.Console;
 namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class PackageInstaller {
 		private readonly IPackageRepository _packageRepository;
-		private readonly NuGetInitializer _initializer;
 		private readonly IConsole _console;
-		public PackageInstaller(IPackageRepository packageRepository, NuGetInitializer initializer, IConsole console) {
+		public PackageInstaller(IPackageRepository packageRepository, IConsole console) {
 			_packageRepository = packageRepository;
-			_initializer = initializer;
 			_console = console;
 		}
 
