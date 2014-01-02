@@ -22,7 +22,12 @@ namespace ChpokkWeb.Infrastructure {
 					var test = _container.TryGetInstance<UserHub>();
 					Console.WriteLine(test);
 				}
-				service = _container.GetInstance(serviceType);
+				try {
+					service = _container.GetInstance(serviceType);
+				}
+				catch (Exception exception) {
+					throw new InvalidOperationException("Error creating an instance of type " + serviceType, exception);
+				}
 			}
 			else {
 				// Other type resolution with base fallback
