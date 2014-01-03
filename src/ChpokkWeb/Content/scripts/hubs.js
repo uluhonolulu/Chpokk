@@ -1,5 +1,5 @@
 ﻿/*!
- * ASP.NET SignalR JavaScript Library v2.0.0
+ * ASP.NET SignalR JavaScript Library v2.0.1
  * http://signalr.net/
  *
  * Copyright Microsoft Open Technologies, Inc. All rights reserved.
@@ -87,7 +87,20 @@
 
             compileAndRun: function (model) {
                 return proxies.compilerHub.invoke.apply(proxies.compilerHub, $.merge(["CompileAndRun"], $.makeArray(arguments)));
+            },
+
+            initialize: function (eventSource) {
+                return proxies.compilerHub.invoke.apply(proxies.compilerHub, $.merge(["Initialize"], $.makeArray(arguments)));
+            },
+
+            shutdown: function () {
+                return proxies.compilerHub.invoke.apply(proxies.compilerHub, $.merge(["Shutdown"], $.makeArray(arguments)));
             }
+        };
+
+        proxies.longOpHub = this.createHubProxy('longOpHub');
+        proxies.longOpHub.client = {};
+        proxies.longOpHub.server = {
         };
 
         proxies.userHub = this.createHubProxy('userHub');

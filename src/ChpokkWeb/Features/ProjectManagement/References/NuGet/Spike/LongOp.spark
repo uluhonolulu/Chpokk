@@ -1,0 +1,23 @@
+﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.NuGet.Spike.LongOpModel" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.References.NuGet.Spike" />
+Hi I'm a long operation
+
+<content name="InlineScripts">
+    <script type="text/javascript">
+        //connect to the hub and get the connection id by calling
+        var longOpHub = $.connection.longOpHub;
+        longOpHub.client.sendMessage = function (message) {
+            info(message);
+        };
+        $.connection.hub.start()
+            .done(function() {
+                model.ConnectionId = $.connection.hub.id;
+                var url = 'projectmanagement/references/nuget/spike/longop';
+                $.post(url, model);
+            });
+        //then client POSTs and starts a long operation
+        //on the server:
+        //_hubContext = GlobalHost.ConnectionManager.GetHubContext<MoveShapeHub>();
+        // _hubContext.Clients.Client(connectionID).someclientmethod()
+    </script>
+</content>
