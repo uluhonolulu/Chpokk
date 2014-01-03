@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security;
-using System.Web;
 using NuGet;
 using NuGet.Common;
 
-namespace ChpokkWeb.Features.ProjectManagement.References.NuGet.Spike {
+namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public abstract class ConsoleBase : IConsole {
 		public abstract int WindowWidth { get; set; }
 

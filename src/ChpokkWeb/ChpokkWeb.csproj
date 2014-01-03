@@ -696,12 +696,12 @@
     <Compile Include="Features\Files\Savior.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\Spike\ConsoleBase.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\ConsoleBase.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpEndpoint.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpHub.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\LongOpHub.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpInputModel.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpModel.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\Spike\SignalRLogger.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security;
-using System.Web;
 using NuGet;
-using NuGet.Common;
 
-namespace ChpokkWeb.Features.ProjectManagement.References.NuGet.Spike {
+namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class SignalRLogger : ConsoleBase {
 		public override int WindowWidth { get; set; }
 		protected override void WriteColor(TextWriter textWriter, ConsoleColor consoleColor, string format, object[] args) {}
