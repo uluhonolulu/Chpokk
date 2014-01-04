@@ -664,7 +664,6 @@
     <Content Include="Shared\_adconv.spark" />
     <Content Include="Shared\_iAgreeToCookies.spark" />
     <Content Include="Shared\_mouseflow.spark" />
-    <Content Include="UserFiles\NuGet.config" />
     <Content Include="Shared\_keepalive.spark" />
     <Content Include="Shared\_waiter.spark" />
   </ItemGroup>
