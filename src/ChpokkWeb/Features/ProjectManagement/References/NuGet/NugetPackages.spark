@@ -27,6 +27,10 @@
             $('#packageSearchButton').click(function() {
                 findPackages($('#packageSearch').val());
             });
+            
+            //open a hub connection and assign the connection ID to the model.
+            setupHub();
+            
             function findPackages(query) {
                 //display loading animation
                 $('#packagesLoading').show();
@@ -40,6 +44,16 @@
                     $.tmpl(template, result.Packages).appendTo($('#packagesContainer'));
                     $('#packagesLoading').hide();
                 });
+            }
+            
+            function setupHub() {
+                $.connection.hub.start()
+                    .done(function () {
+                        model.ConnectionId = $.connection.hub.id;
+                    });
+                var nuGetHub = $.connection.nuGetHub;
+                nuGetHub.client.Write = info;
+                nuGetHub.client.WriteLine = success;
             }
         });
         

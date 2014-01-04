@@ -698,7 +698,7 @@
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\ConsoleBase.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpEndpoint.cs" />
-    <Compile Include="Features\ProjectManagement\References\NuGet\LongOpHub.cs" />
+    <Compile Include="Features\ProjectManagement\References\NuGet\NuGetHub.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpInputModel.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpModel.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />

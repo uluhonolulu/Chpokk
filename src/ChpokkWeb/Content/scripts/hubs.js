@@ -98,9 +98,9 @@
             }
         };
 
-        proxies.longOpHub = this.createHubProxy('longOpHub');
-        proxies.longOpHub.client = {};
-        proxies.longOpHub.server = {
+        proxies.nuGetHub = this.createHubProxy('nuGetHub');
+        proxies.nuGetHub.client = {};
+        proxies.nuGetHub.server = {
         };
 
         proxies.userHub = this.createHubProxy('userHub');

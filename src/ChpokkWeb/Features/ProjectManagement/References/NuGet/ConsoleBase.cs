@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security;
 using NuGet;
 using NuGet.Common;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
-	public abstract class ConsoleBase : IConsole {
+	public abstract class ConsoleBase : TextWriter,IConsole  {
 		public abstract int WindowWidth { get; set; }
 
 		public Verbosity Verbosity {
@@ -19,15 +20,15 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			set;
 		}
 
-		public void Write(object value) {
+		void IConsole.Write(object value) {
 			Out.Write(value);
 		}
 
-		public void Write(string value) {
+		void IConsole.Write(string value) {
 			Out.Write(value);
 		}
 
-		public void Write(string format, params object[] args) {
+		void IConsole.Write(string format, params object[] args) {
 			if (args == null || !args.Any()) {
 				// Don't try to format strings that do not have arguments. We end up throwing if the original string was not meant to be a format token 
 				// and contained braces (for instance html)
@@ -38,19 +39,19 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			}
 		}
 
-		public void WriteLine() {
+		void IConsole.WriteLine() {
 			Out.WriteLine();
 		}
 
-		public void WriteLine(object value) {
+		void IConsole.WriteLine(object value) {
 			Out.WriteLine(value);
 		}
 
-		public void WriteLine(string value) {
+		void IConsole.WriteLine(string value) {
 			Out.WriteLine(value);
 		}
 
-		public void WriteLine(string format, params object[] args) {
+		void IConsole.WriteLine(string format, params object[] args) {
 			Out.WriteLine(format, args);
 		}
 

@@ -8,6 +8,7 @@ using ChpokkWeb.Features.Editor.Intellisense;
 using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;
@@ -49,7 +50,8 @@ namespace ChpokkWeb.Infrastructure {
 			});
 			//NuGet
 			For<IPackageRepository>().Singleton().Use(() => PackageRepositoryFactory.Default.CreateRepository(NuGetConstants.DefaultFeedUrl));
-			For<IConsole>().Use(new NuGet.Common.Console());
+			For<SignalRLogger>().LifecycleIs(new HttpContextLifecycle());
+			For<IConsole>().Use(context => context.GetInstance<SignalRLogger>());
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});
 			//SignalR
