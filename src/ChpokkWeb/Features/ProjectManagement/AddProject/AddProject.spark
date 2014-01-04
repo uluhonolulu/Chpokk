@@ -7,7 +7,7 @@
             $('#newProjectButton').click(function() {
                 //default solution name -- first one from the browser
                 var solutionPath = window.repositoryItems.Items[0].PathRelativeToRepositoryRoot;
-                $('#SolutionPath').val(solutionPath);
+                $('#SolutionPath').val(solutionPath); // should be enough to just model.SolutionPath = solutionPath
                 $('#addProjectDialog').modal('show');
             });
 
@@ -53,7 +53,6 @@
 					    </select>
 						
 					    <render partial="ProjectManagement\References\References"/>
-						<input name="RepositoryName" value="!{Model.RepositoryName}" type="hidden"/>
 						<input name="SolutionPath" id="SolutionPath" type="hidden"/>
 					</form>
                     
@@ -61,6 +60,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" id="createProjectButton">Create</button>
+                    
+                    <div id="createProjectLogger" style="font-size: smaller;"/>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

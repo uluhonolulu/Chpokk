@@ -52,8 +52,12 @@
                         model.ConnectionId = $.connection.hub.id;
                     });
                 var nuGetHub = $.connection.nuGetHub;
-                nuGetHub.client.Write = info;
-                nuGetHub.client.WriteLine = success;
+                nuGetHub.client.Write = function(message) {
+                    $('<span/>').text(message).appendTo($('#createProjectLogger'));
+                };
+                nuGetHub.client.WriteLine = function(message, color) {
+                    $('<div/>').css('color',color).text(message).appendTo($('#createProjectLogger'));
+                };
             }
         });
         
