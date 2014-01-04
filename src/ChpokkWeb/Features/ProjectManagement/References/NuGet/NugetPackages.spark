@@ -53,10 +53,10 @@
                     });
                 var nuGetHub = $.connection.nuGetHub;
                 nuGetHub.client.Write = function(message) {
-                    $('<span/>').text(message).appendTo($('#createProjectLogger'));
+                    $('<span/>').text(message).appendTo($('#waiterLog'));
                 };
                 nuGetHub.client.WriteLine = function(message, color) {
-                    $('<div/>').css('color',color).text(message).appendTo($('#createProjectLogger'));
+                    $('<div/>').css('color', color).text(message).appendTo($('#waiterLog'));
                 };
             }
         });

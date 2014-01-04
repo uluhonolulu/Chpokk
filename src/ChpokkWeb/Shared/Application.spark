@@ -54,9 +54,11 @@
 	<div class="container" id="alertContainer"></div>
 		
 	<!-- Dialogs -->
-	<use content="Dialogs" />
+    <use content="Dialogs" />
+    
+    <waiter/>
 
-	<userVoice />
+    <userVoice />
 	
     <appfail if="!HttpContext.Current.Request.IsLocal"/>
     

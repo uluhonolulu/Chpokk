@@ -19,6 +19,8 @@
                 var url = '${Urls.UrlFor<AddProjectInputModel>()}';
                 var model = $('#projectForm').serializeObject();
                 $.post(url, model);
+                $('#addProjectDialog').modal('hide');
+                showWaiter();
             });
 
         })

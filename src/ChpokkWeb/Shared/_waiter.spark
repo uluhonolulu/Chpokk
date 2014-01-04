@@ -1,0 +1,23 @@
+﻿    <!-- _waiter.spark -->
+    <div class="modal fade" id="waiterDialog" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Please wait</h4>
+                </div>
+                <div class="modal-body" id="waiterLog" style="font-size: smaller;">
+                    
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script type="text/javascript">
+        function showWaiter() { $('#waiterDialog').modal('show'); }
+        function hideWaiter() { $('#waiterDialog').modal('hide'); }
+    </script>
+<content name="Dialogs">
+    TODO: implement 3-pass
+</content>
+<content name="InlineScripts">
+    <!-- _waiter.spark -->
+</content>
