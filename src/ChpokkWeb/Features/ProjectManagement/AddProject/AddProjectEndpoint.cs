@@ -1,17 +1,15 @@
 ﻿using System.IO;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core.Ajax;
 using FubuCore;
+using Microsoft.Build.Construction;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddProject {
-	public class AddProjectEndpoint {
-		private readonly ProjectParser _projectParser;
-		private readonly RepositoryManager _repositoryManager;
-		private readonly PackageInstaller _packageInstaller;
-		private readonly SignalRLogger _logger;
+	public class AddProjectEndpoint : AddProjectBase {
 		public AddProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) {
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
@@ -31,28 +29,9 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 			var rootElement = _projectParser.CreateProject(inputModel.OutputType, inputModel.Language, projectPath, inputModel.ProjectName);
 
 			//add references
-			if (inputModel.References != null)
-				foreach (var reference in inputModel.References) {
-					_logger.WriteLine("Adding a reference to {0}", reference);
-					_projectParser.AddReference(rootElement, reference);
-				}
-			if (inputModel.Projects != null)
-				foreach (var relativeReferencedPath in inputModel.Projects) {
-					_logger.WriteLine("Adding a reference to {0}", relativeReferencedPath);
-					var referencedPath = solutionPath.ParentDirectory().AppendPath(relativeReferencedPath);
-					_projectParser.AddProjectReference(rootElement, referencedPath);
-				}
-
-			//install packages
-			var targetFolder = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName).AppendPath("packages");
-			if (inputModel.Packages != null) {
-				foreach (var packageId in inputModel.Packages) {
-					if (packageId.IsNotEmpty()) {
-						//new Thread(() => {_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);}).Start();
-						_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
-					}
-				}
-			}
+			AddBclReferences(inputModel, rootElement);
+			AddProjectReferences(inputModel, solutionPath, rootElement);
+			AddPackages(inputModel, projectPath);
 			rootElement.Save();
 
 			_logger.WriteLine("Project created");

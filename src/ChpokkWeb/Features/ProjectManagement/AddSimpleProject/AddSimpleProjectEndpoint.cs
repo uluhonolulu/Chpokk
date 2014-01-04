@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Threading;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement.AddProject;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
-using FubuCore;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using ICSharpCode.NRefactory;
@@ -17,23 +17,22 @@ using ICSharpCode.SharpDevelop.Project;
 using Microsoft.Build.Evaluation;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
-	public class AddSimpleProjectEndpoint {
-		private readonly IFileSystem _fileSystem;
+	public class AddSimpleProjectEndpoint : AddProjectBase {
 		private readonly SolutionFileLoader _solutionFileLoader;
-		private readonly RepositoryManager _repositoryManager;
-		private readonly ProjectParser _projectParser;
 		private readonly IUrlRegistry _registry;
-		private readonly PackageInstaller _packageInstaller;
-		public AddSimpleProjectEndpoint(IFileSystem fileSystem, SolutionFileLoader solutionFileLoader, RepositoryManager repositoryManager, ProjectParser projectParser, IUrlRegistry registry, PackageInstaller packageInstaller) {
-			_fileSystem = fileSystem;
+
+		public AddSimpleProjectEndpoint(SolutionFileLoader solutionFileLoader, RepositoryManager repositoryManager, ProjectParser projectParser, IUrlRegistry registry, PackageInstaller packageInstaller, SignalRLogger logger) {
 			_solutionFileLoader = solutionFileLoader;
 			_repositoryManager = repositoryManager;
 			_projectParser = projectParser;
 			_registry = registry;
+			_logger = logger;
 			_packageInstaller = packageInstaller;
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
+			_logger.ConnectionId = inputModel.ConnectionId; // so that we can write to the logger
+
 			var repositoryName = inputModel.RepositoryName;
 			var solutionPath = _repositoryManager.GetAbsolutePathFor(repositoryName, inputModel.PhysicalApplicationPath, repositoryName + ".sln");
 			_solutionFileLoader.CreateEmptySolution(solutionPath);
@@ -47,26 +46,12 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, Path.Combine(repositoryName, repositoryName + language.GetProjectExtension()));
 			var rootElement = _projectParser.CreateProject(outputType, language, projectPath, repositoryName);
 
-			if (inputModel.References != null)
-				foreach (var reference in inputModel.References) {
-					_projectParser.AddReference(rootElement, reference);
-				}
-			//ProjectCollection.GlobalProjectCollection.UnloadProject(rootElement);
-
-
-			//install packages
-			var targetFolder = _repositoryManager.GetAbsolutePathFor(repositoryName,
-			                                                         inputModel.PhysicalApplicationPath).AppendPath("packages");
-			if (inputModel.Packages != null) {
-				foreach (var packageId in inputModel.Packages) {
-					if (packageId.IsNotEmpty()) {
-						//new Thread(() => {_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);}).Start();
-						_packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
-					}
-				}
-			}
+			AddBclReferences(inputModel, rootElement);
+			AddPackages(inputModel, projectPath);
 			rootElement.Save();
+			_logger.WriteLine("Project created");
 
+			//redirect to the new repository
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = repositoryName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}

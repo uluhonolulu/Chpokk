@@ -9,6 +9,8 @@
 			    var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
 				var model = $('#simpleProjectForm').serializeObject(); 
 				$.post(url, model);
+				$('#newSimpleProjectDialog').modal('hide');
+				showWaiter();
 			});
 		});
 
