@@ -20,17 +20,24 @@ $(function () {
 	$(document).on('click', '.btn, a, input:checkbox', function (e) {
 		var button = e.target;
 		var buttonId = $(button).text().trim() + ' (' + button.id + ')';
-		var data = { ButtonName: buttonId, Url: window.location.toString() };
-		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
-		$.post(url, data);
+		track(buttonId);
 	});
 	
 	//track janrain cancel
 	$(document).on('click', '#janrainModal > img', function (e) {
-		var data = { ButtonName: "Cancel login", Url: window.location.toString() };
-		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.ClickTrackerInputModel';
-		$.post(url, data);
+		track("Cancel login");
 	});
+	
+	//track page load
+	$(window).on('load', function() {
+		track('Page load');
+	});
+
+	function track(message) {
+		var data = { What: message, Url: window.location.toString() };
+		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrackerInputModel';
+		$.post(url, data);		
+	}
 
 });
 

@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 
 		public void Record(string userName, string caption, string url) {
-			_log.Add(new ClickTrackerInputModel{ButtonName = caption, Url = url});
+			_log.Add(new TrackerInputModel{What = caption, Url = url});
 			UserName = userName ?? _securityContext.CurrentIdentity.Name;
 		}
 

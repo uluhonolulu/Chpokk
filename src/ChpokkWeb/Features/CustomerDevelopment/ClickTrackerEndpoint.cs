@@ -14,9 +14,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			_securityContext = securityContext;
 		}
 
-		public void DoIt(ClickTrackerInputModel model) {
+		public void DoIt(TrackerInputModel model) {
 			var userName = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : null;
-			_activityTracker.Record(userName, model.ButtonName, model.Url);
+			_activityTracker.Record(userName, model.What, model.Url);
 		}
 
 		public void TrackErrors(ErrorModel model) {
@@ -25,15 +25,15 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 	}
 
-	public class ClickTrackerInputModel: ITrack {
-		public ClickTrackerInputModel() {
+	public class TrackerInputModel: ITrack {
+		public TrackerInputModel() {
 			When = DateTime.Now;
 		}
-		public string ButtonName { get; set; }
+		public string What { get; set; }
 		public string Url { get; set; }
 		public DateTime When { get; private set; }
 		public override string ToString() {
-			return "{2}: Url: {0}, button: {1}".ToFormat(this.Url, this.ButtonName, this.When.ToString("HH:mm:ss"));
+			return "{2}: Url: {0}, what: {1}".ToFormat(this.Url, this.What, this.When.ToString("HH:mm:ss"));
 		}
 	}
 
