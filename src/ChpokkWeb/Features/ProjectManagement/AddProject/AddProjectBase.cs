@@ -19,6 +19,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		protected void AddPackages(AddSimpleProjectInputModel inputModel, string projectPath) {
 			var targetFolder = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName).AppendPath("packages");
 			if (inputModel.Packages != null) {
+				_logger.WriteLine("Adding package references");
 				foreach (var packageId in inputModel.Packages)
 					if (packageId.IsNotEmpty()) _packageInstaller.InstallPackage(packageId, projectPath, targetFolder);
 			}
