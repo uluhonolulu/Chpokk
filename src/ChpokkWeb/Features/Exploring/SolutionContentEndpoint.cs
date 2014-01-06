@@ -53,7 +53,7 @@ namespace ChpokkWeb.Features.Exploring {
 				solutionItem.PathRelativeToRepositoryRoot = null;
 				foreach (var projectItem in solutionItem.Children) {
 					projectItem.Type = "project";
-					projectItem.PathRelativeToRepositoryRoot = projectItem.Data["ProjectPath"].ParentDirectory();
+					projectItem.PathRelativeToRepositoryRoot = projectItem.Data["ProjectPath"].ParentDirectory(); //no need?
 					RemoveLeaves(projectItem);
 				}
 			}

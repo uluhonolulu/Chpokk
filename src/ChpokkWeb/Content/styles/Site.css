@@ -303,6 +303,32 @@ div#title
 	background-color: inherit;
 }
 
+#solutionBrowser { font-size: 12px; }
+
+#solutionBrowser.filetree span.folder {
+	padding-left: 18px;
+}
+
+#solutionBrowser.filetree span.folder.sln {
+	background-image: url(lib/filetree/images/solution.png);
+}
+
+#solutionBrowser.filetree span.folder.csproj {
+	background-image: url(lib/filetree/images/CSharpProject.png);
+}
+
+#solutionBrowser.filetree span.cs {
+	background-image: url(lib/filetree/images/CSharpFile.png);
+}
+
+#solutionBrowser.filetree span.folder.vbproj {
+	background-image: url(lib/filetree/images/VBProject.png);
+}
+
+#solutionBrowser.filetree span.vb {
+	background-image: url(lib/filetree/images/VBFile.png);
+}
+
 .waitContainer {
 	display: none;
 }

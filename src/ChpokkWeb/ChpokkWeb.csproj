@@ -407,6 +407,8 @@
     <Content Include="Content\styles\lib\bootstrap.min.css" />
     <Content Include="Content\styles\lib\filetree\images\application.png" />
     <Content Include="Content\styles\lib\filetree\images\code.png" />
+    <Content Include="Content\styles\lib\filetree\images\CSharpFile.png" />
+    <Content Include="Content\styles\lib\filetree\images\CSharpProject.png" />
     <Content Include="Content\styles\lib\filetree\images\css.png" />
     <Content Include="Content\styles\lib\filetree\images\db.png" />
     <Content Include="Content\styles\lib\filetree\images\directory.png" />
@@ -426,8 +428,11 @@
     <Content Include="Content\styles\lib\filetree\images\psd.png" />
     <Content Include="Content\styles\lib\filetree\images\ruby.png" />
     <Content Include="Content\styles\lib\filetree\images\script.png" />
+    <Content Include="Content\styles\lib\filetree\images\solution.png" />
     <Content Include="Content\styles\lib\filetree\images\spinner.gif" />
     <Content Include="Content\styles\lib\filetree\images\txt.png" />
+    <Content Include="Content\styles\lib\filetree\images\VBFile.png" />
+    <Content Include="Content\styles\lib\filetree\images\VBProject.png" />
     <Content Include="Content\styles\lib\filetree\images\xls.png" />
     <Content Include="Content\styles\lib\filetree\images\zip.png" />
     <Content Include="Content\styles\lib\images\ajax-loader.gif" />

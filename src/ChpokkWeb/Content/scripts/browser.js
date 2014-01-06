@@ -1,8 +1,9 @@
 ﻿function build_li(item, data) {
+	var fileExtension = item.PathRelativeToRepositoryRoot? item.PathRelativeToRepositoryRoot.split('.').pop() : item.Data.ProjectPath;
 	var li = $('<li/>')
 				.attr('data-type', item.Type)
 				.attr('data-path', item.PathRelativeToRepositoryRoot)
-				.append($('<span/>').addClass(item.Type).text(item.Name));
+				.append($('<span/>').addClass(item.Type).addClass(fileExtension).text(item.Name));
 	// handle folder path for solutions and projects
 	if (item.Data && item.Data.Folder)
 		li.attr('data-path', item.Data.Folder);
