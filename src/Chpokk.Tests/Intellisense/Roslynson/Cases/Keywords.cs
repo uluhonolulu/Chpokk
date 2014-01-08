@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using MbUnit.Framework;
 using Roslyn.Compilers.CSharp;
 using ICSharpCode.SharpDevelop;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 	public class Keywords {
 		[Test]
 		public void CanGetAllKeywords() {

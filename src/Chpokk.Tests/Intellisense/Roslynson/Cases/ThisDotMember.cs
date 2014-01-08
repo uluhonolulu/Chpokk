@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChpokkWeb.Features.Editor.Intellisense;
+﻿using System.Linq;
 using MbUnit.Framework;
-using Roslyn.Compilers;
-using Roslyn.Compilers.CSharp;
 using Shouldly;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 	public class ThisDotMember:BaseCompletionTest {
 		private const string TYPED_THIS_DOT_IN_A_METHOD = "class ClassA { string field1; void method1(){this./**/} }";
 

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ChpokkWeb.Features.Editor.Intellisense;
 using Roslyn.Compilers;
-using Roslyn.Compilers.Common;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 	public class BaseCompletionTest {
 		private readonly string _source;
 		public BaseCompletionTest(string source) {

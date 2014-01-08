@@ -13,7 +13,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			_keywordProvider = keywordProvider;
 		}
 
-		//1. notdot can be local members (method params, local vars, class members), namespaces, and classes (interfaces) within imported namespaces, also keywords
+		//1. notdot can be local members (method params -- actually a global, local vars, class members), namespaces, and classes (interfaces) within imported namespaces, also keywords
 		//2. dot can be depending on what's before the dot -- can be namespace -> class or namespace, class -> static members, identifier or member -> members
 		//3. usings can have only namespaces or classes 
 		//4. check the imported namespaces and the current namespace
@@ -33,7 +33,6 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 					tree = Roslyn.Compilers.VisualBasic.SyntaxTree.ParseText(source);
 					syntaxTrees = from code in otherSources select Roslyn.Compilers.VisualBasic.SyntaxTree.ParseText(code);
 					syntaxTrees = syntaxTrees.Union(new[] {tree});
-					syntaxTrees = new[] {tree};
 					compilation = Roslyn.Compilers.VisualBasic.Compilation.Create("MyCompilation", syntaxTrees: syntaxTrees.Cast< Roslyn.Compilers.VisualBasic.SyntaxTree>()); break;
 				default: throw new NotSupportedException("Language '" + language + "' is not supported.");
 			}
@@ -94,10 +93,10 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return syntaxToken.Parent is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax || syntaxToken.Parent is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
 		}
 
-		class GlobalCompletionSource {
-			bool Applies() {
-				return true;
-			} 
-		}
+		//class GlobalCompletionSource {
+		//	IEnumerable<ISymbol> GetSymbols(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
+				
+		//	} 
+		//}
 	}
 }
