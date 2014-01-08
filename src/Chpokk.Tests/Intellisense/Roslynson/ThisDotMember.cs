@@ -11,9 +11,9 @@ using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class ThisDotMember:BaseCompletionTest {
-		private const string TYPED_THIS_DOT_IN_A_METHOD = "class ClassA { string field1; void method1(){this.} }";
+		private const string TYPED_THIS_DOT_IN_A_METHOD = "class ClassA { string field1; void method1(){this./**/} }";
 
-		public ThisDotMember() : base(TYPED_THIS_DOT_IN_A_METHOD, "this.") { }
+		public ThisDotMember() : base(TYPED_THIS_DOT_IN_A_METHOD) { }
 
 		[Test]
 		public void HasMemberNamesInIntellisenseData() {

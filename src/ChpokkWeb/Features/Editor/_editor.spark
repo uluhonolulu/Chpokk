@@ -20,9 +20,14 @@
 
 <content name="InlineScripts">
 	<!-- _editor.spark -->
-	<script type="text/javascript">
-	    var model = !{ HtmlTags.JsonUtil.ToJson(Model) };
-	</script>
+    <script type="text/javascript">
+        $(function() {
+            amplify.subscribe('loadFileRequest', function (data) {
+                var editor = ace.edit("ace");
+                loadFile(data.path, editor);
+            });
+        })
+    </script>
 
     <script src="//use.edgefonts.net/droid-sans-mono.js"></script>
     

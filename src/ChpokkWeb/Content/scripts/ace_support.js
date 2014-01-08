@@ -35,6 +35,7 @@
 			        };//TODO: .completer.insertMatch(this.editor); or if (data.snippet) snippetManager.insertSnippet(this.editor, data.snippet);
 				});
 			    callback(null, completionData);
+				//IE fix
 			    if (editor.completer.popup) {
 			        var renderer = editor.completer.popup.renderer;
 			        renderer.desiredHeight = undefined;
@@ -67,10 +68,6 @@
 	});        
 
     
-
-	amplify.subscribe('loadFileRequest', function (data) {
-		loadFile(data.path, editor);
-	});
 	//editor.completers = [snippetCompleter, textCompleter, keyWordCompleter];
 });
 

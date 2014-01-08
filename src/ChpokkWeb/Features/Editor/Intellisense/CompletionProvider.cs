@@ -13,10 +13,15 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			_keywordProvider = keywordProvider;
 		}
 
+		//1. notdot can be local members (method params, local vars, class members), namespaces, and classes (interfaces) within imported namespaces, also keywords
+		//2. dot can be depending on what's before the dot -- can be namespace -> class or namespace, class -> static members, identifier or member -> members
+		//3. usings can have only namespaces or classes 
+		//4. check the imported namespaces and the current namespace
+		//5. maybe should use multiple providers 
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(string source, int position, IEnumerable<string> otherSources, IEnumerable<string> assemblyPaths, string language) {
 			CommonSyntaxTree tree;
 			CommonCompilation compilation;
-			IEnumerable<CommonSyntaxTree> syntaxTrees;
+			IEnumerable<CommonSyntaxTree> syntaxTrees; 
 			var references = from assemblyPath in assemblyPaths select  new MetadataFileReference(assemblyPath);
 			switch (language) {
 				case LanguageNames.CSharp:
@@ -34,8 +39,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			}
 			
 			var semanticModel = compilation.GetSemanticModel(tree);
-			var declaredSymbol = GetContainingClass(position, tree, semanticModel);
+			var declaredSymbol = GetContainingClass(position, tree, semanticModel); //actually return INamespaceOrTypeSymbol and check 
 			var symbols = semanticModel.LookupSymbols(position, declaredSymbol).AsEnumerable();
+			var globalSymbols = semanticModel.LookupSymbols(position);
 			if (declaredSymbol != null && !this.IsDotCompletion(position, tree)) {
 				var globals = semanticModel.LookupSymbols(position);
 				symbols = symbols.Union(globals.AsEnumerable());
@@ -51,6 +57,8 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return symbolItems.OrderBy(symbol => symbol.Name);
 		}
 
+		//TODO: return  INamespaceOrTypeSymbol
+		//check semanticModel.GetSymbolInfo(thisNode) -- Kind can be Namespace 
 		private ITypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
 			var syntaxToken = tree.GetRoot().FindToken(position);
 			var nodeHierarchy = syntaxToken.Parent.AncestorsAndSelf();
@@ -84,6 +92,12 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		private bool IsDotCompletion(int position, CommonSyntaxTree tree) {
 			var syntaxToken = tree.GetRoot().FindToken(position);
 			return syntaxToken.Parent is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax || syntaxToken.Parent is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
+		}
+
+		class GlobalCompletionSource {
+			bool Applies() {
+				return true;
+			} 
 		}
 	}
 }

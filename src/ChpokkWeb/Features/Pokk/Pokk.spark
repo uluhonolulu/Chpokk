@@ -1,0 +1,12 @@
+﻿<viewdata model="ChpokkWeb.Features.Pokk.PokkModel" />
+<use namespace="ChpokkWeb.Features.Pokk" />
+
+<div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; height: 100%;">
+	<div id="ace"/>
+</div>
+
+<content name="head">
+	<Stylesheet href="editor.css" />
+	<Script src="ace_support.js"/>
+
+</content>

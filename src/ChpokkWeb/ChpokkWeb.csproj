@@ -574,6 +574,7 @@
     <Content Include="Features\ProjectManagement\References\OtherProjects\OtherProjects.spark" />
     <Content Include="Features\ProjectManagement\AddProject\AddProject.spark" />
     <Content Include="Features\ProjectManagement\References\NuGet\Spike\LongOp.spark" />
+    <Content Include="Features\Pokk\Pokk.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -701,6 +702,7 @@
     <Compile Include="Features\Files\SaveEndpoint.cs" />
     <Compile Include="Features\Files\SaveFileInputModel.cs" />
     <Compile Include="Features\Files\Savior.cs" />
+    <Compile Include="Features\Pokk\PokkModel.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectBase.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
@@ -835,6 +837,8 @@
     <Folder Include="Binaries\" />
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
+    <Folder Include="Features\Editor\Intellisense\Providers\" />
+    <Folder Include="Features\Pokk\Intellisense\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Home\DemoView.spark">

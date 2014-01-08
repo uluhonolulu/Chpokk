@@ -11,9 +11,9 @@ using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class Symbol:BaseCompletionTest {
-		private const string STARTED_TYPING_FIELD_NAME = "class ClassA { string field1; void method1(){fie} }";
+		private const string STARTED_TYPING_FIELD_NAME = "class ClassA { string field1; void method1(){fie/**/} }";
 
-		public Symbol() : base(STARTED_TYPING_FIELD_NAME, "fie") { }
+		public Symbol() : base(STARTED_TYPING_FIELD_NAME) { }
 
 		[Test]
 		public void HasLocalSymbolsInIntellisenseData() {

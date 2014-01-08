@@ -15,9 +15,8 @@ namespace Chpokk.Tests.REPL {
 
 		private object Process(string source) {
 			var engine = new ScriptEngine();
-			var session = new Session(engine)
-			engine.Execute("var x = 10; x == 10", session);
-			return 2;
+			var session = engine.CreateSession();
+			return session.Execute(source);
 		}
 	}
 }

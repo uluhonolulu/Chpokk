@@ -11,8 +11,8 @@ using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class StaticClass: BaseCompletionTest {
-		private const string STARTED_TYPING_CLASS_NAME_IN_METHOD = "using System; class ClassA { void method1(){Consol} }";
-		public StaticClass() : base(STARTED_TYPING_CLASS_NAME_IN_METHOD, "Consol") { }
+		private const string STARTED_TYPING_CLASS_NAME_IN_METHOD = "using System; class ClassA { void method1(){Consol/**/} }";
+		public StaticClass() : base(STARTED_TYPING_CLASS_NAME_IN_METHOD) { }
 
 		[Test]
 		public void ClassNameShouldAppearInReferences() {
