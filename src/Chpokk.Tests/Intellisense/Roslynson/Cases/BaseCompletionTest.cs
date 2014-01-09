@@ -13,7 +13,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols() {
 			var position = _source.IndexOf("/**/") - 1;
 			var mscorlibPath = typeof(String).Assembly.Location;
-			return new CompletionProvider(new KeywordProvider()).GetSymbols(_source, position, new string[] { }, new[] { mscorlibPath }, LanguageNames.CSharp);
+			return new CompletionProvider(new KeywordProvider()).GetSymbols(_source.Replace("/**/", ""), position, new string[] { }, new[] { mscorlibPath }, LanguageNames.CSharp);
 
 		} 
 	}

@@ -323,7 +323,7 @@
     <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="Intellisense\Roslynson\Cases\BaseCompletionTest.cs" />
     <Compile Include="Intellisense\Roslynson\CallingIntelEndpoint.cs" />
-    <Compile Include="Intellisense\Roslynson\Cases\NamespaceAfterDot.cs" />
+    <Compile Include="Intellisense\Roslynson\Cases\NamespaceDot.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />
     <Compile Include="Intellisense\Roslynson\GettingCodeFileSources.cs" />
     <Compile Include="Intellisense\Roslynson\GettingLocalReferences.cs" />

@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.SharpDevelop.Dom;
+using Roslyn.Compilers.Common;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelOutputModel {
@@ -22,6 +23,10 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 			public override int GetHashCode() {
 				return Name.GetHashCode();
+			}
+
+			public static IntelModelItem FromSymbol(ISymbol symbol) {
+				return new IntelModelItem {Name = symbol.Name, EntityType = symbol.Kind.ToString()};
 			}
 		}
 	}

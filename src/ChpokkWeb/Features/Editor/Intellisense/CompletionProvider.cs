@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Scripting;
 using Roslyn.Compilers;
 //using Roslyn.Compilers.CSharp;
 using Roslyn.Compilers.Common;
@@ -46,24 +47,32 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				symbols = symbols.Union(globals.AsEnumerable());
 			}
 			//tinky-winky
+			var namespaceSymbols = new DotNamespaceCompletionSource().GetSymbols(tree.GetRoot().FindToken(position),
+																				 semanticModel, position);
 
-			var symbolItems = from s in symbols select new IntelOutputModel.IntelModelItem {Name = s.Name, EntityType = s.Kind.ToString()};
+			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
 			if (!this.IsDotCompletion(position, tree)) {
 				var keywords = language == LanguageNames.CSharp? _keywordProvider.CSharpKeywords : _keywordProvider.VBNetKeywords;
 				var keywordItems = from keyword in keywords select new IntelOutputModel.IntelModelItem{Name = keyword, EntityType = "Keyword"};
 				symbolItems = symbolItems.Union(keywordItems);
 			}
+
+			symbolItems = symbolItems.Union(namespaceSymbols);
+
 			return symbolItems.OrderBy(symbol => symbol.Name);
 		}
 
-		//TODO: return  INamespaceOrTypeSymbol
-		//check semanticModel.GetSymbolInfo(thisNode) -- Kind can be Namespace 
-		private ITypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
+
+		private INamespaceOrTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
 			var syntaxToken = tree.GetRoot().FindToken(position);
 			var nodeHierarchy = syntaxToken.Parent.AncestorsAndSelf();
 			foreach (var syntaxNode in nodeHierarchy) {
 				var thisNode = syntaxNode;
 				Console.WriteLine(thisNode.GetText() + ": " + thisNode.GetType());
+				var symbolInfo = semanticModel.GetSymbolInfo(thisNode);
+				if (symbolInfo.Symbol != null && symbolInfo.Symbol.Kind == CommonSymbolKind.Namespace) {
+					return symbolInfo.Symbol as INamespaceOrTypeSymbol;
+				}
 				if (syntaxNode is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax) {
 					thisNode = (syntaxNode as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax).Expression;
 					Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
@@ -93,10 +102,19 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return syntaxToken.Parent is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax || syntaxToken.Parent is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
 		}
 
-		//class GlobalCompletionSource {
-		//	IEnumerable<ISymbol> GetSymbols(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
-				
-		//	} 
-		//}
+		class DotNamespaceCompletionSource {
+			public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
+				if (token.ValueText == ".") {
+					var expressionSyntax = token.Parent as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax;
+					if (expressionSyntax != null) {
+						var symbolInfo = semanticModel.GetSymbolInfo(expressionSyntax.Expression);
+						var symbol = symbolInfo.Symbol;
+						var lookupSymbols = semanticModel.LookupSymbols(position, symbol as INamespaceOrTypeSymbol);
+						return from lookupSymbol in lookupSymbols select IntelOutputModel.IntelModelItem.FromSymbol(lookupSymbol);
+					}
+				}
+				return Enumerable.Empty<IntelOutputModel.IntelModelItem>();
+			}
+		}
 	}
 }
