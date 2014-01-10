@@ -2,17 +2,25 @@
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
 <content name="InlineScripts">
-	<script type="text/javascript">
+    <script type="text/javascript">
 
-		$(function () {
-		});
-	</script>
+        $(function () {
+        });
+    </script>
+    <style>
+        body{ padding-top: 50px;}
+        .navbar { display: none; }
+    </style>
+
 </content>
+
+
 <div class="container">
     <div>
         <img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
-        <div class="btn" style="position: absolute; left:785px; top: 158px; width: 300px; height: 100px; cursor: pointer; display: none">heyyy</div>
-		<a id="startButton" href="/Main" style="position: absolute; left:785px; top: 158px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">&nbsp;_</a>
+        <img src="_content/images/click_here.png" alt="Click here to start coding online" style="position: absolute; top: 130px; left:570px; " />
+        <a id="startButton" href="/Main" style="position: absolute; left:785px; top: 118px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">
+        </a>
     </div>
     
 
@@ -61,3 +69,6 @@
 </div>
 <invite />
 <content name="logo"><!-- no logo --></content>
+<content name="head">
+
+</content>

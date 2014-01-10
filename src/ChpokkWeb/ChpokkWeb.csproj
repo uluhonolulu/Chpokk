@@ -340,6 +340,7 @@
     <Content Include="Content\images\Intellisense\Namespace.png" />
     <Content Include="Content\images\Intellisense\PropertyIcon.png" />
     <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\click_here.png" />
     <Content Include="Content\images\verst_doska.jpg" />
     <Content Include="Content\scripts\ace_support.js" />
     <Content Include="Content\scripts\browser.js" />
