@@ -5,8 +5,13 @@
     <script type="text/javascript">
 
     	$(function () {
+    		//let the panels be the same height
+    		fixPanelsHeight();
+    		//display the click arrow
     		run_animation($("#clickArrow"), 10000, 2000);
     	});
+
+    	$(window).resize(fixPanelsHeight);
         
         //declare a function that can fade in/out any element with a specified delay and duration
         function run_animation($element, delay, duration) {
@@ -16,6 +21,11 @@
         		//(if faded-out this time then next-time it will be faded-in)
         		run_animation($element, 0, duration);
         	});
+        }
+
+        function fixPanelsHeight() {
+	        $('.col-xs-6').css('height', '');
+	        $('.col-xs-6').height($('#moreInfo').height());
         }
     </script>
     <style>
@@ -37,9 +47,9 @@
 
 	
 	<div class="clearfix" style="margin-bottom: 20px;"></div>
-	<div style="display:table">
-	<div class="col-xs-6" style="padding-left: 0;display: table-cell;">
-		<div class="panel panel-default" style=" min-height: 150px;">
+	<div style="display:table; margin-bottom: 20px;" id="moreInfo">
+	<div class="col-xs-6" style="padding-left: 0;">
+		<div class="panel panel-default" style="height: 100%; margin-bottom: 0px;">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					Targeted for .Net developers</h4>
@@ -50,11 +60,12 @@
 				<p>
 					Chpokk has been designed specifically for .Net development, and supports .Net specific
 					features.</p>
+				<p><a href="Main">Start coding!</a></p>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-6" style="padding-right: 0; display: table-cell;">
-		<div class="panel panel-default" style="min-height: 150px;">
+	<div class="col-xs-6" style="padding-right: 0; ">
+		<div class="panel panel-default" style="height: 100%;">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					Not just a code editor</h4>
@@ -64,6 +75,7 @@
 					Chpokk can compile your code and even run a console program.</p>
 				<p>
 					Coming soon: unit testing and deployment to AppHarbor and Azure.</p>
+				<p><a href="Main">Start coding!</a></p>
 			</div>
 		</div>
 	</div>
