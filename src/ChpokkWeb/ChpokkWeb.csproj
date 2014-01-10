@@ -697,6 +697,7 @@
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
+    <Compile Include="Features\Editor\Intellisense\Providers\DotNamespaceCompletionProvider.cs" />
     <Compile Include="Features\Home\DemoModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
     <Compile Include="Features\Files\SaveEndpoint.cs" />
@@ -837,7 +838,6 @@
     <Folder Include="Binaries\" />
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
-    <Folder Include="Features\Editor\Intellisense\Providers\" />
     <Folder Include="Features\Pokk\Intellisense\" />
   </ItemGroup>
   <ItemGroup>

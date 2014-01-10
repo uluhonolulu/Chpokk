@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ChpokkWeb.Features.Editor.Intellisense.Providers;
 using Microsoft.Scripting;
 using Roslyn.Compilers;
 //using Roslyn.Compilers.CSharp;
@@ -47,7 +48,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				symbols = symbols.Union(globals.AsEnumerable());
 			}
 			//tinky-winky
-			var namespaceSymbols = new DotNamespaceCompletionSource().GetSymbols(tree.GetRoot().FindToken(position),
+			var namespaceSymbols = new DotNamespaceCompletionProvider().GetSymbols(tree.GetRoot().FindToken(position),
 																				 semanticModel, position);
 
 			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
@@ -102,19 +103,5 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			return syntaxToken.Parent is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax || syntaxToken.Parent is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
 		}
 
-		class DotNamespaceCompletionSource {
-			public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
-				if (token.ValueText == ".") {
-					var expressionSyntax = token.Parent as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax;
-					if (expressionSyntax != null) {
-						var symbolInfo = semanticModel.GetSymbolInfo(expressionSyntax.Expression);
-						var symbol = symbolInfo.Symbol;
-						var lookupSymbols = semanticModel.LookupSymbols(position, symbol as INamespaceOrTypeSymbol);
-						return from lookupSymbol in lookupSymbols select IntelOutputModel.IntelModelItem.FromSymbol(lookupSymbol);
-					}
-				}
-				return Enumerable.Empty<IntelOutputModel.IntelModelItem>();
-			}
-		}
 	}
 }
