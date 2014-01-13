@@ -49,11 +49,14 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			}
 			//tinky-winky
 			var token = tree.GetRoot().FindToken(position);
+			var dotlessSymbols = new DotlessCompletionProvider().GetSymbols(token, semanticModel, position);
 			var namespaceSymbols = new DotNamespaceCompletionProvider().GetSymbols(token, semanticModel, position);
 
 			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
+			symbolItems = Enumerable.Empty<IntelOutputModel.IntelModelItem>();
 
 			symbolItems = symbolItems.Union(namespaceSymbols);
+			symbolItems = symbolItems.Union(dotlessSymbols);
 			symbolItems = symbolItems.Union(_keywordProvider.GetSymbols(token, semanticModel, position));
 
 			return symbolItems.OrderBy(symbol => symbol.Name);
