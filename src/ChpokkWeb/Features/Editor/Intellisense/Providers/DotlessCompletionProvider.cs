@@ -8,6 +8,7 @@ using Roslyn.Compilers.Common;
 
 namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 	public class DotlessCompletionProvider: ICompletionProvider {
+		//provides a list of members of a particular class, inside the class' member, *not* after a dot
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
 			if (!token.IsDot()) {
 				var typeSymbol = GetContainingClass(token, semanticModel);

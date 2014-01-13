@@ -7,18 +7,13 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 	public class DotNamespaceCompletionProvider : ICompletionProvider {
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
 			if (token.IsDot()) {
-				CommonSyntaxNode expression = null;
-				var cSharpExpressionSyntax = token.Parent as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax;
-				if (cSharpExpressionSyntax != null) {
-					expression = cSharpExpressionSyntax.Expression;
-				}
-				var vbNetExpressionSyntax = token.Parent as Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
-				if (vbNetExpressionSyntax != null) {
-					expression = vbNetExpressionSyntax.Expression;
-				}
-				if (expression != null) {
-					var symbolInfo = semanticModel.GetSymbolInfo(expression);
-					var symbol = symbolInfo.Symbol as INamespaceOrTypeSymbol;
+				var masterNode = GetMasterNode(token); //the node before the dot
+				if (masterNode != null) {
+					var symbolInfo = semanticModel.GetSymbolInfo(masterNode);
+					var symbol = symbolInfo.Symbol as INamespaceOrTypeSymbol; //if the master node is a namespace or a class name
+					if (symbol == null) {
+						symbol = semanticModel.GetTypeInfo(masterNode).Type; //if the master node is an instance of a class
+					}
 					if (symbol != null) {
 						var lookupSymbols = semanticModel.LookupSymbols(position, symbol);
 						return from lookupSymbol in lookupSymbols select IntelOutputModel.IntelModelItem.FromSymbol(lookupSymbol);
@@ -26,6 +21,25 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 				}
 			}
 			return Enumerable.Empty<IntelOutputModel.IntelModelItem>();
+		}
+
+		private CommonSyntaxNode GetMasterNode(CommonSyntaxToken token) {
+			CommonSyntaxNode expression = null;
+			//member access
+			var sharpExpressionSyntax = token.Parent as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax;
+			if (sharpExpressionSyntax != null)
+				expression = sharpExpressionSyntax.Expression;
+			var vbNetExpressionSyntax = token.Parent as Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
+			if (vbNetExpressionSyntax != null)
+				expression = vbNetExpressionSyntax.Expression;
+			//namespace
+			var sharpQualifiedNameSyntax = token.Parent as Roslyn.Compilers.CSharp.QualifiedNameSyntax;
+			if (sharpQualifiedNameSyntax != null)
+				expression = sharpQualifiedNameSyntax.Left;
+			var vbNetQualifiedNameSyntax = token.Parent as Roslyn.Compilers.CSharp.QualifiedNameSyntax;
+			if (vbNetQualifiedNameSyntax != null)
+				expression = vbNetQualifiedNameSyntax.Left;
+			return expression;
 		}
 	}
 }

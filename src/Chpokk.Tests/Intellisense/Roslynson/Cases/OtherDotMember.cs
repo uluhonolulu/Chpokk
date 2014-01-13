@@ -11,7 +11,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 		public void HasMemberNamesOfAnotherClassInIntellisenseData() {
 			var symbols = GetSymbols();
 			symbols.Any(symbol => symbol.Name == "BField").ShouldBe(true);
-			//symbols.Any(symbol => symbol.Name == "ClassA").ShouldBe(false);
+			symbols.Any(symbol => symbol.Name == "ClassA").ShouldBe(false);
 		}
 	}
 }

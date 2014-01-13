@@ -42,7 +42,6 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var semanticModel = compilation.GetSemanticModel(tree);
 			var declaredSymbol = GetContainingClass(position, tree, semanticModel); //actually return INamespaceOrTypeSymbol and check 
 			var symbols = semanticModel.LookupSymbols(position, declaredSymbol).AsEnumerable();
-			var globalSymbols = semanticModel.LookupSymbols(position);
 			if (declaredSymbol != null && !this.IsDotCompletion(position, tree)) {
 				var globals = semanticModel.LookupSymbols(position);
 				symbols = symbols.Union(globals.AsEnumerable());
@@ -55,6 +54,11 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
 			symbolItems = Enumerable.Empty<IntelOutputModel.IntelModelItem>();
 
+			//TODO: using namespaces -- after dot completion
+			//TODO: Console.w -- появляется Windows
+
+			var globalSymbols = new GlobalCompletionProvider().GetSymbols(token, semanticModel, position);
+			symbolItems = symbolItems.Union(globalSymbols);
 			symbolItems = symbolItems.Union(namespaceSymbols);
 			symbolItems = symbolItems.Union(dotlessSymbols);
 			symbolItems = symbolItems.Union(_keywordProvider.GetSymbols(token, semanticModel, position));
