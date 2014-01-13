@@ -6,7 +6,7 @@ using Roslyn.Compilers.Common;
 namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 	public class DotNamespaceCompletionProvider {
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
-			if (token.ValueText == ".") {
+			if (token.IsDot()) {
 				CommonSyntaxNode expression = null;
 				var cSharpExpressionSyntax = token.Parent as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax;
 				if (cSharpExpressionSyntax != null) {

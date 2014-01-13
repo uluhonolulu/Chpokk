@@ -699,6 +699,7 @@
     <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\DotNamespaceCompletionProvider.cs" />
+    <Compile Include="Features\Editor\Intellisense\Providers\RoslynExtensions.cs" />
     <Compile Include="Features\Home\DemoModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
     <Compile Include="Features\Files\SaveEndpoint.cs" />
@@ -724,7 +725,7 @@
     <Compile Include="Features\Editor\Intellisense\IntelData.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelDataLoader.cs" />
     <Compile Include="Features\Editor\Intellisense\IntellisenseEndpoint.cs" />
-    <Compile Include="Features\Editor\Intellisense\KeywordProvider.cs" />
+    <Compile Include="Features\Editor\Intellisense\Providers\KeywordProvider.cs" />
     <Compile Include="Features\Editor\Parsing\ParserController.cs" />
     <Compile Include="Features\Editor\Parsing\ParserInputModel.cs" />
     <Compile Include="Features\Editor\Intellisense\IntelInputModel.cs" />

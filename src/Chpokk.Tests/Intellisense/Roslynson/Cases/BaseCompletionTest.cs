@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ChpokkWeb.Features.Editor.Intellisense;
+using ChpokkWeb.Features.Editor.Intellisense.Providers;
 using Roslyn.Compilers;
 
 namespace Chpokk.Tests.Intellisense.Roslynson.Cases {

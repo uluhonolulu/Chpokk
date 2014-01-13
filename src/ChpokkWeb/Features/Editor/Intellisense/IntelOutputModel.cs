@@ -28,6 +28,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			public static IntelModelItem FromSymbol(ISymbol symbol) {
 				return new IntelModelItem {Name = symbol.Name, EntityType = symbol.Kind.ToString()};
 			}
+			public static IntelModelItem FromKeyword(string keyword) {
+				return new IntelModelItem { Name = keyword, EntityType = "Keyword" };
+			}
 		}
 	}
 }

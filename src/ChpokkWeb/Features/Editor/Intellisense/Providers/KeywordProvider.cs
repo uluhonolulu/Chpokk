@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using ICSharpCode.SharpDevelop;
+using Roslyn.Compilers.Common;
 
-namespace ChpokkWeb.Features.Editor.Intellisense {
+namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 	public class KeywordProvider {
 		public KeywordProvider() {
 			//C#
@@ -26,5 +25,18 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 
 		public IEnumerable<string> CSharpKeywords { get; private set; }
 		public IEnumerable<string> VBNetKeywords { get; private set; }
+
+		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel,
+		                                                               int position) {
+			if (!token.IsDot()) {
+				if (semanticModel.IsCSharpModel()) {
+					return from keyword in CSharpKeywords select IntelOutputModel.IntelModelItem.FromKeyword(keyword);
+				}
+				else {
+					return from keyword in VBNetKeywords select IntelOutputModel.IntelModelItem.FromKeyword(keyword);
+				}
+			}
+			return Enumerable.Empty<IntelOutputModel.IntelModelItem>();
+		}
 	}
 }

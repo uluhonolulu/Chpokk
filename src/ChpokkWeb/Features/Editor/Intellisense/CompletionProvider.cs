@@ -48,17 +48,13 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 				symbols = symbols.Union(globals.AsEnumerable());
 			}
 			//tinky-winky
-			var namespaceSymbols = new DotNamespaceCompletionProvider().GetSymbols(tree.GetRoot().FindToken(position),
-																				 semanticModel, position);
+			var token = tree.GetRoot().FindToken(position);
+			var namespaceSymbols = new DotNamespaceCompletionProvider().GetSymbols(token, semanticModel, position);
 
 			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
-			if (!this.IsDotCompletion(position, tree)) {
-				var keywords = language == LanguageNames.CSharp? _keywordProvider.CSharpKeywords : _keywordProvider.VBNetKeywords;
-				var keywordItems = from keyword in keywords select new IntelOutputModel.IntelModelItem{Name = keyword, EntityType = "Keyword"};
-				symbolItems = symbolItems.Union(keywordItems);
-			}
 
 			symbolItems = symbolItems.Union(namespaceSymbols);
+			symbolItems = symbolItems.Union(_keywordProvider.GetSymbols(token, semanticModel, position));
 
 			return symbolItems.OrderBy(symbol => symbol.Name);
 		}

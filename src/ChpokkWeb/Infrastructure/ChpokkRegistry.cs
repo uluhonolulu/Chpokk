@@ -5,6 +5,7 @@ using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.Editor.Intellisense;
+using ChpokkWeb.Features.Editor.Intellisense.Providers;
 using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
