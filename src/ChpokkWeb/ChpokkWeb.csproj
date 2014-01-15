@@ -720,6 +720,8 @@
     <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
+    <Compile Include="Features\Storage\LocalAndRemoteFileSystem.cs" />
+    <Compile Include="Features\Storage\RemoteFileSystem.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
     <Compile Include="Features\Editor\CodeEditorModel.cs" />
     <Compile Include="Features\Compilation\Compiler.cs" />

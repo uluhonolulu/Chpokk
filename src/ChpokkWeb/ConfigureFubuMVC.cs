@@ -7,6 +7,7 @@ using ChpokkWeb.Features.Demo;
 using ChpokkWeb.Features.Editor;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.MainScreen;
+using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using FubuMVC.Core;
@@ -45,6 +46,7 @@ namespace ChpokkWeb {
 			         	registry.FillType<IModelUrlResolver, ModelUrlResolutionCache>();
 			         	registry.AddService<ITransformerPolicy>(
 			         		new JavascriptTransformerPolicy<UrlTransformer>(ActionType.Transformation, ".js"));
+						 registry.ReplaceService<IFileSystem, LocalAndRemoteFileSystem>();
 			         });
 
 			Policies.Add<DownloadDataConvention>();
