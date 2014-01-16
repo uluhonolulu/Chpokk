@@ -30,16 +30,15 @@ namespace Chpokk.Tests.Exploring {
 
 	}
 
-	public class WhenFileIsNotASolutionOne  : BaseQueryTest<SingleFileContext, IEnumerable<RepositoryItem>> {
+	public class WhenFileIsNotASolutionOne  : BaseCommandTest<SingleFileContext> {
 
 		[Test]
-		public void FileListShouldBeEmpty() {
-			Assert.IsEmpty(Result);
+		public void ShouldThrowAnException() {
+			var controller = Context.Container.Get<SolutionContentEndpoint>();
+			Assert.Throws<Exception>(() => controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot })) ;
 		}
 
-		public override IEnumerable<RepositoryItem> Act() {
-			var controller = Context.Container.Get<SolutionContentEndpoint>();
-			return controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot }).Items;
+		public override void Act() {
 		}
 	}
 

@@ -141,7 +141,7 @@ EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension
 			this.CreateItem(projectPath, filename, fileContent);
 		}
 		private void CreateProgramFile(SupportedLanguage language, ProjectRootElement rootElement) {
-			CreateProgramFile(language, rootElement.FullPath);
+			if (rootElement.FullPath != null) CreateProgramFile(language, rootElement.FullPath);
 		}
 
 		private static string GetFileContent(string filename) {

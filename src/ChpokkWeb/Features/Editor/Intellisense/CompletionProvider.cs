@@ -40,70 +40,21 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			}
 			
 			var semanticModel = compilation.GetSemanticModel(tree);
-			var declaredSymbol = GetContainingClass(position, tree, semanticModel); //actually return INamespaceOrTypeSymbol and check 
-			var symbols = semanticModel.LookupSymbols(position, declaredSymbol).AsEnumerable();
-			if (declaredSymbol != null && !this.IsDotCompletion(position, tree)) {
-				var globals = semanticModel.LookupSymbols(position);
-				symbols = symbols.Union(globals.AsEnumerable());
-			}
-			//tinky-winky
+
 			var token = tree.GetRoot().FindToken(position);
 			var dotlessSymbols = new DotlessCompletionProvider().GetSymbols(token, semanticModel, position);
-			var namespaceSymbols = new DotCompletionProvider().GetSymbols(token, semanticModel, position);
+			var dotSymbols = new DotCompletionProvider().GetSymbols(token, semanticModel, position);
 
-			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
-			symbolItems = Enumerable.Empty<IntelOutputModel.IntelModelItem>();
+			var symbolItems = Enumerable.Empty<IntelOutputModel.IntelModelItem>();
 
-			//TODO: using namespaces -- after dot completion
 
 			var globalSymbols = new GlobalCompletionProvider().GetSymbols(token, semanticModel, position);
 			symbolItems = symbolItems.Union(globalSymbols);
-			symbolItems = symbolItems.Union(namespaceSymbols);
+			symbolItems = symbolItems.Union(dotSymbols);
 			symbolItems = symbolItems.Union(dotlessSymbols);
 			symbolItems = symbolItems.Union(_keywordProvider.GetSymbols(token, semanticModel, position));
 
 			return symbolItems.OrderBy(symbol => symbol.Name);
 		}
-
-
-		private INamespaceOrTypeSymbol GetContainingClass(int position, CommonSyntaxTree tree, ISemanticModel semanticModel) {
-			var syntaxToken = tree.GetRoot().FindToken(position);
-			var nodeHierarchy = syntaxToken.Parent.AncestorsAndSelf();
-			foreach (var syntaxNode in nodeHierarchy) {
-				var thisNode = syntaxNode;
-				Console.WriteLine(thisNode.GetText() + ": " + thisNode.GetType());
-				var symbolInfo = semanticModel.GetSymbolInfo(thisNode);
-				if (symbolInfo.Symbol != null && symbolInfo.Symbol.Kind == CommonSymbolKind.Namespace) {
-					return symbolInfo.Symbol as INamespaceOrTypeSymbol;
-				}
-				if (syntaxNode is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax) {
-					thisNode = (syntaxNode as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax).Expression;
-					Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
-				}
-				if (syntaxNode is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax) {
-					thisNode = (syntaxNode as Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax).Expression;
-					Console.WriteLine("replaced with: " + thisNode.GetText() + ": " + thisNode.GetType());
-				}
-				var typeInfo = semanticModel.GetTypeInfo(thisNode);
-				Console.WriteLine("Type: " + typeInfo.Type);
-				if (typeInfo.Type != null && typeInfo.Type.TypeKind != CommonTypeKind.Error) {
-					return typeInfo.Type;
-				}
-				//not sure we need the next part
-				var symbol = semanticModel.GetDeclaredSymbol(thisNode);
-				if (symbol != null) {
-					Console.WriteLine("Symbol: " + symbol);
-					Console.WriteLine("Type: " + symbol.ContainingType);
-					return symbol.ContainingType;
-				}
-			}
-			return null;
-		}
-
-		private bool IsDotCompletion(int position, CommonSyntaxTree tree) {
-			var syntaxToken = tree.GetRoot().FindToken(position);
-			return syntaxToken.Parent is Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax || syntaxToken.Parent is Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
-		}
-
 	}
 }

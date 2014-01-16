@@ -51,7 +51,7 @@ namespace ChpokkWeb.Infrastructure {
 			});
 			//NuGet
 			For<IPackageRepository>().Singleton().Use(() => PackageRepositoryFactory.Default.CreateRepository(NuGetConstants.DefaultFeedUrl));
-			For<SignalRLogger>().LifecycleIs(new HttpContextLifecycle());
+			For<SignalRLogger>().LifecycleIs(new HybridLifecycle());
 			For<IConsole>().Use(context => context.GetInstance<SignalRLogger>());
 			For<IFileSystem>()
 				.Use(context => new PhysicalFileSystem(Directory.GetCurrentDirectory()) {Logger = context.GetInstance<IConsole>()});

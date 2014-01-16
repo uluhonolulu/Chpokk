@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using Shouldly;
 
 namespace Chpokk.Tests.Spikes {
 	[TestFixture]
@@ -19,7 +20,7 @@ namespace Chpokk.Tests.Spikes {
 			var projectNames = from line in source
 			                   where projectLinePattern.Match(line).Success
 			                   select projectLinePattern.Match(line).Result("${Title}");
-			Assert.AreElementsEqualIgnoringOrder(new[] {"Chpokk.Tests", "ChpokkWeb"}, projectNames);
+			projectNames.ShouldContain("Chpokk.Tests");
 		}
 
 		[Test]
