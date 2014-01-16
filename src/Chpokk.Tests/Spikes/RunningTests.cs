@@ -44,6 +44,11 @@ namespace Chpokk.Tests.Spikes {
 			var result = testLauncher.Run();
 			Console.WriteLine(result.ResultSummary);
 			Console.WriteLine(result.Statistics.FormatTestCaseResultSummary());
+
+			//also look into:
+			//Gallio.Runner.Extensions.LogExtension -- should create with calling Install(ITestRunnerEvents events, ILogger logger)
+			//registered when testLauncher.EchoResults = true; (but what is the logger?)
+			//gotta track the logger (all calls to ILogger)
 		}
 	}
 
