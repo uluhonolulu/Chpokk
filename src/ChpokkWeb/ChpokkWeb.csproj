@@ -699,7 +699,7 @@
     <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\DotlessCompletionProvider.cs" />
-    <Compile Include="Features\Editor\Intellisense\Providers\DotNamespaceCompletionProvider.cs" />
+    <Compile Include="Features\Editor\Intellisense\Providers\DotCompletionProvider.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\GlobalCompletionProvider.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\ICompletionProvider.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\RoslynExtensions.cs" />

@@ -49,13 +49,12 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			//tinky-winky
 			var token = tree.GetRoot().FindToken(position);
 			var dotlessSymbols = new DotlessCompletionProvider().GetSymbols(token, semanticModel, position);
-			var namespaceSymbols = new DotNamespaceCompletionProvider().GetSymbols(token, semanticModel, position);
+			var namespaceSymbols = new DotCompletionProvider().GetSymbols(token, semanticModel, position);
 
 			var symbolItems = from symbol in symbols select IntelOutputModel.IntelModelItem.FromSymbol(symbol);
 			symbolItems = Enumerable.Empty<IntelOutputModel.IntelModelItem>();
 
 			//TODO: using namespaces -- after dot completion
-			//TODO: Console.w -- появляется Windows
 
 			var globalSymbols = new GlobalCompletionProvider().GetSymbols(token, semanticModel, position);
 			symbolItems = symbolItems.Union(globalSymbols);

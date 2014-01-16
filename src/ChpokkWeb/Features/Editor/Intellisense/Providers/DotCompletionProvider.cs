@@ -4,7 +4,7 @@ using Roslyn.Compilers;
 using Roslyn.Compilers.Common;
 
 namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
-	public class DotNamespaceCompletionProvider : ICompletionProvider {
+	public class DotCompletionProvider : ICompletionProvider {
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
 			if (token.IsDot()) {
 				var masterNode = GetMasterNode(token); //the node before the dot
