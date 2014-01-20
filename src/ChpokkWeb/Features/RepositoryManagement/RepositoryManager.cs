@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
@@ -14,11 +15,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryManager {
 		private readonly ISecurityContext _securityContext;
 		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
-		private readonly FubuCore.FileSystem _fileSystem;
+		private readonly IFileSystem _fileSystem;
 		private readonly Downloader _downloader;
 		private readonly IAppRootProvider _rootProvider;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, FubuCore.FileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
@@ -26,12 +27,14 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			_rootProvider = rootProvider;
 		}
 
-		private const string COMMON_REPOSITORY_FOLDER = @"UserFiles";
+		private const string COMMON_USER_FOLDER = @"UserFiles";
+		private const string REPOSITORY_FOLDER = "Repositories";
+		private const string POKK_FOLDER = "Pokk";
 		private const string anonymousFolder = "__anonymous__";
 		// path for repository root, relative to AppRoot
 		[NotNull]
 		public string GetPathFor(string name) {
-			return this.RepositoryFolder.AppendPathMyWay(name);
+			return this.RelativeUserFolder.AppendPathMyWay(name);
 		}
 
 		[NotNull]
@@ -80,7 +83,30 @@ namespace ChpokkWeb.Features.RepositoryManagement {
  		}
 
 		public string GetUserFolder() {
-			return AppRoot.AppendPath(RepositoryFolder);
+			return AppRoot.AppendPath(RelativeUserFolder);
+		}
+
+		public string GetRepositoryFolder() {
+			return GetUserFolder().AppendPath(REPOSITORY_FOLDER);
+		}
+
+		public void MoveFilesToRepositoryFolder() {
+			var childFoldersOfUserFolder = Directory.EnumerateDirectories(GetUserFolder(), "*", SearchOption.TopDirectoryOnly);
+			foreach (var childFolder in childFoldersOfUserFolder) {
+				if (!childFolder.EndsWith(REPOSITORY_FOLDER) && !childFolder.EndsWith(POKK_FOLDER)) {
+					var targetFolder = childFolder.Replace(GetUserFolder(), GetRepositoryFolder());
+					//_fileSystem.CreateDirectory(targetFolder);
+					Console.WriteLine("Moving {0} to {1}", childFolder, targetFolder);
+					//for some reason, just moving directories throws
+					_fileSystem.MoveFiles(childFolder, targetFolder);
+					//let's ignore the folders for now
+					//foreach (var directory in Directory.EnumerateDirectories(childFolder, "*", SearchOption.AllDirectories)) {
+					//	Directory.Delete(directory, true);
+					//}
+					//Directory.Delete(childFolder, true);
+				}
+			}
+
 		}
 
 		[NotNull]
@@ -88,10 +114,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			return GetAbsolutePathFor(info.RepositoryName, info.PhysicalApplicationPath, info.PathRelativeToRepositoryRoot);
 		}
 
-		public string RepositoryFolder {
+		private string RelativeUserFolder {
 			get { 
 				var userFolder = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : anonymousFolder;
-				return COMMON_REPOSITORY_FOLDER.AppendPath(userFolder);
+				return COMMON_USER_FOLDER.AppendPath(userFolder);
 			}
 		}
 
@@ -112,7 +138,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public string GetCommonFolder() {
-			return Path.GetFullPath(AppRoot.AppendPath(COMMON_REPOSITORY_FOLDER));
+			return Path.GetFullPath(AppRoot.AppendPath(COMMON_USER_FOLDER));
 		}
 
 		private bool ChildDirectoriesExist(string parent) {
@@ -126,7 +152,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		public void RestoreFilesForCurrentUser(string appRoot) {
 			var root = GetCommonFolder().ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
 			//now root is appRoot actually
-			var subFolder = RepositoryFolder; 
+			var subFolder = RelativeUserFolder; 
 			_downloader.DownloadAllFiles(root, subFolder);
 		}
 
