@@ -11,12 +11,6 @@
     <script type="text/javascript">
         function janrainWidgetOnload() {
             $('#janrainButton').click();
-            janrain.events.onProviderLoginCancel.addHandler(function (response) {
-                pleaseLogin();
-            });
-            janrain.events.onModalClose.addHandler(function (response) {
-                pleaseLogin();
-            });
         }
 
         function pleaseLogin() {
@@ -33,6 +27,7 @@
                     //$('#janrainButton').click();
                     janrainWidgetOnload();
                     $('#janrainModal > img').hide();
+	                //$('.janrainHeader > div').text("Hi buddy");
                 }
                 else {
                     window.setTimeout(openLoginWidget, 100);
