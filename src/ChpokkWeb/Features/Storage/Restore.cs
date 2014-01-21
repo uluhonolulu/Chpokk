@@ -14,7 +14,6 @@ namespace ChpokkWeb.Features.Storage {
 		public Restore(Downloader downloader, ApplicationSettings settings, RepositoryManager repositoryManager) {
 			_downloader = downloader;
 			_repositoryManager = repositoryManager;
-			AppRoot = settings.GetApplicationFolder();
 		}
 
 		protected string AppRoot { get; set; }
@@ -25,8 +24,8 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void RestoreFilesForCurrentUser() {
-			if (!_repositoryManager.RepositoriesOfCurrentUserExist(AppRoot)) {
-				_repositoryManager.RestoreFilesForCurrentUser(AppRoot);
+			if (_repositoryManager.ShouldRestore()) {
+				_repositoryManager.RestoreFilesForCurrentUser();
 			}
 		}
 

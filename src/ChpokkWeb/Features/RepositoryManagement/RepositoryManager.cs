@@ -34,7 +34,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		// path for repository root, relative to AppRoot
 		[NotNull]
 		public string GetPathFor(string name) {
-			return this.RelativeUserFolder.AppendPathMyWay(name);
+			return this.RelativeUserFolder.AppendPath(REPOSITORY_FOLDER).AppendPathMyWay(name);
 		}
 
 		[NotNull]
@@ -77,9 +77,9 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames() {
-			var userFolder = GetUserFolder();
-			if (!Directory.Exists(userFolder)) return Enumerable.Empty<string>();
-			return Directory.EnumerateDirectories(userFolder).Select(Path.GetFileName);
+			var repositoryFolder = GetRepositoryFolder();
+			if (!Directory.Exists(repositoryFolder)) return Enumerable.Empty<string>();
+			return Directory.EnumerateDirectories(repositoryFolder).Select(Path.GetFileName);
  		}
 
 		public string GetUserFolder() {
@@ -96,7 +96,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 				if (!childFolder.EndsWith(REPOSITORY_FOLDER) && !childFolder.EndsWith(POKK_FOLDER)) {
 					var targetFolder = childFolder.Replace(GetUserFolder(), GetRepositoryFolder());
 					//_fileSystem.CreateDirectory(targetFolder);
-					Console.WriteLine("Moving {0} to {1}", childFolder, targetFolder);
+					//Console.WriteLine("Moving {0} to {1}", childFolder, targetFolder);
 					//for some reason, just moving directories throws
 					_fileSystem.MoveFiles(childFolder, targetFolder);
 					//let's ignore the folders for now
@@ -145,15 +145,24 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			return _fileSystem.ChildDirectoriesFor(parent).Any();
 		}
 
-		public bool RepositoriesOfCurrentUserExist(string appRoot) {
-			return GetRepositoryNames().Any();
+		public bool ShouldRestore() {
+			if (!ChildDirectoriesExist(this.GetUserFolder())) {
+				return true;
+			}
+			if (Directory.Exists(this.GetRepositoryFolder())) {
+				return !ChildDirectoriesExist(this.GetRepositoryFolder());
+			}
+			return false;
 		}
 
-		public void RestoreFilesForCurrentUser(string appRoot) {
+		public void RestoreFilesForCurrentUser() {
 			var root = GetCommonFolder().ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
 			//now root is appRoot actually
-			var subFolder = RelativeUserFolder; 
-			_downloader.DownloadAllFiles(root, subFolder);
+			var subFolder = RelativeUserFolder;
+			_downloader.DownloadAllFiles(AppRoot, subFolder);
+
+			//now, move the repos to their folder, in case we need to switch to the new system
+			MoveFilesToRepositoryFolder();
 		}
 
 		

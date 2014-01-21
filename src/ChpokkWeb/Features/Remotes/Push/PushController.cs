@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.Remotes.Push {
 
 		public AjaxContinuation Push(PushInputModel model) {
 			var credentials = model.Username.IsEmpty()? null: new Credentials {Username = model.Username, Password = model.Password};
-			var path = FileSystem.Combine(model.PhysicalApplicationPath, _manager.GetPathFor(model.RepositoryName)) ;
+			var path = _manager.NewGetAbsolutePathFor(model.RepositoryName);
 			var success = true;
 			var errorMessage = string.Empty;
 			var ajaxContinuation = AjaxContinuation.Successful();
