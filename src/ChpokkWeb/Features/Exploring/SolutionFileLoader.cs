@@ -18,15 +18,12 @@ namespace ChpokkWeb.Features.Exploring {
 		private readonly ProjectParser _projectParser;
 		[NotNull]
 		private readonly FileItemToProjectItemConverter _converter;
-		[NotNull]
-		private readonly ProjectFactory _projectFactory;
 
-		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter, ProjectFactory projectFactory) {
+		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter) {
 			_solutionParser = solutionParser;
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
 			_converter = converter;
-			_projectFactory = projectFactory;
 		}
 
 		public RepositoryItem CreateSolutionItem(string repositoryRoot, string filePath) {
