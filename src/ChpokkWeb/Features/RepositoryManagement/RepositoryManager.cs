@@ -91,10 +91,13 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public void MoveFilesToRepositoryFolder() {
-			var childFoldersOfUserFolder = Directory.EnumerateDirectories(GetUserFolder(), "*", SearchOption.TopDirectoryOnly);
+			var userFolder = GetUserFolder();
+			if (!Directory.Exists(userFolder))
+				return;
+			var childFoldersOfUserFolder = Directory.EnumerateDirectories(userFolder, "*", SearchOption.TopDirectoryOnly);
 			foreach (var childFolder in childFoldersOfUserFolder) {
 				if (!childFolder.EndsWith(REPOSITORY_FOLDER) && !childFolder.EndsWith(POKK_FOLDER)) {
-					var targetFolder = childFolder.Replace(GetUserFolder(), GetRepositoryFolder());
+					var targetFolder = childFolder.Replace(userFolder, GetRepositoryFolder());
 					//_fileSystem.CreateDirectory(targetFolder);
 					//Console.WriteLine("Moving {0} to {1}", childFolder, targetFolder);
 					//for some reason, just moving directories throws
@@ -156,10 +159,8 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public void RestoreFilesForCurrentUser() {
-			var root = GetCommonFolder().ParentDirectory(); //we need the parent cause we already have "UserFiles" on the remote
-			//now root is appRoot actually
-			var subFolder = RelativeUserFolder;
-			_downloader.DownloadAllFiles(AppRoot, subFolder);
+			//download all user files
+			_downloader.DownloadAllFiles(AppRoot, RelativeUserFolder);
 
 			//now, move the repos to their folder, in case we need to switch to the new system
 			MoveFilesToRepositoryFolder();
