@@ -690,6 +690,8 @@
     <Compile Include="Features\Authentication\UsageRecorder.cs" />
     <Compile Include="Features\Authentication\UserData.cs" />
     <Compile Include="Features\Authentication\UserManager.cs" />
+    <Compile Include="Features\Compilation\ChpokkLogger.cs" />
+    <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
     <Compile Include="Features\Compilation\MsBuildCompiler.cs" />
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />

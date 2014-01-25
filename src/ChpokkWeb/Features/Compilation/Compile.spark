@@ -20,41 +20,39 @@
                
             }
             $('#compileButton').click(function () {
-                if (model.ProjectPath) {
-                    connectThenDo(function () {
-                        var editor = ace.edit("ace");
-                        compilerHub.server.compile($.extend({}, model, { Content: editor.getValue() }));
-                    });
-                } else {
-                    alert("Don't know what to compile. Please open a file first.");
-                }
-                //debugger;
-             });
-            $('#runButton').click(function() {
-                if (model.ProjectPath) {
-                    connectThenDo(function () {
-                        var editor = ace.edit("ace");
-                        compilerHub.server.compileAndRun($.extend({}, model, { Content: editor.getValue() }));
-                    });			
-                } else {
-                    alert("Don't know what to run. Please open a file first.");
-                }
-            });
-		    
-            function log(message, category, wrapped) {
-                if (wrapped === undefined) wrapped = true;
-                if (wrapped) {
-                    $('<div/>').text(message).addClass(category).appendTo($('#output'));
-                } else {
-                
-                    $('<span/>').text(message).addClass(category).appendTo($('#output'));
-                }
-                
-                //scroll to bottom
-                var outputElement = $('#output').get(0);
-                outputElement.scrollTop = outputElement.scrollHeight;
+            	if (model.ProjectPath) {
+            		var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
+            		var editor = ace.edit("ace");
+            		$.post(compileUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
+            			if (continuation.success) {
+            				success(continuation.message);
+            			} else {
+            				danger(continuation.message);
+            			}
 
-            }
+            		});
+            	} else {
+            		alert("Don't know what to compile. Please open a file first.");
+            	}
+            });
+            $('#runButton').click(function () {
+            	if (model.ProjectPath) {
+            		var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
+            		var editor = ace.edit("ace");
+            		$.post(runUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
+            			if (continuation.success) {
+            				success(continuation.message);
+            			} else {
+            				danger(continuation.message);
+            			}
+
+            		});
+            	} else {
+            		alert("Don't know what to run. Please open a file first.");
+            	}
+            });
+	        
+
         })
     </script>
 </content>
