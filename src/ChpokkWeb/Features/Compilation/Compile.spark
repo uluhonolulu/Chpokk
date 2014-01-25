@@ -1,58 +1,71 @@
 ﻿<content name="InlineScripts">
     <!--Compile-->
     <script type="text/javascript">
-        $(function() {
+    	$(function () {
+    		$.connection.hub.start()
+				.done(function () {
+					model.ConnectionId = $.connection.hub.id;
+					attachButtonHandlers();
+				});
+
+
+
             var compilerHub = $.connection.compilerHub;
             compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
             compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
             compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
-            function connectThenDo(continuation) {
+
+    		function initLogging() {
                 $('#output').empty();
                 $('#output').get(0).scrollIntoView(top);
                 log("Please wait..");
-                $.connection.hub.logging = true;
-                $.connection.hub
-                    .start()
-                    .done(continuation)
-                    .fail(function () {
-                        alert("Failed to connect");
-                });
+  
+    		}
+            //function connectThenDo(continuation) {
+            //    $('#output').empty();
+            //    $('#output').get(0).scrollIntoView(top);
+            //    log("Please wait..");
+            //    $.connection.hub.logging = true;
+            //    $.connection.hub
+            //        .start()
+            //        .done(continuation)
+            //        .fail(function () {
+            //            alert("Failed to connect");
+            //    });
                
-            }
-            $('#compileButton').click(function () {
-            	if (model.ProjectPath) {
-            		var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
-            		var editor = ace.edit("ace");
-            		$.post(compileUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
-            			if (continuation.success) {
-            				success(continuation.message);
-            			} else {
-            				danger(continuation.message);
-            			}
+    		//}
 
-            		});
-            	} else {
-            		alert("Don't know what to compile. Please open a file first.");
-            	}
-            });
-            $('#runButton').click(function () {
-            	if (model.ProjectPath) {
-            		var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
-            		var editor = ace.edit("ace");
-            		$.post(runUrl, $.extend({}, model, { Content: editor.getValue() }), function (continuation) {
-            			if (continuation.success) {
-            				success(continuation.message);
-            			} else {
-            				danger(continuation.message);
-            			}
+    		function attachButtonHandlers() {
+			   $('#compileButton').click(function () {
+					initLogging();
+            		if (model.ProjectPath) {
+            			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
+            			var editor = ace.edit("ace");
+            			$.post(compileUrl, $.extend({}, model, { Content: editor.getValue() }));
+            		} else {
+            			alert("Don't know what to compile. Please open a file first.");
+            		}
+				});
+				$('#runButton').click(function () {
+					initLogging();
+            		if (model.ProjectPath) {
+            			var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
+            			var editor = ace.edit("ace");
+            			$.post(runUrl, $.extend({}, model, { Content: editor.getValue() }));
+            		} else {
+            			alert("Don't know what to run. Please open a file first.");
+            		}
+				});
+  
+    		}
+ 	        
+    		function log(message, category) {
+    			$('<div/>').text(message).addClass(category).appendTo($('#output'));
+    			//scroll to bottom
+    			var outputElement = $('#output').get(0);
+    			outputElement.scrollTop = outputElement.scrollHeight;
 
-            		});
-            	} else {
-            		alert("Don't know what to run. Please open a file first.");
-            	}
-            });
-	        
-
+    		}
         })
     </script>
 </content>

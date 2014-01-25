@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.Compilation {
 			_projectCollection = projectCollection;
 			_rootProvider = rootProvider;
 			_logger = logger;
-			_projectCollection.RegisterLogger(logger);
+			//_projectCollection.RegisterLogger(logger);
 		}
 
 		public BuildResult Compile(string projectFilePath) {
@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Compilation {
 				                                targetProperty.EvaluatedValue);
 			var outputType = outputTypeProperty.EvaluatedValue;
 
-			var buildResult = project.Build();
+			var buildResult = project.Build(_logger);
 			return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath, OutputType = outputType};
 		}
 	}

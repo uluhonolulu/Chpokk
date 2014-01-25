@@ -23,6 +23,7 @@ namespace ChpokkWeb.Features.Compilation {
 			_savior = savior;
 		}		
 		public AjaxContinuation Compile(CompileInputModel model) {
+			_logger.ConnectionId = model.ConnectionId;
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
@@ -59,6 +60,7 @@ namespace ChpokkWeb.Features.Compilation {
 
 	public class CompileInputModel : SaveFileInputModel {
 		public string ProjectPath { get; set; }
+		public string ConnectionId { get; set; }
 	}
 
 	public class CompileAndRunInputModel : CompileInputModel {}
