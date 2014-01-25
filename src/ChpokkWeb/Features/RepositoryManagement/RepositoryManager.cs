@@ -149,14 +149,16 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public bool ShouldRestore() {
-			return _fileSystem
-				.ChildDirectoriesFor(this.GetUserFolder())
-				.Select(path => path.PathRelativeTo(this.GetUserFolder()))
-				.Except(new[] {REPOSITORY_FOLDER, POKK_FOLDER})
-				.Any();
-			if (!ChildDirectoriesExist(this.GetUserFolder())) {
-				return false; //nothing to restore
+			//return _fileSystem
+			//	.ChildDirectoriesFor(this.GetUserFolder())
+			//	.Select(path => path.PathRelativeTo(this.GetUserFolder()))
+			//	.Except(new[] {REPOSITORY_FOLDER, POKK_FOLDER})
+			//	.Any();
+			if (!Directory.Exists(this.GetUserFolder()) || !ChildDirectoriesExist(this.GetUserFolder())) {
+				return true; //user folder does not exist or is empty
 			}
+
+			//we probably don't need this at all
 			if (Directory.Exists(this.GetRepositoryFolder())) {
 				return !ChildDirectoriesExist(this.GetRepositoryFolder());
 			}
