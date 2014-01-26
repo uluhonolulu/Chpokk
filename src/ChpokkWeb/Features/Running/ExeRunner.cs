@@ -21,9 +21,9 @@ namespace ChpokkWeb.Features.Running {
 		}
 	}
 
-	public class ExeRunnerOutput {
-		public object Result { get; set; }
-		public string StandardOutput { get; set; }
-		public string ErrorOutput { get; set; }
-	}
+	//public class ExeRunnerOutput {
+	//	public object Result { get; set; }
+	//	public string StandardOutput { get; set; }
+	//	public string ErrorOutput { get; set; }
+	//}
 }

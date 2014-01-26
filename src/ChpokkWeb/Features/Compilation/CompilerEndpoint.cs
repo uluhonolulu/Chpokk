@@ -29,17 +29,18 @@ namespace ChpokkWeb.Features.Compilation {
 			}
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
-			var result = _compiler.Compile(projectFilePath);
+			var result = _compiler.Compile(projectFilePath, _logger);
 			return new AjaxContinuation {Success = result.Success};
 		}
 
 		public AjaxContinuation CompileAndRun(CompileAndRunInputModel model) {
+			_logger.ConnectionId = model.ConnectionId;
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
 			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
 				                                                        model.ProjectPath);
-			var compilationResult = _compiler.Compile(projectFilePath);
+			var compilationResult = _compiler.Compile(projectFilePath, _logger);
 			if (!compilationResult.Success) {
 				return new AjaxContinuation { Success = false};
 			}

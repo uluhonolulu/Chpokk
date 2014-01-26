@@ -50,6 +50,7 @@ namespace ChpokkWeb.Features.Compilation {
 
 
 		public void Initialize(IEventSource eventSource) {
+			EnsureConnectionId();
 			Verbosity = LoggerVerbosity.Quiet;
 			eventSource.BuildStarted += (sender, args) => SendMessage(args.Message);
 			eventSource.ProjectStarted += (sender, args) => SendMessage(args.Message); // much more info here

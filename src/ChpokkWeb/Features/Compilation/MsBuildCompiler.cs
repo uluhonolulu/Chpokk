@@ -12,16 +12,14 @@ namespace ChpokkWeb.Features.Compilation {
 	public class MsBuildCompiler {
 		private readonly ProjectCollection _projectCollection;
 		private readonly IAppRootProvider _rootProvider;
-		private readonly ChpokkLogger _logger;
 
-		public MsBuildCompiler(ProjectCollection projectCollection, IAppRootProvider rootProvider, ChpokkLogger logger) {
+		public MsBuildCompiler(ProjectCollection projectCollection, IAppRootProvider rootProvider) {
 			_projectCollection = projectCollection;
 			_rootProvider = rootProvider;
-			_logger = logger;
 			//_projectCollection.RegisterLogger(logger);
 		}
 
-		public BuildResult Compile(string projectFilePath) {
+		public BuildResult Compile(string projectFilePath, ChpokkLogger logger) {
 			var customProperties = new Dictionary<string, string>()
 				{
 					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"Content\Targets") }
@@ -35,7 +33,7 @@ namespace ChpokkWeb.Features.Compilation {
 				                                targetProperty.EvaluatedValue);
 			var outputType = outputTypeProperty.EvaluatedValue;
 
-			var buildResult = project.Build(_logger);
+			var buildResult = project.Build(logger);
 			return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath, OutputType = outputType};
 		}
 	}

@@ -59,8 +59,9 @@
   
     		}
  	        
-    		function log(message, category) {
-    			$('<div/>').text(message).addClass(category).appendTo($('#output'));
+    		function log(message, category, wrap) {
+    			var container = wrap ? $('<div/>') : $('<span/>');
+    			container.text(message).addClass(category).appendTo($('#output'));
     			//scroll to bottom
     			var outputElement = $('#output').get(0);
     			outputElement.scrollTop = outputElement.scrollHeight;
