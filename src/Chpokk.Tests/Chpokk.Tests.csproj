@@ -44,6 +44,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -205,9 +206,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NuGet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="PackageManagement">
-      <HintPath>C:\Tools\NuGetOutsideVisualStudio\bin\PackageManagement.dll</HintPath>
-    </Reference>
     <Reference Include="Roslyn.Compilers">
       <HintPath>..\packages\Roslyn.Compilers.Common.1.2.20906.2\lib\net45\Roslyn.Compilers.dll</HintPath>
     </Reference>
@@ -236,6 +234,14 @@
     </Reference>
     <Reference Include="Serenity, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.8.120\lib\net40\Serenity.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpSvn, Version=1.8005.2830.15589, Culture=neutral, PublicKeyToken=d729672594885a28, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpSvn.1.8-x86.1.8005.2830\lib\net20\SharpSvn.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpSvn.UI, Version=1.8005.2830.15589, Culture=neutral, PublicKeyToken=33789aa53ca44aa9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpSvn.1.8-x86.1.8005.2830\lib\net20\SharpSvn.UI.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
@@ -333,7 +339,6 @@
     <Compile Include="Intellisense\Roslynson\LoadingProjectData.cs" />
     <Compile Include="Intellisense\Roslynson\Cases\OtherDotMember.cs" />
     <Compile Include="Intellisense\Roslynson\Cases\ThisDotMember.cs" />
-    <Compile Include="Intellisense\UnitTests\VbParser\ParsingValidFile.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommand.cs" />
     <Compile Include="ItemAdding\ExecutingAddItemCommandForNonCodeFiles.cs" />
     <Compile Include="Newing\AddingAProjectReference.cs" />
@@ -363,7 +368,6 @@
     <Compile Include="GitHub\SendingTheCloneCommand.cs" />
     <Compile Include="Infrastructure\WebQueryTest.cs" />
     <Compile Include="Intellisense\SolutionWithProjectAndClassFileContext.cs" />
-    <Compile Include="Intellisense\UnitTests\BCL.cs" />
     <Compile Include="ProjectList\FoldersInTheUserDirectory.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithBCLReferenceContext.cs" />
     <Compile Include="ProjectLoading\ProjectFileWithLocalReferenceContext.cs" />
@@ -405,6 +409,7 @@
     <Compile Include="Spikes\Security.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
+    <Compile Include="Spikes\SvnSpike.cs" />
     <Compile Include="Spikes\WhyDoesPartialHaveAMaster.cs" />
     <Compile Include="Uploading\UploadingZipFileContext.cs" />
     <Compile Include="Uploading\UploadingZippedRepo.cs" />

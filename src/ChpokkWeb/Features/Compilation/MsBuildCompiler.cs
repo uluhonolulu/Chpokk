@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.Compilation {
 			//_projectCollection.RegisterLogger(logger);
 		}
 
-		public BuildResult Compile(string projectFilePath, ChpokkLogger logger) {
+		public BuildResult Compile(string projectFilePath, ILogger logger) {
 			var customProperties = new Dictionary<string, string>()
 				{
 					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"Content\Targets") }
