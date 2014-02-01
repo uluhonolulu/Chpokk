@@ -41,7 +41,7 @@ namespace Chpokk.Tests.GitHub {
 		public override Spy<string> Act() {
 			var spy = new Spy<string>(info => info.TypeName.EndsWith("CloneController") && info.MethodName == "CloneGitRepository", args => (string)args.ParameterValues[1]);
 			CThruEngine.AddAspect(spy);
-			CThruEngine.AddAspect(Stub.For<CloneController>("CloneGitRepository"));
+			CThruEngine.AddAspect(Stub.For<CloneEndpoint>("CloneGitRepository"));
 			var url = Context.Container.Get<IUrlRegistry>().UrlFor<CloneInputModel>();
 			new TestSession().Post(url, new CloneInputModel {RepoUrl = "stub"});
 			return spy;

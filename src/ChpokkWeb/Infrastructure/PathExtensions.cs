@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using FubuCore;
 
 namespace ChpokkWeb.Infrastructure {
 	public static class PathExtensions {
@@ -23,7 +24,7 @@ namespace ChpokkWeb.Infrastructure {
 		[NotNull] 
 		public static string GetFileNameUniversal([NotNull] this string path) {
 			var parts = path.Split('/', '\\');
-			return parts.Last();
+			return parts.Last(s => s.IsNotEmpty());
 		}
 
 		[NotNull] 

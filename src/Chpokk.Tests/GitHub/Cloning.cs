@@ -12,7 +12,7 @@ namespace Chpokk.Tests.GitHub {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
 			var model = new CloneInputModel {PhysicalApplicationPath = Context.AppRoot, RepoUrl = repoUrl};
-			Context.Container.Get<CloneController>().CloneRepository(model);
+			Context.Container.Get<CloneEndpoint>().CloneRepository(model);
 		}
 
 		[Test]

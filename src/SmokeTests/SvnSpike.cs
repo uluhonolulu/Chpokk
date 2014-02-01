@@ -9,6 +9,7 @@ using SharpSvn;
 using FubuCore;
 using SharpSvn.Remote;
 using SharpSvn.Security;
+using ChpokkWeb.Infrastructure;
 
 namespace SmokeTests {
 	public class SvnSpike {
@@ -27,27 +28,36 @@ namespace SmokeTests {
 					e.Save = true; // Save acceptance to authentication store
 				};
 
-				Console.WriteLine(AppDomain.CurrentDomain.DynamicDirectory);
+				Console.WriteLine("folders");
+				//Console.WriteLine(AppDomain.CurrentDomain.DynamicDirectory);
 				Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
+				Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.DynamicBase);
+				Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
+
+				var targetFolder =
+					AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("Users/ulu/Repositories");
  
 				try {
 					//client.Progress += (sender, args) => Console.WriteLine(args.Progress.ToString() + "/" + args.TotalProgress);
-					client.Processing += (sender, args) => Console.WriteLine(args.CommandType);
+					//client.Processing += (sender, args) => Console.WriteLine(args.CommandType);
 					Uri uri;
 					new SvnRemoteSession(new Uri("https://subversion.assembla.com/svn/unyan/branches/Bunny")).GetRepositoryRoot(out uri);
 					//Console.WriteLine(uri);
 					var directoryName = Path.GetDirectoryName(uri.ToString());
-					Console.WriteLine(directoryName.PathRelativeTo(directoryName.ParentDirectory()));
-					var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\Repositories\unyan";
+					var repositoryName = directoryName.PathRelativeTo(directoryName.ParentDirectory());
+					repositoryName = uri.ToString().GetFileNameUniversal();
+					Console.WriteLine(repositoryName);
+					targetFolder = targetFolder.AppendPath(repositoryName);
+					//return;
 					client.CheckOut(new SvnUriTarget("https://subversion.assembla.com/svn/unyan/branches/Bunny"),
 					                targetFolder);
 					var newFilePath = targetFolder.AppendPath(Path.GetFileName(Path.GetTempFileName()));
 					new FileSystem().WriteStringToFile(newFilePath, "-");
-					client.Add(newFilePath, new SvnAddArgs() {});
-					client.Commit(targetFolder, new SvnCommitArgs(){LogMessage = "Hey new commit!"});
+					client.Add(newFilePath, new SvnAddArgs() { });
+					client.Commit(targetFolder, new SvnCommitArgs() { LogMessage = "Hey new commit!" });
 				}
 				finally {
-					//Directory.Delete(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\Repositories\unyan", true);
+					Directory.Delete(targetFolder, true);
 				}
 			}
 		}

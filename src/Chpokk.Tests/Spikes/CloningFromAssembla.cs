@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FubuCore;
 using Gallio.Framework;
 using LibGit2Sharp;
 using MbUnit.Framework;
@@ -19,7 +20,7 @@ namespace Chpokk.Tests.Spikes {
 			//password = "xd11SvG23";
 			//url = "https://uluhonolulu@bitbucket.org/uluhonolulu/chpokk-test.git";
 			password = "p4SSw0RD";
-			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private9";
+			var targetFolder = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath(@"Users\ulu\Repositories\private");
 			Repository.Clone(url, targetFolder, credentials: new Credentials(){Username = userName, Password = password});
 		}
 
