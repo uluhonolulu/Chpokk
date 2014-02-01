@@ -13,7 +13,7 @@ using ChpokkWeb.Infrastructure;
 
 namespace SmokeTests {
 	public class SvnSpike {
-		[Test]
+		[Test, Ignore("doesn't run on AppHarbor, cause of bitness")]
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
 			using (var client = new SharpSvn.SvnClient()) {
 				//SvnUpdateResult result;
