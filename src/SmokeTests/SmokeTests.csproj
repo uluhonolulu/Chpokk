@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitness.cs" />
     <Compile Include="Bootstrapping.cs" />
     <Compile Include="LibGitCanInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
