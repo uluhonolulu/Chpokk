@@ -716,6 +716,7 @@
     <Compile Include="Features\Editor\Intellisense\Providers\GlobalCompletionProvider.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\ICompletionProvider.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\RoslynExtensions.cs" />
+    <Compile Include="Features\Editor\Menu\VersionControlEditorMenuPolicy.cs" />
     <Compile Include="Features\Home\DemoModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
     <Compile Include="Features\Files\SaveEndpoint.cs" />
@@ -781,7 +782,7 @@
     <Compile Include="Features\Remotes\UploadZip\UploadZipInputModel.cs" />
     <Compile Include="Features\Editor\Menu\IEditorMenuPolicy.cs" />
     <Compile Include="Features\RepositoryManagement\FileSystem\StandardEditorMenuPolicy.cs" />
-    <Compile Include="Features\RepositoryManagement\Git\GitEditorMenuPolicy.cs" />
+    <Compile Include="Features\Editor\Menu\GitEditorMenuPolicy.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryCache.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListInputModel.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryListModel.cs" />
@@ -857,6 +858,7 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
+    <Folder Include="Features\RepositoryManagement\Git\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Home\DemoView.spark">
