@@ -539,7 +539,7 @@
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery.form.js" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\underscore-min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Features\Remotes\Push\_pushDialog.spark" />
+    <Content Include="Features\Remotes\Git\Push\_pushDialog.spark" />
     <Content Include="Content\bootstrap.asset.config">
       <SubType>Designer</SubType>
     </Content>
@@ -594,7 +594,7 @@
     <None Include="InviteForm.htm" />
     <Content Include="Content\scripts\lib\bootstrap.js" />
     <Content Include="Content\scripts\lib\bootstrap.min.js" />
-    <Content Include="Features\Remotes\Clone\CloneInput.spark">
+    <Content Include="Features\Remotes\Git\Clone\CloneInput.spark">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\RepositoryManagement\Repository.spark">
@@ -735,6 +735,8 @@
     <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
+    <Compile Include="Features\Remotes\Git\GitDetectionPolicy.cs" />
+    <Compile Include="Features\Remotes\IVersionControlDetectionPolicy.cs" />
     <Compile Include="Features\Storage\LocalAndRemoteFileSystem.cs" />
     <Compile Include="Features\Storage\RemoteFileSystem.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
@@ -774,8 +776,8 @@
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipMenuItem.cs" />
     <Compile Include="Features\Remotes\DownloadZip\DownloadZipPolicy.cs" />
     <Compile Include="Features\Remotes\IRetrievePolicy.cs" />
-    <Compile Include="Features\Remotes\Push\PushMenuItem.cs" />
-    <Compile Include="Features\Remotes\Push\PushPolicy.cs" />
+    <Compile Include="Features\Remotes\Git\Push\PushMenuItem.cs" />
+    <Compile Include="Features\Remotes\Git\Push\PushPolicy.cs" />
     <Compile Include="Features\Remotes\RetrieveButtonsEndpoint.cs" />
     <Compile Include="Features\Remotes\RetrieveButtonsInputModel.cs" />
     <Compile Include="Features\Remotes\RetrieveButtonsModel.cs" />
@@ -793,9 +795,9 @@
     <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />
     <Compile Include="Features\MainScreen\MainDummyModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectData.cs" />
-    <Compile Include="Features\Remotes\Push\PushController.cs" />
-    <Compile Include="Features\Remotes\Push\PushDialogModel.cs" />
-    <Compile Include="Features\Remotes\Push\PushInputModel.cs" />
+    <Compile Include="Features\Remotes\Git\Push\PushController.cs" />
+    <Compile Include="Features\Remotes\Git\Push\PushDialogModel.cs" />
+    <Compile Include="Features\Remotes\Git\Push\PushInputModel.cs" />
     <Compile Include="Features\Remotes\SaveCommit\SaveCommitEndpoint.cs" />
     <Compile Include="Features\Remotes\SaveCommit\SaveCommitModel.cs" />
     <Compile Include="Features\Exploring\BaseFileModel.cs" />
@@ -845,7 +847,7 @@
     <Compile Include="Infrastructure\SimpleZip\Zipper.cs" />
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Features\Remotes\Clone\CloneEndpoint.cs" />
+    <Compile Include="Features\Remotes\Git\Clone\CloneEndpoint.cs" />
     <Compile Include="Features\Exploring\ContentController.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryInfo.cs" />
     <Compile Include="Features\Exploring\RepositoryInputModel.cs" />
@@ -859,6 +861,7 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
+    <Folder Include="Features\Remotes\SVN\" />
     <Folder Include="Features\RepositoryManagement\Git\" />
   </ItemGroup>
   <ItemGroup>
