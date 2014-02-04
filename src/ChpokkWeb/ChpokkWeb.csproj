@@ -737,6 +737,7 @@
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
     <Compile Include="Features\Remotes\Git\GitDetectionPolicy.cs" />
     <Compile Include="Features\Remotes\IVersionControlDetectionPolicy.cs" />
+    <Compile Include="Features\Remotes\SVN\SvnDetectionPolicy.cs" />
     <Compile Include="Features\Storage\LocalAndRemoteFileSystem.cs" />
     <Compile Include="Features\Storage\RemoteFileSystem.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
@@ -861,7 +862,6 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
-    <Folder Include="Features\Remotes\SVN\" />
     <Folder Include="Features\RepositoryManagement\Git\" />
   </ItemGroup>
   <ItemGroup>

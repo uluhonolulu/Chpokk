@@ -24,11 +24,11 @@
 						      Your repository URL (use the https://../*.git format)
 					      </label>
 				</div>
-				!{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("form-control").Attr("value", "https://github.com/uluhonolulu/Chpokk-SampleSol.git")}
+				!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("form-control").Attr("value", "https://github.com/uluhonolulu/Chpokk-SampleSol.git")}
 				               <label>Username (leave empty for public repositories, but you won't be able to push it back)</label>
-				               !{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
+				               !{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
 				                              <label>Password</label>
-				                              !{this.InputFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}
+				                              !{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}
 			</form>
 		</div>
 		<div class="modal-footer">
@@ -55,7 +55,7 @@
 <content name="InlineScripts">
 	<script type="text/javascript">
 
-		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>()}';
+		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>()}';
 		$(function () {
 			$("#cloneButton").click(function () {
 				$('.waitContainer').show();

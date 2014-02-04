@@ -2,7 +2,7 @@
 using Arractas;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
-using ChpokkWeb.Features.Remotes.Clone;
+using ChpokkWeb.Features.Remotes.Git.Clone;
 using ChpokkWeb.Features.RepositoryManagement;
 using MbUnit.Framework;
 

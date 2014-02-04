@@ -1,6 +1,6 @@
 ﻿<use namespace="ChpokkWeb.Features.Remotes.Push" />
 <use namespace="FubuMVC.Core.UI" />
-<viewdata model="ChpokkWeb.Features.Remotes.Push.PushDialogModel" />
+<viewdata model="ChpokkWeb.Features.Remotes.Git.Push.PushDialogModel" />
 
 <content name="Dialogs">
 <!-- Push Dialog -->

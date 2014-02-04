@@ -12,7 +12,7 @@ using SharpSvn;
 using SharpSvn.Remote;
 using SharpSvn.Security;
 
-namespace ChpokkWeb.Features.Remotes.Clone {
+namespace ChpokkWeb.Features.Remotes.Git.Clone {
 	public class CloneEndpoint {
 
 		private readonly IUrlRegistry _registry;

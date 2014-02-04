@@ -7,7 +7,7 @@ using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
-using ChpokkWeb.Features.Remotes.Clone;
+using ChpokkWeb.Features.Remotes.Git.Clone;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core.Urls;
 using Ivonna.Framework;
