@@ -4,7 +4,6 @@ using System.IO;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
-using ChpokkWeb.Features.Remotes.Push;
 using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;

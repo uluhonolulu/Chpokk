@@ -12,7 +12,7 @@
 			</h3>
 		</div>
 		<div class="modal-body">
-			<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.Clone.CloneInputModel>()}">
+			<form class="well" id="cloneForm" action="${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>()}">
 				<div>
 					<label> Repository type: </label>
 					<label for="gitType">Git</label> <input type="radio" name="_repositoryType" value="git" id="gitType" checked="checked"/>

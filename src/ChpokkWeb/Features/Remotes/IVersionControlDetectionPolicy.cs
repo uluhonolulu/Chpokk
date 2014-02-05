@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ChpokkWeb.Features.Remotes {
-	interface IVersionControlDetectionPolicy {
+	public interface IVersionControlDetectionPolicy {
 		bool Matches(string repositoryName);
 	}
 }

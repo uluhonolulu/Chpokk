@@ -700,6 +700,7 @@
     <Compile Include="Features\Authentication\UsageRecorder.cs" />
     <Compile Include="Features\Authentication\UserData.cs" />
     <Compile Include="Features\Authentication\UserManager.cs" />
+    <Compile Include="Features\BitnessEndpoint.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
     <Compile Include="Features\Compilation\MsBuildCompiler.cs" />
@@ -737,6 +738,8 @@
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
     <Compile Include="Features\Remotes\Git\GitDetectionPolicy.cs" />
     <Compile Include="Features\Remotes\IVersionControlDetectionPolicy.cs" />
+    <Compile Include="Features\Remotes\SaveCommit\ICommitter.cs" />
+    <Compile Include="Features\Remotes\SVN\SvnCommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnDetectionPolicy.cs" />
     <Compile Include="Features\Storage\LocalAndRemoteFileSystem.cs" />
     <Compile Include="Features\Storage\RemoteFileSystem.cs" />

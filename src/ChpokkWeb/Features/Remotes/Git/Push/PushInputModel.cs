@@ -1,6 +1,6 @@
 ﻿using ChpokkWeb.Infrastructure;
 
-namespace ChpokkWeb.Features.Remotes.Push {
+namespace ChpokkWeb.Features.Remotes.Git.Push {
 	public class PushInputModel {
 		[NotNull]
 		public string RepositoryName { get; set; }

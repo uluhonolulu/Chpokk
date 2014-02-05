@@ -7,7 +7,7 @@ using Chpokk.Tests.Exploring;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
-using ChpokkWeb.Features.Remotes.Push;
+using ChpokkWeb.Features.Remotes.Git.Push;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using LibGit2Sharp;

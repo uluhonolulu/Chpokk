@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ChpokkWeb.Infrastructure;
+﻿using ChpokkWeb.Infrastructure;
 
-namespace ChpokkWeb.Features.Remotes.Push {
+namespace ChpokkWeb.Features.Remotes.Git.Push {
 	public class PushMenuItem: MenuItem {
 		public PushMenuItem() {
 			Id = "pusher";

@@ -1,4 +1,4 @@
-﻿<use namespace="ChpokkWeb.Features.Remotes.Push" />
+﻿<use namespace="ChpokkWeb.Features.Remotes.Git.Push" />
 <use namespace="FubuMVC.Core.UI" />
 <viewdata model="ChpokkWeb.Features.Remotes.Git.Push.PushDialogModel" />
 
@@ -33,7 +33,7 @@
 		$('#pushDialog').modal();
 		$('#pushDialog #pushOkButton').one('click', function () {
 			var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [RepositoryName="UserRepositoryName"]').val(), Password: $('#pushDialog [RepositoryName="Password"]').val() };
-			var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Push.PushInputModel>()}';
+			var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Push.PushInputModel>()}';
 			$.post(pushUrl, pushModel, function () {
 				alert("Pushed successfully!");
 			});

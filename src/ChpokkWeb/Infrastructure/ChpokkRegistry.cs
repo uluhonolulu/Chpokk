@@ -11,6 +11,7 @@ using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
+using ChpokkWeb.Features.Remotes.SaveCommit;
 using ChpokkWeb.Features.RepositoryManagement;
 using Emkay.S3;
 using ICSharpCode.SharpDevelop.Dom;
@@ -46,6 +47,7 @@ namespace ChpokkWeb.Infrastructure {
 				scanner.AssemblyContainingType<IRetrievePolicy>();
 				scanner.AddAllTypesOf<IRetrievePolicy>();
 				scanner.AddAllTypesOf<IEditorMenuPolicy>();
+				scanner.AddAllTypesOf<ICommitter>();
 
 				scanner.WithDefaultConventions();
 			});
