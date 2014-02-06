@@ -14,8 +14,8 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 		}
 
 		public void Commit(string filePath, string commitMessage) {
-			_svnClient.Add(filePath);
-			_svnClient.Commit(filePath);
+			_svnClient.Add(filePath, new SvnAddArgs(){Force = true});
+			_svnClient.Commit(filePath, new SvnCommitArgs(){LogMessage = commitMessage});
 		}
 	}
 }

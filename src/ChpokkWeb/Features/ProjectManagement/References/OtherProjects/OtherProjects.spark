@@ -9,18 +9,20 @@
 <content name="InlineScripts">
     <!-- OtherProjects.spark -->
     <script type="text/javascript">
-        amplify.subscribe('solutionLoaded', function(solutionData) {
-            var url = '${Urls.UrlFor<OtherProjectsInputModel>()}';
-            var solutionPath = solutionData.Items[0].PathRelativeToRepositoryRoot;
-            $.post(url, $.extend({}, model, { SolutionPath: solutionPath }), function (data) {
-                var template = '<input type="checkbox" name="Projects" value=\'`${Path}\' id=\'`${Name}\'/> <label for=\'`${Name}\'>`${Name}</label><br/>';
-                $.tmpl(template, data.Projects).appendTo($('#referencedProjects'));
-                if (data.Projects.length > 0) {
-                    $('#projectReferencesMenuItem').show();
-                }
-            });
+    	amplify.subscribe('solutionLoaded', loadOtherProjects);
 
-        });
+        function loadOtherProjects(solutionData) {
+	        if (solutionData.Items.length == 0) return;
+        	var url = '${Urls.UrlFor<OtherProjectsInputModel>()}';
+			var solutionPath = solutionData.Items[0].PathRelativeToRepositoryRoot;
+			$.post(url, $.extend({}, model, { SolutionPath: solutionPath }), function (data) {
+				var template = '<input type="checkbox" name="Projects" value=\'`${Path}\' id=\'`${Name}\'/> <label for=\'`${Name}\'>`${Name}</label><br/>';
+				$.tmpl(template, data.Projects).appendTo($('#referencedProjects'));
+				if (data.Projects.length > 0) {
+					$('#projectReferencesMenuItem').show();
+				}
+			});        
+        }
         
         //hide the Other Projects menu item by default, so that we don't see it when we don't have the other projects
         $(function() {

@@ -4,6 +4,7 @@
 <use namespace="ChpokkWeb.Features.Exploring"/>
 <use namespace="ChpokkWeb.Features.Remotes.DownloadZip"/>
 <use namespace="ChpokkWeb.Features.Remotes"/>
+<use namespace="ChpokkWeb.Features.ProjectManagement.CreateEmptySolution"/>
 
 
 	<div id="solutionBrowserWrapper" class="panel panel-default">
@@ -53,6 +54,12 @@
 			    
                 //tell everybody
 				amplify.publish('solutionLoaded', data);
+				
+				//if no solutions, ask whether we want to create one
+				if (items.length == 0 && confirm("No solutions found in the source. Do you want to create a new empty solution?")) {
+					var newEmptySolutionUrl = '${Urls.UrlFor<CreateEmptySolutionInputModel>()}';
+					$.post(newEmptySolutionUrl, model);
+				}
 			}
 			);
 		}

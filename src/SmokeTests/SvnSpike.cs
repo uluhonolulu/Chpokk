@@ -11,6 +11,8 @@ using SharpSvn.Remote;
 using SharpSvn.Security;
 using ChpokkWeb.Infrastructure;
 
+//bitness on AppHarbor: 32bit
+
 namespace SmokeTests {
 	public class SvnSpike {
 		[Test, Ignore("doesn't run on AppHarbor, cause of bitness")]

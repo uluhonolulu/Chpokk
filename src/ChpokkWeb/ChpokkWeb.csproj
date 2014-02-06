@@ -728,6 +728,7 @@
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectBase.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
+    <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\ConsoleBase.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\NuGetHub.cs" />
