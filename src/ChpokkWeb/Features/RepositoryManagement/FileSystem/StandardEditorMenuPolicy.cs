@@ -7,7 +7,7 @@ using FubuMVC.Navigation;
 
 namespace ChpokkWeb.Features.RepositoryManagement.FileSystem {
 	public class StandardEditorMenuPolicy : IEditorMenuPolicy {
-		public bool Matches(RepositoryInfo info, string approot) {
+		public bool Matches(string repositoryPath) {
 			return true;
 		}
 
