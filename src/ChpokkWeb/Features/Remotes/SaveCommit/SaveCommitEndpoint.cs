@@ -25,22 +25,10 @@ namespace ChpokkWeb.Features.Remotes.SaveCommit {
 			var filePath = _manager.NewGetAbsolutePathFor(model.RepositoryName, model.PathRelativeToRepositoryRoot);
 			foreach (var committer in _committers) {
 				if (committer.Matches(model.RepositoryName)) {
-					committer.Commit(filePath, model.CommitMessage);
+					committer.Commit(filePath, model.CommitMessage, model.RepositoryName);
 				}
 			}
-			//Commit(model);
 		}
 
-		private void Commit(SaveCommitInputModel model) {
-			var repositoryInfo = _manager.GetRepositoryInfo(model.RepositoryName);
-			var repositoryPath = model.PhysicalApplicationPath.AppendPath(repositoryInfo.Path);
-			var userName = _securityContext.CurrentIdentity.Name;
-			var author = new Signature(userName, userName, DateTimeOffset.Now);
-			var filePath = _manager.GetPhysicalFilePath(model);
-			using (var repo = new Repository(repositoryPath)) {
-				repo.Index.Stage(filePath);
-				repo.Commit(model.CommitMessage, author, author);
-			}
-		}
 	}
 }

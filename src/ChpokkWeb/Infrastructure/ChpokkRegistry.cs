@@ -62,6 +62,8 @@ namespace ChpokkWeb.Infrastructure {
 			For<HttpContextBase>().Use(context => new HttpContextWrapper(context.GetInstance<HttpContext>()));
 
 			For<IAppRootProvider>().Use<AspNetAppRootProvider>();
+
+			For<CredentialsCache>().LifecycleIs(new HybridSessionLifecycle());
 		}
 	}
 }

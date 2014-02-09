@@ -54,7 +54,8 @@
 
 <content name="InlineScripts">
 	<script type="text/javascript">
-
+		var sampleGitUrl = 'https://github.com/uluhonolulu/Chpokk-SampleSol.git';
+		var sampleSvnUrl = 'https://subversion.assembla.com/svn/chpokk-samplesolution/trunk';
 		var cloneRepoUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>()}';
 		$(function () {
 			$("#cloneButton").click(function () {
@@ -63,9 +64,16 @@
 				//$.post(cloneRepoUrl, { RepoUrl: $('#RepoUrl').val() });
 			});
 			
+			//setup sample urls and button text
+			setSystemSpecificStuff();
+			$('[name="_repositoryType"]').change(setSystemSpecificStuff);
+			
 			//when we click the url field, should become empty
-			$('[name="RepoUrl"]').focus(function() {
-				$(this).val('');
+			$('[name="RepoUrl"]').focus(function () {
+				if ($(this).val() == sampleGitUrl || $(this).val() == sampleSvnUrl) {
+					$(this).val('');
+				}
+				
 			});
 
 			addRepositoryMenuItem("Get source from a remote repository", openCloneDialog);
@@ -73,6 +81,35 @@
 
 		function openCloneDialog() {
 			$('#openCloneDialog').modal('show');
+		}
+
+		function getSelectedSourceSystem() {
+			switch (true) {
+				case $('#gitType').prop('checked'):
+					return 'git';
+				case $('#svnType').prop('checked'):
+					return 'svn';
+			}			
+		}
+
+		function setSystemSpecificStuff() {
+			var repoUrlControl = $('[name="RepoUrl"]');
+			var currentUrl = repoUrlControl.val();
+			var urlNotModified = currentUrl == '' || currentUrl == sampleGitUrl || currentUrl == sampleSvnUrl;
+			switch (getSelectedSourceSystem()) {
+				case 'git':
+					if (urlNotModified) {
+						repoUrlControl.val(sampleGitUrl);
+					}
+					$('#cloneButton').text("Clone");
+					break;
+				case 'svn':
+					if (urlNotModified) {
+						repoUrlControl.val(sampleSvnUrl);
+					}
+					$('#cloneButton').text("Checkout");					
+			default:
+			}
 		}
 	</script>
 </content>
