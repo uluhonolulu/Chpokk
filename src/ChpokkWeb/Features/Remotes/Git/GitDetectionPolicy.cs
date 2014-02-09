@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using ChpokkWeb.Features.RepositoryManagement;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Remotes.Git {
 	public class GitDetectionPolicy : IVersionControlDetectionPolicy {
-		private readonly RepositoryManager _repositoryManager;
-		public GitDetectionPolicy(RepositoryManager repositoryManager) {
-			_repositoryManager = repositoryManager;
-		}
-
-		public bool Matches(string repositoryName) {
-			var path = _repositoryManager.NewGetAbsolutePathFor(repositoryName, ".git");
+		public bool Matches(string repositoryPath) {
+			var path = repositoryPath.AppendPath(".git");
 			return Directory.Exists(path);
 		}
 	}

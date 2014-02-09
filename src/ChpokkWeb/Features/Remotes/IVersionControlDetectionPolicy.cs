@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace ChpokkWeb.Features.Remotes {
 	public interface IVersionControlDetectionPolicy {
-		bool Matches(string repositoryName);
+		bool Matches(string repositoryPath);
 	}
 }

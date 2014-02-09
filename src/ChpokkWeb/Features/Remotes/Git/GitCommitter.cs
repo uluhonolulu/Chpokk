@@ -11,7 +11,7 @@ namespace ChpokkWeb.Features.Remotes.Git {
 	public class GitCommitter: GitDetectionPolicy, ICommitter {
 		private readonly RepositoryManager _manager;
 		private readonly ISecurityContext _securityContext;
-		public GitCommitter(RepositoryManager repositoryManager, RepositoryManager manager, ISecurityContext securityContext) : base(repositoryManager) {
+		public GitCommitter(RepositoryManager repositoryManager, RepositoryManager manager, ISecurityContext securityContext) : base() {
 			_manager = manager;
 			_securityContext = securityContext;
 		}

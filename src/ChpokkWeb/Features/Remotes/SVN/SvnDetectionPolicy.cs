@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using ChpokkWeb.Features.RepositoryManagement;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Remotes.SVN {
 	public class SvnDetectionPolicy: IVersionControlDetectionPolicy {
-		private readonly RepositoryManager _repositoryManager;
-		public SvnDetectionPolicy(RepositoryManager repositoryManager) {
-			_repositoryManager = repositoryManager;
-		}
-
-		public bool Matches(string repositoryName) {
-			var path = _repositoryManager.NewGetAbsolutePathFor(repositoryName, ".svn");
+		public bool Matches(string repositoryPath) {
+			var path = repositoryPath.AppendPath(".svn");
 			return Directory.Exists(path);
 		}
 	}

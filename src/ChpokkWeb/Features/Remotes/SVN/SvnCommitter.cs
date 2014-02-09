@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 		private readonly RepositoryManager _manager;
 		private readonly IHttpWriter _httpWriter;
 		public SvnCommitter(RepositoryManager repositoryManager, SvnClient svnClient, RepositoryManager manager, IHttpWriter httpWriter)
-			: base(repositoryManager) {
+			: base() {
 			_svnClient = svnClient;
 			_manager = manager;
 			_httpWriter = httpWriter;
@@ -34,7 +34,6 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 			//add files to subversion that are new in filesystem
 			//modified files are automatically included as part of the commit
 
-			//TODO: check remoteStatus
 			foreach (SvnStatusEventArgs changedFile in changedFiles) {
 				if (changedFile.LocalContentStatus == SvnStatus.Missing) {
 					// SVN thinks file is missing but it still exists hence
