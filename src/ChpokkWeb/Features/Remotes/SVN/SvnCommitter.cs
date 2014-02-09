@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net;
-using System.Web;
 using ChpokkWeb.Features.Remotes.SaveCommit;
 using FubuMVC.Core.Http;
 using SharpSvn;
@@ -12,10 +9,12 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 	public class SvnCommitter : SvnDetectionPolicy, ICommitter {
 		readonly SvnClient _svnClient;
 		private readonly IHttpWriter _httpWriter;
-		public SvnCommitter(SvnClient svnClient, IHttpWriter httpWriter)
+		private readonly CredentialsCache _credentialCache;
+		public SvnCommitter(SvnClient svnClient, IHttpWriter httpWriter, CredentialsCache credentialCache)
 			: base() {
 			_svnClient = svnClient;
 			_httpWriter = httpWriter;
+			_credentialCache = credentialCache;
 		}
 
 		//https://subversion.assembla.com/svn/chpokk-samplesolution/
@@ -30,6 +29,28 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 			//add files to subversion that are new in filesystem
 			//modified files are automatically included as part of the commit
 
+			UpdateFileStatus(changedFiles);
+
+			DoCommit(commitMessage, repositoryPath);
+		}
+
+		private void DoCommit(string commitMessage, string repositoryPath) {
+			var commitArgs = new SvnCommitArgs {LogMessage = commitMessage};
+			if (_credentialCache.ContainsKey(repositoryPath)) {
+				_svnClient.Authentication.Clear(); // prevents checking cached credentials
+				var credentials = _credentialCache[repositoryPath];
+				_svnClient.Authentication.ForceCredentials(credentials.UserName, credentials.Password);
+			}
+
+			try {
+				_svnClient.Commit(repositoryPath, commitArgs);
+			}
+			catch (SvnAuthenticationException exception) {
+				_httpWriter.WriteResponseCode(HttpStatusCode.Unauthorized, exception.Message);
+			} //SharpSvn.SvnAuthenticationException
+		}
+
+		private void UpdateFileStatus(IEnumerable<SvnStatusEventArgs> changedFiles) {
 			foreach (SvnStatusEventArgs changedFile in changedFiles) {
 				if (changedFile.LocalContentStatus == SvnStatus.Missing) {
 					// SVN thinks file is missing but it still exists hence
@@ -41,19 +62,8 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 					else
 						_svnClient.Delete(changedFile.Path);
 				}
-				if (changedFile.LocalContentStatus == SvnStatus.NotVersioned) {
-					_svnClient.Add(changedFile.Path);
-				}
+				if (changedFile.LocalContentStatus == SvnStatus.NotVersioned) _svnClient.Add(changedFile.Path);
 			}
-
-			var commitArgs = new SvnCommitArgs {LogMessage = commitMessage};
-
-			try {
-				_svnClient.Commit(repositoryPath, commitArgs);
-			}
-			catch (SvnAuthenticationException exception) {
-				_httpWriter.WriteResponseCode(HttpStatusCode.Unauthorized, exception.Message);
-			}//SharpSvn.SvnAuthenticationException
 		}
 	}
 }
