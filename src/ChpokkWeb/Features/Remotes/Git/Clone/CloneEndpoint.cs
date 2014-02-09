@@ -17,9 +17,11 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 
 		private readonly IUrlRegistry _registry;
 		private readonly RepositoryManager _repositoryManager;
-		public CloneEndpoint(IUrlRegistry registry, RepositoryManager repositoryManager) {
+		private CredentialsCache _credentialsCache;
+		public CloneEndpoint(IUrlRegistry registry, RepositoryManager repositoryManager, CredentialsCache credentialsCache) {
 			_registry = registry;
 			_repositoryManager = repositoryManager;
+			_credentialsCache = credentialsCache;
 		}
 
 		[JsonEndpoint]
@@ -39,6 +41,11 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 					CloneGitRepository(model, repositoryPath); break;
 				case CloneInputModel.RepositoryTypes.SVN:
 					CheckoutSvnRepository(model, repositoryPath); break;
+			}
+
+			//save to cache
+			if (model.Username.IsNotEmpty()) {
+				_credentialsCache.Add(repositoryPath, new Credentials{UserName = model.Username, Password = model.Password});
 			}
 			
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel() { RepositoryName = repositoryName });
@@ -61,8 +68,8 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 		}
 
 		private static void CloneGitRepository(CloneInputModel model, string repositoryPath) {
-			var credentials = model.Username.IsNotEmpty()
-				                  ? new Credentials() {Username = model.Username, Password = model.Password}
+			LibGit2Sharp.Credentials credentials = model.Username.IsNotEmpty()
+								  ? new LibGit2Sharp.Credentials() { Username = model.Username, Password = model.Password }
 				                  : null;
 			Repository.Clone(model.RepoUrl, repositoryPath, credentials:credentials);
 		}
