@@ -9,8 +9,8 @@ namespace ChpokkWeb.Features.Editor.Menu.Policies {
 			_detectionPolicy = detectionPolicy;
 		}
 
-		public override bool Matches(RepositoryInfo info, string approot) {
-			return _detectionPolicy.Matches(info.Name);
+		public override bool Matches(string repositoryPath) {
+			return _detectionPolicy.Matches(repositoryPath);
 		}
 	}
 }

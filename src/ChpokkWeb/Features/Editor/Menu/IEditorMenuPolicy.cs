@@ -4,7 +4,7 @@ using FubuMVC.Navigation;
 
 namespace ChpokkWeb.Features.Editor.Menu {
 	public interface IEditorMenuPolicy {
-		bool Matches(RepositoryInfo info, string approot);
+		bool Matches(string repositoryPath);
 		IEnumerable<MenuItemToken> GetMenuItems();
 	}
 }

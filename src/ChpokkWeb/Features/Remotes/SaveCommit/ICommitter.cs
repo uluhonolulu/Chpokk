@@ -7,6 +7,6 @@ using SharpSvn;
 
 namespace ChpokkWeb.Features.Remotes.SaveCommit {
 	public interface ICommitter: IVersionControlDetectionPolicy {
-		void Commit(string filePath, string commitMessage, string repositoryName);
+		void Commit(string filePath, string commitMessage, string repositoryPath);
 	}
 }

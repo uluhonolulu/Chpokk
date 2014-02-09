@@ -5,28 +5,24 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using ChpokkWeb.Features.Remotes.SaveCommit;
-using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core.Http;
 using SharpSvn;
 
 namespace ChpokkWeb.Features.Remotes.SVN {
 	public class SvnCommitter : SvnDetectionPolicy, ICommitter {
 		readonly SvnClient _svnClient;
-		private readonly RepositoryManager _manager;
 		private readonly IHttpWriter _httpWriter;
-		public SvnCommitter(RepositoryManager repositoryManager, SvnClient svnClient, RepositoryManager manager, IHttpWriter httpWriter)
+		public SvnCommitter(SvnClient svnClient, IHttpWriter httpWriter)
 			: base() {
 			_svnClient = svnClient;
-			_manager = manager;
 			_httpWriter = httpWriter;
 		}
 
 		//https://subversion.assembla.com/svn/chpokk-samplesolution/
-		public void Commit(string filePath, string commitMessage, string repositoryName) {
+		public void Commit(string filePath, string commitMessage, string repositoryPath) {
 			//_svnClient.Add(filePath, new SvnAddArgs(){Force = true});
 			//_svnClient.Commit(filePath, new SvnCommitArgs(){LogMessage = commitMessage});
 
-			var repositoryPath = _manager.NewGetAbsolutePathFor(repositoryName);
 			Collection<SvnStatusEventArgs> changedFiles;
 			_svnClient.GetStatus(repositoryPath, out changedFiles);
 
