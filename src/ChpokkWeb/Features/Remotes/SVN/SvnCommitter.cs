@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
+using System.Security.Authentication;
+using System.Web;
 using ChpokkWeb.Features.Remotes.SaveCommit;
 using FubuMVC.Core.Http;
 using SharpSvn;
@@ -36,17 +38,20 @@ namespace ChpokkWeb.Features.Remotes.SVN {
 
 		private void DoCommit(string commitMessage, string repositoryPath) {
 			var commitArgs = new SvnCommitArgs {LogMessage = commitMessage};
-			if (_credentialCache.ContainsKey(repositoryPath)) {
-				_svnClient.Authentication.Clear(); // prevents checking cached credentials
-				var credentials = _credentialCache[repositoryPath];
-				_svnClient.Authentication.ForceCredentials(credentials.UserName, credentials.Password);
-			}
+			//if (_credentialCache.ContainsKey(repositoryPath)) {
+			//	_svnClient.Authentication.Clear(); // prevents checking cached credentials
+			//	var credentials = _credentialCache[repositoryPath];
+			//	_svnClient.Authentication.ForceCredentials(credentials.UserName, credentials.Password);
+			//}
 
 			try {
 				_svnClient.Commit(repositoryPath, commitArgs);
 			}
 			catch (SvnAuthenticationException exception) {
 				_httpWriter.WriteResponseCode(HttpStatusCode.Unauthorized, exception.Message);
+				HttpContext.Current.Response.SuppressFormsAuthenticationRedirect = true;
+				//throw new AuthenticationException(exception.RootCause.Message, exception);
+				//exception.SvnErrorCode == SvnErrorCode.SVN_ERR_AUTHN_FAILED;
 			} //SharpSvn.SvnAuthenticationException
 		}
 

@@ -12,10 +12,9 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 
 
 		public AjaxContinuation Push(PushInputModel model) {
-			var credentials = model.Username.IsEmpty()? null: new Credentials {Username = model.Username, Password = model.Password};
+			var credentials = model.Username.IsEmpty()? null: new LibGit2Sharp.Credentials {Username = model.Username, Password = model.Password};
 			var path = _manager.NewGetAbsolutePathFor(model.RepositoryName);
-			var success = true;
-			var errorMessage = string.Empty;
+			string errorMessage;
 			var ajaxContinuation = AjaxContinuation.Successful();
 			using (var repo = new Repository(path)) {
 				var remote = repo.Network.Remotes["origin"];

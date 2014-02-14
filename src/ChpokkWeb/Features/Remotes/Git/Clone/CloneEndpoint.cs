@@ -55,7 +55,12 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 		private void CheckoutSvnRepository(CloneInputModel model, string repositoryPath) {
 			using (var client = new SvnClient()) {
 				if (model.Username.IsNotEmpty()) {
-					client.Authentication.DefaultCredentials = new System.Net.NetworkCredential(model.Username, model.Password);
+					client.Authentication.UserNamePasswordHandlers += (sender, args) =>
+					{
+						args.UserName = model.Username;
+						args.Password = model.Password;
+						args.Save = true;
+					};
 				}
 				
 				client.Authentication.SslServerTrustHandlers += delegate(object sender, SvnSslServerTrustEventArgs e) {

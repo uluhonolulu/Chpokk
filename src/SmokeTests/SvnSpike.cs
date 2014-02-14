@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -17,51 +18,60 @@ namespace SmokeTests {
 	public class SvnSpike {
 		[Test]
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
-			using (var client = new SharpSvn.SvnClient()) {
-				//SvnUpdateResult result;
-				SvnRepositoryClient repositoryClient = new SvnRepositoryClient();
-				//var folder = Path.GetTempPath().AppendPath("SvnTest");
-				//Console.WriteLine(folder);
-				//Directory.CreateDirectory(folder);
-				client.Authentication.Clear(); // prevents checking cached credentials
-				client.Authentication.DefaultCredentials = new System.Net.NetworkCredential("ulu", "tudasuda");
-				client.Authentication.SslServerTrustHandlers += delegate(object sender, SvnSslServerTrustEventArgs e) {
-					e.AcceptedFailures = e.Failures;
-					e.Save = true; // Save acceptance to authentication store
-				};
+			var targetFolder =
+				AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("UserFiles/ulu/Repositories");
+		using (var client = new SvnClient()) {
+			//SvnUpdateResult result;
+			//var folder = Path.GetTempPath().AppendPath("SvnTest");
+			//Console.WriteLine(folder);
+			//Directory.CreateDirectory(folder);
+			//client.Authentication.Clear(); // prevents checking cached credentials
+			client.Authentication.ForceCredentials("-", "-");
+			//client.Authentication.DefaultCredentials = new NetworkCredential("--", "---");
+			client.Authentication.SslServerTrustHandlers += delegate(object sender, SvnSslServerTrustEventArgs e) {
+				e.AcceptedFailures = e.Failures;
+				e.Save = true; // Save acceptance to authentication store
+			};
+			client.Authentication.UserNamePasswordHandlers += (sender, args) =>
+			{
+				args.UserName = "uluhonolulu";
+				args.Password = "xd11SvG23";
+				args.Save = true;
+			};
+			client.Authentication.UserNameHandlers += (sender, args) => {
+				Console.WriteLine(args.UserName);
+			};
 
-				Console.WriteLine("folders");
-				//Console.WriteLine(AppDomain.CurrentDomain.DynamicDirectory);
-				Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
-				Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.DynamicBase);
-				Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.PrivateBinPath);
 
-				var targetFolder =
-					AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("Users/ulu/Repositories");
- 
-				try {
-					//client.Progress += (sender, args) => Console.WriteLine(args.Progress.ToString() + "/" + args.TotalProgress);
-					//client.Processing += (sender, args) => Console.WriteLine(args.CommandType);
-					Uri uri;
-					new SvnRemoteSession(new Uri("https://subversion.assembla.com/svn/unyan/branches/Bunny")).GetRepositoryRoot(out uri);
-					//Console.WriteLine(uri);
-					var directoryName = Path.GetDirectoryName(uri.ToString());
-					var repositoryName = directoryName.PathRelativeTo(directoryName.ParentDirectory());
-					repositoryName = uri.ToString().GetFileNameUniversal();
-					Console.WriteLine(repositoryName);
-					targetFolder = targetFolder.AppendPath(repositoryName);
-					//return;
-					client.CheckOut(new SvnUriTarget("https://subversion.assembla.com/svn/unyan/branches/Bunny"),
-					                targetFolder);
+			string repositoryName = "protected";
+			Console.WriteLine(repositoryName);
+			targetFolder = targetFolder.AppendPath(repositoryName);
+			//return;
+			//client.LoadConfiguration(targetFolder, true);
+			try {
+				client.CheckOut(new SvnUriTarget("https://iigeeksoft.svn.cloudforge.com/protected"), targetFolder);
+			}
+			catch (Exception e) {
+				Console.WriteLine(e);
+			}	
+		}
+
+			using (var client = new SvnClient() ) {
 					var newFilePath = targetFolder.AppendPath(Path.GetFileName(Path.GetTempFileName()));
 					new FileSystem().WriteStringToFile(newFilePath, "-");
 					client.Add(newFilePath, new SvnAddArgs() { });
+					client.Authentication.UserNamePasswordHandlers += (sender, args) => {
+						Console.WriteLine(args.InitialUserName);
+					};
 					client.Commit(targetFolder, new SvnCommitArgs() { LogMessage = "Hey new commit!" });
-				}
-				finally {
-					Directory.Delete(targetFolder, true);
-				}
+				
 			}
+		}
+
+		[Test]
+		public void CanCreateALocalRepo() {
+			var repositoryPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("Users/ulu/Repositories");
+
 		}
 	}
 }

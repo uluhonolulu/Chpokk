@@ -19,6 +19,8 @@ using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using Microsoft.Build.Evaluation;
 using NuGet;
 using NuGet.Common;
+using SharpSvn;
+using SharpSvn.Security;
 using StructureMap.Configuration.DSL;
 using StructureMap.Pipeline;
 using IDependencyResolver = Microsoft.AspNet.SignalR.IDependencyResolver;
@@ -64,6 +66,16 @@ namespace ChpokkWeb.Infrastructure {
 			For<IAppRootProvider>().Use<AspNetAppRootProvider>();
 
 			For<CredentialsCache>().LifecycleIs(new HybridSessionLifecycle());
+			For<SvnClient>().Use(() =>
+			{
+				var client = new SvnClient();
+				client.Authentication.SslServerTrustHandlers += delegate(object sender, SvnSslServerTrustEventArgs e)
+				{
+					e.AcceptedFailures = e.Failures;
+					e.Save = true; // Save acceptance to authentication store
+				};
+				return client;
+			});
 		}
 	}
 }
