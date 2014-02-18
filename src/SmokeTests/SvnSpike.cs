@@ -16,7 +16,7 @@ using ChpokkWeb.Infrastructure;
 
 namespace SmokeTests {
 	public class SvnSpike {
-		[Test]//, Ignore("Appharbor doesn't like it")
+		[Test, Ignore("Appharbor doesn't like it")]//
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
 			var targetFolder =
 				AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("UserFiles/ulu/Repositories");
