@@ -16,7 +16,7 @@ using ChpokkWeb.Infrastructure;
 
 namespace SmokeTests {
 	public class SvnSpike {
-		[Test, Ignore("Appharbor doesn't like it")]
+		[Test]//, Ignore("Appharbor doesn't like it")
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
 			var targetFolder =
 				AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("UserFiles/ulu/Repositories");
@@ -26,7 +26,7 @@ namespace SmokeTests {
 			//Console.WriteLine(folder);
 			//Directory.CreateDirectory(folder);
 			//client.Authentication.Clear(); // prevents checking cached credentials
-			client.Authentication.ForceCredentials("-", "-");
+			//client.Authentication.ForceCredentials("-", "-");
 			//client.Authentication.DefaultCredentials = new NetworkCredential("--", "---");
 			client.Authentication.SslServerTrustHandlers += delegate(object sender, SvnSslServerTrustEventArgs e) {
 				e.AcceptedFailures = e.Failures;
@@ -34,38 +34,41 @@ namespace SmokeTests {
 			};
 			client.Authentication.UserNamePasswordHandlers += (sender, args) =>
 			{
-				args.UserName = "uluhonolulu";
-				args.Password = "xd11SvG23";
+				args.UserName = "drzitz";
+				args.Password = "iddqd710";
 				args.Save = true;
 			};
-			client.Authentication.UserNameHandlers += (sender, args) => {
-				Console.WriteLine(args.UserName);
-			};
+			//client.Authentication.UserNameHandlers += (sender, args) => {
+			//	Console.WriteLine(args.UserName);
+			//};
 
 
 			string repositoryName = "protected";
-			Console.WriteLine(repositoryName);
+			//Console.WriteLine(repositoryName);
 			targetFolder = targetFolder.AppendPath(repositoryName);
 			//return;
 			//client.LoadConfiguration(targetFolder, true);
+
 			try {
-				client.CheckOut(new SvnUriTarget("https://iigeeksoft.svn.cloudforge.com/protected"), targetFolder);
+				var repoUrl = "http://178.63.130.238:8080/svn/dis/trunk";
+				repoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk";
+				client.CheckOut(new SvnUriTarget(repoUrl), targetFolder);
 			}
 			catch (Exception e) {
 				Console.WriteLine(e);
 			}	
 		}
 
-			using (var client = new SvnClient() ) {
-					var newFilePath = targetFolder.AppendPath(Path.GetFileName(Path.GetTempFileName()));
-					new FileSystem().WriteStringToFile(newFilePath, "-");
-					client.Add(newFilePath, new SvnAddArgs() { });
-					client.Authentication.UserNamePasswordHandlers += (sender, args) => {
-						Console.WriteLine(args.InitialUserName);
-					};
-					client.Commit(targetFolder, new SvnCommitArgs() { LogMessage = "Hey new commit!" });
+			//using (var client = new SvnClient() ) {
+			//		var newFilePath = targetFolder.AppendPath(Path.GetFileName(Path.GetTempFileName()));
+			//		new FileSystem().WriteStringToFile(newFilePath, "-");
+			//		client.Add(newFilePath, new SvnAddArgs() { });
+			//		client.Authentication.UserNamePasswordHandlers += (sender, args) => {
+			//			Console.WriteLine(args.InitialUserName);
+			//		};
+			//		client.Commit(targetFolder, new SvnCommitArgs() { LogMessage = "Hey new commit!" });
 				
-			}
+			//}
 		}
 
 		[Test]

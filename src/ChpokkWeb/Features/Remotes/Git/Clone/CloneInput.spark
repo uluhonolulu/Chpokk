@@ -25,7 +25,7 @@
 
 				<div>
 					<label>
-						      Your repository URL (use the https://../*.git format)
+						      Your repository URL <span id="urlComment"></span>
 					      </label>
 				</div>
 				!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.RepoUrl).AddClass("form-control").Attr("value", "https://github.com/uluhonolulu/Chpokk-SampleSol.git")}
@@ -106,12 +106,14 @@
 						repoUrlControl.val(sampleGitUrl);
 					}
 					$('#cloneButton').text("Clone");
+					$('#urlComment').text("(use the https://../*.git format)");
 					break;
 				case 'svn':
 					if (urlNotModified) {
 						repoUrlControl.val(sampleSvnUrl);
 					}
-					$('#cloneButton').text("Checkout");					
+					$('#cloneButton').text("Checkout");
+					$('#urlComment').text("(include '/trunk', or '/branch/<branchname>' in the end)");
 			default:
 			}
 		}
