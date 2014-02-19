@@ -85,12 +85,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 					return model.RepoUrl;
 				case CloneInputModel.RepositoryTypes.SVN:
 					Uri uri = null;
-					try {
-						new SvnRemoteSession(new Uri(model.RepoUrl)).GetRepositoryRoot(out uri);
-					}
-					catch (Exception e) {
-						Console.WriteLine(e);
-					}
+					new SvnRemoteSession(new Uri(model.RepoUrl)).GetRepositoryRoot(out uri);
 					return uri.ToString().GetFileNameUniversal();
 			}
 			return null;
