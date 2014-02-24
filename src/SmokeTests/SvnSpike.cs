@@ -16,7 +16,7 @@ using ChpokkWeb.Infrastructure;
 
 namespace SmokeTests {
 	public class SvnSpike {
-		[Test, Ignore("Appharbor doesn't like it")]//
+		[Test]//, Ignore("Appharbor doesn't like it")
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
 			var targetFolder =
 				AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("UserFiles/ulu/Repositories");
@@ -38,12 +38,19 @@ namespace SmokeTests {
 				args.Password = "iddqd710";
 				args.Save = true;
 			};
-			//client.Authentication.UserNameHandlers += (sender, args) => {
-			//	Console.WriteLine(args.UserName);
-			//};
+			//client.Authentication.
+			client.Authentication.BeforeEngineDialog += (sender, args) => {
+				                                                              Console.WriteLine(args.ToString());
+			};
+			client.Notify += (sender, args) => {
+				                                   Console.WriteLine(args.Action);
+			};
+			client.Authentication.UserNameHandlers += (sender, args) => {
+				Console.WriteLine(args.UserName);
+			};
 
 
-			string repositoryName = "protected";
+			string repositoryName = "protecteddd";
 			//Console.WriteLine(repositoryName);
 			targetFolder = targetFolder.AppendPath(repositoryName);
 			//return;
@@ -51,7 +58,7 @@ namespace SmokeTests {
 
 			try {
 				var repoUrl = "http://178.63.130.238:8080/svn/dis/trunk";
-				repoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk";
+				//repoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk";
 				client.CheckOut(new SvnUriTarget(repoUrl), targetFolder);
 			}
 			catch (Exception e) {
