@@ -28,6 +28,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		private const string COMMON_USER_FOLDER = @"UserFiles";
 		private const string REPOSITORY_FOLDER = "Repositories";
+		private const string SVN_FOLDER = "svn";
 		private const string POKK_FOLDER = "Pokk";
 		private const string anonymousFolder = "__anonymous__";
 		// path for repository root, relative to AppRoot
@@ -87,6 +88,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public string GetRepositoryFolder() {
 			return GetUserFolder().AppendPath(REPOSITORY_FOLDER);
+		}
+
+		public string GetSvnFolder() {
+			return GetUserFolder().AppendPath(SVN_FOLDER);
 		}
 
 		public void MoveFilesToRepositoryFolder() {

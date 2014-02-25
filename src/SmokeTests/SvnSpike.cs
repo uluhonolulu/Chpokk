@@ -16,7 +16,7 @@ using ChpokkWeb.Infrastructure;
 
 namespace SmokeTests {
 	public class SvnSpike {
-		[Test]//, Ignore("Appharbor doesn't like it")
+		[Test, Ignore("Appharbor doesn't like it")]//
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
 			var targetFolder =
 				AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("UserFiles/ulu/Repositories");
@@ -43,18 +43,18 @@ namespace SmokeTests {
 				                                                              Console.WriteLine(args.ToString());
 			};
 			client.Notify += (sender, args) => {
-				                                   Console.WriteLine(args.Action);
+				Console.WriteLine(args.Action + ": " + args.Path);//action + nodekind + path
 			};
 			client.Authentication.UserNameHandlers += (sender, args) => {
 				Console.WriteLine(args.UserName);
 			};
 
 
-			string repositoryName = "protecteddd";
+			string repositoryName = "drzitz";
 			//Console.WriteLine(repositoryName);
 			targetFolder = targetFolder.AppendPath(repositoryName);
 			//return;
-			//client.LoadConfiguration(targetFolder, true);
+			client.LoadConfiguration(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\svn", true);
 
 			try {
 				var repoUrl = "http://178.63.130.238:8080/svn/dis/trunk";

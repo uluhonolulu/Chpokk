@@ -67,6 +67,8 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 					e.AcceptedFailures = e.Failures;
 					e.Save = true; // Save acceptance to authentication store
 				};
+
+				client.LoadConfiguration(_repositoryManager.GetSvnFolder(), true);
 				client.CheckOut(new SvnUriTarget(model.RepoUrl), repositoryPath);
 				
 			}
