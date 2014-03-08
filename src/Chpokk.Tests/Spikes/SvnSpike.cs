@@ -12,7 +12,11 @@ namespace Chpokk.Tests.Spikes {
 	public class SvnSpike {
 		[Test]
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
-			using (var client = new SharpSvn.SvnClient()) {
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			foreach (var assembly in assemblies) {
+				Console.WriteLine(assembly.FullName + ": " + assembly.GetName().ProcessorArchitecture);
+			}
+			using (var client = new SvnClient()) {
 				SvnUpdateResult result;
 				SvnRepositoryClient repositoryClient;
 				var tmpFolder = Path.GetTempPath();

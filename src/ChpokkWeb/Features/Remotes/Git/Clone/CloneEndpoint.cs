@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core;
@@ -11,17 +12,20 @@ using FubuCore;
 using SharpSvn;
 using SharpSvn.Remote;
 using SharpSvn.Security;
+using System.Linq;
 
 namespace ChpokkWeb.Features.Remotes.Git.Clone {
 	public class CloneEndpoint {
 
 		private readonly IUrlRegistry _registry;
 		private readonly RepositoryManager _repositoryManager;
-		private CredentialsCache _credentialsCache;
-		public CloneEndpoint(IUrlRegistry registry, RepositoryManager repositoryManager, CredentialsCache credentialsCache) {
+		private readonly CredentialsCache _credentialsCache;
+		private IFileSystem _fileSystem;
+		public CloneEndpoint(IUrlRegistry registry, RepositoryManager repositoryManager, CredentialsCache credentialsCache, IFileSystem fileSystem) {
 			_registry = registry;
 			_repositoryManager = repositoryManager;
 			_credentialsCache = credentialsCache;
+			_fileSystem = fileSystem;
 		}
 
 		[JsonEndpoint]
@@ -68,6 +72,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 					e.Save = true; // Save acceptance to authentication store
 				};
 
+				_fileSystem.CreateDirectory(_repositoryManager.GetSvnFolder());
 				client.LoadConfiguration(_repositoryManager.GetSvnFolder(), true);
 				client.CheckOut(new SvnUriTarget(model.RepoUrl), repositoryPath);
 				
@@ -91,6 +96,15 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 					return uri.ToString().GetFileNameUniversal();
 			}
 			return null;
+		}
+
+		private string GetAssemblies() {
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			var builder = new StringBuilder();
+			foreach (var assembly in assemblies.Where(assembly => assembly.GetName().ProcessorArchitecture.ToString() != "MSIL")) {
+				builder.AppendLine(assembly.FullName + ": " + assembly.GetName().ProcessorArchitecture);
+			}
+			return builder.ToString();
 		}
 
 
