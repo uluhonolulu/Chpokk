@@ -95,10 +95,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Chpokk.Tests\Chpokk.Tests.csproj">
-      <Project>{6b9d37ab-eec9-4af2-af04-1cd65c2076ee}</Project>
-      <Name>Chpokk.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ChpokkWeb\ChpokkWeb.csproj">
       <Project>{244CBBEC-847E-4E0D-8857-05BB34878174}</Project>
       <Name>ChpokkWeb</Name>

@@ -58,7 +58,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Arractas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
+      <HintPath>..\..\lib\Arractas.dll</HintPath>
     </Reference>
     <Reference Include="AWSSDK, Version=1.5.22.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -117,7 +117,9 @@
     <Reference Include="FubuValidation.StructureMap">
       <HintPath>..\packages\FubuValidation.0.9.10.709\lib\FubuValidation.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" >
+      <HintPath>..\..\lib\Gallio.dll</HintPath>
+    </Reference>
     <Reference Include="FubuLocalization">
       <HintPath>..\packages\FubuLocalization.0.9.5.126\lib\FubuLocalization.dll</HintPath>
     </Reference>
