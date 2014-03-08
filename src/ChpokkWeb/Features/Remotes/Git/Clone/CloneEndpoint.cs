@@ -73,6 +73,9 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 				};
 
 				_fileSystem.CreateDirectory(_repositoryManager.GetSvnFolder());
+				if (!Directory.Exists(_repositoryManager.GetSvnFolder())) {
+					throw new ApplicationException("Couldn't create folder " + _repositoryManager.GetSvnFolder());
+				}
 				client.LoadConfiguration(_repositoryManager.GetSvnFolder(), true);
 				client.CheckOut(new SvnUriTarget(model.RepoUrl), repositoryPath);
 				
