@@ -8,8 +8,7 @@ using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.RepositoryManagement {
 	public class RepositoryEndpoint {
-		[NotNull]
-		private readonly RepositoryCache _repositoryCache;
+
 		[NotNull]
 		private readonly RepositoryManager _manager;
 		private Restore _restore;
@@ -17,15 +16,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[UrlPattern("Repository/{RepositoryName}")]
 		public RepositoryModel Get(RepositoryInputModel input) {
-			// let's add it to the cache first
-			var info = _manager.GetRepositoryInfo(input.RepositoryName);
-			_repositoryCache[info.Path] = info;
 			return new RepositoryModel() { RepositoryName = input.RepositoryName };
 		}
 
-		public RepositoryEndpoint([NotNull]RepositoryManager manager, [NotNull]RepositoryCache repositoryCache, Restore restore) {
+		public RepositoryEndpoint([NotNull]RepositoryManager manager, Restore restore) {
 			_manager = manager;
-			_repositoryCache = repositoryCache;
 			_restore = restore;
 		}
 

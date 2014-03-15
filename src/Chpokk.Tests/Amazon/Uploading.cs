@@ -24,7 +24,7 @@ namespace Chpokk.Tests.Amazon {
 
 		public override void Act() {
 			var uploader =  Context.Container.Get<Uploader>();
-			uploader.PublishFolder(Context.RepositoryRoot, Context.AppRoot);
+			uploader.UploadFolder(Context.RepositoryRoot, Context.AppRoot);
 		}
 
 		public override void CleanUp() {

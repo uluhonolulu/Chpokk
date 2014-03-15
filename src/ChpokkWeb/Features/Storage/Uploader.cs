@@ -11,7 +11,7 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 
-		public void PublishFolder(string path, string appRoot) {
+		public void UploadFolder(string path, string appRoot) {
 			foreach (var filePath in Directory.GetFiles(path)) {
 				var pathRelativetoAppRoot = filePath.PathRelativeTo(appRoot);
 				var key = pathRelativetoAppRoot.Replace('\\', '/');
@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.Storage {
 			}
 
 			foreach (var directory in Directory.GetDirectories(path)) {
-				PublishFolder(directory, appRoot);
+				UploadFolder(directory, appRoot);
 			}
 		}
 	}

@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using SharpSvn;
 using FubuCore;
-using SharpSvn.Remote;
 using SharpSvn.Security;
-using ChpokkWeb.Infrastructure;
+using MbUnit.Framework;
 
 //bitness on AppHarbor: 32bit
 
-namespace SmokeTests {
+namespace SvnTests {
 	public class SvnSpike {
 		[Test]//, Ignore("Appharbor doesn't like it")
 		public void CanCreateARepositoryAndCheckoutFilesAndCommit() {
@@ -35,8 +28,8 @@ namespace SmokeTests {
 			client.Authentication.UserNamePasswordHandlers += (sender, args) =>
 			{
 				args.UserName = "drzitz";
-				args.UserName = "guest";
-				//args.Password = "iddqd710";
+				//args.UserName = "guest";
+				args.Password = "iddqd710";
 				args.Save = true;
 			};
 			//client.Authentication.
@@ -59,8 +52,9 @@ namespace SmokeTests {
 
 			try {
 				var repoUrl = "http://178.63.130.238:8080/svn/dis/trunk";
-				repoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk";
-				targetFolder = @"D:\Projects\OSS\sharpsvn_2";
+				//repoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk";
+				//targetFolder = @"D:\Projects\OSS\sharpsvn_2";
+				targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\Repositories\drzitz";
 				client.CheckOut(new SvnUriTarget(repoUrl), targetFolder);
 			}
 			catch (Exception e) {

@@ -13,6 +13,7 @@ using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.SaveCommit;
 using ChpokkWeb.Features.RepositoryManagement;
+using ChpokkWeb.Features.Storage;
 using Emkay.S3;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
@@ -29,7 +30,7 @@ using ILogger = Microsoft.Build.Framework.ILogger;
 namespace ChpokkWeb.Infrastructure {
 	public class ChpokkRegistry : Registry {
 		public ChpokkRegistry() {
-			For<RepositoryCache>().LifecycleIs(new HybridSessionLifecycle());
+			For<Uploader>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectContentRegistry>().Singleton();
 			For<ProjectCache>().LifecycleIs(new HybridSessionLifecycle());
 			For<HttpContext>().Use(() => HttpContext.Current);
@@ -65,7 +66,7 @@ namespace ChpokkWeb.Infrastructure {
 
 			For<IAppRootProvider>().Use<AspNetAppRootProvider>();
 
-			For<CredentialsCache>().LifecycleIs(new HybridSessionLifecycle());
+			//For<CredentialsCache>().LifecycleIs(new HybridSessionLifecycle());
 			For<SvnClient>().Use(() =>
 			{
 				var client = new SvnClient();

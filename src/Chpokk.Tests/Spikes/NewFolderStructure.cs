@@ -55,7 +55,7 @@ namespace Chpokk.Tests.Spikes {
 
 		public override void Act() {
 			var uploader = Context.Container.Get<Uploader>();
-			uploader.PublishFolder(Context.AppRoot.AppendPath(@"UserFiles\__anonymous__"), Context.AppRoot);
+			uploader.UploadFolder(Context.AppRoot.AppendPath(@"UserFiles\__anonymous__"), Context.AppRoot);
 		}
 	}
 }

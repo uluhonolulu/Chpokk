@@ -16,14 +16,21 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
 		private readonly IFileSystem _fileSystem;
 		private readonly Downloader _downloader;
+		private Backup _backup;
 		private readonly IAppRootProvider _rootProvider;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
 			_downloader = downloader;
 			_rootProvider = rootProvider;
+			_backup = backup;
+			RegisterUserFolderForBackup();
+		}
+
+		private void RegisterUserFolderForBackup() {
+			_backup.RegisterUserFolder(this.GetUserFolder());
 		}
 
 		private const string COMMON_USER_FOLDER = @"UserFiles";

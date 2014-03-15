@@ -25,13 +25,11 @@ namespace Chpokk.Tests.Amazon {
 
 		public override void Act() {
 			// add it to the cache by calling the browser
-			var input = new RepositoryInputModel {RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot};
-			var controller = Context.Container.Get<RepositoryEndpoint>();
-			controller.Get(input);
+			var manager = Context.Container.Get<RepositoryManager>();
 
 			// now abandon the session
-			var cache = Context.Container.Get<RepositoryCache>();
-			cache.Dispose();
+			var backup = Context.Container.Get<Backup>();
+			backup.Dispose();
 		}
 
 		[FixtureSetUp]
