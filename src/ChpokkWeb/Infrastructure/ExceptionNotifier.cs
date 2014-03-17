@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ChpokkWeb.Infrastructure {
 	public class ExceptionNotifier {
-		private SmtpClient _mailer;
+		private readonly SmtpClient _mailer;
 		public ExceptionNotifier(SmtpClient mailer) {
 			_mailer = mailer;
 		}

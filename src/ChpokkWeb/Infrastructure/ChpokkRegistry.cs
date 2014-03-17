@@ -30,7 +30,7 @@ using ILogger = Microsoft.Build.Framework.ILogger;
 namespace ChpokkWeb.Infrastructure {
 	public class ChpokkRegistry : Registry {
 		public ChpokkRegistry() {
-			For<Uploader>().LifecycleIs(new HybridSessionLifecycle());
+			For<Backup>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectContentRegistry>().Singleton();
 			For<ProjectCache>().LifecycleIs(new HybridSessionLifecycle());
 			For<HttpContext>().Use(() => HttpContext.Current);

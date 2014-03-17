@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Authentication;
+using ChpokkWeb.Infrastructure;
 using FubuMVC.Core.Ajax;
-using Gotcha;
 
 namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class StartTrialEndpoint {
@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			UpdateUser();
 			var user = _userManager.GetCurrentUser();
 			if (user.Email != null) {
-				_chimper.SubscribeUser(user.Email, user.FullName);
+				dynamic result = _chimper.SubscribeUser(user.Email, user.FullName);
 			}
 			return AjaxContinuation.Successful();
 		}
