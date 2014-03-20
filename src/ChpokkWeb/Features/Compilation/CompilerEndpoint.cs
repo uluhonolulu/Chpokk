@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using ChpokkWeb.Features.Files;
 using ChpokkWeb.Features.RepositoryManagement;
@@ -49,12 +51,15 @@ namespace ChpokkWeb.Features.Compilation {
 			if (compilationResult.OutputType != "Exe") {
 				throw new InvalidOperationException("I can run only console apps");
 			}
-			_logger.SendMessage("");
-			_logger.SendMessage("Running..", ChpokkLogger.MessageType.Success);
-			var exePath = compilationResult.OutputFilePath;
-			var runnerResult = _exeRunner.RunMain(exePath, c => _logger.SendMessage(c.ToString(), ChpokkLogger.MessageType.Info, false), c => _logger.SendMessage(c.ToString(), ChpokkLogger.MessageType.Error, false));
-			runnerResult = runnerResult ?? "null";
-			_logger.SendMessage("The program returned " + runnerResult, ChpokkLogger.MessageType.Success, true);
+			Task.Run(() => {
+				_logger.SendMessage("");
+				_logger.SendMessage("Running..", ChpokkLogger.MessageType.Success);
+				var exePath = compilationResult.OutputFilePath;
+				var runnerResult = _exeRunner.RunMain(exePath, c => _logger.SendMessage(c.ToString(), ChpokkLogger.MessageType.Info, false), c => _logger.SendMessage(c.ToString(), ChpokkLogger.MessageType.Error, false));
+				runnerResult = runnerResult ?? "null";
+				_logger.SendMessage("The program returned " + runnerResult, ChpokkLogger.MessageType.Success, true);
+			});
+			Thread
 			return AjaxContinuation.Successful();
 		}
 	}
