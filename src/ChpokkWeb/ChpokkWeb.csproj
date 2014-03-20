@@ -693,6 +693,7 @@
     <Compile Include="Features\Authentication\LoginStatusAnonModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusAuthenticatedModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />
+    <Compile Include="Features\Authentication\LogoutEndpoint.cs" />
     <Compile Include="Features\Authentication\SignoutJohnDoeBehavior.cs" />
     <Compile Include="Features\Authentication\UsageCounter.cs" />
     <Compile Include="Features\Authentication\UsageRecorder.cs" />

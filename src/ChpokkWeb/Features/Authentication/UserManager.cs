@@ -27,6 +27,10 @@ namespace ChpokkWeb.Features.Authentication {
 			return userName;
 		}
 
+		public void SignoutUser() {
+			_authenticationContext.SignOut();
+		}
+
 		public dynamic GetUser(string userName) {
 			var db = Database.Open();
 			return db.Users.FindByUserId(userName);
