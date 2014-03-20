@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using ChpokkWeb.Features.Files;
@@ -59,7 +58,7 @@ namespace ChpokkWeb.Features.Compilation {
 				runnerResult = runnerResult ?? "null";
 				_logger.SendMessage("The program returned " + runnerResult, ChpokkLogger.MessageType.Success, true);
 			});
-			Thread
+
 			return AjaxContinuation.Successful();
 		}
 	}
