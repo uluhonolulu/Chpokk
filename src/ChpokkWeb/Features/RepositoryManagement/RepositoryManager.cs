@@ -107,7 +107,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 				return;
 			var childFoldersOfUserFolder = Directory.EnumerateDirectories(userFolder, "*", SearchOption.TopDirectoryOnly);
 			foreach (var childFolder in childFoldersOfUserFolder) {
-				if (!childFolder.EndsWith(REPOSITORY_FOLDER) && !childFolder.EndsWith(POKK_FOLDER)) {
+				if (!childFolder.EndsWith(REPOSITORY_FOLDER) && !childFolder.EndsWith(POKK_FOLDER) && !childFolder.EndsWith(SVN_FOLDER)) {
 					var targetFolder = childFolder.Replace(userFolder, GetRepositoryFolder());
 					//_fileSystem.CreateDirectory(targetFolder);
 					//Console.WriteLine("Moving {0} to {1}", childFolder, targetFolder);
