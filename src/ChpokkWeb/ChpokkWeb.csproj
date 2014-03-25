@@ -259,13 +259,13 @@
     <Reference Include="Serenity">
       <HintPath>..\packages\Serenity.0.9.8.120\lib\net40\Serenity.dll</HintPath>
     </Reference>
-    <Reference Include="SharpSvn, Version=1.7014.2690.15450, Culture=neutral, PublicKeyToken=d729672594885a28, processorArchitecture=x86">
+    <Reference Include="SharpSvn, Version=1.8005.2830.15589, Culture=neutral, PublicKeyToken=d729672594885a28, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SharpSvn.1.7-x86.1.7014.2690\lib\net20\SharpSvn.dll</HintPath>
+      <HintPath>..\packages\SharpSvn.1.8-x86.1.8005.2830\lib\net20\SharpSvn.dll</HintPath>
     </Reference>
-    <Reference Include="SharpSvn.UI, Version=1.7014.2690.15450, Culture=neutral, PublicKeyToken=33789aa53ca44aa9, processorArchitecture=x86">
+    <Reference Include="SharpSvn.UI, Version=1.8005.2830.15589, Culture=neutral, PublicKeyToken=33789aa53ca44aa9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SharpSvn.1.7-x86.1.7014.2690\lib\net20\SharpSvn.UI.dll</HintPath>
+      <HintPath>..\packages\SharpSvn.1.8-x86.1.8005.2830\lib\net20\SharpSvn.UI.dll</HintPath>
     </Reference>
     <Reference Include="Simple.Data, Version=0.18.3.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

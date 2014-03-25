@@ -25,6 +25,7 @@ namespace SvnTests {
 				e.AcceptedFailures = e.Failures;
 				e.Save = true; // Save acceptance to authentication store
 			};
+			client.Authentication.UserNamePasswordHandlers -= SvnAuthentication.SubversionWindowsUserNamePasswordHandler;
 			client.Authentication.UserNamePasswordHandlers += (sender, args) =>
 			{
 				args.UserName = "drzitz";

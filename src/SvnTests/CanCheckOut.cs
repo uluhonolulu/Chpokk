@@ -25,7 +25,11 @@ namespace SvnTests {
 			var endpoint = Context.Container.Get<CloneEndpoint>();
 			var continuation = endpoint.CloneRepository(new CloneInputModel()
 				{
-					_repositoryType = "svn", RepoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk", Username = "guest"
+					//_repositoryType = "svn", RepoUrl = "https://sharpsvn.open.collab.net/svn/sharpsvn/trunk", Username = "guest"
+					_repositoryType = "svn",
+					RepoUrl = "http://178.63.130.238:8080/svn/dis/trunk",
+					Username = "drzitz",
+					Password = "iddqd710"
 				});
 		}
 	}

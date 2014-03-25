@@ -59,6 +59,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 		private void CheckoutSvnRepository(CloneInputModel model, string repositoryPath) {
 			using (var client = new SvnClient()) {
 				if (model.Username.IsNotEmpty()) {
+					client.Authentication.UserNamePasswordHandlers -= SvnAuthentication.SubversionWindowsUserNamePasswordHandler;
 					client.Authentication.UserNamePasswordHandlers += (sender, args) =>
 					{
 						args.UserName = model.Username;
@@ -95,7 +96,10 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 					return model.RepoUrl;
 				case CloneInputModel.RepositoryTypes.SVN:
 					Uri uri = null;
-					new SvnRemoteSession(new Uri(model.RepoUrl)).GetRepositoryRoot(out uri);
+					var remoteSession = new SvnRemoteSession();
+					remoteSession.Authentication.ForceCredentials(model.Username, model.Password);
+					remoteSession.Open(new Uri(model.RepoUrl));
+					remoteSession.GetRepositoryRoot(out uri);
 					return uri.ToString().GetFileNameUniversal();
 			}
 			return null;
