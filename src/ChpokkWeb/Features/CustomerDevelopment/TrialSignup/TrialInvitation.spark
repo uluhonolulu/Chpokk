@@ -19,7 +19,8 @@
         });
 
         function displayTrialInvitation() {
-            $('#trialDialog').modal();
+        	track("Displaying invitation");
+        	$('#trialDialog').modal();
         }
     </script>
 <div class="modal fade" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">

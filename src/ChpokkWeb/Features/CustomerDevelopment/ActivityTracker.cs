@@ -23,9 +23,10 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 
-		public void Record(string userName, string caption, string url) {
+		public void Record(string userName, string caption, string url, string browser) {
 			_log.Add(new TrackerInputModel{What = caption, Url = url});
 			UserName = userName ?? _securityContext.CurrentIdentity.Name;
+			if (Browser.IsEmpty()) Browser = browser;
 		}
 
 		public void Dispose() {
@@ -34,6 +35,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			}
 			var messageBuilder = new StringBuilder();
 			messageBuilder.AppendLine("User: " + UserName);
+			messageBuilder.AppendLine("Browser: " + Browser);
 			foreach (var model in _log) {
 				messageBuilder.AppendLine(model.ToString());
 			}
@@ -62,6 +64,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		public string UserName { get; set; }
+		public string Browser { get; set; }
 		public void RecordException(ErrorModel model) {
 			_log.Add(model);
 		}

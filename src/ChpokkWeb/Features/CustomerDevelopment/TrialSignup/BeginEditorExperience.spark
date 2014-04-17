@@ -3,13 +3,19 @@
 <use namespace="ChpokkWeb.Features.CustomerDevelopment.TrialSignup" />
 
 <content name="InlineScripts">
-    <!-- BeginEditorExperience.spark -->
+	<!-- BeginEditorExperience.spark -->
+	<script>
+	    $(function () {
+		    track("User status from server: !{Model.ShouldStart}");
+	    })
+	</script> 	
     <if condition="Model.ShouldStart == InterestStatus.Newbie">
 	    <script>
 	        $(function () {
 	            var userHub = $.connection.userHub;
 	            $.connection.hub.start().done(function () {
-	                userHub.server.onStartPlayingWith();
+	            	var status = userHub.server.onStartPlayingWith();
+		            track("User status: " + status);
 	            });
 	        })
 	    </script>        
@@ -17,9 +23,9 @@
     <if condition="Model.ShouldStart == InterestStatus.TrialCanceled">
 	    <script>
 	        $(function () {
-	            displayTrialInvitation();
+	        	displayTrialInvitation();
 	        })
 	    </script>        
     </if>
-    <!-- !{Model.ShouldStart} -->
+	!{"<!--"} !{Model.ShouldStart} -->
 </content>

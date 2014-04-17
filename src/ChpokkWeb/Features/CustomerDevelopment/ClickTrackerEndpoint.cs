@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 		public void DoIt(TrackerInputModel model) {
 			var userName = _securityContext.IsAuthenticated() ? _securityContext.CurrentIdentity.Name : null;
-			_activityTracker.Record(userName, model.What, model.Url);
+			_activityTracker.Record(userName, model.What, model.Url, model.Browser);
 		}
 
 		public void TrackErrors(ErrorModel model) {
@@ -32,6 +32,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		public string What { get; set; }
 		public string Url { get; set; }
 		public DateTime When { get; private set; }
+		public string Browser { get; set; }
 		public override string ToString() {
 			return "{2}: Url: {0}, what: {1}".ToFormat(this.Url, this.What, this.When.ToString("HH:mm:ss"));
 		}

@@ -33,13 +33,15 @@ $(function () {
 		track('Page load');
 	});
 
-	function track(message) {
-		var data = { What: message, Url: window.location.toString() };
-		var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrackerInputModel';
-		$.post(url, data);		
-	}
-
 });
+
+//track client-side stuff
+function track(message) {
+	var browser = BrowserDetect.browser + ' ' + BrowserDetect.version + ' on ' + BrowserDetect.OS;
+	var data = { What: message, Url: window.location.toString(), Browser: browser };
+	var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrackerInputModel';
+	$.post(url, data);		
+}
 
 (function() {
 	var alertTemplate = '<div class="alert alert-dismissable alert-${type}" style=\'white-space:pre;\'> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
