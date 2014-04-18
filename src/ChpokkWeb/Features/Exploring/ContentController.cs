@@ -49,6 +49,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		//[AsymmetricJson]
 		public CodeEditorModel GetContent(FileContentInputModel model) {
+			_repositoryManager.EnsureAuthenticated();
 			var filePath = _repositoryManager.GetPhysicalFilePath(model);
 			return new CodeEditorModel { Content = _fileSystem.ReadStringFromFile(filePath), ProjectPath = model.ProjectPath, RepositoryName = model.RepositoryName, PathRelativeToRepositoryRoot = model.PathRelativeToRepositoryRoot };
 		}
