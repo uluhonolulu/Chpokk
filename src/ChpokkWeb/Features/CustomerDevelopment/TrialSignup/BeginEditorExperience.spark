@@ -15,7 +15,11 @@
 	            var userHub = $.connection.userHub;
 	            $.connection.hub.start().done(function () {
 	            	var status = userHub.server.onStartPlayingWith();
-		            track("User status: " + status);
+	            	try {
+	            		track("User status: " + JSON.stringify(status));
+	            	} catch (e) {
+	            		track("User status threw an exception: " + e.toString());
+	            	};
 	            });
 	        })
 	    </script>        
