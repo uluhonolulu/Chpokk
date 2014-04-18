@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Authentication;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
@@ -184,7 +185,12 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			MoveFilesToRepositoryFolder();
 		}
 
-		
+		public void EnsureAuthenticated() {
+			if (!_securityContext.IsAuthenticated()) {
+				throw new AuthenticationException("Your session has expired. Please reload this page to relogin.");
+			}
+			
+		}
 	}
 }
 
