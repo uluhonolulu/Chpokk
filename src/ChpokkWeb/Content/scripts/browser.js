@@ -1,9 +1,9 @@
 ﻿function build_li(item, data) {
-	var fileExtension = item.PathRelativeToRepositoryRoot? item.PathRelativeToRepositoryRoot.split('.').pop() : item.Data.ProjectPath;
+	var itemContainer = build_item(item);
 	var li = $('<li/>')
 				.attr('data-type', item.Type)
 				.attr('data-path', item.PathRelativeToRepositoryRoot)
-				.append($('<span/>').addClass(item.Type).addClass(fileExtension).text(item.Name));
+				.append(itemContainer);
 	// handle folder path for solutions and projects
 	if (item.Data && item.Data.Folder)
 		li.attr('data-path', item.Data.Folder);
@@ -19,6 +19,34 @@
 		li.append(build_ul(item.Children, data));
 	}
 	return li;
+}
+
+function build_item(item) {
+	var fileExtension = item.PathRelativeToRepositoryRoot ? item.PathRelativeToRepositoryRoot.split('.').pop() : item.Data.ProjectPath;
+	// itemContainer is the tag surrounding the item's name
+	var itemContainer = $('<span/>').addClass(item.Type).addClass(fileExtension).text(item.Name);
+	// on focus, set it editable and track the old value; 
+	itemContainer.dblclick(function () {
+		$(this).attr('contentEditable', true).prop('oldValue', $(this).text());
+	});
+	// on blur, set it not editable and send the rename command to server
+	itemContainer.blur(function () {
+		$(this).attr('contentEditable', false);
+		alert($(this).prop('oldValue') + ' ->' + $(this).text());
+	});
+	// on Enter, let's blur
+	itemContainer.keyup(function (e) {
+		if (e.which == 13) {
+			e.preventDefault();
+			$(this).blur();
+		}
+	});
+	itemContainer.keydown(function (e) { //at least in Chrome we need to block Enter here so that we don't break the line
+		if (e.which == 13) {
+			e.preventDefault();
+		}
+	});
+	return itemContainer;
 }
 
 function build_ul(items, data) {
