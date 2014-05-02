@@ -32,7 +32,11 @@ function reportException(data) {
 }
 
 function reportErrorObject(e) {
-	var stackTrace = getStackForErrorObject(e);
+	var stackTrace;
+	try {
+		stackTrace = getStackForErrorObject(e);
+	} catch(ee) {
+	} 
 	if (!stackTrace) stackTrace = getStackTrace();
 	if (stackTrace) stackTrace = stackTrace.join('\n');
 	var data = { Message: e.message, StackTrace: stackTrace };

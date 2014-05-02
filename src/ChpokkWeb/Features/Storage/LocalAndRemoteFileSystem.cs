@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Storage {
 
 		public void WriteStreamToFile(string filename, Stream stream) {
 			_localSystem.WriteStreamToFile(filename, stream);
-			//_remoteSystem.WriteStreamToFile(filename, stream);
+			_remoteSystem.WriteStreamToFile(filename, stream);
 		}
 
 		public void WriteStringToFile(string filename, string text) {

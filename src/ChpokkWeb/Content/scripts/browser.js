@@ -5,8 +5,9 @@
 				.attr('data-path', item.PathRelativeToRepositoryRoot)
 				.append(itemContainer);
 	// handle folder path for solutions and projects
-	if (item.Data && item.Data.Folder)
-		li.attr('data-path', item.Data.Folder);
+	// update: shouldn't do this -- bad for renaming
+	//if (item.Data && item.Data.Folder)
+	//	li.attr('data-path', item.Data.Folder);
 	// append data
 	if (data || item.Data) {
 		data = data || {};
@@ -22,7 +23,7 @@
 }
 
 function build_item(item) {
-	var fileExtension = item.PathRelativeToRepositoryRoot ? item.PathRelativeToRepositoryRoot.split('.').pop() : item.Data.ProjectPath;
+	var fileExtension = item.PathRelativeToRepositoryRoot.split('.').pop();
 	// itemContainer is the tag surrounding the item's name
 	var itemContainer = $('<span/>').addClass(item.Type).addClass(fileExtension).text(item.Name);
 	// on focus, set it editable and track the old value; 
@@ -32,7 +33,9 @@ function build_item(item) {
 	// on blur, set it not editable and send the rename command to server
 	itemContainer.blur(function () {
 		$(this).attr('contentEditable', false);
-		alert($(this).prop('oldValue') + ' ->' + $(this).text());
+		if ($(this).prop('oldValue') != $(this).text()) {
+			rename($(this));
+		}
 	});
 	// on Enter, let's blur
 	itemContainer.keyup(function (e) {
@@ -83,4 +86,9 @@ function newItem(path) { //deprecated: we now reload all items
 	ul.append(build_li(item));
 }
 
-//amplify.subscribe('newItem', newItem);//deprecated: we now reload all items
+function rename(itemContainer) {
+	var url = 'url::ChpokkWeb.Features.Exploring.Rename.RenameInputModel';
+	var data = $.extend({}, model, { PathRelativeToRepositoryRoot: itemContainer.parent().data('path'), NewFileName: itemContainer.text() });
+	$.post(url, data);
+	//use 
+}

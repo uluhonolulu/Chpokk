@@ -369,6 +369,7 @@
     <Compile Include="References\AddingAFileBasedReference.cs" />
     <Compile Include="References\AddingAPackage.cs" />
     <Compile Include="References\ListingPackages.cs" />
+    <Compile Include="Renaming\SolutionRenaming.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Run\BuildableProjectWithExeOutput.cs" />
@@ -404,7 +405,6 @@
     <Compile Include="Spikes\Security.cs" />
     <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
-    <Compile Include="Spikes\SvnSpike.cs" />
     <Compile Include="Spikes\WhyDoesPartialHaveAMaster.cs" />
     <Compile Include="Uploading\UploadingZipFileContext.cs" />
     <Compile Include="Uploading\UploadingZippedRepo.cs" />

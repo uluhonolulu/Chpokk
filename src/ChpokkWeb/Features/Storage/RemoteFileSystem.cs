@@ -53,6 +53,10 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void Copy(string source, string destination) {
+			//question: shall we upload the file if the remote doesn't exist? probably we should if we go multiple
+			if (!FileExists(source)) {
+				return;
+			}
 			var tempFilename = Path.GetTempFileName();
 			var remoteSource = source.ToRemoteFileName(AppRoot);
 			_client.DownloadFile(bucketName, remoteSource, tempFilename, 0);
