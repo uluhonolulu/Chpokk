@@ -18,19 +18,22 @@ namespace ChpokkWeb.Features.Exploring {
 		private readonly ProjectParser _projectParser;
 		[NotNull]
 		private readonly FileItemToProjectItemConverter _converter;
+		[NotNull]
+		private IAppRootProvider _rootProvider;
 
-		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter) {
+		public SolutionFileLoader(SolutionParser solutionParser, IFileSystem fileSystem, ProjectParser projectParser, FileItemToProjectItemConverter converter, IAppRootProvider rootProvider) {
 			_solutionParser = solutionParser;
 			_fileSystem = fileSystem;
 			_projectParser = projectParser;
 			_converter = converter;
+			_rootProvider = rootProvider;
 		}
 
-		public RepositoryItem CreateSolutionItem(string repositoryRoot, string filePath) {
+		public RepositoryItem CreateSolutionItem(string filePath, string repositoryRoot) {
 			var solutionItem = new RepositoryItem {
-				Name = filePath.GetFileNameUniversal(),
+				Name = filePath.GetFileNameUniversal().RemoveExtension(),
 				PathRelativeToRepositoryRoot = filePath.PathRelativeTo(repositoryRoot),
-				Data = new Dictionary<string, string> {{"Folder", filePath.ParentDirectory().PathRelativeTo(repositoryRoot)}},
+				Data = new Dictionary<string, string> { { "Folder", filePath.ParentDirectory().PathRelativeTo(repositoryRoot) }, { "SolutionPath", filePath.PathRelativeTo(repositoryRoot) }, { "KeepExtension", Path.GetExtension(filePath) } },
 				Type = "folder"
 			};
 			_fileSystem.ReadStringFromFile(filePath);

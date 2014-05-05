@@ -4,6 +4,7 @@ using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using MbUnit.Framework;
 using System.Linq;
+using Shouldly;
 
 namespace Chpokk.Tests.Exploring {
 	[TestFixture]
@@ -11,6 +12,11 @@ namespace Chpokk.Tests.Exploring {
 		[Test]
 		public void ShouldSeeTheProject() {
 			Assert.AreEqual(1, SolutionItem.Children.Count);
+		}
+
+		[Test]
+		public void PathShouldBeRelativeToRepositoryRoot() {
+			SolutionItem.PathRelativeToRepositoryRoot.ShouldBe(Context.RelativeSolutionPath);
 		}
 
 		[Test]

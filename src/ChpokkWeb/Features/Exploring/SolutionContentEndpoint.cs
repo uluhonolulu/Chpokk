@@ -32,13 +32,12 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName, string physicalApplicationPath) {
-			var info = _repositoryManager.GetRepositoryInfo(repositoryName);
-			var folder = FileSystem.Combine(physicalApplicationPath, info.Path);
-			var files = _fileSystem.FindFiles(folder, new FileSet {Include = "*.sln"});
+			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			var files = _fileSystem.FindFiles(repositoryRoot, new FileSet {Include = "*.sln"});
 			var items =
 				files.Select(
 					filePath =>
-					_solutionFileLoader.CreateSolutionItem(folder, filePath));
+					_solutionFileLoader.CreateSolutionItem(filePath, repositoryRoot));
 			return items;
 		}
 

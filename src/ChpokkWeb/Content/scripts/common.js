@@ -62,6 +62,14 @@ function track(message) {
 }());
 
 window.alert = danger;
+
+// get all data of an element
+jQuery.fn.allData = function () {
+	var intID = jQuery.data(this.get(0));
+	return (jQuery.cache[intID]);
+};
+
+
 // util
 function currentTime() {
 	var dd = new Date();

@@ -369,6 +369,7 @@
     <Compile Include="References\AddingAFileBasedReference.cs" />
     <Compile Include="References\AddingAPackage.cs" />
     <Compile Include="References\ListingPackages.cs" />
+    <Compile Include="Renaming\ProjectRenaming.cs" />
     <Compile Include="Renaming\SolutionRenaming.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />

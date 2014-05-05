@@ -1,5 +1,9 @@
 ﻿function build_li(item, data) {
-	var itemContainer = build_item(item);
+	if (data || item.Data) {
+		data = data || {};
+		$.extend(data, item.Data);
+	}
+	var itemContainer = build_item(item, data);
 	var li = $('<li/>')
 				.attr('data-type', item.Type)
 				.attr('data-path', item.PathRelativeToRepositoryRoot)
@@ -9,23 +13,22 @@
 	//if (item.Data && item.Data.Folder)
 	//	li.attr('data-path', item.Data.Folder);
 	// append data
-	if (data || item.Data) {
-		data = data || {};
-		$.extend(data, item.Data);
-		for (var prop in data) {
-			li.data(prop, data[prop]);
-		}
-	}
 	if (item.Type === 'folder') {
 		li.append(build_ul(item.Children, data));
 	}
 	return li;
 }
 
-function build_item(item) {
+function build_item(item, data) {
 	var fileExtension = item.PathRelativeToRepositoryRoot.split('.').pop();
 	// itemContainer is the tag surrounding the item's name
 	var itemContainer = $('<span/>').addClass(item.Type).addClass(fileExtension).text(item.Name);
+	//append all data
+	if (data) {
+		for (var prop in data) {
+			itemContainer.data(prop, data[prop]);
+		}	
+	}
 	// on focus, set it editable and track the old value; 
 	itemContainer.dblclick(function () {
 		$(this).attr('contentEditable', true).prop('oldValue', $(this).text());
@@ -88,7 +91,8 @@ function newItem(path) { //deprecated: we now reload all items
 
 function rename(itemContainer) {
 	var url = 'url::ChpokkWeb.Features.Exploring.Rename.RenameInputModel';
-	var data = $.extend({}, model, { PathRelativeToRepositoryRoot: itemContainer.parent().data('path'), NewFileName: itemContainer.text() });
-	$.post(url, data);
+	var itemData = itemContainer.data();
+	var data = $.extend({}, model, { PathRelativeToRepositoryRoot: itemContainer.parent().data('path'), NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
+	$.post(url, data, loadSolutionExplorer);
 	//use 
 }
