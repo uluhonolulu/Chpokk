@@ -92,7 +92,7 @@ function newItem(path) { //deprecated: we now reload all items
 function rename(itemContainer) {
 	var url = 'url::ChpokkWeb.Features.Exploring.Rename.RenameInputModel';
 	var itemData = itemContainer.data();
-	var data = $.extend({}, model, { PathRelativeToRepositoryRoot: itemContainer.parent().data('path'), NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
+	var data = $.extend({}, model, itemData, { PathRelativeToRepositoryRoot: itemContainer.parent().data('path'), NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
 	$.post(url, data, loadSolutionExplorer);
 	//use 
 }

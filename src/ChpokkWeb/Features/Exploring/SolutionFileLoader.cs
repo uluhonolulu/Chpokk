@@ -33,7 +33,12 @@ namespace ChpokkWeb.Features.Exploring {
 			var solutionItem = new RepositoryItem {
 				Name = filePath.GetFileNameUniversal().RemoveExtension(),
 				PathRelativeToRepositoryRoot = filePath.PathRelativeTo(repositoryRoot),
-				Data = new Dictionary<string, string> { { "Folder", filePath.ParentDirectory().PathRelativeTo(repositoryRoot) }, { "SolutionPath", filePath.PathRelativeTo(repositoryRoot) }, { "KeepExtension", Path.GetExtension(filePath) } },
+				Data = new Dictionary<string, string> { 
+					{ "Folder", filePath.ParentDirectory().PathRelativeTo(repositoryRoot) }, 
+					{ "SolutionPath", filePath.PathRelativeTo(repositoryRoot) }, 
+					{ "KeepExtension", Path.GetExtension(filePath) },
+					{ "ItemType", "Solution" }
+				},
 				Type = "folder"
 			};
 			_fileSystem.ReadStringFromFile(filePath);
@@ -57,7 +62,13 @@ namespace ChpokkWeb.Features.Exploring {
 				Name = projectItem.Name,
 				Type = "folder",
 				PathRelativeToRepositoryRoot = projectFilePath.PathRelativeTo(repositoryRoot),
-				Data = new Dictionary<string, string> { { "ProjectPath", projectFilePath.PathRelativeTo(repositoryRoot)}, {"Folder", projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot)} }
+				Data = new Dictionary<string, string>
+					{
+						{ "ProjectPath", projectFilePath.PathRelativeTo(repositoryRoot) }, 
+						{ "Folder", projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot) },
+						{ "KeepExtension", Path.GetExtension(projectFilePath) },
+						{ "ItemType", "Project" }
+					}
 			};
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFilePath);
 			var projectFolderRelativeToRepositoryRoot = projectFilePath.ParentDirectory().PathRelativeTo(repositoryRoot);
