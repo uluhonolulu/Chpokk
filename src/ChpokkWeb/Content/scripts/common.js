@@ -87,8 +87,13 @@ String.prototype.startsWith = function(prefix) {
 	return this.indexOf(prefix) === 0;
 };
 
-String.prototype.startsWithIgnoreCase = function (prefix) {
+String.prototype.startsWithIgnoreCase = function(prefix) {
 	return this.toLowerCase().startsWith(prefix.toLowerCase());
+};
+
+String.prototype.parentFolder = function() {
+	var lastSlash = this.lastIndexOf('\\');
+	return this.substring(0, lastSlash);
 }
 
 //serializing form data for submitting

@@ -92,7 +92,13 @@ function newItem(path) { //deprecated: we now reload all items
 function rename(itemContainer) {
 	var url = 'url::ChpokkWeb.Features.Exploring.Rename.RenameInputModel';
 	var itemData = itemContainer.data();
-	var data = $.extend({}, model, itemData, { PathRelativeToRepositoryRoot: itemContainer.parent().data('path'), NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
-	$.post(url, data, loadSolutionExplorer);
-	//use 
+	var oldPath = model.PathRelativeToRepositoryRoot;
+	var data = $.extend({}, model, itemData, { NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
+	$.post(url, data, function() {
+		//if we rename the currently selected item, let's rewrite the hash as well
+		if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
+		//reload the solution explorer
+		loadSolutionExplorer();
+	});
+	// 
 }
