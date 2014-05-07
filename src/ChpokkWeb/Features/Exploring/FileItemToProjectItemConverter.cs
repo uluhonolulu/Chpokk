@@ -13,7 +13,17 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		private RepositoryItem CreateFileItem(string filePath, string projectFolderRelativeToRepositoryRoot) {
-			return new RepositoryItem { Name = filePath.GetFileNameUniversal(), PathRelativeToRepositoryRoot = FileSystem.Combine(projectFolderRelativeToRepositoryRoot, filePath), Type = "file" };
+			var repositoryItem = new RepositoryItem
+				{
+					Name = filePath.GetFileNameUniversal(), 
+					PathRelativeToRepositoryRoot = FileSystem.Combine(projectFolderRelativeToRepositoryRoot, filePath), 
+					Type = "file", 
+					Data = new Dictionary<string, string>
+						{
+							{"KeepExtension", ""}, {"ItemType", "Item"}
+						}
+				};
+			return repositoryItem;
 		}
 
 		private RepositoryItem CreateFolderItem(string folder, IEnumerable<string> filePaths, string projectFolderRelativeToRepositoryRoot) { //folder -- currect piece of path (w/o a slash), files -- ones within that folder, relative to this folder

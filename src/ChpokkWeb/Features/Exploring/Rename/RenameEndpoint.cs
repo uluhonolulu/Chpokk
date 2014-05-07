@@ -1,7 +1,9 @@
 ﻿using System.IO;
+using System.Linq;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
 using FubuMVC.Core.Ajax;
+using Microsoft.Build.Construction;
 
 namespace ChpokkWeb.Features.Exploring.Rename {
 	public class RenameEndpoint {
@@ -17,7 +19,20 @@ namespace ChpokkWeb.Features.Exploring.Rename {
 			if (model.ItemType == "Project") {
 				RenameProjectInSolution(model);
 			}
+			if (model.ItemType == "Item") {
+				RenameItemInProject(model);
+			}
 			return AjaxContinuation.Successful();
+		}
+
+		private void RenameItemInProject(RenameInputModel model) {
+			var projectFilePath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath);
+			var project = ProjectRootElement.Open(projectFilePath);
+			var pathRelativeToProjectFolder = model.PathRelativeToRepositoryRoot.PathRelativeTo(model.ProjectPath.ParentDirectory());
+			var projectItem = project.Items.First(element => element.Include == pathRelativeToProjectFolder);
+			var newPathRelativeToProjectFolder = pathRelativeToProjectFolder.ParentDirectory().AppendPath(model.NewFileName);
+			projectItem.Include = newPathRelativeToProjectFolder;
+			project.Save();			
 		}
 
 		private void RenameProjectInSolution(RenameInputModel model) {

@@ -15,9 +15,16 @@ namespace Chpokk.Tests.Intellisense {
 		public override void Create() {
 			base.Create();
 			var fileSystem = Container.Get<FileSystem>();
-			var classFilePath = FileSystem.Combine(ProjectFolder, CODEFILE_NAME);
-			Console.WriteLine("Writing file to " + classFilePath);
-			fileSystem.WriteStringToFile(classFilePath, CLASS_CONTENT);
+			Console.WriteLine("Writing file to " + ClassFilePath);
+			fileSystem.WriteStringToFile(ClassFilePath, CLASS_CONTENT);
+		}
+
+		public string ClassFilePath {
+			get { return FileSystem.Combine(ProjectFolder, CODEFILE_NAME); }
+		}
+
+		public string ClassFileRelativePath {
+			get { return ClassFilePath.PathRelativeTo(this.RepositoryRoot); }
 		}
 	}
 }
