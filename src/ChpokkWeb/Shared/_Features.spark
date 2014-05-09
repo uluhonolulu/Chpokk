@@ -10,7 +10,7 @@
 			</th>
 			<th style='width: 250px;'>
 				Pretty&nbsp;soon<br/>
-				<span style="font-size: smaller;">Beginning of 2014</span>
+				<span style="font-size: smaller;">First half of 2014</span>
 
 			</th>
 			<th style='width: 250px;'>
@@ -253,11 +253,11 @@
 		</tr>
 		<tr>
 			<td>From a Subversion repository</td>
-			<td></td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>From a Mercurial repository</td>

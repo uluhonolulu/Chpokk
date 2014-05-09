@@ -22,13 +22,31 @@
 function build_item(item, data) {
 	var fileExtension = item.PathRelativeToRepositoryRoot.split('.').pop();
 	// itemContainer is the tag surrounding the item's name
-	var itemContainer = $('<span/>').addClass(item.Type).addClass(fileExtension).text(item.Name);
+	var itemContainer = $('<span/>')
+		.addClass(item.Type)
+		.addClass(fileExtension)
+		.text(item.Name);
+	//items should be draggable
+	if (data['ItemType'] == 'Item')
+		itemContainer.draggable({ opacity: 0.7, helper: "clone" });
+	//projects and folders should be droppable
+	if (data['ItemType'] == 'Project' || data['ItemType'] == 'Folder') {
+		itemContainer.droppable({
+			greedy: true,
+			activeClass: "ui-state-hover",
+			hoverClass: "ui-state-active",
+			drop: function (event, ui) {
+				move(ui.draggable, $(this));
+			}
+		});
+	}
 	//append all data
 	if (data) {
 		for (var prop in data) {
 			itemContainer.data(prop, data[prop]);
 		}	
 	}
+	itemContainer.data('PathRelativeToRepositoryRoot', item.PathRelativeToRepositoryRoot);
 	// on focus, set it editable and track the old value; 
 	itemContainer.dblclick(function () {
 		$(this).attr('contentEditable', true).prop('oldValue', $(this).text());
@@ -92,13 +110,26 @@ function newItem(path) { //deprecated: we now reload all items
 function rename(itemContainer) {
 	var url = 'url::ChpokkWeb.Features.Exploring.Rename.RenameInputModel';
 	var itemData = itemContainer.data();
-	var oldPath = model.PathRelativeToRepositoryRoot;
 	var data = $.extend({}, model, itemData, { NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
 	$.post(url, data, function() {
 		//if we rename the currently selected item, let's rewrite the hash as well
+		var oldPath = itemData.PathRelativeToRepositoryRoot;
 		if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
 		//reload the solution explorer
 		loadSolutionExplorer();
 	});
-	// 
+}
+
+function move(itemContainer, targetContainer) {
+	var itemData = itemContainer.data();
+	var targetData = targetContainer.data();
+	var newFolder = targetData.ItemType == 'Folder' ? targetData.PathRelativeToRepositoryRoot : targetData.Folder;
+	var data = $.extend({}, model, itemData, { NewFolder: newFolder });
+	$.post(url, data, function() {
+		//if we rename the currently selected item, let's rewrite the hash as well
+		var oldPath = itemData.PathRelativeToRepositoryRoot;
+		if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
+		//reload the solution explorer
+		loadSolutionExplorer();
+	});	
 }

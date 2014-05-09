@@ -27,7 +27,13 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		private RepositoryItem CreateFolderItem(string folder, IEnumerable<string> filePaths, string projectFolderRelativeToRepositoryRoot) { //folder -- currect piece of path (w/o a slash), files -- ones within that folder, relative to this folder
-			var folderItem = new RepositoryItem {Name = folder, PathRelativeToRepositoryRoot = projectFolderRelativeToRepositoryRoot.AppendPath(folder), Type = "folder"};
+			var folderItem = new RepositoryItem
+				{
+					Name = folder, 
+					PathRelativeToRepositoryRoot = projectFolderRelativeToRepositoryRoot.AppendPath(folder), 
+					Type = "folder", 
+					Data = new Dictionary<string, string>{{"ItemType", "Folder"}}
+				};
 			var childItems = GetChildItems(folder, filePaths, projectFolderRelativeToRepositoryRoot);
 			folderItem.Children.AddRange(childItems);
 			return folderItem;
