@@ -394,6 +394,7 @@
     <Content Include="Content\scripts\lib\jasmine-jquery.js" />
     <Content Include="Content\scripts\lib\jquery-migrate-1.2.1.min.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
+    <Content Include="Content\scripts\lib\jquery.cookie.js" />
     <Content Include="Content\scripts\lib\jquery.fileupload.js" />
     <Content Include="Content\scripts\lib\jquery.form.js" />
     <Content Include="Content\scripts\lib\jquery.gritter.js" />
