@@ -96,7 +96,7 @@ function loadFile(path, editor) {
 		url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
 		data: fileData,
 		success: function (data) {
-		    editor.setValue(data.Content);
+		    editor.setValue(data.Content, 1);
 		    
             //highlighting
 			var modelist = ace.require('ace/ext/modelist');
