@@ -89,9 +89,8 @@ function loadFile(path, editor) {
     // this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
     $('#fileContent').show();
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
-	var li = $('#solutionBrowser ' + selector);
-	var projectPath = (li.length > 0) ? li.data('ProjectPath') : '';
-	var fileData = { RepositoryName: model.RepositoryName, PathRelativeToRepositoryRoot: path, ProjectPath: projectPath };
+	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
+	var fileData = $.extend({}, model, itemContainer.data());
 	$.ajax({
 		type: "POST",
 		url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
@@ -107,9 +106,7 @@ function loadFile(path, editor) {
 		    //enable/disable autocompletion
 		    editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
 			editor.resize();
-			model.PathRelativeToRepositoryRoot = path;
-			if (projectPath)
-			    model.ProjectPath = projectPath;
+			$.extend(model, itemContainer.data());
 		}
 	});
 }
