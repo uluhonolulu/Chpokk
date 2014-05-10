@@ -49,8 +49,8 @@ function build_item(item, data) {
 	itemContainer.data('PathRelativeToRepositoryRoot', item.PathRelativeToRepositoryRoot);
 	// on focus, set it editable and track the old value; 
 	itemContainer.dblclick(function () {
-		$(this).attr('contentEditable', true).prop('oldValue', $(this).text()).focus();
-		$(this).draggable({ disabled: true }); //disable draggable so that we can edit it
+		$(this).attr('contentEditable', true);
+		$(this).draggable({ disabled: true }).css('opacity', 1); //disable draggable so that we can edit it, but keep the opacity
 	});
 	// on blur, set it not editable and send the rename command to server
 	itemContainer.blur(function () {
@@ -87,7 +87,7 @@ function initTreeView(selector) {
 	$('li[data-type="file"]').click(function () {
 		window.location.hash = $(this).attr('data-path');
 	});
-	$(selector).treeview({ collapsed: true });
+	$(selector).treeview({ collapsed: true, persist: "cookie" });
     openItemIfSingle($(selector));
 }
 
@@ -123,6 +123,7 @@ function rename(itemContainer) {
 }
 
 function move(itemContainer, targetContainer) {
+	var url = 'url::ChpokkWeb.Features.Exploring.Rename.MoveInputModel';
 	var itemData = itemContainer.data();
 	var targetData = targetContainer.data();
 	var newFolder = targetData.ItemType == 'Folder' ? targetData.PathRelativeToRepositoryRoot : targetData.Folder;
@@ -130,7 +131,7 @@ function move(itemContainer, targetContainer) {
 	$.post(url, data, function() {
 		//if we rename the currently selected item, let's rewrite the hash as well
 		var oldPath = itemData.PathRelativeToRepositoryRoot;
-		if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
+		//if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
 		//reload the solution explorer
 		loadSolutionExplorer();
 	});	
