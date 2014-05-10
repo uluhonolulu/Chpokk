@@ -94,7 +94,12 @@ String.prototype.startsWithIgnoreCase = function(prefix) {
 String.prototype.parentFolder = function() {
 	var lastSlash = this.lastIndexOf('\\');
 	return this.substring(0, lastSlash);
-}
+};
+
+String.prototype.fileName = function() {
+	var lastSlash = this.lastIndexOf('\\');
+	return this.substring(lastSlash + 1);
+};
 
 //serializing form data for submitting
 $.fn.serializeObject = function () {

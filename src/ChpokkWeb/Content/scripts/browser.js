@@ -131,7 +131,7 @@ function move(itemContainer, targetContainer) {
 	$.post(url, data, function() {
 		//if we rename the currently selected item, let's rewrite the hash as well
 		var oldPath = itemData.PathRelativeToRepositoryRoot;
-		//if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
+		if (window.location.hash.substring(1) == oldPath) window.location.hash = newFolder + '\\' + oldPath.fileName();
 		//reload the solution explorer
 		loadSolutionExplorer();
 	});	
