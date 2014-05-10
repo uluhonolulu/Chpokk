@@ -49,7 +49,8 @@ function build_item(item, data) {
 	itemContainer.data('PathRelativeToRepositoryRoot', item.PathRelativeToRepositoryRoot);
 	// on focus, set it editable and track the old value; 
 	itemContainer.dblclick(function () {
-		$(this).attr('contentEditable', true).prop('oldValue', $(this).text());
+		$(this).attr('contentEditable', true).prop('oldValue', $(this).text()).focus();
+		$(this).draggable({ disabled: true }); //disable draggable so that we can edit it
 	});
 	// on blur, set it not editable and send the rename command to server
 	itemContainer.blur(function () {
@@ -57,6 +58,7 @@ function build_item(item, data) {
 		if ($(this).prop('oldValue') != $(this).text()) {
 			rename($(this));
 		}
+		$(this).draggable({ disabled: false }); //enable draggable back
 	});
 	// on Enter, let's blur
 	itemContainer.keyup(function (e) {
