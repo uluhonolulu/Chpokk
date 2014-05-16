@@ -25,3 +25,34 @@
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(e, s);
 })();
+
+
+function janrainWidgetOnload() {
+	janrain.events.onProviderLoginStart.addHandler(function() {
+		console.log('Login Start!');
+	});
+	janrain.events.onProviderLoginComplete.addHandler(function(response) {
+		console.log('Login complete!');
+		console.log('response.provider = ' + response.provider);
+	});
+	janrain.events.onProviderLoginError.addHandler(function(response) {
+		console.log('Login Error!');
+		console.log('response.err.code = ' + response.err.code);
+		console.log('response.err.msg = ' + response.err.msg);
+		console.log('response.origin = ' + response.origin);
+		console.log('response.state = ' + response.state);
+	});
+	janrain.events.onProviderLoginSuccess.addHandler(function(something) {
+		console.log('Login Succcess!');
+	});
+	janrain.events.onReturnExperienceFound.addHandler(function(response) {
+		console.log('Return Experience Found!');
+		console.log('response.name = ' + response.name);
+		console.log('response.returnProvider = ' + response.returnProvider);
+		console.log('response.welcomeName = ' + response.welcomeName);
+	});
+	janrain.events.onProviderLoginToken.addHandler(function(response) {
+		console.log('Provider Login Token Returned!');
+		console.log('response.token = ' + response.token);
+	});
+}
