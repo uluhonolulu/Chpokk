@@ -45,6 +45,7 @@
 !{this.Partial<ChpokkWeb.Features.Remotes.Git.Push.PushDialogModel>()}
 !{this.ModellessPartial<BeginEditorExperienceEndpoint>("DoIt")}
 <render partial="ProjectManagement\AddProject\AddProject.spark" />
+<render partial="Testing\Testing.spark" />
 
 <content name="rightcorner">
     <!--ul class="nav navbar-nav">

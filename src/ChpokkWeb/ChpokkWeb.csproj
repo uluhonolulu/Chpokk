@@ -122,6 +122,7 @@
     <Reference Include="FubuMVC.TwitterBootstrap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.633\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="HtmlTags, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlTags.2.0.0.174\lib\4.0\HtmlTags.dll</HintPath>
@@ -585,6 +586,7 @@
     <Content Include="Features\ProjectManagement\AddProject\AddProject.spark" />
     <Content Include="Features\ProjectManagement\References\NuGet\Spike\LongOp.spark" />
     <Content Include="Features\Pokk\Pokk.spark" />
+    <Content Include="Features\Testing\Testing.spark" />
     <Content Include="Features\CustomerDevelopment\MessageToUser\MessageToUser.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
@@ -761,6 +763,8 @@
     <Compile Include="Features\Remotes\SVN\SvnDetectionPolicy.cs" />
     <Compile Include="Infrastructure\FileSystem\LocalAndRemoteFileSystem.cs" />
     <Compile Include="Infrastructure\FileSystem\RemoteFileSystem.cs" />
+    <Compile Include="Features\Testing\TestingEndpoint.cs" />
+    <Compile Include="Features\Testing\TestingHub.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
     <Compile Include="Features\Editor\CodeEditorModel.cs" />
     <Compile Include="Features\Compilation\CompilerHub.cs" />

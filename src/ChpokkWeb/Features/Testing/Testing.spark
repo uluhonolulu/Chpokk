@@ -1,0 +1,39 @@
+﻿<use namespace="ChpokkWeb.Features.Testing" />
+<content name="InlineScripts">
+	<!-- Testing.spark -->
+	<script type="text/javascript">
+		$(function() {
+			var testingHub = $.connection.testingHub;
+			testingHub.client.log = function (message) { log(message, 'success', true); };
+
+			$('#runTests').click(function () {
+				initLogging();
+				var url = '${Urls.UrlFor<ChpokkWeb.Features.Testing.TestingInputModel>()}';
+				$.get(url, model);
+			});
+
+			function log(message, category, wrap) {
+				var container = wrap ? $('<div></div>') : $('<span></span>');
+				container.text(message).addClass(category).appendTo($('#output'));
+				//scroll to bottom
+				var outputElement = $('#output').get(0);
+				outputElement.scrollTop = outputElement.scrollHeight;
+			}
+			
+			function initLogging() {
+				$('#output').empty();
+				$('#output').get(0).scrollIntoView(top);
+				log("Please wait..");
+
+			}
+
+		})
+	</script>
+</content>
+<content name="menu">
+    <ul class="nav navbar-nav">
+        <li class="navbar-default">
+            <a id="runTests">Run Tests</a>
+        </li>
+    </ul>
+</content>

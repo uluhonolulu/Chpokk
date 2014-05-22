@@ -13,4 +13,11 @@ namespace Chpokk.Tests.Infrastructure {
 			base.Arrange();
 		}
 	}
+
+	public abstract class WebCommandTest<TContext> : BaseCommandTest<TContext> where TContext : IContext, new() {
+		[RunOnWeb]
+		public override void Arrange() {
+			base.Arrange();
+		}
+	}
 }

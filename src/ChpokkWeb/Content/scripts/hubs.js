@@ -93,6 +93,11 @@
 		proxies.nuGetHub.server = {
 		};
 
+		proxies.testingHub = this.createHubProxy('testingHub');
+		proxies.testingHub.client = {};
+		proxies.testingHub.server = {
+		};
+
 		proxies.userHub = this.createHubProxy('userHub');
 		proxies.userHub.client = {};
 		proxies.userHub.server = {
