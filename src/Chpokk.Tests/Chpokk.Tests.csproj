@@ -308,6 +308,7 @@
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
     <Compile Include="Compilation\InvalidCode.cs" />
+    <Compile Include="Compilation\Solution.cs" />
     <Compile Include="Compilation\ValidCode.cs" />
     <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
