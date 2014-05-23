@@ -3,8 +3,10 @@
 <use namespace="ChpokkWeb.Features.Editor.Menu" />
 
 
-<div class="panel-heading">
+<div class="panel-heading" id="editorToolbar">
 	!{this.Partial<EditorMenuInputModel>()}
+	<span class="glyphicon glyphicon-fullscreen" style="float: right;"></span>
+
 </div>
 
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; height: 100%;">
@@ -26,6 +28,22 @@
                 var editor = ace.edit("ace");
                 loadFile(data.path, editor);
             });
+	        
+        	//max/min
+            $('#editorToolbar .glyphicon-fullscreen').click(function (e) {
+	            //alert('ok');
+		        $('#fileContent').prependTo($('body'));
+		        $('#fileContent').css({ 'position': 'absolute', top: 0, 'z-index': 1035, width: '100%' });
+		        $(this).removeClass('glyphicon-fullscreen').addClass('glyphicon-resize-small');
+		        e.stopImmediatePropagation(); // so that it doesn't hanle the other click
+            });
+	        //minimizer
+		    $('body').on('click', '#editorToolbar .glyphicon-resize-small', function (e) {
+				$('#fileContent').appendTo($('#editorContainer'));
+				$('#fileContent').css({ 'position': 'static', width: '100%' });
+				$(this).addClass('glyphicon-fullscreen').removeClass('glyphicon-resize-small');
+		        e.stopImmediatePropagation(); // so that it doesn't hanle the other click
+			});
         })
     </script>
 
