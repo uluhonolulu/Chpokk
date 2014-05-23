@@ -5,7 +5,7 @@
 
 <div class="panel-heading" id="editorToolbar">
 	!{this.Partial<EditorMenuInputModel>()}
-	<span class="glyphicon glyphicon-fullscreen" style="float: right;"></span>
+	<span class="glyphicon glyphicon-fullscreen" style="float: right; line-height: 33px; cursor: pointer;"></span>
 
 </div>
 
@@ -30,7 +30,7 @@
             });
 	        
         	//max/min
-            $('#editorToolbar .glyphicon-fullscreen').click(function (e) {
+            $('body').on('click', '#editorToolbar .glyphicon-fullscreen', function (e) {
 	            //alert('ok');
 		        $('#fileContent').prependTo($('body'));
 		        $('#fileContent').css({ 'position': 'absolute', top: 0, 'z-index': 1035, width: '100%' });
