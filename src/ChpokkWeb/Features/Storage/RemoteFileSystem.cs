@@ -67,7 +67,13 @@ namespace ChpokkWeb.Features.Storage {
 			});
 		}
 		public void WriteStreamToFile(string filename, Stream stream) {
-			throw new NotImplementedException("WriteStreamToFile");
+			var tempFilename = Path.GetTempFileName();
+			_localFileSystem.WriteStreamToFile(tempFilename, stream);
+			Task.Factory.StartNew(() =>
+			{
+				UploadFile(filename, tempFilename);
+				File.Delete(tempFilename);
+			});
 		}
 		public void WriteStringToFile(string filename, string text) {
 			var tempFilename = Path.GetTempFileName();
@@ -80,7 +86,7 @@ namespace ChpokkWeb.Features.Storage {
 
 		}
 
-		private void UploadFile(string filename, string sourcePath) {
+		public void UploadFile(string filename, string sourcePath) {
 			_client.PutFile(bucketName, filename.ToRemoteFileName(AppRoot), sourcePath, true, 0);
 		}
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using FubuCore;
 
@@ -35,12 +36,12 @@ namespace ChpokkWeb.Features.Storage {
 
 		public void WriteStreamToFile(string filename, Stream stream) {
 			_localSystem.WriteStreamToFile(filename, stream);
-			_remoteSystem.WriteStreamToFile(filename, stream);
+			Task.Factory.StartNew(() => _remoteSystem.UploadFile(filename, filename));
 		}
 
 		public void WriteStringToFile(string filename, string text) {
 			_localSystem.WriteStringToFile(filename, text);
-			_remoteSystem.WriteStringToFile(filename, text);
+			Task.Factory.StartNew(() => _remoteSystem.UploadFile(filename, filename));
 		}
 
 		public void AppendStringToFile(string filename, string text) {
