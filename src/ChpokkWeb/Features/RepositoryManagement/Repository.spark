@@ -7,6 +7,7 @@
 <content name="title">!{Model.RepositoryName}</content>
 <content name="head">
 	<Stylesheet href="editor.css" />
+	<Script src="lib/jhash-2.1.js" />
 </content>
 <content name="InlineScripts">
 	<script type="text/javascript">

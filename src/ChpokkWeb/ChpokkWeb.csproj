@@ -392,6 +392,7 @@
     <Content Include="Content\scripts\lib\bililiteRange.js" />
     <Content Include="Content\scripts\lib\bootstrap-tour.js" />
     <Content Include="Content\scripts\lib\jasmine-jquery.js" />
+    <Content Include="Content\scripts\lib\jhash-2.1.js" />
     <Content Include="Content\scripts\lib\jquery-migrate-1.2.1.min.js" />
     <Content Include="Content\scripts\lib\jquery.continuations.amplify.js" />
     <Content Include="Content\scripts\lib\jquery.cookie.js" />
