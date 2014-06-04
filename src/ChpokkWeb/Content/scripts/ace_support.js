@@ -85,7 +85,18 @@ function getPosition(rowColumn, editor) {
 }
 
 
-function loadFile(path, editor) {
+function loadSelectedFile() {
+	var path = jHash.root();
+	if (path) {
+		var editor = ace.edit("ace");
+		loadFile(path, editor, function() {
+			selectCode(editor, null);		
+		});
+
+	}
+}
+
+function loadFile(path, editor, onload) {
     // this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
     $('#fileContent').show();
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
@@ -106,7 +117,48 @@ function loadFile(path, editor) {
 		    //enable/disable autocompletion
 		    editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
 			editor.resize();
-			$.extend(model, itemContainer.data());
+			$.extend(model, itemContainer.data()); //TODO: multitab support
+
+			if (onload) {
+				onload(editor);
+			}
 		}
 	});
+}
+
+function selectCode(editor, selectionData) {
+
+	editor.moveCursorTo(3, 1);
+
+	//var Range = ace.require('ace/range').Range;
+	//var range = new Range(3, 4, 3, 6);
+	//var marker = editor.getSession().addMarker(range,"ace_selected_word_bro", "text", true);
+	//Remove the highlighted word:
+
+	//editor.getSession().removeMarker(marker);
+	//Highlight the line:
+	//editor.getSession().highlightLines(2, 'ace_invalid');
+
+	//editor.getSession().addMarker( new Range(7, 4, 7, 6), "ace_active_line_yo", "background", true);
+	
+	//editor.getSession().addMarker(new Range(3, 4, 3, 6), "warning", "line", true);
+
+	//editor.getSession().setAnnotations([{
+	//	row: 1,
+	//	column: 10,
+	//	text: "Strange error",
+	//	type: "error" // also warning and information
+	//}]);
+	
+	//var markerId = editor.renderer.addMarker(new Range(1, 10, 1, 15), "warning", "text");
+
+		//This would highlight line 2 (all zero based) column 9-14 by putting a
+		//div with the CSS class "warning" below the text. If you want to
+		//highlight the full line you have to do:
+
+				//var markerId = editor.renderer.addMarker(new Range(1, 0, 2, 0),
+				//"warning", "line");
+
+	editor.getSession().addGutterDecoration(7, 'error');
+//Adds className to the row, to be used for CSS stylings and whatnot.
 }

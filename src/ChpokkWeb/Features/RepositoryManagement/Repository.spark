@@ -13,18 +13,12 @@
 	<script type="text/javascript">
 
 		$(function () {
-			amplify.subscribe('hashchange', _loadSelectedFile);
-			amplify.subscribe('solutionLoaded', _loadSelectedFile);
-			$(window).hashchange(_loadSelectedFile);
+			amplify.subscribe('hashchange', loadSelectedFile);
+			amplify.subscribe('solutionLoaded', loadSelectedFile);
+			$(window).hashchange(loadSelectedFile);
 
 		});
 
-		function _loadSelectedFile() {
-			var hash = window.location.hash;
-			if (hash !== '' && hash !== '#') {
-				amplify.publish('loadFileRequest', { path: hash.substring(1) });
-			}
-		}
 
 	</script>
 </content>
