@@ -90,7 +90,7 @@ function loadSelectedFile() {
 	if (path) {
 		var editor = ace.edit("ace");
 		loadFile(path, editor, function() {
-			selectCode(editor, null);		
+			selectCode(editor, jHash.val());
 		});
 
 	}
@@ -127,8 +127,10 @@ function loadFile(path, editor, onload) {
 }
 
 function selectCode(editor, selectionData) {
+	if (selectionData.line) {
+		editor.moveCursorTo(selectionData.line - 1, 0);	
+	}
 
-	editor.moveCursorTo(3, 1);
 
 	//var Range = ace.require('ace/range').Range;
 	//var range = new Range(3, 4, 3, 6);
