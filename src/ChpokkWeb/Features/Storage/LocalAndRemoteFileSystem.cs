@@ -18,12 +18,12 @@ namespace ChpokkWeb.Features.Storage {
 
 		public void Copy(string source, string destination) {
 			_localSystem.Copy(source, destination);
-			_remoteSystem.Copy(source, destination);
+			Task.Factory.StartNew(() => _remoteSystem.Copy(source, destination));
 		}
 
 		public void Copy(string source, string destination, CopyBehavior behavior) {
 			_localSystem.Copy(source, destination, behavior);
-			_remoteSystem.Copy(source, destination, behavior);
+			Task.Factory.StartNew(() => _remoteSystem.Copy(source, destination, behavior));
 		}
 
 		public bool IsFile(string path) {
