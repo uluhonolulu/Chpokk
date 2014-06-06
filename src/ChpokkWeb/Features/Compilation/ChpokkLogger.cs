@@ -36,6 +36,12 @@ namespace ChpokkWeb.Features.Compilation {
 			}
 		}
 
+		public void SendError(BuildErrorEventArgs args) {
+			var filePathRelativeToRepositoryRoot = args.ProjectFile.ParentDirectory().AppendPath(args.File).PathRelativeTo(RepositoryRoot);
+			Client.danger(
+				new { message = args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, file = filePathRelativeToRepositoryRoot, line = args.LineNumber }, true);
+		}
+
 		private dynamic Client {
 			get {
 				EnsureConnectionId();
@@ -47,6 +53,8 @@ namespace ChpokkWeb.Features.Compilation {
 		}
 
 		public string ConnectionId { get; set; }
+
+		public string RepositoryRoot { get; set; }
 
 
 		public void Initialize(IEventSource eventSource) {
@@ -63,7 +71,7 @@ namespace ChpokkWeb.Features.Compilation {
 					SendMessage(args.Message);
 				}
 			};
-			eventSource.ErrorRaised += (sender, args) => SendMessage(args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, MessageType.Error);
+			eventSource.ErrorRaised += (sender, args) => SendError(args);
 			eventSource.BuildFinished += (sender, args) => {
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
 				SendMessage(args.Message, messageType);

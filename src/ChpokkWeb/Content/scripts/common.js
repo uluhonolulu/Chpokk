@@ -131,6 +131,15 @@ window.alert = danger;
 
 }());
 
+//format
+String.prototype.toFormat = function(values) {
+	var result = this;
+	for (var prop in values) {
+		result = result.replace('{' + prop + '}', values[prop]);
+	}
+	return result;
+};
+
 
 // util
 function currentTime() {

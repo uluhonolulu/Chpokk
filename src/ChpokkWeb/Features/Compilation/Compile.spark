@@ -13,7 +13,7 @@
             var compilerHub = $.connection.compilerHub;
             compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
             compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
-            compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
+            compilerHub.client.info = function (message, wrap) { /*log(message, 'info', wrap);*/ };
 
     		function initLogging() {
                 $('#output').empty();
@@ -61,7 +61,10 @@
  	        
     		function log(message, category, wrap) {
     			var container = wrap ? $('<div/>') : $('<span/>');
-    			container.text(message).addClass(category).appendTo($('#output'));
+    			if (message.line) {
+    				message = '<a href="/Repository/Chpokk-SampleSol#{file}?line={line}">{message}</a>'.toFormat(message);
+    			}
+    			container.html(message).addClass(category).appendTo($('#output'));
     			//scroll to bottom
     			var outputElement = $('#output').get(0);
     			outputElement.scrollTop = outputElement.scrollHeight;

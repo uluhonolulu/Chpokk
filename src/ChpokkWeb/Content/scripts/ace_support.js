@@ -161,6 +161,6 @@ function selectCode(editor, selectionData) {
 				//var markerId = editor.renderer.addMarker(new Range(1, 0, 2, 0),
 				//"warning", "line");
 
-	editor.getSession().addGutterDecoration(7, 'error');
+	//editor.getSession().addGutterDecoration(7, 'error');
 //Adds className to the row, to be used for CSS stylings and whatnot.
 }

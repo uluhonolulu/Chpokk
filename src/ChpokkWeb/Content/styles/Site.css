@@ -362,7 +362,7 @@ div#title
 #output .info {
 	/*color: #929292;*/
 }
-#output .danger {
+#output .danger, #output .danger a {
     color: #E92E2E;
 }
 #output .success {
