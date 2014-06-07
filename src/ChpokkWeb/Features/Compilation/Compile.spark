@@ -62,7 +62,7 @@
     		function log(message, category, wrap) {
     			var container = wrap ? $('<div/>') : $('<span/>');
     			if (message.line) {
-    				message = '<a href="/Repository/Chpokk-SampleSol#{file}?line={line}">{message}</a>'.toFormat(message);
+    				message = '<a href="/Repository/{RepositoryName}#{file}?line={line}">{message}</a>'.toFormat($.extend(message, model));
     			}
     			container.html(message).addClass(category).appendTo($('#output'));
     			//scroll to bottom
