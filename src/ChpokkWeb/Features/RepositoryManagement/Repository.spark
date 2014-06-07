@@ -15,7 +15,7 @@
 		$(function () {
 			amplify.subscribe('hashchange', loadSelectedFile);
 			amplify.subscribe('solutionLoaded', loadSelectedFile);
-			$(window).hashchange(loadSelectedFile);
+			jHash.change(loadSelectedFile);
 
 		});
 
