@@ -362,6 +362,9 @@ div#title
 #output .info {
 	/*color: #929292;*/
 }
+#output a {
+	text-decoration: underline;
+}
 #output .danger, #output .danger a {
     color: #E92E2E;
 }
