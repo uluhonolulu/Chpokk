@@ -42,7 +42,7 @@ namespace ChpokkWeb.Features.Authentication {
 		}
 
 		private dynamic GetUsername(dynamic profile) {
-			var username = (profile.preferredUsername != null) ? profile.preferredUsername.Value : profile.email.Value;
+			var username = (profile.preferredUsername != null) ? profile.preferredUsername.Value : profile.displayName.Value;
 			return username.ToString() + "_" + profile.providerName;
 		}
 	}
