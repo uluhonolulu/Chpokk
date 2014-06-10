@@ -78,11 +78,8 @@ namespace ChpokkWeb.Features.Storage {
 		public void WriteStringToFile(string filename, string text) {
 			var tempFilename = Path.GetTempFileName();
 			_localFileSystem.WriteStringToFile(tempFilename, text);
-			Task.Factory.StartNew(() =>
-			{
-				UploadFile(filename, tempFilename);
-				File.Delete(tempFilename);
-			});
+			UploadFile(filename, tempFilename);
+			File.Delete(tempFilename);
 
 		}
 

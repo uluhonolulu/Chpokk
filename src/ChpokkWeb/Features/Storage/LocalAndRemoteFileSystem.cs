@@ -41,7 +41,7 @@ namespace ChpokkWeb.Features.Storage {
 
 		public void WriteStringToFile(string filename, string text) {
 			_localSystem.WriteStringToFile(filename, text);
-			Task.Factory.StartNew(() => _remoteSystem.UploadFile(filename, filename));
+			Task.Factory.StartNew(() => _remoteSystem.WriteStringToFile(filename, text)); 
 		}
 
 		public void AppendStringToFile(string filename, string text) {
