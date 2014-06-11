@@ -13,7 +13,7 @@
             var compilerHub = $.connection.compilerHub;
             compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
             compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
-            compilerHub.client.info = function (message, wrap) { /*log(message, 'info', wrap);*/ };
+            compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
 
     		function initLogging() {
                 $('#output').empty();

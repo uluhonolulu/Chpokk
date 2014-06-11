@@ -67,7 +67,7 @@ namespace ChpokkWeb.Features.Compilation {
 				SendMessage(args.Message, messageType);
 			};
 			eventSource.MessageRaised += (sender, args) => {
-				if (args.Importance > MessageImportance.Normal) {
+				if (args.Importance == MessageImportance.High) {
 					SendMessage(args.Message);
 				}
 			};
