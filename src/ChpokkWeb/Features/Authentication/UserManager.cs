@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using FubuMVC.Core.Security;
@@ -42,7 +43,13 @@ namespace ChpokkWeb.Features.Authentication {
 		}
 
 		private dynamic GetUsername(dynamic profile) {
-			var username = (profile.preferredUsername != null) ? profile.preferredUsername.Value : profile.displayName.Value;
+			var username = profile.identifier;
+			if (profile.displayName != null) username = profile.displayName.Value;
+			if (profile.email != null) username = profile.email.Value;
+			if (profile.preferredUsername != null) username = profile.preferredUsername.Value;
+			foreach (var invalidPathChar in Path.GetInvalidPathChars()) {
+				username = ((string) username).Replace(invalidPathChar, '_'); 
+			}
 			return username.ToString() + "_" + profile.providerName;
 		}
 	}
