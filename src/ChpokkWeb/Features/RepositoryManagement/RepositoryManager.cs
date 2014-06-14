@@ -61,6 +61,9 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull]
 		public string NewGetAbsolutePathFor(string repositoryName, string pathRelativeToRepositoryRoot) {
+			if (pathRelativeToRepositoryRoot == null) {
+				throw new ArgumentNullException("pathRelativeToRepositoryRoot");
+			}
 			return NewGetAbsolutePathFor(repositoryName).AppendPath(pathRelativeToRepositoryRoot);
 		}
 		[NotNull]
@@ -126,7 +129,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		[NotNull]
 		public string GetPhysicalFilePath([NotNull] BaseFileInputModel info) {
-			return GetAbsolutePathFor(info.RepositoryName, info.PhysicalApplicationPath, info.PathRelativeToRepositoryRoot);
+			return NewGetAbsolutePathFor(info.RepositoryName, info.PathRelativeToRepositoryRoot);
 		}
 
 		private string RelativeUserFolder {
