@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using ChpokkWeb.Infrastructure;
+using FubuCore;
 
 namespace ChpokkWeb.Features.Running {
 	public class ExeRunner {
@@ -13,6 +14,7 @@ namespace ChpokkWeb.Features.Running {
 					                                      null); //TODO: low trust
 				loader.StandardOutput = new LambdaTextWriter(standardOutput);
 				loader.ErrorOutput = new LambdaTextWriter(errorOutput);
+				loader.CurrentDirectory = exePath.ParentDirectory();
 				return loader.Run(exePath);
 			}
 			finally {

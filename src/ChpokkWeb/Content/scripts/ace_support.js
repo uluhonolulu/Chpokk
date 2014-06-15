@@ -20,6 +20,7 @@
 			var position = getPosition(pos, editor) - 1;
 			var text = editor.getValue(); 
 			var newChar = text.substr(position, 1);
+			var model = tabs.activeModel();
 			var editorData = $.extend({}, model, { Content: text, NewChar: newChar, Position: position }); 
 			$.post('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel', editorData, function (data) {
 			    var matchingItems = $.grep(data.Items, function(item) {

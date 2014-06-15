@@ -50,5 +50,10 @@ namespace ChpokkWeb.Features.Running {
 				Console.SetError(value);
 			}
 		}
+
+		public string CurrentDirectory {
+			get { return Directory.GetCurrentDirectory(); }
+			set { Directory.SetCurrentDirectory(value); }
+		}
 	}
 }
