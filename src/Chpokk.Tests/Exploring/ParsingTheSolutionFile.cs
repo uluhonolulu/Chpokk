@@ -43,8 +43,22 @@ namespace Chpokk.Tests.Exploring {
 		public readonly string PROJECT_PATH = @"ProjectName\ProjectName.csproj";
 
 		private readonly string _slnFileContent =
-			@"Project(""{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}"") = ""{0}"", ""{1}"", ""{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}""
-			EndProject";
+			@"Microsoft Visual Studio Solution File, Format Version 12.00
+Project(""{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}"") = ""{0}"", ""{1}"", ""{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}""
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}}.Debug|x86.ActiveCfg = Debug|x86
+		{{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}}.Debug|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
+";
 
 		private readonly string _projectFileContent =
 			@"<?xml version=""1.0"" encoding=""utf-8""?>
