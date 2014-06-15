@@ -122,6 +122,29 @@ function loadFile(path, editor, onload) {
 			if (onload) {
 				onload(editor);
 			}
+
+			window.tabs = window.tabs || {};
+			window.tabs.all = window.tabs.all || {};
+			//window.tabs
+			if (!window.tabs.all[path]) {
+				var a = $('<a/>').data('toggle', 'tab').data('path', path).text(path.fileName());
+				var li = $('<li/>').append(a);
+				$('#navtabs').append(li);
+				//all inactive, this active
+				//$('#navtabs a[data-toggle="tab"]')
+				a.tab('show');
+				a.click(function(e) {
+					e.preventDefault();
+					$(this).tab('show');
+				});
+				a.on('shown.bs.tab', function(e) {
+					var newPath = $(this).data('path');
+					loadFile(newPath, editor);
+				});
+				
+			}
+			window.tabs.all[path] = { model: model };
+			//a.data('bs.tab').activate(a, $('#navtabs'));
 		}
 	});
 }
