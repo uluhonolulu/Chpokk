@@ -102,51 +102,72 @@ function loadFile(path, editor, onload) {
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
 	var fileData = $.extend({}, model, itemContainer.data());
-	$.ajax({
-		type: "POST",
-		url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
-		data: fileData,
-		success: function (data) {
-		    editor.setValue(data.Content, 1);
-		    
-            //highlighting
-			var modelist = ace.require('ace/ext/modelist');
-			var mode = modelist.getModeForPath(path).mode;
-			editor.getSession().setMode(mode);
-		    
-		    //enable/disable autocompletion
-		    editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
-			editor.resize();
-			$.extend(model, itemContainer.data()); //TODO: multitab support
 
-			if (onload) {
-				onload(editor);
-			}
+	window.tabs = window.tabs || {};
+	window.tabs.all = window.tabs.all || {};
+	if (!window.tabs.all[path]) {
+		$.ajax({
+			type: "POST",
+			url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
+			data: fileData,
+			success: function (data) {
 
-			window.tabs = window.tabs || {};
-			window.tabs.all = window.tabs.all || {};
-			//window.tabs
-			if (!window.tabs.all[path]) {
+				//window.tabs
 				var a = $('<a/>').data('toggle', 'tab').data('path', path).text(path.fileName());
 				var li = $('<li/>').append(a);
 				$('#navtabs').append(li);
 				//all inactive, this active
 				//$('#navtabs a[data-toggle="tab"]')
-				a.tab('show');
 				a.click(function(e) {
 					e.preventDefault();
 					$(this).tab('show');
 				});
+				a.on('show.bs.tab', function(e) {
+					if (e.relatedTarget) {
+						var oldPath = $(e.relatedTarget).data('path');
+						window.tabs.all[oldPath].content = editor.getValue();
+					}
+				});
+				a.tab('show');
+				//this should be attached after the call to show in order to avoid cyclic calls
 				a.on('shown.bs.tab', function(e) {
 					var newPath = $(this).data('path');
 					loadFile(newPath, editor);
 				});
 				
+				//set the value now 
+				editor.setValue(data.Content, 1);
+		    
+				//highlighting
+				var modelist = ace.require('ace/ext/modelist');
+				var mode = modelist.getModeForPath(path).mode;
+				editor.getSession().setMode(mode);
+		    
+				//enable/disable autocompletion
+				editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
+				editor.resize();
+				$.extend(model, itemContainer.data()); //TODO: multitab support
+
+				if (onload) {
+					onload(editor);
+				}
+				window.tabs.all[path] = { model: fileData, content: data.Content };
 			}
-			window.tabs.all[path] = { model: model };
-			//a.data('bs.tab').activate(a, $('#navtabs'));
-		}
-	});
+		});
+		
+	} else {
+		var data = window.tabs.all[path];
+		editor.setValue(data.content, 1);
+		//highlighting
+		var modelist = ace.require('ace/ext/modelist');
+		var mode = modelist.getModeForPath(path).mode;
+		editor.getSession().setMode(mode);
+
+		//enable/disable autocompletion
+		editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
+		editor.resize();
+	}
+	window.tabs.activePath = path;
 }
 
 function selectCode(editor, selectionData) {
