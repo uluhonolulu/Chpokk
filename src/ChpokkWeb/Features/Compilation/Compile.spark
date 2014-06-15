@@ -38,20 +38,22 @@
     		function attachButtonHandlers() {
 			   $('#compileButton').click(function () {
 					initLogging();
-            		if (model.ProjectPath) {
+					var model = tabs.activeModel();
+					if (model.ProjectPath) {
             			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
             			var editor = ace.edit("ace");
-            			$.post(compileUrl, $.extend({}, model, { Content: editor.getValue() }));
+            			$.post(compileUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: window.model.ConnectionId }));
             		} else {
             			alert("Don't know what to compile. Please open a file first.");
             		}
 				});
 				$('#runButton').click(function () {
 					initLogging();
-            		if (model.ProjectPath) {
+					var model = tabs.activeModel();
+					if (model.ProjectPath) {
             			var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
             			var editor = ace.edit("ace");
-            			$.post(runUrl, $.extend({}, model, { Content: editor.getValue() }));
+            			$.post(runUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: window.model.ConnectionId }));
             		} else {
             			alert("Don't know what to run. Please open a file first.");
             		}

@@ -13,7 +13,8 @@
 	<script type="text/javascript">
 		$(function () {
 			$('#saveButton').click(function () {
-			    var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Files.SaveFileInputModel>()}';
+				var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Files.SaveFileInputModel>()}';
+				var model = tabs.activeModel();
 				if (model.PathRelativeToRepositoryRoot) {
 					var editor = ace.edit("ace");
 					var content = editor.getValue();
@@ -25,6 +26,7 @@
 
 			$('#saveCommitButton').click(function () {
 			    var saveUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.SaveCommit.SaveCommitInputModel>()}';
+				var model = tabs.activeModel();
 				if (model.PathRelativeToRepositoryRoot) {
 					$('#commitDialog').modal();
 					$('#commitDialog #commitButton').one('click', function () {
@@ -40,6 +42,7 @@
 
 			var parseUrl = '${Urls.UrlFor<ChpokkWeb.Features.Editor.Parsing.ParserInputModel>()}';
 			$('#parseButton').click(function () {
+				var model = tabs.activeModel();
 				if (model.PathRelativeToRepositoryRoot) {
 					var editor = ace.edit("ace");
 					var content = editor.getValue();

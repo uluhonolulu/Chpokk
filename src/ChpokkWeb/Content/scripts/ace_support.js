@@ -96,7 +96,11 @@ function loadSelectedFile() {
 	}
 }
 
-window.tabs = window.tabs || {};
+window.tabs = window.tabs || {
+	activeModel: function () {
+		return tabs.all[tabs.activePath].model;
+	}
+};
 window.tabs.all = window.tabs.all || {};
 
 function loadFile(path, editor, onload) {
