@@ -120,7 +120,7 @@ function loadFile(path, editor, onload) {
 				window.tabs.all[path] = { model: fileData, content: data.Content, tab: a }; //store the data
 				loadFile(path, editor, onload); //call it again so that we use the loaded data
 				function createTab(path, container, editor) {
-					var a = $('<a/>').data('toggle', 'tab').data('path', path).text(path.fileName());
+					var a = $('<a/>').data('toggle', 'tab').data('path', path).attr('title', path).text(path.fileName());
 					a.click(function (e) {
 						e.preventDefault();
 						activateTab(path, editor);
