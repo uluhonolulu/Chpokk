@@ -96,78 +96,72 @@ function loadSelectedFile() {
 	}
 }
 
+window.tabs = window.tabs || {};
+window.tabs.all = window.tabs.all || {};
+
 function loadFile(path, editor, onload) {
-    // this is really ugly, since we depend on something we don't see here, but I need to pass the ProjectPath property somehow
     $('#fileContent').show();
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
 	var fileData = $.extend({}, model, itemContainer.data());
-
-	window.tabs = window.tabs || {};
-	window.tabs.all = window.tabs.all || {};
+	// if we haven't loaded this file yet, let's load it and add to cache; then call this method again
 	if (!window.tabs.all[path]) {
 		$.ajax({
 			type: "POST",
 			url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
 			data: fileData,
 			success: function (data) {
-
-				//window.tabs
-				var a = $('<a/>').data('toggle', 'tab').data('path', path).text(path.fileName());
-				var li = $('<li/>').append(a);
-				$('#navtabs').append(li);
-				//all inactive, this active
-				//$('#navtabs a[data-toggle="tab"]')
-				a.click(function(e) {
-					e.preventDefault();
-					$(this).tab('show');
-				});
-				a.on('show.bs.tab', function(e) {
-					if (e.relatedTarget) {
-						var oldPath = $(e.relatedTarget).data('path');
-						window.tabs.all[oldPath].content = editor.getValue();
-					}
-				});
-				a.tab('show');
-				//this should be attached after the call to show in order to avoid cyclic calls
-				a.on('shown.bs.tab', function(e) {
-					var newPath = $(this).data('path');
-					loadFile(newPath, editor);
-				});
-				
-				//set the value now 
-				editor.setValue(data.Content, 1);
-		    
-				//highlighting
-				var modelist = ace.require('ace/ext/modelist');
-				var mode = modelist.getModeForPath(path).mode;
-				editor.getSession().setMode(mode);
-		    
-				//enable/disable autocompletion
-				editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
-				editor.resize();
-				$.extend(model, itemContainer.data()); //TODO: multitab support
-
-				if (onload) {
-					onload(editor);
+				var container = $('#navtabs');
+				var a = createTab(path, container, editor); // creeate the UI
+				window.tabs.all[path] = { model: fileData, content: data.Content, tab: a }; //store the data
+				loadFile(path, editor, onload); //call it again so that we use the loaded data
+				function createTab(path, container, editor) {
+					var a = $('<a/>').data('toggle', 'tab').data('path', path).text(path.fileName());
+					a.click(function (e) {
+						e.preventDefault();
+						activateTab(path, editor);
+					});
+					var li = $('<li/>').append(a);
+					container.append(li);
+					return a;
 				}
-				window.tabs.all[path] = { model: fileData, content: data.Content };
 			}
 		});
 		
 	} else {
-		var data = window.tabs.all[path];
-		editor.setValue(data.content, 1);
-		//highlighting
-		var modelist = ace.require('ace/ext/modelist');
-		var mode = modelist.getModeForPath(path).mode;
-		editor.getSession().setMode(mode);
-
-		//enable/disable autocompletion
-		editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
-		editor.resize();
+		activateTab(path, editor);
+		
+		if (onload) {
+			onload(editor);
+		}
 	}
+}
+
+function activateTab(path, editor) {
+	var activePath = tabs.activePath;
+	//store the current content
+	if (activePath) {
+		tabs.all[activePath].content = editor.getValue();	
+	}
+	//activate
+	var a = tabs.all[path].tab;
+	a.tab('show'); //UI
+	//load content into the editor
+	setContent(path, editor, tabs.all[path].content);
 	window.tabs.activePath = path;
+}
+
+function setContent(path, editor, content) {
+	editor.setValue(content, 1);
+	//highlighting
+	var modelist = ace.require('ace/ext/modelist');
+	var mode = modelist.getModeForPath(path).mode;
+	editor.getSession().setMode(mode);
+
+	//enable/disable autocompletion
+	editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
+	editor.resize();
+	
 }
 
 function selectCode(editor, selectionData) {
