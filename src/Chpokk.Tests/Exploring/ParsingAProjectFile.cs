@@ -46,6 +46,10 @@ namespace Chpokk.Tests.Exploring {
 				  </ItemGroup>
 				</Project>", CODEFILE_NAME);
 
+		protected override string GetProjectFileContent() {
+			return projectFileContent;
+		}
+
 		private string _projectFilePath;
 
 		public override void Create() {
@@ -54,7 +58,7 @@ namespace Chpokk.Tests.Exploring {
 			ProjectFolder = _projectFilePath.ParentDirectory();
 			var fileSystem = Container.Get<FileSystem>();
 			Console.WriteLine("Writing project to " + _projectFilePath);
-			fileSystem.WriteStringToFile(_projectFilePath, projectFileContent);
+			fileSystem.WriteStringToFile(_projectFilePath, GetProjectFileContent());
 		}
 	}
 }
