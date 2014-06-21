@@ -51,8 +51,8 @@ Global
 		Debug|x86 = Debug|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}}.Debug|x86.ActiveCfg = Debug|x86
-		{{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}}.Debug|x86.Build.0 = Debug|x86
+		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|x86.ActiveCfg = Debug|x86
+		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
