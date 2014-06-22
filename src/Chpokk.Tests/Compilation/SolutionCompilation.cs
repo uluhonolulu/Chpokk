@@ -33,9 +33,9 @@ namespace Chpokk.Tests.Compilation {
 //gotta trace constructor of Lookup: Lookup(ItemDictionary<ProjectItemInstance> projectItems, PropertyDictionary<ProjectPropertyInstance> properties, IDictionary<string, object> globalsForDebugging)
 		[Test]
 		public void Test() {
-			var outputPath = Context.ProjectFolder.AppendPath(@"bin\Debug").AppendPath(Context.PROJECT_NAME + ".exe");
-			//TODO: modify the context so that the project is buildable
-			File.Exists(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\CompileSolution\CompileSolution\bin\Debug\CompileSolution.exe").ShouldBe(true);
+			var outputPath = Context.ProjectFolder.AppendPath(@"bin\Debug").AppendPath(Context.PROJECT_NAME + ".dll");
+			File.Exists(outputPath).ShouldBe(true);
+			//File.Exists(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\CompileSolution\CompileSolution\bin\Debug\CompileSolution.exe").ShouldBe(true);
 		}
 
 		public override void Act() {
@@ -120,12 +120,19 @@ namespace Chpokk.Tests.Compilation {
 				Verbosity = LoggerVerbosity.Diagnostic;
 				eventSource.AnyEventRaised += (sender, args) =>
 				{
-					Console.WriteLine(args.Message + " (" + args.GetType().Name + ")");
+					//Console.WriteLine(args.Message + " (" + args.GetType().Name + ")");
 					var errorArgs = args as BuildErrorEventArgs;
 					if (errorArgs != null) {
 						Console.WriteLine(errorArgs.Subcategory);
 						Console.WriteLine(errorArgs.File + ", line " + errorArgs.LineNumber);
 						throw new Exception(args.Message);
+					}
+					var warningArgs = args as BuildWarningEventArgs;
+					if (warningArgs != null) {
+						Console.WriteLine(warningArgs.Subcategory);
+						Console.WriteLine(warningArgs.File + ", line " + warningArgs.LineNumber);
+						Console.WriteLine(args.Message + " (" + warningArgs.SenderName + ")");
+						
 					}
 					//var targetAgs = args as TargetFinishedEventArgs;
 					//if (targetAgs != null) {
@@ -154,8 +161,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|x86.Build.0 = Debug|Any CPU
+		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,10 +172,20 @@ EndGlobal
 		}
 
 		protected override string GetProjectFileContent() {
-			return @"<?xml version=""1.0"" encoding=""utf-8""?>
-				<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
-					<Import Project=""$(MSBuildToolsPath)\Microsoft.CSharp.targets"" />
-				</Project>";
+			return 
+@"<?xml version=""1.0"" encoding=""utf-8""?>
+<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin\Debug\</OutputPath>
+    <RootNamespace>{1}</RootNamespace>
+    <AssemblyName>{1}</AssemblyName>
+  </PropertyGroup>
+	<ItemGroup>
+		<Compile Include=""{0}"" />
+	</ItemGroup>
+	<Import Project=""$(MSBuildToolsPath)\Microsoft.CSharp.targets"" />
+</Project>".ToFormat(CODEFILE_NAME, PROJECT_NAME);
 		}
 	}
 }
