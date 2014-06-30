@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
@@ -51,25 +52,74 @@ namespace Chpokk.Tests.Newing {
 		[Test, DependsOn("CreatesAProjectFileInASubfolder")]
 		public void ProjectCanBeCompiled() {
 			ProjectCollection.GlobalProjectCollection.LoadProject(ProjectPath).Build(new CreatingASimpleSolution.ConsoleBuildLogger()).ShouldBe(true);
-			var binPath = RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, "bin"));
+			var binPath = RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, "bin"));
 			Directory.Exists(binPath).ShouldBe(true);
 		}
 	
+		[Test, DependsOn("CreatesASolutionFile")]
+		public void TheSolutionFileContainsStringsRequiredForBuilding() {
+			var solutionContent = File.ReadAllText(SolutionPath);
+			var expected = @"	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection".ToFormat(NAME);
+			solutionContent.ShouldContain(expected);
+		}
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
 			endpoint.DoIt(new AddSimpleProjectInputModel{PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "Library", ConnectionId = "fake"});
 		}
 
+		[Test]
+		public void SpikinItNow() {
+			var pattern = @"(?<=GlobalSection\(ProjectConfigurationPlatforms\) = postSolution\s*)$(.*?)(?=^\s*EndGlobalSection)";
+			var reg = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);
+			var solutionContent = @"Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B9D37AB-EEC9-4AF2-AF04-1CD65C2076EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244CBBEC-847E-4E0D-8857-05BB34878174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244CBBEC-847E-4E0D-8857-05BB34878174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244CBBEC-847E-4E0D-8857-05BB34878174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244CBBEC-847E-4E0D-8857-05BB34878174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA7F698-721E-4850-BF34-43C568E60C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA7F698-721E-4850-BF34-43C568E60C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA7F698-721E-4850-BF34-43C568E60C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33B69A4-8D74-46BA-91D2-154617603F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33B69A4-8D74-46BA-91D2-154617603F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33B69A4-8D74-46BA-91D2-154617603F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33B69A4-8D74-46BA-91D2-154617603F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal";
+			var match = reg.Match(solutionContent);
+			//Console.WriteLine(match.Captures[0].Value);
+			Console.WriteLine(match.Value);
+			//reg.Replace(solutionContent)
+			//match.Result()
+			;
+		}
+
 
 		RepositoryManager RepositoryManager { get { return Context.Container.Get<RepositoryManager>(); } }
 
 		private string SolutionPath {
-			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, NAME + ".sln"); }
+			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, NAME + ".sln"); }
 		}
 
 		private string ProjectPath {
-			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, NAME + ".csproj")); }
+			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, NAME + ".csproj")); }
 		}
 
 		public class ConsoleBuildLogger: ILogger {
