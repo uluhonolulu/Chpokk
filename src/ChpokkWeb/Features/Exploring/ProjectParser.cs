@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Xml;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
@@ -99,10 +100,33 @@ namespace ChpokkWeb.Features.Exploring {
 
 		public void AddProjectToSolution(string name, string solutionPath, string projectTypeGuid, string projectFileExtension) {
 			var solutionContent = _fileSystem.ReadStringFromFile(solutionPath);
-			solutionContent += Environment.NewLine;
-			solutionContent += @"Project(""{1}"") = ""{0}"", ""{0}\{0}{3}"", ""{2}""
-EndProject".ToFormat(name, projectTypeGuid, Guid.NewGuid(), projectFileExtension);
+			//adding project to the project section
+			//solutionContent += Environment.NewLine;
+			// in fact, we have two sections: project and config
+			// project section is up to a line that contains just "Global", or till the end
+			// 
+			var newGuid = Guid.NewGuid();
+			AddProjectSectionToSolutionContent(name, projectTypeGuid, projectFileExtension, newGuid, ref solutionContent);
+
+			//solutionContent += @""
 			_fileSystem.WriteStringToFile(solutionPath, solutionContent);
+		}
+
+		public void AddProjectSectionToSolutionContent(string name, string projectTypeGuid, string projectFileExtension,
+		                                               Guid newGuid, ref string solutionContent) {
+			const string projectPattern = @"(.+?)(?=\r\n\s*Global\s*$)";
+			var projectRegex = new Regex(projectPattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);
+			var newProjectContent = @"
+Project(""{1}"") = ""{0}"", ""{0}\{0}{3}"", ""{{{2}}}""
+EndProject".ToFormat(name, projectTypeGuid, newGuid, projectFileExtension);
+			if (projectRegex.IsMatch(solutionContent))
+				solutionContent = projectRegex.Replace(solutionContent, "$&" + newProjectContent);
+			else solutionContent += newProjectContent;
+		}
+
+		public void AddGlobalSectionToSolutionContent(string name, string projectTypeGuid, string projectFileExtension,
+		                                              Guid newGuid, ref string solutionContent) {
+			
 		}
 
 		public void CreateItem(string projectFilePath, string fileName, string fileContent) {

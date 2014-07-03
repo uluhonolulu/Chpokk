@@ -339,6 +339,7 @@
     <Compile Include="Newing\AddingAProjectReference.cs" />
     <Compile Include="Newing\AddingAProjectToSolution.cs" />
     <Compile Include="Newing\GettingTheListOfExistingProjects.cs" />
+    <Compile Include="Newing\SolutionContent\AddingProjectToProjectSection.cs" />
     <Compile Include="Newing\SolutionWithTwoProjectsContext.cs" />
     <Compile Include="References\AddingABclReference.cs" />
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />

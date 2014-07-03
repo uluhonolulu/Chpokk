@@ -106,9 +106,9 @@ EndGlobal";
 			var match = reg.Match(solutionContent);
 			//Console.WriteLine(match.Captures[0].Value);
 			Console.WriteLine(match.Value);
-			//reg.Replace(solutionContent)
-			//match.Result()
-			;
+			Console.WriteLine();
+			var result = reg.Replace(solutionContent, " start\r\n $& \r\nend ");
+			Console.WriteLine(result);
 		}
 
 
