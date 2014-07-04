@@ -4,20 +4,19 @@ using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
+using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
-using Shouldly;
-using FubuCore;
 
 namespace Chpokk.Tests.Newing.SolutionContent {
 	[TestFixture]
-	public class AddingProjectToProjectSection: BaseQueryTest<SimpleConfiguredContext, string> {
+	public class AddingProjectToGlobalSection : BaseQueryTest<SimpleConfiguredContext, string> {
 		private readonly Guid projectGuid = Guid.NewGuid();
 		[Test]
-		public void PlacesProjectDataInTheProjectSection() {
+		public void PlacesProjectDataInTheGlobalSection() {
 			Console.WriteLine(Result);
-			Assert.Contains(Result, @"Project(""ProjectTypeGuid"") = ""ProjectName"", ""ProjectName\ProjectName.csproj"", ""{{{0}}}""".ToFormat(projectGuid));
+			Assert.Contains(Result, @"{{{0}}}.Debug|x86.ActiveCfg = Debug|x86".ToFormat(projectGuid));
 		}
 
 		public override string Act() {
@@ -40,7 +39,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal";
-			parser.AddProjectSectionToSolutionContent("ProjectName", "ProjectTypeGuid", ".csproj", projectGuid, ref solutionContent);
+			parser.AddGlobalSectionToSolutionContent(projectGuid, ref solutionContent);
 			return solutionContent;
 		}
 	}

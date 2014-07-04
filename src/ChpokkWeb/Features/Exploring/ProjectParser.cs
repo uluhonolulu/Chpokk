@@ -105,28 +105,33 @@ namespace ChpokkWeb.Features.Exploring {
 			// in fact, we have two sections: project and config
 			// project section is up to a line that contains just "Global", or till the end
 			// 
-			var newGuid = Guid.NewGuid();
-			AddProjectSectionToSolutionContent(name, projectTypeGuid, projectFileExtension, newGuid, ref solutionContent);
+			var projectGuid = Guid.NewGuid();
+			AddProjectSectionToSolutionContent(name, projectTypeGuid, projectFileExtension, projectGuid, ref solutionContent);
+			AddGlobalSectionToSolutionContent(projectGuid, ref solutionContent);
 
 			//solutionContent += @""
 			_fileSystem.WriteStringToFile(solutionPath, solutionContent);
 		}
 
 		public void AddProjectSectionToSolutionContent(string name, string projectTypeGuid, string projectFileExtension,
-		                                               Guid newGuid, ref string solutionContent) {
+		                                               Guid projectGuid, ref string solutionContent) {
 			const string projectPattern = @"(.+?)(?=\r\n\s*Global\s*$)";
 			var projectRegex = new Regex(projectPattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);
 			var newProjectContent = @"
 Project(""{1}"") = ""{0}"", ""{0}\{0}{3}"", ""{{{2}}}""
-EndProject".ToFormat(name, projectTypeGuid, newGuid, projectFileExtension);
+EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			if (projectRegex.IsMatch(solutionContent))
 				solutionContent = projectRegex.Replace(solutionContent, "$&" + newProjectContent);
 			else solutionContent += newProjectContent;
 		}
 
-		public void AddGlobalSectionToSolutionContent(string name, string projectTypeGuid, string projectFileExtension,
-		                                              Guid newGuid, ref string solutionContent) {
-			
+		public void AddGlobalSectionToSolutionContent(Guid projectGuid, ref string solutionContent) {
+			const string globalPattern = @"(?<=GlobalSection\(ProjectConfigurationPlatforms\) = postSolution\s*)(.*?)(?=\r\n\s*EndGlobalSection)";
+			var globalRegex = new Regex(globalPattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);	
+			var newProjectContent = @"
+		{{{0}}}.Debug|x86.ActiveCfg = Debug|x86
+		{{{0}}}.Debug|x86.Build.0 = Debug|x86".ToFormat(projectGuid);
+			solutionContent = globalRegex.Replace(solutionContent, "$&" + newProjectContent);
 		}
 
 		public void CreateItem(string projectFilePath, string fileName, string fileContent) {

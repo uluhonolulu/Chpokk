@@ -161,8 +161,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{{7F5E6663-10AD-4671-80E6-8095EE4BC6F9}}.Debug|Any CPU.Build.0 = Debug|x86
 	EndGlobalSection
 EndGlobal
 ";
@@ -176,7 +176,6 @@ EndGlobal
     <OutputType>Library</OutputType>
     <OutputPath>bin\Debug\</OutputPath>
     <RootNamespace>{1}</RootNamespace>
-    <AssemblyName>{1}</AssemblyName>
   </PropertyGroup>
 	<ItemGroup>
 		<Compile Include=""{0}"" />
