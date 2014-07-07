@@ -45,38 +45,23 @@ namespace Chpokk.Tests.Compilation {
 			solutionPath = Context.SolutionPath;
 			//var logger = Context.Container.Get<ChpokkLogger>();
 			//logger.ConnectionId = "fakeID";
-			var loggers = new ILogger[] { new TestLogger() };
-			var targets = new string[] { "Build" };
+			ILogger logger = Context.Container.Get<ChpokkLogger>();
+			//logger.ConnectionId = "FakeID";
+			logger = new TestLogger();
+			var solutionCompiler = Context.Container.Get<SolutionCompiler>();
+			solutionCompiler.CompileSolution(solutionPath, logger);
+			return;
+			var loggers = new ILogger[] { logger };
+			var targets = new[] { "Build" };
 			var globalProperties = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is ILogger).DisplayFor<BuildEventArgs>(args => args.GetType().Name + ": " + args.Message));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("ItemFactory") && info.MethodName == "CreateItem"));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("Lookup") && info.MethodName.Contains("ctor"), 4).DisplayFor<IEnumerable<ProjectInstance>>(instances => instances.Count().ToString()));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("Lookup") && info.MethodName.Contains("ctor"), 4).DisplayFor(o => o is IEnumerable, o => "match"));
-			//CThruEngine.AddAspect(new ExpandTracker());
-			//CThruEngine.AddAspect(new CreateItemTracker());
-			//CThruEngine.AddAspect(new DebugAspect(info => info.MethodName == "ExpandSingleItemVectorExpressionIntoItems"));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "ExpandSingleItemVectorExpressionIntoItems"));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("MSBuild") && info.MethodName.Contains("Projects")));
-			//CThruEngine.AddAspect(new DebugAspect(info => info.TypeName.EndsWith("ProjectTaskInstance") ));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.Contains("SolutionParser"), 4));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TypeName.EndsWith("BuildRequestConfiguration") && info.MethodName.Contains("ctor")).DisplayFor <BuildRequestData>(data => data.ProjectFullPath));
-			//CThruEngine.AddAspect(new TraceResultAspect(info => info.MethodName == "ExpandSingleItemVectorExpressionIntoItems"));
-			//CThruEngine.AddAspect(new TraceResultAspect(info => info.MethodName == "ExpandIntoTaskItemsLeaveEscaped"));
-			//CThruEngine.StartListening();
 			var projectCollection = new ProjectCollection(globalProperties, loggers, null, ToolsetDefinitionLocations.ConfigurationFile | ToolsetDefinitionLocations.Registry, 1, false);
-			//var projekt =
-			//	ProjectCollection.GlobalProjectCollection.LoadProject(
-			//		@"D:\Projects\Chpokk\src\Chpokk.Tests\Chpokk.Tests.csproj");
-			//projectCollection = ProjectCollection.GlobalProjectCollection;
-			//projectCollection.RegisterLogger(logger);
-			var project =
-				ProjectRootElement.Open(
-					Context.ProjectFilePath);
-			if (project.DefaultTargets.IsEmpty()) {
-				project.DefaultTargets = "Build";
-				project.Save();
-			}
-			project.DefaultTargets.ShouldNotBe(string.Empty);
+			//var project =
+			//	ProjectRootElement.Open(
+			//		Context.ProjectFilePath);
+			//if (project.DefaultTargets.IsEmpty()) {
+			//	project.DefaultTargets = "Build";
+			//	project.Save();
+			//}
 			var requestData = new BuildRequestData(solutionPath, globalProperties, null, targets, null);
 			var parameters = new BuildParameters(projectCollection)
 				{
@@ -171,7 +156,7 @@ EndGlobal
 		protected override string GetProjectFileContent() {
 			return 
 @"<?xml version=""1.0"" encoding=""utf-8""?>
-<Project ToolsVersion=""4.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
+<Project ToolsVersion=""4.0"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <OutputPath>bin\Debug\</OutputPath>

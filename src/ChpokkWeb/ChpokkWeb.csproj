@@ -705,6 +705,7 @@
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
     <Compile Include="Features\Compilation\MsBuildCompiler.cs" />
+    <Compile Include="Features\Compilation\SolutionCompiler.cs" />
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
