@@ -71,6 +71,11 @@
             <a id="newProjectButton">New Project</a>
         </li>
     </ul>
+    <ul class="nav navbar-nav">
+        <li class="navbar-default">
+            <a id="compileSolutionButton">Compile Solution</a>
+        </li>
+    </ul>
 </content>
 
     

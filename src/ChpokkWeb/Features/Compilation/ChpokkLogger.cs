@@ -72,6 +72,7 @@ namespace ChpokkWeb.Features.Compilation {
 				}
 			};
 			eventSource.ErrorRaised += (sender, args) => SendError(args);
+			eventSource.WarningRaised += (sender, args) => SendMessage("WARNING: " + args.Message);
 			eventSource.BuildFinished += (sender, args) => {
 				var messageType = args.Succeeded ? MessageType.Success : MessageType.Error;
 				SendMessage(args.Message, messageType);

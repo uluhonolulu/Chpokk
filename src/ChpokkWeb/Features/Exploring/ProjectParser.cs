@@ -82,6 +82,7 @@ namespace ChpokkWeb.Features.Exploring {
 			var targetImport =
 				@"$(MSBuildToolsPath)\Microsoft.{0}.targets".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
 			rootElement.AddImport(targetImport);
+			rootElement.DefaultTargets = "Build";
 			rootElement.AddProperty("OutputType", outputType);
 			rootElement.AddProperty("OutputPath", @"bin\Debug\");
 			if (projectName != null) rootElement.AddProperty("RootNamespace", projectName);
@@ -129,8 +130,8 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			const string globalPattern = @"(?<=GlobalSection\(ProjectConfigurationPlatforms\) = postSolution\s*)(.*?)(?=\r\n\s*EndGlobalSection)";
 			var globalRegex = new Regex(globalPattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);	
 			var newProjectContent = @"
-		{{{0}}}.Debug|x86.ActiveCfg = Debug|x86
-		{{{0}}}.Debug|x86.Build.0 = Debug|x86".ToFormat(projectGuid);
+		{{{0}}}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{{{0}}}.Debug|Any CPU.Build.0 = Debug|x86".ToFormat(projectGuid);
 			solutionContent = globalRegex.Replace(solutionContent, "$&" + newProjectContent);
 		}
 

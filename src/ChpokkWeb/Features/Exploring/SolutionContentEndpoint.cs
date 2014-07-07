@@ -27,11 +27,11 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
-			var items = GetSolutionRepositoryItems(model.RepositoryName, model.PhysicalApplicationPath);
+			var items = GetSolutionRepositoryItems(model.RepositoryName);
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
 
-		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName, string physicalApplicationPath) {
+		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName) {
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
 			var files = _fileSystem.FindFiles(repositoryRoot, new FileSet {Include = "*.sln"});
 			var items =
@@ -43,7 +43,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutionFolders(SolutionFolderExplorerInputModel model) {
-			var items = GetSolutionRepositoryItems(model.RepositoryName, model.PhysicalApplicationPath).ToArray();
+			var items = GetSolutionRepositoryItems(model.RepositoryName).ToArray();
 			foreach (var solutionItem in items) {
 				solutionItem.Type = "solution";
 				solutionItem.PathRelativeToRepositoryRoot = null;

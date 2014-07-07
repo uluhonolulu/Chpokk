@@ -58,7 +58,14 @@
             			alert("Don't know what to run. Please open a file first.");
             		}
 				});
-  
+    			$('#compileSolutionButton').click(function() {
+    				initLogging();
+    				var model = tabs.activeModel();
+    				var compileSolutionUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileSolutionInputModel>()}';
+    				var editor = ace.edit("ace");
+    				$.post(compileSolutionUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: window.model.ConnectionId }));
+    			});
+
     		}
  	        
     		function log(message, category, wrap) {

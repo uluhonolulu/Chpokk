@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FubuCore;
+using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
@@ -15,7 +17,7 @@ namespace ChpokkWeb.Features.Compilation {
 			var projectCollection = new ProjectCollection(globalProperties, loggers, null, ToolsetDefinitionLocations.ConfigurationFile | ToolsetDefinitionLocations.Registry, 1, false);
 			//var project =
 			//	ProjectRootElement.Open(
-			//		Context.ProjectFilePath);
+			//		@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\_newCompilableSolution\_newCompilableSolution\_newCompilableSolution.csproj");
 			//if (project.DefaultTargets.IsEmpty()) {
 			//	project.DefaultTargets = "Build";
 			//	project.Save();

@@ -14,14 +14,16 @@ namespace ChpokkWeb.Features.Compilation {
 		private readonly ChpokkLogger _logger;
 		private readonly RepositoryManager _repositoryManager;
 		private readonly MsBuildCompiler _compiler;
+		private readonly SolutionCompiler _solutionCompiler;
 		private readonly ExeRunner _exeRunner;
 		private readonly Savior _savior;
-		public CompilerEndpoint(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior) {
+		public CompilerEndpoint(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior, SolutionCompiler solutionCompiler) {
 			_logger = logger;
 			_repositoryManager = repositoryManager;
 			_compiler = compiler;
 			_exeRunner = exeRunner;
 			_savior = savior;
+			_solutionCompiler = solutionCompiler;
 		}		
 		public AjaxContinuation Compile(CompileInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
@@ -61,6 +63,16 @@ namespace ChpokkWeb.Features.Compilation {
 
 			return AjaxContinuation.Successful();
 		}
+
+		public AjaxContinuation CompileSolution(CompileSolutionInputModel model) {
+			_logger.ConnectionId = model.ConnectionId;
+			_solutionCompiler.CompileSolution(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\_newnewCompilableSolution\_newnewCompilableSolution.sln", _logger);
+			return AjaxContinuation.Successful();
+		}
+	}
+
+	public class CompileSolutionInputModel : SaveFileInputModel {
+		public string ConnectionId { get; set; }
 	}
 
 	public class CompileInputModel : SaveFileInputModel {
