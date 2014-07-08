@@ -16,7 +16,6 @@
 <div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; height: 100%;">
 	<div id="ace"/>
 </div>
-<div id="output"></div>
 
 <content name="head">
 	<Stylesheet href="editor.css" />

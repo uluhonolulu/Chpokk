@@ -99,7 +99,10 @@ function loadSelectedFile() {
 
 window.tabs = window.tabs || {
 	activeModel: function () {
-		return tabs.all[tabs.activePath].model;
+		if(tabs.activePath) {
+			return tabs.all[tabs.activePath].model;
+		}
+		return window.model;
 	}
 };
 window.tabs.all = window.tabs.all || {};
@@ -168,6 +171,8 @@ function setContent(path, editor, content) {
 
 	//enable/disable autocompletion
 	editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
+	//resize -- sorry couldn't do it with CSS
+	$('#codeAndIntelWrapper').height($('#codeAndIntelWrapper').height() - $('#codeAndIntelWrapper')[0].offsetTop);
 	editor.resize();
 	
 }
