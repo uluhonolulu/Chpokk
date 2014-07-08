@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Files;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Running;
@@ -17,13 +18,15 @@ namespace ChpokkWeb.Features.Compilation {
 		private readonly SolutionCompiler _solutionCompiler;
 		private readonly ExeRunner _exeRunner;
 		private readonly Savior _savior;
-		public CompilerEndpoint(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior, SolutionCompiler solutionCompiler) {
+		private readonly SolutionExplorer _solutionExplorer;
+		public CompilerEndpoint(ChpokkLogger logger, RepositoryManager repositoryManager, MsBuildCompiler compiler, ExeRunner exeRunner, Savior savior, SolutionCompiler solutionCompiler, SolutionExplorer solutionExplorer) {
 			_logger = logger;
 			_repositoryManager = repositoryManager;
 			_compiler = compiler;
 			_exeRunner = exeRunner;
 			_savior = savior;
 			_solutionCompiler = solutionCompiler;
+			_solutionExplorer = solutionExplorer;
 		}		
 		public AjaxContinuation Compile(CompileInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
@@ -66,7 +69,11 @@ namespace ChpokkWeb.Features.Compilation {
 
 		public AjaxContinuation CompileSolution(CompileSolutionInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
-			_solutionCompiler.CompileSolution(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\_newnewCompilableSolution\_newnewCompilableSolution.sln", _logger);
+			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			var solutionFiles = _solutionExplorer.GetSolutionFiles(repositoryRoot);
+			foreach (var solutionFile in solutionFiles) {
+				_solutionCompiler.CompileSolution(solutionFile, _logger);	
+			}
 			return AjaxContinuation.Successful();
 		}
 	}

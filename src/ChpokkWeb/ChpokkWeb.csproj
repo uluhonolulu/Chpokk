@@ -723,6 +723,7 @@
     <Compile Include="Features\Editor\Menu\Policies\VersionControlEditorMenuPolicy.cs" />
     <Compile Include="Features\Exploring\Rename\RenameEndpoint.cs" />
     <Compile Include="Features\Exploring\Rename\RenameInputModel.cs" />
+    <Compile Include="Features\Exploring\SolutionExplorer.cs" />
     <Compile Include="Features\Home\DemoModel.cs" />
     <Compile Include="Features\DirChecker.cs" />
     <Compile Include="Features\Files\SaveEndpoint.cs" />

@@ -14,15 +14,14 @@ namespace ChpokkWeb.Features.Exploring {
 	public class SolutionContentEndpoint {
 		[NotNull] private readonly RepositoryManager _repositoryManager;
 
-		[NotNull] private readonly IFileSystem _fileSystem;
-
 		[NotNull] private readonly SolutionFileLoader _solutionFileLoader;
 
-		public SolutionContentEndpoint([NotNull]RepositoryManager repositoryManager, [NotNull]IFileSystem fileSystem, [NotNull
-		                                                                                                                ] SolutionParser solutionParser, [NotNull] SolutionFileLoader solutionFileLoader) {
+		private readonly SolutionExplorer _solutionExplorer;
+
+		public SolutionContentEndpoint([NotNull]RepositoryManager repositoryManager, [NotNull] SolutionFileLoader solutionFileLoader, SolutionExplorer solutionExplorer) {
 			_repositoryManager = repositoryManager;
-			_fileSystem = fileSystem;
 			_solutionFileLoader = solutionFileLoader;
+			_solutionExplorer = solutionExplorer;
 		}
 
 		[JsonEndpoint]
@@ -33,7 +32,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName) {
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
-			var files = _fileSystem.FindFiles(repositoryRoot, new FileSet {Include = "*.sln"});
+			var files = _solutionExplorer.GetSolutionFiles(repositoryRoot);
 			var items =
 				files.Select(
 					filePath =>
