@@ -116,10 +116,13 @@ function loadFile(path, editor, onload) {
 			url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
 			data: fileData,
 			success: function (data) {
-				var container = $('#navtabs');
-				var a = createTab(path, container, editor); // creeate the UI
-				window.tabs.all[path] = { model: fileData, content: data.Content, tab: a }; //store the data
-				loadFile(path, editor, onload); //call it again so that we use the loaded data
+				if (!window.tabs.all[path]) {
+					var container = $('#navtabs');
+					var a = createTab(path, container, editor); // creeate the UI
+					window.tabs.all[path] = { model: fileData, content: data.Content, tab: a }; //store the data
+					loadFile(path, editor, onload); //call it again so that we use the loaded data					
+				}
+
 				function createTab(path, container, editor) {
 					var a = $('<a/>').data('toggle', 'tab').data('path', path).attr('title', path).text(path.fileName());
 					a.click(function (e) {

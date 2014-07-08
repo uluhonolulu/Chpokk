@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 
 		$(function () {
-			amplify.subscribe('hashchange', loadSelectedFile);
+			//amplify.subscribe('hashchange', loadSelectedFile);
 			amplify.subscribe('solutionLoaded', loadSelectedFile);
 			jHash.change(loadSelectedFile);
 
