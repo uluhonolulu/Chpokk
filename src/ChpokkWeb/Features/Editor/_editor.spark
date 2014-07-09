@@ -13,8 +13,15 @@
 <ul class="nav nav-tabs" id="navtabs">
 </ul>
 
-<div id="codeAndIntelWrapper" style="position: relative; top:0px; left:0px; height: 100%;">
-	<div id="ace"/>
+<div style="display: none; height: 100%; background-color: peru; positionn: relative; width: 50%; margin-bottom: 100px; margin-left:-10px;  padding-bottom: 100px; ">
+	
+</div>
+
+<div id="codeAndIntelWrapper" style="position: relative;  width: 50%; margin-bottom: 100px; margin-left:-10px;  padding-bottom: 100px; height: 100%;  background-color: peru;">
+	<div id="ace" style="position: relative; display: none;"/>
+	<div style="height: 100%; background-color: powderblue; position: relative; width: 100%; box-sizing: content-box;">
+		<div style="height: 100%; background-color: rosybrown; position: absolute; width: 100%; box-sizing: content-box;"></div>
+	</div>
 </div>
 
 <content name="head">
