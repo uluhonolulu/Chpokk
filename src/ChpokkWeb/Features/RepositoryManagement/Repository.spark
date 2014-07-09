@@ -32,7 +32,7 @@
 			<div id="fileContent" style="margin-right:0px;height: 100%; display: none;" class="panel panel-default">
 				<render partial="Editor\_editor" />
 			</div>
-			<div id="output"></div>
+			<div id="output" style="position: relative;"></div>
 		</div>
 	</div>
 </div>
