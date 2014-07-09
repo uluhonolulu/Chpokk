@@ -15,7 +15,8 @@
             compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
             compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
 
-    		function initLogging() {
+            function initLogging() {
+	            $('#output').show();
                 $('#output').empty();
                 $('#output').get(0).scrollIntoView(top);
                 log("Please wait..");
