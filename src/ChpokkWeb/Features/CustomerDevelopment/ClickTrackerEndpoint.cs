@@ -38,7 +38,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 	}
 
-	public interface ITrack {}
+	public interface ITrack {
+		DateTime When { get; }
+	}
 
 	public class ErrorModel: ITrack {
 		public string Message { get; set; }
@@ -46,6 +48,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		public int LineNumber  { get; set; }
 		public string UserAgent { get; set; }
 		public string StackTrace { get; set; }
+		public DateTime When { get; private set; }
 		public override string ToString() {
 			return "Url: {0} (line {2}), error: {1}, browser: {3}, \nstack: {4}\n".ToFormat(this.Url, this.Message, this.LineNumber, this.UserAgent, this.StackTrace);
 		}
