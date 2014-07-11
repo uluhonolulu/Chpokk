@@ -70,6 +70,7 @@ namespace ChpokkWeb.Features.Compilation {
 		public AjaxContinuation CompileSolution(CompileSolutionInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			_logger.RepositoryRoot = repositoryRoot;
 			var solutionFiles = _solutionExplorer.GetSolutionFiles(repositoryRoot);
 			foreach (var solutionFile in solutionFiles) {
 				_solutionCompiler.CompileSolution(solutionFile, _logger);	

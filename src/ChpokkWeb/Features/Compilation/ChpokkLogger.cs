@@ -38,8 +38,14 @@ namespace ChpokkWeb.Features.Compilation {
 
 		public void SendError(BuildErrorEventArgs args) {
 			var filePathRelativeToRepositoryRoot = args.ProjectFile.ParentDirectory().AppendPath(args.File).PathRelativeTo(RepositoryRoot);
-			Client.danger(
-				new { message = args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, file = filePathRelativeToRepositoryRoot, line = args.LineNumber }, true);
+			if (args.LineNumber > 0) {
+				Client.danger(
+					new { message = args.Message + ": " + args.File + ", line " + args.LineNumber + ", position " + args.ColumnNumber, file = filePathRelativeToRepositoryRoot, line = args.LineNumber }, true);				
+			}
+			else {
+				Client.danger(args.Message, true);
+			}
+
 		}
 
 		private dynamic Client {
