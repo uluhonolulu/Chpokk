@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
+using System.Threading.Tasks;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
+using Emkay.S3;
 using FubuCore;
 using System.Linq;
 using FubuMVC.Core.Security;
@@ -17,16 +19,18 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
 		private readonly IFileSystem _fileSystem;
 		private readonly Downloader _downloader;
-		private Backup _backup;
+		private readonly Backup _backup;
 		private readonly IAppRootProvider _rootProvider;
+		private IS3Client _client;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
 			_downloader = downloader;
 			_rootProvider = rootProvider;
 			_backup = backup;
+			_client = client;
 			RegisterUserFolderForBackup();
 		}
 
@@ -92,6 +96,13 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			if (!Directory.Exists(repositoryFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(repositoryFolder).Select(Path.GetFileName);
  		}
+
+		public IEnumerable<string> GetRepositoryNamesFromStorage() {
+			var repositoryFolder = GetRepositoryFolder();
+			var storagePrefix = repositoryFolder.PathRelativeTo(AppRoot).Replace('\\', '/').MakeSureEndsWith("/");
+			var fullRemotePaths = _client.EnumerateChildren("chpokk", storagePrefix);
+			return (from path in fullRemotePaths select path.Substring(storagePrefix.Length).Split('/')[0]).Distinct();
+		}
 
 		public string GetUserFolder() {
 			return AppRoot.AppendPath(RelativeUserFolder);
@@ -181,11 +192,20 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public void RestoreFilesForCurrentUser() {
-			//download all user files
-			_downloader.DownloadAllFiles(AppRoot, RelativeUserFolder);
+			//create folders so that we see the list of repositories -- the files will be downloaded while we are staring at that list
+			var repositoryNames = GetRepositoryNamesFromStorage();
+			foreach (var repositoryName in repositoryNames) {
+				Directory.CreateDirectory(NewGetAbsolutePathFor(repositoryName));
+			}
+			//downloading takes time, so we'll do it asynchronously
+			Task.Run(() => {
+				//download all user files
+				_downloader.DownloadAllFiles(AppRoot, RelativeUserFolder);
 
-			//now, move the repos to their folder, in case we need to switch to the new system
-			MoveFilesToRepositoryFolder();
+				//now, move the repos to their folder, in case we need to switch to the new system
+				MoveFilesToRepositoryFolder();
+			});
+
 		}
 
 		public void EnsureAuthenticated() {

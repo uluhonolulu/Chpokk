@@ -31,5 +31,13 @@ namespace ChpokkWeb.Infrastructure {
 		public static string RemoveExtension([NotNull] this string name) {
 			return Path.GetFileNameWithoutExtension(name);
 		}
+
+		[NotNull]
+		public static string MakeSureEndsWith([NotNull] this string main, string suffix) {
+			if (!main.EndsWith(suffix)) {
+				main += suffix;
+			}
+			return main;
+		}
 	}
 }
