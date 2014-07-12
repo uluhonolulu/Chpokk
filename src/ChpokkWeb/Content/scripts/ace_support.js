@@ -63,7 +63,11 @@
 			    $('#ace').one('keyup', function () {
 				    editor.commands.exec('startAutocomplete', editor); //temporarily disable the autocomplete
 			    });
-
+		    }
+		    
+	    	//on enter, check syntax
+		    if (e.which === $.ui.keyCode.ENTER) {
+			    checkSyntax(editor);
 		    }
         }
 	});        
@@ -171,6 +175,9 @@ function setContent(path, editor, content) {
 
 	//enable/disable autocompletion
 	editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
+	if (editor.enableIntellisense) {
+		checkSyntax(editor);
+	}
 	//resize -- sorry couldn't do it with CSS
 	//$('#codeAndIntelWrapper').height($('#codeAndIntelWrapper').height() - $('#codeAndIntelWrapper')[0].offsetTop);
 	//editor.resize();
@@ -214,4 +221,23 @@ function selectCode(editor, selectionData) {
 
 	//editor.getSession().addGutterDecoration(7, 'error');
 //Adds className to the row, to be used for CSS stylings and whatnot.
+}
+
+//check syntax for errors
+function checkSyntax(editor) {
+	var model = tabs.activeModel();
+	if (model.PathRelativeToRepositoryRoot) {
+		var content = editor.getValue();
+		var parseUrl = 'url::ChpokkWeb.Features.Editor.Parsing.ParserInputModel';
+		$.post(parseUrl, $.extend(model, { Content: content }), function (data) {
+			for (var index in data.Errors) {
+				var error = data.Errors[index];
+				editor.getSession().setAnnotations([{
+					row: error.PositionSpan.StartLinePosition.Line,
+					text: error.Message,
+					type: "error" // also warning and information
+				}]);
+			}
+		});
+	}
 }
