@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Arractas;
-using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.Exploring;
 using Chpokk.Tests.Infrastructure;
@@ -45,58 +43,15 @@ namespace Chpokk.Tests.Compilation {
 			solutionPath = Context.SolutionPath;
 			//var logger = Context.Container.Get<ChpokkLogger>();
 			//logger.ConnectionId = "fakeID";
-			ILogger logger = Context.Container.Get<ChpokkLogger>();
 			//logger.ConnectionId = "FakeID";
-			logger = new TestLogger();
+			ILogger logger = new TestLogger();
 			var solutionCompiler = Context.Container.Get<SolutionCompiler>();
 			solutionCompiler.CompileSolution(solutionPath, logger);
-			return;
-			var loggers = new ILogger[] { logger };
-			var targets = new[] { "Build" };
-			var globalProperties = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-			var projectCollection = new ProjectCollection(globalProperties, loggers, null, ToolsetDefinitionLocations.ConfigurationFile | ToolsetDefinitionLocations.Registry, 1, false);
-			//var project =
-			//	ProjectRootElement.Open(
-			//		Context.ProjectFilePath);
-			//if (project.DefaultTargets.IsEmpty()) {
-			//	project.DefaultTargets = "Build";
-			//	project.Save();
-			//}
-			var requestData = new BuildRequestData(solutionPath, globalProperties, null, targets, null);
-			var parameters = new BuildParameters(projectCollection)
-				{
-					Loggers = loggers, //need this to have any output at all
-					ToolsetDefinitionLocations = ToolsetDefinitionLocations.ConfigurationFile | ToolsetDefinitionLocations.Registry
-				};
-			BuildManager.DefaultBuildManager.Build(parameters, requestData);			
 		}
 
 		public override void CleanUp() {
 			base.CleanUp();
 			DirectoryHelper.DeleteDirectory(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\CompileSolution\CompileSolution\bin\");
-		}
-
-		class CreateItemTracker: CommonAspect {
-			public CreateItemTracker() : base(info => info.TypeName.Contains("ItemFactory") && info.MethodName == "CreateItem") { }
-
-			public override void MethodBehavior(DuringCallbackEventArgs e) {
-				base.MethodBehavior(e);
-				if (((string)e.ParameterValues[0]).StartsWith("CurrentSolutionConfigurationContents")) {
-					Debugger.Break();
-				}
-			}
-		}
-
-
-		class ExpandTracker: CommonAspect {
-			public ExpandTracker() : base(info => info.TypeName.EndsWith("ItemExpander") && info.MethodName == "ExpandSingleItemVectorExpressionIntoItems") { }
-
-			public override void MethodBehavior(DuringCallbackEventArgs e) {
-				base.MethodBehavior(e);
-				if (((string)e.ParameterValues[1]).Equals("@(ProjectReference)")) {
-					Debugger.Break();
-				}
-			}
 		}
 
 
@@ -119,15 +74,6 @@ namespace Chpokk.Tests.Compilation {
 						Console.WriteLine(args.Message + " (" + warningArgs.SenderName + ")");
 						
 					}
-					//var targetAgs = args as TargetFinishedEventArgs;
-					//if (targetAgs != null) {
-					//	Console.WriteLine("TargetFile: " + targetAgs.TargetFile);
-					//}
-
-					//var taskArgs = args as TaskStartedEventArgs;
-					//if (taskArgs != null) {
-					//	//Console.WriteLine(taskArgs.ProjectFile);
-					//}
 				};
 			}
 			public void Shutdown() {}
