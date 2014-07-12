@@ -721,6 +721,7 @@
     <Compile Include="Features\Editor\Intellisense\Providers\RoslynExtensions.cs" />
     <Compile Include="Features\Editor\Menu\Policies\SvnEditorMenuPolicy.cs" />
     <Compile Include="Features\Editor\Menu\Policies\VersionControlEditorMenuPolicy.cs" />
+    <Compile Include="Features\Editor\Parsing\ErrorInfo.cs" />
     <Compile Include="Features\Exploring\Rename\RenameEndpoint.cs" />
     <Compile Include="Features\Exploring\Rename\RenameInputModel.cs" />
     <Compile Include="Features\Exploring\SolutionExplorer.cs" />

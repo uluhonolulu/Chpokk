@@ -405,6 +405,7 @@
     <Compile Include="Spikes\IvonnaDir.cs" />
     <Compile Include="Spikes\ListingRepositories.cs" />
     <Compile Include="Spikes\NewFolderStructure.cs" />
+    <Compile Include="Spikes\ParsingWithRoslyn.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
     <Compile Include="Spikes\RunningTests.cs" />
     <Compile Include="Spikes\SearchingForNuSpec.cs" />

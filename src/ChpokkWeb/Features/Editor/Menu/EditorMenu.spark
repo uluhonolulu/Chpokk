@@ -46,12 +46,18 @@
 				if (model.PathRelativeToRepositoryRoot) {
 					var editor = ace.edit("ace");
 					var content = editor.getValue();
-					$.post(parseUrl, $.extend(model, { Content: content }), function (continuation) {
-						if (continuation.success) {
+					$.post(parseUrl, $.extend(model, { Content: content }), function (data) {
+						if (data.Errors.length == 0) {
 							success('Code is perfect!');
 						} else {
-							for (var error in continuation.errors) {
-								danger(continuation.errors[error].message);
+							for (var index in data.Errors) {
+								var error = data.Errors[index];
+								danger(error.Message);
+								editor.getSession().setAnnotations([{
+									row: error.PositionSpan.StartLinePosition.Line,
+									text: error.Message,
+									type: "error" // also warning and information
+								}]);
 							}
 						}
 					});
