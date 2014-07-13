@@ -349,6 +349,14 @@ div#title
 /*dialogs*/
 .modal-dialog label { font-size: smaller;color: #404040;}
 
+/*editor tabs*/
+#fileContent .nav-tabs li a {
+	font-size: 12px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 
+}
+
 /*logs*/
 #output {
     background-color: #191919;

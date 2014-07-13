@@ -161,9 +161,9 @@ function activateTab(path, editor) {
 	//activate
 	var a = tabs.all[path].tab;
 	a.tab('show'); //UI
+	window.tabs.activePath = path; //should be before setContent, since it uses active tab when parsing 
 	//load content into the editor
 	setContent(path, editor, tabs.all[path].content);
-	window.tabs.activePath = path;
 }
 
 function setContent(path, editor, content) {
