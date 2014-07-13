@@ -45,7 +45,7 @@
             });
 	        //minimizer
 		    $('body').on('click', '#editorToolbar .glyphicon-resize-small', function (e) {
-				$('#fileContent').appendTo($('#editorContainer'));
+		    	$('#fileContent').prependTo($('#editorContainer'));
 				$('#fileContent').css({ 'position': 'static', width: '100%' });
 				$(this).addClass('glyphicon-fullscreen').removeClass('glyphicon-resize-small');
 		        e.stopImmediatePropagation(); // so that it doesn't hanle the other click
