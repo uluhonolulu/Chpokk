@@ -43,6 +43,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 	}
 
 	public class ErrorModel: ITrack {
+		public ErrorModel() {
+			When = DateTime.Now;
+		}
 		public string Message { get; set; }
 		public string Url { get; set; }
 		public int LineNumber  { get; set; }

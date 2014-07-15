@@ -50,11 +50,11 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 		private string GetSubject() {
 			var subject = "Actions for " + UserName;
+			if (_log.OfType<ErrorModel>().Any()) subject += " ERROR!!!";
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);
 			var duration = _log.Last().When - _log.First().When;
-			subject += " duration:" + duration.ToString();
-			if (HasThisAction("error")) subject += " ERROR!!!";
+			subject += " duration:" + duration.ToString("HH:mm:ss");
 			if (HasThisAction("startTrial")) subject += " (started trial!!!)";
 			if (HasThisAction("cancelTrial")) subject += " (canceled trial!!!)";
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
