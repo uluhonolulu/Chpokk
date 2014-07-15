@@ -131,11 +131,6 @@ function getStackTrace() {
 	return callstack;
 }
 
-function output(arr) {
-	// Output however you want
-	alert(arr.join('\n'));
-}
-
 //problem with local storage
 var localStorageOk = true;
 try {
@@ -151,4 +146,10 @@ if (!localStorageOk) {
 	
 }
 
-
+window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
+	var data = {
+		Message: 'Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber
+			+ ' Column: ' + column + ' StackTrace: ' + errorObj, StackTrace: 'none'
+	};
+	reportException(data);
+};

@@ -124,7 +124,7 @@
 						try {
 							continuation.options = options;
 						} catch (e) {
-							reportErrorObject(e);
+							//reportErrorObject(e); //Safari on IOS was really unhappy 
 						}
 
 					}
