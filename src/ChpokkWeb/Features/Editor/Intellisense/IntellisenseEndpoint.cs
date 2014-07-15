@@ -23,8 +23,8 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 		//TODO: Check what happens when "Console" or "Sys" or"System" 
 		public IntelOutputModel GetIntellisenseData(IntelInputModel input) {
 			_repositoryManager.EnsureAuthenticated();
-			var projectPath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.ProjectPath);
-			var filePath = _repositoryManager.GetAbsolutePathFor(input.RepositoryName, input.PhysicalApplicationPath, input.PathRelativeToRepositoryRoot);
+			var projectPath = _repositoryManager.NewGetAbsolutePathFor(input.RepositoryName, input.ProjectPath);
+			var filePath = _repositoryManager.NewGetAbsolutePathFor(input.RepositoryName, input.PathRelativeToRepositoryRoot);
 			var intelData = _intelDataLoader.CreateIntelData(projectPath, filePath, input.Content);
 			try {
 				var symbols = _completionProvider.GetSymbols(input.Content, input.Position, intelData.OtherContent, intelData.ReferencePaths, _languageDetector.GetRoslynLanguage(input.PathRelativeToRepositoryRoot));
