@@ -40,12 +40,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 		}
 
 		public bool ShouldRedirect(dynamic user) {
-			if (user == null) {
-				return false;
-			}
-			if (user.PaidUntil == null || user.PaidUntil > DateTime.Now ) {
-				return false;
-			}
+			if (user == null || user.Status == null) return false;
+			if (user.Status.ToString() == "canceled") return true;
+			if (user.PaidUntil == null || user.PaidUntil > DateTime.Now ) return false;
 			return true;
 		}
 	}
