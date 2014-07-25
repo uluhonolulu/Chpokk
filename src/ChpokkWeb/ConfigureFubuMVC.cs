@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Bottles;
 using Bottles.Diagnostics;
 using ChpokkWeb.Features.Authentication;
+using ChpokkWeb.Features.CustomerDevelopment.TimeToPay;
 using ChpokkWeb.Features.Demo;
 using ChpokkWeb.Features.Editor;
 using ChpokkWeb.Features.Exploring;
@@ -58,6 +59,10 @@ namespace ChpokkWeb {
 			policy.Where.InputTypeIs<MainDummyModel>();
 			policy.Wrap.WithBehavior<SignoutJohnDoeBehavior>();
 			Policies.Add(policy, "InjectNodes");
+
+			// if the user is past the trial period, redirect her to the payment page
+			Policies.WrapWith<EndOfTrialTimeToPayBehavior>();
+			//Policies.EnrichCallsWith<DemoBehaviorForSelectActions>(call => call.Method.Name == "Home" ); 
 		}
 
 		//internal class AssetPathResolver : IPathResolver {

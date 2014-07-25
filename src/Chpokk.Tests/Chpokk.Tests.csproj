@@ -310,6 +310,10 @@
     <Compile Include="Compilation\InvalidCode.cs" />
     <Compile Include="Compilation\SolutionCompilation.cs" />
     <Compile Include="Compilation\ValidCode.cs" />
+    <Compile Include="EndTrial\AnonUser.cs" />
+    <Compile Include="EndTrial\BaseEndTrial.cs" />
+    <Compile Include="EndTrial\PaidUntilIsInTheFuture.cs" />
+    <Compile Include="EndTrial\PaidUntilIsInThePast.cs" />
     <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />

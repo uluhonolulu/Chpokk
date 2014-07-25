@@ -7,6 +7,7 @@ using Arractas;
 using ChpokkWeb;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
+using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
@@ -39,6 +40,9 @@ namespace Chpokk.Tests.Infrastructure {
 			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
 			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
 			container.Configure(expression => expression.For<IAppRootProvider>().Use<TestAppRootProvider>());
+			container.Configure(expression => expression.For<IActionBehavior>().Use<NulloBehavior>());
+			Console.WriteLine(container.WhatDoIHave() );
+			
 		}
 
 		[NotNull]
