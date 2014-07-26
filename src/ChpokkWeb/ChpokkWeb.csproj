@@ -752,8 +752,8 @@
     <Compile Include="Features\Remotes\SaveCommit\ICommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnCommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnDetectionPolicy.cs" />
-    <Compile Include="Features\Storage\LocalAndRemoteFileSystem.cs" />
-    <Compile Include="Features\Storage\RemoteFileSystem.cs" />
+    <Compile Include="Infrastructure\FileSystem\LocalAndRemoteFileSystem.cs" />
+    <Compile Include="Infrastructure\FileSystem\RemoteFileSystem.cs" />
     <Compile Include="Infrastructure\AllowOnlyAuthenticatedAuthorizationPolicy.cs" />
     <Compile Include="Features\Editor\CodeEditorModel.cs" />
     <Compile Include="Features\Compilation\CompilerHub.cs" />
@@ -843,6 +843,7 @@
     <Compile Include="Infrastructure\FileSystem\AspNetAppRootProvider.cs" />
     <Compile Include="Infrastructure\Chimper.cs" />
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
+    <Compile Include="Infrastructure\FileSystem\FileExistenceChecker.cs" />
     <Compile Include="Infrastructure\MakesFubuHappy\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />

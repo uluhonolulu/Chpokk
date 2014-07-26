@@ -137,7 +137,7 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		private readonly FileSystem _localSystem;
-		private RemoteFileSystem _remoteSystem;
+		private readonly RemoteFileSystem _remoteSystem;
 		public LocalAndRemoteFileSystem(FileSystem localSystem, RemoteFileSystem remoteSystem) {
 			_localSystem = localSystem;
 			_remoteSystem = remoteSystem;
