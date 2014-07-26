@@ -840,21 +840,21 @@
     </Compile>
     <Compile Include="Infrastructure\AjaxExceptionWrapper.cs" />
     <Compile Include="Infrastructure\Annotations.cs" />
-    <Compile Include="Infrastructure\AspNetAppRootProvider.cs" />
+    <Compile Include="Infrastructure\FileSystem\AspNetAppRootProvider.cs" />
     <Compile Include="Infrastructure\Chimper.cs" />
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
-    <Compile Include="Infrastructure\ContinuationExtensions.cs" />
+    <Compile Include="Infrastructure\MakesFubuHappy\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />
     <Compile Include="Infrastructure\ExceptionNotifier.cs" />
-    <Compile Include="Infrastructure\IAppRootProvider.cs" />
+    <Compile Include="Infrastructure\FileSystem\IAppRootProvider.cs" />
     <Compile Include="Infrastructure\IMenuItemSource.cs" />
     <Compile Include="Infrastructure\KeepAliveEndpoint.cs" />
     <Compile Include="Infrastructure\LambdaTextWriter.cs" />
     <Compile Include="Infrastructure\LanguageExtensions.cs" />
     <Compile Include="Infrastructure\MenuItem.cs" />
-    <Compile Include="Infrastructure\ModellessPartialExtension.cs" />
-    <Compile Include="Infrastructure\PathExtensions.cs" />
+    <Compile Include="Infrastructure\MakesFubuHappy\ModellessPartialExtension.cs" />
+    <Compile Include="Infrastructure\FileSystem\PathExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformer.cs" />
     <Compile Include="Infrastructure\StructureMapResolver.cs" />
@@ -866,7 +866,7 @@
     <Compile Include="Features\Exploring\ContentController.cs" />
     <Compile Include="Features\RepositoryManagement\RepositoryInfo.cs" />
     <Compile Include="Features\Exploring\RepositoryInputModel.cs" />
-    <Compile Include="Infrastructure\DummyModel.cs" />
+    <Compile Include="Infrastructure\MakesFubuHappy\DummyModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
