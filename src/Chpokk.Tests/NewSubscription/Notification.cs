@@ -5,6 +5,7 @@ using Arractas;
 using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.CustomerDevelopment.Notification;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -17,20 +18,18 @@ namespace Chpokk.Tests.NewSubscription {
 	[TestFixture]
 	public class Notification: BaseCommandTest<UserInTheDB> {
 		private readonly DateTime monthLater = DateTime.Parse("2014-02-01");
+
 		[Test]
 		public void PaidUntilShouldBeInAMonth() {
-			//Console.WriteLine();
-			//Console.WriteLine("Getting a user");
 			var user = Context.GetUser();
 			Assert.IsNotNull(user);
 			((DateTime) user.PaidUntil).ShouldBe(monthLater);
 		}
 
 		public override void Act() {
-			var user = Context.GetUser();
-			user.PaidUntil = monthLater;
-			var db = Database.Open();
-			db.Users.Update(user);
+			var userName = Context.UserName;
+			var notificationEndpoint = Context.Container.Get<NotificationEndpoint>();
+			notificationEndpoint.UpdateSubscriptionStatus(userName);
 		}
 	}
 
@@ -39,13 +38,7 @@ namespace Chpokk.Tests.NewSubscription {
 		private DateTime today = DateTime.Parse("2014-01-01");
 		public override void Create() {
 			base.Create();
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is DataStrategy));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is ObjectReference));
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is AdoAdapter));
-			//CThruEngine.StartListening();
 			var db = Database.Open();
-			//Console.WriteLine();
-			//Console.WriteLine("Inserting a user");
 			db.Users.Insert(new {UserId = UserName, Data = String.Empty});
 
 			Isolate.WhenCalled(() => DateTime.Now).WillReturn(today);

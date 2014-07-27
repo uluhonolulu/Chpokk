@@ -710,6 +710,7 @@
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
     <Compile Include="Features\CustomerDevelopment\TimeToPay\EndOfTrialTimeToPayBehavior.cs" />
+    <Compile Include="Features\CustomerDevelopment\Notification\NotificationEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\BeginEditorExperienceEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\CancelTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
