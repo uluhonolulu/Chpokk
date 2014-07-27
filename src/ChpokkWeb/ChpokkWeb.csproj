@@ -708,6 +708,7 @@
     <Compile Include="Features\Compilation\SolutionCompiler.cs" />
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\Notification\NotificationInputModel.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
     <Compile Include="Features\CustomerDevelopment\TimeToPay\EndOfTrialTimeToPayBehavior.cs" />
     <Compile Include="Features\CustomerDevelopment\Notification\NotificationEndpoint.cs" />

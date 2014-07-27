@@ -17,19 +17,18 @@ using TypeMock.ArrangeActAssert;
 namespace Chpokk.Tests.NewSubscription {
 	[TestFixture]
 	public class Notification: BaseCommandTest<UserInTheDB> {
-		private readonly DateTime monthLater = DateTime.Parse("2014-02-01");
+		private readonly DateTime _monthLater = DateTime.Parse("2014-02-01");
 
 		[Test]
 		public void PaidUntilShouldBeInAMonth() {
 			var user = Context.GetUser();
 			Assert.IsNotNull(user);
-			((DateTime) user.PaidUntil).ShouldBe(monthLater);
+			((DateTime) user.PaidUntil).ShouldBe(_monthLater);
 		}
 
 		public override void Act() {
-			var userName = Context.UserName;
 			var notificationEndpoint = Context.Container.Get<NotificationEndpoint>();
-			notificationEndpoint.UpdateSubscriptionStatus(userName);
+			notificationEndpoint.UpdateSubscriptionStatus(new NotificationInputModel{SubscriptionReferrer = Context.UserName});
 		}
 	}
 
