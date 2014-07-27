@@ -41,7 +41,7 @@ namespace Chpokk.Tests.Infrastructure {
 			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
 			container.Configure(expression => expression.For<IAppRootProvider>().Use<TestAppRootProvider>());
 			container.Configure(expression => expression.For<IActionBehavior>().Use<NulloBehavior>());
-			Console.WriteLine(container.WhatDoIHave() );
+			//Console.WriteLine(container.WhatDoIHave() );
 			
 		}
 

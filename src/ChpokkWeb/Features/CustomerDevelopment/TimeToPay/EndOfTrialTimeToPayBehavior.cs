@@ -25,7 +25,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 			var currentUser = _userManager.GetCurrentUser();
 			if (ShouldRedirect(currentUser)) {
 				_smtpClient.Send("endoftrial@chpokk.apphb.com", "uluhonolulu@gmail.com", "End of trial for " + currentUser.UserId, "hurray!");
-				_httpWriter.Redirect("http://sites.fastspring.com/geeksoft/product/chpokkstarter");			
+				_httpWriter.Redirect("http://sites.fastspring.com/geeksoft/product/chpokkstarter?referrer=" + currentUser.UserId);			
 			}
 			else {
 				_innerBehavior.Invoke();
