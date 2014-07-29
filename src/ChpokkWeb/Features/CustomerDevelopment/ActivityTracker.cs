@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Web;
 using ChpokkWeb.Features.Authentication;
+using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using FubuCore;
 using FubuMVC.Core.Security;
 
@@ -15,11 +15,13 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly UsageRecorder _usageRecorder;
 		private readonly UsageCounter _usageCounter;
 		private readonly ISecurityContext _securityContext;
-		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter) {
+		private WhosOnlineTracker _onlineTracker;
+		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker) {
 			_mailer = mailer;
 			_usageRecorder = usageRecorder;
 			_securityContext = securityContext;
 			_usageCounter = usageCounter;
+			_onlineTracker = onlineTracker;
 		}
 
 
@@ -27,6 +29,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			_log.Add(new TrackerInputModel{What = caption, Url = url});
 			UserName = userName ?? _securityContext.CurrentIdentity.Name;
 			if (Browser.IsEmpty()) Browser = browser;
+			if (UserName.IsNotEmpty()) {
+				_onlineTracker.On(UserName);
+			}
 		}
 
 		public void Dispose() {
@@ -46,6 +51,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			}
 
 			_usageRecorder.AddUsage(UserName, messageBuilder.ToString());
+
+			_onlineTracker.Off(UserName);
 		}
 
 		private string GetSubject() {

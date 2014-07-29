@@ -2,9 +2,8 @@
 using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Authentication;
-using ChpokkWeb.Features.Compilation;
 using ChpokkWeb.Features.CustomerDevelopment;
-using ChpokkWeb.Features.Editor.Intellisense;
+using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using ChpokkWeb.Features.Editor.Intellisense.Providers;
 using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.ProjectManagement;
@@ -12,7 +11,6 @@ using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.SaveCommit;
-using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Storage;
 using Emkay.S3;
 using ICSharpCode.SharpDevelop.Dom;
@@ -25,7 +23,6 @@ using SharpSvn.Security;
 using StructureMap.Configuration.DSL;
 using StructureMap.Pipeline;
 using IDependencyResolver = Microsoft.AspNet.SignalR.IDependencyResolver;
-using ILogger = Microsoft.Build.Framework.ILogger;
 
 namespace ChpokkWeb.Infrastructure {
 	public class ChpokkRegistry : Registry {
@@ -77,6 +74,9 @@ namespace ChpokkWeb.Infrastructure {
 				};
 				return client;
 			});
+
+			//tracks who's online
+			For<WhosOnlineTracker>().Singleton();
 		}
 	}
 }
