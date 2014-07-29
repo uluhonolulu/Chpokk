@@ -36,11 +36,11 @@
 </content>
 
 
-<div class="container">
+<div class="container" style="position: relative;">
     <div>
         <img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
-        <img src="_content/images/click_here.png" alt="Click here to start coding online" style="position: absolute; top: 130px; left:570px; display: none;" id="clickArrow" />
-        <a id="startButton" href="/Main" style="position: absolute; left:785px; top: 118px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">
+        <img src="_content/images/click_here.png" alt="Click here to start coding online" style="position: absolute; top: 80px; left:472px; display: none;" id="clickArrow" />
+        <a id="startButton" href="/Main" style="position: absolute; left:687px; top: 68px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">
         </a>
     </div>
     
