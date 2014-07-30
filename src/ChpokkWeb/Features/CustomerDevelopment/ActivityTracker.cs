@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly UsageRecorder _usageRecorder;
 		private readonly UsageCounter _usageCounter;
 		private readonly ISecurityContext _securityContext;
-		private WhosOnlineTracker _onlineTracker;
+		private readonly WhosOnlineTracker _onlineTracker;
 		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker) {
 			_mailer = mailer;
 			_usageRecorder = usageRecorder;
@@ -66,7 +66,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);
 			var duration = _log.Last().When - _log.First().When;
-			subject += " duration:" + duration.ToString("HH:mm:ss");//hh\:mm\:ss
+			subject += " duration:" + duration.ToString(@"H\:mm\:ss");
 			if (HasThisAction("startTrial")) subject += " (started trial!!!)";
 			if (HasThisAction("cancelTrial")) subject += " (canceled trial!!!)";
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
