@@ -38,19 +38,24 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			if (UserName.IsEmpty()) {
 				return; //don't send for anonymous
 			}
-			var messageBuilder = new StringBuilder();
-			messageBuilder.AppendLine("User: " + UserName);
-			messageBuilder.AppendLine("Browser: " + Browser);
-			foreach (var model in _log) {
-				messageBuilder.AppendLine(model.ToString());
+			try {
+				var messageBuilder = new StringBuilder();
+				messageBuilder.AppendLine("User: " + UserName);
+				messageBuilder.AppendLine("Browser: " + Browser);
+				foreach (var model in _log) {
+					messageBuilder.AppendLine(model.ToString());
+				}
+				if (_mailer.Host != null) {
+					var subject = GetSubject();
+					var body = messageBuilder.ToString();
+					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
+				}
+				_usageRecorder.AddUsage(UserName, messageBuilder.ToString());
 			}
-			if (_mailer.Host != null) {
-				var subject = GetSubject();
-				var body = messageBuilder.ToString();
-				_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
+			catch (Exception e) {
+				_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Error sending actions: " + e.Message, e.ToString());
 			}
 
-			_usageRecorder.AddUsage(UserName, messageBuilder.ToString());
 
 			_onlineTracker.Off(UserName);
 		}
@@ -61,7 +66,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);
 			var duration = _log.Last().When - _log.First().When;
-			subject += " duration:" + duration.ToString("HH:mm:ss");
+			subject += " duration:" + duration.ToString("HH:mm:ss");//hh\:mm\:ss
 			if (HasThisAction("startTrial")) subject += " (started trial!!!)";
 			if (HasThisAction("cancelTrial")) subject += " (canceled trial!!!)";
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
