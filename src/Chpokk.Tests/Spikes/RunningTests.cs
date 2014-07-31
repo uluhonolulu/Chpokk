@@ -50,10 +50,11 @@ namespace Chpokk.Tests.Spikes {
 	public class RunningTests {
 		[Test]
 		public void Test() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName.StartsWith("Write")));// || info.TargetInstance is ILogger
-			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is ILogger));// || info.TargetInstance is ILogger
+			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName == "WriteLine", 10));// || info.TargetInstance is ILogger
+			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName.Contains("Color")));// || info.TargetInstance is ILogger
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is FilteredLogger));// || info.TargetInstance is ILogger
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IProgressMonitor && info.MethodName == "SetStatus"));// || info.TargetInstance is ILogger
-			CThruEngine.StartListening();
+			//CThruEngine.StartListening();
 			var webConsole = new WebConsole();	
 			var logger = new FilteredLogger((ILogger)new RichConsoleLogger(webConsole), Verbosity.Normal);
 			var setup = new RuntimeSetup();
@@ -64,10 +65,11 @@ namespace Chpokk.Tests.Spikes {
 			var progressMonitorProvider = new RichConsoleProgressMonitorProvider(webConsole);
 			var launcher = new TestLauncher {Logger = logger, ProgressMonitorProvider = progressMonitorProvider, EchoResults = true};
 			//with local, no detailed output
-			launcher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local;
-			launcher.AddFilePattern(@"D:\Projects\Chpokk\src\ChpokkWeb\bin\SmokeTests.dll");
+			//with IsolatedProcess, it works just fine
+			launcher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.IsolatedProcess;
+			launcher.AddFilePattern(@"D:\Projects\Chpokk\src\ChpokkWeb\bin\SmokeTests.dll");//@"D:\Projects\Chpokk\src\SomeTests\bin\Debug\SomeTests.dll"
 			var testLauncherResult = launcher.Run();
-			webConsole.WriteLine(testLauncherResult.ResultSummary);
+			Console.WriteLine(testLauncherResult.ResultSummary);
 			webConsole.WriteLine(testLauncherResult.Statistics.FormatTestCaseResultSummary());
 			//Must use Gallio.Runner.TestLauncher
 			//Look at EchoProgram.RunTests(ILogger logger)
@@ -103,8 +105,12 @@ namespace Chpokk.Tests.Spikes {
 			public void SetFooter(Action showFooter, Action hideFooter) {}
 			public void Write(char c) {}
 			public void Write(string str) {}
-			public void WriteLine() {}
-			public void WriteLine(string str) {}
+			public void WriteLine() {
+				Console.WriteLine();
+			}
+			public void WriteLine(string str) {
+				Console.WriteLine(str);
+			}
 			public object SyncRoot { get; private set; }
 			public bool IsCancelationEnabled { get; set; }
 			public bool IsCanceled { get; set; }
