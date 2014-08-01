@@ -10,7 +10,9 @@ using ChpokkWeb.Features.Testing;
 using FubuMVC.Core.Urls;
 using Gallio.Common.Diagnostics;
 using Gallio.Framework;
+using Gallio.Model;
 using Gallio.Runner;
+using Gallio.Runner.Events;
 using Gallio.Runtime;
 using Gallio.Runtime.ConsoleSupport;
 using Gallio.Runtime.Logging;
@@ -50,13 +52,16 @@ namespace Chpokk.Tests.Spikes {
 	public class RunningTests {
 		[Test]
 		public void Test() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName == "WriteLine", 10));// || info.TargetInstance is ILogger
-			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName.Contains("Color")));// || info.TargetInstance is ILogger
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName == "WriteLine", 10));// || info.TargetInstance is ILogger
+			//CThruEngine.AddAspect(new TraceAspect(info => info.MethodName == "NotifyTestStepFinished")
+			//	.DisplayFor<TestStepFinishedEventArgs>(args => args.GetStepKind() + ": " + args.Test + ", " + args.TestStepRun));// || info.TargetInstance is ILogger
+			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is BaseTestDriver));
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IRichConsole && info.MethodName.Contains("Color")));// || info.TargetInstance is ILogger
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is FilteredLogger));// || info.TargetInstance is ILogger
 			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is IProgressMonitor && info.MethodName == "SetStatus"));// || info.TargetInstance is ILogger
-			//CThruEngine.StartListening();
+			CThruEngine.StartListening();
 			var webConsole = new WebConsole();	
-			var logger = new FilteredLogger((ILogger)new RichConsoleLogger(webConsole), Verbosity.Normal);
+			var logger = new FilteredLogger((ILogger)new RichConsoleLogger(webConsole), Verbosity.Verbose); //changing it to Normal displays failed tests; verbose displays passed as well
 			var setup = new RuntimeSetup();
 			setup.AddPluginDirectory(@"C:\Program Files (x86)\Gallio\bin");
 			if (!RuntimeAccessor.IsInitialized) {
@@ -66,8 +71,9 @@ namespace Chpokk.Tests.Spikes {
 			var launcher = new TestLauncher {Logger = logger, ProgressMonitorProvider = progressMonitorProvider, EchoResults = true};
 			//with local, no detailed output
 			//with IsolatedProcess, it works just fine
-			launcher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.IsolatedProcess;
-			launcher.AddFilePattern(@"D:\Projects\Chpokk\src\ChpokkWeb\bin\SmokeTests.dll");//@"D:\Projects\Chpokk\src\SomeTests\bin\Debug\SomeTests.dll"
+			launcher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local;
+			launcher.AddFilePattern(@"D:\Projects\Chpokk\src\ChpokkWeb\bin\SmokeTests.dll");
+			launcher.AddFilePattern(@"D:\Projects\Chpokk\src\SomeTests\bin\Debug\SomeTests.dll");
 			var testLauncherResult = launcher.Run();
 			Console.WriteLine(testLauncherResult.ResultSummary);
 			webConsole.WriteLine(testLauncherResult.Statistics.FormatTestCaseResultSummary());
