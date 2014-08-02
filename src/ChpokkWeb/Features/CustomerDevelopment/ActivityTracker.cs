@@ -45,8 +45,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				foreach (var model in _log) {
 					messageBuilder.AppendLine(model.ToString());
 				}
-				if (_mailer.Host != null) {
 					var subject = GetSubject();
+				if (_mailer.Host != null) {
 					var body = messageBuilder.ToString();
 					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
 				}
@@ -66,7 +66,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);
 			var duration = _log.Last().When - _log.First().When;
-			subject += " duration:" + duration.ToString(@"H\:mm\:ss");
+			subject += " duration:" + duration.ToString(@"h\:mm\:ss");
 			if (HasThisAction("startTrial")) subject += " (started trial!!!)";
 			if (HasThisAction("cancelTrial")) subject += " (canceled trial!!!)";
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
