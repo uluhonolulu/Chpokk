@@ -13,7 +13,7 @@ namespace ChpokkWeb.Features.Storage {
 			_client = client;
 		}
 
-		public void DownloadAllFiles(string root, string subFolder = null, Action<string> onDownload = null) {
+		public void DownloadAllFiles(string root, string subFolder = null, Action<string, string> onDownload = null) {
 			IEnumerable<string> allFiles = _client.EnumerateChildren("chpokk"); 
 			if (subFolder != null)
 				allFiles = allFiles.Where(s => s.StartsWith(subFolder.Replace('\\', '/')));
@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Storage {
 				if (!localPath.EndsWith("/")) { 
 					_client.DownloadFile("chpokk", file, localPath, -1);
 					if (onDownload != null) {
-						onDownload(file);
+						onDownload(file, localPath);
 					}
 				}
 				

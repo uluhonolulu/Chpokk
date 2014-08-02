@@ -14,7 +14,7 @@ namespace ChpokkWeb.Features.Storage {
 
 		public string Restore(RestoreInputModel input) {
 			var builder = new StringBuilder();
-			_downloader.DownloadAllFiles(input.PhysicalApplicationPath, null, s => builder.AppendLine(s));
+			_downloader.DownloadAllFiles(input.PhysicalApplicationPath, null, (s, l) => builder.AppendLine(s));
 			return builder.ToString();
 		}
 	}

@@ -26,7 +26,7 @@ namespace Chpokk.Tests.Amazon {
 			var downloader = Context.Container.Get<Downloader>();
 			var subFolder = Context.RepositoryRoot.PathRelativeTo(Context.AppRoot);
 			Console.WriteLine("Looking in " + subFolder);
-			downloader.DownloadAllFiles(Context.AppRoot, subFolder, s => Console.WriteLine(s));
+			downloader.DownloadAllFiles(Context.AppRoot, subFolder, s,l => Console.WriteLine(s));
 		}
 	}
 

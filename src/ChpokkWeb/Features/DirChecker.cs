@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FubuCore;
+using System.Linq;
 
 namespace ChpokkWeb.Features {
 	public class DirCheckerController {
@@ -10,7 +11,8 @@ namespace ChpokkWeb.Features {
 		}
 
 		public string Gimme(GimmeModel model) {
-			return _fileSystem.ChildDirectoriesFor(FileSystem.Combine(model.PhysicalApplicationPath, model.RelativePath)).Join(Environment.NewLine);
+			var directory = FileSystem.Combine(model.PhysicalApplicationPath, model.RelativePath);
+			return _fileSystem.ChildDirectoriesFor(directory).Union(_fileSystem.FindFiles(directory, FileSet.Everything())).Join(Environment.NewLine);
 			return _fileSystem.FindFiles(FileSystem.Combine(model.PhysicalApplicationPath, "bin"), FileSet.Everything()).Join(Environment.NewLine); 
 		}
 

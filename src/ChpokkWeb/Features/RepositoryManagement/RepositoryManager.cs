@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading.Tasks;
+using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
@@ -21,9 +22,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly Downloader _downloader;
 		private readonly Backup _backup;
 		private readonly IAppRootProvider _rootProvider;
-		private IS3Client _client;
+		private readonly IS3Client _client;
+		private ActivityTracker _activityTracker;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client, ActivityTracker activityTracker) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
@@ -31,6 +33,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			_rootProvider = rootProvider;
 			_backup = backup;
 			_client = client;
+			_activityTracker = activityTracker;
 			RegisterUserFolderForBackup();
 		}
 
@@ -199,8 +202,13 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			}
 			//downloading takes time, so we'll do it asynchronously
 			Task.Run(() => {
-				//download all user files
-				_downloader.DownloadAllFiles(AppRoot, RelativeUserFolder);
+				//download all user files (and track the download process)
+				               _downloader.DownloadAllFiles(AppRoot, RelativeUserFolder,
+				                                            (remotePath, localPath) =>
+				                                            _activityTracker.Record(null,
+				                                                                    "Downloaded {0} to {1}".ToFormat(remotePath,
+				                                                                                                     localPath),
+				                                                                    null, null));
 
 				//now, move the repos to their folder, in case we need to switch to the new system
 				MoveFilesToRepositoryFolder();
