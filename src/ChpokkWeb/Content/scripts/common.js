@@ -14,7 +14,12 @@ $(function () {
 
 
     //traditional ajaxsettings so that we don't screw up with arrays
-    $.ajaxSetup({ traditional: true });
+	$.ajaxSetup({ traditional: true });
+	
+	//track ajax calls
+	$(document).ajaxSend(function (event, jqxhr, settings) {
+		track("AJAX: " + settings.url);
+	});
 
 	//track button clicks
 	$(document).on('click', '.btn, a, input:checkbox', function (e) {
@@ -40,7 +45,11 @@ function track(message) {
 	var browser = BrowserDetect.browser + ' ' + BrowserDetect.version + ' on ' + BrowserDetect.OS;
 	var data = { What: message, Url: window.location.toString(), Browser: browser };
 	var url = 'url::ChpokkWeb.Features.CustomerDevelopment.TrackerInputModel';
-	$.post(url, data);		
+	$.ajax(url, {
+		type: "POST",
+		data: data,
+		global: false
+	});		
 }
 
 (function() {
