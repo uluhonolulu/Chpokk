@@ -910,6 +910,7 @@
           <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties Typemock="{&quot;UnitTestProject&quot;:&quot;00000000-0000-0000-0000-000000000000&quot;}" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

@@ -13,13 +13,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 		private readonly IHttpWriter _httpWriter;
 		private readonly UserManagerInContext _userManager;
 		private readonly SmtpClient _smtpClient;
-		private ICurrentHttpRequest _request;
+		private readonly ICurrentHttpRequest _request;
 
-		public EndOfTrialTimeToPayBehavior(IActionBehavior innerBehavior, IHttpWriter httpWriter, UserManagerInContext userManager, SmtpClient smtpClient) {
+		public EndOfTrialTimeToPayBehavior(IActionBehavior innerBehavior, IHttpWriter httpWriter, UserManagerInContext userManager, SmtpClient smtpClient, ICurrentHttpRequest request) {
 			_innerBehavior = innerBehavior;
 			_httpWriter = httpWriter;
 			_userManager = userManager;
 			_smtpClient = smtpClient;
+			_request = request;
 		}
 
 		public void Invoke() {
