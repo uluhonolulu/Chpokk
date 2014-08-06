@@ -50,7 +50,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 					var body = messageBuilder.ToString();
 					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
 				}
-				_usageRecorder.AddUsage(UserName, messageBuilder.ToString());
+				_usageRecorder.AddUsage(UserName, messageBuilder.ToString(), GetDuration());
 			}
 			catch (Exception e) {
 				_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Error sending actions: " + e.Message, e.ToString());
@@ -65,13 +65,17 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			if (_log.OfType<ErrorModel>().Any()) subject += " ERROR!!!";
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);
-			var duration = _log.Last().When - _log.First().When;
+			var duration = GetDuration();
 			subject += " duration:" + duration.ToString(@"h\:mm\:ss");
 			if (HasThisAction("startTrial")) subject += " (started trial!!!)";
 			if (HasThisAction("cancelTrial")) subject += " (canceled trial!!!)";
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
 			if (HasThisAction("http://chpokk.apphb.com/Repository/")) subject += " (opened the editor)";
 			return subject;
+		}
+
+		private TimeSpan GetDuration() {
+			return _log.Last().When - _log.First().When;
 		}
 
 		private bool HasThisAction(string searchString) {

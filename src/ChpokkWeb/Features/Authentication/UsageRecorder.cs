@@ -6,9 +6,9 @@ using Simple.Data;
 
 namespace ChpokkWeb.Features.Authentication {
 	public class UsageRecorder {
-		public void AddUsage(string userName, string data) {
+		public void AddUsage(string userName, string data, TimeSpan duration) {
 			var db = Database.Open();
-			db.Usages.Insert(UserId: userName, Body: data);
+			db.Usages.Insert(UserId: userName, Body: data, duration: duration);
 		}
 	}
 }
