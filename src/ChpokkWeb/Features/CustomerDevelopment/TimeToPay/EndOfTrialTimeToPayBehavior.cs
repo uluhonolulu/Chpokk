@@ -13,6 +13,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 		private readonly IHttpWriter _httpWriter;
 		private readonly UserManagerInContext _userManager;
 		private readonly SmtpClient _smtpClient;
+		private ICurrentHttpRequest _request;
 
 		public EndOfTrialTimeToPayBehavior(IActionBehavior innerBehavior, IHttpWriter httpWriter, UserManagerInContext userManager, SmtpClient smtpClient) {
 			_innerBehavior = innerBehavior;
@@ -24,7 +25,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 		public void Invoke() {
 			var currentUser = _userManager.GetCurrentUser();
 			if (ShouldRedirect(currentUser)) {
-				_smtpClient.Send("endoftrial@chpokk.apphb.com", "uluhonolulu@gmail.com", "End of trial for " + currentUser.UserId, "hurray!");
+				_smtpClient.Send("endoftrial@chpokk.apphb.com", "uluhonolulu@gmail.com", "End of trial for " + currentUser.UserId, "hurray! " + _request.FullUrl());
 				_httpWriter.Redirect("http://sites.fastspring.com/geeksoft/product/chpokkstarter?referrer=" + currentUser.UserId);			
 			}
 			else {
