@@ -45,8 +45,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				foreach (var model in _log) {
 					messageBuilder.AppendLine(model.ToString());
 				}
-					var subject = GetSubject();
 				if (_mailer.Host != null) {
+					var subject = GetSubject();
 					var body = messageBuilder.ToString();
 					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
 				}
