@@ -1,0 +1,11 @@
+﻿<use namespace="ChpokkWeb.Features.CustomerDevelopment.MessageToUser" />
+
+<content name="InlineScripts">
+	<!-- MessageToUser.spark -->
+	<script type="text/javascript">
+		$(function() {
+			var messageToUserHub = $.connection.messageToUserHub;
+			messageToUserHub.client.info = window.info; 
+		})
+	</script>
+</content>

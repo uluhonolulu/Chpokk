@@ -12,7 +12,7 @@
 /// <reference path="jquery.signalR.js" />
 (function ($, window, undefined) {
 	/// <param name="$" type="jQuery" />
-	"use strict";
+	//"use strict";
 
 	if (typeof ($.signalR) !== "function") {
 		throw new Error("SignalR: SignalR is not loaded. Please ensure jquery.signalR-x.js is referenced before ~/signalr/js.");
@@ -81,6 +81,11 @@
 		proxies.compilerHub = this.createHubProxy('compilerHub');
 		proxies.compilerHub.client = {};
 		proxies.compilerHub.server = {
+		};
+
+		proxies.messageToUserHub = this.createHubProxy('messageToUserHub');
+		proxies.messageToUserHub.client = {};
+		proxies.messageToUserHub.server = {
 		};
 
 		proxies.nuGetHub = this.createHubProxy('nuGetHub');

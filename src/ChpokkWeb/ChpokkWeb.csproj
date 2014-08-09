@@ -585,6 +585,7 @@
     <Content Include="Features\ProjectManagement\AddProject\AddProject.spark" />
     <Content Include="Features\ProjectManagement\References\NuGet\Spike\LongOp.spark" />
     <Content Include="Features\Pokk\Pokk.spark" />
+    <Content Include="Features\CustomerDevelopment\MessageToUser\MessageToUser.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -708,6 +709,8 @@
     <Compile Include="Features\Compilation\SolutionCompiler.cs" />
     <Compile Include="Features\CustomerDevelopment\ActivityTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\ClickTrackerEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\MessageToUser\MessageToUserEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\MessageToUser\MessageToUserHub.cs" />
     <Compile Include="Features\CustomerDevelopment\Notification\NotificationInputModel.cs" />
     <Compile Include="Features\CustomerDevelopment\Pricelist\PriceListInputModel.cs" />
     <Compile Include="Features\CustomerDevelopment\TimeToPay\EndOfTrialTimeToPayBehavior.cs" />

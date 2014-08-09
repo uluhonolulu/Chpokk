@@ -11,3 +11,5 @@
         !{this.LinkTo<LogoutDummyInputModel>().Text("Logout").AddClass("btn")}
     </li>
 </ul>
+
+<render partial="CustomerDevelopment\MessageToUser\MessageToUser" />
