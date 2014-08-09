@@ -6,6 +6,7 @@ using System.Web;
 using ChpokkWeb.Features.Authentication;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Http;
+using FubuCore;
 
 namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 	public class EndOfTrialTimeToPayBehavior : IActionBehavior {
@@ -26,7 +27,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TimeToPay {
 		public void Invoke() {
 			var currentUser = _userManager.GetCurrentUser();
 			if (ShouldRedirect(currentUser)) {
-				_smtpClient.Send("endoftrial@chpokk.apphb.com", "uluhonolulu@gmail.com", "End of trial for " + currentUser.UserId, "hurray! " + _request.FullUrl());
+				_smtpClient.Send("endoftrial@chpokk.apphb.com", "uluhonolulu@gmail.com", "End of trial for " + currentUser.UserId, "hurray! " + _request.FullUrl() + @", her email: {0} <{1}>".ToFormat(
+					((string) currentUser.FullName), ((string) currentUser.Email)));
 				_httpWriter.Redirect("http://sites.fastspring.com/geeksoft/product/chpokkstarter?referrer=" + currentUser.UserId);			
 			}
 			else {
