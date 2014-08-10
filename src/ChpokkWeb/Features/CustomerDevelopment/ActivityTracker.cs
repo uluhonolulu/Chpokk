@@ -75,7 +75,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		private TimeSpan GetDuration() {
-			return _log.Last(track => !track.ToString().Contains("keepalive")).When - _log.First().When;
+			var activeActions = _log.Where(track => !track.ToString().Contains("keepalive")).ToArray();
+			if (activeActions.Any()) {
+				return activeActions.Last().When - activeActions.First().When;			
+			}
+			else {
+				return TimeSpan.Zero;
+			}
+
 		}
 
 		private bool HasThisAction(string searchString) {
