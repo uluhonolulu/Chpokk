@@ -29,45 +29,27 @@ namespace Chpokk.Tests.Testing {
 		public override void Act() {
 			var testAssemblies = new[] {@"D:\Projects\Chpokk\src\SomeTests\bin\Debug\SomeTests.dll"};
 			var webConsole = WebConsole;
-			var logger = new FilteredLogger(new RichConsoleLogger(webConsole), Verbosity.Verbose); //changing it to Normal displays failed tests; verbose displays passed as well
-			if (!RuntimeAccessor.IsInitialized) {
-				var setup = new RuntimeSetup();
-				setup.AddPluginDirectory(Context.AppRoot.AppendPath(@"\SystemFiles\GallioPlugins"));
-				RuntimeBootstrap.Initialize(setup, logger);
-			} 
-			var progressMonitorProvider = new RichConsoleProgressMonitorProvider(webConsole);
-			var launcher = new TestLauncher
-				{
-					Logger = logger,
-					ProgressMonitorProvider = progressMonitorProvider,
-					EchoResults = true,
-					TestProject = {TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local}
-				};
-			foreach (var assembly in testAssemblies) {
-				launcher.AddFilePattern(assembly);
-			}
-
-			var testLauncherResult = launcher.Run();
-			webConsole.WriteLine(testLauncherResult.ResultSummary);
+			var tester = Context.Container.Get<Tester>();
+			tester.RunTheTests(webConsole, testAssemblies);
 			Console.WriteLine();
 			Console.WriteLine("Here's the log:");
 			webConsole.Log.Each((s, i) => Console.WriteLine(i.ToString() + ". " + s));			
 		}
 
-		private WebConsole WebConsole {
-			get { return ((WebConsole) Context.Container.Get<IRichConsole>()); }
+		private FakeGallioConsole WebConsole {
+			get { return ((FakeGallioConsole) Context.Container.Get<IRichConsole>()); }
 		}
 	}
 
 	public class FakeConsoleContext: SimpleConfiguredContext {
 		protected override void ConfigureFubuRegistry(ChpokkWeb.ConfigureFubuMVC registry) {
 			base.ConfigureFubuRegistry(registry);
-			registry.Services(serviceRegistry => serviceRegistry.ReplaceService<IRichConsole, WebConsole>());
+			registry.Services(serviceRegistry => serviceRegistry.ReplaceService<IRichConsole, FakeGallioConsole>());
 		}
 	}
 
-		public class WebConsole: IRichConsole {
-			public WebConsole() { 
+		public class FakeGallioConsole: IRichConsole {
+			public FakeGallioConsole() { 
 				SyncRoot = new object();
 				Width = 80;
 				Out = Console.Out;
