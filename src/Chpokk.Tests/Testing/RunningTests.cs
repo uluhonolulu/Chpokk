@@ -1,32 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading;
 using Arractas;
-using CThru;
-using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
-using ChpokkWeb.Features.Testing;
-using FubuMVC.Core.Urls;
-using Gallio.Common.Diagnostics;
-using Gallio.Framework;
-using Gallio.Model;
 using Gallio.Runner;
-using Gallio.Runner.Events;
 using Gallio.Runtime;
 using Gallio.Runtime.ConsoleSupport;
 using Gallio.Runtime.Logging;
 using Gallio.Runtime.ProgressMonitoring;
-using Ivonna.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
-using Action = Gallio.Common.Action;
-using Ivonna.Framework.Generic;
-using System.Linq;
 using Shouldly;
+using Action = Gallio.Common.Action;
 
-namespace Chpokk.Tests.Spikes {
+namespace Chpokk.Tests.Testing {
 	[TestFixture]
 	public class RunningTests: BaseCommandTest<SimpleConfiguredContext> {
 		[Test]
@@ -45,7 +31,7 @@ namespace Chpokk.Tests.Spikes {
 			var webConsole = Context.Container.Get<WebConsole>();
 			var logger = new FilteredLogger((ILogger)new RichConsoleLogger(webConsole), Verbosity.Verbose); //changing it to Normal displays failed tests; verbose displays passed as well
 			var setup = new RuntimeSetup();
-			setup.AddPluginDirectory(@"C:\Program Files (x86)\Gallio\bin");
+			setup.AddPluginDirectory(@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\GallioPlugins");
 			if (!RuntimeAccessor.IsInitialized) {
 				RuntimeBootstrap.Initialize(setup, logger);
 			} 
