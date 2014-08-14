@@ -4,7 +4,7 @@
 	<script type="text/javascript">
 		$(function() {
 			var testingHub = $.connection.testingHub;
-			testingHub.client.log = function (message) { log(message, 'success', true); };
+			testingHub.client.log = coloredlog;
 
 			$('#runTests').click(function () {
 				initLogging();
@@ -12,18 +12,18 @@
 				$.get(url, model);
 			});
 
-			function log(message, category, wrap) {
-				var container = wrap ? $('<div></div>') : $('<span></span>');
-				container.text(message).addClass(category).appendTo($('#output'));
+			function coloredlog(message, color) {
+				var container = $('<div></div>');
+				container.text(message).css('color', color).appendTo($('#output'));
 				//scroll to bottom
 				var outputElement = $('#output').get(0);
 				outputElement.scrollTop = outputElement.scrollHeight;
 			}
 			
 			function initLogging() {
+				$('#output').show();
 				$('#output').empty();
 				$('#output').get(0).scrollIntoView(top);
-				log("Please wait..");
 
 			}
 

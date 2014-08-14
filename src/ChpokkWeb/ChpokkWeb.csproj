@@ -1723,6 +1723,7 @@
     <Compile Include="Features\Remotes\SVN\SvnCommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnDetectionPolicy.cs" />
     <Compile Include="Features\Testing\Tester.cs" />
+    <Compile Include="Features\Testing\WebGallioConsole.cs" />
     <Compile Include="Infrastructure\FileSystem\LocalAndRemoteFileSystem.cs" />
     <Compile Include="Infrastructure\FileSystem\RemoteFileSystem.cs" />
     <Compile Include="Features\Testing\TestingEndpoint.cs" />
