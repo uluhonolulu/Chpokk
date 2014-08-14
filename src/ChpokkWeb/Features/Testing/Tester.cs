@@ -26,11 +26,12 @@ namespace ChpokkWeb.Features.Testing {
 					Logger = logger,
 					ProgressMonitorProvider = progressMonitorProvider,
 					EchoResults = true,
-					TestProject = {TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local}
+					TestProject = {TestRunnerFactoryName = StandardTestRunnerFactoryNames.IsolatedAppDomain}
 				};
 			foreach (var assembly in testAssemblies) launcher.AddFilePattern(assembly);
 
 			var testLauncherResult = launcher.Run();
+			//RuntimeBootstrap.Shutdown();
 			webConsole.WriteLine(testLauncherResult.ResultSummary);
 		}
 	}
