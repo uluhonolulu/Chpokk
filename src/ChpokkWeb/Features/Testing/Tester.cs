@@ -6,7 +6,7 @@ using Gallio.Runtime.ConsoleSupport;
 using Gallio.Runtime.Logging;
 using Gallio.Runtime.ProgressMonitoring;
 
-namespace Chpokk.Tests.Testing {
+namespace ChpokkWeb.Features.Testing {
 	public class Tester {
 		private readonly IAppRootProvider _rootProvider;
 		public Tester(IAppRootProvider rootProvider) {
@@ -14,11 +14,10 @@ namespace Chpokk.Tests.Testing {
 		}
 
 		public void RunTheTests(IRichConsole webConsole, string[] testAssemblies) {
-			var logger = new FilteredLogger(new RichConsoleLogger(webConsole), Verbosity.Verbose);
-				//changing it to Normal displays failed tests; verbose displays passed as well
+			var logger = new FilteredLogger(new RichConsoleLogger(webConsole), Verbosity.Verbose);//changing it to Normal displays failed tests; verbose displays passed as well
 			if (!RuntimeAccessor.IsInitialized) {
 				var setup = new RuntimeSetup();
-				setup.AddPluginDirectory(_rootProvider.AppRoot.AppendPath(@"\SystemFiles\GallioPlugins"));
+				setup.AddPluginDirectory(_rootProvider.AppRoot.AppendPath(@"SystemFiles\GallioPlugins"));
 				RuntimeBootstrap.Initialize(setup, logger);
 			}
 			var progressMonitorProvider = new RichConsoleProgressMonitorProvider(webConsole);

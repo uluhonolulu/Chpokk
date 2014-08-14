@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.Testing;
 using Gallio.Runner;
 using Gallio.Runtime;
 using Gallio.Runtime.ConsoleSupport;
@@ -24,6 +25,13 @@ namespace Chpokk.Tests.Testing {
 		[Test]
 		public void OutputShouldContainPassedTests() {
 			WebConsole.Log.ShouldContain(s => s.StartsWith("[passed] Test SomeTests/PassingTest/ImEmpty")); //should contain passed tests
+		}
+
+		[Test]
+		public void WhatsTheType() {
+			var manager = RuntimeAccessor.ServiceLocator.Resolve<ITestRunnerManager>();
+			var type = manager.GetType();
+			Console.WriteLine(type.FullName);
 		}
 
 		public override void Act() {

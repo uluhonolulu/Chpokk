@@ -685,6 +685,8 @@
     <Content Include="SystemFiles\GallioPlugins\DLR\libs\Microsoft.Scripting.Core.dll" />
     <Content Include="SystemFiles\GallioPlugins\DLR\libs\Microsoft.Scripting.dll" />
     <Content Include="SystemFiles\GallioPlugins\DLR\libs\Microsoft.Scripting.ExtensionAttribute.dll" />
+    <Content Include="SystemFiles\GallioPlugins\Gallio.dll" />
+    <Content Include="SystemFiles\GallioPlugins\MbUnit.dll" />
     <Content Include="SystemFiles\GallioPlugins\MbUnit2\Gallio.MbUnit2Adapter.dll" />
     <Content Include="SystemFiles\GallioPlugins\MbUnit2\MbUnit.Framework.2.0.dll" />
     <Content Include="SystemFiles\GallioPlugins\MbUnit2\MbUnit.Framework.2.0.xml" />
@@ -1442,6 +1444,13 @@
     <Content Include="SystemFiles\GallioPlugins\MbUnitCpp\Gallio.MbUnitCppAdapter.plugin" />
     <Content Include="SystemFiles\GallioPlugins\MSTest\Gallio.MSTestAdapter.plugin" />
     <Content Include="SystemFiles\GallioPlugins\NCover\Gallio.NCoverIntegration.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\Gallio.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\Gallio.Utility.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\Gallio35.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\Gallio40.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\MbUnit.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\MbUnit35.plugin" />
+    <Content Include="SystemFiles\GallioPlugins\MbUnit40.plugin" />
     <None Include="SystemFiles\GallioPlugins\NCover\libs\NCoverExplorer\ConsoleConfig.xsd">
       <SubType>Designer</SubType>
     </None>

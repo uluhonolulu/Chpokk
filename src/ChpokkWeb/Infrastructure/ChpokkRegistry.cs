@@ -81,7 +81,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<WhosOnlineTracker>().Singleton();
 
 			//Gallio output
-			For<IRichConsole>().Use<WebConsole>();
+			For<IRichConsole>().Use<WebGallioConsole>();
 		}
 	}
 }
