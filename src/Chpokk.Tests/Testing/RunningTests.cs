@@ -11,40 +11,58 @@ using Gallio.Runtime.ProgressMonitoring;
 using MbUnit.Framework;
 using Shouldly;
 using Action = Gallio.Common.Action;
+using FubuCore;
 
 namespace Chpokk.Tests.Testing {
 	[TestFixture]
-	public class RunningTests: BaseCommandTest<SimpleConfiguredContext> {
+	public class RunningTests : BaseCommandTest<FakeConsoleContext> {
 		[Test]
 		public void OutputShouldContainFailedTests() {
-			var webConsole = Context.Container.Get<WebConsole>();
-			webConsole.Log.ShouldContain(s => s.StartsWith("[failed] Test SomeTests/FailingTests/JustFails")); 
+			WebConsole.Log.ShouldContain(s => s.StartsWith("[failed] Test SomeTests/FailingTests/JustFails")); 
 		}
 
 		[Test]
 		public void OutputShouldContainPassedTests() {
-			var webConsole = Context.Container.Get<WebConsole>();
-			webConsole.Log.ShouldContain(s => s.StartsWith("[passed] Test SomeTests/PassingTest/ImEmpty")); //should contain passed tests
+			WebConsole.Log.ShouldContain(s => s.StartsWith("[passed] Test SomeTests/PassingTest/ImEmpty")); //should contain passed tests
 		}
 
 		public override void Act() {
-			var webConsole = Context.Container.Get<WebConsole>();
-			var logger = new FilteredLogger((ILogger)new RichConsoleLogger(webConsole), Verbosity.Verbose); //changing it to Normal displays failed tests; verbose displays passed as well
-			var setup = new RuntimeSetup();
-			setup.AddPluginDirectory(@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\GallioPlugins");
+			var testAssemblies = new[] {@"D:\Projects\Chpokk\src\SomeTests\bin\Debug\SomeTests.dll"};
+			var webConsole = WebConsole;
+			var logger = new FilteredLogger(new RichConsoleLogger(webConsole), Verbosity.Verbose); //changing it to Normal displays failed tests; verbose displays passed as well
 			if (!RuntimeAccessor.IsInitialized) {
+				var setup = new RuntimeSetup();
+				setup.AddPluginDirectory(Context.AppRoot.AppendPath(@"\SystemFiles\GallioPlugins"));
 				RuntimeBootstrap.Initialize(setup, logger);
 			} 
 			var progressMonitorProvider = new RichConsoleProgressMonitorProvider(webConsole);
-			var launcher = new TestLauncher {Logger = logger, ProgressMonitorProvider = progressMonitorProvider, EchoResults = true};
-			launcher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local;
-			//launcher.AddFilePattern(@"D:\Projects\Chpokk\src\ChpokkWeb\bin\SmokeTests.dll");
-			launcher.AddFilePattern(@"D:\Projects\Chpokk\src\SomeTests\bin\Debug\SomeTests.dll");
+			var launcher = new TestLauncher
+				{
+					Logger = logger,
+					ProgressMonitorProvider = progressMonitorProvider,
+					EchoResults = true,
+					TestProject = {TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local}
+				};
+			foreach (var assembly in testAssemblies) {
+				launcher.AddFilePattern(assembly);
+			}
+
 			var testLauncherResult = launcher.Run();
 			webConsole.WriteLine(testLauncherResult.ResultSummary);
 			Console.WriteLine();
 			Console.WriteLine("Here's the log:");
 			webConsole.Log.Each((s, i) => Console.WriteLine(i.ToString() + ". " + s));			
+		}
+
+		private WebConsole WebConsole {
+			get { return ((WebConsole) Context.Container.Get<IRichConsole>()); }
+		}
+	}
+
+	public class FakeConsoleContext: SimpleConfiguredContext {
+		protected override void ConfigureFubuRegistry(ChpokkWeb.ConfigureFubuMVC registry) {
+			base.ConfigureFubuRegistry(registry);
+			registry.Services(serviceRegistry => serviceRegistry.ReplaceService<IRichConsole, WebConsole>());
 		}
 	}
 

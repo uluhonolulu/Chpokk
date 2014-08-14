@@ -12,7 +12,9 @@ using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.SaveCommit;
 using ChpokkWeb.Features.Storage;
+using ChpokkWeb.Features.Testing;
 using Emkay.S3;
+using Gallio.Runtime.ConsoleSupport;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Dom.NRefactoryResolver;
 using Microsoft.Build.Evaluation;
@@ -77,6 +79,9 @@ namespace ChpokkWeb.Infrastructure {
 
 			//tracks who's online
 			For<WhosOnlineTracker>().Singleton();
+
+			//Gallio output
+			For<IRichConsole>().Use<WebConsole>();
 		}
 	}
 }

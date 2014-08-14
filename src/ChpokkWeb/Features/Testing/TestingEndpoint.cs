@@ -28,10 +28,6 @@ namespace ChpokkWeb.Features.Testing {
 				
 					var progressMonitorProvider = new RichConsoleProgressMonitorProvider(webConsole);
 					var launcher = new TestLauncher { Logger = logger, ProgressMonitorProvider = progressMonitorProvider, RuntimeSetup = setup, EchoResults = true };
-					//default is IsolatedProcess; 
-					//works weird with IsolatedAppDomain -- AppDomainUnloadException and stuff
-					//works bad with IsolatedHost -- tried to launch the exe
-					//works fine with Local
 					launcher.TestProject.TestRunnerFactoryName = StandardTestRunnerFactoryNames.Local; 
 					launcher.AddFilePattern(@"D:\Projects\Chpokk\src\ChpokkWeb\bin\SmokeTests.dll");
 					var testLauncherResult = launcher.Run();
