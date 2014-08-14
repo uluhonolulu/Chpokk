@@ -45,7 +45,6 @@
 !{this.Partial<ChpokkWeb.Features.Remotes.Git.Push.PushDialogModel>()}
 !{this.ModellessPartial<BeginEditorExperienceEndpoint>("DoIt")}
 <render partial="ProjectManagement\AddProject\AddProject.spark" />
-<render partial="Testing\Testing.spark" />
 
 <content name="rightcorner">
     <!--ul class="nav navbar-nav">
@@ -73,12 +72,13 @@
             <a id="newProjectButton">New Project</a>
         </li>
     </ul>
-    <ul class="nav navbar-nav">
-        <li class="navbar-default">
-            <a id="compileSolutionButton">Compile Solution</a>
-        </li>
-    </ul>
+	<ul class="nav navbar-nav">
+		<li class="navbar-default">
+			<a id="compileSolutionButton">Compile Solution</a>
+		</li>
+	</ul>
 </content>
+<render partial="Testing\Testing.spark" />
 
     
 <adconv/>
