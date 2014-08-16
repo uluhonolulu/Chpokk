@@ -1,4 +1,5 @@
-﻿using ChpokkWeb.Infrastructure;
+﻿using System.Collections.Generic;
+using ChpokkWeb.Infrastructure;
 using FubuCore;
 using Gallio.Runner;
 using Gallio.Runtime;
@@ -13,7 +14,7 @@ namespace ChpokkWeb.Features.Testing {
 			_rootProvider = rootProvider;
 		}
 
-		public void RunTheTests(IRichConsole webConsole, string[] testAssemblies) {
+		public void RunTheTests(IRichConsole webConsole, IEnumerable<string> testAssemblies) {
 			var logger = new FilteredLogger(new RichConsoleLogger(webConsole), Verbosity.Verbose);//changing it to Normal displays failed tests; verbose displays passed as well
 			if (!RuntimeAccessor.IsInitialized) {
 				var setup = new RuntimeSetup();

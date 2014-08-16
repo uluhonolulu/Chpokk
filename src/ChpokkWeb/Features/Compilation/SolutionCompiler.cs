@@ -10,7 +10,7 @@ using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class SolutionCompiler {
-		public void CompileSolution(string solutionPath, ILogger logger) {
+		public Microsoft.Build.Execution.BuildResult CompileSolution(string solutionPath, ILogger logger) {
 			var loggers = new[] { logger }; 
 			var targets = new[] { "Build" };
 			var globalProperties = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -27,7 +27,7 @@ namespace ChpokkWeb.Features.Compilation {
 				Loggers = loggers, //need this to have any output at all
 				ToolsetDefinitionLocations = ToolsetDefinitionLocations.ConfigurationFile | ToolsetDefinitionLocations.Registry
 			};
-			BuildManager.DefaultBuildManager.Build(parameters, requestData);				
+			return BuildManager.DefaultBuildManager.Build(parameters, requestData);				
 		}
 	}
 }

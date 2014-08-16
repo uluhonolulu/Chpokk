@@ -4,26 +4,32 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using ChpokkWeb.Features.Compilation;
+using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuMVC.Core.Ajax;
 using Gallio.Runner;
 using Gallio.Runtime;
 using Gallio.Runtime.Logging;
 using Gallio.Runtime.ProgressMonitoring;
+using BuildResult = Microsoft.Build.Execution.BuildResult;
 
 namespace ChpokkWeb.Features.Testing {
 	public class TestingEndpoint {
 		private readonly WebGallioConsole _webConsole;
 		private readonly ChpokkLogger _logger;
 		private readonly RepositoryManager _repositoryManager;
+		private readonly SolutionExplorer _solutionExplorer;
 		private readonly MsBuildCompiler _compiler;
-		private Tester _tester;
-		public TestingEndpoint(WebGallioConsole webConsole, RepositoryManager repositoryManager, ChpokkLogger logger, MsBuildCompiler compiler, Tester tester) {
+		private SolutionCompiler _solutionCompiler;
+		private readonly Tester _tester;
+		public TestingEndpoint(WebGallioConsole webConsole, RepositoryManager repositoryManager, ChpokkLogger logger, MsBuildCompiler compiler, Tester tester, SolutionExplorer solutionExplorer, SolutionCompiler solutionCompiler) {
 			_webConsole = webConsole;
 			_repositoryManager = repositoryManager;
 			_logger = logger;
 			_compiler = compiler;
 			_tester = tester;
+			_solutionExplorer = solutionExplorer;
+			_solutionCompiler = solutionCompiler;
 		}
 
 		public AjaxContinuation CompileAndTest(TestingInputModel model) {
@@ -31,11 +37,25 @@ namespace ChpokkWeb.Features.Testing {
 			_webConsole.ConnectionId = model.ConnectionId;
 			_logger.ConnectionId = model.ConnectionId;
 			_logger.RepositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
-			var projectPath = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\TestingTest\TestingTest\TestingTest.csproj";
-			var result = _compiler.Compile(projectPath, _logger);
-			_tester.RunTheTests(_webConsole, new[]{result.OutputFilePath});
+			//build
+			var assemblyPaths = new List<string>();
+			foreach (var solutionPath in GetSolutionPaths(model.RepositoryName)) {
+				var buildResult = _solutionCompiler.CompileSolution(solutionPath, _logger);
+				assemblyPaths.AddRange(GetAssemblyPaths(buildResult));
+			}
+			//test
+			_tester.RunTheTests(_webConsole, assemblyPaths);
 			return AjaxContinuation.Successful();
 		}
+
+		private IEnumerable<string> GetAssemblyPaths(BuildResult buildResult) {
+			return from result in buildResult.ResultsByTarget["Build"].Items select result.ItemSpec;
+		} 
+
+		private IEnumerable<string> GetSolutionPaths(string repositoryName) {
+			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			return _solutionExplorer.GetSolutionFiles(repositoryRoot);
+		} 
 
 		//public AjaxContinuation RunTests(TestingInputModel model) {
 		//	Task.Run(() => {

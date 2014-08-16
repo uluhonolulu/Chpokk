@@ -20,33 +20,32 @@ using Microsoft.Build.Logging;
 using Shouldly;
 using FubuCore;
 using System.Linq;
+using BuildResult = Microsoft.Build.Execution.BuildResult;
 
 namespace Chpokk.Tests.Compilation {
 	[TestFixture]
-	public class SolutionCompilation : BaseCommandTest<CompilableSolutionContext> {
-		//track this:  	Microsoft.Build.dll!Microsoft.Build.Evaluation.Expander<Microsoft.Build.Execution.ProjectPropertyInstance,Microsoft.Build.Execution.ProjectItemInstance>.ExpandIntoTaskItemsLeaveEscaped(string expression = "BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)", Microsoft.Build.Evaluation.ExpanderOptions options = ExpandCustomMetadata | ExpandBuiltInMetadata | ExpandProperties | ExpandItems, Microsoft.Build.Shared.IElementLocation elementLocation = {Microsoft.Build.Construction.ElementLocation.SmallElementLocation})	
-		// figure why CurrentSolutionConfigurationContents expands to an empty xml
-
-//		lookup.lookupScopes --> take 4th (Description = "Lookup()", Items contains project instance
-//gotta trace constructor of Lookup: Lookup(ItemDictionary<ProjectItemInstance> projectItems, PropertyDictionary<ProjectPropertyInstance> properties, IDictionary<string, object> globalsForDebugging)
+	public class SolutionCompilation : BaseQueryTest<CompilableSolutionContext, BuildResult> {
 		[Test]
-		public void Test() {
+		public void CompiledDllShouldExist() {
 			var outputPath = Context.ProjectFolder.AppendPath(@"bin\Debug").AppendPath(Context.PROJECT_NAME + ".dll");
 			File.Exists(outputPath).ShouldBe(true);
 			//File.Exists(@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\CompileSolution\CompileSolution\bin\Debug\CompileSolution.exe").ShouldBe(true);
 		}
 
-		public override void Act() {
+		[Test]
+		public void ShouldbeAbleToGetAllOutputPaths() {
+			var paths = from result in Result.ResultsByTarget["Build"].Items select result.ItemSpec;
+			//paths.Each(s => Console.WriteLine(s));
+			var outputPath = Context.ProjectFolder.AppendPath(@"bin\Debug").AppendPath(Context.PROJECT_NAME + ".dll");
+			paths.ShouldContain(outputPath);
+		}
+
+		public override BuildResult Act() {
 			Console.WriteLine();
-			var solutionPath =
-				@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\CompileSolution\CompileSolution.sln";
-			solutionPath = Context.SolutionPath;
-			//var logger = Context.Container.Get<ChpokkLogger>();
-			//logger.ConnectionId = "fakeID";
-			//logger.ConnectionId = "FakeID";
+			var solutionPath = Context.SolutionPath;
 			ILogger logger = new TestLogger();
 			var solutionCompiler = Context.Container.Get<SolutionCompiler>();
-			solutionCompiler.CompileSolution(solutionPath, logger);
+			return solutionCompiler.CompileSolution(solutionPath, logger);
 		}
 
 		public override void CleanUp() {
