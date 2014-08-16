@@ -33,19 +33,21 @@ namespace ChpokkWeb.Features.Testing {
 		}
 
 		public AjaxContinuation CompileAndTest(TestingInputModel model) {
-			//TODO: Task
 			_webConsole.ConnectionId = model.ConnectionId;
 			_logger.ConnectionId = model.ConnectionId;
 			_logger.RepositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
-			//build
-			var assemblyPaths = new List<string>();
-			foreach (var solutionPath in GetSolutionPaths(model.RepositoryName)) {
-				var buildResult = _solutionCompiler.CompileSolution(solutionPath, _logger);
-				assemblyPaths.AddRange(GetAssemblyPaths(buildResult));
-			}
-			//test
-			_tester.RunTheTests(_webConsole, assemblyPaths);
+			Task.Run(() => {
+				//build
+				var assemblyPaths = new List<string>();
+				foreach (var solutionPath in GetSolutionPaths(model.RepositoryName)) {
+					var buildResult = _solutionCompiler.CompileSolution(solutionPath, _logger);
+					assemblyPaths.AddRange(GetAssemblyPaths(buildResult));
+				}
+				//test
+				_tester.RunTheTests(_webConsole, assemblyPaths);
+			});
 			return AjaxContinuation.Successful();
+
 		}
 
 		private IEnumerable<string> GetAssemblyPaths(BuildResult buildResult) {
