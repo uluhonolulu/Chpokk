@@ -12,8 +12,8 @@
     <if condition="Model.ShouldStart == InterestStatus.Newbie">
 	    <script>
 	        $(function () {
-	            var userHub = $.connection.userHub;
-	            $.connection.hub.start().done(function () {
+	        	var userHub = $.connection.userHub;
+	        	amplify.subscribe('connected', function () {
 	            	userHub.server.onStartPlayingWith().done(function(status) {
 	            		try {
 	            			track("User status: " + JSON.stringify(status));

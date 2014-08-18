@@ -25,6 +25,7 @@
 			$.connection.hub.start()
 				.done(function() {
 					model.ConnectionId = $.connection.hub.id;
+					amplify.publish('connected');
 				});
 		});
 	</script>
