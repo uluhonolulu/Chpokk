@@ -12,7 +12,7 @@ namespace Chpokk.Tests.Infrastructure {
 		[Test]
 		public void SeeTheConsoleOutput() {
 			//
-			// TODO: Add test logic here
+			// 
 			//
 		}
 

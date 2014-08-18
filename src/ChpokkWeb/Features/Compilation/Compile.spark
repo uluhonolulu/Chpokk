@@ -2,14 +2,8 @@
     <!--Compile-->
     <script type="text/javascript">
     	$(function () {
-    		$.connection.hub.start()
-				.done(function () {
-					model.ConnectionId = $.connection.hub.id;
-					attachButtonHandlers();
-				});
-
-
-
+			attachButtonHandlers(); //TODO: do it after connection
+    		
             var compilerHub = $.connection.compilerHub;
             compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
             compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };

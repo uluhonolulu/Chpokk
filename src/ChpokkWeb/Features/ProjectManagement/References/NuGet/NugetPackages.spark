@@ -47,10 +47,6 @@
             }
             
             function setupHub() {
-                $.connection.hub.start()
-                    .done(function () {
-                        model.ConnectionId = $.connection.hub.id;
-                    });
                 var nuGetHub = $.connection.nuGetHub;
                 nuGetHub.client.Write = function(message) {
                     $('<span/>').text(message).appendTo($('#waiterLog'));
