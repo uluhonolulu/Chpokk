@@ -28,10 +28,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			if (user == null) {
 				return new AjaxContinuation{NavigatePage = _urlRegistry.UrlFor<MainDummyModel>()};
 			}
-			//TODO: send notification, redirect to the payment page
-			//https://sites.fastspring.com/geeksoft/instant/chpokkstarter
 			if (_mailer.Host != null) _mailer.Send("signups@chpokk.apphb.com", "uluhonolulu@gmail.com", "New signup: " + user.UserId, "GODDAMIT!!!!!!");
-			return new AjaxContinuation { NavigatePage = "https://sites.fastspring.com/geeksoft/instant/chpokkstarter" };
+			return new AjaxContinuation { NavigatePage = "https://sites.fastspring.com/geeksoft/instant/chpokkstarter?referer=" + user.UserId };
 		}
 
 		private void UpdateUser() {
