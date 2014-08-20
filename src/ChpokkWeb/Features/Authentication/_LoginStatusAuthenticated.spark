@@ -13,3 +13,6 @@
 </ul>
 
 <render partial="CustomerDevelopment\MessageToUser\MessageToUser" />
+
+
+!{this.ModellessPartial<BeginEditorExperienceEndpoint>("DoIt")}

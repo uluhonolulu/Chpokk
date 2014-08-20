@@ -6,7 +6,7 @@
 	<!-- BeginEditorExperience.spark -->
 	<script>
 	    $(function () {
-		    track("User status from server: !{Model.ShouldStart}");
+	    	track("User status from server: !{Model.ShouldStart}");
 	    })
 	</script> 	
     <if condition="Model.ShouldStart == InterestStatus.Newbie">
@@ -21,8 +21,9 @@
 	            			track("User status threw an exception: " + e.toString());
 	            		};	            		
 	            	});
-
-	            });
+	        		//StartTimingInputModel
+	            	$.post('!{this.Urls.UrlFor<StartTimingInputModel>()}', { ConnectionId: $.connection.hub.id });
+	        	});
 	        })
 	    </script>        
     </if>

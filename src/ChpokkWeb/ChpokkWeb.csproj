@@ -1680,6 +1680,7 @@
     <Compile Include="Features\CustomerDevelopment\Notification\NotificationEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\BeginEditorExperienceEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\CancelTrialEndpoint.cs" />
+    <Compile Include="Features\CustomerDevelopment\TrialSignup\ExperienceTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />

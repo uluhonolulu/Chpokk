@@ -3,6 +3,7 @@ using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.CustomerDevelopment;
+using ChpokkWeb.Features.CustomerDevelopment.TrialSignup;
 using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using ChpokkWeb.Features.Editor.Intellisense.Providers;
 using ChpokkWeb.Features.Editor.Menu;
@@ -79,6 +80,8 @@ namespace ChpokkWeb.Infrastructure {
 
 			//tracks who's online
 			For<WhosOnlineTracker>().Singleton();
+			//timing before inviting to register
+			For<ExperienceTracker>().LifecycleIs(new HybridSessionLifecycle());
 
 			//Gallio output
 			For<IRichConsole>().Use<WebGallioConsole>();
