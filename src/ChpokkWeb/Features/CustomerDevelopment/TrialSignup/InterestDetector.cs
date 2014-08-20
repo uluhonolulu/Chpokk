@@ -19,7 +19,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 			var user = _userManager.GetUser(userIdentity.Name);
 			if (user == null || user.Status == null) return InterestStatus.Newbie;
 			if (user.Status.ToString() == "canceled") return InterestStatus.TrialCanceled;
-			return InterestStatus.TrialStarted;
+			if (user.PaidUntil == null || user.PaidUntil > DateTime.Now) return InterestStatus.TrialStarted;
+			return InterestStatus.TrialCanceled;
 		}
 
 
@@ -28,6 +29,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public enum InterestStatus {
 		Newbie,
 		TrialCanceled,
-		TrialStarted
+		TrialStarted,
+		Expired
 	}
 }

@@ -8,7 +8,7 @@ using System.Web;
 namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class ExperienceTracker {
 		private bool _tracking = false;
-		private static readonly TimeSpan delay = TimeSpan.FromSeconds(1);
+		private static readonly TimeSpan delay = TimeSpan.FromMinutes(20);
 
 		public void StartTracking(Action onFinished) {
 			if (!_tracking) {
@@ -17,7 +17,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 				{
 					Thread.Sleep(delay);
 					_tracking = false;
-					onFinished();
+					onFinished(); 
 				});
 			}
 		}

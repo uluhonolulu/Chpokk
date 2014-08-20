@@ -61,7 +61,7 @@ namespace ChpokkWeb {
 			Policies.Add(policy, "InjectNodes");
 
 			// if the user is past the trial period, redirect her to the payment page
-			Policies.WrapWith<EndOfTrialTimeToPayBehavior>();
+			//Policies.WrapWith<EndOfTrialTimeToPayBehavior>();
 			//Policies.EnrichCallsWith<DemoBehaviorForSelectActions>(call => call.Method.Name == "Home" ); 
 		}
 

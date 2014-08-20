@@ -16,19 +16,6 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 
 		public string OnStartPlayingWith() {
 			var userStatus = _interestDetector.ShouldStart(Context.User.Identity);
-			switch (userStatus) {
-					case InterestStatus.Newbie:
-						var userIdentity = Context.User.Identity;
-						new Thread(() => {
-							Thread.Sleep(evaluationTime);
-							if (_interestDetector.ShouldStart(userIdentity) == InterestStatus.Newbie) { //let's check again, just in case
-								Clients.Caller.displayTrialInvitation();
-							}
-							
-						}).Start(); break;
-					case InterestStatus.TrialCanceled:
-						Clients.Caller.displayTrialInvitation(); break; //typically this is handled on the client, but let's do a sanity check
-			}
 			return userStatus.ToString();
 		}
 
