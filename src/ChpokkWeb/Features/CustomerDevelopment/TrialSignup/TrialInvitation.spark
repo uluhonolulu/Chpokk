@@ -6,12 +6,13 @@
             var userHub = $.connection.userHub;
             userHub.client.displayTrialInvitation = displayTrialInvitation;
 
-            $('#startTrial').click(function() {
-                var url = '!{this.Urls.UrlFor<StartTrialDummyInputModel>()}';
+            $('#subscribe').click(function () {
+	            //TODO: save data
+            	var url = '!{this.Urls.UrlFor<WannaPayDummyInputModel>()}';
                 $.post(url);
             });
 
-            $('#cancelTrial').click(function() {
+            $('#cancel').click(function () {
                 var url = '!{this.Urls.UrlFor<CancelTrialDummyInputModel>()}';
                 $.post(url);
             });
@@ -31,13 +32,13 @@
             </div>
             <div class="modal-body">
                 <p>By this time, you must have got your first impression about Chpokk.</p>
-                <p>Why not use it for free for a couple of days?</p>
-                <p>If you press the <i>right</i> button, you'll be able to continue working. No additional action required. You'll receive an email with more information.</p>
+	            <p>If you find it useful, please subscribe for the service. Now's the perfect time for it -- the price is reduced to <span style="font-weight: bold;">$8/month</span> (the regular price is $18/mo).</p>
+                <p>If you press the <i>right</i> button, you'll be redirected to the payment gateway. Your payment will be securely handled by FastSpring. After paying, you'll be able to continue your work.</p>
                 <p>If you press the other button, you'll be redirected to the start screen. I'll be happy if you drop by some day.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="cancelTrial">Stop using Chpokk</button>
-                <button type="button" class="btn btn-primary" id="startTrial" data-dismiss="modal">Continue your free trial</button>
+                <button type="button" class="btn btn-default" id="cancel">Stop using Chpokk</button>
+                <button type="button" class="btn btn-primary" id="subscribe" data-dismiss="modal">Continue using Chpokk for a reduced price</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

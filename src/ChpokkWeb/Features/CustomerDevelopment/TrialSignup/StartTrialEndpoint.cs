@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.MainScreen;
@@ -12,24 +13,25 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 	public class StartTrialEndpoint {
 		private readonly UserManagerInContext _userManager;
 		private readonly Chimper _chimper;
-		private IUrlRegistry _urlRegistry;
-		public StartTrialEndpoint(UserManagerInContext userManager, Chimper chimper, IUrlRegistry urlRegistry) {
+		private readonly IUrlRegistry _urlRegistry;
+		private readonly SmtpClient _mailer;
+		public StartTrialEndpoint(UserManagerInContext userManager, Chimper chimper, IUrlRegistry urlRegistry, SmtpClient mailer) {
 			_userManager = userManager;
 			_chimper = chimper;
 			_urlRegistry = urlRegistry;
+			_mailer = mailer;
 		}
 
-		public AjaxContinuation StartTrial(StartTrialDummyInputModel _) {
+		public AjaxContinuation StartTrial(WannaPayDummyInputModel _) {
 			var user = _userManager.GetCurrentUser();
 			//we might have been disconnected since then
 			if (user == null) {
 				return new AjaxContinuation{NavigatePage = _urlRegistry.UrlFor<MainDummyModel>()};
 			}
-			UpdateUser();
-			if (user.Email != null) {
-				dynamic result = _chimper.SubscribeUser(user.Email, user.FullName);
-			}
-			return AjaxContinuation.Successful();
+			//TODO: send notification, redirect to the payment page
+			//https://sites.fastspring.com/geeksoft/instant/chpokkstarter
+			if (_mailer.Host != null) _mailer.Send("signups@chpokk.apphb.com", "uluhonolulu@gmail.com", "New signup: " + user.UserId, "GODDAMIT!!!!!!");
+			return new AjaxContinuation { NavigatePage = "https://sites.fastspring.com/geeksoft/instant/chpokkstarter" };
 		}
 
 		private void UpdateUser() {
@@ -40,5 +42,5 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 		}
 	}
 
-	public class StartTrialDummyInputModel {}
+	public class WannaPayDummyInputModel {}
 }
