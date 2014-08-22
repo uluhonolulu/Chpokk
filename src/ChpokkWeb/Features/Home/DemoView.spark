@@ -47,7 +47,7 @@
 
 	
 	<div class="clearfix" style="margin-bottom: 20px;"></div>
-	<div style="display:table; margin-bottom: 20px;" id="moreInfo">
+	<div style="display:table; margin-bottom: 20px; width: 100%;" id="moreInfo">
 	<div class="col-xs-6" style="padding-left: 0;">
 		<div class="panel panel-default" style="height: 100%; margin-bottom: 0px;">
 			<div class="panel-heading">
@@ -58,7 +58,7 @@
 				<p>
 					There are many online editors that would let you edit code in many languages.</p>
 				<p>
-					Chpokk has been designed specifically for .Net development, and supports .Net specific
+					Chpokk has been designed for .Net development, and supports .Net specific
 					features.</p>
 				<p><a href="Main">Start coding!</a></p>
 			</div>
@@ -74,7 +74,7 @@
 				<p>
 					Chpokk can compile your code and even run a console program.</p>
 				<p>
-					Coming soon: unit testing and deployment to AppHarbor and Azure.</p>
+					<span style="font-weight: bold;">NEW:</span> Automated testing, supports all major testing frameworks.</p>
 				<p><a href="Main">Start coding!</a></p>
 			</div>
 		</div>
