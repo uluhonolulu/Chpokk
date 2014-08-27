@@ -7,12 +7,14 @@
             userHub.client.displayTrialInvitation = displayTrialInvitation;
 
             $('#subscribe').click(function () {
-	            //TODO: save data
+            	//TODO: save data
+	            track("Subscribed");
             	var url = '!{this.Urls.UrlFor<WannaPayDummyInputModel>()}';
                 $.post(url);
             });
 
             $('#cancel').click(function () {
+	            track("Canceled");
                 var url = '!{this.Urls.UrlFor<CancelTrialDummyInputModel>()}';
                 $.post(url);
             });

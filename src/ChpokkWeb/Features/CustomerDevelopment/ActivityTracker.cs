@@ -62,13 +62,13 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 		private string GetSubject() {
 			var subject = "Actions for " + UserName;
+			if (HasThisAction("Subscribed")) subject += " (SUBSCRIBED!!!)";
+			if (HasThisAction("Canceled")) subject += " (canceled!!!)";
 			if (_log.OfType<ErrorModel>().Any()) subject += " ERROR!!!";
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);
 			var duration = GetDuration();
 			subject += " duration:" + duration.ToString(@"h\:mm\:ss");
-			if (HasThisAction("startTrial")) subject += " (started trial!!!)";
-			if (HasThisAction("cancelTrial")) subject += " (canceled trial!!!)";
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
 			if (HasThisAction("http://chpokk.apphb.com/Repository/")) subject += " (opened the editor)";
 			return subject;
