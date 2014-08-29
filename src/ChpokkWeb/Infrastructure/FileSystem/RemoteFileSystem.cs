@@ -149,7 +149,7 @@ namespace ChpokkWeb.Features.Storage {
 
 	}
 
-	static class RemoteFilenameExtensions {
+	public static class RemoteFilenameExtensions {
 		 public static string ToRemoteFileName(this string localFileName, string appRoot){
 			 //if we already have a remote path, just return it
 			 if (!Path.IsPathRooted(localFileName)) {

@@ -304,6 +304,7 @@
     <Compile Include="Amazon\AwClientExtensions.cs" />
     <Compile Include="Amazon\Downloading.cs" />
     <Compile Include="Amazon\Integration.cs" />
+    <Compile Include="Amazon\OneFileOnAmazonContext.cs" />
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
@@ -380,6 +381,7 @@
     <Compile Include="Renaming\ItemRenaming.cs" />
     <Compile Include="Renaming\ProjectRenaming.cs" />
     <Compile Include="Renaming\SolutionRenaming.cs" />
+    <Compile Include="Amazon\WaitTillRepositoryIsDownloaded.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Run\BuildableProjectWithExeOutput.cs" />

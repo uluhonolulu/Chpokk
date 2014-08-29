@@ -14,9 +14,8 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void DownloadAllFiles(string root, string subFolder = null, Action<string, string> onDownload = null) {
-			IEnumerable<string> allFiles = _client.EnumerateChildren("chpokk"); 
-			if (subFolder != null)
-				allFiles = allFiles.Where(s => s.StartsWith(subFolder.Replace('\\', '/')));
+			var prefix = subFolder != null? subFolder.Replace('\\', '/'): string.Empty;
+			IEnumerable<string> allFiles = _client.EnumerateChildren("chpokk", prefix); 
 			foreach (var file in allFiles) {
 				var localPath = FileSystem.Combine(root, file);
 				if (!localPath.EndsWith("/")) { 
