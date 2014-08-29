@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using MbUnit.Framework;
 namespace Chpokk.Tests.Amazon {
 	[TestFixture]
 	public class WaitTillRepositoryIsDownloaded : BaseCommandTest<OneFileOnAmazonContext> {
-		DownloadSynchronizer _synchronizer = new DownloadSynchronizer();
+		RestoreSynchronizer _synchronizer = new RestoreSynchronizer();
 		[Test]
 		public void AllFilesShouldBeThere() {
 			var repositoryFiles = Directory.GetFiles(Context.RepositoryRoot, "*.*", SearchOption.AllDirectories);
@@ -21,16 +22,35 @@ namespace Chpokk.Tests.Amazon {
 			var downloader = Context.Container.Get<Downloader>();
 			var subFolder = Context.RepositoryRoot.PathRelativeTo(Context.AppRoot);
 			Task.Run(() => {
-							   _synchronizer._resetEvent.Reset();
+							   _synchronizer.RestoringStarted(subFolder);
 				               downloader.DownloadAllFiles(Context.AppRoot, subFolder, (s, l) => Console.WriteLine(s));
-							   _synchronizer._resetEvent.Set();
+							   _synchronizer.RestoringFinished(subFolder);
 			});
-			_synchronizer._resetEvent.WaitOne();
+			_synchronizer.WaitTillRestored(subFolder);
 
 		}
 	}
-	public class DownloadSynchronizer {
-		public ManualResetEvent _resetEvent = new ManualResetEvent(false);
-		
+	public class RestoreSynchronizer {
+		//public ManualResetEvent _resetEvent = new ManualResetEvent(false);
+		IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
+		public void RestoringStarted(string path) {
+			EnsureEvent(path);
+			_resetEvents[path].Reset();
+		}
+
+		public void RestoringFinished(string path) {
+			_resetEvents[path].Set();
+		}
+
+		public void WaitTillRestored(string path) {
+			EnsureEvent(path);
+			_resetEvents[path].WaitOne();
+		}
+
+		private void EnsureEvent(string path ) {
+			if (!_resetEvents.ContainsKey(path)) {
+				_resetEvents.Add(path, new ManualResetEvent(false));
+			}
+		}
 	}
 }
