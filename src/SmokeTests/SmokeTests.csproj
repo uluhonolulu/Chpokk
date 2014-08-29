@@ -32,9 +32,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arractas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Arractas.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK, Version=1.5.22.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AWSSDK.1.5.22.0\lib\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="Bottles, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bottles.2.0.0.576\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="CThru, Version=1.2.3.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Ivonna\CThru.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -52,20 +64,39 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuMVC.StructureMap.1.2.0.1678\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="FubuTestingSupport">
+      <HintPath>..\packages\FubuTestingSupport.0.9.4.112\lib\FubuTestingSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="HtmlTags, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlTags.2.0.0.181\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
+    <Reference Include="Ivonna, Version=3.1.6.18913, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Ivonna\Ivonna.dll</HintPath>
     </Reference>
     <Reference Include="LibGit2Sharp, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LibGit2Sharp.0.15.0.0\lib\net35\LibGit2Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Shouldly, Version=1.1.1.1, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.AutoMocking">
+      <HintPath>..\packages\structuremap.automocking.2.6.3\lib\StructureMap.AutoMocking.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -75,10 +106,26 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TypeMock, Version=7.5.2.0, Culture=neutral, PublicKeyToken=3dae460033b8d8e2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Ivonna\TypeMock.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitness.cs" />
     <Compile Include="Bootstrapping.cs" />
+    <Compile Include="Infrastructure\AssertExtensions.cs" />
+    <Compile Include="Infrastructure\DirectoryHelper.cs" />
+    <Compile Include="Infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="Infrastructure\FakeSecurityContext.cs" />
+    <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
+    <Compile Include="Infrastructure\RouteList.cs" />
+    <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
+    <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
+    <Compile Include="Infrastructure\TestAppRootProvider.cs" />
+    <Compile Include="Infrastructure\TimingTraceAspect.cs" />
+    <Compile Include="Infrastructure\WebQueryTest.cs" />
+    <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="LibGitCanInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
