@@ -16,14 +16,19 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void WaitTillRestored(string path) {
-			EnsureEvent(path);
-			_resetEvents[path].WaitOne();
+			//If we have set the event before, let's wait for it. If not, do nothing.
+			if(ShouldWaitFor(path))
+				_resetEvents[path].WaitOne();
 		}
 
 		private void EnsureEvent(string path ) {
 			if (!_resetEvents.ContainsKey(path)) {
 				_resetEvents[path] = new ManualResetEvent(false);
 			}
+		}
+
+		private bool ShouldWaitFor(string path) {
+			return _resetEvents.ContainsKey(path);
 		}
 	}
 }
