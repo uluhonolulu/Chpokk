@@ -7,7 +7,7 @@ using Shouldly;
 using System.Linq;
 
 namespace Chpokk.Tests.Infrastructure {
-	[TestFixture, Ignore("Doesn't work on AppHarbor cause cannot load NuGet")]
+	[TestFixture]
 	public class RouteList: BaseCommandTest<SimpleConfiguredContext> {
 		[Test]
 		public void SeeTheConsoleOutput() {
