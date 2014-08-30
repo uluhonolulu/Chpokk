@@ -1724,6 +1724,7 @@
     <Compile Include="Features\Remotes\SaveCommit\ICommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnCommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnDetectionPolicy.cs" />
+    <Compile Include="Features\Storage\RestoreSynchronizer.cs" />
     <Compile Include="Features\Testing\Tester.cs" />
     <Compile Include="Features\Testing\WebGallioConsole.cs" />
     <Compile Include="Infrastructure\FileSystem\LocalAndRemoteFileSystem.cs" />

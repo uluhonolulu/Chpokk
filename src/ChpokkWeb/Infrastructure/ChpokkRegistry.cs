@@ -39,6 +39,7 @@ namespace ChpokkWeb.Infrastructure {
 			For<SmtpClient>().Singleton().Use(() => new SmtpClient()); //expr.SelectConstructor(() => new SmtpClient());
 			For<IS3Client>().Singleton()
 				.Use(new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
+			For<RestoreSynchronizer>().LifecycleIs(new HybridSessionLifecycle());
 			For<ActivityTracker>().LifecycleIs(new HybridSessionLifecycle());
 			For<UserData>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectLoader>().LifecycleIs(new HybridSessionLifecycle());

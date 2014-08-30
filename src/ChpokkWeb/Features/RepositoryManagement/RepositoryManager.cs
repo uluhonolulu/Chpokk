@@ -23,9 +23,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly Backup _backup;
 		private readonly IAppRootProvider _rootProvider;
 		private readonly IS3Client _client;
-		private ActivityTracker _activityTracker;
+		private readonly ActivityTracker _activityTracker;
+		private RestoreSynchronizer _restoreSynchronizer;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client, ActivityTracker activityTracker) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client, ActivityTracker activityTracker, RestoreSynchronizer restoreSynchronizer) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
@@ -34,6 +35,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			_backup = backup;
 			_client = client;
 			_activityTracker = activityTracker;
+			_restoreSynchronizer = restoreSynchronizer;
 			RegisterUserFolderForBackup();
 		}
 
@@ -198,22 +200,22 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			//create folders so that we see the list of repositories -- the files will be downloaded while we are staring at that list
 			var repositoryNames = GetRepositoryNamesFromStorage();
 			foreach (var repositoryName in repositoryNames) {
-				Directory.CreateDirectory(NewGetAbsolutePathFor(repositoryName));
+				var repositoryPath = NewGetAbsolutePathFor(repositoryName);
+				Directory.CreateDirectory(repositoryPath);
+				//download each repository asynchronously
+				Task.Run(() => _downloader.DownloadAllFiles(AppRoot, repositoryPath.PathRelativeTo(AppRoot), RecordDownloadedFile));
+
 			}
-			//downloading takes time, so we'll do it asynchronously
-			Task.Run(() => {
-				//download all user files (and track the download process)
-				               _downloader.DownloadAllFiles(AppRoot, RelativeUserFolder,
-				                                            (remotePath, localPath) =>
-				                                            _activityTracker.Record(null,
-				                                                                    "Downloaded {0} to {1}".ToFormat(remotePath,
-				                                                                                                     localPath),
-				                                                                    null, null));
+			//downloading all files that are not there yet (other than repos)
+			Task.Run(() => _downloader.DownloadAllFiles(AppRoot, RelativeUserFolder, RecordDownloadedFile));
 
-				//now, move the repos to their folder, in case we need to switch to the new system
-				MoveFilesToRepositoryFolder();
-			});
+		}
 
+		private void RecordDownloadedFile(string remotePath, string localPath) {
+			_activityTracker.Record(null,
+			                        "Downloaded {0} to {1}".ToFormat(remotePath,
+			                                                         localPath),
+			                        null, null);
 		}
 
 		public void EnsureAuthenticated() {

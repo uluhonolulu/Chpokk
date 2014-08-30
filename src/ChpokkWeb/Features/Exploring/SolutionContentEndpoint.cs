@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using ChpokkWeb.Features.RepositoryManagement;
+using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using FubuMVC.Core;
@@ -17,11 +18,13 @@ namespace ChpokkWeb.Features.Exploring {
 		[NotNull] private readonly SolutionFileLoader _solutionFileLoader;
 
 		private readonly SolutionExplorer _solutionExplorer;
+		private RestoreSynchronizer _restoreSynchronizer;
 
-		public SolutionContentEndpoint([NotNull]RepositoryManager repositoryManager, [NotNull] SolutionFileLoader solutionFileLoader, SolutionExplorer solutionExplorer) {
+		public SolutionContentEndpoint([NotNull]RepositoryManager repositoryManager, [NotNull] SolutionFileLoader solutionFileLoader, SolutionExplorer solutionExplorer, RestoreSynchronizer restoreSynchronizer) {
 			_repositoryManager = repositoryManager;
 			_solutionFileLoader = solutionFileLoader;
 			_solutionExplorer = solutionExplorer;
+			_restoreSynchronizer = restoreSynchronizer;
 		}
 
 		[JsonEndpoint]
@@ -32,6 +35,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName) {
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			_restoreSynchronizer.WaitTillRestored(repositoryRoot);
 			var files = _solutionExplorer.GetSolutionFiles(repositoryRoot);
 			var items =
 				files.Select(
