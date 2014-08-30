@@ -44,10 +44,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bottles.2.0.0.576\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="CThru, Version=1.2.3.0, Culture=neutral, PublicKeyToken=39aa5586a37006d5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Ivonna\CThru.dll</HintPath>
-    </Reference>
     <Reference Include="FubuCore, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuCore.1.2.0.272\lib\FubuCore.dll</HintPath>
@@ -71,10 +67,6 @@
     <Reference Include="HtmlTags, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlTags.2.0.0.181\lib\4.0\HtmlTags.dll</HintPath>
-    </Reference>
-    <Reference Include="Ivonna, Version=3.1.6.18913, Culture=neutral, PublicKeyToken=39dabd86397d3761, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Ivonna\Ivonna.dll</HintPath>
     </Reference>
     <Reference Include="LibGit2Sharp, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -106,10 +98,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TypeMock, Version=7.5.2.0, Culture=neutral, PublicKeyToken=3dae460033b8d8e2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Ivonna\TypeMock.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitness.cs" />
@@ -118,13 +106,10 @@
     <Compile Include="Infrastructure\DirectoryHelper.cs" />
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
-    <Compile Include="Infrastructure\InfrastructureTests\PartialRendering.cs" />
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
-    <Compile Include="Infrastructure\TimingTraceAspect.cs" />
-    <Compile Include="Infrastructure\WebQueryTest.cs" />
     <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="LibGitCanInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
