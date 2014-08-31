@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.Exploring {
 		[NotNull] private readonly SolutionFileLoader _solutionFileLoader;
 
 		private readonly SolutionExplorer _solutionExplorer;
-		private RestoreSynchronizer _restoreSynchronizer;
+		private readonly RestoreSynchronizer _restoreSynchronizer;
 
 		public SolutionContentEndpoint([NotNull]RepositoryManager repositoryManager, [NotNull] SolutionFileLoader solutionFileLoader, SolutionExplorer solutionExplorer, RestoreSynchronizer restoreSynchronizer) {
 			_repositoryManager = repositoryManager;
@@ -29,6 +29,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
+			HttpContext.Current.Server.ScriptTimeout = 3600;//HACK: to make sure everything's been downloaded
 			var items = GetSolutionRepositoryItems(model.RepositoryName);
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}
