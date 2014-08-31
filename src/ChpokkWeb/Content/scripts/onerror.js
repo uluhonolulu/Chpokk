@@ -153,3 +153,9 @@ window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
 	};
 	reportException(data);
 };
+
+//on AJAX error, track
+$(document).ajaxError(function (event, jqxhr, settings, exception) {
+	var data = { event: event, request: jqxhr, settings: settings, exception: exception };
+	track("AJAX Error: " + JSON.stringify(data));
+});
