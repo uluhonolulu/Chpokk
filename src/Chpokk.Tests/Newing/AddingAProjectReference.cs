@@ -19,7 +19,7 @@ namespace Chpokk.Tests.Newing {
 		[Test]
 		public void TheProjectHasToHaveAProjectReference() {
 			var projectParser = Context.Container.Get<ProjectParser>();
-			var references = projectParser.GetReferences(Context.NewProject);
+			var references = projectParser.GetProjectReferences(Context.NewProject);
 			references.Count().ShouldBe(1);
 		}
 

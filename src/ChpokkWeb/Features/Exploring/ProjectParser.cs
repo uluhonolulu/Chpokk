@@ -33,11 +33,14 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 		
 		public IEnumerable<FileProjectItem> GetIncludesOfType(string projectFileContent, string includeType) {
-			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
+			var root = CreateRootElement(projectFileContent);
 			var filePaths = root.Items.Where(element => element.ItemType == includeType).Select(element => element.Include);
 			return from path in filePaths select new FileProjectItem(null, ItemType.Compile, path);			
 		}
 
+		private ProjectRootElement CreateRootElement(string projectFileContent) {
+			return ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
+		}
 
 
 		public IEnumerable<string> GetFullPathsForCompiledFilesFromProjectFile(string projectFilePath) {
@@ -48,29 +51,29 @@ namespace ChpokkWeb.Features.Exploring {
 			
 		}
 
-		public IEnumerable<ReferenceProjectItem> GetReferences(string projectFileContent) {
-			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
-			return GetReferences(root);
-		}
+		//public IEnumerable<ReferenceProjectItem> GetReferences(string projectFileContent) {
+		//	var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
+		//	return GetReferences(root);
+		//}
 
-		public IEnumerable<ReferenceProjectItem> GetReferences(ProjectRootElement root) {
-			var assemblyElements = root.Items.Where(element => element.ItemType == "Reference");
-			var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
-			var projectNodes = root.Items.Where(element => element.ItemType == "ProjectReference");
-			var projectReferences = projectNodes.Select(node => CreateProjectReference(node));
-			return
-				assemblyReferences.Concat(projectReferences);
-		}
+		//public IEnumerable<ReferenceProjectItem> GetReferences(ProjectRootElement root) {
+		//	var assemblyElements = root.Items.Where(element => element.ItemType == "Reference");
+		//	var assemblyReferences = assemblyElements.Select(element => CreateReferenceItem(element));
+		//	var projectNodes = root.Items.Where(element => element.ItemType == "ProjectReference");
+		//	var projectReferences = projectNodes.Select(node => CreateProjectReference(node));
+		//	return
+		//		assemblyReferences.Concat(projectReferences);
+		//}
 
-		private ProjectReferenceProjectItem CreateProjectReference(ProjectItemElement projectNode) {
-			return new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", String.Empty), new MissingProject(@"C:\something", String.Empty)) {Include = projectNode.Include};
-		}
+		//private ProjectReferenceProjectItem CreateProjectReference(ProjectItemElement projectNode) {
+		//	return new ProjectReferenceProjectItem(new UnknownProject(@"C:\something", String.Empty), new MissingProject(@"C:\something", String.Empty)) {Include = projectNode.Include};
+		//}
 
-		private ReferenceProjectItem CreateReferenceItem(ProjectItemElement referenceElement) {
-			var hint = referenceElement.Metadata.FirstOrDefault(element => element.Name == "HintPath");
-			var hintPath = hint != null ? hint.Value : null;
-			return new ReferenceProjectItem(null, referenceElement.Include){HintPath = hintPath};
-		}
+		//private ReferenceProjectItem CreateReferenceItem(ProjectItemElement referenceElement) {
+		//	var hint = referenceElement.Metadata.FirstOrDefault(element => element.Name == "HintPath");
+		//	var hintPath = hint != null ? hint.Value : null;
+		//	return new ReferenceProjectItem(null, referenceElement.Include){HintPath = hintPath};
+		//}
 
 		//private IEnumerable<XmlNode> GetIncludes(string nodeName, XmlDocument doc, XmlNamespaceManager xmlNamespaceManager) {
 		//	var elements = GetElements(nodeName, doc, xmlNamespaceManager);
@@ -193,6 +196,20 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			AddProjectReference(targetProject, referencedProject);
 		}
 
+		public IEnumerable<string> GetProjectReferences(string projectFileContent) {
+			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectFileContent)));
+			return GetProjectReferences(root);
+		}
+
+		public IEnumerable<string> GetBclReferences(string projectFileContent) {
+			yield break;
+		}
+
+		public IEnumerable<string> GetProjectReferences(ProjectRootElement root) {
+			return from item in root.Items
+			       where item.ItemType == "ProjectReference"
+			       select item.Metadata.Single(element => element.Name == "Name").Value;
+		}
 	}
 
 }

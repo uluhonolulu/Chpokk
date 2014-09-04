@@ -42,7 +42,6 @@ namespace ChpokkWeb.Infrastructure {
 			For<RestoreSynchronizer>().LifecycleIs(new HybridSessionLifecycle());
 			For<ActivityTracker>().LifecycleIs(new HybridSessionLifecycle());
 			For<UserData>().LifecycleIs(new HybridSessionLifecycle());
-			For<ProjectLoader>().LifecycleIs(new HybridSessionLifecycle());
 			For<ProjectCollection>().Singleton().Use(() => ProjectCollection.GlobalProjectCollection);
 			For<KeywordProvider>().Singleton();
 			For<BclAssembliesProvider>().Singleton();

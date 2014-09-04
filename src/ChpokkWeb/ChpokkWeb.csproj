@@ -1753,7 +1753,6 @@
     <Compile Include="Features\ProjectManagement\AddSimpleProject\AddSimpleProjectEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddSimpleProject\AddSimpleProjectInputModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectCache.cs" />
-    <Compile Include="Features\ProjectManagement\ProjectLoader.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTypeGuid.cs" />
     <Compile Include="Features\ProjectManagement\References\Bcl\BclAssembliesProvider.cs" />
     <Compile Include="Features\ProjectManagement\References\Bcl\BclReferencesEndpoint.cs" />

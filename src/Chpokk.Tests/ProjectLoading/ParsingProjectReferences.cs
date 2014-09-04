@@ -5,19 +5,21 @@ using ChpokkWeb.Features.Exploring;
 using ICSharpCode.SharpDevelop.Project;
 using MbUnit.Framework;
 using System.Linq;
+using Shouldly;
 
 namespace Chpokk.Tests.ProjectLoading {
+	//TODO: use either MS.Build.Construction.ProjectItemElement
 	[TestFixture]
-	public class ParsingProjectReferences : BaseQueryTest<ProjectContentWithOneProjectReferenceContext, IEnumerable<ReferenceProjectItem>> {
+	public class ParsingProjectReferences : BaseQueryTest<ProjectContentWithOneProjectReferenceContext, IEnumerable<string>> {
 		[Test]
 		public void ReturnsSingleReference() {
-			var reference = Result.Single();
-			Assert.IsInstanceOfType<ProjectReferenceProjectItem>(reference);
+			var projectName = Result.Single();
+			projectName.ShouldBe("ChpokkWeb");
 		}
 
-		public override IEnumerable<ReferenceProjectItem> Act() {
+		public override IEnumerable<string> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetReferences(ProjectContentWithOneProjectReferenceContext.PROJECT_FILE_CONTENT);
+			return parser.GetProjectReferences(ProjectContentWithOneProjectReferenceContext.PROJECT_FILE_CONTENT);
 		}
 	}
 
