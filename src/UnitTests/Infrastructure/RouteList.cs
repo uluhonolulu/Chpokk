@@ -1,12 +1,13 @@
 ﻿using System;
 using Arractas;
+using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.CustomerDevelopment.Pricelist;
 using FubuMVC.Core.Registration;
 using MbUnit.Framework;
 using Shouldly;
 using System.Linq;
 
-namespace Chpokk.Tests.Infrastructure {
+namespace UnitTests.Infrastructure {
 	[TestFixture]
 	public class RouteList: BaseCommandTest<SimpleConfiguredContext> {
 		[Test]
