@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Arractas;
+using Chpokk.Tests.Exploring.UnitTests;
 using ChpokkWeb.Features.Exploring;
-using ICSharpCode.SharpDevelop.Project;
 using MbUnit.Framework;
 
-namespace Chpokk.Tests.Exploring.UnitTests {
+namespace Chpokk.Tests.ProjectLoading {
 	[TestFixture]
 	public class ParsingAssemblyReferences : BaseQueryTest<ProjectContentWithOneBclReferenceContext, IEnumerable<string>> {
 		[Test]
 		public void ReturnsSingleReference() {
 			var reference = Result.Single();
-			//Assert.AreEqual("System.Core", reference.Name);
+			Assert.AreEqual("System.Core", reference);
 		}
 
 		public override IEnumerable<string> Act() {

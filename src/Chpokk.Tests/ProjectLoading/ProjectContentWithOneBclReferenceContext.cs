@@ -1,10 +1,6 @@
-﻿using System;
-using System.Text;
-using Chpokk.Tests.Infrastructure;
-using Gallio.Framework;
-using MbUnit.Framework.ContractVerifiers;
+﻿using Chpokk.Tests.Infrastructure;
 
-namespace Chpokk.Tests.Exploring.UnitTests {
+namespace Chpokk.Tests.ProjectLoading {
 	public class ProjectContentWithOneBclReferenceContext : SimpleConfiguredContext {
 		public const string PROJECT_FILE_CONTENT =
 			@"<?xml version=""1.0"" encoding=""utf-8""?>

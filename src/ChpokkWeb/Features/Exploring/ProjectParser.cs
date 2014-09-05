@@ -202,7 +202,13 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 		}
 
 		public IEnumerable<string> GetBclReferences(string projectFileContent) {
-			yield break;
+			return GetBclReferences(CreateRootElement(projectFileContent));
+		}
+
+		private IEnumerable<string> GetBclReferences(ProjectRootElement root) {
+			return from item in root.Items
+			       where item.ItemType == "Reference"
+			       select item.Include;
 		}
 
 		public IEnumerable<string> GetProjectReferences(ProjectRootElement root) {
