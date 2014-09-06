@@ -216,6 +216,16 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			       where item.ItemType == "ProjectReference"
 			       select item.Metadata.Single(element => element.Name == "Name").Value;
 		}
+
+		public IEnumerable<string> GetPackageReferences(string projectFileContent) {
+			return GetPackageReferences(CreateRootElement(projectFileContent));
+		}
+
+		private IEnumerable<string> GetPackageReferences(ProjectRootElement root) {
+			return from item in root.Items	
+			       where item.ItemType == "Reference"
+			       select item.Include;			
+		}
 	}
 
 }

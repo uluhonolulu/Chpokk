@@ -348,6 +348,8 @@
     <Compile Include="Newing\SolutionContent\AddingProjectToProjectSection.cs" />
     <Compile Include="Newing\SolutionWithTwoProjectsContext.cs" />
     <Compile Include="NewSubscription\Notification.cs" />
+    <Compile Include="ProjectLoading\CheckingBclWhenPackagesOnly.cs" />
+    <Compile Include="ProjectLoading\ParsingPackageReferences.cs" />
     <Compile Include="References\AddingABclReference.cs" />
     <Compile Include="Newing\CreatingASimpleExeSolution.cs" />
     <Compile Include="Newing\CreatingASimpleSolution.cs" />
