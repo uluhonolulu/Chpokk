@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Arractas;
+using Chpokk.Tests.Infrastructure;
 using ChpokkWeb;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
+using FubuMVC.Core.Assets;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Runtime;
@@ -15,9 +14,10 @@ using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
 using StructureMap;
 
-namespace Chpokk.Tests.Infrastructure {
+namespace UnitTests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext, IDisposable {
 		public override void Create() {
+			AssetDeclarationVerificationActivator.Latched = false; // skip asset checking
 			var childContainer = _container.GetNestedContainer();
 			_serviceFactory = CreateFacility(childContainer).BuildFactory();
 		}

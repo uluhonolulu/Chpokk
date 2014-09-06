@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnitTests.Infrastructure;
 
 namespace Chpokk.Tests.Infrastructure {
 	public class SimpleAuthenticatedContext: SimpleConfiguredContext {
