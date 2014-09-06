@@ -223,8 +223,15 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 
 		private IEnumerable<string> GetPackageReferences(ProjectRootElement root) {
 			return from item in root.Items	
-			       where item.ItemType == "Reference"
+			       where IsPackageReference(item)
 			       select item.Include;			
+		}
+
+		private bool IsPackageReference(ProjectItemElement item) {
+			return item.ItemType == "Reference" && 
+					item.HasMetadata && 
+					item.Metadata.Any(element => element.Name == "HintPath") &&
+					item.Metadata.Single(element => element.Name == "HintPath").Value.Contains("packages");
 		}
 	}
 
