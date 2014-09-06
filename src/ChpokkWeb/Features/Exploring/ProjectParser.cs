@@ -207,7 +207,7 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 
 		private IEnumerable<string> GetBclReferences(ProjectRootElement root) {
 			return from item in root.Items
-			       where item.ItemType == "Reference"
+			       where item.ItemType == "Reference" && !item.HasMetadata
 			       select item.Include;
 		}
 
