@@ -6,6 +6,7 @@ using ChpokkWeb;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Assets;
+using FubuMVC.Core.Assets.Tags;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Bootstrapping;
 using FubuMVC.Core.Runtime;
@@ -34,6 +35,7 @@ namespace UnitTests.Infrastructure {
 
 		protected virtual void ConfigureFubuRegistry(ConfigureFubuMVC registry) {
 			UseFakeSecurityContext(registry);
+			registry.Assets().HandleMissingAssetsWith<TraceOnlyMissingAssetHandler>(); //ignore missing assets for now
 		}
 
 		private static void ConfigureContainer(Container container) {
