@@ -10,6 +10,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			output.BclReferences.Add(new {Name = "System", Selected = false});
 			output.BclReferences.Add(new { Name = "System.Core", Selected = true });
 			output.PackageReferences.Add("Autofac");
+			output.ProjectReferences.Add(new {Name = "OtherProject", Path = "ThePath", Selected = true});
 			output.ProjectName = "ProjectName";
 			return output;
 		}
