@@ -1,7 +1,5 @@
-﻿<viewdata model="ChpokkWeb.Features.ProjectManagement.References.Bcl.BclReferencesModel" />
-<use namespace="ChpokkWeb.Features.ProjectManagement.References" />
+﻿<use namespace="ChpokkWeb.Features.ProjectManagement.References" />
 <use namespace=" System.Collections.Generic" />
-<use master=""/>
 
 <div style="height: 200px; overflow-y: auto;" id="bclContainer">
 </div>

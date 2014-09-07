@@ -10,7 +10,7 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="bcl" style="padding-top: 10px;">
-        !{this.ModellessPartial<BclReferencesEndpoint>("DoIt")}
+        <use file="Bcl\BclReferences.spark"/>
     </div>
     <div class="tab-pane" id="nuget" style="padding-top: 10px;">
         <use file="NuGet\NugetPackages.spark"/>
