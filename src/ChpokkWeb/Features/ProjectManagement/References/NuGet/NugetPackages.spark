@@ -45,7 +45,8 @@
                     $('#packagesLoading').hide();
                 });
             }
-            
+	        
+             
             function setupHub() {
                 var nuGetHub = $.connection.nuGetHub;
                 nuGetHub.client.Write = function(message) {
@@ -57,5 +58,10 @@
             }
         });
         
+        function displayPackageReferences(references) {
+        	var template = '<div><input type="checkbox" name="Packages" value=\'$${$item.data}\' id=\'$${$item.data}\' checked /> <label for=\'$${$item.data}\' >$${$item.data}</label></div>';
+            $.tmpl(template, references).appendTo($('#packagesContainer'));
+        }
+       
     </script>
 </content>

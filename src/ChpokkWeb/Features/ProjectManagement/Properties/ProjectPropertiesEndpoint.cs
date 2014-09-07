@@ -10,11 +10,13 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			output.BclReferences.Add("System", false);
 			output.BclReferences.Add("System.Core", true);
 			output.PackageReferences.Add("Autofac");
+			output.ProjectName = "ProjectName";
 			return output;
 		}
 	}
 
 	public class ProjectPropertiesModel {
+		public string ProjectName;
 		public IDictionary<string, bool> BclReferences = new Dictionary<string, bool>();
 		public IList<string> PackageReferences = new List<string>();
 		public IDictionary<string, bool> ProjectReferences = new Dictionary<string, bool>();

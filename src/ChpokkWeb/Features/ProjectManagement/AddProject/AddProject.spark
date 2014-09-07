@@ -1,26 +1,42 @@
 ﻿<use namespace="ChpokkWeb.Features.ProjectManagement.AddProject" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.Properties" />
 
 <content name="InlineScripts">
     <!-- AddProject.spark -->
     <script type="text/javascript">
 
-    		function addProject(solutionPath) { 
-                $('#addProjectDialog').modal('show');
-				//handle the creation
-				$('#createProjectButton').one('click', function () {
-					$('#createProjectButton').text("Please wait..");
-					$('#createProjectButton').addClass('disabled');
-					var url = '${Urls.UrlFor<AddProjectInputModel>()}';
-					var model = $('#projectForm').serializeObject();
-					model.SolutionPath = solutionPath;
-					$.post(url, model);
-					$('#addProjectDialog').modal('hide');
-					showWaiter();
-				});  
-    		}
+    	function addProject(solutionPath) {
+    		$('#addProjectDialog #dialogTitle').text("Add a project to the solution");
+    		$('#addProjectDialog #save').text("Create");
+            $('#addProjectDialog').modal('show');
+			//handle the creation
+			$('#save').one('click', function () {
+				$('#save').text("Please wait..");
+				$('#save').addClass('disabled');
+				var url = '${Urls.UrlFor<AddProjectInputModel>()}';
+				var model = $('#projectForm').serializeObject();
+				model.SolutionPath = solutionPath;
+				$.post(url, model);
+				$('#addProjectDialog').modal('hide');
+				showWaiter();
+			});  
+    	}
 
-    		$(function() {
+    	function editProjectProperties(projectPath) {
+    		$('#addProjectDialog #dialogTitle').text("Edit Project Properties");
+    		$('#addProjectDialog #save').text("Save changes");
+    		var url = '${Urls.UrlFor<ProjectPropertiesInputModel>()}';
+    		$.post(url, model, function(data) {
+    			$('#projectName').val(data.ProjectName);
+    			displayPackageReferences(data.PackageReferences);//defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
+				$('#addProjectDialog').modal('show');
     		});
+			
+    	}
+
+    	$(function () {
+    		editProjectProperties("CompileSolution\\CompileSolution.csproj");
+    	});
     </script>
 </content>
 
@@ -31,7 +47,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Add a project to the solution</h4>
+                    <h4 class="modal-title" id="dialogTitle">Add a project to the solution</h4>
                 </div>
                 <div class="modal-body">
 					<form class="well" id="projectForm">
@@ -58,7 +74,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="createProjectButton">Create</button>
+                    <button type="button" class="btn btn-primary" id="save">Create</button>
                     
                     <div id="createProjectLogger" style="font-size: smaller;"/>
                 </div>
