@@ -7,8 +7,8 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 	public class ProjectPropertiesEndpoint {
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
 			var output = new ProjectPropertiesModel();
-			output.BclReferences.Add("System", false);
-			output.BclReferences.Add("System.Core", true);
+			output.BclReferences.Add(new {Name = "System", Selected = false});
+			output.BclReferences.Add(new { Name = "System.Core", Selected = true });
 			output.PackageReferences.Add("Autofac");
 			output.ProjectName = "ProjectName";
 			return output;
@@ -17,9 +17,9 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 	public class ProjectPropertiesModel {
 		public string ProjectName;
-		public IDictionary<string, bool> BclReferences = new Dictionary<string, bool>();
+		public IList<object> BclReferences = new List<object>();
 		public IList<string> PackageReferences = new List<string>();
-		public IDictionary<string, bool> ProjectReferences = new Dictionary<string, bool>();
+		public IList<object> ProjectReferences = new List<object>();
 	}
 
 	public class ProjectPropertiesInputModel {}

@@ -29,6 +29,8 @@
     		$.post(url, model, function(data) {
     			$('#projectName').val(data.ProjectName);
     			displayPackageReferences(data.PackageReferences);//defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
+    			displayBclReferences(data.BclReferences);
+    			
 				$('#addProjectDialog').modal('show');
     		});
 			
