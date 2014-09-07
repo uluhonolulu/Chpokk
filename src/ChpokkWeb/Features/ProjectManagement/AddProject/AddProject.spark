@@ -3,27 +3,24 @@
 <content name="InlineScripts">
     <!-- AddProject.spark -->
     <script type="text/javascript">
-        $(function() {
-            $('#newProjectButton').click(function() {
-                //default solution name -- first one from the browser
-                var solutionPath = window.repositoryItems.Items[0].PathRelativeToRepositoryRoot;
-                $('#SolutionPath').val(solutionPath); // should be enough to just model.SolutionPath = solutionPath
+
+    		function addProject(solutionPath) { 
                 $('#addProjectDialog').modal('show');
-            });
+				//handle the creation
+				$('#createProjectButton').one('click', function () {
+					$('#createProjectButton').text("Please wait..");
+					$('#createProjectButton').addClass('disabled');
+					var url = '${Urls.UrlFor<AddProjectInputModel>()}';
+					var model = $('#projectForm').serializeObject();
+					model.SolutionPath = solutionPath;
+					$.post(url, model);
+					$('#addProjectDialog').modal('hide');
+					showWaiter();
+				});  
+    		}
 
-            
-            //handle the creation
-            $('#createProjectButton').on('click', function () {
-                $('#createProjectButton').text("Please wait..");
-                $('#createProjectButton').addClass('disabled');
-                var url = '${Urls.UrlFor<AddProjectInputModel>()}';
-                var model = $('#projectForm').serializeObject();
-                $.post(url, model);
-                $('#addProjectDialog').modal('hide');
-                showWaiter();
-            });
-
-        })
+    		$(function() {
+    		});
     </script>
 </content>
 

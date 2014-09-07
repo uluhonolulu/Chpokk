@@ -16,6 +16,12 @@
 			//amplify.subscribe('hashchange', loadSelectedFile);
 			amplify.subscribe('solutionLoaded', loadSelectedFile);
 			jHash.change(loadSelectedFile);
+			
+			//Add Project
+			$('#newProjectButton').click(function () {
+				var solutionPath = window.repositoryItems.Items[0].PathRelativeToRepositoryRoot;//default solution name -- first one from the browser
+				addProject(solutionPath);
+			});
 
 		});
 
