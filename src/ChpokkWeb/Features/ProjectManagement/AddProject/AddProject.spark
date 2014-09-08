@@ -26,6 +26,7 @@
     		$('#addProjectDialog #dialogTitle').text("Edit Project Properties");
     		$('#addProjectDialog #save').text("Save changes");
     		var url = '${Urls.UrlFor<ProjectPropertiesInputModel>()}';
+    		var model = $.extend({}, window.model, { ProjectPath: projectPath });
     		$.post(url, model, function(data) {
     			$('#projectName').val(data.ProjectName);
     			displayPackageReferences(data.PackageReferences);//defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
