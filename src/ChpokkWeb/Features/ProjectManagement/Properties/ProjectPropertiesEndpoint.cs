@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Xml;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.RepositoryManagement;
@@ -43,8 +45,11 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		}
 
 		IEnumerable<object> GetProjectReferences(string projectContent, string solutionPath) {
+			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectContent)));
 			var projectReferences = _projectParser.GetProjectReferences(projectContent).ToArray();
+			var projectName = _projectParser.GetProjectName(root);
 			return from projectItem in _solutionParser.GetProjectItems(solutionPath)
+				   where projectItem.Name != projectName
 			       select new
 				       {
 					       projectItem.Name, 
