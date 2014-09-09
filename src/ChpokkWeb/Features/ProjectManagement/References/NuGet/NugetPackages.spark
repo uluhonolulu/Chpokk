@@ -59,6 +59,7 @@
         });
         
         function displayPackageReferences(references) {
+        	$('#packagesContainer').empty();
         	var template = '<div><input type="checkbox" name="Packages" value=\'$${$item.data}\' id=\'$${$item.data}\' checked /> <label for=\'$${$item.data}\' >$${$item.data}</label></div>';
             $.tmpl(template, references).appendTo($('#packagesContainer'));
         }

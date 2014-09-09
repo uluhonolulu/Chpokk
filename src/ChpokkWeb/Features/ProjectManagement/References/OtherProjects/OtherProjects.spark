@@ -9,9 +9,9 @@
 <content name="InlineScripts">
     <!-- OtherProjects.spark -->
     <script type="text/javascript">
-    	amplify.subscribe('solutionLoaded', loadOtherProjects);
+    	//amplify.subscribe('solutionLoaded', loadOtherProjects);
 
-        function loadOtherProjects(solutionData) {
+        function loadOtherProjects(solutionData) { //deprecated?
 	        if (solutionData.Items.length == 0) return;
         	var url = '${Urls.UrlFor<OtherProjectsInputModel>()}';
 			var solutionPath = solutionData.Items[0].PathRelativeToRepositoryRoot;
@@ -19,19 +19,21 @@
 				//var template = '<input type="checkbox" name="Projects" value=\'`${Path}\' id=\'`${Name}\'/> <label for=\'`${Name}\'>`${Name}</label><br/>';
 				//$.tmpl(template, data.Projects).appendTo($('#referencedProjects'));
 				if (data.Projects.length > 0) {
-					$('#projectReferencesMenuItem').show();
 				}
 			});        
         }
 
         function displayProjectReferences(references) {
+        	$('#projectsContainer').empty();
         	var template = '<div><input type="checkbox" name="Projects" value=\'`${Path}\' id=\'`${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
         	$.tmpl(template, references).appendTo($('#projectsContainer'));
+        	//show or hide the OtherProjects tab
+	        var hasProjects = references.length > 0;
+        	$('#projectReferencesMenuItem').toggle(hasProjects);
         }
         
-        //hide the Other Projects menu item by default, so that we don't see it when we don't have the other projects
         $(function() {
-            $('#projectReferencesMenuItem').hide();
+            
         });
     </script>
 </content>

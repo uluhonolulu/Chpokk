@@ -12,6 +12,7 @@ using ICSharpCode.SharpDevelop.Project;
 using ChpokkWeb.Infrastructure;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
+using Microsoft.Build.Exceptions;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
@@ -243,6 +244,21 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 				propertyElement = root.Properties.FirstOrDefault(element => element.Name == "RootNamespace");
 			}
 			return propertyElement != null ? propertyElement.Value : null;
+		}
+
+		public string GetProjectOutputType(ProjectRootElement root) {
+			var propertyElement = root.Properties.Single(element => element.Name == "OutputType");
+			return propertyElement.Value;
+		}
+
+		public string GetProjectLanguage(ProjectRootElement root) {
+			if (root.Imports.Any(element => element.Project.EndsWith("Microsoft.VisualBasic.targets"))) {
+				return "VBNet";
+			}
+			if (root.Imports.Any(element => element.Project.EndsWith("Microsoft.CSharp.targets"))) {
+				return "CSharp";
+			}
+			throw new InvalidProjectFileException("Can't determine language for " + GetProjectName(root));
 		}
 	}
 

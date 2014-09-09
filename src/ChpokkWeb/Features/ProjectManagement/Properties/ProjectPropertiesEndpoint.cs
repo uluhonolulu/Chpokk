@@ -31,6 +31,8 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			output.PackageReferences.AddRange(_projectParser.GetPackageReferences(project.RawXml));
 			output.ProjectReferences.AddRange(GetProjectReferences(project.RawXml, solutionPath));
 			output.ProjectName =_projectParser.GetProjectName(project);
+			output.ProjectType = _projectParser.GetProjectOutputType(project);
+			output.Language = _projectParser.GetProjectLanguage(project);
 			return output;
 		}
 
@@ -64,6 +66,8 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 	public class ProjectPropertiesModel {
 		public string ProjectName;
+		public string ProjectType;
+		public string Language;
 		public IList<object> BclReferences = new List<object>();
 		public IList<string> PackageReferences = new List<string>();
 		public IList<object> ProjectReferences = new List<object>();

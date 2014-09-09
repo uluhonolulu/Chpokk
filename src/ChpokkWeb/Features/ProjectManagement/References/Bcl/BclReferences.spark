@@ -8,15 +8,21 @@
     <!-- BclReferences.spark -->
     <script type="text/javascript">
 	    $(function() {
-		    var references = ["System", "System.Core"];
-		    for (var reference in references) {
-			    $(document.getElementById(references[reference])).prop('checked', true);
-		    }
+
 	    });
 
 	    function displayBclReferences(references) {
+		    $('#bclContainer').empty();
 	    	var template = '<div><input type="checkbox" name="References" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
 	    	$.tmpl(template, references).appendTo($('#bclContainer'));
+		    selectDefaultReferences();
+	    }
+
+	    function selectDefaultReferences() {
+		    var defaultReferences = ["System", "System.Core"];
+		    for (var reference in defaultReferences) {
+		    	$(document.getElementById(defaultReferences[reference])).prop('checked', true);
+		    }		    
 	    }
     </script>
 </content>

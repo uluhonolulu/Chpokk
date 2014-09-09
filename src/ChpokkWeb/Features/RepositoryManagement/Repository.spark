@@ -22,6 +22,21 @@
 				var solutionPath = window.repositoryItems.Items[0].PathRelativeToRepositoryRoot;//default solution name -- first one from the browser
 				addProject(solutionPath);
 			});
+			
+			//Project Properties
+			$('#projectPropertiesButton').click(function () {
+				if (tabs.activePath) {
+					var activeModel = tabs.activeModel();
+					editProjectProperties(activeModel.ProjectPath, activeModel.SolutionPath);
+				} else {
+					var data = window.repositoryItems;
+					var solutionPath = data.Items[0].PathRelativeToRepositoryRoot;
+					var projectPath = data.Items[0].Children[0].PathRelativeToRepositoryRoot;
+					editProjectProperties(projectPath, solutionPath);
+					amplify.subscribe('solutionLoaded', function (data) {});
+				}
+			});
+			
 
 		});
 
@@ -75,6 +90,11 @@
     <ul class="nav navbar-nav">
         <li class="navbar-default">
             <a id="newProjectButton">New Project</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav">
+        <li class="navbar-default">
+            <a id="projectPropertiesButton">Project Properties</a>
         </li>
     </ul>
 	<ul class="nav navbar-nav">

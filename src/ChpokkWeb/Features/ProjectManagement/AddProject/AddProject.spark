@@ -8,6 +8,9 @@
     	function addProject(solutionPath) {
     		$('#addProjectDialog #dialogTitle').text("Add a project to the solution");
     		$('#addProjectDialog #save').text("Create");
+    		$('#projectName').val('');
+    		$('#projectType').val('Exe');
+    		$('#language').val('CSharp');
             $('#addProjectDialog').modal('show');
 			//handle the creation
 			$('#save').one('click', function () {
@@ -32,7 +35,9 @@
     			displayPackageReferences(data.PackageReferences);//defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
     			displayBclReferences(data.BclReferences);
     			displayProjectReferences(data.ProjectReferences);
-				$('#addProjectDialog').modal('show');
+    			$('#projectType').val(data.ProjectType);
+    			$('#language').val(data.Language);
+    			$('#addProjectDialog').modal('show');
     		});
 			
     	}
