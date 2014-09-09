@@ -88,7 +88,10 @@ namespace ChpokkWeb.Features.Exploring {
 			rootElement.DefaultTargets = "Build";
 			rootElement.AddProperty("OutputType", outputType);
 			rootElement.AddProperty("OutputPath", @"bin\Debug\");
-			if (projectName != null) rootElement.AddProperty("RootNamespace", projectName);
+			if (projectName != null) {
+				rootElement.AddProperty("AssemblyName", projectName);
+				rootElement.AddProperty("RootNamespace", projectName);
+			}
 			if (projectPath != null) rootElement.Save(projectPath);
 			//create Program.cs
 			if (outputType == "Exe") {
@@ -232,6 +235,14 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 					item.HasMetadata && 
 					item.Metadata.Any(element => element.Name == "HintPath") &&
 					item.Metadata.Single(element => element.Name == "HintPath").Value.Contains("packages");
+		}
+
+		public string GetProjectName(ProjectRootElement root) {
+			var propertyElement = root.Properties.FirstOrDefault(element => element.Name == "AssemblyName");
+			if (propertyElement == null) {
+				propertyElement = root.Properties.FirstOrDefault(element => element.Name == "RootNamespace");
+			}
+			return propertyElement != null ? propertyElement.Value : null;
 		}
 	}
 

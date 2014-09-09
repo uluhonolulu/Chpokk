@@ -10,22 +10,25 @@ using Microsoft.Build.Construction;
 namespace ChpokkWeb.Features.ProjectManagement.Properties {
 	public class ProjectPropertiesEndpoint {
 		private readonly BclAssembliesProvider _assembliesProvider;
-		private ProjectParser _projectParser;
-		private RepositoryManager _repositoryManager;
-		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager) {
+		private readonly ProjectParser _projectParser;
+		private readonly RepositoryManager _repositoryManager;
+		private readonly SolutionParser _solutionParser;
+		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser) {
 			_assembliesProvider = assembliesProvider;
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
+			_solutionParser = solutionParser;
 		}
 
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath);
-			var project = ProjectRootElement.Open(projectPath);
+			var project = ProjectRootElement.Open(projectPath); //TODO: load from IFileSystem and use the source instead of the RootElement
+			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.SolutionPath);
 			var output = new ProjectPropertiesModel();
 			output.BclReferences.AddRange(GetBclReferences(project));
-			output.PackageReferences.Add("Autofac");
-			output.ProjectReferences.Add(new {Name = "OtherProject", Path = "ThePath", Selected = true});
-			output.ProjectName = "ProjectName";
+			output.PackageReferences.AddRange(_projectParser.GetPackageReferences(project.RawXml));
+			output.ProjectReferences.AddRange(GetProjectReferences(project.RawXml, solutionPath));
+			output.ProjectName =_projectParser.GetProjectName(project);
 			return output;
 		}
 
@@ -38,6 +41,20 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 						   Selected = projectReferences.Contains(assemblyName)
 				       };
 		}
+
+		IEnumerable<object> GetProjectReferences(string projectContent, string solutionPath) {
+			var projectReferences = _projectParser.GetProjectReferences(projectContent).ToArray();
+			return from projectItem in _solutionParser.GetProjectItems(solutionPath)
+			       select new
+				       {
+					       projectItem.Name, 
+						   projectItem.Path,
+					       Selected = projectReferences.Contains(projectItem.Name)
+				       };
+
+		}
+
+
 	}
 
 	public class ProjectPropertiesModel {
@@ -49,5 +66,6 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 	public class ProjectPropertiesInputModel: BaseRepositoryInputModel {
 		public string ProjectPath { get; set; }
+		public string SolutionPath { get; set; }
 	}
 }

@@ -22,11 +22,11 @@
 			});  
     	}
 
-    	function editProjectProperties(projectPath) {
+    	function editProjectProperties(projectPath, solutionPath) {
     		$('#addProjectDialog #dialogTitle').text("Edit Project Properties");
     		$('#addProjectDialog #save').text("Save changes");
     		var url = '${Urls.UrlFor<ProjectPropertiesInputModel>()}';
-    		var model = $.extend({}, window.model, { ProjectPath: projectPath });
+    		var model = $.extend({}, window.model, { ProjectPath: projectPath, SolutionPath: solutionPath });
     		$.post(url, model, function(data) {
     			$('#projectName').val(data.ProjectName);
     			displayPackageReferences(data.PackageReferences);//defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
@@ -38,7 +38,16 @@
     	}
 
     	$(function () {
-    		editProjectProperties("CompileSolution\\CompileSolution.csproj");
+    		if(tabs.activePath) {
+    			var activeModel = tabs.activeModel();
+    			editProjectProperties(activeModel.ProjectPath, activeModel.SolutionPath);
+    		} else {
+    			amplify.subscribe('solutionLoaded', function(data) {
+    				var solutionPath = data.Items[0].PathRelativeToRepositoryRoot;
+    				var projectPath = data.Items[0].Children[0].PathRelativeToRepositoryRoot;
+    				editProjectProperties(projectPath, solutionPath);
+    			});
+    		}
     	});
     </script>
 </content>
