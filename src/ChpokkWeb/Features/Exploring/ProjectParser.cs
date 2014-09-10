@@ -225,10 +225,10 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			return GetPackageReferences(CreateRootElement(projectFileContent));
 		}
 
-		private IEnumerable<string> GetPackageReferences(ProjectRootElement root) {
+		public IEnumerable<string> GetPackageReferences(ProjectRootElement root) {
 			return from item in root.Items	
 			       where IsPackageReference(item)
-			       select item.Include;			
+			       select item.Include.Split(',')[0];			// use split cause we might have Processor Arch, token etc in the include text
 		}
 
 		private bool IsPackageReference(ProjectItemElement item) {

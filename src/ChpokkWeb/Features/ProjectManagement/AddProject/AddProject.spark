@@ -6,12 +6,12 @@
     <script type="text/javascript">
 
     	function addProject(solutionPath) {
-    		$('#addProjectDialog #dialogTitle').text("Add a project to the solution");
-    		$('#addProjectDialog #save').text("Create");
+    		$('#projectPropertiesDialog #dialogTitle').text("Add a project to the solution");
+    		$('#projectPropertiesDialog #save').text("Create");
     		$('#projectName').val('');
     		$('#projectType').val('Exe');
     		$('#language').val('CSharp');
-            $('#addProjectDialog').modal('show');
+    		displayProjectPropertiesDialog(null, solutionPath);
 			//handle the creation
 			$('#save').one('click', function () {
 				$('#save').text("Please wait..");
@@ -20,46 +20,37 @@
 				var model = $('#projectForm').serializeObject();
 				model.SolutionPath = solutionPath;
 				$.post(url, model);
-				$('#addProjectDialog').modal('hide');
+				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
 			});  
     	}
 
     	function editProjectProperties(projectPath, solutionPath) {
-    		$('#addProjectDialog #dialogTitle').text("Edit Project Properties");
-    		$('#addProjectDialog #save').text("Save changes");
+    		$('#projectPropertiesDialog #dialogTitle').text("Edit Project Properties");
+    		$('#projectPropertiesDialog #save').text("Save changes");
+    		displayProjectPropertiesDialog(projectPath, solutionPath);
+    	}
+
+    	function displayProjectPropertiesDialog(projectPath, solutionPath) {
     		var url = '${Urls.UrlFor<ProjectPropertiesInputModel>()}';
     		var model = $.extend({}, window.model, { ProjectPath: projectPath, SolutionPath: solutionPath });
     		$.post(url, model, function(data) {
-    			$('#projectName').val(data.ProjectName);
-    			displayPackageReferences(data.PackageReferences);//defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
-    			displayBclReferences(data.BclReferences);
-    			displayProjectReferences(data.ProjectReferences);
-    			$('#projectType').val(data.ProjectType);
-    			$('#language').val(data.Language);
-    			$('#addProjectDialog').modal('show');
+    			if (data.ProjectName) $('#projectName').val(data.ProjectName);
+    			if (data.ProjectType) $('#projectType').val(data.ProjectType);
+    			if (data.Language) $('#language').val(data.Language);
+    			displayPackageReferences(data.PackageReferences); //defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
+    			displayBclReferences(data.BclReferences); //defined in \Features\ProjectManagement\References\Bcl\BclReferences
+    			displayProjectReferences(data.ProjectReferences); //defined in \Features\ProjectManagement\References\OtherProjects\OtherProjects.spark
+    			$('#projectPropertiesDialog').modal('show');
     		});
-			
+  
     	}
-
-    	$(function () {
-    		if(tabs.activePath) {
-    			var activeModel = tabs.activeModel();
-    			editProjectProperties(activeModel.ProjectPath, activeModel.SolutionPath);
-    		} else {
-    			amplify.subscribe('solutionLoaded', function(data) {
-    				var solutionPath = data.Items[0].PathRelativeToRepositoryRoot;
-    				var projectPath = data.Items[0].Children[0].PathRelativeToRepositoryRoot;
-    				editProjectProperties(projectPath, solutionPath);
-    			});
-    		}
-    	});
     </script>
 </content>
 
 <content name="Dialogs">
     <!-- AddProject.spark -->
-    <div class="modal fade" id="addProjectDialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="projectPropertiesDialog" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

@@ -8,6 +8,7 @@ using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.RepositoryManagement;
 using Microsoft.Build.Construction;
+using FubuCore;
 
 namespace ChpokkWeb.Features.ProjectManagement.Properties {
 	public class ProjectPropertiesEndpoint {
@@ -23,40 +24,42 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		}
 
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
-			var projectPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath);
-			var project = ProjectRootElement.Open(projectPath); //TODO: load from IFileSystem and use the source instead of the RootElement
+			var projectPath = model.ProjectPath.IsNotEmpty()? _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath) : null;
+			var project = projectPath != null? ProjectRootElement.Open(projectPath): null; //TODO: load from IFileSystem and use the source instead of the RootElement
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.SolutionPath);
 			var output = new ProjectPropertiesModel();
 			output.BclReferences.AddRange(GetBclReferences(project));
-			output.PackageReferences.AddRange(_projectParser.GetPackageReferences(project.RawXml));
-			output.ProjectReferences.AddRange(GetProjectReferences(project.RawXml, solutionPath));
-			output.ProjectName =_projectParser.GetProjectName(project);
-			output.ProjectType = _projectParser.GetProjectOutputType(project);
-			output.Language = _projectParser.GetProjectLanguage(project);
+			if (project != null) output.PackageReferences.AddRange(_projectParser.GetPackageReferences(project.RawXml));
+			output.ProjectReferences.AddRange(GetProjectReferences(project, solutionPath));
+			if (project != null) {
+				output.ProjectName =_projectParser.GetProjectName(project);
+				output.ProjectType = _projectParser.GetProjectOutputType(project);
+				output.Language = _projectParser.GetProjectLanguage(project);				
+			}
+
 			return output;
 		}
 
 		IEnumerable<object> GetBclReferences(ProjectRootElement project) {
-			var projectReferences = _projectParser.GetBclReferences(project).ToArray();
+			var projectReferences = project != null ? _projectParser.GetBclReferences(project).ToArray() : null; 
 			return from assemblyName in _assembliesProvider.BclAssemblies
 			       select new
 				       {
 					       Name = assemblyName,
-						   Selected = projectReferences.Contains(assemblyName)
+						   Selected = projectReferences != null? projectReferences.Contains(assemblyName) : false
 				       };
 		}
 
-		IEnumerable<object> GetProjectReferences(string projectContent, string solutionPath) {
-			var root = ProjectRootElement.Create(new XmlTextReader(new StringReader(projectContent)));
-			var projectReferences = _projectParser.GetProjectReferences(projectContent).ToArray();
-			var projectName = _projectParser.GetProjectName(root);
+		IEnumerable<object> GetProjectReferences(ProjectRootElement project, string solutionPath) {
+			var projectReferences = project != null ? _projectParser.GetProjectReferences(project).ToArray() : null;
+			var projectName = project != null ? _projectParser.GetProjectName(project) : null;
 			return from projectItem in _solutionParser.GetProjectItems(solutionPath)
 				   where projectItem.Name != projectName
 			       select new
 				       {
 					       projectItem.Name, 
 						   projectItem.Path,
-					       Selected = projectReferences.Contains(projectItem.Name)
+					       Selected = projectReferences != null? projectReferences.Contains(projectItem.Name) : false
 				       };
 
 		}
