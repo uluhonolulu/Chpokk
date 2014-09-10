@@ -21,13 +21,9 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		private readonly SolutionFileLoader _solutionFileLoader;
 		private readonly IUrlRegistry _registry;
 
-		public AddSimpleProjectEndpoint(SolutionFileLoader solutionFileLoader, RepositoryManager repositoryManager, ProjectParser projectParser, IUrlRegistry registry, PackageInstaller packageInstaller, SignalRLogger logger) {
+		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry) : base(projectParser, repositoryManager, packageInstaller, logger) {
 			_solutionFileLoader = solutionFileLoader;
-			_repositoryManager = repositoryManager;
-			_projectParser = projectParser;
 			_registry = registry;
-			_logger = logger;
-			_packageInstaller = packageInstaller;
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {

@@ -10,12 +10,7 @@ using Microsoft.Build.Construction;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 	public class AddProjectEndpoint : AddProjectBase {
-		public AddProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) {
-			_projectParser = projectParser;
-			_repositoryManager = repositoryManager;
-			_packageInstaller = packageInstaller;
-			_logger = logger;
-		}
+		public AddProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) : base(projectParser, repositoryManager, packageInstaller, logger) {}
 
 		public AjaxContinuation DoIt(AddProjectInputModel inputModel) {
 			_logger.ConnectionId = inputModel.ConnectionId; 

@@ -260,6 +260,14 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			}
 			throw new InvalidProjectFileException("Can't determine language for " + GetProjectName(root));
 		}
+
+		public void ClearReferences(ProjectRootElement root) {
+			foreach (var item in root.Items) {
+				if (item.ItemType == "Reference" || item.ItemType == "ProjectReference") {
+					root.RemoveChild(item);
+				}
+			}
+		}
 	}
 
 }

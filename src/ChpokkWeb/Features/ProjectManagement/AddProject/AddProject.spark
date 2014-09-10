@@ -29,6 +29,17 @@
     		$('#projectPropertiesDialog #dialogTitle').text("Edit Project Properties");
     		$('#projectPropertiesDialog #save').text("Save changes");
     		displayProjectPropertiesDialog(projectPath, solutionPath);
+			$('#save').one('click', function () {
+				$('#save').text("Please wait..");
+				$('#save').addClass('disabled');
+				var url = '${Urls.UrlFor<EditPropertiesInputModel>()}';
+				var model = $('#projectForm').serializeObject();
+				model.SolutionPath = solutionPath;
+				model.ProjectPath = projectPath;
+				$.post(url, model);
+				$('#projectPropertiesDialog').modal('hide');
+				showWaiter();
+			});  
     	}
 
     	function displayProjectPropertiesDialog(projectPath, solutionPath) {

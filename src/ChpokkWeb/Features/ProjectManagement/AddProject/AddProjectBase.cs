@@ -15,6 +15,12 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		protected RepositoryManager _repositoryManager;
 		protected PackageInstaller _packageInstaller;
 		protected SignalRLogger _logger;
+		public AddProjectBase(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) {
+			_projectParser = projectParser;
+			_repositoryManager = repositoryManager;
+			_packageInstaller = packageInstaller;
+			_logger = logger;
+		}
 
 		protected void AddPackages(AddSimpleProjectInputModel inputModel, string projectPath) {
 			var targetFolder = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName).AppendPath("packages");
