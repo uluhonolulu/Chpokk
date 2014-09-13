@@ -9,8 +9,10 @@
     		$('#projectPropertiesDialog #dialogTitle').text("Add a project to the solution");
     		$('#projectPropertiesDialog #save').text("Create");
     		$('#projectName').val('');
+    		$('#projectName').prop('disabled', false);
     		$('#projectType').val('Exe');
     		$('#language').val('CSharp');
+    		$('#language').prop('disabled', false);
     		displayProjectPropertiesDialog(null, solutionPath);
 			//handle the creation
 			$('#save').one('click', function () {
@@ -28,6 +30,8 @@
     	function editProjectProperties(projectPath, solutionPath) {
     		$('#projectPropertiesDialog #dialogTitle').text("Edit Project Properties");
     		$('#projectPropertiesDialog #save').text("Save changes");
+    		$('#projectName').prop('disabled', true);
+    		$('#language').prop('disabled', true);
     		displayProjectPropertiesDialog(projectPath, solutionPath);
 			$('#save').one('click', function () {
 				$('#save').text("Please wait..");
