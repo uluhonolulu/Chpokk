@@ -13,6 +13,9 @@ using ChpokkWeb.Infrastructure;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Exceptions;
+using NuGet;
+using NuGet.Common;
+using IFileSystem = FubuCore.IFileSystem;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
@@ -221,14 +224,13 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			       select item.Metadata.Single(element => element.Name == "Name").Value;
 		}
 
-		public IEnumerable<string> GetPackageReferences(string projectFileContent) {
-			return GetPackageReferences(CreateRootElement(projectFileContent));
-		}
-
-		public IEnumerable<string> GetPackageReferences(ProjectRootElement root) {
-			return from item in root.Items	
-			       where IsPackageReference(item)
-			       select item.Include.Split(',')[0];			// use split cause we might have Processor Arch, token etc in the include text
+		public IEnumerable<dynamic> GetPackageReferences(string projectPath, IEnumerable<IPackage> allPackages) {
+			var projectSystem = new MSBuildProjectSystem(projectPath);
+			return from package in allPackages
+				   select new {
+					   Name = package.Id,
+					   Selected = package.AssemblyReferences.Any(reference => projectSystem.ReferenceExists(reference.Name))
+				   };
 		}
 
 		private bool IsPackageReference(ProjectItemElement item) {

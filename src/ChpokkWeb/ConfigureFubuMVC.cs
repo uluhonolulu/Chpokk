@@ -15,6 +15,7 @@ using FubuMVC.Core;
 using FubuMVC.Core.Assets.Content;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
+using FubuMVC.Spark;
 using Spark;
 
 namespace ChpokkWeb {
@@ -59,6 +60,10 @@ namespace ChpokkWeb {
 			policy.Where.InputTypeIs<MainDummyModel>();
 			policy.Wrap.WithBehavior<SignoutJohnDoeBehavior>();
 			Policies.Add(policy, "InjectNodes");
+
+			this.AlterSettings <SparkEngineSettings>(settings => {
+				                                                     settings.PrecompileViews = false;
+			});
 
 			// if the user is past the trial period, redirect her to the payment page
 			//Policies.WrapWith<EndOfTrialTimeToPayBehavior>();

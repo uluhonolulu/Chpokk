@@ -6,6 +6,7 @@ using System.Web;
 using System.Xml;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using Microsoft.Build.Construction;
 using FubuCore;
@@ -16,11 +17,13 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		private readonly ProjectParser _projectParser;
 		private readonly RepositoryManager _repositoryManager;
 		private readonly SolutionParser _solutionParser;
-		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser) {
+		private PackageInstaller _packageInstaller;
+		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser, PackageInstaller packageInstaller) {
 			_assembliesProvider = assembliesProvider;
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
 			_solutionParser = solutionParser;
+			_packageInstaller = packageInstaller;
 		}
 
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
@@ -29,7 +32,8 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.SolutionPath);
 			var output = new ProjectPropertiesModel();
 			output.BclReferences.AddRange(GetBclReferences(project));
-			if (project != null) output.PackageReferences.AddRange(_projectParser.GetPackageReferences(project.RawXml));
+			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			if (project != null) output.PackageReferences.AddRange(GetPackages(projectPath, repositoryRoot));
 			output.ProjectReferences.AddRange(GetProjectReferences(project, solutionPath));
 			if (project != null) {
 				output.ProjectName =_projectParser.GetProjectName(project);
@@ -38,6 +42,11 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			}
 
 			return output;
+		}
+
+		public IEnumerable<object> GetPackages(string projectPath, string repositoryRoot) {
+			var allPackages = _packageInstaller.GetAllPackages(repositoryRoot);
+			return _projectParser.GetPackageReferences(projectPath, allPackages);
 		}
 
 		IEnumerable<object> GetBclReferences(ProjectRootElement project) {
@@ -72,7 +81,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		public string ProjectType;
 		public string Language;
 		public IList<object> BclReferences = new List<object>();
-		public IList<string> PackageReferences = new List<string>();
+		public IList<object> PackageReferences = new List<object>();
 		public IList<object> ProjectReferences = new List<object>();
 	}
 

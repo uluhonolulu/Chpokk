@@ -43,6 +43,15 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			//var relativePath = targetPath.PathRelativeTo(targetFolder);
 			//packagesFolderFileSystem.AddFile(relativePath, file.GetStream());
 		}
+
+		public IEnumerable<IPackage> GetAllPackages(string rootFolder) { //rootFolder is repository root
+			const string packagesFolder = "packages";
+			var targetFolder = rootFolder.AppendPath(packagesFolder);
+			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
+			var packagesFolderFileSystem = new PhysicalFileSystem(targetFolder);
+			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
+			return localRepository.GetPackages();
+		}
 	}
 	public class BetterThanMSBuildProjectSystem : MSBuildProjectSystem {
 
