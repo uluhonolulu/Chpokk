@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\AssertExtensions.cs" />
     <Compile Include="Infrastructure\Bitness.cs" />
+    <Compile Include="Infrastructure\AssemblyLocator.cs" />
     <Compile Include="Infrastructure\DirectoryHelper.cs" />
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />

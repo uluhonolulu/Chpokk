@@ -53,7 +53,8 @@ namespace UnitTests.Infrastructure {
 		private static readonly Container _container;
 
 		static SimpleConfiguredContext() {
-			var _ = new FubuMVC.Validation.ValidationMode("-");
+			AssemblyLocator.Init(); //fix the missing assembly error
+			var _ = new FubuMVC.Validation.ValidationMode("-");//fix the missing assembly error
 			_container = new Container();
 			ConfigureContainer(_container);
 		}
