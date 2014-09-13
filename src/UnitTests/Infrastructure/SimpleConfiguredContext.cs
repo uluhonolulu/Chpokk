@@ -53,6 +53,7 @@ namespace UnitTests.Infrastructure {
 		private static readonly Container _container;
 
 		static SimpleConfiguredContext() {
+			var _ = new FubuMVC.Validation.ValidationMode("-");
 			_container = new Container();
 			ConfigureContainer(_container);
 		}
