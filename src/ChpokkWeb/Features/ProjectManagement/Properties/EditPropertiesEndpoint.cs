@@ -14,9 +14,10 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.SolutionPath);
 
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.ProjectPath);
-			var rootElement = ProjectRootElement.Open(projectPath);
+			var rootElement = ProjectRootElement.Open(projectPath); //TODO: load properly
 
 			//add references
+			_projectParser.ClearReferences(rootElement);
 			AddBclReferences(inputModel, rootElement);
 			AddProjectReferences(inputModel, solutionPath, rootElement);
 			AddPackages(inputModel, projectPath);

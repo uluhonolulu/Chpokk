@@ -266,7 +266,7 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 		public void ClearReferences(ProjectRootElement root) {
 			foreach (var item in root.Items) {
 				if (item.ItemType == "Reference" || item.ItemType == "ProjectReference") {
-					root.RemoveChild(item);
+					item.Parent.RemoveChild(item);
 				}
 			}
 		}
