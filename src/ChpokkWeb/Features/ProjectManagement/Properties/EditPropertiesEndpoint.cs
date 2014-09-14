@@ -10,14 +10,16 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		public EditPropertiesEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) : base(projectParser, repositoryManager, packageInstaller, logger) {}
 
 		public AjaxContinuation Save(EditPropertiesInputModel inputModel) {
-			_logger.ConnectionId = inputModel.ConnectionId; 
+			//TODO: it thinks that the package is referenced if it's downloaded. 
+			_logger.ConnectionId = inputModel.ConnectionId;
+			var repositoryPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName);
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.SolutionPath);
-
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.ProjectPath);
 			var rootElement = ProjectRootElement.Open(projectPath); //TODO: load properly
 
 			//add references
 			_projectParser.ClearReferences(rootElement);
+			_packageInstaller.ClearPackages(repositoryPath);
 			AddBclReferences(inputModel, rootElement);
 			AddProjectReferences(inputModel, solutionPath, rootElement);
 			AddPackages(inputModel, projectPath);

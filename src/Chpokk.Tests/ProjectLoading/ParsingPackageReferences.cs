@@ -22,7 +22,7 @@ namespace Chpokk.Tests.ProjectLoading {
 
 		public override IEnumerable<object> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			return parser.GetPackageReferences(Context.PROJECT_FILE_CONTENT);
+			return null;// parser.GetPackageReferences(Context.PROJECT_FILE_CONTENT);
 		}
 	}
 

@@ -40,13 +40,14 @@ namespace Chpokk.Tests.ProjectLoading {
 		}
 
 		public override IEnumerable<dynamic> Act() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.MethodName.EndsWith("Files")));
-			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is PhysicalFileSystem));
-			CThruEngine.StartListening();
+			//CThruEngine.AddAspect(new TraceAspect(info => info.MethodName.EndsWith("Files")));
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is PhysicalFileSystem));
+			//CThruEngine.StartListening();
 			var projectPath =
 				@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\Chpokk-SampleSol\src\NewVB\NewVB.vbproj"; //@"D:\Projects\Chpokk\src\ChpokkWeb\ChpokkWeb.csproj";
 			const string packagesFolder = "packages";
-			var targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(packagesFolder);
+			var repositoryRoot = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\Chpokk-SampleSol";
+			var targetFolder = repositoryRoot.AppendPath(packagesFolder);
 			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
 			var packagesFolderFileSystem = new PhysicalFileSystem(targetFolder);
 			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
@@ -59,8 +60,8 @@ namespace Chpokk.Tests.ProjectLoading {
 				}
 				Console.WriteLine();
 			}
-			var projectContent = Context.Container.Get<FubuCore.IFileSystem>().ReadStringFromFile(projectPath);
-			return Context.Container.Get<ProjectParser>().GetPackageReferences(projectPath);
+			var packageInstaller = Context.Container.Get<PackageInstaller>();
+			return Context.Container.Get<ProjectParser>().GetPackageReferences(projectPath, packageInstaller.GetAllPackages(repositoryRoot));
 
 		}
 	}

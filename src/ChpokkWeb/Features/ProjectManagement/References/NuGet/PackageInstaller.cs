@@ -8,6 +8,7 @@ using Console = System.Console;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class PackageInstaller {
+		private const string PackagesFolder = "packages";
 		private readonly IPackageRepository _packageRepository;
 		private readonly IConsole _console;
 		public PackageInstaller(IPackageRepository packageRepository, IConsole console) {
@@ -17,9 +18,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 
 		public void InstallPackage(string packageId, string projectPath, string targetFolder = null) {
-			const string packagesFolder = "packages";
-			if (targetFolder == null) 
-				targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(packagesFolder);
+			if (targetFolder == null)
+				targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(PackagesFolder);
 			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
 			var packagesFolderFileSystem = new PhysicalFileSystem(targetFolder);
 			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
@@ -45,12 +45,15 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		}
 
 		public IEnumerable<IPackage> GetAllPackages(string rootFolder) { //rootFolder is repository root
-			const string packagesFolder = "packages";
-			var targetFolder = rootFolder.AppendPath(packagesFolder);
+			var targetFolder = rootFolder.AppendPath(PackagesFolder);
 			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
 			var packagesFolderFileSystem = new PhysicalFileSystem(targetFolder);
 			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
 			return localRepository.GetPackages();
+		}
+
+		public void ClearPackages(string repositoryPath) {
+			Directory.Delete(repositoryPath.AppendPath(PackagesFolder), true);
 		}
 	}
 	public class BetterThanMSBuildProjectSystem : MSBuildProjectSystem {

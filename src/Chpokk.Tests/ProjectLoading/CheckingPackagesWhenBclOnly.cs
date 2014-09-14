@@ -19,7 +19,7 @@ namespace Chpokk.Tests.ProjectLoading {
 		public override IEnumerable<object> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
 			//TODO: this actually needs a saved project file
-			return parser.GetPackageReferences(ProjectContentWithOneBclReferenceContext.PROJECT_FILE_CONTENT);
+			return null;// parser.GetPackageReferences(ProjectContentWithOneBclReferenceContext.PROJECT_FILE_CONTENT);
 		}
 	}
 }
