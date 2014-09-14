@@ -13,6 +13,7 @@ using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
+using NuGet.Common;
 using StructureMap;
 
 namespace Chpokk.Tests.Infrastructure {
@@ -37,10 +38,17 @@ namespace Chpokk.Tests.Infrastructure {
 		}
 
 		private static void ConfigureContainer(Container container) {
-			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
-			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
-			container.Configure(expression => expression.For<IAppRootProvider>().Use<TestAppRootProvider>());
-			container.Configure(expression => expression.For<IActionBehavior>().Use<NulloBehavior>());
+			container.Configure(expression =>
+			{
+				expression.AddRegistry<ChpokkRegistry>();
+			});
+			container.Configure(expression =>
+			{
+				expression.For<IUrlRegistry>().Use<UrlRegistry>();
+				expression.For<IAppRootProvider>().Use<TestAppRootProvider>();
+				expression.For<IActionBehavior>().Use<NulloBehavior>();
+				expression.For<IConsole>().Use<NuGet2Console>();
+			});
 			//Console.WriteLine(container.WhatDoIHave() );
 			
 		}

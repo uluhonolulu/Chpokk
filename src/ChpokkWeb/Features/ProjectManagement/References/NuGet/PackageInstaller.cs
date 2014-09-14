@@ -5,6 +5,7 @@ using NuGet;
 using NuGet.Common;
 using System.Collections.Generic;
 using Console = System.Console;
+using IFileSystem = NuGet.IFileSystem;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	public class PackageInstaller {
@@ -22,7 +23,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 				targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(PackagesFolder);
 			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
 			var packagesFolderFileSystem = new PhysicalFileSystem(targetFolder);
-			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
+			var localRepository = new BetterThanLocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
 			var projectSystem = new BetterThanMSBuildProjectSystem(projectPath) { Logger = _console };
 			var projectManager = new ProjectManager(_packageRepository, packagePathResolver, projectSystem,
 													localRepository) {Logger = _console};
@@ -70,6 +71,18 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		public BetterThanMSBuildProjectSystem(string projectFile)
 			: base(projectFile) {
 			ProjectPath = projectFile;
+		}
+	}
+
+	public class BetterThanLocalPackageRepository: LocalPackageRepository {
+		public BetterThanLocalPackageRepository(string physicalPath) : base(physicalPath) {}
+		public BetterThanLocalPackageRepository(string physicalPath, bool enableCaching) : base(physicalPath, enableCaching) {}
+		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem) : base(pathResolver, fileSystem) {}
+		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem, bool enableCaching) : base(pathResolver, fileSystem, enableCaching) {}
+
+		public override bool Exists(string packageId, SemanticVersion version) {
+			return false;
+			//return base.Exists(packageId, version);
 		}
 	}
 

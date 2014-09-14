@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 			//add references
 			_projectParser.ClearReferences(rootElement);
-			_packageInstaller.ClearPackages(repositoryPath);
+			//_packageInstaller.ClearPackages(repositoryPath);
 			AddBclReferences(inputModel, rootElement);
 			AddProjectReferences(inputModel, solutionPath, rootElement);
 			AddPackages(inputModel, projectPath);
