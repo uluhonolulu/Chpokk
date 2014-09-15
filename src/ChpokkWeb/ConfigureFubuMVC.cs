@@ -56,10 +56,10 @@ namespace ChpokkWeb {
 			// if the user is authenticated, but not in the database, force it to log out so that it signs in via Janrain
 			//ApplyConvention<AjaxExceptionWrappingConvention>();
 			//Policies.Add<SignoutJohnDoeConfiguration>();
-			var policy = new Policy();
-			policy.Where.InputTypeIs<MainDummyModel>();
-			policy.Wrap.WithBehavior<SignoutJohnDoeBehavior>();
-			Policies.Add(policy, "InjectNodes");
+			//var policy = new Policy();
+			//policy.Where.InputTypeIs<MainDummyModel>();
+			//policy.Wrap.WithBehavior<SignoutJohnDoeBehavior>();
+			//Policies.Add(policy, "InjectNodes");
 
 			this.AlterSettings <SparkEngineSettings>(settings => {
 				                                                     settings.PrecompileViews = false;
