@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
@@ -21,7 +22,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 
 		public void InstallPackage(string packageId, string projectPath, string targetFolder = null) {
-			UnloadProject(projectPath); //so that it is not cached in the global project collection -- might keep references
+			ProjectParser.UnloadProject(projectPath); //so that it is not cached in the global project collection -- might keep references
 			if (targetFolder == null)
 				targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(PackagesFolder);
 			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
@@ -60,12 +61,6 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			Directory.Delete(repositoryPath.AppendPath(PackagesFolder), true);
 		}
 
-		private static void UnloadProject(string projectPath) {
-			//unload the project so that it's not cached
-			var project = ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).FirstOrDefault();
-			if (project != null)
-				ProjectCollection.GlobalProjectCollection.UnloadProject(project);
-		}
 	}
 	public class BetterThanMSBuildProjectSystem : MSBuildProjectSystem {
 

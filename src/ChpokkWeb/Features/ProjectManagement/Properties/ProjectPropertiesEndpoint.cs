@@ -46,6 +46,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 		public IEnumerable<object> GetPackages(string projectPath, string repositoryRoot) {
 			var allPackages = _packageInstaller.GetAllPackages(repositoryRoot);
+			ProjectParser.UnloadProject(projectPath); //so that it is not cached in the global project collection -- might keep references
 			return _projectParser.GetPackageReferences(projectPath, allPackages);
 		}
 

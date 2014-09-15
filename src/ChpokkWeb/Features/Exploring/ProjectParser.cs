@@ -270,6 +270,14 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 				}
 			}
 		}
+
+
+		public static void UnloadProject(string projectPath) {
+			//unload the project so that it's not cached
+			var project = ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).FirstOrDefault();
+			if (project != null)
+				ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+		}
 	}
 
 }
