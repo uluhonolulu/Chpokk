@@ -9,6 +9,7 @@ using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using Microsoft.Build.Construction;
 using System.Linq;
+using Microsoft.Build.Evaluation;
 using Shouldly;
 
 namespace Chpokk.Tests.References {
@@ -33,6 +34,7 @@ namespace Chpokk.Tests.References {
 			packageInstaller.InstallPackage(Context.PackageName, Context.ProjectPath);
 
 		}
+
 	}
 	public class ProjectWithPackageContext: ProjectFileContext {
 		public string PackageName = "NUnit";

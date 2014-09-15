@@ -1,6 +1,8 @@
 ﻿using System.IO;
+using System.Linq;
 using FubuCore;
 using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using NuGet;
 using NuGet.Common;
 using System.Collections.Generic;
@@ -19,12 +21,13 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 
 		public void InstallPackage(string packageId, string projectPath, string targetFolder = null) {
+			UnloadProject(projectPath); //so that it is not cached in the global project collection -- might keep references
 			if (targetFolder == null)
 				targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(PackagesFolder);
 			var packagePathResolver = new DefaultPackagePathResolver(targetFolder);
 			var packagesFolderFileSystem = new PhysicalFileSystem(targetFolder);
-			var localRepository = new BetterThanLocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
 			var projectSystem = new BetterThanMSBuildProjectSystem(projectPath) { Logger = _console };
+			var localRepository = new BetterThanLocalPackageRepository(packagePathResolver, packagesFolderFileSystem, projectSystem);
 			var projectManager = new ProjectManager(_packageRepository, packagePathResolver, projectSystem,
 													localRepository) {Logger = _console};
 
@@ -56,6 +59,13 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		public void ClearPackages(string repositoryPath) {
 			Directory.Delete(repositoryPath.AppendPath(PackagesFolder), true);
 		}
+
+		private static void UnloadProject(string projectPath) {
+			//unload the project so that it's not cached
+			var project = ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).FirstOrDefault();
+			if (project != null)
+				ProjectCollection.GlobalProjectCollection.UnloadProject(project);
+		}
 	}
 	public class BetterThanMSBuildProjectSystem : MSBuildProjectSystem {
 
@@ -75,14 +85,33 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 	}
 
 	public class BetterThanLocalPackageRepository: LocalPackageRepository {
-		public BetterThanLocalPackageRepository(string physicalPath) : base(physicalPath) {}
-		public BetterThanLocalPackageRepository(string physicalPath, bool enableCaching) : base(physicalPath, enableCaching) {}
-		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem) : base(pathResolver, fileSystem) {}
-		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem, bool enableCaching) : base(pathResolver, fileSystem, enableCaching) {}
+		private readonly MSBuildProjectSystem _projectSystem;
+		public BetterThanLocalPackageRepository(string physicalPath, MSBuildProjectSystem projectSystem) : base(physicalPath) {
+			_projectSystem = projectSystem;
+		}
+
+		public BetterThanLocalPackageRepository(string physicalPath, bool enableCaching, MSBuildProjectSystem projectSystem) : base(physicalPath, enableCaching) {
+			_projectSystem = projectSystem;
+		}
+
+		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem, MSBuildProjectSystem projectSystem) : base(pathResolver, fileSystem) {
+			_projectSystem = projectSystem;
+		}
+
+		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem, bool enableCaching, MSBuildProjectSystem projectSystem) : base(pathResolver, fileSystem, enableCaching) {
+			_projectSystem = projectSystem;
+		}
 
 		public override bool Exists(string packageId, SemanticVersion version) {
-			return false;
-			//return base.Exists(packageId, version);
+			//if no package file exists, return false
+			if (!base.Exists(packageId, version))
+				return false;
+			//find the package and check whether all its assemblies are referenced
+			var package = this.FindPackage(packageId, version);
+			foreach (var reference in package.AssemblyReferences) {
+				Console.WriteLine(reference.Name + ": " + _projectSystem.ReferenceExists(reference.Name));
+			}
+			return package.AssemblyReferences.All(reference => _projectSystem.ReferenceExists(reference.Name)); 
 		}
 	}
 
