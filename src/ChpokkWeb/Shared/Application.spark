@@ -22,10 +22,11 @@
 		var model = !{ HtmlTags.JsonUtil.ToJson((this as IFubuPageWithModel).GetModel()) };
 		// connect to SignalR and keep the ConnectionId
 		$(function() {
+			$.connection.hub.logging = true;
 			$.connection.hub.start({ transport: ['serverSentEvents', 'foreverFrame', 'longPolling'] })
-				.done(function() {
-					model.ConnectionId = $.connection.hub.id;
-					amplify.publish('connected');
+				.done(function(data) {
+					model.ConnectionId = data.id;//$.connection.hub.id
+					amplify.publish('connected', data.id);
 				});
 		});
 	</script>

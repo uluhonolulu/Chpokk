@@ -13,7 +13,7 @@
 	    <script>
 	        $(function () {
 	        	var userHub = $.connection.userHub;
-	        	amplify.subscribe('connected', function () {
+	        	amplify.subscribe('connected', function (connectionId) {
 	            	userHub.server.onStartPlayingWith().done(function(status) {
 	            		try {
 	            			track("User status: " + JSON.stringify(status));

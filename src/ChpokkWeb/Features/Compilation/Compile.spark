@@ -1,8 +1,8 @@
 ﻿<content name="InlineScripts">
     <!--Compile-->
     <script type="text/javascript">
-    	$(function () {
-			attachButtonHandlers(); //TODO: do it after connection
+    	amplify.subscribe('connected', function (connectionId) {
+    		attachButtonHandlers(connectionId);
     		
             var compilerHub = $.connection.compilerHub;
             compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
@@ -30,14 +30,14 @@
                
     		//}
 
-    		function attachButtonHandlers() {
+    		function attachButtonHandlers(connectionId) {
 			   $('#compileButton').click(function () {
 					initLogging();
 					var model = tabs.activeModel();
 					if (model.ProjectPath) {
             			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
             			var editor = ace.edit("ace");
-            			$.post(compileUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: window.model.ConnectionId }));
+            			$.post(compileUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: connectionId }));
             		} else {
             			alert("Don't know what to compile. Please open a file first.");
             		}
@@ -48,7 +48,7 @@
 					if (model.ProjectPath) {
             			var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
             			var editor = ace.edit("ace");
-            			$.post(runUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: window.model.ConnectionId }));
+            			$.post(runUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: connectionId }));
             		} else {
             			alert("Don't know what to run. Please open a file first.");
             		}
@@ -58,10 +58,14 @@
     				var model = tabs.activeModel();
     				var compileSolutionUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileSolutionInputModel>()}';
     				var editor = ace.edit("ace");
-    				$.post(compileSolutionUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: window.model.ConnectionId }));
+    				$.post(compileSolutionUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: $.connection.hub.id }));//connectionId
     			});
 
     		}
+
+    		$(function() {
+
+    		});
  	        
     		function log(message, category, wrap) {
     			var container = wrap ? $('<div/>') : $('<span/>');
