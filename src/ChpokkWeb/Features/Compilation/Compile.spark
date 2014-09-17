@@ -1,84 +1,70 @@
 ﻿<content name="InlineScripts">
     <!--Compile-->
-    <script type="text/javascript">
-    	amplify.subscribe('connected', function (connectionId) {
-    		attachButtonHandlers(connectionId);
-    		
-            var compilerHub = $.connection.compilerHub;
-            compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
-            compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
-            compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
+	<script type="text/javascript">
+		$(function() {
+			var compilerHub = $.connection.compilerHub;
+			compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
+			compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
+			compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
+			
+		});
+		amplify.subscribe('connected', function(connectionId) {
+			attachButtonHandlers(connectionId);
+		});
 
-            function initLogging() {
-	            $('#output').show();
-                $('#output').empty();
-                $('#output').get(0).scrollIntoView(top);
-                log("Please wait..");
-  
-    		}
-            //function connectThenDo(continuation) {
-            //    $('#output').empty();
-            //    $('#output').get(0).scrollIntoView(top);
-            //    log("Please wait..");
-            //    $.connection.hub.logging = true;
-            //    $.connection.hub
-            //        .start()
-            //        .done(continuation)
-            //        .fail(function () {
-            //            alert("Failed to connect");
-            //    });
-               
-    		//}
+		function attachButtonHandlers(connectionId) {
+			$('#compileButton').click(function() {
+				initLogging();
+				var model = tabs.activeModel();
+				if (model.ProjectPath) {
+					var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
+					var editor = ace.edit("ace");
+					$.post(compileUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: connectionId }));
+				} else {
+					alert("Don't know what to compile. Please open a file first.");
+				}
+			});
+			$('#runButton').click(function() {
+				initLogging();
+				var model = tabs.activeModel();
+				if (model.ProjectPath) {
+					var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
+					var editor = ace.edit("ace");
+					$.post(runUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: connectionId }));
+				} else {
+					alert("Don't know what to run. Please open a file first.");
+				}
+			});
+			$('#compileSolutionButton').click(function() {
+				initLogging();
+				var model = tabs.activeModel();
+				var compileSolutionUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileSolutionInputModel>()}';
+				var editor = ace.edit("ace");
+				$.post(compileSolutionUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: $.connection.hub.id })); //connectionId
+			});
 
-    		function attachButtonHandlers(connectionId) {
-			   $('#compileButton').click(function () {
-					initLogging();
-					var model = tabs.activeModel();
-					if (model.ProjectPath) {
-            			var compileUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileInputModel>()}';
-            			var editor = ace.edit("ace");
-            			$.post(compileUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: connectionId }));
-            		} else {
-            			alert("Don't know what to compile. Please open a file first.");
-            		}
-				});
-				$('#runButton').click(function () {
-					initLogging();
-					var model = tabs.activeModel();
-					if (model.ProjectPath) {
-            			var runUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileAndRunInputModel>()}';
-            			var editor = ace.edit("ace");
-            			$.post(runUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: connectionId }));
-            		} else {
-            			alert("Don't know what to run. Please open a file first.");
-            		}
-				});
-    			$('#compileSolutionButton').click(function() {
-    				initLogging();
-    				var model = tabs.activeModel();
-    				var compileSolutionUrl = '${Urls.UrlFor<ChpokkWeb.Features.Compilation.CompileSolutionInputModel>()}';
-    				var editor = ace.edit("ace");
-    				$.post(compileSolutionUrl, $.extend({}, model, { Content: editor.getValue(), ConnectionId: $.connection.hub.id }));//connectionId
-    			});
+		}
 
-    		}
 
-    		$(function() {
+		function initLogging() {
+			$('#output').show();
+			$('#output').empty();
+			$('#output').get(0).scrollIntoView(top);
+			log("Please wait..");
 
-    		});
- 	        
-    		function log(message, category, wrap) {
-    			var container = wrap ? $('<div/>') : $('<span/>');
-    			if (message.line) {
-    				message = '<a href="/Repository/{RepositoryName}#{file}?line={line}">{message}</a>'.toFormat($.extend(message, model));
-    			}
-    			container.html(message).addClass(category).appendTo($('#output'));
-    			//scroll to bottom
-    			var outputElement = $('#output').get(0);
-    			outputElement.scrollTop = outputElement.scrollHeight;
+		}
 
-    		}
-        })
-    </script>
+		function log(message, category, wrap) {
+			var container = wrap ? $('<div/>') : $('<span/>');
+			if (message.line) {
+				message = '<a href="/Repository/{RepositoryName}#{file}?line={line}">{message}</a>'.toFormat($.extend(message, model));
+			}
+			container.html(message).addClass(category).appendTo($('#output'));
+			//scroll to bottom
+			var outputElement = $('#output').get(0);
+			outputElement.scrollTop = outputElement.scrollHeight;
+
+		}
+	</script>
 </content>
 
