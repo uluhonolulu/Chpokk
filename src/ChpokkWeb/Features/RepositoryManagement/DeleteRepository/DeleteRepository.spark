@@ -1,0 +1,21 @@
+﻿<use namespace="ChpokkWeb.Features.RepositoryManagement.DeleteRepository" />
+<content name="menu">
+	<ul class="nav navbar-nav">
+		<li class="navbar-default alert-danger">
+			<a id="deleteRepositoryButton">Delete Repository</a>
+		</li>
+	</ul>
+</content>
+
+<content name="InlineScripts">
+	<!-- DeleteRepository.spark -->
+	<script type="text/javascript">
+		$(function() {
+			$('#deleteRepositoryButton').click(function() {
+				var url = '${Urls.UrlFor<DeleteRepositoryInputModel>()}';
+				$.post(url, model);
+			});
+		});
+	</script>
+</content>
+
