@@ -315,6 +315,7 @@
     <Compile Include="EndTrial\BaseEndTrial.cs" />
     <Compile Include="EndTrial\PaidUntilIsInTheFuture.cs" />
     <Compile Include="EndTrial\PaidUntilIsInThePast.cs" />
+    <Compile Include="Exploring\DeletingARepo.cs" />
     <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
