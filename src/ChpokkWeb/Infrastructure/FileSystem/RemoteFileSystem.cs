@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Storage {
 		}
 		public void MoveDirectory(string @from, string to) {
 			foreach (var sourcePath in Directory.EnumerateFiles(@from)) {
-				var destinationPath = to.AppendPath(sourcePath.RemotePathRelativeTo(@from));
+				var destinationPath = to.AppendPath(sourcePath.PathRelativeTo(@from));
 				MoveFile(sourcePath, destinationPath);
 			}
 		}
@@ -106,7 +106,10 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void CreateDirectory(string directory) {}
-		public void DeleteDirectory(string directory) {}
+		public void DeleteDirectory(string directory) {
+			var trashPath = directory.Replace(AppRoot, Trash);
+			MoveDirectory(directory, trashPath);
+		}
 		public void CleanDirectory(string directory) {}
 		public bool DirectoryExists(string directory) {
 			return false;
@@ -145,7 +148,7 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		string AppRoot { get { return _rootProvider.AppRoot; } }
-		string Trash { get { return AppRoot.AppendPath("Trash"); } }
+		string Trash { get { return AppRoot.AppendPath(@"Trash\"); } }
 
 	}
 

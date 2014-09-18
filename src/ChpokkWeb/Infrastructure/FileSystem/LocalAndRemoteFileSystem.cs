@@ -62,13 +62,13 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void DeleteDirectory(string directory) {
-			_localSystem.DeleteDirectory(directory);
 			_remoteSystem.DeleteDirectory(directory);
+			_localSystem.DeleteDirectory(directory);
 		}
 
 		public void CleanDirectory(string directory) {
-			_localSystem.CleanDirectory(directory);
 			_remoteSystem.CleanDirectory(directory);
+			_localSystem.CleanDirectory(directory);
 		}
 
 		public bool DirectoryExists(string directory) {
