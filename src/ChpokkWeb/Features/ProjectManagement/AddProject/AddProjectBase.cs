@@ -49,5 +49,15 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 				}
 			}
 		}
+
+		protected void AddFileReferences(AddProjectInputModel inputModel, ProjectRootElement rootElement) {
+			if (inputModel.Files != null) {
+				foreach (var reference in inputModel.Files) {
+					_logger.WriteLine("Adding a reference to {0}", reference);
+					var fullPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, reference);
+					_projectParser.AddReference(rootElement, fullPath);
+				}
+			}			
+		}
 	}
 }
