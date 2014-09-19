@@ -27,8 +27,8 @@ namespace ChpokkWeb.Features.Remotes.UploadZip {
 				return AjaxContinuation.Successful();
 			}
 			var repositoryName = Path.GetFileNameWithoutExtension(model.ZippedRepository.FileName);
-			var repositoryPath = _repositoryManager.GetAbsolutePathFor(repositoryName, model.PhysicalApplicationPath);
-			var zipFileName =  _repositoryManager.GetAbsolutePathFor(repositoryName, model.PhysicalApplicationPath, model.ZippedRepository.FileName);
+			var repositoryPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			var zipFileName = _repositoryManager.NewGetAbsolutePathFor(repositoryName, model.ZippedRepository.FileName);
 			try {
 				model.ZippedRepository.SaveAs(zipFileName);
 			}

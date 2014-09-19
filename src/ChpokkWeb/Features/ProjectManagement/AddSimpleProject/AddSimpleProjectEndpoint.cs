@@ -30,7 +30,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			_logger.ConnectionId = inputModel.ConnectionId; // so that we can write to the logger
 
 			var repositoryName = inputModel.RepositoryName;
-			var solutionPath = _repositoryManager.GetAbsolutePathFor(repositoryName, inputModel.PhysicalApplicationPath, repositoryName + ".sln");
+			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, repositoryName + ".sln");
 			_solutionFileLoader.CreateEmptySolution(solutionPath);
 
 			var outputType = inputModel.OutputType;

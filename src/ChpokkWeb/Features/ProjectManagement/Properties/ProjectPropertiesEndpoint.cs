@@ -17,13 +17,15 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		private readonly ProjectParser _projectParser;
 		private readonly RepositoryManager _repositoryManager;
 		private readonly SolutionParser _solutionParser;
-		private PackageInstaller _packageInstaller;
-		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser, PackageInstaller packageInstaller) {
+		private readonly PackageInstaller _packageInstaller;
+		private IFileSystem _fileSystem;
+		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser, PackageInstaller packageInstaller, IFileSystem fileSystem) {
 			_assembliesProvider = assembliesProvider;
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
 			_solutionParser = solutionParser;
 			_packageInstaller = packageInstaller;
+			_fileSystem = fileSystem;
 		}
 
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
@@ -35,6 +37,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
 			if (project != null) output.PackageReferences.AddRange(GetPackages(projectPath, repositoryRoot));
 			output.ProjectReferences.AddRange(GetProjectReferences(project, solutionPath));
+			output.FileReferences.AddRange(GetFileReferences(project, repositoryRoot));
 			if (project != null) {
 				output.ProjectName =_projectParser.GetProjectName(project);
 				output.ProjectType = _projectParser.GetProjectOutputType(project);
@@ -74,6 +77,16 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 		}
 
+		IEnumerable<object> GetFileReferences(ProjectRootElement project, string repositoryRoot) {
+			var assemblyPaths = _fileSystem.FindFiles(repositoryRoot, new FileSet() {Include = "*.dll"});
+			return from assemblyPath in assemblyPaths
+			       select new
+				       {
+					       Name = assemblyPath.PathRelativeTo(repositoryRoot),
+						   Selected = true
+				       };
+		}
+
 
 	}
 
@@ -84,6 +97,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		public IList<object> BclReferences = new List<object>();
 		public IList<object> PackageReferences = new List<object>();
 		public IList<object> ProjectReferences = new List<object>();
+		public IList<object> FileReferences = new List<object>();
 	}
 
 	public class ProjectPropertiesInputModel: BaseRepositoryInputModel {

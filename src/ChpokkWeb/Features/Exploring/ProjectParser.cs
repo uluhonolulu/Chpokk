@@ -233,6 +233,14 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 				   };
 		}
 
+		public IEnumerable<string> GetFileReferences(ProjectRootElement root) {
+			return from item in root.Items
+				   where item.ItemType == "Reference" && 
+				   item.HasMetadata &&
+				   item.Metadata.Any(element => element.Name == "HintPath")
+				   select item.Metadata.Single(element => element.Name == "HintPath").Value;			
+		}
+
 		private bool IsPackageReference(ProjectItemElement item) {
 			return item.ItemType == "Reference" && 
 					item.HasMetadata && 

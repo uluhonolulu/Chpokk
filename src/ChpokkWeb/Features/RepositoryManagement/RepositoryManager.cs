@@ -63,10 +63,6 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			get { return _rootProvider.AppRoot; }
 		}
 
-		[NotNull]
-		public string GetAbsolutePathFor(string repositoryName, string appRoot, string pathRelativeToRepositoryRoot) {
-			return GetAbsolutePathFor(repositoryName, appRoot).AppendPath(pathRelativeToRepositoryRoot);
-		}
 
 		[NotNull]
 		public string NewGetAbsolutePathFor(string repositoryName, string pathRelativeToRepositoryRoot) {

@@ -21,8 +21,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddItem {
 		}
 
 		public AjaxContinuation DoIt(AddItemInputModel model) {
-			var projectFilePath = _repositoryManager.GetAbsolutePathFor(model.RepositoryName, model.PhysicalApplicationPath,
-			                                                            model.ProjectPath);
+			var projectFilePath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath);
 			var fileName =
 				model.PathRelativeToRepositoryRoot.PathRelativeTo(model.ProjectPath.ParentDirectory());
 			_projectParser.CreateItem(projectFilePath, fileName, string.Empty);
