@@ -146,13 +146,13 @@ if (!localStorageOk) {
 	
 }
 
-window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
-	var data = {
-		Message: 'Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber
-			+ ' Column: ' + column + ' StackTrace: ' + errorObj, StackTrace: 'none'
-	};
-	reportException(data);
-};
+//window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
+//	var data = {
+//		Message: 'Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber
+//			+ ' Column: ' + column + ' StackTrace: ' + errorObj, StackTrace: 'none'
+//	};
+//	reportException(data);
+//};
 
 //on AJAX error, track
 $(document).ajaxError(function (event, jqxhr, settings, exception) {
