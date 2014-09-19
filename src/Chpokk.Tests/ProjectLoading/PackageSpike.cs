@@ -53,13 +53,13 @@ namespace Chpokk.Tests.ProjectLoading {
 			var localRepository = new LocalPackageRepository(packagePathResolver, packagesFolderFileSystem);
 			var projectSystem = new MSBuildProjectSystem(projectPath);
 
-			foreach (var package in localRepository.GetPackages()) {
-				Console.WriteLine(package);
-				foreach (var assemblyReference in package.AssemblyReferences) {
-					Console.WriteLine(assemblyReference + ": " + projectSystem.ReferenceExists(assemblyReference.Name));
-				}
-				Console.WriteLine();
-			}
+			//foreach (var package in localRepository.GetPackages()) {
+			//	Console.WriteLine(package);
+			//	foreach (var assemblyReference in package.AssemblyReferences) {
+			//		Console.WriteLine(assemblyReference + ": " + projectSystem.ReferenceExists(assemblyReference.Name));
+			//	}
+			//	Console.WriteLine();
+			//}
 			var packageInstaller = Context.Container.Get<PackageInstaller>();
 			return Context.Container.Get<ProjectParser>().GetPackageReferences(projectPath, packageInstaller.GetAllPackages(repositoryRoot));
 
