@@ -1,0 +1,17 @@
+﻿
+<div id="filesContainer" style="height: 200px; overflow-y: auto; clear: both;" class="clearfix">
+    
+</div>
+
+<content name="InlineScripts">
+	<!-- FileReferences.spark -->	
+	<script>
+		function displayFileReferences(references) {
+			$('#filesContainer').empty();
+	    	var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
+	    	$.tmpl(template, references).appendTo($('#filesContainer'));
+	    }		
+	</script>
+
+
+</content>

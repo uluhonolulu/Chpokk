@@ -56,6 +56,7 @@
     			displayPackageReferences(data.PackageReferences); //defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
     			displayBclReferences(data.BclReferences); //defined in \Features\ProjectManagement\References\Bcl\BclReferences
     			displayProjectReferences(data.ProjectReferences); //defined in \Features\ProjectManagement\References\OtherProjects\OtherProjects.spark
+    			displayFileReferences(data.FileReferences);
     			$('#projectPropertiesDialog').modal('show');
     		});
   
