@@ -154,18 +154,18 @@
 		</tr>
 		<tr>
 			<td>Editing project properties</td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>Adding file references</td>
-			<td></td>
 			<td>
 				<span class="glyphicon glyphicon-ok" style="font-size: 18px; color: #18bc9c;"></span>
 			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>
