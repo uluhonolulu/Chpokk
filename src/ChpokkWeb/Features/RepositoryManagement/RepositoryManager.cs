@@ -151,10 +151,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			}
 		}
 
-		public MenuItem[] GetRetrieveActions(RepositoryInfo info, string approot) {
+		public MenuItem[] GetRetrieveActions(RepositoryInfo info) {
 			var menuItems = new List<MenuItem>();
 			foreach (var policy in _retrievePolicies) {
-				if (policy.Matches(info, approot)) {
+				if (policy.Matches(info, AppRoot)) {
 					var menuItemSource = policy as IMenuItemSource;
 					if (menuItemSource != null) menuItems.Add(menuItemSource.GetMenuItem());
 				}

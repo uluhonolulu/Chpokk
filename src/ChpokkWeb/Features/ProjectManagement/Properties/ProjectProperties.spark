@@ -2,7 +2,7 @@
 <use namespace="ChpokkWeb.Features.ProjectManagement.Properties" />
 
 <content name="InlineScripts">
-    <!-- AddProject.spark -->
+    <!-- ProjectProperties.spark -->
     <script type="text/javascript">
 
     	function addProject(solutionPath) {
@@ -65,7 +65,7 @@
 </content>
 
 <content name="Dialogs">
-    <!-- AddProject.spark -->
+    <!-- ProjectProperties.spark -->
     <div class="modal fade" id="projectPropertiesDialog" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

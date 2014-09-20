@@ -29,18 +29,18 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
 			_logger.ConnectionId = inputModel.ConnectionId; // so that we can write to the logger
 
-			var repositoryName = inputModel.RepositoryName;
-			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, repositoryName + ".sln");
+			var projectName = inputModel.ProjectName;
+			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(projectName, projectName + ".sln");
 			_solutionFileLoader.CreateEmptySolution(solutionPath);
 
 			var outputType = inputModel.OutputType;
 			var language = inputModel.Language;
 
-			_projectParser.AddProjectToSolution(repositoryName, solutionPath, language);
+			_projectParser.AddProjectToSolution(projectName, solutionPath, language);
 
 			//create a project
-			var projectPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName, Path.Combine(repositoryName, repositoryName + language.GetProjectExtension()));
-			var rootElement = _projectParser.CreateProject(outputType, language, projectPath, repositoryName);
+			var projectPath = _repositoryManager.NewGetAbsolutePathFor(projectName, Path.Combine(projectName, projectName + language.GetProjectExtension()));
+			var rootElement = _projectParser.CreateProject(outputType, language, projectPath, projectName);
 
 			AddBclReferences(inputModel, rootElement);
 			AddPackages(inputModel, projectPath);
@@ -48,7 +48,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			_logger.WriteLine("Project created");
 
 			//redirect to the new repository
-			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = repositoryName });
+			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = projectName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
 

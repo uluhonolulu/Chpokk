@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		private readonly RepositoryManager _repositoryManager;
 		private readonly SolutionParser _solutionParser;
 		private readonly PackageInstaller _packageInstaller;
-		private IFileSystem _fileSystem;
+		private readonly IFileSystem _fileSystem;
 		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser, PackageInstaller packageInstaller, IFileSystem fileSystem) {
 			_assembliesProvider = assembliesProvider;
 			_projectParser = projectParser;
@@ -31,13 +31,18 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
 			var projectPath = model.ProjectPath.IsNotEmpty()? _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.ProjectPath) : null;
 			var project = projectPath != null? ProjectRootElement.Open(projectPath): null; //TODO: load from IFileSystem and use the source instead of the RootElement
-			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.SolutionPath);
+			var solutionPath = model.SolutionPath.IsNotEmpty()
+				                   ? _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, model.SolutionPath)
+				                   : null;
 			var output = new ProjectPropertiesModel();
 			output.BclReferences.AddRange(GetBclReferences(project));
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
-			if (project != null) output.PackageReferences.AddRange(GetPackages(projectPath, repositoryRoot));
-			output.ProjectReferences.AddRange(GetProjectReferences(project, solutionPath));
-			output.FileReferences.AddRange(GetFileReferences(project, repositoryRoot));
+			if (project != null) 
+				output.PackageReferences.AddRange(GetPackages(projectPath, repositoryRoot));
+			if (solutionPath.IsNotEmpty()) 
+				output.ProjectReferences.AddRange(GetProjectReferences(project, solutionPath));
+			if (solutionPath.IsNotEmpty()) 
+				output.FileReferences.AddRange(GetFileReferences(project, repositoryRoot));
 			if (project != null) {
 				output.ProjectName =_projectParser.GetProjectName(project);
 				output.ProjectType = _projectParser.GetProjectOutputType(project);

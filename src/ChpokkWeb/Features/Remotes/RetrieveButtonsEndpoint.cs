@@ -9,7 +9,7 @@ namespace ChpokkWeb.Features.Remotes {
 	public class RetrieveButtonsEndpoint {
 		public RetrieveButtonsModel DoIt(RetrieveButtonsInputModel model) {
 			var info = _manager.GetRepositoryInfo(model.RepositoryName);
-			return new RetrieveButtonsModel() { RetrieveActions = _manager.GetRetrieveActions(info, model.PhysicalApplicationPath) };
+			return new RetrieveButtonsModel() { RetrieveActions = _manager.GetRetrieveActions(info) };
 		}
 
 		[NotNull]

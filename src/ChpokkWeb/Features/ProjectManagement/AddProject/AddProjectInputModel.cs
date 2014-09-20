@@ -7,7 +7,7 @@ using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
 namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 	public class AddProjectInputModel: AddSimpleProjectInputModel {
 		public string SolutionPath { get; set; }
-		public string ProjectName { get; set; }
+		public string RepositoryName { get; set; }
 		public IEnumerable<string> Projects { get; set; }
 	}
 }

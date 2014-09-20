@@ -584,7 +584,7 @@
     <Content Include="Features\CustomerDevelopment\TrialSignup\TrialInvitation.spark" />
     <Content Include="Content\Targets\WebApplications\Microsoft.WebApplication.targets" />
     <Content Include="Features\ProjectManagement\References\OtherProjects\OtherProjects.spark" />
-    <Content Include="Features\ProjectManagement\AddProject\AddProject.spark" />
+    <Content Include="Features\ProjectManagement\Properties\ProjectProperties.spark" />
     <Content Include="Features\ProjectManagement\References\NuGet\Spike\LongOp.spark" />
     <Content Include="Features\Pokk\Pokk.spark" />
     <Content Include="Features\Testing\Testing.spark" />

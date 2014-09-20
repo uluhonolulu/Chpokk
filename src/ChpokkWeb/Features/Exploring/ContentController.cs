@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace ChpokkWeb.Features.Exploring {
 	public class ContentController {
-		private IFileSystem _fileSystem;
+		private readonly IFileSystem _fileSystem;
 
 		[NotNull]
 		private readonly RepositoryManager _repositoryManager;
@@ -25,9 +25,8 @@ namespace ChpokkWeb.Features.Exploring {
 		//[UrlPattern("Project/{RepositoryName}")]
 		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
-			var repositoryInfo = _repositoryManager.GetRepositoryInfo(model.RepositoryName);
 			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
-			var repositoryRoot = Path.Combine(model.PhysicalApplicationPath, repositoryInfo.Path);
+			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
 			ImportFolder(root, repositoryRoot);
 			return new FileListModel{Items = root.Children.ToArray()}; 
 		}

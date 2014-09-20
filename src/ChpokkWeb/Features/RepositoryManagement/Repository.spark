@@ -64,7 +64,7 @@
 	-->
 
 !{this.Partial<ChpokkWeb.Features.Remotes.Git.Push.PushDialogModel>()}
-<render partial="ProjectManagement\AddProject\AddProject.spark" />
+<render partial="ProjectManagement\Properties\ProjectProperties.spark" />
 
 <content name="rightcorner">
     <!--ul class="nav navbar-nav">

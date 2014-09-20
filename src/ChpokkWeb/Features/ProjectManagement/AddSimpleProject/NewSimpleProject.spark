@@ -15,46 +15,25 @@
 		});
 
 		function newSimpleProject() {
-			$('#newSimpleProjectDialog').modal('show');
+			$('#projectPropertiesDialog #dialogTitle').text("Create a simple project");
+			$('#projectPropertiesDialog #save').text("Create");
+			$('#projectName').val('');
+			$('#projectName').prop('disabled', false);
+			$('#projectType').val('Exe');
+			$('#language').val('CSharp');
+			$('#language').prop('disabled', false);
+			displayProjectPropertiesDialog(null, null);
+			//handle the creation
+			$('#save').one('click', function () {
+				$('#save').text("Please wait..");
+				$('#save').addClass('disabled');
+				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
+				var model = $('#projectForm').serializeObject();
+				$.post(url, model);
+				$('#projectPropertiesDialog').modal('hide');
+				showWaiter();
+			});
 		}
 	</script>
 </content>
-
-<content name="Dialogs">
-	<!-- NewSimpleProject -->
-	<div class="modal fade" id="newSimpleProjectDialog" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Create a simple project</h4>
-				</div>
-				<div class="modal-body">
-					<form class="well" id="simpleProjectForm">
-						<label for="projectName">Project name</label>
-						<input name="RepositoryName" id="projectName" type="text" class="form-control"/>
-						
-					    <label for="projectType">Project type (only console and library projects are supported)</label>
-                        <div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
-						<select name="OutputType" id="projectType" class="form-control">
-							<option>Exe</option>
-							<option>Library</option>
-						</select>
-						
-						<label for="language">Language</label>
-					    <select name="Language" id="language" class="form-control">
-					        <option value="CSharp">C#</option>
-					        <option value="VBNet">VB.Net</option>
-					    </select>
-						
-					    <render partial="ProjectManagement\References\References"/>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="createSimpleProjectButton">Create</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-</content>
+<use file="Properties\ProjectProperties"/>
