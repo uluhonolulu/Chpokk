@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Web.Hosting;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb;
@@ -9,6 +10,7 @@ using FubuMVC.Core.Assets;
 using FubuMVC.Core.Assets.Tags;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Bootstrapping;
+using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
@@ -53,8 +55,16 @@ namespace UnitTests.Infrastructure {
 		private static readonly Container _container;
 
 		static SimpleConfiguredContext() {
-			AssemblyLocator.Init(); //fix the missing assembly error
+			//AssemblyLocator.Init(); //fix the missing assembly error
 			//var _ = new FubuMVC.Validation.ValidationMode("-");//fix the missing assembly error
+			Console.WriteLine("FubuMvcPackageFacility.PhysicalRootPath: " + FubuMvcPackageFacility.PhysicalRootPath);
+			Console.WriteLine("HostingEnvironment.ApplicationPhysicalPath: " + HostingEnvironment.ApplicationPhysicalPath);
+			string str = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
+			if (str.EndsWith("bin"))
+				str = str.Substring(0, str.Length - 3).TrimEnd(Path.DirectorySeparatorChar);
+			Console.WriteLine("FubuMvcPackageFacility.determineApplicationPathFromAppDomain(): " + str);
+			FubuMvcPackageFacility.PhysicalRootPath = str;
+
 			_container = new Container();
 			ConfigureContainer(_container);
 		}
