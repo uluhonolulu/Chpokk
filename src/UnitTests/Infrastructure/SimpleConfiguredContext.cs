@@ -69,10 +69,11 @@ namespace UnitTests.Infrastructure {
 			if (str.EndsWith("bin"))
 				str = str.Substring(0, str.Length - 3).TrimEnd(Path.DirectorySeparatorChar);
 			Console.WriteLine("FubuMvcPackageFacility.determineApplicationPathFromAppDomain(): " + str);
-			var contentFolder = Directory.GetDirectories(str, "Content").FirstOrDefault();
+			var contentFolder = Directory.GetDirectories(str, "*Content").FirstOrDefault();
 			if (contentFolder != null) {
 				Console.WriteLine("Found content at " + contentFolder);
 			}
+			Console.WriteLine("Current folder: " + Directory.GetCurrentDirectory());
 			FubuMvcPackageFacility.PhysicalRootPath = str;
 
 			_container = new Container();
