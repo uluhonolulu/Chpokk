@@ -8,7 +8,7 @@ using Shouldly;
 using System.Linq;
 
 namespace UnitTests.Infrastructure {
-	[TestFixture, Ignore("Until AppHarbox can handle this")]//
+	[TestFixture]//, Ignore("Until AppHarbox can handle this")
 	public class RouteList: BaseCommandTest<SimpleConfiguredContext> {
 		[Test]
 		public void SeeTheConsoleOutput() {
