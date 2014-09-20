@@ -18,11 +18,19 @@ namespace UnitTests.Infrastructure {
 		static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
 			Assembly assembly = null;
 			assemblies.TryGetValue(args.Name, out assembly);
+			if (assembly != null) {
+				Console.WriteLine("Resolved " + assembly.FullName);			
+			}
+			else {
+				Console.WriteLine("Couldn't resolve " + args.Name + " requested by " + args.RequestingAssembly.FullName);
+			}
+
 			return assembly;
 		}
 
 		static void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args) {
 			Assembly assembly = args.LoadedAssembly;
+			Console.WriteLine("Loading " + assembly.FullName);
 			assemblies[assembly.FullName] = assembly;
 		}
 	}
