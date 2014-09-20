@@ -19,10 +19,10 @@ namespace UnitTests.Infrastructure {
 			Assembly assembly = null;
 			assemblies.TryGetValue(args.Name, out assembly);
 			if (assembly != null) {
-				Console.WriteLine("Resolved " + assembly.FullName);			
+				Console.WriteLine("Resolved " + args.Name);			
 			}
 			else {
-				Console.WriteLine("Couldn't resolve " + args.Name + " requested by " + args.RequestingAssembly.FullName);
+				Console.WriteLine("Couldn't resolve " + args.Name + " requested by " + args.RequestingAssembly != null? args.RequestingAssembly.FullName : "unknown");
 			}
 
 			return assembly;
