@@ -27,7 +27,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 		protected override void WriteColor(TextWriter textWriter, ConsoleColor consoleColor, string format, object[] args) {
 			var value = format.ToFormat(args);
-			Client.WriteLine(value + ": " + consoleColor, consoleColor); 
+			Client.WriteLine(value, consoleColor); 
 		}
 		private dynamic Client {
 			get {
