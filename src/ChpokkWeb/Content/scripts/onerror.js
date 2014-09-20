@@ -156,6 +156,22 @@ if (!localStorageOk) {
 
 //on AJAX error, track
 $(document).ajaxError(function (event, jqxhr, settings, exception) {
-	var data = { event: event, request: jqxhr, settings: settings, exception: exception };
+	//var data = { event: event, request: jqxhr, settings: settings, exception: exception };
+	var data = { status: jqxhr.status, url: settings.url, type: settings.type, data: settings.data };
+	try {
+		data.request = JSON.stringify(jqxhr);
+	} catch(e) {
+		data.request = e;
+	} 
+	try {
+		data.settings = JSON.stringify(settings);
+	} catch (e) {
+		data.settings = e;
+	}
+	try {
+		data.exception = JSON.stringify(exception);
+	} catch (e) {
+		data.exception = e;
+	}
 	track("AJAX Error: " + JSON.stringify(data));
 });
