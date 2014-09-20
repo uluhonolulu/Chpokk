@@ -10,6 +10,9 @@
 			$('#filesContainer').empty();
 	    	var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
 	    	$.tmpl(template, references).appendTo($('#filesContainer'));
+			//show or hide the OtherProjects tab
+	    	var hasReferences = references.length > 0;
+	    	$('#fileReferencesMenuItem').toggle(hasReferences);
 	    }		
 	</script>
 

@@ -5,7 +5,7 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#bcl" data-toggle="tab">Standard</a></li>
     <li><a href="#nuget" data-toggle="tab">NuGet</a></li>
-    <li><a href="#files" data-toggle="tab">Browse</a></li>
+    <li id="fileReferencesMenuItem"><a href="#files" data-toggle="tab">Browse</a></li>
     <li id="projectReferencesMenuItem"><a href="#projects" data-toggle="tab">Projects</a></li>
 </ul>
 
@@ -13,7 +13,7 @@
     <div class="tab-pane active" id="bcl" style="padding-top: 10px;">
         <use file="Bcl\BclReferences.spark"/>
     </div>
-    <div class="tab-pane active" id="files" style="padding-top: 10px;">
+    <div class="tab-pane" id="files" style="padding-top: 10px;">
         <use file="Files\FileReferences.spark"/>
     </div>
     <div class="tab-pane" id="nuget" style="padding-top: 10px;">

@@ -84,9 +84,14 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 		IEnumerable<object> GetFileReferences(ProjectRootElement project, string repositoryRoot) {
 			var assemblyPaths = _fileSystem.FindFiles(repositoryRoot, new FileSet() {Include = "*.dll"});
-			var referencedPaths = _projectParser.GetFileReferences(project);
-			var absoluteReferencedPaths = from referencedPath in referencedPaths
-										  select Path.GetFullPath(project.FullPath.ParentDirectory().AppendPath(referencedPath));
+
+			IEnumerable<string> absoluteReferencedPaths = Enumerable.Empty<string>(); //empty for new projects
+			if (project != null) {
+				var referencedPaths = _projectParser.GetFileReferences(project);
+				absoluteReferencedPaths = from referencedPath in referencedPaths
+										  select Path.GetFullPath(project.FullPath.ParentDirectory().AppendPath(referencedPath));				
+			}
+
 			return from assemblyPath in assemblyPaths
 			       select new
 				       {
