@@ -18,6 +18,7 @@ using FubuMVC.StructureMap;
 using Gallio.Runtime.Extensibility.Schema;
 using StructureMap;
 using FubuCore;
+using System.Linq;
 
 namespace UnitTests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext, IDisposable {
@@ -62,11 +63,16 @@ namespace UnitTests.Infrastructure {
 			//Console.WriteLine("FubuMvcPackageFacility.PhysicalRootPath: " + FubuMvcPackageFacility.PhysicalRootPath);
 			//Console.WriteLine("HostingEnvironment.ApplicationPhysicalPath: " + HostingEnvironment.ApplicationPhysicalPath);
 			string str = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
+			Console.WriteLine("Assembly loaded from: " + typeof(SimpleConfiguredContext).Assembly.Location);
 			str = typeof (SimpleConfiguredContext).Assembly.Location.ParentDirectory();
 			Console.WriteLine("Assembly folder: " + str);
 			if (str.EndsWith("bin"))
 				str = str.Substring(0, str.Length - 3).TrimEnd(Path.DirectorySeparatorChar);
 			Console.WriteLine("FubuMvcPackageFacility.determineApplicationPathFromAppDomain(): " + str);
+			var contentFolder = Directory.GetDirectories(str, "Content").FirstOrDefault();
+			if (contentFolder != null) {
+				Console.WriteLine("Found content at " + contentFolder);
+			}
 			FubuMvcPackageFacility.PhysicalRootPath = str;
 
 			_container = new Container();
