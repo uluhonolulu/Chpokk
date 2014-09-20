@@ -15,7 +15,9 @@ using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
+using Gallio.Runtime.Extensibility.Schema;
 using StructureMap;
+using FubuCore;
 
 namespace UnitTests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext, IDisposable {
@@ -57,9 +59,11 @@ namespace UnitTests.Infrastructure {
 		static SimpleConfiguredContext() {
 			//AssemblyLocator.Init(); //fix the missing assembly error
 			//var _ = new FubuMVC.Validation.ValidationMode("-");//fix the missing assembly error
-			Console.WriteLine("FubuMvcPackageFacility.PhysicalRootPath: " + FubuMvcPackageFacility.PhysicalRootPath);
-			Console.WriteLine("HostingEnvironment.ApplicationPhysicalPath: " + HostingEnvironment.ApplicationPhysicalPath);
+			//Console.WriteLine("FubuMvcPackageFacility.PhysicalRootPath: " + FubuMvcPackageFacility.PhysicalRootPath);
+			//Console.WriteLine("HostingEnvironment.ApplicationPhysicalPath: " + HostingEnvironment.ApplicationPhysicalPath);
 			string str = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
+			str = typeof (SimpleConfiguredContext).Assembly.Location.ParentDirectory();
+			Console.WriteLine("Assembly folder: " + str);
 			if (str.EndsWith("bin"))
 				str = str.Substring(0, str.Length - 3).TrimEnd(Path.DirectorySeparatorChar);
 			Console.WriteLine("FubuMvcPackageFacility.determineApplicationPathFromAppDomain(): " + str);
