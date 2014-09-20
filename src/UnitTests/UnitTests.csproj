@@ -54,9 +54,6 @@
     <Reference Include="FubuMVC.StructureMap">
       <HintPath>..\packages\FubuMVC.StructureMap.1.2.0.1678\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Validation">
-      <HintPath>..\packages\FubuMVC.Validation.0.8.9.690\lib\FubuMVC.Validation.dll</HintPath>
-    </Reference>
     <Reference Include="FubuTestingSupport">
       <HintPath>..\packages\FubuTestingSupport.0.9.4.112\lib\FubuTestingSupport.dll</HintPath>
     </Reference>

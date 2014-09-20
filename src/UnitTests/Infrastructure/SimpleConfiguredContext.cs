@@ -54,7 +54,7 @@ namespace UnitTests.Infrastructure {
 
 		static SimpleConfiguredContext() {
 			AssemblyLocator.Init(); //fix the missing assembly error
-			var _ = new FubuMVC.Validation.ValidationMode("-");//fix the missing assembly error
+			//var _ = new FubuMVC.Validation.ValidationMode("-");//fix the missing assembly error
 			_container = new Container();
 			ConfigureContainer(_container);
 		}
