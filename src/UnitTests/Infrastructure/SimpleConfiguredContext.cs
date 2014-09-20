@@ -58,26 +58,21 @@ namespace UnitTests.Infrastructure {
 		private static readonly Container _container;
 
 		static SimpleConfiguredContext() {
-			//AssemblyLocator.Init(); //fix the missing assembly error
-			//var _ = new FubuMVC.Validation.ValidationMode("-");//fix the missing assembly error
-			//Console.WriteLine("FubuMvcPackageFacility.PhysicalRootPath: " + FubuMvcPackageFacility.PhysicalRootPath);
-			//Console.WriteLine("HostingEnvironment.ApplicationPhysicalPath: " + HostingEnvironment.ApplicationPhysicalPath);
-			string str = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
-			Console.WriteLine("Assembly loaded from: " + typeof(SimpleConfiguredContext).Assembly.Location);
-			str = typeof (SimpleConfiguredContext).Assembly.Location.ParentDirectory();
-			Console.WriteLine("Assembly folder: " + str);
-			if (str.EndsWith("bin"))
-				str = str.Substring(0, str.Length - 3).TrimEnd(Path.DirectorySeparatorChar);
-			Console.WriteLine("FubuMvcPackageFacility.determineApplicationPathFromAppDomain(): " + str);
-			var contentFolder = Directory.GetDirectories(str, "content", SearchOption.AllDirectories).FirstOrDefault(s => !s.Contains("fubu-content"));
-			if (contentFolder != null) {
-				Console.WriteLine("Found content at " + contentFolder);
-			}
-			Console.WriteLine("Current folder: " + Directory.GetCurrentDirectory());
-			FubuMvcPackageFacility.PhysicalRootPath = contentFolder.ParentDirectory();
+			FixRootPath();
 
 			_container = new Container();
 			ConfigureContainer(_container);
+		}
+
+		// fixes the root path for testing -- helps find the assets (must be placed before bootstrapping)
+		private static void FixRootPath() {
+			var assemblyFolder = typeof (SimpleConfiguredContext).Assembly.Location.ParentDirectory();
+			if (assemblyFolder.EndsWith("bin"))
+				assemblyFolder = assemblyFolder.Substring(0, assemblyFolder.Length - 3).TrimEnd(Path.DirectorySeparatorChar);
+			var contentFolder =
+				Directory.GetDirectories(assemblyFolder, "content", SearchOption.AllDirectories)
+				         .FirstOrDefault(s => !s.Contains("fubu-content"));
+			FubuMvcPackageFacility.PhysicalRootPath = contentFolder.ParentDirectory();
 		}
 
 		public IServiceFactory Container { get { return _serviceFactory; } }
