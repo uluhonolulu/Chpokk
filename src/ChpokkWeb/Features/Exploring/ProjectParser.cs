@@ -218,10 +218,11 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			       select item.Include;
 		}
 
+		//a list of relative paths
 		public IEnumerable<string> GetProjectReferences(ProjectRootElement root) {
 			return from item in root.Items
 			       where item.ItemType == "ProjectReference"
-			       select item.Metadata.Single(element => element.Name == "Name").Value;
+			       select item.Include;
 		}
 
 		public IEnumerable<dynamic> GetPackageReferences(string projectPath, IEnumerable<IPackage> allPackages) {

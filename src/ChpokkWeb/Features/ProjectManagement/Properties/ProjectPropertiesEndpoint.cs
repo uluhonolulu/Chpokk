@@ -69,7 +69,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		}
 
 		IEnumerable<object> GetProjectReferences(ProjectRootElement project, string solutionPath) {
-			var projectReferences = project != null ? _projectParser.GetProjectReferences(project).ToArray() : null;
+			var projectReferences = project != null ? _projectParser.GetProjectReferences(project).ToArray() : null; //a list of relative paths
 			var projectName = project != null ? _projectParser.GetProjectName(project) : null;
 			return from projectItem in _solutionParser.GetProjectItems(solutionPath)
 				   where projectItem.Name != projectName
@@ -77,7 +77,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 				       {
 					       projectItem.Name, 
 						   projectItem.Path,
-					       Selected = projectReferences != null? projectReferences.Contains(projectItem.Name) : false
+					       Selected = projectReferences != null && projectReferences.Any(reff => Path.GetFileName(reff) == Path.GetFileName(projectItem.Path))
 				       };
 
 		}
