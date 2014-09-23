@@ -35,8 +35,16 @@
     <Reference Include="Arractas">
       <HintPath>..\..\lib\Arractas.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK, Version=1.5.22.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AWSSDK.1.5.22.0\lib\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.2.0.0.576\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="Emkay.S3, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Emkay.S3.0.9.0.44\lib\NET40\Emkay.S3.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.1.2.0.272\lib\FubuCore.dll</HintPath>
@@ -60,6 +68,18 @@
     <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags.2.0.0.174\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.Core, Version=4.3.1.9416, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ChpokkWeb\bin\ICSharpCode.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop, Version=4.3.1.9416, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\ICSharpCode.SharpDevelop.dll</HintPath>
+    </Reference>
+    <Reference Include="LibGit2Sharp, Version=0.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ChpokkWeb\bin\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework">
@@ -95,10 +115,25 @@
   <ItemGroup>
     <Compile Include="Amazon\AwClientExtensions.cs" />
     <Compile Include="Amazon\Downloading.cs" />
-    <Compile Include="Amazon\Integration.cs" />
     <Compile Include="Amazon\OneFileOnAmazonContext.cs" />
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Amazon\WaitTillRepositoryIsDownloaded.cs" />
+    <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
+    <Compile Include="Exploring\DeletingARepo.cs" />
+    <Compile Include="Exploring\FileSystem.cs" />
+    <Compile Include="Exploring\GitRepositoryContext.cs" />
+    <Compile Include="Exploring\ParsingAProjectFile.cs" />
+    <Compile Include="Exploring\ParsingProjectFile.cs" />
+    <Compile Include="Exploring\ParsingTheSolutionFile.cs" />
+    <Compile Include="Exploring\PhysicalCodeFileContext.cs" />
+    <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
+    <Compile Include="Exploring\ProjectFileContext.cs" />
+    <Compile Include="Exploring\ProjectWithSingleRootFileContext.cs" />
+    <Compile Include="Exploring\RepositoryFolderContext.cs" />
+    <Compile Include="Exploring\SeeingASolutionFile.cs" />
+    <Compile Include="Exploring\UnitTests\CreatingAProperFolderStructure.cs" />
+    <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
+    <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
     <Compile Include="Infrastructure\AssertExtensions.cs" />
     <Compile Include="Infrastructure\Bitness.cs" />
     <Compile Include="Infrastructure\AssemblyLocator.cs" />

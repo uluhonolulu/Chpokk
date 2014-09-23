@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Arractas;
+﻿using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Storage;
 using Emkay.S3;
 using FubuCore;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 
-namespace Chpokk.Tests.Amazon {
+namespace UnitTests.Amazon {
 	[TestFixture]
 	public class Uploading : BaseCommandTest<OneFileInRepositoryFolderContext> {
 
