@@ -33,7 +33,7 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 													localRepository) {Logger = _console};
 
 			projectManager.PackageReferenceAdded += (sender, args) => args.Package.GetLibFiles()
-			                                                              .Each(file => SaveAssemblyFile(args.InstallPath, file));
+																		  .Each(file => SaveAssemblyFile(args.InstallPath, file));
 			projectManager.AddPackageReference(packageId);
 			projectSystem.Save();
 		}
@@ -42,8 +42,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			var targetPath = installPath.AppendPath(file.Path);
 			Directory.CreateDirectory(targetPath.ParentDirectory());
 			using (Stream outputStream = File.Create(targetPath)){
-                file.GetStream().CopyTo(outputStream);
-            }
+				file.GetStream().CopyTo(outputStream);
+			}
 
 			//var relativePath = targetPath.PathRelativeTo(targetFolder);
 			//packagesFolderFileSystem.AddFile(relativePath, file.GetStream());
@@ -81,21 +81,11 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 
 	public class BetterThanLocalPackageRepository: LocalPackageRepository {
 		private readonly MSBuildProjectSystem _projectSystem;
-		public BetterThanLocalPackageRepository(string physicalPath, MSBuildProjectSystem projectSystem) : base(physicalPath) {
-			_projectSystem = projectSystem;
-		}
-
-		public BetterThanLocalPackageRepository(string physicalPath, bool enableCaching, MSBuildProjectSystem projectSystem) : base(physicalPath, enableCaching) {
-			_projectSystem = projectSystem;
-		}
 
 		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem, MSBuildProjectSystem projectSystem) : base(pathResolver, fileSystem) {
 			_projectSystem = projectSystem;
 		}
 
-		public BetterThanLocalPackageRepository(IPackagePathResolver pathResolver, IFileSystem fileSystem, bool enableCaching, MSBuildProjectSystem projectSystem) : base(pathResolver, fileSystem, enableCaching) {
-			_projectSystem = projectSystem;
-		}
 
 		public override bool Exists(string packageId, SemanticVersion version) {
 			//if no package file exists, return false
