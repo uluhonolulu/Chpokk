@@ -41,7 +41,7 @@ namespace UnitTests.Amazon {
 		}
 		public string FilePathRelativeToAppRoot {
 			get {
-				return "UserFiles/ulu/" + REPO_NAME + "/" + RELATIVE_PATH;
+				return "UserFiles/ulu/Repositories/" + REPO_NAME + "/" + RELATIVE_PATH;
 			}
 		}
 		
