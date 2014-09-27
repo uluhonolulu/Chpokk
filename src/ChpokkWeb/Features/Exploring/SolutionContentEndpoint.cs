@@ -29,7 +29,7 @@ namespace ChpokkWeb.Features.Exploring {
 
 		[JsonEndpoint]
 		public SolutionExplorerModel GetSolutions([NotNull]SolutionExplorerInputModel model) {
-			HttpContext.Current.Server.ScriptTimeout = 3600;//HACK: to make sure everything's been downloaded
+			if (HttpContext.Current != null) HttpContext.Current.Server.ScriptTimeout = 3600;//HACK: to make sure everything's been downloaded
 			var items = GetSolutionRepositoryItems(model.RepositoryName);
 			return new SolutionExplorerModel {Items = items.ToArray()};
 		}

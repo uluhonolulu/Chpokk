@@ -6,6 +6,7 @@ using Arractas;
 using ChpokkWeb.Features.Storage;
 using FubuCore;
 using MbUnit.Framework;
+using UnitTests.Amazon;
 
 namespace Chpokk.Tests.Amazon {
 	[TestFixture]

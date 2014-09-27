@@ -8,6 +8,7 @@ using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using UnitTests.Amazon;
 
 namespace Chpokk.Tests.Amazon {
 	[TestFixture]

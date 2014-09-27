@@ -5,7 +5,7 @@ using ChpokkWeb.Features.Storage;
 using Emkay.S3;
 using FubuCore;
 
-namespace Chpokk.Tests.Amazon {
+namespace UnitTests.Amazon {
 	public class OneFileOnAmazonContext : RepositoryFolderContext {
 		public readonly string RELATIVE_PATH = "folder/file";
 		public string FileFullPath { get; set; }
@@ -16,6 +16,7 @@ namespace Chpokk.Tests.Amazon {
 			//upload it to Amazon
 			var client = Container.Get<IS3Client>();
 			var sourcePath = FileSystem.Combine(AppRoot, "UserFiles", "dummy.txt");
+			Console.WriteLine("uploading {0} to {1}", sourcePath, FilePathRelativeToAppRoot);
 			client.PutFile("chpokk", FilePathRelativeToAppRoot, sourcePath, true, 0);
 		}
 		public string FilePathRelativeToAppRoot {
