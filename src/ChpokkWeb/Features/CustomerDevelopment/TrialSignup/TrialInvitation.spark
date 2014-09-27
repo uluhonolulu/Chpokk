@@ -23,6 +23,9 @@
 
         function displayTrialInvitation() {
         	track("Displaying invitation");
+	        $('#trialDialog').one('hide.bs.modal', function() {
+		        console.log("Why did we close?");
+	        });
         	$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
         }
     </script>
