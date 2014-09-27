@@ -38,6 +38,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			if (UserName.IsEmpty()) {
 				return; //don't send for anonymous
 			}
+			if (GetDuration() == TimeSpan.Zero) {
+				return; //don't send empty stuff
+			}
 			try {
 				var messageBuilder = new StringBuilder();
 				messageBuilder.AppendLine("User: " + UserName);
