@@ -66,7 +66,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private string GetSubject() {
 			var subject = "Actions for " + UserName;
 			if (HasThisAction("Subscribed")) subject += " (SUBSCRIBED!!!)";
-			if (HasThisAction("Canceled")) subject += " (canceled!!!)";
+			if (HasThisAction("Shit Canceled")) subject += " (canceled!!!)";
 			if (_log.OfType<ErrorModel>().Any()) subject += " ERROR!!!";
 			var previousUsages = _usageCounter.GetUsageCount(UserName);
 			subject += ", previous usages: {0}.".ToFormat(previousUsages);

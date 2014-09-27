@@ -14,7 +14,7 @@
             });
 
             $('#cancel').click(function () {
-	            track("Canceled");
+	            track("Shit Canceled");
                 var url = '!{this.Urls.UrlFor<CancelTrialDummyInputModel>()}';
                 $.post(url);
             });
