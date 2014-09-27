@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Storage;
@@ -16,6 +17,9 @@ namespace UnitTests.Amazon {
 			//upload it to Amazon
 			var client = Container.Get<IS3Client>();
 			var sourcePath = FileSystem.Combine(AppRoot, "UserFiles", "dummy.txt");
+			if (!File.Exists(sourcePath)) {
+				File.CreateText(sourcePath).Close();
+			}
 			Console.WriteLine("uploading {0} to {1}", sourcePath, FilePathRelativeToAppRoot);
 			client.PutFile("chpokk", FilePathRelativeToAppRoot, sourcePath, true, 0);
 		}
