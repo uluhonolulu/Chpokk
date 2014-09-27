@@ -25,18 +25,6 @@ namespace UnitTests.Exploring {
 
 	}
 
-	public class WhenFileIsNotASolutionOne  : BaseCommandTest<SingleFileContext> {
-
-		[Test]
-		public void ShouldThrowAnException() {
-			var controller = Context.Container.Get<SolutionContentEndpoint>();
-			Assert.Throws<Exception>(() => controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME})) ;
-		}
-
-		public override void Act() {
-		}
-	}
-
 	public class EmptySlnFileContext : SingleSlnFileContext {
 		public override void CreateSolutionFile([NotNull] string filePath) {
 			Container.Get<SolutionFileLoader>().CreateEmptySolution(filePath);
