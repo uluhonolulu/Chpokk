@@ -7,22 +7,23 @@
 
 //bind continuation errors to alerts
 $.continuations.bind('HttpError', function (continuation) {
-    var response = continuation.response;
-    var message;
-    if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1) {
-        message = $(response.responseText).find('i').text();
-        if (!message) {
-            message = $(response.responseText).filter('title').text();
-        }
-    }
-    if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors.length > 0) {
-        message = continuation.errors[0].message;
-    }
+	var response = continuation.response;
+	var message;
+	if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1) {
+		message = $(response.responseText).find('i').text();
+		if (!message) {
+			message = $(response.responseText).filter('title').text();
+		}
+	}
+	if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('json') != -1 && continuation.errors && continuation.errors.length > 0) {
+		message = continuation.errors[0].message;
+	}
 
-    if (message) danger(message);
+	if (message) danger(message);
+	track(message || "Unknown error");
 
-    $('.waitContainer').hide();
-    $('.modal').modal('hide');
+	$('.waitContainer').hide();
+	$('.modal').not('.stay').modal('hide'); //if a modal dialog doesn't have the "stay" class (like the signup dialog), hide it on error
 });
 
 
@@ -120,12 +121,12 @@ function getStackTrace() {
 		while (currentFunction) {
 			var fname = currentFunction.toString().split('\n')[0];
 			callstack.push(fname);
-		    try {
+			try {
 				currentFunction = currentFunction.caller;     
-		    } catch(e) {
-		        callstack.push(e.message || e);
-		        currentFunction = null;
-		    } 
+			} catch(e) {
+				callstack.push(e.message || e);
+				currentFunction = null;
+			} 
 		}
 	}
 	return callstack;

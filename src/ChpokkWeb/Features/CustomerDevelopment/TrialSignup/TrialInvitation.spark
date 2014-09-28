@@ -1,50 +1,50 @@
 ﻿<use namespace="ChpokkWeb.Features.CustomerDevelopment.TrialSignup" />
 
-    <!-- TrialInvitation.spark -->
-    <script type="text/javascript">
-        $(function() {
-            var userHub = $.connection.userHub;
-            userHub.client.displayTrialInvitation = displayTrialInvitation;
+	<!-- TrialInvitation.spark -->
+	<script type="text/javascript">
+		$(function() {
+			var userHub = $.connection.userHub;
+			userHub.client.displayTrialInvitation = displayTrialInvitation;
 
-            $('#subscribe').click(function () {
-            	//TODO: save data
-	            track("Subscribed");
-            	var url = '!{this.Urls.UrlFor<WannaPayDummyInputModel>()}';
-                $.post(url);
-            });
+			$('#subscribe').click(function () {
+				//TODO: save data
+				track("Subscribed");
+				var url = '!{this.Urls.UrlFor<WannaPayDummyInputModel>()}';
+				$.post(url);
+			});
 
-            $('#cancel').click(function () {
-	            track("Shit Canceled");
-                var url = '!{this.Urls.UrlFor<CancelTrialDummyInputModel>()}';
-                $.post(url);
-            });
+			$('#cancel').click(function () {
+				track("Shit Canceled");
+				var url = '!{this.Urls.UrlFor<CancelTrialDummyInputModel>()}';
+				$.post(url);
+			});
 
-        });
+		});
 
-        function displayTrialInvitation() {
-        	track("Displaying invitation");
-	        $('#trialDialog').one('hide.bs.modal', function() {
-		        console.log("Why did we close?");
-	        });
-        	$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
-        }
-    </script>
-<div class="modal fade" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Start your free trial</h4>
-            </div>
-            <div class="modal-body">
-                <p>By this time, you must have got your first impression about Chpokk.</p>
-	            <p>If you find it useful, please subscribe for the service. Now's the perfect time for it -- the price is reduced to <span style="font-weight: bold;">$8/month</span> (the regular price is $18/mo).</p>
-                <p>If you press the <i>right</i> button, you'll be redirected to the payment gateway. Your payment will be securely handled by FastSpring. After paying, you'll be able to continue your work.</p>
-                <p>If you press the other button, you'll be redirected to the start screen. I'll be happy if you drop by some day.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="cancel">Stop using Chpokk</button>
-                <button type="button" class="btn btn-primary" id="subscribe" data-dismiss="modal">Continue using Chpokk for a reduced price</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+		function displayTrialInvitation() {
+			track("Displaying invitation");
+			$('#trialDialog').one('hide.bs.modal', function() {
+				console.log("Why did we close?");
+			});
+			$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
+		}
+	</script>
+<div class="modal fade stay" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Start your free trial</h4>
+			</div>
+			<div class="modal-body">
+				<p>By this time, you must have got your first impression about Chpokk.</p>
+				<p>If you find it useful, please subscribe for the service. Now's the perfect time for it -- the price is reduced to <span style="font-weight: bold;">$8/month</span> (the regular price is $18/mo).</p>
+				<p>If you press the <i>right</i> button, you'll be redirected to the payment gateway. Your payment will be securely handled by FastSpring. After paying, you'll be able to continue your work.</p>
+				<p>If you press the other button, you'll be redirected to the start screen. I'll be happy if you drop by some day.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" id="cancel">Stop using Chpokk</button>
+				<button type="button" class="btn btn-primary" id="subscribe" data-dismiss="modal">Continue using Chpokk for a reduced price</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
