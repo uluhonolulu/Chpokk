@@ -20,7 +20,7 @@ $.continuations.bind('HttpError', function (continuation) {
 	}
 
 	if (message) danger(message);
-	track(message || "Unknown error");
+	track("SERVER ERROR: " + (message || "Unknown error"));
 
 	$('.waitContainer').hide();
 	$('.modal').not('.stay').modal('hide'); //if a modal dialog doesn't have the "stay" class (like the signup dialog), hide it on error
