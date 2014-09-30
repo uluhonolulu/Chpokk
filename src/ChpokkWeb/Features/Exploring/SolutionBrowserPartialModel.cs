@@ -7,6 +7,5 @@ using ChpokkWeb.Infrastructure;
 namespace ChpokkWeb.Features.Exploring {
 	public class SolutionBrowserPartialModel : IDontNeedActionsModel {
 		public string RepositoryName { get; set; }
-		public MenuItem[] RetrieveActions { get; set; }
 	}
 }

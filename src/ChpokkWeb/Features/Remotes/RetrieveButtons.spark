@@ -2,5 +2,6 @@
 <use namespace="ChpokkWeb.Features.Remotes" />
 <!-- RetrieveButtons -->
 <for each="var menuItem in Model.RetrieveActions">
-	<button id="${menuItem.Id}" class="btn btn-default btn-sm">${menuItem.Caption}</button>
+	<!--<button id="${menuItem.Id}" class="btn btn-default btn-sm">${menuItem.Caption}</button>-->
+	<li><a id="${menuItem.Id}">${menuItem.Caption}</a></li>
 </for>

@@ -8,8 +8,8 @@
 
 
 	<div id="solutionBrowserWrapper" class="panel panel-default">
-		<div id="solutionBrowserToolbar" class="panel-heading" style="display: none;">
-			!{this.Partial<RetrieveButtonsInputModel>()}
+		<div id="solutionBrowserToolbar" class="panel-heading">
+			!{Model.RepositoryName}
 		</div>
 		<div id="solutionTreeContainer" class='panel-body'>
 			Please wait while your solution is being loaded..</div>

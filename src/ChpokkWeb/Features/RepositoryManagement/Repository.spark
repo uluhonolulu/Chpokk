@@ -99,13 +99,14 @@
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown">Code <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a>Download *.zip</a></li>
+				!{this.Partial<RetrieveButtonsInputModel>()}
+					<li class="divider"></li>
+				<render partial="DeleteRepository\DeleteRepository.spark" />
 			</ul>
 		</li>
 	</ul>
 </content>
 <render partial="Testing\Testing.spark" />
-<render partial="DeleteRepository\DeleteRepository.spark" />
 
 	
 <adconv/>

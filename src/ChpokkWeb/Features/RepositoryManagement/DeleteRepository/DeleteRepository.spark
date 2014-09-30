@@ -1,11 +1,8 @@
 ﻿<use namespace="ChpokkWeb.Features.RepositoryManagement.DeleteRepository" />
-<content name="menu">
-	<ul class="nav navbar-nav">
-		<li class="navbar-default alert-danger">
-			<a id="deleteRepositoryButton">Delete Repository</a>
-		</li>
-	</ul>
-</content>
+
+<li class="navbar-default alert-danger">
+	<a id="deleteRepositoryButton">Delete Repository</a>
+</li>
 
 <content name="InlineScripts">
 	<!-- DeleteRepository.spark -->
