@@ -1670,6 +1670,7 @@
     <Compile Include="Features\Authentication\UserManager.cs" />
     <Compile Include="Features\BitnessEndpoint.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
+    <Compile Include="Features\Compilation\ProjectBuildSync.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
     <Compile Include="Features\Compilation\MsBuildCompiler.cs" />
     <Compile Include="Features\Compilation\SolutionCompiler.cs" />
