@@ -27,7 +27,7 @@ namespace ChpokkWeb.Features.Compilation {
 				Loggers = loggers, //need this to have any output at all
 				ToolsetDefinitionLocations = ToolsetDefinitionLocations.ConfigurationFile | ToolsetDefinitionLocations.Registry
 			};
-			return BuildManager.DefaultBuildManager.Build(parameters, requestData);				
+			return ProjectBuildSync.Build(parameters, requestData);
 		}
 	}
 }

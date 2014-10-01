@@ -33,7 +33,7 @@ namespace ChpokkWeb.Features.Compilation {
 				                                targetProperty.EvaluatedValue);
 			var outputType = outputTypeProperty.EvaluatedValue;
 
-			var buildResult = project.Build(logger);
+			var buildResult = ProjectBuildSync.Build(project, logger);
 			return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath, OutputType = outputType};
 		}
 	}
