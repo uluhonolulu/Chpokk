@@ -68,8 +68,7 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void DeleteDirectory(string directory) {
-			//TODO: async
-			_remoteSystem.DeleteDirectory(directory);
+			Task.Factory.StartNew(() => _remoteSystem.DeleteDirectory(directory));
 			_localSystem.DeleteDirectory(directory);
 		}
 

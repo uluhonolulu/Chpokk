@@ -31,11 +31,9 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 			_client.DeleteObject(bucketName, @from.ToRemoteFileName(AppRoot));
 
 		}
+		
 		public void MoveDirectory(string @from, string to) {
-			foreach (var sourcePath in Directory.EnumerateFiles(@from)) {
-				var destinationPath = to.AppendPath(sourcePath.PathRelativeTo(@from));
-				MoveFile(sourcePath, destinationPath);
-			}
+			MoveFiles(@from, to);
 		}
 
 		public bool IsFile(string path) {
