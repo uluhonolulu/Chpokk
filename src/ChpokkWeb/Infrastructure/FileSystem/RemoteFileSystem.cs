@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using ChpokkWeb.Infrastructure;
 using Emkay.S3;
 using FubuCore;
 
-namespace ChpokkWeb.Features.Storage {
+namespace ChpokkWeb.Infrastructure.FileSystem {
 	public class RemoteFileSystem: IFileSystem {
 		const string bucketName = "chpokk";
 		private readonly IS3Client _client;
 		private readonly IAppRootProvider _rootProvider;
-		private FileSystem _localFileSystem;
-		public RemoteFileSystem(IS3Client client, IAppRootProvider rootProvider, FileSystem localFileSystem) {
+		private FubuCore.FileSystem _localFileSystem;
+		public RemoteFileSystem(IS3Client client, IAppRootProvider rootProvider, FubuCore.FileSystem localFileSystem) {
 			_client = client;
 			_rootProvider = rootProvider;
 			_localFileSystem = localFileSystem;
@@ -54,9 +52,9 @@ namespace ChpokkWeb.Features.Storage {
 
 		public void Copy(string source, string destination) {
 			//question: shall we upload the file if the remote doesn't exist? probably we should if we go multiple
-			if (!FileExists(source)) {
-				return;
-			}
+			//if (!FileExists(source)) {
+			//	return;
+			//}
 			var tempFilename = Path.GetTempFileName();
 			var remoteSource = source.ToRemoteFileName(AppRoot);
 			_client.DownloadFile(bucketName, remoteSource, tempFilename, 0);

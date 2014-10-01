@@ -7,6 +7,7 @@ using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Storage;
+using ChpokkWeb.Infrastructure.FileSystem;
 using Emkay.S3;
 using FubuCore;
 using Gallio.Framework;
