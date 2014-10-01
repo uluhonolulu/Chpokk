@@ -11,7 +11,7 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 		const string bucketName = "chpokk";
 		private readonly IS3Client _client;
 		private readonly IAppRootProvider _rootProvider;
-		private FubuCore.FileSystem _localFileSystem;
+		private readonly FubuCore.FileSystem _localFileSystem;
 		public RemoteFileSystem(IS3Client client, IAppRootProvider rootProvider, FubuCore.FileSystem localFileSystem) {
 			_client = client;
 			_rootProvider = rootProvider;
@@ -89,7 +89,8 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 			throw new NotImplementedException("AppendStringToFile");
 		}
 		public string ReadStringFromFile(string filename) {
-			return null;
+			_client.DownloadFile(bucketName, filename.ToRemoteFileName(AppRoot), filename, 0);
+			return _localFileSystem.ReadStringFromFile(filename);
 		}
 
 		public void WriteObjectToFile(string filename, object target) {

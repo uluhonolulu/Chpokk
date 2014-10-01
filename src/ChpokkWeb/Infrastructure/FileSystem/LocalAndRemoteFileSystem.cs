@@ -51,7 +51,12 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public string ReadStringFromFile(string filename) {
-			return _localSystem.ReadStringFromFile(filename);
+			try {
+				return _localSystem.ReadStringFromFile(filename);
+			}
+			catch (DirectoryNotFoundException exception) {
+				return _remoteSystem.ReadStringFromFile(filename);
+			}
 		}
 
 		public string GetFileName(string path) {
@@ -63,6 +68,7 @@ namespace ChpokkWeb.Features.Storage {
 		}
 
 		public void DeleteDirectory(string directory) {
+			//TODO: async
 			_remoteSystem.DeleteDirectory(directory);
 			_localSystem.DeleteDirectory(directory);
 		}
