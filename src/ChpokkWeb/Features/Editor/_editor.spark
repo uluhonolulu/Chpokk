@@ -5,7 +5,7 @@
 
 <div class="panel-heading" id="editorToolbar">
 	!{this.Partial<EditorMenuInputModel>()}
-	              <span class="glyphicon glyphicon-fullscreen" style="float: right; line-height: 33px; cursor: pointer;"></span>
+				  <span class="glyphicon glyphicon-fullscreen" style="float: right; line-height: 33px; cursor: pointer;"></span>
 
 </div>
 
@@ -14,10 +14,11 @@
 </ul>
 
 
-<div id="codeAndIntelWrapper" style="position: relative;  width: 100%; margin-bottom: 100px; margin-left:0px;  padding-bottom: 100px; height: 100%;  background-color: transparent;">	
+<div id="codeAndIntelWrapper" style="position: relative;  width: 100%; margin-bottom: 100px; margin-left:0px;  padding-bottom: 110px; height: 100%;  background-color: transparent;">	
 	<div style="height: 100%; background-color: transparent; position: relative; width: 100%; " id="innerDivForKeepingItWithBottomPadding">
 		<div id="ace"/>
 	</div>
+	<div style="text-align: right; padding: 5px;"><label for="autoSuggestOff">Switch Autosuggest off</label> <input type="checkbox" id="autoSuggestOff"/></div>
 </div>
 
 <content name="head">
@@ -28,32 +29,32 @@
 
 <content name="InlineScripts">
 	<!-- _editor.spark -->
-    <script type="text/javascript">
-        $(function() {
-            amplify.subscribe('loadFileRequest', function (data) {
-                var editor = ace.edit("ace");
-                loadFile(data.path, editor);
-            });
-	        
-        	//max/min
-            $('body').on('click', '#editorToolbar .glyphicon-fullscreen', function (e) {
-	            //alert('ok');
-		        $('#fileContent').prependTo($('body'));
-		        $('#fileContent').css({ 'position': 'absolute', top: 0, 'z-index': 1035, width: '100%' });
-		        $(this).removeClass('glyphicon-fullscreen').addClass('glyphicon-resize-small');
-		        e.stopImmediatePropagation(); // so that it doesn't hanle the other click
-            });
-	        //minimizer
-		    $('body').on('click', '#editorToolbar .glyphicon-resize-small', function (e) {
-		    	$('#fileContent').prependTo($('#editorContainer'));
+	<script type="text/javascript">
+		$(function() {
+			amplify.subscribe('loadFileRequest', function (data) {
+				var editor = ace.edit("ace");
+				loadFile(data.path, editor);
+			});
+			
+			//max/min
+			$('body').on('click', '#editorToolbar .glyphicon-fullscreen', function (e) {
+				//alert('ok');
+				$('#fileContent').prependTo($('body'));
+				$('#fileContent').css({ 'position': 'absolute', top: 0, 'z-index': 1035, width: '100%' });
+				$(this).removeClass('glyphicon-fullscreen').addClass('glyphicon-resize-small');
+				e.stopImmediatePropagation(); // so that it doesn't hanle the other click
+			});
+			//minimizer
+			$('body').on('click', '#editorToolbar .glyphicon-resize-small', function (e) {
+				$('#fileContent').prependTo($('#editorContainer'));
 				$('#fileContent').css({ 'position': 'static', width: '100%' });
 				$(this).addClass('glyphicon-fullscreen').removeClass('glyphicon-resize-small');
-		        e.stopImmediatePropagation(); // so that it doesn't hanle the other click
+				e.stopImmediatePropagation(); // so that it doesn't hanle the other click
 			});
-        })
-    </script>
+		})
+	</script>
 
-    <script src="//use.edgefonts.net/droid-sans-mono.js"></script>
-    
+	<script src="//use.edgefonts.net/droid-sans-mono.js"></script>
+	
 </content>
 
