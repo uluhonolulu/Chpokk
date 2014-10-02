@@ -23,7 +23,7 @@ namespace Chpokk.Tests.Exploring {
 			var controller = Context.Container.Get<SolutionContentEndpoint>();
 			return
 				controller.GetSolutions(new SolutionExplorerInputModel
-				                        {RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot}).Items;
+				                        {RepositoryName = Context.REPO_NAME}).Items;
 		}
 
 		public RepositoryItem SolutionItem {

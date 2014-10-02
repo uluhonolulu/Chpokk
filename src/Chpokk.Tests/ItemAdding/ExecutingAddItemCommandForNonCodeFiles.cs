@@ -29,7 +29,6 @@ namespace Chpokk.Tests.ItemAdding {
 			var endpoint = Context.Container.Get<AddItemEndpoint>();
 			endpoint.DoIt(new AddItemInputModel()
 				{
-					PhysicalApplicationPath = Context.AppRoot,
 					RepositoryName = Context.REPO_NAME,
 					ProjectPath = Context.ProjectPathRelativeToRepositoryRoot,
 					PathRelativeToRepositoryRoot = FileSystem.Combine(Context.ProjectFolderRelativeToRepositoryRoot, FILE_NAME) 

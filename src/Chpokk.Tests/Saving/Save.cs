@@ -35,7 +35,7 @@ namespace Chpokk.Tests.Saving {
 		public override void Act() {
 			var controller = Context.Container.Get<SaveEndpoint>();
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
-			controller.DoIt(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@"..") });
+			controller.DoIt(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot });
 		}
 	}
 
@@ -48,7 +48,7 @@ namespace Chpokk.Tests.Saving {
 			using (var repo = new Repository(Context.RepositoryRoot)) {
 				repo.Index.Stage(Context.FilePath);				
 			}
-			controller.SaveCommit(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, PhysicalApplicationPath = Path.GetFullPath(@".."), CommitMessage = "doesntmater" });
+			controller.SaveCommit(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, CommitMessage = "doesntmater" });
 
 		}
 

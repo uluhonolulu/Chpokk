@@ -35,7 +35,7 @@ namespace Chpokk.Tests.Exploring {
 		[Test]
 		public void ShouldThrowAnException() {
 			var controller = Context.Container.Get<SolutionContentEndpoint>();
-			Assert.Throws<Exception>(() => controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot })) ;
+			Assert.Throws<Exception>(() => controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME })) ;
 		}
 
 		public override void Act() {

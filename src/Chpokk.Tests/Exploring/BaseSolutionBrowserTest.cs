@@ -14,7 +14,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override IEnumerable<RepositoryItem> Act() {
 			var controller = Context.Container.Get<SolutionContentEndpoint>();
-			return controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Path.GetFullPath(@"..") }).Items;
+			return controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME}).Items;
 		}
 	}
 

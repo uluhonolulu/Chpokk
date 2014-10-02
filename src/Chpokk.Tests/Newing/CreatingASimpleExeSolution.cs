@@ -36,17 +36,17 @@ namespace Chpokk.Tests.Newing {
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
-			endpoint.DoIt(new AddSimpleProjectInputModel { PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "Exe", Language = SupportedLanguage.CSharp });
+			endpoint.DoIt(new AddSimpleProjectInputModel { ProjectName = NAME, OutputType = "Exe", Language = SupportedLanguage.CSharp });
 		}
 
 		RepositoryManager RepositoryManager { get { return Context.Container.Get<RepositoryManager>(); } }
 
 		private string SolutionPath {
-			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, NAME + ".sln"); }
+			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, NAME + ".sln"); }
 		}
 
 		private string ProjectPath {
-			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, NAME + ".csproj")); }
+			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, NAME + ".csproj")); }
 		}
 
 	}

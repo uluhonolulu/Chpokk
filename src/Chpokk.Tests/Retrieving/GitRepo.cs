@@ -28,7 +28,7 @@ namespace Chpokk.Tests.Retrieving {
 
 		public override IEnumerable<MenuItem> Act() {
 			var controller = Context.Container.Get<RetrieveButtonsEndpoint>();
-			var model = new RetrieveButtonsInputModel { RepositoryName = Context.REPO_NAME, PhysicalApplicationPath = Context.AppRoot };
+			var model = new RetrieveButtonsInputModel { RepositoryName = Context.REPO_NAME};
 			return controller.DoIt(model).RetrieveActions;
 		}
 	}

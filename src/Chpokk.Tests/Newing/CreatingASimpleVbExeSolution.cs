@@ -19,17 +19,17 @@ namespace Chpokk.Tests.Newing {
 		[Test]
 		public void ProducesABuildableProject() {
 			new Project(ProjectPath).Build(new CreatingASimpleSolution.ConsoleBuildLogger()).ShouldBe(true);
-			var binPath = RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, "bin"));
+			var binPath = RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, "bin"));
 			Directory.Exists(binPath).ShouldBe(true);
 		}
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
-			endpoint.DoIt(new AddSimpleProjectInputModel { PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "Exe", Language = SupportedLanguage.VBNet });
+			endpoint.DoIt(new AddSimpleProjectInputModel { ProjectName = NAME, OutputType = "Exe", Language = SupportedLanguage.VBNet });
 		}
 
 		private string ProjectPath {
-			get { return RepositoryManager.GetAbsolutePathFor(NAME, Context.AppRoot, Path.Combine(NAME, NAME + ".vbproj")); }
+			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, NAME + ".vbproj")); }
 		}
 		RepositoryManager RepositoryManager { get { return Context.Container.Get<RepositoryManager>(); } }
 	}

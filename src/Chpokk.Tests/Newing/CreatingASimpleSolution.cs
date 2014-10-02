@@ -71,7 +71,7 @@ namespace Chpokk.Tests.Newing {
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
-			endpoint.DoIt(new AddSimpleProjectInputModel{PhysicalApplicationPath = Context.AppRoot, RepositoryName = NAME, OutputType = "Library", ConnectionId = "fake"});
+			endpoint.DoIt(new AddSimpleProjectInputModel{ ProjectName = NAME, OutputType = "Library", ConnectionId = "fake"});
 		}
 
 		[Test]

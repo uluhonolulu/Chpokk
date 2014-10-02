@@ -21,7 +21,6 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 			            	NewChar = '.',
 			            	Position = position,
 			            	Content = source,
-			            	PhysicalApplicationPath = Context.AppRoot,
 			            	RepositoryName = Context.REPO_NAME,
 							PathRelativeToRepositoryRoot = "x.cs",
 							ProjectPath = Path.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
