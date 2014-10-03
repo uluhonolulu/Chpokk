@@ -1,6 +1,6 @@
-﻿
+﻿<use namespace="ChpokkWeb.Features.ProjectManagement.References.Files" />
 <div id="filesContainer" style="height: 200px; overflow-y: auto; clear: both;" class="clearfix">
-    
+	
 </div>
 
 <content name="InlineScripts">
@@ -8,13 +8,41 @@
 	<script>
 		function displayFileReferences(references) {
 			$('#filesContainer').empty();
-	    	var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
-	    	$.tmpl(template, references).appendTo($('#filesContainer'));
-			//show or hide the OtherProjects tab
-	    	var hasReferences = references.length > 0;
-	    	$('#fileReferencesMenuItem').toggle(hasReferences);
-	    }		
+			var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
+			$.tmpl(template, references).appendTo($('#filesContainer'));
+		}
+
+		$(function() {
+			var url = '${Urls.UrlFor<UploadAssemblyInputModel>()}';
+			$('#assemblyupload').fileupload({
+				url: url,
+				dataType: 'json',
+				formData: { 'RepositoryName': model.RepositoryName },
+				done: function (e, data) {
+					for (var i = 0; i < data.files.length; i++) {
+						var fileName = data.files[i].name;
+						appendReference('lib\\' + fileName);
+					}
+				}
+			}).prop('disabled', !$.support.fileInput);
+
+		});
+
+		function appendReference(path) {
+			var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
+			$.tmpl(template, {Name: path, Selected: true }).appendTo($('#filesContainer'));
+		}
 	</script>
 
 
 </content>
+
+<!-- Upload button -->
+<content name="head">
+	<Script src="lib/jquery.fileupload.js"/>
+	<Stylesheet href="lib/jquery.fileupload-ui.css" />
+</content>
+<span class="btn  btn-default btn-sm btn-block fileinput-button" id="assemblyUploadInitiator" style="margin-top: 15px;">
+	<span>Upload an assembly</span>
+	<input id="assemblyupload" type="file" name="Assembly"/>
+</span>

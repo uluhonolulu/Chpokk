@@ -6,6 +6,7 @@ using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
+using FubuMVC.Core.Ajax;
 
 namespace ChpokkWeb.Features.ProjectManagement.References.Files {
 	public class UploadAssemblyEndpoint {
@@ -14,13 +15,14 @@ namespace ChpokkWeb.Features.ProjectManagement.References.Files {
 			_repositoryManager = repositoryManager;
 		}
 
-		public void DoIt(UploadAssemblyInputModel model) {
+		public AjaxContinuation DoIt(UploadAssemblyInputModel model) {
 			if (model.Assembly == null)
-				return;
+				return AjaxContinuation.Successful();
 			var folderPath = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName, "lib");
 			Directory.CreateDirectory(folderPath);
 			var path = folderPath.AppendPath(model.Assembly.FileName);
 			model.Assembly.SaveAs(path);
+			return AjaxContinuation.Successful();
 		}
 	}
 
