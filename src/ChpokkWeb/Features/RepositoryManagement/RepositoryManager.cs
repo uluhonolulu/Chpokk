@@ -96,7 +96,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			var repositoryFolder = GetRepositoryFolder();
 			if (!Directory.Exists(repositoryFolder)) return Enumerable.Empty<string>();
 			return Directory.EnumerateDirectories(repositoryFolder).Select(Path.GetFileName);
- 		}
+		}
 
 		public IEnumerable<string> GetRepositoryNamesFromStorage() {
 			var repositoryFolder = GetRepositoryFolder();
@@ -209,9 +209,9 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		private void RecordDownloadedFile(string remotePath, string localPath) {
 			_activityTracker.Record(null,
-			                        "Downloaded {0} to {1}".ToFormat(remotePath,
-			                                                         localPath),
-			                        null, null);
+									"Downloaded {0} to {1}".ToFormat(remotePath,
+																	 localPath),
+									null, null);
 		}
 
 		public void EnsureAuthenticated() {
