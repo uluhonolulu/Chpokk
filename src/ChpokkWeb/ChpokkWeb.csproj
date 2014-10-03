@@ -1713,6 +1713,7 @@
     <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\EditPropertiesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\ProjectPropertiesEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\References\Files\UploadAssemblyEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\ConsoleBase.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\Spike\LongOpEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\NuGet\NuGetHub.cs" />
