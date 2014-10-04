@@ -122,6 +122,7 @@ function loadFile(path, editor, onload) {
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
 	var fileData = $.extend({}, model, itemContainer.data());
+	fileData["ui-draggable"] = null; //fix cyclic error
 	// if we haven't loaded this file yet, let's load it and add to cache; then call this method again
 	if (!window.tabs.all[path]) {
 		track('sending ' + JSON.stringify(fileData));
