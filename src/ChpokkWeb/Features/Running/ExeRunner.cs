@@ -14,7 +14,7 @@ namespace ChpokkWeb.Features.Running {
 					                                      null); //TODO: low trust
 				loader.StandardOutput = new LambdaTextWriter(standardOutput);
 				loader.ErrorOutput = new LambdaTextWriter(errorOutput);
-				loader.CurrentDirectory = exePath.ParentDirectory();
+				//loader.CurrentDirectory = exePath.ParentDirectory(); //commented out -- affects othe users
 				return loader.Run(exePath);
 			}
 			finally {

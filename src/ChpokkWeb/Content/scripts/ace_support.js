@@ -86,7 +86,7 @@
 function editorTextHasChangedSinceThisCall(oldpos, editor) {
 	var currentPos = editor.getCursorPosition();
 	var currentText = getTextBeforeCursor(currentPos, editor);
-	var prevText = getTextBeforeCursor(pos, editor);
+	var prevText = getTextBeforeCursor(oldpos, editor);
 	return currentText != prevText;
 }
 
