@@ -4,8 +4,7 @@
 	var editor = ace.edit("ace");
 	editor.setTheme("ace/theme/idle_fingers");
 	
-	//bug: .ace_content too narrow in IE
-	
+
 	//completion
 	var codeCompleter = {
 		getCompletions: function (editor, session, pos, prefix, callback) {
@@ -23,6 +22,9 @@
 			var model = tabs.activeModel();
 			var editorData = $.extend({}, model, { Content: text, NewChar: newChar, Position: position }); 
 			$.post('url::ChpokkWeb.Features.Editor.Intellisense.IntelInputModel', editorData, function (data) {
+				//if the text changed since then, don't display it (only text before the cursor position matters)
+				if (editorTextHasChangedSinceThisCall(pos, editor))
+					return;
 				var matchingItems = $.grep(data.Items, function(item) {
 					return item.Name.startsWithIgnoreCase(prefix);
 				});
@@ -81,6 +83,13 @@
 	//editor.completers = [snippetCompleter, textCompleter, keyWordCompleter];
 });
 
+function editorTextHasChangedSinceThisCall(oldpos, editor) {
+	var currentPos = editor.getCursorPosition();
+	var currentText = getTextBeforeCursor(currentPos, editor);
+	var prevText = getTextBeforeCursor(pos, editor);
+	return currentText != prevText;
+}
+
 function getPosition(rowColumn, editor) {
 	var lines = editor.session.doc.getAllLines();
 	var text = editor.getValue();
@@ -92,6 +101,11 @@ function getPosition(rowColumn, editor) {
 	}
 	position += rowColumn.column;
 	return position;
+}
+
+//text preceding the cursor position
+function getTextBeforeCursor(rowColumn, editor) {
+	return editor.getValue().substr(0, getPosition(rowColumn, editor));
 }
 
 
