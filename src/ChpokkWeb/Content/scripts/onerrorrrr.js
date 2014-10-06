@@ -21,6 +21,14 @@ $.continuations.bind('HttpError', function (continuation) {
 
 	if (message) danger(message);
 	track("SERVER ERROR: " + (message || "Unknown error"));
+	if (!message) {
+		try {
+			message = JSON.stringify(continuation);
+		} catch(e) {
+			message = "Error serializing error: " + JSON.stringify(e);
+		} 
+		track("More info: " + message);
+	}
 
 	$('.waitContainer').hide();
 	$('.modal').not('.stay').modal('hide'); //if a modal dialog doesn't have the "stay" class (like the signup dialog), hide it on error
@@ -158,7 +166,7 @@ if (!localStorageOk) {
 //on AJAX error, track
 $(document).ajaxError(function (event, jqxhr, settings, exception) {
 	//var data = { event: event, request: jqxhr, settings: settings, exception: exception };
-	var data = { status: jqxhr.status, url: settings.url, type: settings.type, data: settings.data };
+	var data = { responseText: jqxhr.responseText, data: settings.data };
 	try {
 		data.request = JSON.stringify(jqxhr);
 	} catch(e) {
@@ -174,5 +182,5 @@ $(document).ajaxError(function (event, jqxhr, settings, exception) {
 	} catch (e) {
 		data.exception = e;
 	}
-	track("AJAX Error: " + JSON.stringify(data));
+	track("AJAX Error calling " + settings.url + ": " + jqxhr.status + ' ' + jqxhr.statusText + ', details: ' + JSON.stringify(data));
 });

@@ -56,7 +56,7 @@
 		this.matches = function (continuation) {
 			// TODO -- Harden this against the proper statuses
 			return continuation.matchOnProperty('statusCode', function (c) { return c != 200; })
-                && continuation.matchOnProperty('response', function (r) { return r.getResponseHeader('Location'); });
+				&& continuation.matchOnProperty('response', function (r) { return r.getResponseHeader('Location'); });
 		};
 		this.execute = function (continuation) {
 			var url = continuation.response.getResponseHeader('Location');
@@ -137,7 +137,7 @@
 					});
 				},
 				error: function (xhr, text, error) {
-					self.onError(xhr, text, error);
+					self.onError(this, xhr, text, error);
 				},
 				beforeSend: function (xhr, settings) {
 					self.setupRequest(xhr, settings);
@@ -153,11 +153,11 @@
 			this.applyPolicy(new errorPolicy());
 			this.applyPolicy(new httpErrorPolicy());
 		},
-		onError: function (xhr, text, error) {
-			var continuation = this.buildError(xhr, text, error);
+		onError: function (request, xhr, text, error) {
+			var continuation = this.buildError(request, xhr, text, error);
 			this.process(continuation);
 		},
-		buildError: function (response, text, error) {
+		buildError: function (request, response, text, error) {
 			var continuation = new $.continuations.continuation();
 			continuation.success = false;
 
@@ -167,7 +167,7 @@
 
 			continuation.response = response;
 			continuation.statusCode = response.status;
-
+			continuation.request = request;
 			return continuation;
 		},
 		onSuccess: function (msg) {
