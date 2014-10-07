@@ -10,7 +10,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 	public class DotlessCompletionProvider: ICompletionProvider {
 		//provides a list of members of a particular class, inside the class' member, *not* after a dot
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
-			if (!token.IsDot()) {
+			if (!token.IsDot() && !token.IsMember()) {
 				var typeSymbol = GetContainingClass(token, semanticModel);
 				var lookupSymbols = semanticModel.LookupSymbols(position, typeSymbol);
 				return from lookupSymbol in lookupSymbols select IntelOutputModel.IntelModelItem.FromSymbol(lookupSymbol);

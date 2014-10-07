@@ -6,7 +6,7 @@ using Roslyn.Compilers.Common;
 namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 	public class DotCompletionProvider : ICompletionProvider {
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
-			if (token.IsDot()) {
+			if (token.IsDot() || token.IsMember()) {
 				var masterNode = GetMasterNode(token); //the node before the dot
 				if (masterNode != null) {
 					var symbolInfo = semanticModel.GetSymbolInfo(masterNode);
@@ -26,17 +26,17 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 		private CommonSyntaxNode GetMasterNode(CommonSyntaxToken token) {
 			CommonSyntaxNode expression = null;
 			//member access
-			var sharpExpressionSyntax = token.Parent as Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax;
+			var sharpExpressionSyntax = token.Parent.AncestorsAndSelf().OfType<Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax>().FirstOrDefault();
 			if (sharpExpressionSyntax != null)
 				expression = sharpExpressionSyntax.Expression;
-			var vbNetExpressionSyntax = token.Parent as Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax;
+			var vbNetExpressionSyntax = token.Parent.AncestorsAndSelf().OfType<Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax>().FirstOrDefault();
 			if (vbNetExpressionSyntax != null)
 				expression = vbNetExpressionSyntax.Expression;
 			//namespace
 			var sharpQualifiedNameSyntax = token.Parent as Roslyn.Compilers.CSharp.QualifiedNameSyntax;
 			if (sharpQualifiedNameSyntax != null)
 				expression = sharpQualifiedNameSyntax.Left;
-			var vbNetQualifiedNameSyntax = token.Parent as Roslyn.Compilers.CSharp.QualifiedNameSyntax;
+			var vbNetQualifiedNameSyntax = token.Parent as Roslyn.Compilers.VisualBasic.QualifiedNameSyntax;
 			if (vbNetQualifiedNameSyntax != null)
 				expression = vbNetQualifiedNameSyntax.Left;
 			return expression;

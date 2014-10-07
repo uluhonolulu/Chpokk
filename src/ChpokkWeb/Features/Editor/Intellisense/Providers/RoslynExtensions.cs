@@ -10,6 +10,11 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 			return token.ValueText == ".";
 		}
 
+		public static bool IsMember(this CommonSyntaxToken token) {
+			return token.Parent.AncestorsAndSelf().OfType<Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax>().Any() ||
+			       token.Parent.AncestorsAndSelf().OfType<Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax>().Any();
+		}
+
 		public static bool IsCSharpModel(this ISemanticModel semanticModel) {
 			return semanticModel is Roslyn.Compilers.CSharp.SemanticModel;
 		}

@@ -28,7 +28,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel,
 		                                                               int position) {
-			if (!token.IsDot()) {
+			if (!token.IsDot() && !token.IsMember()) {
 				if (semanticModel.IsCSharpModel()) {
 					return from keyword in CSharpKeywords select IntelOutputModel.IntelModelItem.FromKeyword(keyword);
 				}
