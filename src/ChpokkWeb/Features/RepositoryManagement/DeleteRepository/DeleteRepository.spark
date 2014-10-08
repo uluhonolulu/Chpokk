@@ -8,9 +8,12 @@
 	<!-- DeleteRepository.spark -->
 	<script type="text/javascript">
 		$(function() {
-			$('#deleteRepositoryButton').click(function() {
-				var url = '${Urls.UrlFor<DeleteRepositoryInputModel>()}';
-				$.post(url, model);
+			$('#deleteRepositoryButton').click(function () {
+				confirmModal("Delete '" + model.RepositoryName + "'? Really???", function() {
+					var url = '${Urls.UrlFor<DeleteRepositoryInputModel>()}';
+					$.post(url, model);
+				});
+
 			});
 		});
 	</script>
