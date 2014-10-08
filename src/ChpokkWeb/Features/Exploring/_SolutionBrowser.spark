@@ -56,9 +56,11 @@
 				amplify.publish('solutionLoaded', data);
 				
 				//if no solutions, ask whether we want to create one
-				if (items.length == 0 && confirm("No solutions found in the source. Do you want to create a new empty solution?")) {
-					var newEmptySolutionUrl = '${Urls.UrlFor<CreateEmptySolutionInputModel>()}';
-					$.post(newEmptySolutionUrl, model);
+				if (items.length == 0) {
+					confirmModal("No solutions found in the source. Do you want to create a new empty solution?", function() {
+						var newEmptySolutionUrl = '${Urls.UrlFor<CreateEmptySolutionInputModel>()}';
+						$.post(newEmptySolutionUrl, model);
+					});
 				}
 			}
 			);
