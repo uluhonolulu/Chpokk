@@ -1454,6 +1454,7 @@
     <Content Include="SystemFiles\GallioPlugins\MbUnit.plugin" />
     <Content Include="SystemFiles\GallioPlugins\MbUnit35.plugin" />
     <Content Include="SystemFiles\GallioPlugins\MbUnit40.plugin" />
+    <Content Include="Shared\Dialogs\_dialogs.spark" />
     <None Include="SystemFiles\GallioPlugins\NCover\libs\NCoverExplorer\ConsoleConfig.xsd">
       <SubType>Designer</SubType>
     </None>

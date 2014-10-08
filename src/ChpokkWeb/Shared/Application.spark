@@ -65,6 +65,9 @@
 		
 	<!-- Dialogs -->
 	<use content="Dialogs" />
+
+	<!-- general purpose dialogs -->
+	<use file="Dialogs\_dialogs.spark"/>
 	
 	<waiter/>
 
