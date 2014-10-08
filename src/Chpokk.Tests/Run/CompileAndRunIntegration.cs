@@ -13,24 +13,21 @@ using Shouldly;
 
 namespace Chpokk.Tests.Run {
 	[TestFixture]
-	public class CompileAndRunIntegration : BaseCommandTest<BuildableProjectWithExeOutput> {
-		[Test, Ignore("Don't know how to test it")]
+	public class CompileAndRunIntegration : BaseQueryTest<BuildableProjectWithExeOutput, AjaxContinuation> {
+		[Test]
 		public void ShouldReturnASuccessMessage() {
-			//if (!Result.Success) {
-			//	Console.WriteLine(Result.Message);
-			//}
-			//Result.Success.ShouldBe(true);
-			
+			Result.Success.ShouldBe(true);
 		}
 
-		[Test, Ignore("Don't know how to test it")]
+		[Test]
 		public void ShouldReturnTheOutput() {
-			//Result.Message.ShouldStartWith("message");
+			var logger = Context.Container.Get<ChpokkLogger>();
+			Result.Message.ShouldStartWith("message");
 		}
 
-		public override void Act() {
+		public override AjaxContinuation Act() {
 			var endpoint = Context.Container.Get<CompilerEndpoint>();
-			endpoint.CompileAndRun(new CompileAndRunInputModel {ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME });
+			return endpoint.CompileAndRun(new CompileAndRunInputModel {ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME, ConnectionId = "fakeId"});
 		}
 	}
 }

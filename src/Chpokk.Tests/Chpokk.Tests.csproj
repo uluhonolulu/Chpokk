@@ -323,6 +323,7 @@
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\NuGet2Console.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
+    <Compile Include="Infrastructure\TestableBuildLogger.cs" />
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
     <Compile Include="Infrastructure\TimingTraceAspect.cs" />
     <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />

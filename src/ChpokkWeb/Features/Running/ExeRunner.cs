@@ -5,7 +5,7 @@ using FubuCore;
 
 namespace ChpokkWeb.Features.Running {
 	public class ExeRunner {
-		public object RunMain(string exePath, Action<char> standardOutput, Action<char> errorOutput) {
+		public object RunMain(string exePath, Action<string> standardOutput, Action<string> errorOutput) {
 			var appDomain = AppDomain.CreateDomain("runner");
 			try {
 				var loader =

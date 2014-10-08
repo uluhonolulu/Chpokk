@@ -23,7 +23,7 @@ namespace ChpokkWeb.Features.Compilation {
 			Info, Error, Success
 		}
 
-		public void SendMessage(string text, MessageType type = MessageType.Info, bool wrap = true) {
+		public virtual void SendMessage(string text, MessageType type = MessageType.Info, bool wrap = true) {
 			switch (type) {
 				case MessageType.Success:
 					Client.success(text, wrap);
