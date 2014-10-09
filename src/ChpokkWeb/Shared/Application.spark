@@ -28,6 +28,12 @@
 					model.ConnectionId = data.id;//$.connection.hub.id
 					amplify.publish('connected', data.id);
 				});
+			$.connection.hub.disconnected(function() {
+				track('SignalR error: disconnected');
+			});
+			$.connection.hub.reconnected(function() {
+				track('SignalR: reconnected');
+			});
 		});
 	</script>
 
