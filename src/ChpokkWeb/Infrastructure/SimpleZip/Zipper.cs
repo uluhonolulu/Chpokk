@@ -18,7 +18,12 @@ namespace ChpokkWeb.Infrastructure.SimpleZip {
 				foreach (ZipEntry zipEntry in zipFile) {
 					if (!zipEntry.IsDirectory) {
 						var fileName = repositoryPath.AppendPath(zipEntry.Name);
-						_fileSystem.WriteStreamToFile(fileName, zipFile.GetInputStream(zipEntry));
+						try {
+							_fileSystem.WriteStreamToFile(fileName, zipFile.GetInputStream(zipEntry));
+						}
+						catch (Exception e) {
+							throw new InvalidOperationException("Error saving " + zipEntry.Name + ": " + e.Message, e);
+						}
 					}
 				}
 			}
