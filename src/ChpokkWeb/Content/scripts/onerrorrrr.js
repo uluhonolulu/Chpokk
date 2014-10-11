@@ -20,18 +20,23 @@ $.continuations.bind('HttpError', function (continuation) {
 	}
 
 	if (message) danger(message);
-	track("SERVER ERROR: " + (message || "Unknown error"));
-	if (!message) {
-		try {
-			message = JSON.stringify(continuation);
-		} catch(e) {
-			message = "Error serializing error: " + JSON.stringify(e);
-		} 
-		track("More info: " + message);
-	}
 
-	$('.waitContainer').hide();
-	$('.modal').not('.stay').modal('hide'); //if a modal dialog doesn't have the "stay" class (like the signup dialog), hide it on error
+	var dontBother = continuation.request.url == '/customerdevelopment' && continuation.statusCode == 404;
+	if (!dontBother) {
+		track("SERVER ERROR: " + (message || "Unknown error"));
+		if (!message) {
+			try {
+				message = JSON.stringify(continuation);
+			} catch(e) {
+				message = "Error serializing error: " + JSON.stringify(e);
+			} 
+			track("More info: " + message);
+		}
+
+		$('.waitContainer').hide();
+		$('.modal').not('.stay').modal('hide'); //if a modal dialog doesn't have the "stay" class (like the signup dialog), hide it on error
+		
+	}
 });
 
 
