@@ -11,8 +11,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 		}
 
 		public static bool IsMember(this CommonSyntaxToken token) {
-			return token.Parent.AncestorsAndSelf().OfType<Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax>().Any() ||
-			       token.Parent.AncestorsAndSelf().OfType<Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax>().Any();
+			var nodes = token.Parent.AncestorsAndSelf().Take(2); //take only to to avoid false positives coming from parent nodes
+			return nodes.OfType<Roslyn.Compilers.CSharp.MemberAccessExpressionSyntax>().Any() ||
+			       nodes.OfType<Roslyn.Compilers.VisualBasic.MemberAccessExpressionSyntax>().Any();
 		}
 
 		public static bool IsCSharpModel(this ISemanticModel semanticModel) {

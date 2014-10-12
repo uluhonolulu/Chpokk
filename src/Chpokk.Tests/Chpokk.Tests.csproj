@@ -332,6 +332,7 @@
     <Compile Include="Intellisense\Roslynson\Cases\InAMember.cs" />
     <Compile Include="Intellisense\Roslynson\Cases\NamespaceDot.cs" />
     <Compile Include="Intellisense\Roslynson\Cases\StartedTypingAMember.cs" />
+    <Compile Include="Intellisense\Roslynson\Cases\StartedTypingAnArgument.cs" />
     <Compile Include="Intellisense\Roslynson\Cases\UsingNamespaceDot.cs" />
     <Compile Include="Intellisense\Roslynson\GettingBclReferences.cs" />
     <Compile Include="Intellisense\Roslynson\GettingCodeFileSources.cs" />

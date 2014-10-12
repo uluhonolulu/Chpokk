@@ -4,6 +4,7 @@ using System.Text;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using Roslyn.Compilers;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
@@ -13,7 +14,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 
 		[Test]
 		public void ShouldContainOnlyMembersOfTheClass() {
-			var symbols = GetSymbols();
+			var symbols = GetSymbols(LanguageNames.CSharp);
 			symbols.ShouldContain(item => item.Name == "WriteLine");
 			symbols.ShouldNotContain(item => item.Name == "class");
 			symbols.ShouldNotContain(item => item.Name == "System");

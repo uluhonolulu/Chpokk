@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MbUnit.Framework;
+using Roslyn.Compilers;
 using Roslyn.Compilers.CSharp;
 using Shouldly;
 
@@ -13,12 +14,12 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 
 		[Test]
 		public void CompletesNestedNamespace() {
-			GetSymbols().ShouldContain(item => item.Name == "Collections");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "Collections");
 		}
 
 		[Test]
 		public void CompletesClassName() {
-			GetSymbols().ShouldContain(item => item.Name == "String");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "String");
 		}
 	}
 }

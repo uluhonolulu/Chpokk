@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using MbUnit.Framework;
+using Roslyn.Compilers;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
@@ -10,7 +11,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 
 		[Test]
 		public void HasMemberNamesInIntellisenseData() {
-			var symbols = GetSymbols();
+			var symbols = GetSymbols(LanguageNames.CSharp);
 			symbols.Any(symbol => symbol.Name == "field1").ShouldBe(true);
 			symbols.Any(symbol => symbol.Name == "ClassA").ShouldBe(false);
 		}

@@ -4,6 +4,7 @@ using System.Text;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using Roslyn.Compilers;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
@@ -14,7 +15,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 
 		[Test]
 		public void CompletesNestedNamespace() {
-			GetSymbols().ShouldContain(item => item.Name == "Collections");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "Collections");
 		}
 
 	}

@@ -8,6 +8,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 		public IEnumerable<IntelOutputModel.IntelModelItem> GetSymbols(CommonSyntaxToken token, ISemanticModel semanticModel, int position) {
 			if (token.IsDot() || token.IsMember()) {
 				var masterNode = GetMasterNode(token); //the node before the dot
+				//TODO: masterNode can be PredefinedTypeSymbol
 				if (masterNode != null) {
 					var symbolInfo = semanticModel.GetSymbolInfo(masterNode);
 					var symbol = symbolInfo.Symbol as INamespaceOrTypeSymbol; //if the master node is a namespace or a class name

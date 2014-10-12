@@ -4,6 +4,7 @@ using System.Text;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
+using Roslyn.Compilers;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
@@ -13,28 +14,28 @@ namespace Chpokk.Tests.Intellisense.Roslynson.Cases {
 
 		[Test]
 		public void ShouldHaveClassNames() {
-			GetSymbols().ShouldContain(item => item.Name == "Console");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "Console");
 		}
 
 		[Test]
 		public void ShouldHaveNamespaceNames() {
-			GetSymbols().ShouldContain(item => item.Name == "System");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "System");
 		}
 
 		[Test]
 		public void ShouldHaveMemberNames() {
-			GetSymbols().ShouldContain(item => item.Name == "field1");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "field1");
 		}
 
 
 		[Test]
 		public void ShouldHaveParameterNames() {
-			GetSymbols().ShouldContain(item => item.Name == "param1");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "param1");
 		}
 
 		[Test]
 		public void ShouldHaveVariableNames() {
-			GetSymbols().ShouldContain(item => item.Name == "var1");
+			GetSymbols(LanguageNames.CSharp).ShouldContain(item => item.Name == "var1");
 		}
 	}
 }
