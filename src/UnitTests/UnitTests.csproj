@@ -82,6 +82,7 @@
       <HintPath>..\ChpokkWeb\bin\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Build" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -94,6 +95,9 @@
     <Reference Include="Rhino.Mocks">
       <HintPath>..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
     </Reference>
+    <Reference Include="Roslyn.Compilers, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Roslyn.Compilers.CSharp, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Roslyn.Compilers.VisualBasic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Shouldly">
       <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
     </Reference>
@@ -146,6 +150,20 @@
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
     <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roslynson\CallingIntelEndpoint.cs" />
+    <Compile Include="Roslynson\Cases\BaseCompletionTest.cs" />
+    <Compile Include="Roslynson\Cases\InAMember.cs" />
+    <Compile Include="Roslynson\Cases\NamespaceDot.cs" />
+    <Compile Include="Roslynson\Cases\OtherDotMember.cs" />
+    <Compile Include="Roslynson\Cases\StartedTypingAMember.cs" />
+    <Compile Include="Roslynson\Cases\StartedTypingAnArgument.cs" />
+    <Compile Include="Roslynson\Cases\ThisDotMember.cs" />
+    <Compile Include="Roslynson\Cases\UsingNamespaceDot.cs" />
+    <Compile Include="Roslynson\GettingBclReferences.cs" />
+    <Compile Include="Roslynson\GettingCodeFileSources.cs" />
+    <Compile Include="Roslynson\GettingLocalReferences.cs" />
+    <Compile Include="Roslynson\LoadingProjectData.cs" />
+    <Compile Include="Roslynson\SolutionWithProjectAndClassFileContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -157,6 +175,7 @@
       <Name>ChpokkWeb</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

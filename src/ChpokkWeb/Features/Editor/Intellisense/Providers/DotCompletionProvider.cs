@@ -9,6 +9,7 @@ namespace ChpokkWeb.Features.Editor.Intellisense.Providers {
 			if (token.IsDot() || token.IsMember()) {
 				var masterNode = GetMasterNode(token); //the node before the dot
 				//TODO: masterNode can be PredefinedTypeSymbol
+				//TODO: what if we have member of member, like smth.Length.?
 				if (masterNode != null) {
 					var symbolInfo = semanticModel.GetSymbolInfo(masterNode);
 					var symbol = symbolInfo.Symbol as INamespaceOrTypeSymbol; //if the master node is a namespace or a class name
