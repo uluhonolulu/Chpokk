@@ -29,7 +29,7 @@
 					amplify.publish('connected', data.id);
 				});
 			$.connection.hub.disconnected(function() {
-				track('SignalR error: disconnected');
+				track('SignalR: disconnected');
 			});
 			$.connection.hub.reconnected(function() {
 				track('SignalR: reconnected');
