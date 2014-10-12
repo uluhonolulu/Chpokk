@@ -521,6 +521,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Features\Authentication\sample.txt" />
     <Content Include="Features\CustomerDevelopment\TimeToPay\EndOfTrialEmailToUser.txt" />
+    <Content Include="Features\CustomerDevelopment\TrialSignup\WhyDidntYouBuy.txt" />
     <Content Include="Features\Home\NB.txt" />
     <Content Include="Features\Editor\_editor.spark">
       <SubType>Designer</SubType>
