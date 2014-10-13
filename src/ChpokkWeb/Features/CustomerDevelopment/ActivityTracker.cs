@@ -50,7 +50,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				}
 				if (_mailer.Host != null) {
 					var subject = GetSubject();
-					var body = messageBuilder.ToString();
+					var body = messageBuilder.ToString().Replace(@"\r\n", Environment.NewLine); // making the serialized values readable
 					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
 				}
 				_usageRecorder.AddUsage(UserName, messageBuilder.ToString(), GetDuration());
