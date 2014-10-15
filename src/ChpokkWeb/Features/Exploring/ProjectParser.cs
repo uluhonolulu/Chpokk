@@ -263,10 +263,10 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 		}
 
 		public string GetProjectLanguage(ProjectRootElement root) {
-			if (root.Imports.Any(element => element.Project.EndsWith("Microsoft.VisualBasic.targets"))) {
+			if (root.Imports.Any(element => element.Project.EndsWith("VisualBasic.targets"))) {
 				return "VBNet";
 			}
-			if (root.Imports.Any(element => element.Project.EndsWith("Microsoft.CSharp.targets"))) {
+			if (root.Imports.Any(element => element.Project.EndsWith("CSharp.targets"))) {
 				return "CSharp";
 			}
 			throw new InvalidProjectFileException("Can't determine language for " + GetProjectName(root));
