@@ -115,8 +115,11 @@ function rename(itemContainer) {
 	var data = $.extend({}, model, itemData, { NewFileName: itemContainer.text() + itemContainer.data("KeepExtension") });
 	$.post(url, data, function() {
 		//if we rename the currently selected item, let's rewrite the hash as well
-		var oldPath = itemData.PathRelativeToRepositoryRoot;
-		if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
+		//but we need to do it only after the solution browser is reloaded, or we'll have problems loading the file content
+		amplify.subscribe('solutionLoaded', function() {
+			var oldPath = itemData.PathRelativeToRepositoryRoot;
+			if (window.location.hash.substring(1) == oldPath) window.location.hash = oldPath.parentFolder() + '\\' + itemContainer.text();
+		});
 		//reload the solution explorer
 		loadSolutionExplorer();
 	});
@@ -130,8 +133,11 @@ function move(itemContainer, targetContainer) {
 	var data = $.extend({}, model, itemData, { NewFolder: newFolder });
 	$.post(url, data, function() {
 		//if we rename the currently selected item, let's rewrite the hash as well
-		var oldPath = itemData.PathRelativeToRepositoryRoot;
-		if (window.location.hash.substring(1) == oldPath) window.location.hash = newFolder + '\\' + oldPath.fileName();
+		//but we need to do it only after the solution browser is reloaded, or we'll have problems loading the file content
+		amplify.subscribe('solutionLoaded', function() {
+			var oldPath = itemData.PathRelativeToRepositoryRoot;
+			if (window.location.hash.substring(1) == oldPath) window.location.hash = newFolder + '\\' + oldPath.fileName();
+		});
 		//reload the solution explorer
 		loadSolutionExplorer();
 	});	
