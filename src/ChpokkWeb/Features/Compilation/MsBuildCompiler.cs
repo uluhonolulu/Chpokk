@@ -22,7 +22,7 @@ namespace ChpokkWeb.Features.Compilation {
 		public BuildResult Compile(string projectFilePath, ILogger logger) {
 			var customProperties = new Dictionary<string, string>()
 				{
-					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"Content\Targets") }
+					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"SystemFiles\Targets") }
 				};
 			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
 			//var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
