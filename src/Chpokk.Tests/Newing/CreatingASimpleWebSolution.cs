@@ -27,7 +27,7 @@ namespace Chpokk.Tests.Newing {
 		}
 
 		[Test]
-		public void ProjectShouldHaveAProgramItem() {
+		public void ProjectShouldHaveAWebconfigItem() {
 			var project = ProjectCollection.GlobalProjectCollection.LoadProject(ProjectPath);
 			project.GetItems("Content").Count.ShouldBe(1);
 			project.GetItems("Content").First().EvaluatedInclude.ShouldBe("Web.config");
@@ -41,7 +41,7 @@ namespace Chpokk.Tests.Newing {
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
-			endpoint.DoIt(new AddSimpleProjectInputModel { ProjectName = NAME, OutputType = "Web", Language = SupportedLanguage.CSharp, ConnectionId = "fake"});
+			endpoint.DoIt(new AddSimpleProjectInputModel { ProjectName = NAME, OutputType = "Web", Language = SupportedLanguage.CSharp});
 		}
 		private string ProjectPath {
 			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, NAME + ".csproj")); }

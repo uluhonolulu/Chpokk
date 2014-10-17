@@ -1562,8 +1562,8 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\EmptyMvcApplication.cshtml.csproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\EmptyMvcWebApplicationProjectTemplate.11.cshtml.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\Global.asax" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyWebApplicationProject40\WebApplication.csproj" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\WebApplication.csproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\Content\Site.Facebook.css" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\Facebook.Readme.txt" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\favicon.ico" />
@@ -7047,7 +7047,7 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\Views\EmptyWeb.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\Web.Debug.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\Web.Release.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyWebApplicationProject40\Web.config" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\Views\Home\Index.Facebook.cshtml" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\Views\Home\Permissions.cshtml" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\Views\Shared\Error.cshtml" />
@@ -9730,7 +9730,7 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\App_Start\WebApiConfig.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\EmptyGlobal.asax.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.cshtml\Properties\AssemblyInfo.cs" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\EmptyWebApplicationProject40\Properties\AssemblyInfo.cs" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Properties\AssemblyInfo.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\App_Start\BundleConfig.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\App_Start\FacebookConfig.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.cshtml\App_Start\FilterConfig.cs" />

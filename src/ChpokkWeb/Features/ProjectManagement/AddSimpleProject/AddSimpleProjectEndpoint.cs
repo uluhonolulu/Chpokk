@@ -10,20 +10,24 @@ using ChpokkWeb.Features.ProjectManagement.AddProject;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
+using FubuCore;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Project;
+using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 
 namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 	public class AddSimpleProjectEndpoint : AddProjectBase {
 		private readonly SolutionFileLoader _solutionFileLoader;
 		private readonly IUrlRegistry _registry;
+		private IFileSystem _fileSystem;
 
-		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry) : base(projectParser, repositoryManager, packageInstaller, logger) {
+		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry, IFileSystem fileSystem) : base(projectParser, repositoryManager, packageInstaller, logger) {
 			_solutionFileLoader = solutionFileLoader;
 			_registry = registry;
+			_fileSystem = fileSystem;
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
@@ -40,7 +44,23 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 			//create a project
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(projectName, Path.Combine(projectName, projectName + language.GetProjectExtension()));
-			var rootElement = _projectParser.CreateProject(outputType, language, projectPath, projectName);
+			ProjectRootElement rootElement;
+			if (outputType == "Web") {
+				// from template
+				var projectTemplatePath =
+					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\WebApplication.csproj";
+				var projectSource = _fileSystem.ReadStringFromFile(projectTemplatePath);
+				projectSource =
+					projectSource.Replace("$safeprojectname$", projectName)
+					             .Replace("$targetframeworkversion$", "4.5")
+					             .Replace("$guid1$", Guid.NewGuid().ToString());
+				_fileSystem.WriteStringToFile(projectPath, projectSource);
+				rootElement = ProjectRootElement.Open(projectPath);
+			}
+			else {
+				rootElement = _projectParser.CreateProject(outputType, language, projectPath, projectName);			
+			}
+
 
 			AddBclReferences(inputModel, rootElement);
 			AddPackages(inputModel, projectPath);

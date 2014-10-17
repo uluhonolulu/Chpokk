@@ -6,6 +6,7 @@ using System.Text;
 using Arractas;
 using ChpokkWeb;
 using ChpokkWeb.Features.Compilation;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
@@ -50,6 +51,7 @@ namespace Chpokk.Tests.Infrastructure {
 				expression.For<IActionBehavior>().Use<NulloBehavior>();
 				expression.For<IConsole>().Use<NuGet2Console>();
 				expression.For<ChpokkLogger>().Singleton().Use<TestableBuildLogger>();
+				expression.For<SignalRLogger>().Use<TestableNuGetLogger>();
 			});
 			//Console.WriteLine(container.WhatDoIHave() );
 			
