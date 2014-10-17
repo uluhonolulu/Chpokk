@@ -1,0 +1,28 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name Package="{2c0f61bf-3c36-468c-94b8-4021965749e7}" ID="113" />
+    <Description Package="{2c0f61bf-3c36-468c-94b8-4021965749e7}" ID="114" />
+    <Icon Package="{2c0f61bf-3c36-468c-94b8-4021965749e7}" ID="401" />
+    <SortOrder>30</SortOrder>
+    <TemplateID>Microsoft.CSharp.WFStateMachine</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+    <MaxFrameworkVersion>3.5</MaxFrameworkVersion>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>WFServiceLibrary</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="WFServiceLibrary.csproj" File="StateMachineWorkflowServiceLibrary.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="IWorkflow1.cs">IWorkflow1.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Workflow1.cs" OpenInEditor="true">Workflow1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Workflow1.Designer.cs">Workflow1.Designer.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

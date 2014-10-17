@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name _locID="$templateName$">Isolated Shell About Box package</Name>
+    <Description _locID="$templateDescription$">This template creates an about box package for the Isolated Shell application.</Description>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateID>VSShellTemplateAboutBox</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>AboutBoxPackage</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>true</Hidden>
+    <Icon>__TemplateIcon.ico</Icon>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.csproj" File="AboutBoxPackage.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.cs">AboutBoxPackage.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="VSPackage.resx">VSPackage.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PkgCmdID.cs">PkgCmdID.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Guids.cs">Guids.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="AboutBox.xaml">AboutBox.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="AboutBox.xaml.cs">AboutBox.xaml.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.vsct">AboutBoxPackage.vsct</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Key.snk">Key.snk</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="source.extension.vsixmanifest">source.extension.vsixmanifest</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VSSDK.TemplateWizard, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VSSDK.TemplateWizard.AboutBoxPackageProjectWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

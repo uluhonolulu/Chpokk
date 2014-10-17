@@ -1,0 +1,31 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name Package="{AAFFDC1E-A1C7-47bc-B3DC-9E685DF3959B}" ID="202" />
+    <Description Package="{AAFFDC1E-A1C7-47bc-B3DC-9E685DF3959B}" ID="203" />
+    <TemplateID>Microsoft.VisualBasic.ActivityDesignerLibrary</TemplateID>
+    <ProjectType>VisualBasic</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>700</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ActivityDesignerLibrary</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon Package="{b3bae735-386c-4030-8329-ef48eeda4036}" ID="4585" />
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ActivityDesignerLibrary.vbproj" File="ActivityDesignerLibrary.vbproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="ActivityDesigner1.xaml">ActivityDesigner1.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ActivityDesigner1.xaml.vb">ActivityDesigner1.xaml.vb</ProjectItem>
+      <Folder Name="My Project" TargetFolderName="My Project">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.vb">Resources.Designer.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

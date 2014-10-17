@@ -1,0 +1,34 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+    <TemplateData>
+        <Name Package="{1F372076-D9CE-432D-BC4F-ABFF39671C5C}" ID="21202"/>
+        <Description Package="{1F372076-D9CE-432D-BC4F-ABFF39671C5C}" ID="21203"/>
+        <Icon Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="531"/>
+        <ProjectType>CSharp</ProjectType>
+        <ProjectSubType>
+        </ProjectSubType>
+        <SortOrder>1000</SortOrder>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvcApplicationTest</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LocationField>Enabled</LocationField>
+        <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+        <Hidden>true</Hidden>
+        <TemplateID>MvcWebApplicationTestProjectTemplate.cs.vstemplate.v301</TemplateID>
+    </TemplateData>
+    <TemplateContent>
+        <CustomParameters>
+            <CustomParameter Name="$MVCReferences$" Value="System.Web.Mvc.dll"/>
+        </CustomParameters>
+        <Project File="MvcApplicationTest.csproj" ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
+            <Folder Name="Controllers" TargetFolderName="Controllers">
+                <ProjectItem ReplaceParameters="true" TargetFileName="HomeControllerTest.cs">HomeControllerTest.cs</ProjectItem>
+            </Folder>
+            <Folder Name="Properties" TargetFolderName="Properties">
+                <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+            </Folder>
+        </Project>
+    </TemplateContent>
+</VSTemplate>

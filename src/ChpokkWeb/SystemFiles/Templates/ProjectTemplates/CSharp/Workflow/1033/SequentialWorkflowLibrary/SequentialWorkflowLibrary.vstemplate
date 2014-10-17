@@ -1,0 +1,26 @@
+﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="145" />
+    <Description Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="146" />
+    <Icon Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="130" />
+    <ProjectType>CSharp</ProjectType>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>WorkflowLibrary</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <RequiredFrameworkVersion>3.0</RequiredFrameworkVersion>
+    <MaxFrameworkVersion>3.5</MaxFrameworkVersion>
+    <TemplateID>Microsoft.CSharp.Workflow.SequentialWorkflowLibrary</TemplateID>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="SequentialWorkflowLibrary.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.cs">Settings.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">Workflow1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Workflow1.designer.cs</ProjectItem>
+    </Project>
+    <CustomParameters>
+      <CustomParameter Name = "$SafeClassName$" Value="Workflow1" />
+    </CustomParameters>
+  </TemplateContent>
+</VSTemplate>

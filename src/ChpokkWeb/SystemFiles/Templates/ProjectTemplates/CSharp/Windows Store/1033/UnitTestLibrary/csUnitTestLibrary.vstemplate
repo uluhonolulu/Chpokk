@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="514" />
+    <Description Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="515" />
+    <Icon Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="4005" />
+    <TemplateID>Microsoft.CS.WinRT.UnitTestLibrary</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>49</SortOrder>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>UnitTestLibrary</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <CreateInPlace>true</CreateInPlace>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+        <CustomParameter Name="$MSTestExecutorName$" Value="MSTestExecutor"/>
+    </CustomParameters>
+
+    <Project File="UnitTestLibrary.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">UnitTest1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.appxmanifest</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestLogo.png">UnitTestLogo.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestSmallLogo.png">UnitTestSmallLogo.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestSplashScreen.png">UnitTestSplashScreen.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Images\UnitTestStoreLogo.png">UnitTestStoreLogo.png</ProjectItem>
+      
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$_TemporaryKey.pfx">Application_TemporaryKey.pfx</ProjectItem>
+    </Project>    
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.CreateProjectCertificate.Wizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

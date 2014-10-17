@@ -1,0 +1,50 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name Package="{CB22EE0E-4072-4ae7-96E2-90FCCF879544}" ID="1021" />
+    <Description Package="{CB22EE0E-4072-4ae7-96E2-90FCCF879544}" ID="1022" />
+    <Icon Package="{CB22EE0E-4072-4ae7-96E2-90FCCF879544}" ID="9007" />
+    <ProjectType>CSharp</ProjectType>
+    <TemplateGroupID>Silverlight</TemplateGroupID>
+    <TemplateID>Microsoft.Silverlight.CSharp.AppProject</TemplateID>
+    <SortOrder>44</SortOrder>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>SilverlightApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="SLNavApplication.csproj" ReplaceParameters="true">
+      <ProjectItem OpenInEditor="false" ReplaceParameters="true">MainPage.xaml</ProjectItem>
+      <ProjectItem OpenInEditor="false" ReplaceParameters="true">MainPage.xaml.cs</ProjectItem>
+      <ProjectItem OpenInEditor="false" ReplaceParameters="true">App.xaml</ProjectItem>
+      <ProjectItem OpenInEditor="false" ReplaceParameters="true">App.xaml.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem OpenInEditor="false" ReplaceParameters="false">AppManifest.xml</ProjectItem>
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Assets" TargetFolderName="Assets">
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">Styles.xaml</ProjectItem>
+      </Folder>
+      <Folder Name="Views" TargetFolderName="Views">
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">About.xaml</ProjectItem>
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">About.xaml.cs</ProjectItem>
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">ErrorWindow.xaml</ProjectItem>
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">ErrorWindow.xaml.cs</ProjectItem>
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">Home.xaml</ProjectItem>
+        <ProjectItem OpenInEditor="false" ReplaceParameters="true">Home.xaml.cs</ProjectItem>
+      </Folder>
+    </Project>
+    <CustomParameters>
+      <CustomParameter Name="SLPageToOpen" Value="MainPage.xaml" />
+      <CustomParameter Name="MinSilverlightVersion" Value="3.0" />
+    </CustomParameters>
+  </TemplateContent>
+
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.Silverlight, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.Silverlight.SilverlightProjectTemplateWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

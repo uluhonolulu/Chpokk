@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="502" />
+    <Description Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="503"/>
+    <Icon Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="531"/>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>100</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <DefaultName>CodedUITestProject</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <TemplateGroupID>TestProject-V1</TemplateGroupID>
+    <TemplateID>TestProject-V1-DefaultProject-CS</TemplateID>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="TestProject.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.QualityTools.Wizard.TestProjectWizards, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.TestTools.TestProjectWizards.TestProjectWizardExtension</FullClassName>
+  </WizardExtension>
+  <WizardData Name="TestItemTemplateId">TestProject-V1-CodedUITest</WizardData>
+</VSTemplate>

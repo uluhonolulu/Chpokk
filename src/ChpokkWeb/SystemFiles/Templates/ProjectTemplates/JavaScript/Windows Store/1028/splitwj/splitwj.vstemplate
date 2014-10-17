@@ -1,0 +1,47 @@
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name _locID="JSP_Project_SplitName">分割應用程式</Name>
+    <Description _locID="JSP_Project_SplitDesc">在群組項目之間巡覽之 Windows 市集應用程式的兩個頁面專案。第一個頁面可選擇群組，第二個頁面則會顯示項目清單以及選取項目的詳細資料。</Description>
+    <Icon>splitwj.ico</Icon>
+    <ProjectType>JavaScript</ProjectType>
+    <BlendProjectSubType>WJApplication</BlendProjectSubType>
+    <TemplateID>Microsoft.JavaScript.SplitWJ</TemplateID>
+    <BlendTemplateID>Microsoft.Blend.SplitWWA</BlendTemplateID>
+    <BlendTemplateGroupID>HTML (Windows Store)</BlendTemplateGroupID>
+    <SortOrder>30</SortOrder>
+    <CreateNewFolder>false</CreateNewFolder>
+    <BlendCreateNewFolder>true</BlendCreateNewFolder>
+    <DefaultName>App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <PreviewImage>splitwj.png</PreviewImage>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="Application.jsproj" ReplaceParameters="true">
+      <ProjectItem TargetFileName="js\default.js" ReplaceParameters="true" OpenInEditor="true" BlendOpenInEditor="false">default.js</ProjectItem>
+      <ProjectItem TargetFileName="default.html" ReplaceParameters="true" BlendOpenInEditor="true">default.html</ProjectItem>
+      <ProjectItem TargetFileName="package.appxmanifest" ReplaceParameters="true">package.appxmanifest</ProjectItem>
+      <ProjectItem TargetFileName="pages\items\items.css" ReplaceParameters="true">itemsPage.css</ProjectItem>
+      <ProjectItem TargetFileName="css\default.css" ReplaceParameters="true">default.css</ProjectItem>
+      <ProjectItem TargetFileName="pages\split\split.css" ReplaceParameters="true">splitPage.css</ProjectItem>
+      <ProjectItem TargetFileName="pages\items\items.html" ReplaceParameters="true">itemsPage.html</ProjectItem>
+      <ProjectItem TargetFileName="pages\split\split.html" ReplaceParameters="true">splitPage.html</ProjectItem>
+      <ProjectItem TargetFileName="images\logo.png">logo@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="images\smalllogo.png">smalllogo@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="images\splashscreen.png">splashscreen@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="images\storelogo.png">storelogo@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="pages\items\items.js" ReplaceParameters="true">itemsPage.js</ProjectItem>
+      <ProjectItem TargetFileName="js\navigator.js" ReplaceParameters="true">navigator.js</ProjectItem>
+      <ProjectItem TargetFileName="js\data.js">data.js</ProjectItem>
+      <ProjectItem TargetFileName="pages\split\split.js" ReplaceParameters="true">splitPage.js</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$_TemporaryKey.pfx" BlendDoNotCreate="true">Application_TemporaryKey.pfx</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.CreateProjectCertificate.Wizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

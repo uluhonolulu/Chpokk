@@ -1,0 +1,34 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name _locID="$templateName$">Editor Classifier</Name>
+    <TemplateID>CSharp.Classifier</TemplateID>
+    <Description _locID="$templateDescription$">This template gets you started with creating your own syntax highlighting using an editor classifier. It also includes classifier type and classification format exports that allow you to define your own text properties for your syntax coloring.</Description>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>EditorClassifier</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>Classifier_small.png</Icon>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.csproj" File="EditorClassifier.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$Format.cs">ClassificationFormat.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$Type.cs">ClassificationType.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.cs" OpenInEditor="true">Classifier.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="source.extension.vsixmanifest">source.extension.vsixmanifest</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+    </Project>
+    <CustomParameters>
+      <CustomParameter _locID="$description$" Name="$description$" Value="This is a sample classifier extension to the Visual Studio Editor." />
+    </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VSSDK.TemplateWizard, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VSSDK.TemplateWizard.MEFExtensionWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

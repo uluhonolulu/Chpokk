@@ -1,0 +1,37 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
+    <TemplateData>
+        <Name Package="{1F372076-D9CE-432D-BC4F-ABFF39671C5C}" ID="21208"/>
+        <Description Package="{1F372076-D9CE-432D-BC4F-ABFF39671C5C}" ID="21209"/>
+        <Icon Package="{349c5850-65df-11da-9384-00065b846f21}" ID="9002" />
+        <ProjectType>VisualBasic</ProjectType>
+        <ProjectSubType>Web</ProjectSubType>
+        <TemplateGroupID>Web</TemplateGroupID>
+        <TemplateID>Microsoft.WAP.VisualBasic.MVCWebApplication.v301</TemplateID>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+        <SortOrder>41</SortOrder>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvcApplication</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LocationField>Enabled</LocationField>
+        <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectCollection />
+        <CustomParameters>
+            <CustomParameter Name="$language$" Value="VB" />
+            <CustomParameter Name="$languageext$" Value="vb" />
+            <CustomParameter Name="$autoeventwireup$" Value="false" />
+            <CustomParameter Name="$globalclassname$" Value="MvcApplication" />
+            <CustomParameter Name="$sitemasterclassname$" Value="Site" />
+            <CustomParameter Name="$indexerleft$" Value="(" />
+            <CustomParameter Name="$indexerright$" Value=")" />
+            <CustomParameter Name="$MVCReferences$" Value="System.Web.Mvc.dll"/>
+        </CustomParameters>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>Microsoft.VisualStudio.Web.Mvc.3.01, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
+        <FullClassName>Microsoft.VisualStudio.Web.Mvc.UserInterface.MvcTemplateWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>

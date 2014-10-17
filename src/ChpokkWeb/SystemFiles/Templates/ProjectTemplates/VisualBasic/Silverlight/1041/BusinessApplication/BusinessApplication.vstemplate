@@ -1,0 +1,85 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+    <TemplateData>
+        <Name Package="{cf249cd4-01b1-4533-8c65-2b1bb6dfa72b}" ID="2302"/>
+        <Description Package="{cf249cd4-01b1-4533-8c65-2b1bb6dfa72b}" ID="2303"/>
+        <Icon>VBBusinessApplication.ico</Icon>
+        <ProjectType>VisualBasic</ProjectType>
+        <TemplateGroupID>Silverlight</TemplateGroupID>
+        <TemplateID>Microsoft.Silverlight.VisualBasic.BusinessApplication</TemplateID>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+        <SortOrder>44</SortOrder>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>BusinessApplication</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+        <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    </TemplateData>
+    <TemplateContent>
+        <Project TargetFileName="$safeprojectname$.vbproj" File="BusinessApplication.vbproj" ReplaceParameters="true">
+            <Folder Name="My Project" TargetFolderName="My Project">
+                <ProjectItem ReplaceParameters="true" TargetFileName="AppManifest.xml">AppManifest.xml</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="OutOfBrowserSettings.xml">OutOfBrowserSettings.xml</ProjectItem>
+            </Folder>
+            <Folder Name="Assets" TargetFolderName="Assets">
+                <Folder Name="Resources" TargetFolderName="Resources">
+                    <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationResources.vb">ApplicationResources.vb</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationStrings.resx">ApplicationStrings.resx</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationStrings.Designer.vb">ApplicationStrings.Designer.vb</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="ErrorResources.resx">ErrorResources.resx</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="ErrorResources.Designer.vb">ErrorResources.Designer.vb</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="SecurityQuestions.resx">SecurityQuestions.resx</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="SecurityQuestions.Designer.vb">SecurityQuestions.Designer.vb</ProjectItem>
+                </Folder>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Styles.xaml">Styles.xaml</ProjectItem>
+            </Folder>
+            <Folder Name="Models" TargetFolderName="Models">
+                <ProjectItem ReplaceParameters="true" TargetFileName="RegistrationData.partial.vb">RegistrationData.partial.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="User.partial.vb">User.partial.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="LoginInfo.vb">LoginInfo.vb</ProjectItem>
+            </Folder>
+            <Folder Name="Controls" TargetFolderName="Controls">
+                <ProjectItem ReplaceParameters="true" TargetFileName="VisualStates.vb">VisualStates.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="BusyIndicator.vb">BusyIndicator.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="BusyIndicator.xaml">BusyIndicator.xaml</ProjectItem>
+            </Folder>
+            <Folder Name="Helpers" TargetFolderName="Helpers">
+                <ProjectItem ReplaceParameters="true" TargetFileName="DataFieldExtensions.vb">DataFieldExtensions.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="NotOperatorValueConverter.vb">NotOperatorValueConverter.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="TargetNullValueConverter.vb">TargetNullValueConverter.vb</ProjectItem>
+            </Folder>
+            <Folder Name="Libs" TargetFolderName="Libs">
+                <ProjectItem ReplaceParameters="false" TargetFileName="System.Windows.Controls.Data.DataForm.Toolkit.dll">System.Windows.Controls.Data.DataForm.Toolkit.dll</ProjectItem>
+            </Folder>
+            <Folder Name="Views" TargetFolderName="Views">
+                <Folder Name="Login" TargetFolderName="Login">
+                    <ProjectItem ReplaceParameters="true" TargetFileName="LoginStatus.xaml">LoginStatus.xaml</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="LoginStatus.xaml.vb">LoginStatus.xaml.vb</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.xaml">LoginForm.xaml</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.xaml.vb">LoginForm.xaml.vb</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="LoginRegistrationWindow.xaml">LoginRegistrationWindow.xaml</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="LoginRegistrationWindow.xaml.vb">LoginRegistrationWindow.xaml.vb</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="RegistrationForm.xaml">RegistrationForm.xaml</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="RegistrationForm.xaml.vb">RegistrationForm.xaml.vb</ProjectItem>
+                </Folder>
+                <ProjectItem ReplaceParameters="true" TargetFileName="About.xaml">About.xaml</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="About.xaml.vb">About.xaml.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="ErrorWindow.xaml">ErrorWindow.xaml</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="ErrorWindow.xaml.vb">ErrorWindow.xaml.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Home.xaml">Home.xaml</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Home.xaml.vb">Home.xaml.vb</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.vb">App.xaml.vb</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="MainPage.xaml.vb">MainPage.xaml.vb</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="GlobalSuppressions.vb">GlobalSuppressions.vb</ProjectItem>
+        </Project>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>Microsoft.VisualStudio.ServiceModel.DomainServices.Tools.11.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null</Assembly>
+        <FullClassName>Microsoft.VisualStudio.ServiceModel.DomainServices.Tools.BusinessApplicationProjectTemplateWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>

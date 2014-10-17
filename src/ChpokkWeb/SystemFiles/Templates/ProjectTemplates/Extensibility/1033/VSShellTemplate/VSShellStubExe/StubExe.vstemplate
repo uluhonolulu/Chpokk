@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name _locID="$templateName$">Visual Studio Shell Stub Program</Name>
+    <Description _locID="$templateDescription$">Project</Description>
+    <ProjectType>VisualC</ProjectType>
+    <TemplateID>VSShellTemplateStubExe</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>AppEnvStub</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+    <Hidden>true</Hidden>
+    <CreateInPlace>false</CreateInPlace>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.vcxproj" File="StubProgram.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.vcxproj.filters">StubProgram.vcxproj.filters</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Resource.h">Resource.h</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="stdafx.h">stdafx.h</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.h">StubProgram.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="small.ico">small.ico</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="ApplicationIcon.ico">StubProgram.ico</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.rc">StubProgram.rc</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="stdafx.cpp">stdafx.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.cpp">StubProgram.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Splash.bmp">Splash.bmp</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.pkgdef">Stub.pkgdef</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.Application.pkgdef">Stub.Application.pkgdef</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.pkgundef">Stub.pkgundef</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.exe.config">stub.exe.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.winprf">Stub.winprf</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.exe.Manifest">StubProgram.exe.Manifest</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="General.vssettings">General.vssettings</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="DebuggerProxy.dll">DebuggerProxy.dll</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="DebuggerProxy.dll.manifest">DebuggerProxy.dll.manifest</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.reg">Stub.reg</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="VsSDK.props">VsSDK.props</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="ShellSection.cpp">ShellSection.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="ShellSection.h">ShellSection.h</ProjectItem>
+      <Folder Name="Documentation">
+        <ProjectItem ReplaceParameters="true" OpenInWebBrowser="true">ReadMe.htm</ProjectItem>
+        <Folder Name="Images">
+          <ProjectItem ReplaceParameters="false">AppEnv.jpg</ProjectItem>
+        </Folder>
+      </Folder>
+    </Project>
+    <CustomParameters>
+      <CustomParameter _locID="$DescriptionPrompt$" Name="$DescriptionPrompt$" Value="Your application description here." />
+    </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VSSDK.TemplateWizard, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VSSDK.TemplateWizard.IsolatedShellExeProjectWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

@@ -1,0 +1,31 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
+    <TemplateData>
+        <Name Package="{141DA93E-88A7-45D5-B15B-89117F514D64}" ID="21208"/>
+        <Description Package="{141DA93E-88A7-45D5-B15B-89117F514D64}" ID="21209"/>
+        <Icon Package="{349c5850-65df-11da-9384-00065b846f21}" ID="9002" />
+        <ProjectType>VisualBasic</ProjectType>
+        <ProjectSubType>Web</ProjectSubType>
+        <TemplateGroupID>Web</TemplateGroupID>
+        <TemplateID>Microsoft.WAP.VisualBasic.MVCWebApplication.v4</TemplateID>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+        <SortOrder>41</SortOrder>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvcApplication</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LocationField>Enabled</LocationField>
+        <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectCollection />
+        <CustomParameters>
+            <CustomParameter Name="$language$" Value="VB" />
+            <CustomParameter Name="$MVCReferences$" Value="System.Web.Mvc.dll"/>
+        </CustomParameters>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>Microsoft.VisualStudio.Web.Mvc.4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
+        <FullClassName>Microsoft.VisualStudio.Web.Mvc.UserInterface.MvcTemplateWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>

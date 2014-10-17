@@ -1,0 +1,27 @@
+﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name _locID="$templateName$">Visual Studio Shell Isolated</Name>
+    <Description _locID="$templateDescription$">Create a new Visual Studio Shell Isolated IDE</Description>
+    <ProjectType>Extensibility</ProjectType>
+    <TemplateID>VSShellTemplate</TemplateID>
+    <DefaultName>VSShellStub</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>VSShellTemplate.ico</Icon>
+    <CreateInPlace>false</CreateInPlace>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <ProjectTemplateLink ProjectName="$projectname$">VSShellStubExe\StubExe.vstemplate</ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$projectname$UI">VSShellStubExeUI\StubUI.vstemplate</ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="$shellname$.AboutBoxPackage">AboutBoxPackage\AboutBoxPackage.vstemplate</ProjectTemplateLink>
+      <ProjectTemplateLink ProjectName="ShellExtensionsVSIX">ShellExtensionsVSIX\ShellExtensionsVSIX.vstemplate</ProjectTemplateLink>
+    </ProjectCollection>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VSSDK.TemplateWizard, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VSSDK.TemplateWizard.IsolatedShellWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

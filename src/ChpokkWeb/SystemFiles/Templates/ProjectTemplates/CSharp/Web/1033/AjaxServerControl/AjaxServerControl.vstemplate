@@ -1,0 +1,21 @@
+﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{39c9c826-8ef8-4079-8c95-428f5b1c323f}" ID="3363" />
+    <Description Package="{39c9c826-8ef8-4079-8c95-428f5b1c323f}" ID="3364"/>
+    <Icon Package="{39c9c826-8ef8-4079-8c95-428f5b1c323f}" ID="4731"/>
+    <TemplateID>Microsoft.CSharp.Web.AjaxServerControl</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>AjaxServerControl</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="AjaxServerControl.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">ServerControl1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">ClientControl1.js</ProjectItem>
+      <ProjectItem ReplaceParameters="true">ClientControl1.resx</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

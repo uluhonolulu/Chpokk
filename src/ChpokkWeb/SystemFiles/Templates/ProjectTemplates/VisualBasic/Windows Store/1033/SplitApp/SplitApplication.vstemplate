@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1034" />
+    <Description Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1035" />
+    <Icon Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="4021" />
+    <TemplateID>Microsoft.VB.WinRT.SplitApplication</TemplateID>
+    <TemplateGroupID>WinRT-Managed</TemplateGroupID>
+    <ProjectType>VisualBasic</ProjectType>
+    <SortOrder>42</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <PreviewImage>SplitApp.png</PreviewImage>
+    <CreateInPlace>true</CreateInPlace>
+    <BuildProjectOnLoad>true</BuildProjectOnLoad>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="Application.vbproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true" BlendOpenInEditor="false" TargetFileName="App.xaml.vb">App.xaml.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" BlendOpenInEditor="true" TargetFileName="ItemsPage.xaml">ItemsPage.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ItemsPage.xaml.vb">ItemsPage.xaml.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="SplitPage.xaml">SplitPage.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="SplitPage.xaml.vb">SplitPage.xaml.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Package.appxmanifest">Package-managed.appxmanifest</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DataModel\SampleDataSource.vb">SampleDataSource.vb</ProjectItem>
+
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\LightGray.png">LightGray.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\MediumGray.png">MediumGray.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\DarkGray.png">DarkGray.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\Logo.png">Logo.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\SmallLogo.png">SmallLogo.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\SplashScreen.png">SplashScreen.png</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Assets\StoreLogo.png">StoreLogo.png</ProjectItem>
+
+      <ProjectItem ReplaceParameters="false" TargetFileName="Common\ReadMe.txt">ReadMe.txt</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Common\StandardStyles.xaml">StandardStyles.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Common\BindableBase.vb">BindableBase.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Common\BooleanToVisibilityConverter.vb">BooleanToVisibilityConverter.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Common\BooleanNegationConverter.vb">BooleanNegationConverter.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Common\LayoutAwarePage.vb">LayoutAwarePage.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Common\RichTextColumns.vb">RichTextColumns.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Common\SuspensionManager.vb">SuspensionManager.vb</ProjectItem>
+
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$_TemporaryKey.pfx" BlendDoNotCreate="true">Application_TemporaryKey.pfx</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.CreateProjectCertificate.Wizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

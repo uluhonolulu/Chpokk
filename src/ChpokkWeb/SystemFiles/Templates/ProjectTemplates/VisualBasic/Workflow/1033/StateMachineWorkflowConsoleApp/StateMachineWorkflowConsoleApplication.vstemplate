@@ -1,0 +1,27 @@
+﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="151" />
+    <Description Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="152" />
+    <Icon Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="142" />
+    <ProjectType>VisualBasic</ProjectType>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>WorkflowConsoleApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <RequiredFrameworkVersion>3.0</RequiredFrameworkVersion>
+    <MaxFrameworkVersion>3.5</MaxFrameworkVersion>
+    <TemplateID>MS.VisualBasic.WF.StateMachineWorkflowConsoleApplication</TemplateID>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="StateMachineWorkflowConsoleApplication.vbproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true" OpenOrder="10">Workflow1.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Workflow1.designer.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Module1.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="My Project\MySettings.settings">MySettings.settings</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\MySettings.vb">MySettings.vb</ProjectItem>
+    </Project>
+    <CustomParameters>
+      <CustomParameter Name = "$SafeClassName$" Value="Workflow1" />
+    </CustomParameters>
+  </TemplateContent>
+</VSTemplate>

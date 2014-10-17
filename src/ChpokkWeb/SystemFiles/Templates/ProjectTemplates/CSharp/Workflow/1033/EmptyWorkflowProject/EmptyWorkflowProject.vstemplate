@@ -1,0 +1,21 @@
+﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="38" />
+    <Description Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="39" />
+    <Icon Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="130" />
+    <ProjectType>CSharp</ProjectType>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>WorkflowProject</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <RequiredFrameworkVersion>3.0</RequiredFrameworkVersion>
+    <MaxFrameworkVersion>3.5</MaxFrameworkVersion>
+    <TemplateID>Microsoft.CSharp.Workflow.EmptyWorkflowProject</TemplateID>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="EmptyWorkflowProject.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.cs">Settings.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

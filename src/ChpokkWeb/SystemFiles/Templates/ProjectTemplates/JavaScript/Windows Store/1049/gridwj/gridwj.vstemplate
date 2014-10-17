@@ -1,0 +1,50 @@
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name _locID="JSP_Project_GridName">Приложение таблицы</Name>
+    <Description _locID="JSP_Project_GridDesc">Трехстраничный проект приложения для Магазина Windows, которое осуществляет переходы между группами элементов, расположенных в сетке. Сведения о группах и элементах отображаются на выделенных страницах.</Description>
+    <Icon>gridwj.ico</Icon>
+    <ProjectType>JavaScript</ProjectType>
+    <BlendProjectSubType>WJApplication</BlendProjectSubType>
+    <TemplateID>Microsoft.JavaScript.GridWJ</TemplateID>
+    <BlendTemplateID>Microsoft.Blend.GridWWA</BlendTemplateID>
+    <BlendTemplateGroupID>HTML (Windows Store)</BlendTemplateGroupID>
+    <SortOrder>20</SortOrder>
+    <CreateNewFolder>false</CreateNewFolder>
+    <BlendCreateNewFolder>true</BlendCreateNewFolder>
+    <DefaultName>App</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <TargetPlatformName>Windows</TargetPlatformName>
+    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <PreviewImage>gridwj.png</PreviewImage>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="Application.jsproj" ReplaceParameters="true">
+      <ProjectItem TargetFileName="js\default.js" ReplaceParameters="true" OpenInEditor="true" BlendOpenInEditor="false">default.js</ProjectItem>
+      <ProjectItem TargetFileName="default.html" ReplaceParameters="true" BlendOpenInEditor="true">default.html</ProjectItem>
+      <ProjectItem TargetFileName="package.appxmanifest" ReplaceParameters="true">package.appxmanifest</ProjectItem>
+      <ProjectItem TargetFileName="pages\groupDetail\groupDetail.css" ReplaceParameters="true">groupDetailPage.css</ProjectItem>
+      <ProjectItem TargetFileName="css\default.css" ReplaceParameters="true">default.css</ProjectItem>
+      <ProjectItem TargetFileName="pages\itemDetail\itemDetail.css" ReplaceParameters="true">itemDetailPage.css</ProjectItem>
+      <ProjectItem TargetFileName="pages\groupedItems\groupedItems.css" ReplaceParameters="true">groupedItemsPage.css</ProjectItem>
+      <ProjectItem TargetFileName="pages\groupDetail\groupDetail.html" ReplaceParameters="true">groupDetailPage.html</ProjectItem>
+      <ProjectItem TargetFileName="pages\itemDetail\itemDetail.html" ReplaceParameters="true">itemDetailPage.html</ProjectItem>
+      <ProjectItem TargetFileName="pages\groupedItems\groupedItems.html" ReplaceParameters="true">groupedItemsPage.html</ProjectItem>
+      <ProjectItem TargetFileName="images\logo.png">logo@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="images\smalllogo.png">smalllogo@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="images\splashscreen.png">splashscreen@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="images\storelogo.png">storelogo@scale-1x.png</ProjectItem>
+      <ProjectItem TargetFileName="pages\groupDetail\groupDetail.js" ReplaceParameters="true">groupDetailPage.js</ProjectItem>
+      <ProjectItem TargetFileName="pages\groupedItems\groupedItems.js" ReplaceParameters="true">groupedItemsPage.js</ProjectItem>
+      <ProjectItem TargetFileName="js\navigator.js" ReplaceParameters="true">navigator.js</ProjectItem>
+      <ProjectItem TargetFileName="js\data.js">data.js</ProjectItem>
+      <ProjectItem TargetFileName="pages\itemDetail\itemDetail.js" ReplaceParameters="true">itemDetailPage.js</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$_TemporaryKey.pfx" BlendDoNotCreate="true">Application_TemporaryKey.pfx</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.WinRT.TemplateWizards, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.WinRT.TemplateWizards.CreateProjectCertificate.Wizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

@@ -1,0 +1,40 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name _locID="$templateName$">WPF Toolbox Control</Name>
+    <TemplateID>VisualBasic.WPF.ToolboxControl</TemplateID>
+    <Description _locID="$templateDescription$">Creates a project to build and package a WPF Toolbox Control.</Description>
+    <ProjectType>VisualBasic</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ToolboxControl</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>ToolboxControl.ico</Icon>
+    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ToolboxControl.vbproj" File="ToolboxControl.vbproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="source.extension.vsixmanifest">source.extension.vsixmanifest</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ToolboxControl.xaml" OpenInEditor="true">ToolboxControl.xaml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ToolboxControl.xaml.vb">ToolboxControl.xaml.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="ProvideToolboxControlAttribute.vb">ProvideToolboxControlAttribute.vb</ProjectItem>
+      <Folder Name="My Project" TargetFolderName="My Project">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.vb">Resources.Designer.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
+      </Folder>
+    </Project>
+    <CustomParameters>
+      <CustomParameter _locID="$description$" Name="$description$" Value="WPF Toolbox Control" />
+      <CustomParameter _locID="$clickHere$" Name="$ClickHere$" Value="Click Here !" />
+      <CustomParameter _locID="$message$" Name="$message$" Value="We are inside {0}.button1_Click()" />
+    </CustomParameters>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VSSDK.TemplateWizard, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VSSDK.TemplateWizard.MEFExtensionWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

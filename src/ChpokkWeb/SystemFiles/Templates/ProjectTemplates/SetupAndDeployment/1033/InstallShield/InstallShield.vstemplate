@@ -1,0 +1,25 @@
+﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{dfe21000-2a85-444f-8c75-f28376aa1c0f}" ID="300" />
+    <Description Package="{dfe21000-2a85-444f-8c75-f28376aa1c0f}" ID="301" />
+    <ProjectType>SetupAndDeployment</ProjectType>
+    <DefaultName>Setup</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <EnableEditOfLocationField>false</EnableEditOfLocationField>
+    <EnableLocationBrowseButton>false</EnableLocationBrowseButton>
+    <Icon>InstallShield.ico</Icon>
+    <CreateInPlace>false</CreateInPlace>
+    <CreateNewFolder>false</CreateNewFolder>
+    <TemplateID>InstallShieldProject-V1-InstallShield</TemplateID>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+      <CustomParameter Name="htmlRelPath" Value="Extensions\InstallShield\InstallShieldProject\$LCID$\InstallShield_$SKU$.html" />
+    </CustomParameters>
+  </TemplateContent>
+
+  <WizardExtension> 
+    <Assembly>Microsoft.VisualStudio.VsipSupport.PlaceholderProject, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly> 
+    <FullClassName>Microsoft.VisualStudio.VsipSupport.WizardExtension</FullClassName> 
+  </WizardExtension>
+</VSTemplate>

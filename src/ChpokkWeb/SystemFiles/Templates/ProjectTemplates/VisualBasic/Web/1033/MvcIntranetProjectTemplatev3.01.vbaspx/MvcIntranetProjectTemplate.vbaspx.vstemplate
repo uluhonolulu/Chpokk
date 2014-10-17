@@ -1,0 +1,100 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+    <TemplateData>
+        <Name Package="{1F372076-D9CE-432D-BC4F-ABFF39671C5C}" ID="21210"/>
+        <Description Package="{1F372076-D9CE-432D-BC4F-ABFF39671C5C}" ID="21211"/>
+        <Icon Package="{349c5850-65df-11da-9384-00065b846f21}" ID="9002" />
+        <ProjectType>VisualBasic</ProjectType>
+        <ProjectSubType>Web</ProjectSubType>
+        <TemplateGroupID>Web</TemplateGroupID>
+        <TemplateID>Microsoft.WAP.VisualBasicAspx.MVCIntranetApplication.v301</TemplateID>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+        <SortOrder>41</SortOrder>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvcIntranetApplication</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LocationField>Enabled</LocationField>
+        <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+        <Hidden>true</Hidden>
+    </TemplateData>
+    <TemplateContent>
+        <CustomParameters>
+            <CustomParameter Name="$language$" Value="VB" />
+            <CustomParameter Name="$languageext$" Value="vb" />
+            <CustomParameter Name="$autoeventwireup$" Value="false" />
+            <CustomParameter Name="$globalclassname$" Value="MvcApplication" />
+            <CustomParameter Name="$sitemasterclassname$" Value="Site" />
+            <CustomParameter Name="$indexerleft$" Value="(" />
+            <CustomParameter Name="$indexerright$" Value=")" />
+            <CustomParameter Name="$MVCReferences$" Value="System.Web.Mvc.dll"/>
+        </CustomParameters>
+        <Project File="MvcApplication.vbproj" ReplaceParameters="true">
+            <Folder Name="App_Data" TargetFolderName="App_Data" />
+            <Folder Name="Controllers" TargetFolderName="Controllers">
+                <ProjectItem OpenInEditor="true" OpenOrder="10" ReplaceParameters="true" TargetFileName="HomeController.vb">HomeController.vb</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax.vb">Global.asax.vb</ProjectItem>
+            <Folder Name="Models" TargetFolderName="Models" />
+            <Folder Name="My Project" TargetFolderName="My Project">
+                <ProjectItem ReplaceParameters="true" TargetFileName="Application.myapp">Application.myapp</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Application.Designer.vb">Application.Designer.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.vb">Resources.Designer.vb</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
+            </Folder>
+            <Folder Name="Views" TargetFolderName="Views">
+                <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+                <Folder Name="Home" TargetFolderName="Home">
+                    <ProjectItem ReplaceParameters="true" TargetFileName="About.aspx">About.aspx</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="Index.aspx">Index.aspx</ProjectItem>
+                </Folder>
+                <Folder Name="Shared" TargetFolderName="Shared">
+                    <ProjectItem ReplaceParameters="true" TargetFileName="Error.aspx">Error.aspx</ProjectItem>
+                    <ProjectItem ReplaceParameters="true" TargetFileName="Site.Master">Site.Master</ProjectItem>
+                </Folder>
+            </Folder>
+            <Folder Name="Content" TargetFolderName="Content">
+                <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
+            </Folder>
+            <Folder Name="Scripts" TargetFolderName="Scripts">
+                <ProjectItem ReplaceParameters="false" TargetFileName="jquery.unobtrusive-ajax.js">jquery.unobtrusive-ajax.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="jquery.unobtrusive-ajax.min.js">jquery.unobtrusive-ajax.min.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.unobtrusive.js">jquery.validate.unobtrusive.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="jquery.validate.unobtrusive.min.js">jquery.validate.unobtrusive.min.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="MicrosoftAjax.js">MicrosoftAjax.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="MicrosoftAjax.debug.js">MicrosoftAjax.debug.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="MicrosoftMvcAjax.js">MicrosoftMvcAjax.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="MicrosoftMvcAjax.debug.js">MicrosoftMvcAjax.debug.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="MicrosoftMvcValidation.js">MicrosoftMvcValidation.js</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="MicrosoftMvcValidation.debug.js">MicrosoftMvcValidation.debug.js</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
+            <ProjectItem OpenInEditor="true" OpenOrder="5" ReplaceParameters="false" TargetFileName="readme.txt">readme.txt</ProjectItem>
+        </Project>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+        <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+    </WizardExtension>
+    <WizardData>
+        <packages repository="registry" keyName="AspNetMvc3VS11" isPreunzipped="true">
+            <package id="EntityFramework" version="5.0.0" skipAssemblyReferences="true" />
+            <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" skipAssemblyReferences="true" />
+            <package id="Microsoft.AspNet.Razor" version="1.0.20105.408" skipAssemblyReferences="true" />
+            <package id="Microsoft.AspNet.WebPages" version="1.0.20105.408" skipAssemblyReferences="true" />
+            <package id="Microsoft.AspNet.Mvc" version="3.0.20105.1" skipAssemblyReferences="true" />
+
+            <package id="jQuery" version="1.7.1.1" />
+            <package id="jQuery.Validation" version="1.9.0.1" />
+            <package id="jQuery.UI.Combined" version="1.8.20.1" />
+            <package id="Modernizr" version="2.5.3" />
+            
+        </packages>
+    </WizardData>
+</VSTemplate>
