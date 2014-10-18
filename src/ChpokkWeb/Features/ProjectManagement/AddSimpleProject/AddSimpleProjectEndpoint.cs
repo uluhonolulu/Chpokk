@@ -10,7 +10,6 @@ using ChpokkWeb.Features.ProjectManagement.AddProject;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
-using FubuCore;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Urls;
 using ICSharpCode.NRefactory;
@@ -22,12 +21,11 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 	public class AddSimpleProjectEndpoint : AddProjectBase {
 		private readonly SolutionFileLoader _solutionFileLoader;
 		private readonly IUrlRegistry _registry;
-		private readonly ProjectCreator _projectCreator;
 
-		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry, IFileSystem fileSystem, ProjectCreator projectCreator) : base(projectParser, repositoryManager, packageInstaller, logger) {
+		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry, ProjectCreator projectCreator)
+			: base(projectParser, repositoryManager, packageInstaller, logger, projectCreator) {
 			_solutionFileLoader = solutionFileLoader;
 			_registry = registry;
-			_projectCreator = projectCreator;
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {

@@ -15,11 +15,14 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		protected RepositoryManager _repositoryManager;
 		protected PackageInstaller _packageInstaller;
 		protected SignalRLogger _logger;
-		public AddProjectBase(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) {
+		protected ProjectCreator _projectCreator;
+
+		public AddProjectBase(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, ProjectCreator projectCreator) {
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
 			_packageInstaller = packageInstaller;
 			_logger = logger;
+			_projectCreator = projectCreator;
 		}
 
 		protected void AddPackages(AddSimpleProjectInputModel inputModel, string projectPath) {

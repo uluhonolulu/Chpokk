@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
@@ -27,11 +28,17 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 				var projectTemplateFolder =
 					_appRootProvider.AppRoot.AppendPath(
 						@"SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\");
+				var templateFiles = Directory.EnumerateFiles(projectTemplateFolder, "*.*", SearchOption.AllDirectories);
 				var projectTemplatePath = projectTemplateFolder.AppendPath("WebApplication.csproj");
-				AddFileFromTemplate(projectName, projectTemplatePath, projectTemplateFolder, projectFolder, projectPath);
-				
-				var templateFilePath = projectTemplateFolder.AppendPath("Web.config");
-				AddFileFromTemplate(projectName, templateFilePath, projectTemplateFolder, projectFolder);
+				foreach (var templateFilePath in templateFiles) {
+					if (templateFilePath == projectTemplatePath) {
+						AddFileFromTemplate(projectName, projectTemplatePath, projectTemplateFolder, projectFolder, projectPath);					
+					}
+					else {
+						AddFileFromTemplate(projectName, templateFilePath, projectTemplateFolder, projectFolder);		
+					}
+				}
+
 				return ProjectRootElement.Open(projectPath);
 			}
 			else return _projectParser.CreateProject(outputType, language, projectPath, projectName);

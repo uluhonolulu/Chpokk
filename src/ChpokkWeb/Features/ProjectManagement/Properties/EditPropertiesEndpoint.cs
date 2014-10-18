@@ -7,7 +7,7 @@ using Microsoft.Build.Construction;
 
 namespace ChpokkWeb.Features.ProjectManagement.Properties {
 	public class EditPropertiesEndpoint : AddProjectBase {
-		public EditPropertiesEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger) : base(projectParser, repositoryManager, packageInstaller, logger) {}
+		public EditPropertiesEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, ProjectCreator projectCreator) : base(projectParser, repositoryManager, packageInstaller, logger, projectCreator) {}
 
 		public AjaxContinuation Save(EditPropertiesInputModel inputModel) {
 			_logger.ConnectionId = inputModel.ConnectionId;

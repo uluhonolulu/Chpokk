@@ -83,6 +83,7 @@
 						<select name="OutputType" id="projectType" class="form-control">
 							<option>Exe</option>
 							<option>Library</option>
+							<option>Web</option>
 						</select>
 						
 						<label for="language">Language</label>
