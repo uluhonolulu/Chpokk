@@ -22,12 +22,12 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 	public class AddSimpleProjectEndpoint : AddProjectBase {
 		private readonly SolutionFileLoader _solutionFileLoader;
 		private readonly IUrlRegistry _registry;
-		private IFileSystem _fileSystem;
+		private readonly ProjectCreator _projectCreator;
 
-		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry, IFileSystem fileSystem) : base(projectParser, repositoryManager, packageInstaller, logger) {
+		public AddSimpleProjectEndpoint(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, SolutionFileLoader solutionFileLoader, IUrlRegistry registry, IFileSystem fileSystem, ProjectCreator projectCreator) : base(projectParser, repositoryManager, packageInstaller, logger) {
 			_solutionFileLoader = solutionFileLoader;
 			_registry = registry;
-			_fileSystem = fileSystem;
+			_projectCreator = projectCreator;
 		}
 
 		public AjaxContinuation DoIt(AddSimpleProjectInputModel inputModel) {
@@ -44,28 +44,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 			//create a project
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(projectName, Path.Combine(projectName, projectName + language.GetProjectExtension()));
-			ProjectRootElement rootElement;
-			if (outputType == "Web") {
-				// from template
-				var projectTemplatePath =
-					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\WebApplication.csproj";
-				var projectSource = _fileSystem.ReadStringFromFile(projectTemplatePath);
-				projectSource =
-					projectSource.Replace("$safeprojectname$", projectName)
-					             .Replace("$targetframeworkversion$", "4.5")
-					             .Replace("$guid1$", Guid.NewGuid().ToString());
-				_fileSystem.WriteStringToFile(projectPath, projectSource);
-				var webConfigTemplatePath =
-					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config";
-				var webConfigSource = _fileSystem.ReadStringFromFile(webConfigTemplatePath)
-				                                 .Replace("$targetframeworkversion$", "4.5");
-				var webConfigPath = projectPath.ParentDirectory().AppendPath("Web.config");
-				_fileSystem.WriteStringToFile(webConfigPath, webConfigSource);
-				rootElement = ProjectRootElement.Open(projectPath);
-			}
-			else {
-				rootElement = _projectParser.CreateProject(outputType, language, projectPath, projectName);			
-			}
+			var rootElement = _projectCreator.CreateProject(outputType, projectName, projectPath, language);
 
 
 			AddBclReferences(inputModel, rootElement);
@@ -77,7 +56,5 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = projectName });
 			return AjaxContinuation.Successful().NavigateTo(projectUrl);
 		}
-
-
 	}
 }

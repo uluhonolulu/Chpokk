@@ -10748,6 +10748,7 @@
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectBase.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
+    <Compile Include="Features\ProjectManagement\AddProject\ProjectCreator.cs" />
     <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\EditPropertiesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\ProjectPropertiesEndpoint.cs" />
