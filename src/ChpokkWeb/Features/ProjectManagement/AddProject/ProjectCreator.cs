@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Infrastructure;
 using FubuCore;
 using ICSharpCode.NRefactory;
 using Microsoft.Build.Construction;
@@ -10,26 +11,30 @@ using Microsoft.Build.Construction;
 namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 	public class ProjectCreator {
 		private readonly IFileSystem _fileSystem;
-		private ProjectParser _projectParser;
-		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem) {
+		private readonly ProjectParser _projectParser;
+		private IAppRootProvider _appRootProvider;
+		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider) {
 			_projectParser = projectParser;
 			_fileSystem = fileSystem;
+			_appRootProvider = appRootProvider;
 		}
 
 		public ProjectRootElement CreateProject(string outputType, string projectName, string projectPath,
 											 SupportedLanguage language) {
 			if (outputType == "Web") {
 				// from template
-				var projectTemplatePath =
-					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\WebApplication.csproj";
+				var projectFolder = projectPath.ParentDirectory();
+				var projectTemplateFolder =
+					_appRootProvider.AppRoot.AppendPath(
+						@"SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\");
+				var projectTemplatePath = projectTemplateFolder.AppendPath("WebApplication.csproj");
 				var projectSource = _fileSystem.ReadStringFromFile(projectTemplatePath);
 				projectSource =
 					projectSource.Replace("$safeprojectname$", projectName)
 								 .Replace("$targetframeworkversion$", "4.5")
 								 .Replace("$guid1$", Guid.NewGuid().ToString());
 				_fileSystem.WriteStringToFile(projectPath, projectSource);
-				var webConfigTemplatePath =
-					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config";
+				var webConfigTemplatePath = projectTemplateFolder.AppendPath("Web.config");
 				var webConfigSource = _fileSystem.ReadStringFromFile(webConfigTemplatePath)
 												 .Replace("$targetframeworkversion$", "4.5");
 				var webConfigPath = projectPath.ParentDirectory().AppendPath("Web.config");
