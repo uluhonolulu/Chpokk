@@ -28,20 +28,25 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 					_appRootProvider.AppRoot.AppendPath(
 						@"SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\");
 				var projectTemplatePath = projectTemplateFolder.AppendPath("WebApplication.csproj");
-				var projectSource = _fileSystem.ReadStringFromFile(projectTemplatePath);
-				projectSource =
-					projectSource.Replace("$safeprojectname$", projectName)
-								 .Replace("$targetframeworkversion$", "4.5")
-								 .Replace("$guid1$", Guid.NewGuid().ToString());
-				_fileSystem.WriteStringToFile(projectPath, projectSource);
-				var webConfigTemplatePath = projectTemplateFolder.AppendPath("Web.config");
-				var webConfigSource = _fileSystem.ReadStringFromFile(webConfigTemplatePath)
-												 .Replace("$targetframeworkversion$", "4.5");
-				var webConfigPath = projectPath.ParentDirectory().AppendPath("Web.config");
-				_fileSystem.WriteStringToFile(webConfigPath, webConfigSource);
+				AddFileFromTemplate(projectName, projectTemplatePath, projectTemplateFolder, projectFolder, projectPath);
+				
+				var templateFilePath = projectTemplateFolder.AppendPath("Web.config");
+				AddFileFromTemplate(projectName, templateFilePath, projectTemplateFolder, projectFolder);
 				return ProjectRootElement.Open(projectPath);
 			}
 			else return _projectParser.CreateProject(outputType, language, projectPath, projectName);
+		}
+
+		private void AddFileFromTemplate(string projectName, string templateFilePath, string projectTemplateFolder,
+										 string projectFolder, string targetPath = null) {
+			var templateFileName = templateFilePath.PathRelativeTo(projectTemplateFolder);
+			targetPath = targetPath?? projectFolder.AppendPath(templateFileName);
+			var templateFileContent =
+				_fileSystem.ReadStringFromFile(templateFilePath)
+				           .Replace("$safeprojectname$", projectName)
+				           .Replace("$targetframeworkversion$", "4.5")
+				           .Replace("$guid1$", Guid.NewGuid().ToString());
+			_fileSystem.WriteStringToFile(targetPath, templateFileContent);
 		}
 	}
 }
