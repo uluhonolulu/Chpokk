@@ -55,6 +55,12 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 					             .Replace("$targetframeworkversion$", "4.5")
 					             .Replace("$guid1$", Guid.NewGuid().ToString());
 				_fileSystem.WriteStringToFile(projectPath, projectSource);
+				var webConfigTemplatePath =
+					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config";
+				var webConfigSource = _fileSystem.ReadStringFromFile(webConfigTemplatePath)
+				                                 .Replace("$targetframeworkversion$", "4.5");
+				var webConfigPath = projectPath.ParentDirectory().AppendPath("Web.config");
+				_fileSystem.WriteStringToFile(webConfigPath, webConfigSource);
 				rootElement = ProjectRootElement.Open(projectPath);
 			}
 			else {
