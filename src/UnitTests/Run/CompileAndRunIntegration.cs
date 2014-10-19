@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Arractas;
-using Chpokk.Tests.Compilation;
 using ChpokkWeb.Features.Compilation;
 using FubuCore;
 using FubuMVC.Core.Ajax;
