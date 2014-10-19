@@ -23,7 +23,7 @@ namespace Chpokk.Tests.Run {
 					<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
 					<FileAlignment>512</FileAlignment>
 				  </PropertyGroup>
-				  <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "">
+				  <PropertyGroup>
 					<DebugSymbols>true</DebugSymbols>
 					<DebugType>full</DebugType>
 					<Optimize>false</Optimize>
