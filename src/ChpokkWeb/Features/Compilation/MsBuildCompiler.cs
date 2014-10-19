@@ -25,7 +25,12 @@ namespace ChpokkWeb.Features.Compilation {
 					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"SystemFiles\Targets") }
 				};
 			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
-			//var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
+			var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
+			Console.WriteLine("IMPORTS");
+			foreach (var import in imports) {
+				Console.WriteLine(import + ": " + File.Exists(import));
+			}
+			Console.WriteLine("PROPS");
 			foreach (var property in project.AllEvaluatedProperties) {
 				Console.WriteLine(property.Name + ": " + property.EvaluatedValue);
 			}
