@@ -26,6 +26,9 @@ namespace ChpokkWeb.Features.Compilation {
 				};
 			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
 			//var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
+			foreach (var property in project.AllEvaluatedProperties) {
+				Console.WriteLine(property.Name + ": " + property.EvaluatedValue);
+			}
 			var outputPathProperty = project.AllEvaluatedProperties.First(property => property.Name == "OutputPath");
 			var targetProperty = project.AllEvaluatedProperties.First(property => property.Name == "TargetFileName");
 			var outputTypeProperty = project.AllEvaluatedProperties.First(property => property.Name == "OutputType");
