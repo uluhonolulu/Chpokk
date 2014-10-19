@@ -27,9 +27,10 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 				var projectFolder = projectPath.ParentDirectory();
 				var projectTemplateFolder =
 					_appRootProvider.AppRoot.AppendPath(
-						@"SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\");
+						@"SystemFiles\Templates\ProjectTemplates\{0}\Web\EmptyWebApplicationProject40\".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic"));
 				var templateFiles = Directory.EnumerateFiles(projectTemplateFolder, "*.*", SearchOption.AllDirectories);
-				var projectTemplatePath = projectTemplateFolder.AppendPath("WebApplication.csproj");
+				var projectExtension = Path.GetExtension(projectPath);
+				var projectTemplatePath = projectTemplateFolder.AppendPath("WebApplication" + projectExtension);
 				foreach (var templateFilePath in templateFiles) {
 					if (templateFilePath == projectTemplatePath) {
 						AddFileFromTemplate(projectName, projectTemplatePath, projectTemplateFolder, projectFolder, projectPath);					
