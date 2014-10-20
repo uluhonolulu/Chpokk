@@ -36,7 +36,7 @@ namespace Chpokk.Tests.Run {
 				<ItemGroup>
 					<Compile Include=""Class1.cs"" />
 				  </ItemGroup>
-				  <!--<Import Project=""$(MSBuildToolsPath)\Microsoft.CSharp.targets"" />-->
+				  <Import Project=""$(MSBuildToolsPath)\Microsoft.CSharp.targets"" />
 				</Project>";
 			}
 		}

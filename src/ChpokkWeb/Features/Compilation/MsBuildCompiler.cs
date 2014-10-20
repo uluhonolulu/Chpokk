@@ -30,12 +30,12 @@ namespace ChpokkWeb.Features.Compilation {
 			foreach (var import in imports) {
 				Console.WriteLine(import + ": " + File.Exists(import));
 			}
-			var importPath = @"C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets";
+			var importPath = @"C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets";
 			Console.WriteLine(importPath + ": " + File.Exists(importPath));
-			Console.WriteLine("PROPS");
-			foreach (var property in project.AllEvaluatedProperties) {
-				Console.WriteLine(property.Name + ": " + property.EvaluatedValue);
-			}
+			//Console.WriteLine("PROPS");
+			//foreach (var property in project.AllEvaluatedProperties) {
+			//	Console.WriteLine(property.Name + ": " + property.EvaluatedValue);
+			//}
 			var buildResult = ProjectBuildSync.Build(project, logger);
 			var outputPathProperty = project.AllEvaluatedProperties.First(property => property.Name == "OutputPath");
 			var targetProperty = project.AllEvaluatedProperties.First(property => property.Name == "TargetFileName");
