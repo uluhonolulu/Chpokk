@@ -86,11 +86,11 @@
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="NuGet, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ChpokkWeb\bin\NuGet.exe</HintPath>
+      <HintPath>..\..\lib\NuGet.exe</HintPath>
     </Reference>
     <Reference Include="NuGet.Core, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ChpokkWeb\bin\NuGet.Core.dll</HintPath>
+      <HintPath>..\..\lib\NuGet.Core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
