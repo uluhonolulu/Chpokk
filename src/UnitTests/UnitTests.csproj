@@ -84,6 +84,14 @@
     <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="NuGet, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ChpokkWeb\bin\NuGet.exe</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ChpokkWeb\bin\NuGet.Core.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -148,9 +156,12 @@
     <Compile Include="Infrastructure\DirectoryHelper.cs" />
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
+    <Compile Include="Infrastructure\NuGet2Console.cs" />
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
+    <Compile Include="Infrastructure\TestableBuildLogger.cs" />
+    <Compile Include="Infrastructure\TestableNuGetLogger.cs" />
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
     <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

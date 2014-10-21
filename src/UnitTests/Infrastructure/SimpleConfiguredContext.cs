@@ -4,6 +4,8 @@ using System.Web.Hosting;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb;
+using ChpokkWeb.Features.Compilation;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Infrastructure;
 using FubuMVC.Core;
 using FubuMVC.Core.Assets;
@@ -16,6 +18,7 @@ using FubuMVC.Core.Security;
 using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
 using Gallio.Runtime.Extensibility.Schema;
+using NuGet.Common;
 using StructureMap;
 using FubuCore;
 using System.Linq;
@@ -45,11 +48,16 @@ namespace UnitTests.Infrastructure {
 
 		private static void ConfigureContainer(Container container) {
 			container.Configure(expression => expression.AddRegistry<ChpokkRegistry>());
-			container.Configure(expr => expr.For<IUrlRegistry>().Use<UrlRegistry>());
-			container.Configure(expression => expression.For<IAppRootProvider>().Use<TestAppRootProvider>());
-			container.Configure(expression => expression.For<IActionBehavior>().Use<NulloBehavior>());
+			container.Configure(expression => {
+				expression.For<IUrlRegistry>().Use<UrlRegistry>();
+				expression.For<IAppRootProvider>().Use<TestAppRootProvider>();
+				expression.For<IActionBehavior>().Use<NulloBehavior>();
+				expression.For<IConsole>().Use<NuGet2Console>();
+				expression.For<ChpokkLogger>().Singleton().Use<TestableBuildLogger>();
+				expression.For<SignalRLogger>().Use<TestableNuGetLogger>();
+			});
 			//Console.WriteLine(container.WhatDoIHave() );
-			
+
 		}
 
 		[NotNull]

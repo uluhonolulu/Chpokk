@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Arractas;
+﻿using Arractas;
+using Chpokk.Tests.Run;
 using ChpokkWeb.Features.Compilation;
 using FubuCore;
 using FubuMVC.Core.Ajax;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using Shouldly;
 
-namespace Chpokk.Tests.Run {
+namespace UnitTests.Run {
 	[TestFixture]
 	public class CompileAndRunIntegration : BaseQueryTest<BuildableProjectWithExeOutput, AjaxContinuation> {
 		[Test]
