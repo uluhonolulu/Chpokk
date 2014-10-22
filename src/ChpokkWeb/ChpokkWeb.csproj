@@ -7548,6 +7548,8 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\Web\VisualBasic\1033\WebService\WebService.webproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\Web\VisualBasic\1033\WebWCFService\WCFService.webproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\Web\VisualBasic\1033\WebWCFService\Web.config" />
+    <Content Include="SystemFiles\Targets\MSBuildToolsPath\Microsoft.Common.targets" />
+    <Content Include="SystemFiles\Targets\MSBuildToolsPath\Microsoft.CSharp.targets" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Extensibility\1033\Classifier\ClassificationFormat.cs" />
