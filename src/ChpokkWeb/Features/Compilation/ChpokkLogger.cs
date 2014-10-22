@@ -37,7 +37,7 @@ namespace ChpokkWeb.Features.Compilation {
 			}
 		}
 
-		public void SendError(BuildErrorEventArgs args) {
+		public virtual void SendError(BuildErrorEventArgs args) {
 			var filePath = Path.IsPathRooted(args.File) ? args.File : args.ProjectFile.ParentDirectory().AppendPath(args.File);
 			var filePathRelativeToRepositoryRoot = filePath.PathRelativeTo(RepositoryRoot);
 			if (args.LineNumber > 0) {
@@ -75,8 +75,8 @@ namespace ChpokkWeb.Features.Compilation {
 				SendMessage(args.Message, messageType);
 			};
 			eventSource.MessageRaised += (sender, args) => {
-				if (args.Importance == MessageImportance.High) {
 					SendMessage(args.Message);
+				if (args.Importance == MessageImportance.High) {
 				}
 			};
 			eventSource.ErrorRaised += (sender, args) => SendError(args);

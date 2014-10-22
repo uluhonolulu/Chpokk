@@ -15,5 +15,9 @@ namespace UnitTests.Infrastructure {
 			}
 			Console.WriteLine(text);
 		}
+
+		public override void SendError(Microsoft.Build.Framework.BuildErrorEventArgs args) {
+			Console.WriteLine("COMPILATION ERROR: " + args.Message);
+		}
 	}
 }
