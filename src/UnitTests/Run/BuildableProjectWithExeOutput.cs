@@ -32,11 +32,11 @@ namespace Chpokk.Tests.Run {
 					<ErrorReport>prompt</ErrorReport>
 					<WarningLevel>4</WarningLevel>
 				  </PropertyGroup>
+				  <Import Project=""$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets"" />
  
 				<ItemGroup>
 					<Compile Include=""Class1.cs"" />
 				  </ItemGroup>
-				  <Import Project=""$(MyMSBuildToolsPath)\Microsoft.CSharp.targets"" />
 				  <Import Project=""C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets"" />
 				</Project>";
 			}
