@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Arractas;
+using CThru;
+using CThru.BuiltInAspects;
 using Chpokk.Tests.Compilation;
 using ChpokkWeb.Features.Compilation;
 using FubuCore;
@@ -27,6 +29,8 @@ namespace Chpokk.Tests.Run {
 
 		public override AjaxContinuation Act() {
 			var endpoint = Context.Container.Get<CompilerEndpoint>();
+			//CThruEngine.AddAspect(new TraceAspect(info => info.MethodName.Contains("Import"), 3));
+			//CThruEngine.StartListening();
 			return endpoint.CompileAndRun(new CompileAndRunInputModel {ProjectPath = Context.ProjectPath.PathRelativeTo(Context.RepositoryRoot), RepositoryName = Context.REPO_NAME, ConnectionId = "fakeId"});
 		}
 	}
