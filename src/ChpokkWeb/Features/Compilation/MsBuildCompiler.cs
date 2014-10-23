@@ -26,15 +26,17 @@ namespace ChpokkWeb.Features.Compilation {
 				};
 			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
 			var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
-			Console.WriteLine("IMPORTS");
-			foreach (var import in imports) {
-				Console.WriteLine(import + ": " + File.Exists(import));
-			}
+			//Console.WriteLine("IMPORTS");
+			//foreach (var import in imports) {
+			//	Console.WriteLine(import + ": " + File.Exists(import));
+			//}
 			//var importPath = @"C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets";
 			//project.CreateProjectInstance().Build("Build", new[] {logger});
 			//Console.WriteLine(importPath + ": " + File.Exists(importPath));
-			Console.WriteLine("PROJECT");
-			project.SaveLogicalProject(Console.Out);
+			//Console.WriteLine("PROJECT");
+			//var stringWriter = new StringWriter();
+			//project.SaveLogicalProject(stringWriter);
+			//Console.WriteLine(HttpUtility.HtmlEncode(stringWriter.ToString()));
 			var buildResult = ProjectBuildSync.Build(project, logger);
 			var outputPathProperty = project.AllEvaluatedProperties.First(property => property.Name == "OutputPath");
 			var targetProperty = project.AllEvaluatedProperties.First(property => property.Name == "TargetFileName");
