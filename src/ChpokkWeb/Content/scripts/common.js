@@ -181,6 +181,14 @@ String.prototype.fileName = function() {
 	return this.substring(lastSlash + 1);
 };
 
+String.prototype.htmlEncode = function() {
+	return $('<div/>').text(this).html();
+};
+
+String.prototype.htmlDecode = function() {
+	return $('<div/>').html(this).text();
+};
+
 //serializing form data for submitting
 $.fn.serializeObject = function () {
 	var o = {};

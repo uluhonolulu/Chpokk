@@ -1,5 +1,5 @@
 ﻿<content name="InlineScripts">
-    <!--Compile-->
+	<!--Compile-->
 	<script type="text/javascript">
 		$(function() {
 			var compilerHub = $.connection.compilerHub;
@@ -59,7 +59,7 @@
 			if (message.line) {
 				message = '<a href="/Repository/{RepositoryName}#{file}?line={line}">{message}</a>'.toFormat($.extend(message, model));
 			}
-			container.html(message).addClass(category).appendTo($('#output'));
+			container.text(message).addClass(category).appendTo($('#output'));
 			//scroll to bottom
 			var outputElement = $('#output').get(0);
 			outputElement.scrollTop = outputElement.scrollHeight;
