@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using ChpokkWeb.Infrastructure.FileSystem;
+using Amazon.S3;
 using FubuCore;
 
-namespace ChpokkWeb.Features.Storage {
+namespace ChpokkWeb.Infrastructure.FileSystem {
 	public class LocalAndRemoteFileSystem: IFileSystem {
 		public void CreateDirectory(string path) {
 			_localSystem.CreateDirectory(path);
@@ -55,7 +54,12 @@ namespace ChpokkWeb.Features.Storage {
 				return _localSystem.ReadStringFromFile(filename);
 			}
 			catch (DirectoryNotFoundException exception) {
-				return _remoteSystem.ReadStringFromFile(filename);
+				try {
+					return _remoteSystem.ReadStringFromFile(filename);
+				}
+				catch (AmazonS3Exception s3Exception) {
+					throw new HttpException(s3Exception.StatusCode.ToString() + " " + s3Exception.Message, s3Exception);
+				}
 			}
 		}
 
@@ -142,9 +146,9 @@ namespace ChpokkWeb.Features.Storage {
 			_localSystem.LaunchBrowser(filename);
 		}
 
-		private readonly FileSystem _localSystem;
+		private readonly FubuCore.FileSystem _localSystem;
 		private readonly RemoteFileSystem _remoteSystem;
-		public LocalAndRemoteFileSystem(FileSystem localSystem, RemoteFileSystem remoteSystem) {
+		public LocalAndRemoteFileSystem(FubuCore.FileSystem localSystem, RemoteFileSystem remoteSystem) {
 			_localSystem = localSystem;
 			_remoteSystem = remoteSystem;
 		}
