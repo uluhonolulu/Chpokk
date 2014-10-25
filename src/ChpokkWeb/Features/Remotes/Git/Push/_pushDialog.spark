@@ -28,20 +28,28 @@
 
 <content name="InlineScripts">
 <!-- Push Dialog -->
-<script type="text/javascript">
-	function pushRepository(repositoryName) {
-		$('#pushDialog').modal();
-		$('#pushDialog #pushOkButton').one('click', function () {
-			var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [RepositoryName="UserRepositoryName"]').val(), Password: $('#pushDialog [RepositoryName="Password"]').val() };
-			var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Push.PushInputModel>()}';
-			$.post(pushUrl, pushModel, function () {
-				alert("Pushed successfully!");
+	<script type="text/javascript">
+		$(function() {
+			$('#pusher').click(function () {
+				pushRepository('${Model.RepositoryName}');
 			});
-			$('#pushDialog').modal('hide');
+
 		});
+
+
+		function pushRepository(repositoryName) {
+			$('#pushDialog').modal();
+			$('#pushDialog #pushOkButton').one('click', function () {
+				var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [RepositoryName="UserRepositoryName"]').val(), Password: $('#pushDialog [RepositoryName="Password"]').val() };
+				var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Push.PushInputModel>()}';
+				$.post(pushUrl, pushModel, function () {
+					alert("Pushed successfully!");
+				});
+				$('#pushDialog').modal('hide');
+			});
 		
-	}
-</script>
+		}
+	</script>
 </content>
 
 
