@@ -9056,6 +9056,7 @@
     <Compile Include="Features\Remotes\Git\GitDetectionPolicy.cs" />
     <Compile Include="Features\Remotes\Git\Init\GitInitEndpoint.cs" />
     <Compile Include="Features\Remotes\Git\Init\GitInitializer.cs" />
+    <Compile Include="Features\Remotes\Git\Init\GitInitPolicy.cs" />
     <Compile Include="Features\Remotes\IVersionControlDetectionPolicy.cs" />
     <Compile Include="Features\Remotes\SaveCommit\ICommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnCommitter.cs" />
@@ -9162,11 +9163,11 @@
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />
     <Compile Include="Infrastructure\ExceptionNotifier.cs" />
     <Compile Include="Infrastructure\FileSystem\IAppRootProvider.cs" />
-    <Compile Include="Infrastructure\IMenuItemSource.cs" />
+    <Compile Include="Infrastructure\Menu\IMenuItemSource.cs" />
     <Compile Include="Infrastructure\KeepAliveEndpoint.cs" />
     <Compile Include="Infrastructure\LambdaTextWriter.cs" />
     <Compile Include="Infrastructure\LanguageExtensions.cs" />
-    <Compile Include="Infrastructure\MenuItem.cs" />
+    <Compile Include="Infrastructure\Menu\MenuItem.cs" />
     <Compile Include="Infrastructure\MakesFubuHappy\ModellessPartialExtension.cs" />
     <Compile Include="Infrastructure\FileSystem\PathExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\UrlTransformationException.cs" />
