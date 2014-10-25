@@ -11,7 +11,7 @@ namespace Chpokk.Tests.GitHub {
 	public class Cloning: BaseCommandTest<RemoteRepositoryContext> {
 		public override void Act() {
 			const string repoUrl = "git://github.com/uluhonolulu/Chpokk-Scratchpad.git";
-			var model = new CloneInputModel {PhysicalApplicationPath = Context.AppRoot, RepoUrl = repoUrl};
+			var model = new CloneInputModel {PhysicalApplicationPath = Context.AppRoot, RepoUrl = repoUrl, _repositoryType = "git"};
 			Context.Container.Get<CloneEndpoint>().CloneRepository(model);
 		}
 

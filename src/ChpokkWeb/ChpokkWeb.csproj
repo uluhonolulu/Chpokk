@@ -9054,6 +9054,8 @@
     <Compile Include="Features\Remotes\CredentialsCache.cs" />
     <Compile Include="Features\Remotes\Git\GitCommitter.cs" />
     <Compile Include="Features\Remotes\Git\GitDetectionPolicy.cs" />
+    <Compile Include="Features\Remotes\Git\Init\GitInitEndpoint.cs" />
+    <Compile Include="Features\Remotes\Git\Init\GitInitializer.cs" />
     <Compile Include="Features\Remotes\IVersionControlDetectionPolicy.cs" />
     <Compile Include="Features\Remotes\SaveCommit\ICommitter.cs" />
     <Compile Include="Features\Remotes\SVN\SvnCommitter.cs" />
@@ -9188,7 +9190,6 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
-    <Folder Include="Features\RepositoryManagement\Git\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
   </ItemGroup>
   <ItemGroup>
@@ -10409,8 +10410,8 @@
     <PostBuildEvent>if not exist "$(WebProjectOutputDir)\bin\NativeBinaries" md "$(WebProjectOutputDir)\bin\NativeBinaries"
 if not exist "$(WebProjectOutputDir)\bin\NativeBinaries\x86" md "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
 if not exist "$(WebProjectOutputDir)\bin\NativeBinaries\amd64" md "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\x86\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\amd64\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"</PostBuildEvent>
+rem xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\x86\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
+rem xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\amd64\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

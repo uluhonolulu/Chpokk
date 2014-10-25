@@ -12,9 +12,9 @@ using FubuCore;
 namespace Chpokk.Tests.Exploring {
 	public class RepositoryFolderContext : SimpleAuthenticatedContext, IDisposable {
 		public readonly string REPO_NAME = "Perka";
-		public string RepositoryRoot { get; private set; }
+		public string RepositoryRoot { get; private set; } //full path to repo root
 
-		public string RepoPath { get; private set; }
+		public string RepoPath { get; private set; } //path relative to web root
 
 		public override void Create() {
 			base.Create();
