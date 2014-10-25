@@ -150,6 +150,10 @@
     <Compile Include="Exploring\UnitTests\CreatingAProperFolderStructure.cs" />
     <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
+    <Compile Include="GitHub\Cloning.cs" />
+    <Compile Include="GitHub\GitInit.cs" />
+    <Compile Include="GitHub\Infrastructure\Api.cs" />
+    <Compile Include="GitHub\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\AssertExtensions.cs" />
     <Compile Include="Infrastructure\Bitness.cs" />
     <Compile Include="Infrastructure\AssemblyLocator.cs" />
