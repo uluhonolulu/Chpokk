@@ -31,7 +31,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$('#pusher').click(function () {
-				pushRepository('${Model.RepositoryName}');
+				pushRepository(model.RepositoryName);
 			});
 
 		});

@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Init {
 		public AjaxContinuation DoIt(GitInitInputModel model) {
 			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
 			_initializer.Init(repositoryRoot);
-			return AjaxContinuation.Successful();
+			return new AjaxContinuation {Success = true, ShouldRefresh = true};
 		}
 	}
 

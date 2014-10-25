@@ -1,0 +1,14 @@
+﻿
+<use namespace="ChpokkWeb.Features.Remotes.Git.Init" />
+<content name="InlineScripts">
+	<!-- GitInit.spark  -->
+	<script type="text/javascript">
+	$(function() {
+		$('#gitinit').click(function() {
+			var gitinitUrl = '${Urls.UrlFor<GitInitInputModel>()}';
+			$.post(gitinitUrl, model);
+		});
+	});		
+	</script>
+
+</content>
