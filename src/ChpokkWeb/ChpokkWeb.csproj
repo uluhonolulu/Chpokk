@@ -9125,7 +9125,7 @@
     <Compile Include="Features\LanguageSupport\LanguageDetector.cs" />
     <Compile Include="Features\MainScreen\MainDummyModel.cs" />
     <Compile Include="Features\ProjectManagement\ProjectData.cs" />
-    <Compile Include="Features\Remotes\Git\Push\PushController.cs" />
+    <Compile Include="Features\Remotes\Git\Push\PushEndpoint.cs" />
     <Compile Include="Features\Remotes\Git\Push\PushDialogModel.cs" />
     <Compile Include="Features\Remotes\Git\Push\PushInputModel.cs" />
     <Compile Include="Features\Remotes\SaveCommit\SaveCommitEndpoint.cs" />

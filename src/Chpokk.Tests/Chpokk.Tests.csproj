@@ -316,7 +316,7 @@
     <Compile Include="Exploring\PhysicalCodeFileInRepositoryContext.cs" />
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
-    <Compile Include="GitHub\GitInit.cs" />
+    <Compile Include="Git\GitInit.cs" />
     <Compile Include="Infrastructure\DirectoryHelper.cs" />
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
@@ -406,9 +406,9 @@
     <Compile Include="Spikes\Amazon.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\ICanSeeIt.cs" />
-    <Compile Include="GitHub\Cloning.cs" />
-    <Compile Include="GitHub\Infrastructure\Api.cs" />
-    <Compile Include="GitHub\RemoteRepositoryContext.cs" />
+    <Compile Include="Git\Cloning.cs" />
+    <Compile Include="Git\Infrastructure\Api.cs" />
+    <Compile Include="Git\RemoteRepositoryContext.cs" />
     <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Intellisense\RequestForIntelData.cs" />
     <Compile Include="References\StandardLibraryList.cs" />
