@@ -20,18 +20,20 @@ namespace Chpokk.Tests.Git {
 		}
 
 		public override RemoteListModel Act() {
+			var remoteName = "origin";
 			using (var repository = new Repository(Context.RepositoryRoot)) {
-				var origin = repository.Network.Remotes.Add("origin", "http://www");
-				repository.Head.Remote.ShouldNotBe(null);
+				var origin = repository.Network.Remotes.Add(remoteName, "https://ulu@appharbor.com/chpokk.git");
+				//repository.Head.Remote.ShouldNotBe(null);
+				repository.Branches.Update(repository.Head, updater => updater.Remote = remoteName, updater => updater.UpstreamBranch = "refs/heads/master");
 			}
 
 			using (var repository = new Repository(Context.RepositoryRoot)) {
-				repository.Branches["master"].ShouldNotBe(null);
+				repository.Head.ShouldNotBe(null);
 				var remotes = repository.Network.Remotes;
 				return new RemoteListModel
 					{
-						Remotes = from remote in remotes select remote.Name,
-						DefaultRemote = repository.Head.Remote.Name
+						Remotes = (from remote in remotes select remote.Name).ToArray(), //enumerate this before we're disposed
+						DefaultRemote = remoteName //repository.Head.Remote.Name
 					};
 			}
 		}

@@ -21,5 +21,14 @@ namespace ChpokkWeb.Features.Remotes.Git {
 				repo.Commit(commitMessage, author, author);
 			}
 		}
+
+		public void Commit(IEnumerable<string> filePaths, string commitMessage, string repositoryPath) {
+			var userName = _securityContext.CurrentIdentity.Name;
+			var author = new Signature(userName, userName, DateTimeOffset.Now);
+			using (var repo = new Repository(repositoryPath)) {
+				filePaths.Each(filePath => repo.Index.Stage(filePath));
+				repo.Commit(commitMessage, author, author);
+			}			
+		}
 	}
 }
