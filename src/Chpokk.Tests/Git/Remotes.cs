@@ -2,6 +2,7 @@
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.Remotes.Git.Remotes;
 using Gallio.Framework;
 using LibGit2Sharp;
 using MbUnit.Framework;
