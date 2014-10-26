@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Storage;
@@ -22,13 +23,20 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 
 		public void VerifyFileExists(string path) {
 			if (!_localSystem.FileExists(path)) {
-				var repositoryFolder = _repositoryManager.GetRepositoryFolder();
-				var allUserFiles = _localSystem.FindFiles(repositoryFolder, FileSet.Everything());
-				var message = "Can't find the file: " + path + Environment.NewLine + 
-								"Remote exists: " + _remoteSystem.FileExists(path) + Environment.NewLine + 
-								"User files:" + Environment.NewLine +
-				              allUserFiles.Join(Environment.NewLine);
-				_mailer.Send("notfound@chpokk.apphb.com", "uluhonolulu@gmail.com", "Can't find", message);
+				if (_remoteSystem.FileExists(path)) {
+					_remoteSystem.DownloadFile(path);
+				}
+				Task.Run(() => {
+					var repositoryFolder = _repositoryManager.GetRepositoryFolder();
+					var allUserFiles = _localSystem.FindFiles(repositoryFolder, FileSet.Everything());
+					var message = "Can't find the file: " + path + Environment.NewLine + 
+									"Remote exists: " + _remoteSystem.FileExists(path) + Environment.NewLine + 
+									"User files:" + Environment.NewLine +
+								  allUserFiles.Join(Environment.NewLine);
+					_mailer.Send("notfound@chpokk.apphb.com", "uluhonolulu@gmail.com", "Couldn't find " + path, message);
+
+				});
+
 			}
 		}
 	}

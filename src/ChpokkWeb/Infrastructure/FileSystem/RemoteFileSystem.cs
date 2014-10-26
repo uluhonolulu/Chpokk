@@ -87,8 +87,12 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 			throw new NotImplementedException("AppendStringToFile");
 		}
 		public string ReadStringFromFile(string filename) {
-			_client.DownloadFile(bucketName, filename.ToRemoteFileName(AppRoot), filename, 0);
+			DownloadFile(filename);
 			return _localFileSystem.ReadStringFromFile(filename);
+		}
+
+		public void DownloadFile(string filename) {
+			_client.DownloadFile(bucketName, filename.ToRemoteFileName(AppRoot), filename, 0);
 		}
 
 		public void WriteObjectToFile(string filename, object target) {

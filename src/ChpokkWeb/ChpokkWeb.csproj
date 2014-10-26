@@ -9067,6 +9067,7 @@
     <Compile Include="Features\Testing\Tester.cs" />
     <Compile Include="Features\Testing\WebGallioConsole.cs" />
     <Compile Include="Infrastructure\FileSystem\LocalAndRemoteFileSystem.cs" />
+    <Compile Include="Infrastructure\FileSystem\LocalAndRemoteXmlReader.cs" />
     <Compile Include="Infrastructure\FileSystem\RemoteFileSystem.cs" />
     <Compile Include="Features\Testing\TestingEndpoint.cs" />
     <Compile Include="Features\Testing\TestingHub.cs" />

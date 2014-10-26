@@ -58,7 +58,7 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 					return _remoteSystem.ReadStringFromFile(filename);
 				}
 				catch (AmazonS3Exception s3Exception) {
-					throw new HttpException(s3Exception.StatusCode.ToString() + " " + s3Exception.Message, s3Exception);
+					throw new HttpException(s3Exception.StatusCode + " " + s3Exception.Message, s3Exception);
 				}
 			}
 		}
