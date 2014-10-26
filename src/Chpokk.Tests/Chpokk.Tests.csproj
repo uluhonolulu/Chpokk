@@ -317,7 +317,9 @@
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />
     <Compile Include="Git\GitInit.cs" />
+    <Compile Include="Git\RemoteListModel.cs" />
     <Compile Include="Git\Remotes.cs" />
+    <Compile Include="Git\RemoteListEndpoint.cs" />
     <Compile Include="Infrastructure\DirectoryHelper.cs" />
     <Compile Include="Infrastructure\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\FakeSecurityContext.cs" />
