@@ -58,8 +58,11 @@
 			var container = wrap ? $('<div/>') : $('<span/>');
 			if (message.line) {
 				message = '<a href="/Repository/{RepositoryName}#{file}?line={line}">{message}</a>'.toFormat($.extend(message, model));
+				container.html(message);
+			} else {
+				container.text(message);
 			}
-			container.text(message).addClass(category).appendTo($('#output'));
+			container.addClass(category).appendTo($('#output'));
 			//scroll to bottom
 			var outputElement = $('#output').get(0);
 			outputElement.scrollTop = outputElement.scrollHeight;
