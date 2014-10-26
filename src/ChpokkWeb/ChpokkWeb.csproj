@@ -9051,6 +9051,8 @@
     <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
+    <Compile Include="Features\Remotes\Git\Remotes\RemoteListEndpoint.cs" />
+    <Compile Include="Features\Remotes\Git\Remotes\RemoteListModel.cs" />
     <Compile Include="Features\Remotes\Credentials.cs" />
     <Compile Include="Features\Remotes\CredentialsCache.cs" />
     <Compile Include="Features\Remotes\Git\GitCommitter.cs" />
