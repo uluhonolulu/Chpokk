@@ -6,8 +6,10 @@ using LibGit2Sharp;
 namespace ChpokkWeb.Features.Remotes.Git.Remotes {
 	public class RemoteListEndpoint {
 		private readonly RepositoryManager _repositoryManager;
-		public RemoteListEndpoint(RepositoryManager repositoryManager) {
+		private readonly RemoteInfoProvider _remoteInfoProvider;
+		public RemoteListEndpoint(RepositoryManager repositoryManager, RemoteInfoProvider remoteInfoProvider) {
 			_repositoryManager = repositoryManager;
+			_remoteInfoProvider = remoteInfoProvider;
 		}
 
 		public RemoteListModel GetRemoteInfo(RemoteListInputModel model) {
@@ -15,16 +17,12 @@ namespace ChpokkWeb.Features.Remotes.Git.Remotes {
 			return GetRemoteInfo(repositoryRoot);
 		}
 
-		//TODO: extact this to a separate class
 		public RemoteListModel GetRemoteInfo(string repositoryRoot) {
-			using (var repository = new Repository(repositoryRoot)) {
-				var remotes = repository.Network.Remotes.ToArray(); //enumerate this before we're disposed
-				return new RemoteListModel
-					{
-						Remotes = from remote in remotes select remote.Name,
-						DefaultRemote = repository.Head.Remote.Name
-					};
-			}
+			return new RemoteListModel
+				{
+					Remotes = _remoteInfoProvider.GetRemoteNames(repositoryRoot),
+					DefaultRemote = _remoteInfoProvider.GetDefaultRemote(repositoryRoot)
+				};
 		}
 	}
 
