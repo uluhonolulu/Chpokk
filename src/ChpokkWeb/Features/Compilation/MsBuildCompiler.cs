@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Infrastructure;
+using ChpokkWeb.Infrastructure.FileSystem;
 using Microsoft.Build.Evaluation;
 using FubuCore;
 using Microsoft.Build.Framework;
@@ -12,10 +13,12 @@ namespace ChpokkWeb.Features.Compilation {
 	public class MsBuildCompiler {
 		private readonly ProjectCollection _projectCollection;
 		private readonly IAppRootProvider _rootProvider;
+		private readonly FileExistenceChecker _checker;
 
-		public MsBuildCompiler(ProjectCollection projectCollection, IAppRootProvider rootProvider) {
+		public MsBuildCompiler(ProjectCollection projectCollection, IAppRootProvider rootProvider, FileExistenceChecker checker) {
 			_projectCollection = projectCollection;
 			_rootProvider = rootProvider;
+			_checker = checker;
 			//_projectCollection.RegisterLogger(logger);
 		}
 
@@ -24,6 +27,7 @@ namespace ChpokkWeb.Features.Compilation {
 				{
 					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"SystemFiles\Targets") }
 				};
+			_checker.VerifyFileExists(projectFilePath);
 			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
 			var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
 			//Console.WriteLine("IMPORTS");
