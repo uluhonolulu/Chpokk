@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ChpokkWeb.Infrastructure {
+﻿namespace ChpokkWeb.Infrastructure.Menu {
 	public interface IMenuItemSource {
-		MenuItem GetMenuItem();
+		MenuItem GetMenuItem(string repositoryRoot);
 	}
 }

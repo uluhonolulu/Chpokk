@@ -9,6 +9,7 @@ using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
+using ChpokkWeb.Infrastructure.Menu;
 using Emkay.S3;
 using FubuCore;
 using System.Linq;
@@ -153,10 +154,11 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public MenuItem[] GetRetrieveActions(RepositoryInfo info) {
 			var menuItems = new List<MenuItem>();
+			var repositoryRoot = this.NewGetAbsolutePathFor(info.Name);
 			foreach (var policy in _retrievePolicies) {
-				if (policy.Matches(info, AppRoot)) {
+				if (policy.Matches(repositoryRoot)) {
 					var menuItemSource = policy as IMenuItemSource;
-					if (menuItemSource != null) menuItems.Add(menuItemSource.GetMenuItem());
+					if (menuItemSource != null) menuItems.Add(menuItemSource.GetMenuItem(repositoryRoot));
 				}
 			}
 			return menuItems.ToArray();

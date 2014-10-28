@@ -6,6 +6,6 @@ using ChpokkWeb.Features.RepositoryManagement;
 
 namespace ChpokkWeb.Features.Remotes {
 	public interface IRetrievePolicy {
-		bool Matches(RepositoryInfo info, string approot);
+		bool Matches(string repositoryRoot);
 	}
 }
