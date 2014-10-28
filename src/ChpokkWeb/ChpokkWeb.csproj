@@ -797,7 +797,8 @@
     <Content Include="Features\RepositoryManagement\DeleteRepository\DeleteRepository.spark" />
     <Content Include="Features\ProjectManagement\References\Files\FileReferences.spark" />
     <Content Include="Features\Remotes\Git\Init\GitInit.spark" />
-    <Content Include="Features\Remotes\Git\Remotes\ConfigDialog.spark" />
+    <Content Include="Features\Remotes\Git\Remotes\RemoteSelector.spark" />
+    <Content Include="Features\Remotes\Git\Push\Advanced\AdvancedPush.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -9052,6 +9053,7 @@
     <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
+    <Compile Include="Features\Remotes\Git\Push\Advanced\AdvancedPushPolicy.cs" />
     <Compile Include="Features\Remotes\Git\Remotes\RemoteInfoProvider.cs" />
     <Compile Include="Features\Remotes\Git\Remotes\RemoteListEndpoint.cs" />
     <Compile Include="Features\Remotes\Git\Remotes\RemoteListModel.cs" />

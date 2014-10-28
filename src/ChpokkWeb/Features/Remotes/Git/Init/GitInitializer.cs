@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using FubuCore;
@@ -20,6 +21,11 @@ namespace ChpokkWeb.Features.Remotes.Git.Init {
 			if (allFiles.Any()) {
 				_gitCommitter.Commit(allFiles, "InitialCommit", repositoryRoot);	
 			}
+		}
+
+		public bool GitRepositoryExistsIn(string repositoryRoot) {
+			var path = FileSystem.Combine(repositoryRoot, ".git");
+			return Directory.Exists(path);			
 		}
 	}
 }
