@@ -25,7 +25,7 @@
 	<!--AdvancedPush.spark-->
 	<script type="text/javascript">
 		$(function() {
-			$('advancedPusher').click(function() {
+			$('#advancedPusher').click(function() {
 				$('#gitAdvancedPushDialog').modal('show');
 			});
 		});
