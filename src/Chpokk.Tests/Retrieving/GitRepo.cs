@@ -19,7 +19,7 @@ namespace Chpokk.Tests.Retrieving {
 	public class GitRepo : BaseQueryTest<GitRepositoryContext, IEnumerable<MenuItem>> {
 		[Test]
 		public void CanPush() {
-			Result.ShouldContainItemOfType<PushMenuItem>();
+			Result.ShouldContain(item => item.Caption.ToLower().Contains("push"));
 		}
 		[Test]
 		public void CanDownloadZip() {

@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Arractas;
-using Chpokk.Tests.Exploring;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
-using ChpokkWeb.Features.Remotes.Git.Push;
-using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using Shouldly;
+using UnitTests.Exploring;
 
 namespace Chpokk.Tests.Retrieving {
-	[TestFixture]
-	public class Folder : BaseQueryTest<RepositoryFolderContext, IEnumerable<MenuItem>> {
+	public class GitRepo : BaseQueryTest<GitRepositoryContext, IEnumerable<MenuItem>> {
 		[Test]
-		public void CanNotPush() {
-			Result.ShouldNotContain(item => item.Caption.ToLower().Contains("push"));
+		public void CanPush() {
+			Result.ShouldContain(item => item.Caption.ToLower().Contains("push"));
 		}
 		[Test]
 		public void CanDownloadZip() {
 			Result.ShouldContainItemOfType<DownloadZipMenuItem>();
 		}
-
 
 		public override IEnumerable<MenuItem> Act() {
 			var controller = Context.Container.Get<RetrieveButtonsEndpoint>();

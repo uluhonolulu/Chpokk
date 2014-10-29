@@ -4,7 +4,7 @@ using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace Chpokk.Tests.GitHub.Infrastructure {
+namespace UnitTests.GitHub.Infrastructure {
 	class Api {
 		public static void CommitFile(string path, string content) {
 //post a new tree object with that file path pointer replaced with your new blob SHA getting a tree SHA back

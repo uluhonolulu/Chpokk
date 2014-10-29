@@ -18,7 +18,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Push.Advanced {
 		}
 
 		public MenuItem GetMenuItem(string repositoryRoot) {
-			return new MenuItem{Caption = "Push to..", Id = "advancedPusher"};
+			return new MenuItem{Caption = "Git push to..", Id = "advancedPusher"};
 		}
 	}
 }

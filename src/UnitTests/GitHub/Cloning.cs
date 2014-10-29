@@ -5,6 +5,7 @@ using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.Git.Clone;
 using ChpokkWeb.Features.RepositoryManagement;
 using MbUnit.Framework;
+using UnitTests.GitHub;
 
 namespace Chpokk.Tests.GitHub {
 	[TestFixture]

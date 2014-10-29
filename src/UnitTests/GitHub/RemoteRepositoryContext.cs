@@ -1,16 +1,12 @@
 using System;
 using System.IO;
-using Chpokk.Tests.GitHub.Infrastructure;
 using Chpokk.Tests.Infrastructure;
-using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
-using FubuMVC.Core.Security;
-using Ivonna.Framework;
-using Ivonna.Framework.Generic;
-using LibGit2Sharp.Tests.TestHelpers;
 using MbUnit.Framework;
+using UnitTests.GitHub.Infrastructure;
+using UnitTests.Infrastructure;
 
-namespace Chpokk.Tests.GitHub {
+namespace UnitTests.GitHub {
 	public class RemoteRepositoryContext : SimpleConfiguredContext, IDisposable {
 		public const string REPO_URL = "https://github.com/uluhonolulu/Chpokk-Scratchpad.git"; 
 		public string RepositoryPath { get; private set; }
