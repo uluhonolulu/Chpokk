@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.Remotes.Git.Remotes;
 using Gallio.Framework;
 using LibGit2Sharp;
 using MbUnit.Framework;
@@ -29,10 +30,11 @@ namespace Chpokk.Tests.Git {
 		}
 
 		public override void Act() {
-			using (var repository = new Repository(Context.RepositoryRoot)) {
-				repository.Network.Remotes.Add(DEFAULT_REMOTE, "https://ulu@appharbor.com/chpokk.git");
-				repository.Branches.Update(repository.Head, updater => updater.Remote = DEFAULT_REMOTE, updater => updater.UpstreamBranch = "refs/heads/master");
-			}
+			var repositoryRoot = Context.RepositoryRoot;
+			var remoteInfoProvider = Context.Container.Get<RemoteInfoProvider>();
+			remoteInfoProvider.CreateRemote(repositoryRoot, DEFAULT_REMOTE, "http://www");
 		}
+
+
 	}
 }

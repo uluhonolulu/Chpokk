@@ -20,5 +20,13 @@ namespace ChpokkWeb.Features.Remotes.Git.Remotes {
 				return repository.Head.Remote.Name;
 			}
 		}
+
+		public void CreateRemote(string repositoryRoot, string name, string url) {
+			using (var repository = new Repository(repositoryRoot)) {
+				repository.Network.Remotes.Add(name, url);
+				repository.Branches.Update(repository.Head, updater => updater.Remote = name,
+										   updater => updater.UpstreamBranch = "refs/heads/master");
+			}
+		}
 	}
 }
