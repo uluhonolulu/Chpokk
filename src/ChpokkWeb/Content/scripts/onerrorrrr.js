@@ -21,7 +21,7 @@ $.continuations.bind('HttpError', function (continuation) {
 
 	if (message) danger(message);
 
-	var dontBother = (continuation.request.url == '/customerdevelopment' || continuation.request.url.startsWith('/keepalive'))  && continuation.statusCode == 404;
+	var dontBother = (continuation.request.url == '/customerdevelopment' || continuation.request.url.startsWith('/keepalive'));
 	if (!dontBother) {
 		track("SERVER ERROR: " + (message || "Unknown error"));
 		if (!message) {
