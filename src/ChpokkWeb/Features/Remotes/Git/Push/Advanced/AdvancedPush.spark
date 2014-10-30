@@ -11,6 +11,10 @@
 				</div>
 				<div class="modal-body">
 					<render partial="Remotes\RemoteSelector.spark"/>
+				    <label>Username</label>
+				    !{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
+				    <label>Password</label>
+				    !{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
