@@ -10,15 +10,17 @@
 					<h4 class="modal-title">Push to..</h4>
 				</div>
 				<div class="modal-body">
-					<render partial="Remotes\RemoteSelector.spark"/>
-				    <label>Username</label>
-				    !{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
-				    <label>Password</label>
-				    !{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}
+					<form class="well" id="pushForm">
+						<render partial="Remotes\RemoteSelector.spark"/>
+						<label>Username</label>
+						!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
+						<label>Password</label>
+						!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}					
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Proceed</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="push">Proceed</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -31,6 +33,13 @@
 		$(function() {
 			$('#advancedPusher').click(function() {
 				$('#gitAdvancedPushDialog').modal('show');
+				$('#push').one('click', function () {
+					var url = '${Urls.UrlFor<PushInputModel>()}';
+					var model = $('#pushForm').serializeObject();
+					$('#push').text("Please wait..").addClass('disabled');
+					showWaiter();
+					$.post(url, model);
+				});
 			});
 		});
 	</script>

@@ -18,8 +18,9 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 			var credentials = model.Username.IsEmpty()? null: new LibGit2Sharp.Credentials {Username = model.Username, Password = model.Password};
 			var repositoryRoot = _manager.NewGetAbsolutePathFor(model.RepositoryName);
 			var ajaxContinuation = AjaxContinuation.Successful();
+			ajaxContinuation.ShouldRefresh = true;
+			var remoteName = GetRemoteName(model, repositoryRoot);
 			using (var repo = new Repository(repositoryRoot)) {
-				var remoteName = GetRemoteName(model, repositoryRoot);
 				var remote = repo.Network.Remotes[remoteName];
 				repo.Network.Push(remote, "refs/heads/master", error => {
 					ajaxContinuation.Success = false;
@@ -34,6 +35,9 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 			if (model.NewRemote.IsNotEmpty()) {
 				_remoteInfoProvider.CreateRemote(repositoryRoot, model.NewRemote, model.NewRemoteUrl);
 				return model.NewRemote;
+			}
+			if (model.Remote.IsEmpty()) { //for the basic push, we use the default remote
+				return _remoteInfoProvider.GetDefaultRemote(repositoryRoot);
 			}
 			return model.Remote;
 		}
