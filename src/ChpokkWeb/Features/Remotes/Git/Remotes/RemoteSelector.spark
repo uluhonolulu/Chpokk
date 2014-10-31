@@ -1,0 +1,41 @@
+﻿<use namespace="ChpokkWeb.Features.Remotes.Git.Remotes" />
+<use namespace="ChpokkWeb.Features.Remotes.Git.Push" />
+
+<!--RemoteSelector.spark-->
+<h3>Select a remote</h3>
+<select id="remotes" name="Remote" class="form-control">
+	
+</select>
+
+
+
+<div id="remoteSetup" style="display: none;">
+	<h3>New remote</h3>
+	<label>Name</label>
+	!{this.InputFor<PushInputModel>(m => m.NewRemote).AddClass("form-control").Style("width", "100%")}
+	<label>URL</label>
+	!{this.InputFor<PushInputModel>(m => m.NewRemoteUrl).AddClass("form-control").Style("width", "100%")}
+</div>
+<!-- /RemoteSelector.spark -->
+
+<content name="InlineScripts">
+	<!--RemoteSelector.spark-->
+	<script type="text/javascript">
+		$(function() {
+			var url = '${Urls.UrlFor<RemoteListInputModel>()}';
+			$.post(url, model, function(data) {
+				for (var i = 0; i < data.Remotes.length; i++) {
+					var name = data.Remotes[i], selected = name == data.DefaultRemote;
+					$('<option/>').text(name).prop('selected', selected).appendTo($('#remotes'));
+				}
+				$('<option/>').attr('id', 'newRemote').text('New remote').click(function() {
+					displayNewRemoteSetup(true);
+				}).appendTo($('#remotes'));
+				if (data.Remotes.length == 0)
+					displayNewRemoteSetup(true);
+			});
+		});
+		
+		function displayNewRemoteSetup(visible) { $('#remoteSetup').toggle(visible); }
+	</script>
+</content>
