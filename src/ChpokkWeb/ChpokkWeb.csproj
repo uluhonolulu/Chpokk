@@ -10419,8 +10419,8 @@
     <PostBuildEvent>if not exist "$(WebProjectOutputDir)\bin\NativeBinaries" md "$(WebProjectOutputDir)\bin\NativeBinaries"
 if not exist "$(WebProjectOutputDir)\bin\NativeBinaries\x86" md "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
 if not exist "$(WebProjectOutputDir)\bin\NativeBinaries\amd64" md "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"
-rem xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\x86\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
-rem xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\amd64\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"</PostBuildEvent>
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\x86\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
+xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.14.1.0\lib\net35\NativeBinaries\amd64\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
