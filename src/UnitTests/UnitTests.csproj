@@ -42,9 +42,9 @@
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.2.0.0.576\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="Emkay.S3, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Emkay.S3, Version=0.9.0.47, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Emkay.S3.0.9.0.44\lib\NET40\Emkay.S3.dll</HintPath>
+      <HintPath>..\packages\Emkay.S3.0.9.0.47\lib\NET40\Emkay.S3.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.1.2.0.272\lib\FubuCore.dll</HintPath>
