@@ -21,7 +21,11 @@ namespace Chpokk.Tests.Spikes {
 			//url = "https://uluhonolulu@bitbucket.org/uluhonolulu/chpokk-test.git";
 			password = "p4SSw0RD";
 			var targetFolder = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath(@"Users\ulu\Repositories\private");
-			Repository.Clone(url, targetFolder, credentials: new Credentials(){Username = userName, Password = password});
+			var cloneOptions = new CloneOptions
+				{
+					CredentialsProvider = (s, fromUrl, types) => new UsernamePasswordCredentials() {Username = userName, Password = password}
+				};
+			Repository.Clone(url, targetFolder, cloneOptions);
 		}
 
 		[Test]
@@ -30,7 +34,10 @@ namespace Chpokk.Tests.Spikes {
 			var userName = "uluhonolulu";
 			var password = "xd11SvG23";
 			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private5";
-			Repository.Clone(url, targetFolder, credentials: new Credentials(){Username = userName, Password = password});
+			var cloneOptions = new CloneOptions {
+				CredentialsProvider = (s, fromUrl, types) => new UsernamePasswordCredentials() { Username = userName, Password = password }
+			};
+			Repository.Clone(url, targetFolder, cloneOptions);
 			
 		}
 	}

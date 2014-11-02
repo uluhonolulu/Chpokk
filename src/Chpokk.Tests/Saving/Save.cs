@@ -67,7 +67,7 @@ namespace Chpokk.Tests.Saving {
 			using (var repo = new Repository(Context.RepositoryRoot)) {
 				var commit = repo.Head.Tip;
 				var blob = (Blob) commit[@"src\ProjectName\Class1.cs"].Target;
-				string content = Encoding.UTF8.GetString(blob.Content);
+				string content = blob.GetContentText();
 				content.ShouldEqual("---");
 			}			
 		}

@@ -85,9 +85,13 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 
 		private static void CloneGitRepository(CloneInputModel model, string repositoryPath) {
 			LibGit2Sharp.Credentials credentials = model.Username.IsNotEmpty()
-								  ? new LibGit2Sharp.Credentials() { Username = model.Username, Password = model.Password }
+								  ? new UsernamePasswordCredentials() { Username = model.Username, Password = model.Password }
 				                  : null;
-			Repository.Clone(model.RepoUrl, repositoryPath, credentials:credentials);
+			var options = new CloneOptions()
+				{
+					Checkout = true, OnTransferProgress = progress => true, CredentialsProvider = (url, fromUrl, types) => credentials
+				};
+			Repository.Clone(model.RepoUrl, repositoryPath, options);
 		}
 
 		private string GetRepositoryRoot(CloneInputModel model) {

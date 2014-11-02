@@ -15,18 +15,26 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 
 
 		public AjaxContinuation Push(PushInputModel model) {
-			var credentials = model.Username.IsEmpty()? null: new LibGit2Sharp.Credentials {Username = model.Username, Password = model.Password};
+			var credentials = model.Username.IsEmpty()? null: new UsernamePasswordCredentials() {Username = model.Username, Password = model.Password};
 			var repositoryRoot = _manager.NewGetAbsolutePathFor(model.RepositoryName);
 			var ajaxContinuation = AjaxContinuation.Successful();
 			ajaxContinuation.ShouldRefresh = true;
 			var remoteName = GetRemoteName(model, repositoryRoot);
 			using (var repo = new Repository(repositoryRoot)) {
 				var remote = repo.Network.Remotes[remoteName];
-				repo.Network.Push(remote, "refs/heads/master", error => {
-					ajaxContinuation.Success = false;
-					var errorMessage = error.Reference + ": " + error.Message + "/r";
-					ajaxContinuation.Errors.Add(new AjaxError { message = errorMessage });
-				}, credentials);
+				var options = new PushOptions()
+					{
+						OnPackBuilderProgress = (stage, current, total) => true, 
+						OnPushTransferProgress = (current, total, bytes) => true, //TODO: log this to screen
+						OnPushStatusError = error =>
+						{
+							ajaxContinuation.Success = false;
+							var errorMessage = error.Reference + ": " + error.Message + "/r";
+							ajaxContinuation.Errors.Add(new AjaxError {message = errorMessage});
+						},
+						CredentialsProvider = (url, fromUrl, types) => credentials
+					};
+				repo.Network.Push(remote, "HEAD", repo.Head.CanonicalName, options);
 			}
 			return ajaxContinuation;
 		}
