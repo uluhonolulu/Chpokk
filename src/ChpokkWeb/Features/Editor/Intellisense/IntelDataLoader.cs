@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ChpokkWeb.Infrastructure.FileSystem;
+using FubuCore;
 using ICSharpCode.SharpDevelop.Dom;
 using Microsoft.Build.Construction;
 
 namespace ChpokkWeb.Features.Editor.Intellisense {
 	public class IntelDataLoader {
-		private FileExistenceChecker _existenceChecker;
-		public IntelDataLoader(FileExistenceChecker existenceChecker) {
+		private readonly FileExistenceChecker _existenceChecker;
+		private readonly IFileSystem _fileSystem;
+		public IntelDataLoader(FileExistenceChecker existenceChecker, IFileSystem fileSystem) {
 			_existenceChecker = existenceChecker;
+			_fileSystem = fileSystem;
 		}
 
 		public IntelData CreateIntelData(string projectPath, string filePath, string content) {
 			_existenceChecker.VerifyFileExists(projectPath);
 			var projectRoot = ProjectRootElement.Open(projectPath);
-			return new IntelData { CodeFilePath = filePath, Code = content, OtherContent = GetSources(projectRoot, filePath), ReferencePaths = GetReferencePaths(projectRoot) };
+			return new IntelData { CodeFilePath = filePath, Code = content, OtherContent = GetSources(projectRoot, filePath).ToArray(), ReferencePaths = GetReferencePaths(projectRoot) };
 		}
 
 		public IEnumerable<string> GetReferencePaths(ProjectRootElement root) {
@@ -49,13 +52,9 @@ namespace ChpokkWeb.Features.Editor.Intellisense {
 			                   where item.ItemType == "Compile" 
 			                   select item;
 			var paths = from item in compileItems select Path.Combine(root.DirectoryPath, item.Include);
-			//Console.WriteLine("Paths:");
-			foreach (var path in paths) {
-				//Console.WriteLine(path);
-			}
 			paths = paths.Except(new[] {pathToExclude});
 			return from path in paths
-			       select File.ReadAllText(path);
+				   select _fileSystem.ReadStringFromFile(path);
 		}
 	}
 }
