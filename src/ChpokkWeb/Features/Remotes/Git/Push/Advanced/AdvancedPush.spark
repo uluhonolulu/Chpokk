@@ -10,7 +10,7 @@
 					<h4 class="modal-title">Push to..</h4>
 				</div>
 				<div class="modal-body">
-					<form class="well" id="pushForm">
+					<form class="well" id="advancedPushForm">
 						<render partial="Remotes\RemoteSelector.spark"/>
 						<label>Username</label>
 						!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
@@ -35,7 +35,7 @@
 				$('#gitAdvancedPushDialog').modal('show');
 				$('#push').one('click', function () {
 					var url = '${Urls.UrlFor<PushInputModel>()}';
-					var model = $('#pushForm').serializeObject();
+					var model = $('#advancedPushForm').serializeObject();
 					$('#push').text("Please wait..").addClass('disabled');
 					showWaiter();
 					$.post(url, model);

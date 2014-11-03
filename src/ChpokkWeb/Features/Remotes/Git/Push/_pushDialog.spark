@@ -13,9 +13,10 @@
 				<h3>Your credentials please</h3>
 			</div>
 			<div class="modal-body">
-				!{this.Edit(m => m.Username).AlterBody(tag => tag.AddClass("form-control").Style("width", "100%"))}
-				!{this.Edit(m => m.Password).AlterBody(tag => tag.AddClass("form-control").Style("width", "100%"))}
-		
+				<form class="well" id="pushForm">
+					!{this.Edit(m => m.Username).AlterBody(tag => tag.AddClass("form-control").Style("width", "100%"))}
+					!{this.Edit(m => m.Password).AlterBody(tag => tag.AddClass("form-control").Style("width", "100%").Attr("type", "password"))}
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
@@ -40,10 +41,10 @@
 		function pushRepository(repositoryName) {
 			$('#pushDialog').modal();
 			$('#pushDialog #pushOkButton').one('click', function () {
-				var pushModel = { RepositoryName: repositoryName, Username: $('#pushDialog [RepositoryName="UserRepositoryName"]').val(), Password: $('#pushDialog [RepositoryName="Password"]').val() };
+				var pushModel = $('#pushForm').serializeObject();
 				var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Push.PushInputModel>()}';
 				$.post(pushUrl, pushModel, function () {
-					alert("Pushed successfully!");
+					info("Pushed successfully!");
 				});
 				$('#pushDialog').modal('hide');
 			});
