@@ -6,7 +6,7 @@
 <use namespace="ChpokkWeb.Features.Remotes"/>
 <use namespace="ChpokkWeb.Features.ProjectManagement.CreateEmptySolution"/>
 
-
+<!--_SolutionBrowser.spark-->
 	<div id="solutionBrowserWrapper" class="panel panel-default">
 		<div id="solutionBrowserToolbar" class="panel-heading">
 			!{Model.RepositoryName}
@@ -21,10 +21,11 @@
 </content>
 
 <content name="InlineScripts">
+	<!--_SolutionBrowser.spark-->
 	<script type="text/javascript">
 
 		$(function () {
-		    loadSolutionExplorer();
+			loadSolutionExplorer();
 			
 			$('#zipper').click(function() {
 				document.location.href = '${Urls.UrlFor<DownloadZipInputModel>()}?RepositoryName=${Model.RepositoryName}';
@@ -45,10 +46,10 @@
 
 				initTreeView('#solutionBrowser');
 
-			    //keep the data in a global variable
+				//keep the data in a global variable
 				window.repositoryItems = data;
 			    
-                //tell everybody
+				//tell everybody
 				amplify.publish('solutionLoaded', data);
 				
 				//if no solutions, ask whether we want to create one
