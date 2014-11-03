@@ -6,7 +6,7 @@
 	</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Chpokk is a Web-based C# and VB.Net IDE with support for intellisense, compilation, and running console programs"/>
+	<meta name="description" content="Chpokk is a Web-based C# and VB.Net IDE with support for intellisense, compilation, and running console programs. You can edit, compile, test, and run your .Net code online without Visual Studio"/>
 	<Script src="lib/bootstrap.js" />
 	<Script src="common.js"/>
 	<Script src="hubs.js"/>
