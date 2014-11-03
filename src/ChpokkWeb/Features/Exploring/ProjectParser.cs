@@ -140,8 +140,10 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 			const string globalPattern = @"(?<=GlobalSection\(ProjectConfigurationPlatforms\) = postSolution\s*)(.*?)(?=\r\n\s*EndGlobalSection)";
 			var globalRegex = new Regex(globalPattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);	
 			var newProjectContent = @"
-		{{{0}}}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{{{0}}}.Debug|Any CPU.Build.0 = Debug|x86".ToFormat(projectGuid);
+		{{{0}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{{{0}}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{{{0}}}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{{{0}}}.Release|Any CPU.Build.0 = Release|Any CPU".ToFormat(projectGuid);//Need Release|Any CPU for AppHarbor
 			solutionContent = globalRegex.Replace(solutionContent, "$&" + newProjectContent);
 		}
 
