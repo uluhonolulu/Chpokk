@@ -15,6 +15,13 @@
 
 	ga('create', 'UA-2122462-5', 'auto');
 	ga('send', 'pageview');
+
+	// Load the plugin.
+	ga('require', 'linker'); 
+
+	// Define which domains to autoLink. 
+	ga('linker:autoLink', ['fastspring.com']);
+
 	//ga(‘set’, ‘&uid’, {{USER_ID}}); // Set the user ID using signed-in user_id.
 
 
