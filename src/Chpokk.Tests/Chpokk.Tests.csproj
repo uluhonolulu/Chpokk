@@ -236,8 +236,9 @@
     <Reference Include="Serenity, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serenity.0.9.8.120\lib\net40\Serenity.dll</HintPath>
     </Reference>
-    <Reference Include="Shouldly">
-      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
+    <Reference Include="Shouldly, Version=2.2.1.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Shouldly.2.2.1\lib\net40\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="Simple.Data, Version=0.18.3.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -308,6 +309,8 @@
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
+    <Compile Include="Blog\OneBlogPostContext.cs" />
+    <Compile Include="Blog\ViewingAllPosts.cs" />
     <Compile Include="Compilation\InvalidCode.cs" />
     <Compile Include="Compilation\SolutionCompilation.cs" />
     <Compile Include="Compilation\ValidCode.cs" />

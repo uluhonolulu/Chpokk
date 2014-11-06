@@ -210,7 +210,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NuGet, Version=2.7.40906.75, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -9000,6 +9000,7 @@
     <Compile Include="Features\Authentication\UserData.cs" />
     <Compile Include="Features\Authentication\UserManager.cs" />
     <Compile Include="Features\BitnessEndpoint.cs" />
+    <Compile Include="Features\Blog\List\ListBlogPostsEndpoint.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
     <Compile Include="Features\Compilation\ProjectBuildSync.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
@@ -9199,6 +9200,7 @@
     <Folder Include="Binaries\" />
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
+    <Folder Include="Features\Blog\Post\" />
     <Folder Include="Features\Pokk\Intellisense\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
   </ItemGroup>
