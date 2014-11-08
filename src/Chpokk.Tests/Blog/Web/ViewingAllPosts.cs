@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Arractas;
-using Chpokk.Tests.Infrastructure;
-using Gallio.Framework;
+﻿using Chpokk.Tests.Infrastructure;
 using Ivonna.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using Ivonna.Framework.Generic;
 using Shouldly;
 
-namespace Chpokk.Tests.Blog {
+namespace Chpokk.Tests.Blog.Web {
 	[TestFixture, RunOnWeb]
 	public class ViewingAllPosts: WebQueryTest<OneBlogPostContext, WebResponse> {
 		[Test]
