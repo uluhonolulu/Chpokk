@@ -311,6 +311,7 @@
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
     <Compile Include="Blog\OneBlogPostContext.cs" />
     <Compile Include="Blog\ViewingAllPosts.cs" />
+    <Compile Include="Blog\ViewingExistingPost.cs" />
     <Compile Include="Compilation\InvalidCode.cs" />
     <Compile Include="Compilation\SolutionCompilation.cs" />
     <Compile Include="Compilation\ValidCode.cs" />
