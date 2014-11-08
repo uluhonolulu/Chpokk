@@ -3,6 +3,7 @@
 	<script type="text/javascript">
 		$(function () {
 			addRepositoryMenuItem("New project", newSimpleProject);
+			$('#simpleProjectDialogOpener').click(newSimpleProject); //dashboard
 			$('#createSimpleProjectButton').on('click', function() {
 			    $('#createSimpleProjectButton').text("Please wait..");
 			    $('#createSimpleProjectButton').addClass('disabled');
@@ -15,6 +16,7 @@
 		});
 
 		function newSimpleProject() {
+			$('.modal').not('.stay').modal('hide'); //hide modals, if any (looking at you, dashboard)
 			$('#projectPropertiesDialog #dialogTitle').text("Create a simple project");
 			$('#projectPropertiesDialog #save').text("Create");
 			$('#projectName').val('');
