@@ -25,7 +25,17 @@ namespace ChpokkWeb.Features.Remotes.Git.Init {
 
 		public bool GitRepositoryExistsIn(string repositoryRoot) {
 			var path = FileSystem.Combine(repositoryRoot, ".git");
-			return Directory.Exists(path);			
+			if (Directory.Exists(path)) {
+				//sometimes directory exists, but still it's not a valid repo, let's check
+				try {
+					new Repository(repositoryRoot).Dispose();
+					return true; //if no exception, there's a repository indeed
+				}
+				catch (RepositoryNotFoundException) {
+					return false;
+				}
+			}
+			return false;			
 		}
 	}
 }
