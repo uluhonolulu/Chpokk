@@ -25,12 +25,10 @@ namespace Chpokk.Tests.References {
 		}
 
 		public override IEnumerable<IPackage> Act() {
-			Context.Container.Get<FileSystem>().WriteStringToFile(@"C:\log.txt", "");
 			var packageFinder = Context.Container.Get<PackageFinder>();
-			//warmup
-			packageFinder.FindPackages("Shouldly");
-			CThruEngine.AddAspect(new GoodTracer(info => info.MethodName != "Finalize", @"C:\log.txt"));
-			CThruEngine.StartListening();
+			//Context.Container.Get<FileSystem>().WriteStringToFile(@"C:\log.txt", "");
+			//CThruEngine.AddAspect(new GoodTracer(info => info.MethodName != "Finalize", @"C:\log.txt"));
+			//CThruEngine.StartListening();
 			return packageFinder.FindPackages("mvc");
 		}
 	}
