@@ -16,14 +16,13 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		}
 
 		public IEnumerable<IPackage> FindPackages(string searchTerm) {
-			var settings = Settings.LoadDefaultSettings(new PhysicalFileSystem("D:\\Projects\\OSS\\nuget\\test\\Core.Test\\bin\\Debug"), configFileName: null, machineWideSettings: new CommandLineMachineWideSettings());
-			var defaultPackageSource = new PackageSource(NuGetConstants.DefaultFeedUrl);
-			var packageSourceProvider = new PackageSourceProvider(
-				settings,
-				new[] { defaultPackageSource }
-			);
-			var packageRepository = packageSourceProvider.CreateAggregateRepository(PackageRepositoryFactory.Default, true);
-			return packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion).ToArray();
+			//var settings = Settings.LoadDefaultSettings(null, null, new CommandLineMachineWideSettings());
+			//var defaultPackageSource = new PackageSource(NuGetConstants.DefaultFeedUrl);
+			//var packageSourceProvider = new PackageSourceProvider(
+			//	settings
+			//);
+			//var packageRepository = packageSourceProvider.CreateAggregateRepository(PackageRepositoryFactory.Default, true);
+			return _packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion).ToArray();
 		}
 	}
 }

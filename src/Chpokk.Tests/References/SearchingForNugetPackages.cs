@@ -22,6 +22,10 @@ namespace Chpokk.Tests.References {
 		[Test]
 		public void ShouldReturnSomeResults() {
 			Result.Any().ShouldBe(true);
+			Console.WriteLine(Result.Count());
+			//foreach (var package in Result) {
+			//	Console.WriteLine(package);
+			//}
 		}
 
 		public override IEnumerable<IPackage> Act() {

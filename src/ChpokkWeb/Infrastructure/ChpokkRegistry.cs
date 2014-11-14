@@ -55,7 +55,13 @@ namespace ChpokkWeb.Infrastructure {
 				scanner.WithDefaultConventions();
 			});
 			//NuGet
-			For<IPackageRepository>().Singleton().Use(() => PackageRepositoryFactory.Default.CreateRepository(NuGetConstants.DefaultFeedUrl));
+			For<IMachineWideSettings>().Singleton().Use<CommandLineMachineWideSettings>();
+			For<ISettings>()
+				.Singleton()
+				.Use(context => Settings.LoadDefaultSettings(null, null, context.GetInstance<IMachineWideSettings>()));
+			For<PackageSource>().Singleton().Use(context => new PackageSource(NuGetConstants.DefaultFeedUrl));
+			For<IPackageSourceProvider>().Singleton().Use(context => new PackageSourceProvider(context.GetInstance<ISettings>()));
+			For<IPackageRepository>().Singleton().Use(context => context.GetInstance<IPackageSourceProvider>().CreateAggregateRepository(PackageRepositoryFactory.Default, true));
 			For<SignalRLogger>().LifecycleIs(new HybridLifecycle());
 			For<IConsole>().Use(context => context.GetInstance<SignalRLogger>());
 			For<IFileSystem>()
