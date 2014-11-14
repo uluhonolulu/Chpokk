@@ -8,6 +8,7 @@ using CThru;
 using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
+using FubuCore;
 using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
@@ -24,10 +25,13 @@ namespace Chpokk.Tests.References {
 		}
 
 		public override IEnumerable<IPackage> Act() {
+			Context.Container.Get<FileSystem>().WriteStringToFile(@"C:\log.txt", "");
 			var packageFinder = Context.Container.Get<PackageFinder>();
-			//CThruEngine.AddAspect(new GoodTracer(info => info.MethodName != "Finalize", @"C:\log.txt"));
-			//CThruEngine.StartListening();
-			return packageFinder.FindPackages("Shouldly");
+			//warmup
+			packageFinder.FindPackages("Shouldly");
+			CThruEngine.AddAspect(new GoodTracer(info => info.MethodName != "Finalize", @"C:\log.txt"));
+			CThruEngine.StartListening();
+			return packageFinder.FindPackages("mvc");
 		}
 	}
 
