@@ -170,6 +170,13 @@
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
     <Compile Include="Infrastructure\WhenUsingALambdaWriterWeExecuteTheLambdaAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="References\AddingABclReference.cs" />
+    <Compile Include="References\AddingAFileBasedReference.cs" />
+    <Compile Include="References\AddingAPackage.cs" />
+    <Compile Include="References\ListingPackages.cs" />
+    <Compile Include="References\ReinstallingAPackage.cs" />
+    <Compile Include="References\SearchingForNugetPackages.cs" />
+    <Compile Include="References\StandardLibraryList.cs" />
     <Compile Include="Retrieving\Folder.cs" />
     <Compile Include="Retrieving\GitRepo.cs" />
     <Compile Include="Roslynson\CallingIntelEndpoint.cs" />
