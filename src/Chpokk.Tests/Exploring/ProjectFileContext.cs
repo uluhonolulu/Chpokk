@@ -8,7 +8,7 @@ namespace Chpokk.Tests.Exploring {
 		public readonly string PROJECT_PATH = @"ProjectName\ProjectName.csproj";
 		public readonly string FILE_NAME = "Class1.cs";
 		public string SolutionFolder { get; set; }
-		public string ProjectPath { get; private set; }
+		public string ProjectPath { get;  set; }
 
 		public override void Create() {
 			base.Create();

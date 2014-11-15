@@ -21,6 +21,8 @@ namespace Chpokk.Tests.Spikes {
 
 		public override void Act() {
 			var compiler = Context.Container.Get<MsBuildCompiler>();
+			Context.ProjectPath =
+				@"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google\Repositories\Chpokk-SampleSol\mvc\mvc.csproj";
 			compiler.Compile(Context.ProjectPath, this);
 		}
 

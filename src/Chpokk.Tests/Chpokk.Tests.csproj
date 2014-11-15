@@ -303,6 +303,7 @@
     <Compile Include="Amazon\AwClientExtensions.cs" />
     <Compile Include="Amazon\Downloading.cs" />
     <Compile Include="Amazon\Integration.cs" />
+    <Compile Include="Amazon\ListWebConfigs.cs" />
     <Compile Include="Amazon\OneFileOnAmazonContext.cs" />
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Authentication\Context\ClonedPrivateRepoContext.cs" />

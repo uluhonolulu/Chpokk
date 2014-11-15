@@ -6469,7 +6469,7 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\WCFWorkflowServiceApplication\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config" />
+    <None Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config_" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\BlankApp\Application_TemporaryKey.pfx" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\BlankApp\Package-managed.appxmanifest">
       <SubType>Designer</SubType>

@@ -29,7 +29,7 @@ namespace ChpokkWeb.Features.Compilation {
 				};
 			_checker.VerifyFileExists(projectFilePath);
 			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
-			var imports = project.Imports.Select(import => import.ImportedProject.FullPath);
+			//var imports = project.Imports.Select(import => import.ImportedProject.FullPath).Where(path => path.StartsWith(_rootProvider.AppRoot));
 			//Console.WriteLine("IMPORTS");
 			//foreach (var import in imports) {
 			//	Console.WriteLine(import + ": " + File.Exists(import));

@@ -47,7 +47,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 
 		private void AddFileFromTemplate(string projectName, string templateFilePath, string projectTemplateFolder,
 										 string projectFolder, string targetPath = null) {
-			var templateFileName = templateFilePath.PathRelativeTo(projectTemplateFolder);
+			var templateFileName = templateFilePath.PathRelativeTo(projectTemplateFolder).TrimEnd('_'); //trim the last char so that we handle web.config_
 			targetPath = targetPath?? projectFolder.AppendPath(templateFileName);
 			var templateFileContent =
 				_fileSystem.ReadStringFromFile(templateFilePath)
