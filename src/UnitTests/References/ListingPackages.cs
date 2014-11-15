@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Services.Client;
-using System.Reflection;
-using System.Text;
 using Arractas;
-using CThru;
-using CThru.BuiltInAspects;
-using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using NuGet;
 using Shouldly;
 using System.Linq;
+using UnitTests.Infrastructure;
 
-namespace Chpokk.Tests.References {
+namespace UnitTests.References {
 	[TestFixture]
 	public class ListingPackages : BaseQueryTest<SimpleConfiguredContext, IEnumerable<IPackage>> {
 		[Test]
@@ -39,8 +32,8 @@ namespace Chpokk.Tests.References {
 			const string searchTerm = "elma";
 			packageFinder.FindPackages(searchTerm);
 			Console.WriteLine(DateTime.Now);
-			CThruEngine.AddAspect(new TimingTraceAspect(info => info.TargetInstance is IPackage || info.TypeName.EndsWith("ClientType"), @"C:\nugget.txt"));
-			CThruEngine.StartListening();
+			//CThruEngine.AddAspect(new TimingTraceAspect(info => info.TargetInstance is IPackage || info.TypeName.EndsWith("ClientType"), @"C:\nugget.txt"));
+			//CThruEngine.StartListening();
 			return packageFinder.FindPackages(searchTerm);
 
 

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Arractas;
-using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Exploring;
 using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using Shouldly;
+using UnitTests.Infrastructure;
 
-namespace Chpokk.Tests.References {
+namespace UnitTests.References {
 	public class AddingABclReference: BaseQueryTest<SimpleConfiguredContext, IEnumerable<string>> {
 		private const string ASSEMBLY_NAME = "System.Data";
 

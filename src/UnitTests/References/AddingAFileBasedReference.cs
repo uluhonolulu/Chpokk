@@ -11,6 +11,7 @@ using MbUnit.Framework.ContractVerifiers;
 using Microsoft.Build.Construction;
 using System.Linq;
 using Shouldly;
+using UnitTests.References;
 
 namespace Chpokk.Tests.References {
 	[TestFixture, DependsOn(typeof(AddingABclReference))]

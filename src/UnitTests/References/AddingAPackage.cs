@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Arractas;
 using Chpokk.Tests.Exploring;
@@ -7,10 +6,9 @@ using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using MbUnit.Framework;
 using FubuCore;
 using Microsoft.Build.Construction;
-using NuGet;
 using Shouldly;
 
-namespace Chpokk.Tests.References {
+namespace UnitTests.References {
 	[TestFixture]
 	public class AddingAPackage : BaseCommandTest<ProjectFileContext> {
 		[Test]
