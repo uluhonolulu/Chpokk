@@ -4,6 +4,7 @@ using Arractas;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using Shouldly;
 
 namespace UnitTests.Roslynson {

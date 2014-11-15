@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Arractas;
+﻿using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using Microsoft.Build.Construction;
 using System.Linq;
 using Microsoft.Build.Evaluation;
 using Shouldly;
 
-namespace Chpokk.Tests.References {
+namespace UnitTests.References {
 	[TestFixture]
 	public class ReinstallingAPackage : BaseCommandTest<ProjectWithInstalledPackageAndRemovedReferenceContext> {
 		[Test]

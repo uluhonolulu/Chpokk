@@ -1,5 +1,6 @@
 ﻿using System;
 using FubuCore;
+using Microsoft.Build.Evaluation;
 
 namespace Chpokk.Tests.Exploring {
 	public class ProjectFileContext : RepositoryFolderContext {
@@ -28,6 +29,11 @@ namespace Chpokk.Tests.Exploring {
 					</PropertyGroup>
 				</Project>";
 			}
+		}
+
+		public override void Dispose() {
+			base.Dispose();
+			ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
 		}
 	}
 }

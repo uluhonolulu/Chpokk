@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Arractas;
-using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
-using Roslyn.Compilers;
-using UnitTests.Roslynson;
 
-namespace Chpokk.Tests.Intellisense.Roslynson {
+namespace UnitTests.Roslynson {
 	public class CallingIntelEndpoint : BaseQueryTest<SolutionWithProjectAndClassFileContext, IEnumerable<IntelOutputModel.IntelModelItem>> {
 		public override IEnumerable<IntelOutputModel.IntelModelItem> Act() {
 			var endpoint = Context.Container.Get<IntellisenseEndpoint>();
@@ -32,7 +27,16 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 		[Test]
 		public void ContainsTheMethodOfTheClass() {
 			var memberNames = Result.Select(item => item.Name);
-			Assert.Contains(memberNames, "B");
+			try {
+				Assert.Contains(memberNames, "B");
+			}
+			catch (Exception e) {
+				Console.WriteLine("Members:");
+				foreach (var memberName in memberNames) {
+					Console.WriteLine(memberName);
+				}
+				throw;
+			}
 		}
 	}
 
