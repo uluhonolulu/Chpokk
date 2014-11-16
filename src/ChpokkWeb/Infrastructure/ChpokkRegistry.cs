@@ -60,8 +60,10 @@ namespace ChpokkWeb.Infrastructure {
 				.Singleton()
 				.Use(context => Settings.LoadDefaultSettings(null, null, context.GetInstance<IMachineWideSettings>()));
 			For<PackageSource>().Singleton().Use(context => new PackageSource(NuGetConstants.DefaultFeedUrl));
-			For<IPackageSourceProvider>().Singleton().Use(context => new PackageSourceProvider(context.GetInstance<ISettings>()));
+			For<IPackageSourceProvider>().Singleton().Use(context => new PackageSourceProvider(context.GetInstance<ISettings>(), new[] { context.GetInstance<PackageSource>() }));
 			For<IPackageRepository>().Singleton().Use(context => context.GetInstance<IPackageSourceProvider>().CreateAggregateRepository(PackageRepositoryFactory.Default, true));
+
+			//SignalR
 			For<SignalRLogger>().LifecycleIs(new HybridLifecycle());
 			For<IConsole>().Use(context => context.GetInstance<SignalRLogger>());
 			For<IFileSystem>()

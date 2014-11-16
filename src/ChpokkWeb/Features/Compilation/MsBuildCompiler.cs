@@ -3,32 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using ChpokkWeb.Infrastructure;
-using ChpokkWeb.Infrastructure.FileSystem;
-using Microsoft.Build.Evaluation;
+using ChpokkWeb.Features.Exploring;
 using FubuCore;
 using Microsoft.Build.Framework;
 
 namespace ChpokkWeb.Features.Compilation {
 	public class MsBuildCompiler {
-		private readonly ProjectCollection _projectCollection;
-		private readonly IAppRootProvider _rootProvider;
-		private readonly FileExistenceChecker _checker;
+		private readonly ProjectParser _projectParser;
 
-		public MsBuildCompiler(ProjectCollection projectCollection, IAppRootProvider rootProvider, FileExistenceChecker checker) {
-			_projectCollection = projectCollection;
-			_rootProvider = rootProvider;
-			_checker = checker;
-			//_projectCollection.RegisterLogger(logger);
+		public MsBuildCompiler(ProjectParser projectParser) {
+			_projectParser = projectParser;
 		}
 
 		public BuildResult Compile(string projectFilePath, ILogger logger) {
-			var customProperties = new Dictionary<string, string>()
-				{
-					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"SystemFiles\Targets") }
-				};
-			_checker.VerifyFileExists(projectFilePath);
-			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
+			var project = _projectParser.LoadProject(projectFilePath);
 			//var imports = project.Imports.Select(import => import.ImportedProject.FullPath).Where(path => path.StartsWith(_rootProvider.AppRoot));
 			//Console.WriteLine("IMPORTS");
 			//foreach (var import in imports) {
@@ -51,6 +39,8 @@ namespace ChpokkWeb.Features.Compilation {
 
 			return new BuildResult{Success = buildResult, OutputFilePath = outputFilePath, OutputType = outputType};
 		}
+
+
 	}
 
 	public class BuildResult {

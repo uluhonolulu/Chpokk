@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 using ChpokkWeb.Features.RepositoryManagement;
+using ChpokkWeb.Infrastructure.FileSystem;
 using FubuCore;
 using ICSharpCode.NRefactory;
 using ICSharpCode.SharpDevelop.Project;
@@ -20,8 +21,14 @@ using IFileSystem = FubuCore.IFileSystem;
 namespace ChpokkWeb.Features.Exploring {
 	public class ProjectParser {
 		private readonly IFileSystem _fileSystem;
-		public ProjectParser(IFileSystem fileSystem) {
+		private readonly ProjectCollection _projectCollection;
+		private readonly IAppRootProvider _rootProvider;
+		private readonly FileExistenceChecker _checker;
+		public ProjectParser(IFileSystem fileSystem, ProjectCollection projectCollection, IAppRootProvider rootProvider, FileExistenceChecker checker) {
 			_fileSystem = fileSystem;
+			_projectCollection = projectCollection;
+			_rootProvider = rootProvider;
+			_checker = checker;
 		}
 
 		public IEnumerable<FileProjectItem> GetCompiledFiles(string projectFileContent) {
@@ -228,6 +235,8 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 		}
 
 		public IEnumerable<dynamic> GetPackageReferences(string projectPath, IEnumerable<IPackage> allPackages) {
+			//preload the project with the global vars that we need
+			LoadProject(projectPath);
 			var projectSystem = new MSBuildProjectSystem(projectPath);
 			return from package in allPackages
 				   select new {
@@ -280,6 +289,16 @@ EndProject".ToFormat(name, projectTypeGuid, projectGuid, projectFileExtension);
 					item.Parent.RemoveChild(item);
 				}
 			}
+		}
+
+		public Project LoadProject(string projectFilePath) {
+			var customProperties = new Dictionary<string, string>()
+				{
+					{"VSToolsPath", _rootProvider.AppRoot.AppendPath(@"SystemFiles\Targets")}
+				};
+			_checker.VerifyFileExists(projectFilePath);
+			var project = _projectCollection.LoadProject(projectFilePath, customProperties, null);
+			return project;
 		}
 
 

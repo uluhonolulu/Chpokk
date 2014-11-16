@@ -16,14 +16,14 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 		}
 
 		public IEnumerable<IPackage> FindPackages(string searchTerm) {
-			var settings = Settings.LoadDefaultSettings(null, null, new CommandLineMachineWideSettings());
-			var defaultPackageSource = new PackageSource(NuGetConstants.DefaultFeedUrl);
-			var packageSourceProvider = new PackageSourceProvider(
-				settings,
-				new[] { defaultPackageSource }
-			);
-			var packageRepository = packageSourceProvider.CreateAggregateRepository(PackageRepositoryFactory.Default, true);
-			return packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion).ToArray();
+			//var settings = Settings.LoadDefaultSettings(null, null, new CommandLineMachineWideSettings());
+			//var defaultPackageSource = new PackageSource(NuGetConstants.DefaultFeedUrl);
+			//var packageSourceProvider = new PackageSourceProvider(
+			//	settings,
+			//	new[] { defaultPackageSource } //adding this seems to fix the issue with no packages found
+			//);
+			//var packageRepository = packageSourceProvider.CreateAggregateRepository(PackageRepositoryFactory.Default, true);
+			return _packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion).ToArray();
 		}
 	}
 }
