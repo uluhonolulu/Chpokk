@@ -6469,7 +6469,7 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\WCFWorkflowServiceApplication\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <None Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config_" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\EmptyWebApplicationProject40\Web.config_" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\BlankApp\Application_TemporaryKey.pfx" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\BlankApp\Package-managed.appxmanifest">
       <SubType>Designer</SubType>
@@ -7173,7 +7173,7 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.vbhtml\Web.Debug.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\EmptyMvcWebApplicationProjectTemplatev4.1.vbhtml\Web.Release.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\EmptyWebApplicationProject40\My Project\Settings.settings" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\EmptyWebApplicationProject40\Web.config" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\EmptyWebApplicationProject40\Web.config_" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.vbhtml\My Project\Settings.settings" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.vbhtml\Views\Home\Index.Facebook.vbhtml" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\MvcFacebookApplicationProjectTemplatev4.1.vbhtml\Views\Home\Permissions.vbhtml" />
