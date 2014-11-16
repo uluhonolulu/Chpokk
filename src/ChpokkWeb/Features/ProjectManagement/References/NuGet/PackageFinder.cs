@@ -19,7 +19,8 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			var settings = Settings.LoadDefaultSettings(null, null, new CommandLineMachineWideSettings());
 			var defaultPackageSource = new PackageSource(NuGetConstants.DefaultFeedUrl);
 			var packageSourceProvider = new PackageSourceProvider(
-				settings
+				settings,
+				new[] { defaultPackageSource }
 			);
 			var packageRepository = packageSourceProvider.CreateAggregateRepository(PackageRepositoryFactory.Default, true);
 			return packageRepository.Search(searchTerm, false).Where(package => package.IsLatestVersion).ToArray();
