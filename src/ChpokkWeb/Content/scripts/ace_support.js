@@ -253,14 +253,16 @@ function checkSyntax(editor) {
 		var content = editor.getValue();
 		var parseUrl = 'url::ChpokkWeb.Features.Editor.Parsing.ParserInputModel';
 		$.post(parseUrl, $.extend(model, { Content: content }), function (data) {
+			var annotations = [];
 			for (var index in data.Errors) {
 				var error = data.Errors[index];
-				editor.getSession().setAnnotations([{
+				annotations.push({
 					row: error.PositionSpan.StartLinePosition.Line,
 					text: error.Message,
 					type: "error" // also warning and information
-				}]);
+				});
 			}
+			editor.getSession().setAnnotations(annotations);
 		});
 	}
 }
