@@ -9009,7 +9009,9 @@
     <Compile Include="Features\Authentication\UserData.cs" />
     <Compile Include="Features\Authentication\UserManager.cs" />
     <Compile Include="Features\BitnessEndpoint.cs" />
+    <Compile Include="Features\Blog\BlogCache.cs" />
     <Compile Include="Features\Blog\List\ListBlogPostsEndpoint.cs" />
+    <Compile Include="Features\Blog\Post\BlogPostEndpoint.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
     <Compile Include="Features\Compilation\ProjectBuildSync.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
@@ -9209,7 +9211,6 @@
     <Folder Include="Binaries\" />
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
-    <Folder Include="Features\Blog\Post\" />
     <Folder Include="Features\Pokk\Intellisense\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
   </ItemGroup>
