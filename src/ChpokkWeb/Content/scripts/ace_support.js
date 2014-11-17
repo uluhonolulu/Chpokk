@@ -68,6 +68,7 @@
 			}
 			
 			//on enter, check syntax
+			//TODO: check syntax on a wrong line on every char
 			if (e.which === $.ui.keyCode.ENTER) {
 				checkSyntax(editor);
 			}
