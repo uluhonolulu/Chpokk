@@ -134,7 +134,7 @@ EndGlobal";
 	}
 
 	public class RepositoryCleanupContext : SimpleConfiguredContext, IDisposable {
-		public void Dispose() {
+		public override void Dispose() {
 			var repositoryManager = Container.Get<RepositoryManager>();
 			var folder = repositoryManager.GetAbsolutePathFor(CreatingASimpleSolution.NAME, AppRoot);
 			//DirectoryHelper.DeleteDirectory(folder);

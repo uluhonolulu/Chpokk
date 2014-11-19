@@ -9009,7 +9009,8 @@
     <Compile Include="Features\Authentication\UserData.cs" />
     <Compile Include="Features\Authentication\UserManager.cs" />
     <Compile Include="Features\BitnessEndpoint.cs" />
-    <Compile Include="Features\Blog\BlogCache.cs" />
+    <Compile Include="Features\Blog\BlogLoader.cs" />
+    <Compile Include="Features\Blog\BlogPostParser.cs" />
     <Compile Include="Features\Blog\List\ListBlogPostsEndpoint.cs" />
     <Compile Include="Features\Blog\Post\BlogPostEndpoint.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />

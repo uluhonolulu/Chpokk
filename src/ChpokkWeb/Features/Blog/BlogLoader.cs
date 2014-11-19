@@ -4,6 +4,6 @@ using System.Linq;
 using System.Web;
 
 namespace ChpokkWeb.Features.Blog {
-	public class BlogCache {
+	public class BlogLoader {
 	}
 }

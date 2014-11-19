@@ -35,7 +35,7 @@ namespace Chpokk.Tests.GitHub {
 			Api.CommitFile(FileName, content);
 		}
 
-		public void Dispose() {
+		public override void Dispose() {
 			if (Directory.Exists(RepositoryPath))
 				DirectoryHelper.DeleteDirectory(RepositoryPath);			
 		}

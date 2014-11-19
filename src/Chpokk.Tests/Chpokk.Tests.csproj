@@ -446,7 +446,6 @@
     <Compile Include="Testing\RunningTests.cs" />
     <Compile Include="Spikes\SearchingForNuSpec.cs" />
     <Compile Include="Spikes\Security.cs" />
-    <Compile Include="Spikes\Solution.cs" />
     <Compile Include="Spikes\SolutionParser.cs" />
     <Compile Include="Spikes\WhyDoesPartialHaveAMaster.cs" />
     <Compile Include="Uploading\UploadingZipFileContext.cs" />
