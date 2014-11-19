@@ -320,6 +320,7 @@
     <Compile Include="Authentication\DontSeeOthersRepos.cs" />
     <Compile Include="Blog\OneBlogPostContext.cs" />
     <Compile Include="Blog\Parser\CanParse.cs" />
+    <Compile Include="Blog\Parser\CanParseFromFile.cs" />
     <Compile Include="Blog\Web\ViewingAllPosts.cs" />
     <Compile Include="Blog\Web\ViewingExistingPost.cs" />
     <Compile Include="Compilation\InvalidCode.cs" />

@@ -33,7 +33,6 @@
 					var solutionPath = data.Items[0].PathRelativeToRepositoryRoot;
 					var projectPath = data.Items[0].Children[0].PathRelativeToRepositoryRoot;
 					editProjectProperties(projectPath, solutionPath);
-					amplify.subscribe('solutionLoaded', function (data) {});
 				}
 			});
 			
