@@ -1,0 +1,7 @@
+﻿<viewdata model="ChpokkWeb.Features.Blog.List.ListBlogPostsModel" />
+<use namespace="ChpokkWeb.Features.Blog.List" />
+
+<for each="var post in Model.Posts">
+	<h2>!{post.Title}</h2>
+	<div>!{post.Description}</div>
+</for>
