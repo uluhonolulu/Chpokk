@@ -323,6 +323,7 @@
     <Compile Include="Blog\Parser\CanParseFromFile.cs" />
     <Compile Include="Blog\Web\ViewingAllPosts.cs" />
     <Compile Include="Blog\Web\ViewingExistingPost.cs" />
+    <Compile Include="Blog\Web\ViewingNonExistentPost.cs" />
     <Compile Include="Compilation\InvalidCode.cs" />
     <Compile Include="Compilation\SolutionCompilation.cs" />
     <Compile Include="Compilation\ValidCode.cs" />

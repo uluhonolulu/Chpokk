@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.Blog;
 using ChpokkWeb.Features.Blog.Post;
 using MbUnit.Framework;
 using Shouldly;

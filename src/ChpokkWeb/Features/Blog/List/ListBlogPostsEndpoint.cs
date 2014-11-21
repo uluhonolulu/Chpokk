@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Chpokk.Tests.Blog.Parser;
 using ChpokkWeb.Features.Blog.Post;
 using ChpokkWeb.Infrastructure;
 using FubuCore;

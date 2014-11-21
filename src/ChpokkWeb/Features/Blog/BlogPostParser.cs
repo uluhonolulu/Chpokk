@@ -5,7 +5,7 @@ using FubuCore;
 using Tanka.Markdown;
 using Tanka.Markdown.Html;
 
-namespace Chpokk.Tests.Blog.Parser {
+namespace ChpokkWeb.Features.Blog {
 	public class BlogPostParser {
 		private readonly MarkdownParser _parser = new MarkdownParser(false);
 		private const string MetadataBoundary = "\r\n==\r\n";

@@ -422,6 +422,7 @@
     <Content Include="Content\scripts\onerrorrrr.js" />
     <Content Include="Content\scripts\specs\IntelManager.spec.js" />
     <Content Include="Content\scripts\specs\white.spec.js" />
+    <Content Include="Content\styles\blog.css" />
     <Content Include="Content\styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\styles\lib\bootstrap-tour.css" />
     <Content Include="Content\styles\lib\bootstrap.css" />

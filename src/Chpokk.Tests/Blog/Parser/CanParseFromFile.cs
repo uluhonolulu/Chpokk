@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Arractas;
+using ChpokkWeb.Features.Blog;
 using ChpokkWeb.Features.Blog.Post;
 using ChpokkWeb.Infrastructure;
 using Gallio.Framework;
