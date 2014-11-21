@@ -4,11 +4,11 @@ using FubuCore;
 namespace Chpokk.Tests.Blog {
 	public class OneBlogPostContext : SimpleConfiguredContext {
 		public string FILENAME = "filename.md";
+		public string BLOGPOST_CONTENT = "blog post content";
 		public override void Create() {
 			base.Create();
-			var blogContent = "header\n=";
 			var filePath = BlogPostPath;
-			Container.Get<FileSystem>().WriteStringToFile(filePath, blogContent);
+			Container.Get<FileSystem>().WriteStringToFile(filePath, BLOGPOST_CONTENT);
 		}
 
 		public override void Dispose() {

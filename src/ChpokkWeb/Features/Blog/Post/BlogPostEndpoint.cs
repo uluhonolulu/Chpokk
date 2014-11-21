@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Blog.Post {
 	public class BlogPostEndpoint {
@@ -10,7 +11,9 @@ namespace ChpokkWeb.Features.Blog.Post {
 		}
 	}
 
+	[UrlPattern("/blog/{Slug}")]
 	public class BlogPostInputModel {
+		[RouteInput("")]
 		public string Slug { get; set; }
 	}
 

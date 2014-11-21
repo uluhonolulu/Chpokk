@@ -810,6 +810,7 @@
     <Content Include="Features\Remotes\Git\Remotes\RemoteSelector.spark" />
     <Content Include="Features\Remotes\Git\Push\Advanced\AdvancedPush.spark" />
     <Content Include="Features\Blog\List\ListBlogPosts.spark" />
+    <Content Include="Features\Blog\Post\BlogPost.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">

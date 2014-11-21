@@ -13,6 +13,11 @@ to use a different color start by replacing all instances of
 			color: black;
 		}
 
+/* Tell the browser to render HTML 5 elements as block */
+header, footer, section, aside, nav, article {
+    display: block;
+}
+
 /* navbar */
 
 .navbar .container { padding-left: 30px; }
