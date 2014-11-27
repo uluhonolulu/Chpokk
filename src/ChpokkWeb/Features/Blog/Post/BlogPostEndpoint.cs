@@ -18,7 +18,8 @@ namespace ChpokkWeb.Features.Blog.Post {
 		}
 
 		public BlogPostModel DoIt(BlogPostInputModel model) {
-			var filePath = _rootProvider.AppRoot.AppendPath("Blog", model.Slug);
+			var filePath = _rootProvider.AppRoot.AppendPath("Blog", model.Slug + ".md");
+			//Console.WriteLine(filePath);
 			if (_fileSystem.FileExists(filePath)) {
 				return _parser.LoadAndParse(filePath);
 			}

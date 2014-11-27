@@ -14,7 +14,7 @@ namespace Chpokk.Tests.Blog.Web {
 		[Test]
 		public void Returns404() {
 			Console.WriteLine(Result.StatusDescription);
-			Assert.AreEqual(404, Result.Status);
+			Assert.AreEqual("Not Found", Result.StatusDescription);
 		}
 
 		public override WebResponse Act() {
