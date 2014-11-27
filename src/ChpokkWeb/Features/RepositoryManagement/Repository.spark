@@ -43,7 +43,7 @@
 	</script>
 </content>
 
-<div class="container" style="height: 100%;">
+<main class="container" style="height: 100%;">
 	<div class="row-fluid" style="height: 100%;">
 		<div class="col-lg-3" if="this.Get<FubuMVC.Core.Security.ISecurityContext>().IsAuthenticated()">
 			!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}			
@@ -55,7 +55,7 @@
 			<div id="output" style="position: relative; display: none;"></div>
 		</div>
 	</div>
-</div>
+</main>
 <!--
 	<div class="pull-right well" style="min-height: 500px; display: none;">
 		!{this.Partial(new FileListPartialModel{RepositoryName = Model.RepositoryName})}

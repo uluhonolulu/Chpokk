@@ -2,7 +2,7 @@
 <use namespace="ChpokkWeb.Features.Blog.Post" />
 
 
-<section>
+<main class="container">
 	<article class="blogPost">
 		<header>
 			<h2>!{Model.Title}</h2>
@@ -11,7 +11,7 @@
 		MAIN???
 		<p>on the front page of the blog we would wrap each post in an article-tag.</p>
 	</article>
-</section>
+</main>
 <aside>
 	<!-- Sidebar -->
 </aside>

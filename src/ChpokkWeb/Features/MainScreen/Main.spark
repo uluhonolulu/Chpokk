@@ -7,9 +7,9 @@
 <content name="title">Chpokk, an online C# and Vb.Net IDE</content>
 
 
-<div class="container" if="System.Web.HttpContext.Current.User.Identity.IsAuthenticated">
+<main class="container" if="System.Web.HttpContext.Current.User.Identity.IsAuthenticated">
 	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
-</div>
+</main>
 
 <use file="RepositoryMenu\DashBoard"/>
 
