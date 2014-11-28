@@ -22,18 +22,18 @@ namespace ChpokkWeb.Features.Authentication {
 		}
 
 		public FubuContinuation Login(LoginInputModel model) {
-			_tracker.Record(null, "Starting login, calling Janrain", null, null);
+			_tracker.Record("Starting login, calling Janrain");
 			var url = string.Format("https://rpxnow.com/api/v2/auth_info?apiKey={0}&token={1}", model.ApiKey, model.token);
 			var rawResponse =
 				new WebClient(){Encoding = Encoding.UTF8}.DownloadString(url);
-			_tracker.Record(null, "Called Janrain", null, null);
+			_tracker.Record("Called Janrain");
 			var response = JsonConvert.DeserializeObject<dynamic>(rawResponse);
 			if (response.stat.ToString() == "ok") {
 				try {
 					var username = _userManager.SigninUser(response.profile, rawResponse, _userData);
-					_tracker.Record(null, "Signed in", null, null);
+					_tracker.Record("Signed in");
 					if (_mailer.Host != null) _mailer.Send("features@chpokk.apphb.com", "uluhonolulu@gmail.com", "New user: " + username, rawResponse);
-					_tracker.Record(null, "Sent notification", null, null);
+					_tracker.Record("Sent notification");
 					return FubuContinuation.RedirectTo<MainDummyModel>();
 				}
 				catch (Exception exception) {

@@ -28,6 +28,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			_httpRequest = httpRequest;
 		}
 
+		public void Record(string message) {
+			Record(null, message, null, null);
+		}
 
 		public void Record(string userName, string caption, string url, string browser) {
 			if (url.IsEmpty())
