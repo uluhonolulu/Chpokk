@@ -6,6 +6,8 @@ using System.Text;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using FubuCore;
+using FubuMVC.Core.Http;
+using FubuMVC.Core.Http.AspNet;
 using FubuMVC.Core.Security;
 
 namespace ChpokkWeb.Features.CustomerDevelopment {
@@ -16,16 +18,20 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly UsageCounter _usageCounter;
 		private readonly ISecurityContext _securityContext;
 		private readonly WhosOnlineTracker _onlineTracker;
-		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker) {
+		private ICurrentHttpRequest _httpRequest;
+		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker, ICurrentHttpRequest httpRequest) {
 			_mailer = mailer;
 			_usageRecorder = usageRecorder;
 			_securityContext = securityContext;
 			_usageCounter = usageCounter;
 			_onlineTracker = onlineTracker;
+			_httpRequest = httpRequest;
 		}
 
 
 		public void Record(string userName, string caption, string url, string browser) {
+			if (url.IsEmpty())
+				url = _httpRequest.FullUrl();
 			_log.Add(new TrackerInputModel{What = caption, Url = url});
 			UserName = userName ?? _securityContext.CurrentIdentity.Name;
 			if (Browser.IsEmpty()) Browser = browser;
