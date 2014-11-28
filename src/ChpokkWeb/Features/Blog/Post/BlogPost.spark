@@ -8,7 +8,7 @@
 			<h2>!{Model.Title}</h2>
 			<time datetime="!{Model.Date}">!{Model.Date.ToLongDateString()}</time>
 		</header>
-		<div style="margin-top: :10px;">
+		<div style="margin-top: 20px;">
 			!{Model.Content}
 		</div>
 	</article>
