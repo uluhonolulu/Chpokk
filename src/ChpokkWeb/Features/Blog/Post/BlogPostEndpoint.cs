@@ -10,7 +10,7 @@ namespace ChpokkWeb.Features.Blog.Post {
 	public class BlogPostEndpoint {
 		private readonly IAppRootProvider _rootProvider;
 		private readonly IFileSystem _fileSystem;
-		private BlogPostParser _parser;
+		private readonly BlogPostParser _parser;
 		public BlogPostEndpoint(IAppRootProvider rootProvider, IFileSystem fileSystem, BlogPostParser parser) {
 			_rootProvider = rootProvider;
 			_fileSystem = fileSystem;
@@ -35,6 +35,7 @@ namespace ChpokkWeb.Features.Blog.Post {
 
 	public class BlogPostModel {
 		public string Title { get; set; }
+		public DateTime Date { get; set; }
 		public string Description { get; set; }
 		public string Content { get; set; }
 		public string Slug { get; set; }

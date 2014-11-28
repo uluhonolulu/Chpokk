@@ -2,3 +2,9 @@
 header h1, header h2 {
 	text-transform: uppercase;
 }
+header time {
+	color: rgb(188, 206, 206);
+	display: block;
+	font-weight: bold;
+	margin-top: -5px;
+}

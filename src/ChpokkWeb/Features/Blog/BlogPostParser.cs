@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using ChpokkWeb.Features.Blog.Post;
 using FubuCore;
@@ -32,7 +33,8 @@ namespace ChpokkWeb.Features.Blog {
 				var propertyName = splitted[0].Trim();
 				var property = typeof (BlogPostModel).GetProperty(propertyName);
 				if (property != null) {
-					property.SetValue(blogPostModel, splitted[1].Trim());		
+					var stringValue = splitted[1].Trim();
+					property.SetValue(blogPostModel, Convert.ChangeType(stringValue, property.PropertyType, CultureInfo.InvariantCulture));		
 				}
 			}
 

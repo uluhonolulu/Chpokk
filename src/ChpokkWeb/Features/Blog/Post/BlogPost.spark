@@ -3,18 +3,19 @@
 
 
 <main class="container">
-	<article class="blogPost">
+	<article>
 		<header>
 			<h2>!{Model.Title}</h2>
-			<p>Posted on <time datetime="2009-06-29T23:31:45+01:00">June 29th 2009</time> by <a href="#">Mads Kjaer</a> - <a href="#comments">3 comments</a></p>
+			<time datetime="!{Model.Date}">!{Model.Date.ToLongDateString()}</time>
 		</header>
-		MAIN???
-		<p>on the front page of the blog we would wrap each post in an article-tag.</p>
+		<div style="margin-top: :10px;">
+			!{Model.Content}
+		</div>
 	</article>
 </main>
-<aside>
-	<!-- Sidebar -->
-</aside>
-<footer>
-	<!-- Footer -->
-</footer>
+
+
+
+<content name="head">
+	<Stylesheet href="blog.css" />
+</content>
