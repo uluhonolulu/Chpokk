@@ -9184,6 +9184,7 @@
     <Compile Include="Infrastructure\Chimper.cs" />
     <Compile Include="Infrastructure\ChpokkRegistry.cs" />
     <Compile Include="Infrastructure\FileSystem\FileExistenceChecker.cs" />
+    <Compile Include="Infrastructure\Logging\SimpleLogger.cs" />
     <Compile Include="Infrastructure\MakesFubuHappy\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />
