@@ -11,6 +11,8 @@
 			</header>
 
 			<div>!{post.Description}</div>
+			
+			<a href="!{ this.Urls.UrlFor(new BlogPostInputModel{ Slug = post.Slug }) }">More..</a>
 				
 		</article>
 

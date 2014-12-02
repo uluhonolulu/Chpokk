@@ -2,13 +2,13 @@
 Date: 2014-12-01 
 ==
 I'm starting a new blog, my third one, here on Chpokk, because this is my current project, and this is where my focus and my energy is at the moment.
---
+
 I means me, Artёm Smirnov, with this funny "ё" character in my name, which I hope renders correctly for even you ASCII guys who live far away across the Big Blue Sea.
 
 I'll be writing here about various features that Chpokk has, and how I implemented them. I *might* be writing something about marketing, mainly a link to somebody else's wisdom (since I don't have much of my own yet), but it won't be much.
 
 Let's get started.
-
+--
 ## Creating a text-based blog
 
 While I got tired of relational databases, I'm also not courageous enough (yet) to jump onto noSQL development. So I've been trying this new minimalistic idea -- don't use a database until you need it. For a year, I managed to run Chpokk **without any database at all**. Finally I started using it for stuff like keeping user and usage data. 
