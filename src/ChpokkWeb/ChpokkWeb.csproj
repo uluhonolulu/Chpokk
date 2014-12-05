@@ -9003,6 +9003,7 @@
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Features\Authentication\LoginEndpoint.cs" />
+    <Compile Include="Features\Authentication\LoginManager.cs" />
     <Compile Include="Features\Authentication\LoginStatusAnonModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusAuthenticatedModel.cs" />
     <Compile Include="Features\Authentication\LoginStatusEndpoint.cs" />

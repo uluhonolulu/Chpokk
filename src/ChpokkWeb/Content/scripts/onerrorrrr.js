@@ -9,7 +9,7 @@
 $.continuations.bind('HttpError', function (continuation) {
 	var response = continuation.response;
 	var message;
-	if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1) {
+	if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1 && $(response.responseText) != undefined) {
 		message = $(response.responseText).find('i').text();
 		if (!message) {
 			message = $(response.responseText).filter('title').text();

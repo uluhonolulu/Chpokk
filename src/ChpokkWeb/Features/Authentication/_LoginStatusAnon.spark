@@ -9,9 +9,6 @@
 <content name="InlineScripts">
 	<!-- _LoginStatusAnon.spark -->
     <script type="text/javascript">
-        function janrainWidgetOnload() {
-            $('#janrainButton').click();
-        }
 
         function pleaseLogin() {
             alert("Please sign in using one of the social identity providers. Use the Sign In button at the top.");
@@ -25,7 +22,7 @@
             function openLoginWidget() {
                 if (typeof $('#janrainButton')[0].onclick === 'function') {
                     //$('#janrainButton').click();
-                    janrainWidgetOnload();
+                	$('#janrainButton').click();
                     $('#janrainModal > img').hide();
 	                //$('.janrainHeader > div').text("Hi buddy");
                 }
