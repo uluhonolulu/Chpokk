@@ -1,5 +1,5 @@
 ﻿/*!
- * ASP.NET SignalR JavaScript Library v2.0.1
+ * ASP.NET SignalR JavaScript Library v2.1.2
  * http://signalr.net/
  *
  * Copyright Microsoft Open Technologies, Inc. All rights reserved.
@@ -12,7 +12,7 @@
 /// <reference path="jquery.signalR.js" />
 (function ($, window, undefined) {
 	/// <param name="$" type="jQuery" />
-	//"use strict";
+	"use strict";
 
 	if (typeof ($.signalR) !== "function") {
 		throw new Error("SignalR: SignalR is not loaded. Please ensure jquery.signalR-x.js is referenced before ~/signalr/js.");
@@ -78,31 +78,36 @@
 			registerHubProxies(proxies, false);
 		});
 
-		proxies.compilerHub = this.createHubProxy('compilerHub');
-		proxies.compilerHub.client = {};
-		proxies.compilerHub.server = {
+		proxies['compilerHub'] = this.createHubProxy('compilerHub');
+		proxies['compilerHub'].client = {};
+		proxies['compilerHub'].server = {
 		};
 
-		proxies.messageToUserHub = this.createHubProxy('messageToUserHub');
-		proxies.messageToUserHub.client = {};
-		proxies.messageToUserHub.server = {
+		proxies['messageToUserHub'] = this.createHubProxy('messageToUserHub');
+		proxies['messageToUserHub'].client = {};
+		proxies['messageToUserHub'].server = {
 		};
 
-		proxies.nuGetHub = this.createHubProxy('nuGetHub');
-		proxies.nuGetHub.client = {};
-		proxies.nuGetHub.server = {
+		proxies['nuGetHub'] = this.createHubProxy('nuGetHub');
+		proxies['nuGetHub'].client = {};
+		proxies['nuGetHub'].server = {
 		};
 
-		proxies.testingHub = this.createHubProxy('testingHub');
-		proxies.testingHub.client = {};
-		proxies.testingHub.server = {
+		proxies['simpleLoggerHub'] = this.createHubProxy('simpleLoggerHub');
+		proxies['simpleLoggerHub'].client = {};
+		proxies['simpleLoggerHub'].server = {
 		};
 
-		proxies.userHub = this.createHubProxy('userHub');
-		proxies.userHub.client = {};
-		proxies.userHub.server = {
+		proxies['testingHub'] = this.createHubProxy('testingHub');
+		proxies['testingHub'].client = {};
+		proxies['testingHub'].server = {
+		};
+
+		proxies['userHub'] = this.createHubProxy('userHub');
+		proxies['userHub'].client = {};
+		proxies['userHub'].server = {
 			onStartPlayingWith: function () {
-				return proxies.userHub.invoke.apply(proxies.userHub, $.merge(["OnStartPlayingWith"], $.makeArray(arguments)));
+				return proxies['userHub'].invoke.apply(proxies['userHub'], $.merge(["OnStartPlayingWith"], $.makeArray(arguments)));
 			}
 		};
 

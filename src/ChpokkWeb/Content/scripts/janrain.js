@@ -4,8 +4,6 @@
 
 	janrain.settings.tokenUrl = new URI("url::ChpokkWeb.Features.Authentication.LoginInputModel").resolve(new URI(location.href)).toString();
 	janrain.settings.actionText = "Sign in using";
-	//janrain.settings.appUrl = 'http://chpokk.apphb.com/';
-	storage.set = function (key, value) { storage.setItem(key, value); };
 	janrain.settings.tokenAction = 'event';
 	//janrain.engage.signin.appendTokenParams({ 'param1': 'value1', 'param2': 'value2', 'param3': 'value3' });
     
@@ -72,8 +70,21 @@ function janrainWidgetOnload() {
 	//	console.log('response.welcomeName = ' + response.welcomeName);
 	//});
 	janrain.events.onProviderLoginToken.addHandler(function(response) {
-		console.log('Provider Login Token Returned!');
-		console.log(JSON.stringify(response));
-		$.post('/authentication/login', { token: response.token });
+		//console.log('Provider Login Token Returned!');
+		//console.log(JSON.stringify(response));
+		$.post('/authentication/login', { token: response.token, ConnectionId: model.ConnectionId });
+		clearLog();
 	});
 }
+
+function loginLog(message) {
+	$('.janrainContent').append($('<div/>').text(message));
+}
+
+function clearLog() {
+	$('.janrainContent').empty();
+}
+$(function() {
+	$.connection.simpleLoggerHub.client.log = loginLog;
+});
+

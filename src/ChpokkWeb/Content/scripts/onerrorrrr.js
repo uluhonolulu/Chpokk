@@ -9,7 +9,7 @@
 $.continuations.bind('HttpError', function (continuation) {
 	var response = continuation.response;
 	var message;
-	if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1 && $(response.responseText) != undefined) {
+	if (response.getResponseHeader('Content-Type') && response.getResponseHeader('Content-Type').indexOf('text/html') != -1 && !isPlainString(response.responseText)) {
 		message = $(response.responseText).find('i').text();
 		if (!message) {
 			message = $(response.responseText).filter('title').text();
@@ -189,3 +189,8 @@ $(document).ajaxError(function (event, jqxhr, settings, exception) {
 	}
 	track("AJAX Error calling " + settings.url + ": " + jqxhr.status + ' ' + jqxhr.statusText + ', details: ' + JSON.stringify(data));
 });
+
+function isPlainString(source) {
+	var parsed = $.parseHTML(source);
+	return parsed.length == 1 && parsed[0].nodeName == "#text";
+}
