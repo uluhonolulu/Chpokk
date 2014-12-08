@@ -78,7 +78,7 @@ function janrainWidgetOnload() {
 }
 
 function loginLog(message) {
-	$('.janrainContent').append($('<div/>').text(message));
+	$('.janrainContent').append($('<div/>').css('padding', '3px').text(message));
 }
 
 function clearLog() {
