@@ -786,6 +786,7 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Workflow\1033\ActivityLibrary2010\Resources.resx" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Workflow\1033\WorkflowConsoleApplication\Resources.resx" />
     <Content Include="Blog\this-blog.md" />
+    <Content Include="Blog\about-chpokk.md" />
     <None Include="Content\styles\fonts\DroidSansMono.ttf" />
     <Content Include="Features\CustomerDevelopment\Pricelist\PriceListLink.spark" />
     <Content Include="Features\ProjectManagement\AddSimpleProject\NewSimpleProject.spark" />
