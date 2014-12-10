@@ -36,6 +36,7 @@ namespace ChpokkWeb.Features.Authentication {
 			if (response.stat.ToString() == "ok") {
 				try {
 					logger.Log("Registering you in the system..");
+					_tracker.Record("Signing in");
 					var username = _userManager.SigninUser(response.profile, rawResponse, _userData);
 					_tracker.Record("Signed in");
 					logger.Log("Reloading the page..");

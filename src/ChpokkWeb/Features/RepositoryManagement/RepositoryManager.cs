@@ -178,11 +178,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		}
 
 		public bool ShouldRestore() {
-			//return _fileSystem
-			//	.ChildDirectoriesFor(this.GetUserFolder())
-			//	.Select(path => path.PathRelativeTo(this.GetUserFolder()))
-			//	.Except(new[] {REPOSITORY_FOLDER, POKK_FOLDER})
-			//	.Any();
+			_activityTracker.Record("Should we restore?");
 			if (!Directory.Exists(this.GetUserFolder()) || !ChildDirectoriesExist(this.GetUserFolder())) {
 				return true; //user folder does not exist or is empty
 			}
@@ -196,8 +192,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public void RestoreFilesForCurrentUser() {
 			//create folders so that we see the list of repositories -- the files will be downloaded while we are staring at that list
+			_activityTracker.Record("Getting repository list");
 			var repositoryNames = GetRepositoryNamesFromStorage();
 			foreach (var repositoryName in repositoryNames) {
+				_activityTracker.Record("Creating folder for " + repositoryName);
 				var repositoryPath = NewGetAbsolutePathFor(repositoryName);
 				Directory.CreateDirectory(repositoryPath);
 				//download each repository asynchronously
