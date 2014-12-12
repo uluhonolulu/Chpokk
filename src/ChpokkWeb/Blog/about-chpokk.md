@@ -42,10 +42,12 @@ Finally, a Web project can be published to, say, Azure or AppHarbor, by git-push
 
 ## Getting your code in and out of the system
 
-If you haveyour code in publicly available source control, git clone or svn checkout it (other source control systems will be available on demand). You can also upload/download it all zipped.
+If you have your code in publicly available source control, git clone or svn checkout it (other source control systems will be available on demand). You can also upload/download it all zipped.
 
 ## Concluding remarks
 
 Despite Chpokk being the best .Net IDE ever, it still has a room for improvement. Project and item templates, TFS integration, command support, debugging, and many other features are waiting to be implemented. 
 
 You can always use the orange thingy at the right side to send me your feature suggestions (or just share your excitement).
+
+[Try it yourself!](/Main) You'll like it, I promise!

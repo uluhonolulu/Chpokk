@@ -36,9 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Arractas.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK, Version=1.5.22.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+    <Reference Include="AWSSDK, Version=2.3.12.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AWSSDK.1.5.22.0\lib\AWSSDK.dll</HintPath>
+      <HintPath>..\packages\AWSSDK.2.3.12.0\lib\net45\AWSSDK.dll</HintPath>
     </Reference>
     <Reference Include="Bottles, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -52,9 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuLocalization.1.0.0.174\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.Core.1.2.0.1678\lib\net40\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Core.1.3.0.1710\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

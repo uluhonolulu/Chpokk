@@ -25,7 +25,7 @@ namespace ChpokkWeb.Features.Storage {
 			foreach (var file in allFiles) {
 				var localPath = FileSystem.Combine(root, file);
 				if (!localPath.EndsWith("/") && !File.Exists(localPath)) { 
-					_client.DownloadFile("chpokk", file, localPath, -1);
+					_client.DownloadFile("chpokk", file, localPath);
 					if (onDownload != null) {
 						onDownload(file, localPath);
 					}

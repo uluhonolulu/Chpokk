@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EmkayS3ClassLibrary>.\Emkay.S3.dll</EmkayS3ClassLibrary>
+  </PropertyGroup>
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="PublishFolder" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="PublishFiles" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="PublishFolderWithHeaders" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="PublishFilesWithHeaders" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="DeleteBucket" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="DeleteChildren" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="EnumerateBuckets" />
+  <UsingTask AssemblyFile="$(EmkayS3ClassLibrary)" TaskName="EnumerateChildren" />
+</Project>

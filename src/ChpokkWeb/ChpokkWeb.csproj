@@ -52,9 +52,9 @@
     <Reference Include="AppfailReporting">
       <HintPath>..\packages\Appfail.WebForms.1.1.0\lib\35\AppfailReporting.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK, Version=1.5.22.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+    <Reference Include="AWSSDK, Version=2.3.12.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AWSSDK.1.5.22.0\lib\AWSSDK.dll</HintPath>
+      <HintPath>..\packages\AWSSDK.2.3.12.0\lib\net45\AWSSDK.dll</HintPath>
     </Reference>
     <Reference Include="Bottles, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -70,9 +70,9 @@
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="Emkay.S3, Version=0.9.0.47, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Emkay.S3, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Emkay.S3.0.9.0.47\lib\NET40\Emkay.S3.dll</HintPath>
+      <HintPath>..\packages\Emkay.S3.1.0.1.0\lib\NET40\Emkay.S3.dll</HintPath>
     </Reference>
     <Reference Include="FubuCore, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -81,9 +81,9 @@
     <Reference Include="FubuLocalization">
       <HintPath>..\packages\FubuLocalization.0.9.5.126\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.Core.1.2.0.1678\lib\net40\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Core.1.3.0.1710\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,7 +114,7 @@
     </Reference>
     <Reference Include="FubuMVC.Spark, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.Spark.1.1.0.581\lib\net40\FubuMVC.Spark.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Spark.1.1.0.594\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -269,15 +269,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SharpSvn.1.8-x86.1.8005.2830\lib\net20\SharpSvn.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data, Version=0.18.3.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Simple.Data, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
+      <HintPath>..\packages\Simple.Data.Core.0.19.0.0\lib\net40\Simple.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.Ado">
-      <HintPath>..\packages\Simple.Data.Ado.0.18.3.1\lib\net40\Simple.Data.Ado.dll</HintPath>
+    <Reference Include="Simple.Data.Ado, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simple.Data.Ado.0.19.0.0\lib\net40\Simple.Data.Ado.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.SqlServer">
-      <HintPath>..\packages\Simple.Data.SqlServer.0.18.3.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
+    <Reference Include="Simple.Data.SqlServer, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simple.Data.SqlServer.0.19.0.0\lib\net40\Simple.Data.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Spark">
       <HintPath>..\packages\Spark.1.7.5.1\lib\NET40\Spark.dll</HintPath>

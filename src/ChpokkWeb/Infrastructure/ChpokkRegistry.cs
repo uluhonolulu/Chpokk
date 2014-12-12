@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Net.Mail;
 using System.Web;
+using Amazon;
+using Amazon.S3;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.CustomerDevelopment.TrialSignup;
@@ -37,8 +39,11 @@ namespace ChpokkWeb.Infrastructure {
 			For<NRefactoryResolver>().Use(() => new NRefactoryResolver(LanguageProperties.CSharp));
 			//For<ProjectFactory>().Singleton();
 			For<SmtpClient>().Singleton().Use(() => new SmtpClient()); //expr.SelectConstructor(() => new SmtpClient());
+			//Amazon
+			For<AmazonS3Client>().Singleton()
+								 .Use(new AmazonS3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM", RegionEndpoint.EUWest1));
 			For<IS3Client>().Singleton()
-				.Use(new S3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM"));
+				.Use(context => new S3Client(context.GetInstance<AmazonS3Client>()));
 			For<RestoreSynchronizer>().LifecycleIs(new HybridSessionLifecycle());
 			For<ActivityTracker>().LifecycleIs(new HybridSessionLifecycle());
 			For<UserData>().LifecycleIs(new HybridSessionLifecycle());

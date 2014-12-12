@@ -55,7 +55,7 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 			//}
 			var tempFilename = Path.GetTempFileName();
 			var remoteSource = source.ToRemoteFileName(AppRoot);
-			_client.DownloadFile(bucketName, remoteSource, tempFilename, 0);
+			_client.DownloadFile(bucketName, remoteSource, tempFilename);
 			Task.Factory.StartNew(() =>
 			{
 				UploadFile(destination, tempFilename);
@@ -92,7 +92,7 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 		}
 
 		public void DownloadFile(string filename) {
-			_client.DownloadFile(bucketName, filename.ToRemoteFileName(AppRoot), filename, 0);
+			_client.DownloadFile(bucketName, filename.ToRemoteFileName(AppRoot), filename);
 		}
 
 		public void WriteObjectToFile(string filename, object target) {
