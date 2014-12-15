@@ -35,9 +35,9 @@
     <Reference Include="Arractas">
       <HintPath>..\..\lib\Arractas.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK, Version=2.3.12.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+    <Reference Include="AWSSDK, Version=2.3.13.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AWSSDK.2.3.12.0\lib\net45\AWSSDK.dll</HintPath>
+      <HintPath>..\packages\AWSSDK.2.3.13.0\lib\net45\AWSSDK.dll</HintPath>
     </Reference>
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.2.0.0.576\lib\Bottles.dll</HintPath>
@@ -143,9 +143,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Chpokk.Tests\Amazon\OneFileOnAmazonContext.cs">
+      <Link>Amazon\OneFileOnAmazonContext.cs</Link>
+    </Compile>
     <Compile Include="Amazon\AwClientExtensions.cs" />
     <Compile Include="Amazon\Downloading.cs" />
-    <Compile Include="Amazon\OneFileOnAmazonContext.cs" />
     <Compile Include="Amazon\Uploading.cs" />
     <Compile Include="Amazon\WaitTillRepositoryIsDownloaded.cs" />
     <Compile Include="Compilation\InvalidCode.cs" />

@@ -15,7 +15,7 @@ namespace ChpokkWeb.Features.Storage {
 			foreach (var filePath in Directory.GetFiles(path)) {
 				var pathRelativetoAppRoot = filePath.PathRelativeTo(appRoot);
 				var key = pathRelativetoAppRoot.Replace('\\', '/');
-				_client.PutFile("chpokk", key, filePath, true, 0);
+				_client.PutFile("chpokk", key, filePath, true, Int32.MaxValue);
 			}
 
 			foreach (var directory in Directory.GetDirectories(path)) {

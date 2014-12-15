@@ -33,14 +33,6 @@
     <Reference Include="Arractas">
       <HintPath>..\..\..\Arractas\Arractas\bin\Debug\Arractas.dll</HintPath>
     </Reference>
-    <Reference Include="AWSSDK, Version=2.3.12.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AWSSDK.2.3.12.0\lib\net45\AWSSDK.dll</HintPath>
-    </Reference>
-    <Reference Include="Emkay.S3">
-      <HintPath>..\packages\Emkay.S3.1.0.1.0\lib\NET40\Emkay.S3.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="FubuCore, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuCore.1.2.0.272\lib\FubuCore.dll</HintPath>

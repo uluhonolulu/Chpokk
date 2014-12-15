@@ -17,7 +17,7 @@ namespace Chpokk.Tests.Amazon {
 			//upload it to Amazon
 			var client = Container.Get<IS3Client>();
 			var sourcePath = FileSystem.Combine(AppRoot, "UserFiles", "dummy.txt");
-			client.PutFile("chpokk", FilePathRelativeToAppRoot, sourcePath, true, 0);
+			client.PutFile("chpokk", FilePathRelativeToAppRoot, sourcePath, true, Int32.MaxValue);
 		}
 		public string FilePathRelativeToAppRoot {
 			get {

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Arractas;
+using Chpokk.Tests.Amazon;
 using ChpokkWeb.Features.Storage;
 using FubuCore;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
-using UnitTests.Amazon;
 
-namespace Chpokk.Tests.Amazon {
+namespace UnitTests.Amazon {
 	[TestFixture]
 	public class Downloading: BaseCommandTest<OneFileOnAmazonContext> {
 
