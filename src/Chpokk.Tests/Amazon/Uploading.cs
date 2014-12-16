@@ -4,7 +4,9 @@ using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Features.Storage;
+using ChpokkWeb.Infrastructure;
 using Emkay.S3;
 using FubuCore;
 using Gallio.Framework;
@@ -47,7 +49,10 @@ namespace Chpokk.Tests.Amazon {
 		}
 		public string FilePathRelativeToAppRoot {
 			get {
-				return "UserFiles/ulu/" + REPO_NAME + "/" + RELATIVE_PATH;
+				var absolutePath = this.Container.Get<RepositoryManager>().NewGetAbsolutePathFor(REPO_NAME, RELATIVE_PATH);
+				var relativePath = absolutePath.PathRelativeTo(Container.Get<IAppRootProvider>().AppRoot);
+				//Console.WriteLine(relativePath);
+				return relativePath.Replace('\\', '/');
 			}
 		}
 		

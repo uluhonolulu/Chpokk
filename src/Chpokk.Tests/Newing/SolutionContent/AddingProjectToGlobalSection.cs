@@ -16,7 +16,7 @@ namespace Chpokk.Tests.Newing.SolutionContent {
 		[Test]
 		public void PlacesProjectDataInTheGlobalSection() {
 			Console.WriteLine(Result);
-			Assert.Contains(Result, @"{{{0}}}.Debug|x86.ActiveCfg = Debug|x86".ToFormat(projectGuid));
+			Assert.Contains(Result, @"{{{0}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU".ToFormat(projectGuid));
 		}
 
 		public override string Act() {

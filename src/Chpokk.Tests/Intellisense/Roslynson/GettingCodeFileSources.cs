@@ -9,6 +9,7 @@ using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 using Microsoft.Build.Construction;
+using Microsoft.Build.Evaluation;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
@@ -20,6 +21,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 
 		public override IEnumerable<string> Act() {
 			var loader = Context.Container.Get<IntelDataLoader>();
+			ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
 			var root = ProjectRootElement.Open(Context.ProjectFilePath);
 			var pathToExclude = string.Empty;
 			return loader.GetSources(root, pathToExclude);

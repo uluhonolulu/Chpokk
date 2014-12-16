@@ -42,6 +42,7 @@ namespace Chpokk.Tests.Newing {
 		public override void Act() {
 			var endpoint = Context.Container.Get<AddSimpleProjectEndpoint>();
 			endpoint.DoIt(new AddSimpleProjectInputModel { ProjectName = NAME, OutputType = "Web", Language = SupportedLanguage.CSharp});
+			ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
 		}
 		private string ProjectPath {
 			get { return RepositoryManager.NewGetAbsolutePathFor(NAME, Path.Combine(NAME, NAME + ".csproj")); }

@@ -146,6 +146,9 @@
     <Compile Include="..\Chpokk.Tests\Amazon\OneFileOnAmazonContext.cs">
       <Link>Amazon\OneFileOnAmazonContext.cs</Link>
     </Compile>
+    <Compile Include="..\Chpokk.Tests\Intellisense\Roslynson\GettingCodeFileSources.cs">
+      <Link>Roslynson\GettingCodeFileSources.cs</Link>
+    </Compile>
     <Compile Include="Amazon\AwClientExtensions.cs" />
     <Compile Include="Amazon\Downloading.cs" />
     <Compile Include="Amazon\Uploading.cs" />
@@ -207,7 +210,6 @@
     <Compile Include="Roslynson\Cases\ThisDotMember.cs" />
     <Compile Include="Roslynson\Cases\UsingNamespaceDot.cs" />
     <Compile Include="Roslynson\GettingBclReferences.cs" />
-    <Compile Include="Roslynson\GettingCodeFileSources.cs" />
     <Compile Include="Roslynson\GettingLocalReferences.cs" />
     <Compile Include="Roslynson\LoadingProjectData.cs" />
     <Compile Include="Roslynson\SolutionWithProjectAndClassFileContext.cs" />

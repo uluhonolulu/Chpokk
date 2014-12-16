@@ -20,6 +20,7 @@ namespace Chpokk.Tests.Amazon {
 		[Test]
 		public void ShouldUploadTheRepositoryAfterClosingTheSession() {
 			var path = Context.FilePathRelativeToAppRoot;
+			//Console.WriteLine(path);
 			Assert.IsTrue(Client.Exists(path));
 		}
 
