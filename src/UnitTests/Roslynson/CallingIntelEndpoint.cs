@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Arractas;
+using Chpokk.Tests.Intellisense;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 

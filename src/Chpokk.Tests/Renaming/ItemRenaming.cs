@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Arractas;
+﻿using Arractas;
 using Chpokk.Tests.Intellisense;
 using ChpokkWeb.Features.Exploring.Rename;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using Microsoft.Build.Construction;
 using System.Linq;
 using Shouldly;
-using UnitTests.Roslynson;
 
 namespace Chpokk.Tests.Renaming {
 	[TestFixture]

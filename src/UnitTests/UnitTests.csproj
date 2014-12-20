@@ -155,6 +155,12 @@
     <Compile Include="..\Chpokk.Tests\Intellisense\Roslynson\GettingCodeFileSources.cs">
       <Link>Roslynson\GettingCodeFileSources.cs</Link>
     </Compile>
+    <Compile Include="..\Chpokk.Tests\Intellisense\Roslynson\LoadingProjectData.cs">
+      <Link>Roslynson\LoadingProjectData.cs</Link>
+    </Compile>
+    <Compile Include="..\Chpokk.Tests\Intellisense\SolutionWithProjectAndClassFileContext.cs">
+      <Link>Roslynson\SolutionWithProjectAndClassFileContext.cs</Link>
+    </Compile>
     <Compile Include="..\Chpokk.Tests\Renaming\ItemRenaming.cs">
       <Link>Exploring\Renaming\ItemRenaming.cs</Link>
     </Compile>
@@ -224,8 +230,6 @@
     <Compile Include="Roslynson\Cases\UsingNamespaceDot.cs" />
     <Compile Include="Roslynson\GettingBclReferences.cs" />
     <Compile Include="Roslynson\GettingLocalReferences.cs" />
-    <Compile Include="Roslynson\LoadingProjectData.cs" />
-    <Compile Include="Roslynson\SolutionWithProjectAndClassFileContext.cs" />
     <Compile Include="Run\BuildableProjectWithExeOutput.cs" />
     <Compile Include="Run\CompileAndRunIntegration.cs" />
     <Compile Include="Run\CompiledExeContext.cs" />

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Arractas;
-using Chpokk.Tests.Exploring;
-using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Shouldly;
-using UnitTests.Roslynson;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class GettingCodeFileSources : BaseQueryTest<SolutionWithProjectAndClassFileContext, IEnumerable<string>> {

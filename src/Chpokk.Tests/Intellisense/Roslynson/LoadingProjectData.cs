@@ -5,6 +5,7 @@ using Arractas;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
+using Microsoft.Build.Evaluation;
 using Shouldly;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
@@ -13,6 +14,7 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 
 		public override IntelData Act() {
 			var loader = Context.Container.Get<IntelDataLoader>();
+			ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
 			return loader.CreateIntelData(Context.ProjectPath, Context.FilePath, CODE);
 		}
 

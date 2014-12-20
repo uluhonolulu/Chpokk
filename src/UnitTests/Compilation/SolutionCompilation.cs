@@ -2,6 +2,7 @@
 using System.IO;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
+using Chpokk.Tests.Intellisense;
 using ChpokkWeb.Features.Compilation;
 using MbUnit.Framework;
 using Shouldly;
