@@ -86,7 +86,7 @@ namespace UnitTests.Infrastructure {
 		public IServiceFactory Container { get { return _serviceFactory; } }
 
 		public string AppRoot {
-			get { return Path.GetFullPath(@".."); }
+			get { Container.Get<IAppRootProvider>().AppRoot; }
 		}
 
 		public FakeSecurityContext FakeSecurityContext { get; set; }
