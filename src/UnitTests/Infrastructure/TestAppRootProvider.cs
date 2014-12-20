@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,11 @@ namespace Chpokk.Tests.Infrastructure {
 				if (HostingEnvironment.IsHosted) {
 					return HostingEnvironment.ApplicationPhysicalPath;
 				}
-				return AppDomain.CurrentDomain.BaseDirectory.ParentDirectory();
+				var root = AppDomain.CurrentDomain.BaseDirectory.ParentDirectory();
+				var stagingRoot = root.AppendPath(@"output\_PublishedWebsites\ChpokkWeb"); //used in staging tests
+				if (Directory.Exists(stagingRoot))
+					return stagingRoot;
+				return root;
 			}
 		}
 	}
