@@ -146,6 +146,9 @@
     <Compile Include="..\Chpokk.Tests\Amazon\OneFileOnAmazonContext.cs">
       <Link>Amazon\OneFileOnAmazonContext.cs</Link>
     </Compile>
+    <Compile Include="..\Chpokk.Tests\Exploring\BaseSolutionBrowserTest.cs">
+      <Link>Exploring\BaseSolutionBrowserTest.cs</Link>
+    </Compile>
     <Compile Include="..\Chpokk.Tests\Exploring\SeeingASolutionFile.cs">
       <Link>Exploring\SeeingASolutionFile.cs</Link>
     </Compile>
@@ -168,7 +171,6 @@
     <Compile Include="Compilation\InvalidCode.cs" />
     <Compile Include="Compilation\SolutionCompilation.cs" />
     <Compile Include="Compilation\ValidCode.cs" />
-    <Compile Include="Exploring\BaseSolutionBrowserTest.cs" />
     <Compile Include="Exploring\DeletingARepo.cs" />
     <Compile Include="Exploring\FileSystem.cs" />
     <Compile Include="Exploring\GitRepositoryContext.cs" />

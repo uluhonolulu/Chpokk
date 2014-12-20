@@ -10,6 +10,7 @@ using MbUnit.Framework.ContractVerifiers;
 using Microsoft.Build.Construction;
 using System.Linq;
 using Shouldly;
+using UnitTests.Roslynson;
 
 namespace Chpokk.Tests.Renaming {
 	[TestFixture]

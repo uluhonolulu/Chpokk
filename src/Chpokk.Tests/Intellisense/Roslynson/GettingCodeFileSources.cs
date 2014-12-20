@@ -11,6 +11,7 @@ using MbUnit.Framework;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Shouldly;
+using UnitTests.Roslynson;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
 	public class GettingCodeFileSources : BaseQueryTest<SolutionWithProjectAndClassFileContext, IEnumerable<string>> {
