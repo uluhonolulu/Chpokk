@@ -146,8 +146,20 @@
     <Compile Include="..\Chpokk.Tests\Amazon\OneFileOnAmazonContext.cs">
       <Link>Amazon\OneFileOnAmazonContext.cs</Link>
     </Compile>
+    <Compile Include="..\Chpokk.Tests\Exploring\SeeingASolutionFile.cs">
+      <Link>Exploring\SeeingASolutionFile.cs</Link>
+    </Compile>
     <Compile Include="..\Chpokk.Tests\Intellisense\Roslynson\GettingCodeFileSources.cs">
       <Link>Roslynson\GettingCodeFileSources.cs</Link>
+    </Compile>
+    <Compile Include="..\Chpokk.Tests\Renaming\ItemRenaming.cs">
+      <Link>Exploring\Renaming\ItemRenaming.cs</Link>
+    </Compile>
+    <Compile Include="..\Chpokk.Tests\Renaming\ProjectRenaming.cs">
+      <Link>Exploring\Renaming\ProjectRenaming.cs</Link>
+    </Compile>
+    <Compile Include="..\Chpokk.Tests\Renaming\SolutionRenaming.cs">
+      <Link>Exploring\Renaming\SolutionRenaming.cs</Link>
     </Compile>
     <Compile Include="Amazon\AwClientExtensions.cs" />
     <Compile Include="Amazon\Downloading.cs" />
@@ -168,7 +180,6 @@
     <Compile Include="Exploring\ProjectFileContext.cs" />
     <Compile Include="Exploring\ProjectWithSingleRootFileContext.cs" />
     <Compile Include="Exploring\RepositoryFolderContext.cs" />
-    <Compile Include="Exploring\SeeingASolutionFile.cs" />
     <Compile Include="Exploring\UnitTests\CreatingAProperFolderStructure.cs" />
     <Compile Include="Exploring\UnitTests\ParsingASolutionWithoutPhysicalProjectFiles.cs" />
     <Compile Include="Exploring\UnitTests\SolutionWithNonExistentProjectFile.cs" />

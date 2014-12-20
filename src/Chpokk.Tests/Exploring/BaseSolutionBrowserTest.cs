@@ -20,6 +20,7 @@ namespace Chpokk.Tests.Exploring {
 
 	public abstract class SingleSlnFileContext : RepositoryFolderContext {
 		public string SolutionFileName { get; set; }
+		public string SolutionName { get; set; }
 		public string SolutionPath { get; set; }
 		public string SolutionFolder { get; set; }
 		public string RelativeSolutionPath { get; set; }
@@ -28,7 +29,8 @@ namespace Chpokk.Tests.Exploring {
 
 		public override void Create() {
 			base.Create();
-			SolutionFileName = Guid.NewGuid().ToString() + ".sln";
+			SolutionName = Guid.NewGuid().ToString();
+			SolutionFileName = SolutionName + ".sln";
 			SolutionFolder = FileSystem.Combine(RepositoryRoot, "src");
 			RelativeSolutionPath = "src".AppendPath(SolutionFileName);
 			SolutionPath = FileSystem.Combine(SolutionFolder, SolutionFileName);

@@ -108,8 +108,10 @@ namespace ChpokkWeb.Infrastructure.FileSystem {
 		}
 
 		public void MoveFile(string @from, string to) {
+			if (_remoteSystem.FileExists(@from)) {
+				_remoteSystem.MoveFile(@from, to);			
+			}
 			_localSystem.MoveFile(@from, to);
-			_remoteSystem.MoveFile(@from, to);
 		}
 
 		public void MoveFiles(string @from, string to) {

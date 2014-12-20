@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Exploring;
@@ -27,6 +28,7 @@ namespace Chpokk.Tests.Renaming {
 
 		public override void Act() {
 			var endpoint = Context.Container.Get<RenameEndpoint>();
+			File.Exists(OldFilePath).ShouldBe(true);
 			endpoint.DoIt(new RenameInputModel
 				{
 					RepositoryName = Context.REPO_NAME,

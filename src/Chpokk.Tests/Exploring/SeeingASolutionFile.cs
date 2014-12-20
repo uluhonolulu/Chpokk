@@ -18,7 +18,7 @@ namespace Chpokk.Tests.Exploring {
 		[Test]
 		public void CanSeeTheFile() {
 			var names = Result.Select(item => item.Name);
-			Assert.AreElementsEqual(new[]{Context.SolutionFileName}, names);
+			Assert.AreElementsEqual(new[]{Context.SolutionName}, names);
 		}
 
 
@@ -28,18 +28,6 @@ namespace Chpokk.Tests.Exploring {
 			Assert.AreEqual("folder", first.Type);
 		}
 
-	}
-
-	public class WhenFileIsNotASolutionOne  : BaseCommandTest<SingleFileContext> {
-
-		[Test]
-		public void ShouldThrowAnException() {
-			var controller = Context.Container.Get<SolutionContentEndpoint>();
-			Assert.Throws<Exception>(() => controller.GetSolutions(new SolutionExplorerInputModel { RepositoryName = Context.REPO_NAME })) ;
-		}
-
-		public override void Act() {
-		}
 	}
 
 	public class EmptySlnFileContext : SingleSlnFileContext {
