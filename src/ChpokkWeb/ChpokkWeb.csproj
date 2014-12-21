@@ -816,6 +816,7 @@
     <Content Include="Features\Remotes\Git\Push\Advanced\AdvancedPush.spark" />
     <Content Include="Features\Blog\List\ListBlogPosts.spark" />
     <Content Include="Features\Blog\Post\BlogPost.spark" />
+    <Content Include="Features\ReadMe\ReadMe.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -9074,6 +9075,7 @@
     <Compile Include="Features\ProjectManagement\References\NuGet\SignalRLogger.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsEndPoint.cs" />
     <Compile Include="Features\ProjectManagement\References\OtherProjects\OtherProjectsModel.cs" />
+    <Compile Include="Features\ReadMe\ReadMeEndpoint.cs" />
     <Compile Include="Features\Remotes\Git\Push\Advanced\AdvancedPushPolicy.cs" />
     <Compile Include="Features\Remotes\Git\Remotes\RemoteInfoProvider.cs" />
     <Compile Include="Features\Remotes\Git\Remotes\RemoteListEndpoint.cs" />
@@ -9221,6 +9223,7 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
+    <Folder Include="ReadMe\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
   </ItemGroup>
   <ItemGroup>

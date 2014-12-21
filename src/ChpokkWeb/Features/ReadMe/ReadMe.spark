@@ -1,0 +1,3 @@
+﻿<viewdata model="ChpokkWeb.Features.ReadMe.ReadMeModel" />
+<use namespace="ChpokkWeb.Features.ReadMe" />
+!{Model.Title}
