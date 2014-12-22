@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Infrastructure;
@@ -10,8 +9,8 @@ namespace ChpokkWeb.Features.Blog.Post {
 	public class BlogPostEndpoint {
 		private readonly IAppRootProvider _rootProvider;
 		private readonly IFileSystem _fileSystem;
-		private readonly BlogPostParser _parser;
-		public BlogPostEndpoint(IAppRootProvider rootProvider, IFileSystem fileSystem, BlogPostParser parser) {
+		private readonly BlogPostParser<BlogPostModel> _parser;
+		public BlogPostEndpoint(IAppRootProvider rootProvider, IFileSystem fileSystem, BlogPostParser<BlogPostModel> parser) {
 			_rootProvider = rootProvider;
 			_fileSystem = fileSystem;
 			_parser = parser;
@@ -30,14 +29,6 @@ namespace ChpokkWeb.Features.Blog.Post {
 	[UrlPattern("/blog/{Slug}")]
 	public class BlogPostInputModel {
 		[RouteInput("")]
-		public string Slug { get; set; }
-	}
-
-	public class BlogPostModel {
-		public string Title { get; set; }
-		public DateTime Date { get; set; }
-		public string Description { get; set; }
-		public string Content { get; set; }
 		public string Slug { get; set; }
 	}
 }

@@ -5524,6 +5524,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="ReadMe\About.md" />
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Shared\_global.spark" />
     <Content Include="Shared\_convert.spark" />
@@ -9021,6 +9022,7 @@
     <Compile Include="Features\Blog\BlogPostParser.cs" />
     <Compile Include="Features\Blog\List\ListBlogPostsEndpoint.cs" />
     <Compile Include="Features\Blog\Post\BlogPostEndpoint.cs" />
+    <Compile Include="Features\Blog\Post\BlogPostModel.cs" />
     <Compile Include="Features\Compilation\ChpokkLogger.cs" />
     <Compile Include="Features\Compilation\ProjectBuildSync.cs" />
     <Compile Include="Features\Compilation\CompilerEndpoint.cs" />
@@ -9223,7 +9225,6 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
-    <Folder Include="ReadMe\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
   </ItemGroup>
   <ItemGroup>

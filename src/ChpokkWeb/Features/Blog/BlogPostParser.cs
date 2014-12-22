@@ -2,12 +2,13 @@
 using System.Globalization;
 using System.IO;
 using ChpokkWeb.Features.Blog.Post;
+using ChpokkWeb.Features.ReadMe;
 using FubuCore;
 using Tanka.Markdown;
 using Tanka.Markdown.Html;
 
 namespace ChpokkWeb.Features.Blog {
-	public class BlogPostParser {
+	public class BlogPostParser<TModel> where TModel:BaseContentModel, new() {
 		private readonly MarkdownParser _parser = new MarkdownParser(false);
 		private const string MetadataBoundary = "\r\n==\r\n";
 		private const string DescriptionBoundary = "\r\n--\r\n";
@@ -16,17 +17,17 @@ namespace ChpokkWeb.Features.Blog {
 			_fileSystem = fileSystem;
 		}
 
-		public BlogPostModel Parse(string source) {
+		public TModel Parse(string source) {
 			var parts = source.Split(new[] {MetadataBoundary}, StringSplitOptions.None);
 			var content = parts.Length > 1 ? parts[1].Replace(DescriptionBoundary, Environment.NewLine + Environment.NewLine) : string.Empty;
-			var blogPostModel = new BlogPostModel {Content = ParseContent(content)};
+			var blogPostModel = new TModel { Content = ParseContent(content) };
 			AddMetadata(blogPostModel, parts[0]);
 			var description = parts.Length > 1 ? parts[1].Split(new[] {DescriptionBoundary}, StringSplitOptions.None)[0] : string.Empty;
 			blogPostModel.Description = ParseContent(description);
 			return blogPostModel;
 		}
 
-		private void AddMetadata(BlogPostModel blogPostModel, string metadataSource) {
+		private void AddMetadata(TModel blogPostModel, string metadataSource) {
 			var lines = metadataSource.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 			foreach (var line in lines) {
 				var splitted = line.Split(':');
@@ -46,7 +47,7 @@ namespace ChpokkWeb.Features.Blog {
 			return renderer.Render(document);
 		}
 
-		public BlogPostModel LoadAndParse(string filePath) {
+		public TModel LoadAndParse(string filePath) {
 			var content = _fileSystem.ReadStringFromFile(filePath);
 			var model = this.Parse(content);
 			model.Slug = Path.GetFileNameWithoutExtension(filePath);

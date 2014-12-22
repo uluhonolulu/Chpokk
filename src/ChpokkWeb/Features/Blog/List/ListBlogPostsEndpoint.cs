@@ -10,8 +10,8 @@ namespace ChpokkWeb.Features.Blog.List {
 	public class ListBlogPostsEndpoint {
 		private readonly IAppRootProvider _appRootProvider;
 		private readonly IFileSystem _fileSystem;
-		private readonly BlogPostParser _parser;
-		public ListBlogPostsEndpoint(IAppRootProvider appRootProvider, IFileSystem fileSystem, BlogPostParser parser) {
+		private readonly BlogPostParser<BlogPostModel> _parser;
+		public ListBlogPostsEndpoint(IAppRootProvider appRootProvider, IFileSystem fileSystem, BlogPostParser<BlogPostModel> parser) {
 			_appRootProvider = appRootProvider;
 			_fileSystem = fileSystem;
 			_parser = parser;
