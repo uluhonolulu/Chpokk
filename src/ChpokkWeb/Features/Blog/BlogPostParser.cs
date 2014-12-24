@@ -23,7 +23,8 @@ namespace ChpokkWeb.Features.Blog {
 			var blogPostModel = new TModel { Content = ParseContent(content) };
 			AddMetadata(blogPostModel, parts[0]);
 			var description = parts.Length > 1 ? parts[1].Split(new[] {DescriptionBoundary}, StringSplitOptions.None)[0] : string.Empty;
-			blogPostModel.Description = ParseContent(description);
+			blogPostModel.Description = description;
+			blogPostModel.HtmlDescription = ParseContent(description);
 			return blogPostModel;
 		}
 

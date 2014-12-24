@@ -10,7 +10,7 @@
 				<time datetime="!{post.Date}">!{post.Date.ToShortDateString()}</time>
 			</header>
 
-			<div>!{post.Description}</div>
+			<div>!{post.HtmlDescription}</div>
 			
 			<a href="!{ this.Urls.UrlFor(new BlogPostInputModel{ Slug = post.Slug }) }">More..</a>
 				

@@ -1,11 +1,16 @@
 ﻿<viewdata model="ChpokkWeb.Features.ReadMe.ReadMeModel" />
 <use namespace="ChpokkWeb.Features.ReadMe" />
 ﻿<use master="Content" />
-	<article>
-		<header>
-			<h2>!{Model.Title}</h2>
-		</header>
-		<div style="margin-top: 20px;">
-			!{Model.Content}
-		</div>
-	</article>
+<article>
+	<header>
+		<h2>!{Model.Title}</h2>
+	</header>
+	<div style="margin-top: 20px;">
+		!{Model.Content}
+	</div>
+</article>
+
+<content name="description">
+	<meta name="description" content="!{Model.Description}"/>	
+</content>
+<content name="title">!{Model.Title}</content>

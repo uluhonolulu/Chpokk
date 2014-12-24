@@ -12,7 +12,10 @@
 	</div>
 </article>
 
-
+<content name="description">
+	<meta name="description" content="!{Model.Description}"/>	
+</content>
+<content name="title">!{Model.Title}</content>
 
 <content name="head">
 	<Stylesheet href="blog.css" />
