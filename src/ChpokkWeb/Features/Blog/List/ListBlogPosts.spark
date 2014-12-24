@@ -1,8 +1,8 @@
 ﻿<viewdata model="ChpokkWeb.Features.Blog.List.ListBlogPostsModel" />
 <use namespace="ChpokkWeb.Features.Blog.List" />
 <use namespace="ChpokkWeb.Features.Blog.Post" />
+<use master="Content" />
 
-<main class="container">
 	<for each="var post in Model.Posts">
 		<article>
 			<header>
@@ -18,8 +18,6 @@
 
 	
 	</for>	
-</main>
-
 
 <content name="head">
 	<Stylesheet href="blog.css" />

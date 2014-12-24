@@ -1,18 +1,16 @@
 ﻿<viewdata model="ChpokkWeb.Features.Blog.Post.BlogPostModel" />
 <use namespace="ChpokkWeb.Features.Blog.Post" />
+<use master="Content" />
 
-
-<main class="container">
-	<article>
-		<header>
-			<h2>!{Model.Title}</h2>
-			<time datetime="!{Model.Date}">!{Model.Date.ToLongDateString()}</time>
-		</header>
-		<div style="margin-top: 20px;">
-			!{Model.Content}
-		</div>
-	</article>
-</main>
+<article>
+	<header>
+		<h2>!{Model.Title}</h2>
+		<time datetime="!{Model.Date}">!{Model.Date.ToLongDateString()}</time>
+	</header>
+	<div style="margin-top: 20px;">
+		!{Model.Content}
+	</div>
+</article>
 
 
 

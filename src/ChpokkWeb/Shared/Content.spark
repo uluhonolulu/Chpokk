@@ -1,0 +1,16 @@
+﻿﻿<use master="Application" />
+<!-- Content.spark -->
+<div class="container">
+	<use:view />
+</div>
+
+<content name="menu">
+	<ul class="nav navbar-nav">
+		<li>
+			<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "About" }) }">About</a>
+		</li>
+		<li>
+			<a href="!{ this.Urls.UrlFor<ChpokkWeb.Features.Blog.List.ListBlogPostsEndpoint>( ep => ep.DoIt(), null) }">Blog</a>	
+		</li>
+	</ul>
+</content>
