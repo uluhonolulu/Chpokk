@@ -1,7 +1,7 @@
 ﻿Title: About Chpokk
 Date: 2014-12-08
 ==
-Before I proceed with the detailed eplanations about every feature, let's say a few words about what Chpokk is, and what it isn't.
+Before I proceed with the detailed explanations about every feature, let's say a few words about what Chpokk is, and what it isn't.
 
 **Chpokk is an Web-based .Net IDE that lets you create, edit, and run your projects in your browser.**
 
