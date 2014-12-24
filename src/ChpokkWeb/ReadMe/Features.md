@@ -1,4 +1,9 @@
-﻿<h1>Feature availability</h1>
+﻿Title: Feature availability
+Date: 2014-12-24
+==
+
+--
+
 <p>Don't forget that you can influence which features are implemented first! Just fote for existing ideas or add a new one <a href="https://chpokk.uservoice.com/forums/176999-general" target="_blank">here</a>.</p>
 <table id="features" class="table table-striped">
 	<thead>

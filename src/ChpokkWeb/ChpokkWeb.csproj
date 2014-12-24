@@ -5526,12 +5526,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="ReadMe\About.md" />
+    <Content Include="ReadMe\Features.md" />
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Shared\_global.spark" />
     <Content Include="Shared\_convert.spark" />
-    <Content Include="Shared\_Features.spark">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Shared\_appfail.spark" />
     <Content Include="Shared\_adconv.spark" />
     <Content Include="Shared\_iAgreeToCookies.spark" />

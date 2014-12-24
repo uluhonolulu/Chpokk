@@ -28,7 +28,7 @@ You can add references to .Net framework libraries, NuGet packages, uploaded ass
 
 ## Executing and unit testing your C# or VB.Net code online
 
-If you have a console program, you can run it online usig Chpokk, and see the output and the returned value in the output window.
+If you have a console program, you can run it online using Chpokk, and see the output and the returned value in the output window.
 
 Any kind of project can be tested by executing automated tests. Click "Run Tests" in the top menu, and all tests in ther solution will be run. The tests are run using the Gallio framework, so all major testing frameworks are supported.
 

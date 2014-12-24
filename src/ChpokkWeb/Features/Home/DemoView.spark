@@ -37,51 +37,61 @@
 
 
 <div class="container" style="position: relative;">
-    <div>
-        <img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
-        <img src="_content/images/click_here.png" alt="Click here to start coding online" style="position: absolute; top: 80px; left:472px; display: none;" id="clickArrow" />
-        <a id="startButton" href="/Main" style="position: absolute; left:687px; top: 68px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">
-        </a>
-    </div>
+	<div style="float: right;">
+	<ul class="nav nav-pills">
+		<li>
+			<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "About" }) }">About</a>
+		</li>
+		<li>
+			<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "Features" }) }">Features</a>
+		</li>
+		<li>
+			<a href="!{ this.Urls.UrlFor<ChpokkWeb.Features.Blog.List.ListBlogPostsEndpoint>( ep => ep.DoIt(), null) }">Blog</a>	
+		</li>
+	</ul>
+	</div>
+	<div>
+		<img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
+		<img src="_content/images/click_here.png" alt="Click here to start coding online" style="position: absolute; top: 120px; left:472px; display: none;" id="clickArrow" />
+		<a id="startButton" href="/Main" style="position: absolute; left:687px; top: 108px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">
+		</a>
+	</div>
     
 
 	
 	<div class="clearfix" style="margin-bottom: 20px;"></div>
 	<div style="display:table; margin-bottom: 20px; width: 100%;" id="moreInfo">
-	<div class="col-xs-6" style="padding-left: 0;">
-		<div class="panel panel-default" style="height: 100%; margin-bottom: 0px;">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					Targeted for .Net developers</h4>
-			</div>
-			<div class="panel-body">
-				<p>
-					There are many online editors that would let you edit code in many languages.</p>
-				<p>
-					Chpokk has been designed for .Net development, and supports .Net specific
-					features, like Intellisense and syntax check.</p>
-				<p><a href="Main">Start coding!</a></p>
-			</div>
-		</div>
-	</div>
-	<div class="col-xs-6" style="padding-right: 0; ">
-		<div class="panel panel-default" style="height: 100%;">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					Not just a code editor</h4>
-			</div>
-			<div class="panel-body">
-				<p>
-					Compile your code, run automated tests, even execute a console program. Reference .Net framework assemblies, install NuGet packages, or use your dll files.</p>
-				<p>
-					<span style="font-weight: bold;">NEW:</span> Publish your Web application to AppHarbor.</p>
-				<p><a href="Main">Start coding!</a></p>
+		<div class="col-xs-6" style="padding-left: 0;">
+			<div class="panel panel-default" style="height: 100%; margin-bottom: 0px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						Targeted for .Net developers</h4>
+				</div>
+				<div class="panel-body">
+					<p>
+						There are many online editors that would let you edit code in many languages.</p>
+					<p>
+						Chpokk has been designed for .Net development, and supports .Net specific
+						features, like Intellisense and syntax check.</p>
+					<p><a href="Main">Start coding!</a></p>
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	<div class="well clear">
-		<Features/>
+		<div class="col-xs-6" style="padding-right: 0; ">
+			<div class="panel panel-default" style="height: 100%;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						Not just a code editor</h4>
+				</div>
+				<div class="panel-body">
+					<p>
+						Compile your code, run automated tests, even execute a console program. Reference .Net framework assemblies, install NuGet packages, or use your dll files.</p>
+					<p>
+						<span style="font-weight: bold;">NEW:</span> Publish your Web application to AppHarbor.</p>
+					<p><a href="Main">Start coding!</a></p>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="clearfix"></div>
