@@ -24,7 +24,7 @@ namespace Chpokk.Tests.Blog.Web {
 		}
 
 		public override WebResponse Act() {
-			CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is BlogPostParser));
+			//CThruEngine.AddAspect(new TraceAspect(info => info.TargetInstance is BlogPostParser<BlogPostModel>));
 			var url = "blog/post/" + Path.GetFileNameWithoutExtension(Context.FILENAME);
 			return new TestSession().ProcessRequest(new WebRequest(url) { ThrowOnError = false });
 		}

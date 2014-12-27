@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Chpokk.Tests.Infrastructure;
 using FubuCore;
 using Gallio.Framework;
 using LibGit2Sharp;
@@ -35,9 +36,7 @@ namespace Chpokk.Tests.Spikes {
 			var userName = "uluhonolulu";
 			var password = "xd11SvG23";
 			var targetFolder = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\ulu\private";
-			if (Directory.Exists(targetFolder)) {
-				Directory.Delete(targetFolder);
-			}
+			DirectoryHelper.DeleteDirectory(targetFolder);
 			var cloneOptions = new CloneOptions {
 				CredentialsProvider = (s, fromUrl, types) => new UsernamePasswordCredentials() { Username = userName, Password = password }
 			};
@@ -45,9 +44,7 @@ namespace Chpokk.Tests.Spikes {
 				Repository.Clone(url, targetFolder, cloneOptions);
 			}
 			finally {
-				if (Directory.Exists(targetFolder)) {
-					Directory.Delete(targetFolder);
-				}	
+				DirectoryHelper.DeleteDirectory(targetFolder);	
 			}
 			
 		}

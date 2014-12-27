@@ -46,7 +46,7 @@ Tags: good, bad
 description
 --
 more stuff";
-			return Context.Container.Get<BlogPostParser>().Parse(sampleBlogPost);
+			return Context.Container.Get<BlogPostParser<BlogPostModel>>().Parse(sampleBlogPost);
 		}
 	}
 }

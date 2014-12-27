@@ -22,7 +22,7 @@ namespace Chpokk.Tests.Blog.Parser {
 
 		public override BlogPostModel Act() {
 			var filePath = Context.Container.Get<IAppRootProvider>().AppRoot.AppendPath("Blog", Context.FILENAME);
-			return Context.Container.Get<BlogPostParser>().LoadAndParse(filePath);
+			return Context.Container.Get<BlogPostParser<BlogPostModel>>().LoadAndParse(filePath);
 		}
 	}
 }
