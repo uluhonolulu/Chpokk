@@ -49,9 +49,11 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 						_appRootProvider.AppRoot.AppendPath(@"Features\CustomerDevelopment\TrialSignup\WhyDidntYouBuy.txt");
 					var messageToUser = _fileSystem.ReadStringFromFile(messageTemplatePath);
 
-					if (_mailer.Host != null)
+					if (_mailer.Host != null) {
 						_mailer.Send("uluhonolulu@gmail.com", user.Email, "A free month of Chpokk. Interested?", messageToUser);
-					
+						_mailer.Send("uluhonolulu@gmail.com", "uluhonolulu@gmail.com", "A free month of Chpokk. Interested?", messageToUser);
+						
+					}					
 				}
 			});
 		}
