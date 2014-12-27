@@ -5,7 +5,7 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
-			font-family: droid-sans-mono, sans-serif;
+			font-family: 'Source Code Pro', droid-sans-mono, sans-serif;
 		}
 		.ace_autocomplete .completion {
 			display: block;
