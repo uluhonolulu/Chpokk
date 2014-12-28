@@ -2,7 +2,7 @@
 
 	<!-- TrialInvitation.spark -->
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			var userHub = $.connection.userHub;
 			userHub.client.displayTrialInvitation = displayTrialInvitation;
 
@@ -23,9 +23,6 @@
 
 		function displayTrialInvitation() {
 			track("Displaying invitation");
-			$('#trialDialog').one('hide.bs.modal', function() {
-				console.log("Why did we close?");
-			});
 			$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
 		}
 	</script>
@@ -40,6 +37,8 @@
 				<p>If you find it useful, please subscribe for the service. Now's the perfect time for it -- the price is reduced to <span style="font-weight: bold;">$8/month</span> (the regular price is $18/mo).</p>
 				<p>If you press the <i>right</i> button, you'll be redirected to the payment gateway. Your payment will be securely handled by FastSpring. After paying, you'll be able to continue your work.</p>
 				<p>If you press the other button, you'll be redirected to the start screen. I'll be happy if you drop by some day.</p>
+				<p>Still not sure? Want a better deal? Or to extend the trial mode in exchange for some feedback? 
+					Email me at <a href="mailto:uluhonolulu@gmail.com">uluhonolulu@gmail.com</a>, and we'll find a solution that's perfect for you!</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" id="cancel">Stop using Chpokk</button>
