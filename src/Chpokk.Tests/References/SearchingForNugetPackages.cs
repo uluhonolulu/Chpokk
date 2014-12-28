@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading;
 using Arractas;
-using CThru;
-using CThru.BuiltInAspects;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
-using FubuCore;
-using Gallio.Framework;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using NuGet;
 using System.Linq;
 using Shouldly;
@@ -37,21 +29,21 @@ namespace Chpokk.Tests.References {
 		}
 	}
 
-	class GoodTracer: TraceAspect {
-		private DateTime _started = DateTime.Now;
-		protected override string GetMessage(DuringCallbackEventArgs e) {
-			var timeSpan = DateTime.Now - _started;
-			return Convert.ToInt32(timeSpan.TotalMilliseconds).ToString().PadLeft(6) + " | " + Thread.CurrentThread.ManagedThreadId.ToString() + " | " + base.GetMessage(e);
-		}
+	//class GoodTracer: TraceAspect {
+	//	private DateTime _started = DateTime.Now;
+	//	protected override string GetMessage(DuringCallbackEventArgs e) {
+	//		var timeSpan = DateTime.Now - _started;
+	//		return Convert.ToInt32(timeSpan.TotalMilliseconds).ToString().PadLeft(6) + " | " + Thread.CurrentThread.ManagedThreadId.ToString() + " | " + base.GetMessage(e);
+	//	}
 
-		public override bool ShouldIntercept(InterceptInfo info) {
-			return base.ShouldIntercept(info) && Thread.CurrentThread.Name == "Simple Test Driver";
-		}
+	//	public override bool ShouldIntercept(InterceptInfo info) {
+	//		return base.ShouldIntercept(info) && Thread.CurrentThread.Name == "Simple Test Driver";
+	//	}
 
-		public GoodTracer(Predicate<InterceptInfo> shouldIntercept, TextWriter writer) : base(shouldIntercept, writer) {}
-		public GoodTracer(Predicate<InterceptInfo> shouldIntercept, string logPath) : base(shouldIntercept, logPath) {}
-		public GoodTracer(Predicate<InterceptInfo> shouldIntercept) : base(shouldIntercept) {}
-		public GoodTracer(Predicate<InterceptInfo> shouldIntercept, int depth) : base(shouldIntercept, depth) {}
-		public GoodTracer(Predicate<InterceptInfo> shouldIntercept, TextWriter writer, int depth) : base(shouldIntercept, writer, depth) {}
-	}
+	//	public GoodTracer(Predicate<InterceptInfo> shouldIntercept, TextWriter writer) : base(shouldIntercept, writer) {}
+	//	public GoodTracer(Predicate<InterceptInfo> shouldIntercept, string logPath) : base(shouldIntercept, logPath) {}
+	//	public GoodTracer(Predicate<InterceptInfo> shouldIntercept) : base(shouldIntercept) {}
+	//	public GoodTracer(Predicate<InterceptInfo> shouldIntercept, int depth) : base(shouldIntercept, depth) {}
+	//	public GoodTracer(Predicate<InterceptInfo> shouldIntercept, TextWriter writer, int depth) : base(shouldIntercept, writer, depth) {}
+	//}
 }

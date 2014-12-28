@@ -26,7 +26,7 @@ namespace Chpokk.Tests.Blog {
 		public override XmlDocument Act() {
 			var path = Context.BlogPostPath;
 			var model = Context.Container.Get<BlogPostParser<BlogPostModel>>().LoadAndParse(path);
-			var item = new SyndicationItem(model.Title, SyndicationContent.CreateXhtmlContent(), new Uri("/blog/post/" + model.Slug, UriKind.RelativeOrAbsolute) , model.Slug, model.Date){Content = SyndicationContent.CreatePlaintextContent(model.HtmlDescription)};
+			var item = new SyndicationItem(model.Title, SyndicationContent.CreateXhtmlContent(model.Content), new Uri("/blog/post/" + model.Slug, UriKind.RelativeOrAbsolute) , model.Slug, model.Date){Content = SyndicationContent.CreatePlaintextContent(model.HtmlDescription)};
 			var feed = new SyndicationFeed("My Blog", "Bloggin bout chpokk", new Uri("/blog/list", UriKind.RelativeOrAbsolute), new[] {item});
 
 			var doc = new XmlDocument(){PreserveWhitespace = true};
