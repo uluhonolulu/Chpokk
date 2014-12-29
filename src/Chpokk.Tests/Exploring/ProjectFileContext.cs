@@ -1,12 +1,17 @@
 ﻿using System;
 using FubuCore;
+using Microsoft.Build.Evaluation;
 
 namespace Chpokk.Tests.Exploring {
 	public class ProjectFileContext : RepositoryFolderContext {
 		public readonly string SOLUTION_FOLDER = "src";
 		public readonly string PROJECT_NAME = "ProjectName";
-		public readonly string PROJECT_PATH = @"ProjectName\ProjectName.csproj";
+		public readonly string PROJECT_PATH;
 		public readonly string FILE_NAME = "Class1.cs";
+		public ProjectFileContext() {
+			PROJECT_PATH = @"{0}\{0}.csproj".ToFormat(PROJECT_NAME);
+		}
+
 		public string SolutionFolder { get; set; }
 		public string ProjectPath { get;  set; }
 
@@ -16,6 +21,8 @@ namespace Chpokk.Tests.Exploring {
 			ProjectPath = FileSystem.Combine(SolutionFolder, PROJECT_PATH);
 			Console.WriteLine("Writing to " + ProjectPath);
 			Container.Get<IFileSystem>().WriteStringToFile(ProjectPath, ProjectFileContent);
+			ProjectCollection.GlobalProjectCollection.UnloadAllProjects();//reset the cache
+
 		}
 
 		public virtual string ProjectFileContent {

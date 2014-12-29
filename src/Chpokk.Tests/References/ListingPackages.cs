@@ -14,7 +14,7 @@ namespace Chpokk.Tests.References {
 		[Test]
 		public void SearchingForElmahReturnsElmahPackage() {
 			foreach (var package in Result) {
-				Console.WriteLine(package);
+				//Console.WriteLine(package);
 			}
 			Result.ShouldContain(package => package.Id == "elmah");
 		}
