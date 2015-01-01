@@ -26,7 +26,7 @@ namespace ChpokkWeb.Features.Exploring {
 		[JsonEndpoint]
 		public FileListModel GetFileList(FileListInputModel model) {
 			var root = new RepositoryItem{PathRelativeToRepositoryRoot = @"\"};
-			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			var repositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			ImportFolder(root, repositoryRoot);
 			return new FileListModel{Items = root.Children.ToArray()}; 
 		}

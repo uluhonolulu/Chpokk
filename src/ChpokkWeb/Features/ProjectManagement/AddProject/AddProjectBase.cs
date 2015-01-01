@@ -26,7 +26,13 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		}
 
 		protected void AddPackages(AddSimpleProjectInputModel inputModel, string projectPath) {
-			var targetFolder = _repositoryManager.NewGetAbsolutePathFor(inputModel.ProjectName).AppendPath("packages");
+			var addProjectInputModel = inputModel as AddProjectInputModel;
+			var rootFolder = addProjectInputModel != null
+				                 ? _repositoryManager.NewGetAbsolutePathFor(addProjectInputModel.RepositoryName, addProjectInputModel.SolutionPath).ParentDirectory()
+				                 : _repositoryManager.GetAbsoluteRepositoryPath(inputModel.ProjectName);
+			//if we create a project, use the root repository folder -- ProjectName
+			//if we have a solution, use the parent folder for it -- SolutionPath
+			var targetFolder = rootFolder.AppendPath("packages");
 			if (inputModel.Packages != null) {
 				_logger.WriteLine("Adding package references");
 				foreach (var packageId in inputModel.Packages)

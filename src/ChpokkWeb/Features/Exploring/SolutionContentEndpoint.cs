@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Exploring {
 		}
 
 		private IEnumerable<RepositoryItem> GetSolutionRepositoryItems(string repositoryName) {
-			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			var repositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(repositoryName);
 			_restoreSynchronizer.WaitTillRestored(repositoryRoot);
 			var files = _solutionExplorer.GetSolutionFiles(repositoryRoot);
 			var items =

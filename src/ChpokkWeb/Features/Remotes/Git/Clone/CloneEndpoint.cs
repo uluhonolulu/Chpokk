@@ -36,7 +36,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Clone {
 			}
 			var repositoryRoot = GetRepositoryRoot(model);
 			var repositoryName = repositoryRoot.GetFileNameUniversal().RemoveExtension();
-			var repositoryPath = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			var repositoryPath = _repositoryManager.GetAbsoluteRepositoryPath(repositoryName);
 			if (Directory.Exists(repositoryPath)) {
 				Directory.Delete(repositoryPath, true);
 			}

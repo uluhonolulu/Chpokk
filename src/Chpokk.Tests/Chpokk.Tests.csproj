@@ -409,9 +409,9 @@
     <Compile Include="ProjectLoading\ProjectFileWithProjectReferenceContent.cs" />
     <Compile Include="References\AddingAFileBasedReference.cs" />
     <Compile Include="References\AddingAPackage.cs" />
+    <Compile Include="References\ListingInstalledPackages.cs" />
     <Compile Include="References\ListingPackages.cs" />
     <Compile Include="References\ReinstallingAPackage.cs" />
-    <Compile Include="References\SearchingForNugetPackages.cs" />
     <Compile Include="Renaming\ItemRenaming.cs" />
     <Compile Include="Renaming\ProjectRenaming.cs" />
     <Compile Include="Renaming\SolutionRenaming.cs" />

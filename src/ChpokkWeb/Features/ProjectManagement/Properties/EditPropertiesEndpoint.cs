@@ -11,7 +11,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 
 		public AjaxContinuation Save(EditPropertiesInputModel inputModel) {
 			_logger.ConnectionId = inputModel.ConnectionId;
-			var repositoryPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName);
+			var repositoryPath = _repositoryManager.GetAbsoluteRepositoryPath(inputModel.RepositoryName);
 			var solutionPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.SolutionPath);
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, inputModel.ProjectPath);
 			var rootElement = ProjectRootElement.Open(projectPath); //TODO: load properly

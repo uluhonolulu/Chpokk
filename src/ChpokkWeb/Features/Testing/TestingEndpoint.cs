@@ -35,7 +35,7 @@ namespace ChpokkWeb.Features.Testing {
 		public AjaxContinuation CompileAndTest(TestingInputModel model) {
 			_webConsole.ConnectionId = model.ConnectionId;
 			_logger.ConnectionId = model.ConnectionId;
-			_logger.RepositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			_logger.RepositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			Task.Run(() => {
 				//build
 				var assemblyPaths = new List<string>();
@@ -55,7 +55,7 @@ namespace ChpokkWeb.Features.Testing {
 		} 
 
 		private IEnumerable<string> GetSolutionPaths(string repositoryName) {
-			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(repositoryName);
+			var repositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(repositoryName);
 			return _solutionExplorer.GetSolutionFiles(repositoryRoot);
 		} 
 

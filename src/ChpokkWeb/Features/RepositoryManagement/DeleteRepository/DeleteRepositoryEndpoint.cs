@@ -21,7 +21,7 @@ namespace ChpokkWeb.Features.RepositoryManagement.DeleteRepository {
 		}
 
 		public AjaxContinuation DoIt(DeleteRepositoryInputModel model) {
-			var path = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			var path = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			_fileSystem.DeleteDirectory(path);
 			var url = _urlRegistry.UrlFor<MainDummyModel>();
 			return new AjaxContinuation().NavigateTo(url);

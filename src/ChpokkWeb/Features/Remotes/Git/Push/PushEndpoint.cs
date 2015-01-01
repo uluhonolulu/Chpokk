@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 
 		public AjaxContinuation Push(PushInputModel model) {
 			var credentials = model.Username.IsEmpty()? null: new UsernamePasswordCredentials() {Username = model.Username, Password = model.Password};
-			var repositoryRoot = _manager.NewGetAbsolutePathFor(model.RepositoryName);
+			var repositoryRoot = _manager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			var ajaxContinuation = AjaxContinuation.Successful();
 			ajaxContinuation.ShouldRefresh = true;
 			var remoteName = GetRemoteName(model, repositoryRoot);

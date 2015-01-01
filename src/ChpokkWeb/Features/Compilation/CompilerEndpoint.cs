@@ -30,7 +30,7 @@ namespace ChpokkWeb.Features.Compilation {
 		}		
 		public AjaxContinuation Compile(CompileInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
-			_logger.RepositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			_logger.RepositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
@@ -41,7 +41,7 @@ namespace ChpokkWeb.Features.Compilation {
 
 		public AjaxContinuation CompileAndRun(CompileAndRunInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
-			_logger.RepositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			_logger.RepositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			if (model.Content.IsNotEmpty()) {
 				_savior.SaveFile(model);
 			}
@@ -69,7 +69,7 @@ namespace ChpokkWeb.Features.Compilation {
 
 		public AjaxContinuation CompileSolution(CompileSolutionInputModel model) {
 			_logger.ConnectionId = model.ConnectionId;
-			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			var repositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			_logger.RepositoryRoot = repositoryRoot;
 			var solutionFiles = _solutionExplorer.GetSolutionFiles(repositoryRoot);
 			foreach (var solutionFile in solutionFiles) {

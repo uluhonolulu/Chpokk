@@ -36,7 +36,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 				                   : null;
 			var output = new ProjectPropertiesModel();
 			output.BclReferences.AddRange(GetBclReferences(project));
-			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			var repositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			if (project != null) 
 				output.PackageReferences.AddRange(GetPackages(projectPath, repositoryRoot));
 			if (solutionPath.IsNotEmpty()) 

@@ -70,10 +70,10 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			if (pathRelativeToRepositoryRoot == null) {
 				throw new ArgumentNullException("pathRelativeToRepositoryRoot");
 			}
-			return NewGetAbsolutePathFor(repositoryName).AppendPath(pathRelativeToRepositoryRoot);
+			return GetAbsoluteRepositoryPath(repositoryName).AppendPath(pathRelativeToRepositoryRoot);
 		}
 		[NotNull]
-		public string NewGetAbsolutePathFor(string repositoryName) {
+		public string GetAbsoluteRepositoryPath(string repositoryName) {
 			return Path.GetFullPath(AppRoot.AppendPath(this.GetPathFor(repositoryName)));
 		}
 
@@ -154,7 +154,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public MenuItem[] GetRetrieveActions(RepositoryInfo info) {
 			var menuItems = new List<MenuItem>();
-			var repositoryRoot = this.NewGetAbsolutePathFor(info.Name);
+			var repositoryRoot = this.GetAbsoluteRepositoryPath(info.Name);
 			foreach (var policy in _retrievePolicies) {
 				if (policy.Matches(repositoryRoot)) {
 					var menuItemSource = policy as IMenuItemSource;
@@ -196,7 +196,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			var repositoryNames = GetRepositoryNamesFromStorage();
 			foreach (var repositoryName in repositoryNames) {
 				_activityTracker.Record("Creating folder for " + repositoryName);
-				var repositoryPath = NewGetAbsolutePathFor(repositoryName);
+				var repositoryPath = GetAbsoluteRepositoryPath(repositoryName);
 				Directory.CreateDirectory(repositoryPath);
 				//download each repository asynchronously
 				Task.Run(() => _downloader.DownloadAllFiles(AppRoot, repositoryPath.PathRelativeTo(AppRoot), RecordDownloadedFile));

@@ -13,7 +13,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Remotes {
 		}
 
 		public RemoteListModel GetRemoteInfo(RemoteListInputModel model) {
-			var repositoryRoot = _repositoryManager.NewGetAbsolutePathFor(model.RepositoryName);
+			var repositoryRoot = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			return GetRemoteInfo(repositoryRoot);
 		}
 
