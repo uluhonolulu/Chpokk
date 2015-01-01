@@ -152,9 +152,6 @@
     <Compile Include="..\Chpokk.Tests\Exploring\SeeingASolutionFile.cs">
       <Link>Exploring\SeeingASolutionFile.cs</Link>
     </Compile>
-    <Compile Include="..\Chpokk.Tests\Infrastructure\SimpleConfiguredContext.cs">
-      <Link>Infrastructure\SimpleConfiguredContext.cs</Link>
-    </Compile>
     <Compile Include="..\Chpokk.Tests\Intellisense\Roslynson\GettingCodeFileSources.cs">
       <Link>Roslynson\GettingCodeFileSources.cs</Link>
     </Compile>
@@ -225,6 +222,7 @@
     <Compile Include="Infrastructure\NuGet2Console.cs" />
     <Compile Include="Infrastructure\RouteList.cs" />
     <Compile Include="Infrastructure\SimpleAuthenticatedContext.cs" />
+    <Compile Include="Infrastructure\SimpleConfiguredContext.cs" />
     <Compile Include="Infrastructure\TestableBuildLogger.cs" />
     <Compile Include="Infrastructure\TestableNuGetLogger.cs" />
     <Compile Include="Infrastructure\TestAppRootProvider.cs" />
