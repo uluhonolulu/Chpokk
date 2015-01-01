@@ -1,4 +1,6 @@
-﻿namespace UnitTests.Infrastructure {
+﻿using Chpokk.Tests.Infrastructure;
+
+namespace UnitTests.Infrastructure {
 	public class SimpleAuthenticatedContext: SimpleConfiguredContext {
 		public override void Create() {
 			base.Create();
