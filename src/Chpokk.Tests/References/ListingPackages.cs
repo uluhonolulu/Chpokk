@@ -7,6 +7,7 @@ using MbUnit.Framework;
 using NuGet;
 using Shouldly;
 using System.Linq;
+using UnitTests.Infrastructure;
 
 namespace Chpokk.Tests.References {
 	[TestFixture]
