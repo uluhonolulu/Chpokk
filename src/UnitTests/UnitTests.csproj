@@ -179,9 +179,6 @@
     <Compile Include="..\Chpokk.Tests\References\ReinstallingAPackage.cs">
       <Link>References\ReinstallingAPackage.cs</Link>
     </Compile>
-    <Compile Include="..\Chpokk.Tests\References\SearchingForNugetPackages.cs">
-      <Link>References\SearchingForNugetPackages.cs</Link>
-    </Compile>
     <Compile Include="..\Chpokk.Tests\References\StandardLibraryList.cs">
       <Link>References\StandardLibraryList.cs</Link>
     </Compile>
