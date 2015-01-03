@@ -1,4 +1,5 @@
-﻿using Chpokk.Tests.Infrastructure;
+﻿using System;
+using Chpokk.Tests.Infrastructure;
 using FubuCore;
 
 namespace Chpokk.Tests.Blog {
@@ -9,7 +10,8 @@ namespace Chpokk.Tests.Blog {
 		public override void Create() {
 			base.Create();
 			var filePath = BlogPostPath;
-			Container.Get<FileSystem>().WriteStringToFile(filePath, MetadataBoundary + BLOGPOST_CONTENT);
+			var fileContent ="Date: " + DateTime.Today.ToShortDateString() + MetadataBoundary + BLOGPOST_CONTENT;
+			Container.Get<FileSystem>().WriteStringToFile(filePath, fileContent);
 		}
 
 		public override void Dispose() {

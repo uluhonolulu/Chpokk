@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Arractas;
 using ChpokkWeb;
 using ChpokkWeb.Features.Compilation;
@@ -17,7 +14,6 @@ using FubuMVC.Core.Urls;
 using FubuMVC.StructureMap;
 using NuGet.Common;
 using StructureMap;
-using UnitTests.Infrastructure;
 
 namespace Chpokk.Tests.Infrastructure {
 	public class SimpleConfiguredContext : SimpleContext, IDisposable {
