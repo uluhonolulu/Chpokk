@@ -6,7 +6,6 @@ using ChpokkWeb.Features.Exploring;
 using ICSharpCode.NRefactory;
 using MbUnit.Framework;
 using Shouldly;
-using UnitTests.Infrastructure;
 
 namespace Chpokk.Tests.References {
 	public class AddingABclReference: BaseQueryTest<SimpleConfiguredContext, IEnumerable<string>> {

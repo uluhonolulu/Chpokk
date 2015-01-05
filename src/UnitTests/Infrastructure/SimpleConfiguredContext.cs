@@ -22,8 +22,9 @@ using NuGet.Common;
 using StructureMap;
 using FubuCore;
 using System.Linq;
+using UnitTests.Infrastructure;
 
-namespace UnitTests.Infrastructure {
+namespace Chpokk.Tests.Infrastructure {		//need to keep it in this namespace to use in UnitTests in linked tests
 	public class SimpleConfiguredContext : SimpleContext, IDisposable {
 		public override void Create() {
 			AssetDeclarationVerificationActivator.Latched = false; // skip asset checking

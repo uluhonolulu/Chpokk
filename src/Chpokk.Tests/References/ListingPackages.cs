@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
@@ -7,7 +6,6 @@ using MbUnit.Framework;
 using NuGet;
 using Shouldly;
 using System.Linq;
-using UnitTests.Infrastructure;
 
 namespace Chpokk.Tests.References {
 	[TestFixture]
