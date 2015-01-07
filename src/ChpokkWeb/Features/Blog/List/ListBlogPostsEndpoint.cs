@@ -28,7 +28,7 @@ namespace ChpokkWeb.Features.Blog.List {
 		}
 
 		public ListBlogPostsModel DoIt() {
-			var postModels = GetAllPosts();
+			var postModels = GetAllPosts().OrderByDescending(model => model.Date);
 			return new ListBlogPostsModel { Posts = postModels.ToArray() };
 		}
 

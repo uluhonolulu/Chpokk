@@ -50,4 +50,4 @@ Despite Chpokk being the best .Net IDE ever, it still has a room for improvement
 
 You can always use the orange thingy at the right side to send me your feature suggestions (or just share your excitement).
 
-[Try it yourself!](/Main) You'll like it, I promise!
+[Try it yourself!](http://chpokk.apphb.com/Main) You'll like it, I promise!
