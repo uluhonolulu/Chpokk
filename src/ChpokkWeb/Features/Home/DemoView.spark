@@ -2,61 +2,61 @@
 <content name="title">Chpokk, an online C# and Vb.Net editor</content>
 
 <content name="InlineScripts">
-    <script type="text/javascript">
+	<script type="text/javascript">
 
-    	$(function () {
-    		//let the panels be the same height
-    		fixPanelsHeight();
-    		//display the click arrow
-    		run_animation($("#clickArrow"), 10000, 2000);
-    	});
+		$(function () {
+			//let the panels be the same height
+			fixPanelsHeight();
+			//display the click arrow
+			run_animation($("#clickArrow"), 10000, 2000);
+		});
 
-    	$(window).resize(fixPanelsHeight);
-        
-        //declare a function that can fade in/out any element with a specified delay and duration
-        function run_animation($element, delay, duration) {
-        	//animate fade in/out after delay
-        	$element.delay(delay).fadeToggle(duration, function () {
-        		//after fade in/out is done, recursively call this function again with the same information
-        		//(if faded-out this time then next-time it will be faded-in)
-        		run_animation($element, 0, duration);
-        	});
-        }
+		$(window).resize(fixPanelsHeight);
+		
+		//declare a function that can fade in/out any element with a specified delay and duration
+		function run_animation($element, delay, duration) {
+			//animate fade in/out after delay
+			$element.delay(delay).fadeToggle(duration, function () {
+				//after fade in/out is done, recursively call this function again with the same information
+				//(if faded-out this time then next-time it will be faded-in)
+				run_animation($element, 0, duration);
+			});
+		}
 
-        function fixPanelsHeight() {
-	        $('.col-xs-6').css('height', '');
-	        $('.col-xs-6').height($('#moreInfo').height());
-        }
-    </script>
-    <style>
-        body{ padding-top: 50px;}
-        .navbar { display: none; }
-    </style>
+		function fixPanelsHeight() {
+			$('.col-xs-6').css('height', '');
+			$('.col-xs-6').height($('#moreInfo').height());
+		}
+	</script>
+	<style>
+		body{ padding-top: 50px;}
+		.navbar { display: none; }
+	</style>
 
 </content>
 
 
 <div class="container" style="position: relative;">
-	<div style="float: right;">
-	<ul class="nav nav-pills">
-		<li>
-			<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "About" }) }">About</a>
-		</li>
-		<li>
-			<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "Features" }) }">Features</a>
-		</li>
-		<li>
-			<a href="!{ this.Urls.UrlFor<ChpokkWeb.Features.Blog.List.ListBlogPostsEndpoint>( ep => ep.DoIt(), null) }">Blog</a>	
-		</li>
-	</ul>
-	</div>
+	<nav style="float: right;">
+		<ul class="nav nav-pills">
+			<li>
+				<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "About" }) }">About</a>
+			</li>
+			<li>
+				<a href="!{ this.Urls.UrlFor(new ChpokkWeb.Features.ReadMe.ReadMeInputModel{ Name = "Features" }) }">Features</a>
+			</li>
+			<li>
+				<a href="!{ this.Urls.UrlFor<ChpokkWeb.Features.Blog.List.ListBlogPostsEndpoint>( ep => ep.DoIt(), null) }">Blog</a>	
+			</li>
+		</ul>
+	</nav>
 	<div>
 		<img src="_content/images/verst_doska.jpg" alt="Chpokk, a .Net IDE in your browser"/>
 		<img src="_content/images/click_here.png" alt="Click here to start coding online" style="position: absolute; top: 120px; left:472px; display: none;" id="clickArrow" />
 		<a id="startButton" href="/Main" style="position: absolute; left:687px; top: 108px; width: 300px; height: 100px; display: block; background-color: white; opacity: 0; " class="btn">
 		</a>
 	</div>
-    
+	
 
 	
 	<div class="clearfix" style="margin-bottom: 20px;"></div>
