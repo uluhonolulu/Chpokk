@@ -5532,6 +5532,7 @@
     </Content>
     <Content Include="ReadMe\About.md" />
     <Content Include="ReadMe\Features.md" />
+    <Content Include="ReadMe\Pricing.md" />
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Shared\_global.spark" />
     <Content Include="Shared\_convert.spark" />
