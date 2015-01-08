@@ -793,6 +793,7 @@
     <Content Include="Blog\this-blog.md" />
     <Content Include="Blog\about-chpokk.md" />
     <Content Include="Blog\long-running-process.md" />
+    <Content Include="Blog\renaming-files.md" />
     <None Include="Content\styles\fonts\DroidSansMono.ttf" />
     <Content Include="Features\CustomerDevelopment\Pricelist\PriceListLink.spark" />
     <Content Include="Features\ProjectManagement\AddSimpleProject\NewSimpleProject.spark" />
