@@ -2,15 +2,15 @@
 <use namespace="ChpokkWeb.Features.Blog.Post" />
 <use master="Content" />
 
-	<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 
-<article>
+<article itemscope itemType="http://schema.org/BlogPosting">
 	<header>
-		<h2>!{Model.Title}</h2>
-		<time datetime="!{Model.Date}">!{Model.Date.ToLongDateString()}</time>
+		<h2 itemprop="name headline">!{Model.Title}</h2>
+		<time datetime="!{Model.Date}" itemprop="datePublished">!{Model.Date.ToLongDateString()}</time>
 	</header>
-	<div style="margin-top: 20px;">
+	<div style="margin-top: 20px;" itemprop="text articleBody">
 		!{Model.Content}
 	</div>
 </article>

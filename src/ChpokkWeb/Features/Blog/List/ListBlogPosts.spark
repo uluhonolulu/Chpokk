@@ -4,15 +4,15 @@
 <use master="Content" />
 
 	<for each="var post in Model.Posts">
-		<article>
+		<article itemscope itemType="http://schema.org/BlogPosting">
 			<header>
-				<a href="!{ this.Urls.UrlFor(new BlogPostInputModel{ Slug = post.Slug }) }"><h2>!{post.Title}</h2></a> 		
-				<time datetime="!{post.Date}">!{post.Date.ToShortDateString()}</time>
+				<a href="!{ this.Urls.UrlFor(new BlogPostInputModel{ Slug = post.Slug }) }" itemprop="url"><h2 itemprop="name headline">!{post.Title}</h2></a> 		
+				<time datetime="!{post.Date}" itemprop="datePublished">!{post.Date.ToShortDateString()}</time>
 			</header>
 
-			<div>!{post.HtmlDescription}</div>
+			<div itemprop="description">!{post.HtmlDescription}</div>
 			
-			<a href="!{ this.Urls.UrlFor(new BlogPostInputModel{ Slug = post.Slug }) }">More..</a>
+			<a href="!{ this.Urls.UrlFor(new BlogPostInputModel{ Slug = post.Slug }) }" itemprop="url">More..</a>
 				
 		</article>
 
