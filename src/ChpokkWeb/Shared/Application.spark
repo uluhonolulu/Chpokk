@@ -52,19 +52,26 @@
 
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
-	<div class="navbar navbar-default navbar-fixed-top" style="height: 60px;">
-		<use content="logo">
-			<a href="/"><img src="/_content/images/chpokk-logo.png" style="position: absolute; border: none;"></a>
-		</use>
-		
-		<nav class="container" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	<div class="navbar navbar-default navbar-fixed-top" style="height: 60px;" itemscope itemtype="http://schema.org/WPHeader">
+		<nav class="container-fluid" itemscope itemtype="http://schema.org/SiteNavigationElement">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<use content="logo">
+					<a class="navbar-brand" href="/" style="padding-top: 0; padding-bottom: 0"><img src="/_content/images/chpokk-logo.png" style=""></a>
+				</use>
+			</div>
 
-			<use content="header">
-			</use>
-			
-			<use content="menu"/>
-
+			<div class="collapse navbar-collapse">
+				<use content="menu"/>			
 			<div class="navbar-right"><use content="rightcorner"></use></div>
+			</div>
+
+
 		</nav>
 	</div>
 	<use content="view" />
