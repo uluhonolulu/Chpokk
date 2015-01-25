@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title>My MVC Application</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+        <%: Styles.Render("~/Content/mobileCss", "~/Content/css") %>
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </head>
+    <body>
+        <div data-role="page" data-theme="b">
+            <div data-role="header">
+                <asp:ContentPlaceHolder ID="Header" runat="server">
+                    <h1><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></h1>
+                    <% Html.RenderPartial("LoginUserControl"); %>
+                </asp:ContentPlaceHolder>
+            </div>
+            <div data-role="content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+        </div>
+
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <script>
+            $(document).on("mobileinit", function () {
+                $.mobile.ajaxEnabled = false;
+            });
+        </script>
+        <%: Scripts.Render("~/bundles/jquerymobile") %>
+        <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+    </body>
+</html>

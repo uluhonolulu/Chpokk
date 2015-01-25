@@ -1,6 +1,6 @@
-﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="42" />
+    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="42">State Machine Workflow Library</Name>
     <Description Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="43" />
     <Icon Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="137" />
     <ProjectType>CSharp</ProjectType>
@@ -20,7 +20,7 @@
       <ProjectItem ReplaceParameters="true">Workflow1.designer.cs</ProjectItem>
     </Project>
     <CustomParameters>
-      <CustomParameter Name = "$SafeClassName$" Value="Workflow1" />
+      <CustomParameter Name="$SafeClassName$" Value="Workflow1" />
     </CustomParameters>
   </TemplateContent>
 </VSTemplate>

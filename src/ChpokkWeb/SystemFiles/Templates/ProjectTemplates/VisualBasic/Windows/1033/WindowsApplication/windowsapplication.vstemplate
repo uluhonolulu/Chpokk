@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{164B10B9-B200-11D0-8C61-00A0C91E29D5}" ID="3014" />
+    <Name Package="{164B10B9-B200-11D0-8C61-00A0C91E29D5}" ID="3014">Windows Forms Application</Name>
     <Description Package="{164B10B9-B200-11D0-8C61-00A0C91E29D5}" ID="3015" />
     <Icon Package="{164B10B9-B200-11D0-8C61-00A0C91E29D5}" ID="4507" />
     <ProjectType>VisualBasic</ProjectType>
@@ -23,7 +23,7 @@
       <ProjectItem ReplaceParameters="false" TargetFileName="My Project\Resources.resx">Resources.resx</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="My Project\Resources.Designer.vb">Resources.Designer.vb</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="My Project\Settings.settings">Settings.settings</ProjectItem>
-      <ProjectItem ReplaceParameters="true"  TargetFileName="My Project\Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true">App.config</ProjectItem>
     </Project>
   </TemplateContent>

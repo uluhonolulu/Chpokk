@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{b3bae735-386c-4030-8329-ef48eeda4036}" ID="4673" />
+    <Name Package="{b3bae735-386c-4030-8329-ef48eeda4036}" ID="4673">WPF Custom Control Library</Name>
     <Description Package="{b3bae735-386c-4030-8329-ef48eeda4036}" ID="4674" />
     <Icon Package="{b3bae735-386c-4030-8329-ef48eeda4036}" ID="4603" />
     <TemplateID>Microsoft.VisualBasic.Windows.WpfCustomControlLibrary</TemplateID>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1000" />
+    <Name Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1000">Class Library (Windows Store apps)</Name>
     <Description Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1001" />
     <Icon Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="4004" />
     <TemplateID>Microsoft.VisualBasic.WinRT.ClassLibrary</TemplateID>
@@ -13,7 +13,7 @@
     <DefaultName>ClassLibrary</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <TargetPlatformName>Windows</TargetPlatformName>
-    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <RequiredPlatformVersion>6.3.0</RequiredPlatformVersion>
     <CreateInPlace>true</CreateInPlace>
   </TemplateData>
   <TemplateContent>

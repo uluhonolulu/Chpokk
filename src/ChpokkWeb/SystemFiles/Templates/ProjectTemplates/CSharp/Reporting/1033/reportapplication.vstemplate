@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{F3A96850-E2AE-4e00-9278-8FE23F225A0D}" ID="219">Reports Application</Name>
+    <Description Package="{F3A96850-E2AE-4e00-9278-8FE23F225A0D}" ID="220" />
+    <Icon Package="{F3A96850-E2AE-4e00-9278-8FE23F225A0D}" ID="206" />
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+    <SortOrder>140</SortOrder>
+    <NumberOfParentCategoriesToRollUp>0</NumberOfParentCategoriesToRollUp>
+    <CreateNewFolder>true</CreateNewFolder>
+    <CreateInPlace>true</CreateInPlace>
+    <DefaultName>ReportsApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ReportsApplication.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      <ProjectItem TargetFileName="Properties\Resources.resx">Resources.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+      <ProjectItem TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true" OpenOrder="10">Form1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Form1.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Program.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true">App.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" OpenInEditor="true" OpenOrder="11">Report1.rdlc</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.ReportDesigner12, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</Assembly>
+    <FullClassName>Microsoft.ReportDesigner.ReportWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

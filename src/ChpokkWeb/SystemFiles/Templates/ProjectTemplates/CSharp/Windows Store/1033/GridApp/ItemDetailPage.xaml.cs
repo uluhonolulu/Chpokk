@@ -1,5 +1,5 @@
-﻿using $safeprojectname$.Data;
-
+﻿using $safeprojectname$.Common;
+using $safeprojectname$.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,50 +19,77 @@ using Windows.UI.Xaml.Navigation;
 namespace $safeprojectname$
 {
     /// <summary>
-    /// A page that displays details for a single item within a group while allowing gestures to
-    /// flip through other items belonging to the same group.
+    /// A page that displays details for a single item within a group.
     /// </summary>
-    public sealed partial class ItemDetailPage : $safeprojectname$.Common.LayoutAwarePage
+    public sealed partial class ItemDetailPage : Page
     {
+        private NavigationHelper navigationHelper;
+        private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        /// <summary>
+        /// NavigationHelper is used on each page to aid in navigation and 
+        /// process lifetime management
+        /// </summary>
+        public NavigationHelper NavigationHelper
+        {
+            get { return this.navigationHelper; }
+        }
+
+        /// <summary>
+        /// This can be changed to a strongly typed view model.
+        /// </summary>
+        public ObservableDictionary DefaultViewModel
+        {
+            get { return this.defaultViewModel; }
+        }
+
         public ItemDetailPage()
         {
             this.InitializeComponent();
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += navigationHelper_LoadState;
         }
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
         /// </summary>
-        /// <param name="navigationParameter">The parameter value passed to
-        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested.
+        /// <param name="sender">
+        /// The source of the event; typically <see cref="NavigationHelper"/>
         /// </param>
-        /// <param name="pageState">A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        /// <param name="e">Event data that provides both the navigation parameter passed to
+        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
+        /// a dictionary of state preserved by this page during an earlier
+        /// session.  The state will be null the first time a page is visited.</param>
+        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // Allow saved page state to override the initial item to display
-            if (pageState != null && pageState.ContainsKey("SelectedItem"))
-            {
-                navigationParameter = pageState["SelectedItem"];
-            }
-
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = SampleDataSource.GetItem((String)navigationParameter);
-            this.DefaultViewModel["Group"] = item.Group;
-            this.DefaultViewModel["Items"] = item.Group.Items;
-            this.flipView.SelectedItem = item;
+            var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
+            this.DefaultViewModel["Item"] = item;
         }
 
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        protected override void SaveState(Dictionary<String, Object> pageState)
+        #region NavigationHelper registration
+
+        /// The methods provided in this section are simply used to allow
+        /// NavigationHelper to respond to the page's navigation methods.
+        /// 
+        /// Page specific logic should be placed in event handlers for the  
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+        /// The navigation parameter is available in the LoadState method 
+        /// in addition to page state preserved during an earlier session.
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var selectedItem = (SampleDataItem)this.flipView.SelectedItem;
-            pageState["SelectedItem"] = selectedItem.UniqueId;
+            navigationHelper.OnNavigatedTo(e);
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion
     }
 }

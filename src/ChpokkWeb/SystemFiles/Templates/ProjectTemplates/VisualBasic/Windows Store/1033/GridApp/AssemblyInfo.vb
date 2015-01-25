@@ -8,12 +8,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("$projectname$")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("$registeredorganization$")> 
-<Assembly: AssemblyProduct("$projectname$")> 
-<Assembly: AssemblyCopyright("Copyright © $registeredorganization$ $year$")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTitle("$projectname$")>
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("$registeredorganization$")>
+<Assembly: AssemblyProduct("$projectname$")>
+<Assembly: AssemblyCopyright("Copyright © $registeredorganization$ $year$")>
+<Assembly: AssemblyTrademark("")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -26,6 +26,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("1.0.0.0")>
+<Assembly: AssemblyFileVersion("1.0.0.0")>
 <Assembly: ComVisible(false)>

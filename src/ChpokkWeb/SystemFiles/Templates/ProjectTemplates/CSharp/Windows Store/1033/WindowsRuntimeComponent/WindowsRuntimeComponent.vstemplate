@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1026" />
+    <Name Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1026">Windows Runtime Component</Name>
     <Description Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="1027" />
     <Icon Package="{BB89AFCA-43DA-45C1-907D-9D61DD11F28D}" ID="4005" />
     <TemplateID>Microsoft.CS.WinRT.WindowsRuntimeComponent</TemplateID>
@@ -13,7 +13,7 @@
     <DefaultName>WindowsRuntimeComponent</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <TargetPlatformName>Windows</TargetPlatformName>
-    <RequiredPlatformVersion>8</RequiredPlatformVersion>
+    <RequiredPlatformVersion>6.3.0</RequiredPlatformVersion>
     <CreateInPlace>true</CreateInPlace>
   </TemplateData>
   <TemplateContent>

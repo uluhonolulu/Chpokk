@@ -11,7 +11,7 @@
 
         Private Shared _sessionState As New Dictionary(Of String, Object)()
         Private Shared _knownTypes As New List(Of Type)()
-        Private Const sessionStateFilename As String  = "_sessionState.xml"
+        Private Const sessionStateFilename As String = "_sessionState.xml"
 
         ''' <summary>
         ''' Provides access to global session state for the current session.  This state is
@@ -67,7 +67,6 @@
                 Using fileStream As Stream = Await file.OpenStreamForWriteAsync()
                     sessionData.Seek(0, SeekOrigin.Begin)
                     Await sessionData.CopyToAsync(fileStream)
-                    Await fileStream.FlushAsync()
                 End Using
             Catch ex As Exception
                 Throw New SuspensionManagerException(ex)
@@ -174,7 +173,7 @@
         ''' that can still be useful when restoring pages that have been discarded from the
         ''' navigation cache.
         ''' </summary>
-        ''' <remarks>Apps may choose to rely on <see cref="LayoutAwarePage"/> to manage
+        ''' <remarks>Apps may choose to rely on <see cref="NavigationHelper"/> to manage
         ''' page-specific state instead of working with frame session state directly.</remarks>
         ''' <param name="frame">The instance for which session state is desired.</param>
         ''' <returns>A collection of state subject to the same serialization mechanism as

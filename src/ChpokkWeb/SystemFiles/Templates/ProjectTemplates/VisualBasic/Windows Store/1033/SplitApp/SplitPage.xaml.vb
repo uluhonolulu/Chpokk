@@ -5,27 +5,56 @@
 ''' the currently selected item.
 ''' </summary>
 Public NotInheritable Class SplitPage
-    Inherits Common.LayoutAwarePage
+    Inherits Page
 
-#Region "Page state management"
+    Public ReadOnly Property NavigationHelper As Common.NavigationHelper
+        Get
+            Return Me._navigationHelper
+        End Get
+    End Property
+    Private _navigationHelper As Common.NavigationHelper
+
+    ''' <summary>
+    ''' This can be changed to a strongly typed view model.
+    ''' </summary>
+    Public ReadOnly Property DefaultViewModel As Common.ObservableDictionary
+        Get
+            Return Me._defaultViewModel
+        End Get
+    End Property
+    Private _defaultViewModel As New Common.ObservableDictionary()
+
+    Public Sub New()
+        InitializeComponent()
+        Me._navigationHelper = New Common.NavigationHelper(Me)
+        AddHandler Me._navigationHelper.LoadState, AddressOf NavigationHelper_LoadState
+        AddHandler Me._navigationHelper.SaveState, AddressOf NavigationHelper_SaveState
+        AddHandler Me.itemListView.SelectionChanged, AddressOf ItemListView_SelectionChanged
+        Me.NavigationHelper.GoBackCommand = New Common.RelayCommand(AddressOf Me.GoBack, AddressOf Me.CanGoBack)
+
+        AddHandler Window.Current.SizeChanged, AddressOf Winow_SizeChanged
+        Me.InvalidateVisualState()
+    End Sub
 
     ''' <summary>
     ''' Populates the page with content passed during navigation.  Any saved state is also
     ''' provided when recreating a page from a prior session.
     ''' </summary>
-    ''' <param name="navigationParameter">The parameter value passed to <see cref="Frame.Navigate"/>
-    ''' when this page was initially requested.
+    ''' <param name="sender">
+    ''' The source of the event; typically <see cref="NavigationHelper"/>
     ''' </param>
-    ''' <param name="pageState">A dictionary of state preserved by this page during an earlier
-    ''' session.  This will be null the first time a page is visited.</param>
-    Protected Overrides Sub LoadState(navigationParameter As Object, pageState As Dictionary(Of String, Object))
+    ''' <param name="e">Event data that provides both the navigation parameter passed to
+    ''' <see cref="Frame.Navigate"/> when this page was initially requested and
+    ''' a dictionary of state preserved by this page during an earlier
+    ''' session.  The state will be null the first time a page is visited.</param>
+    Private Async Sub NavigationHelper_LoadState(sender As Object, e As Common.LoadStateEventArgs)
 
         ' TODO: Create an appropriate data model for your problem domain to replace the sample data
-        Dim group As Data.SampleDataGroup = Data.SampleDataSource.GetGroup(DirectCast(navigationParameter, String))
+        Dim group As Data.SampleDataGroup = Await Data.SampleDataSource.GetGroupAsync(DirectCast(e.NavigationParameter, String))
         Me.DefaultViewModel("Group") = group
         Me.DefaultViewModel("Items") = group.Items
 
-        If pageState Is Nothing Then
+        If e.PageState Is Nothing Then
             Me.itemListView.SelectedItem = Nothing
             ' When this is a new page, select the first item automatically unless logical page
             ' navigation is being used (see the logical page navigation #region below.)
@@ -35,8 +64,8 @@ Public NotInheritable Class SplitPage
         Else
 
             ' Restore the previously saved state associated with this page
-            If pageState.ContainsKey("SelectedItem") AndAlso Me.itemsViewSource.View IsNot Nothing Then
-                Dim selectedItem As Data.SampleDataItem = Data.SampleDataSource.GetItem(DirectCast(pageState("SelectedItem"), String))
+            If e.PageState.ContainsKey("SelectedItem") AndAlso Me.itemsViewSource.View IsNot Nothing Then
+                Dim selectedItem As Data.SampleDataItem = Await Data.SampleDataSource.GetItemAsync(DirectCast(e.PageState("SelectedItem"), String))
                 Me.itemsViewSource.View.MoveCurrentTo(selectedItem)
             End If
         End If
@@ -47,110 +76,115 @@ Public NotInheritable Class SplitPage
     ''' page is discarded from the navigation cache.  Values must conform to the serialization
     ''' requirements of <see cref="Common.SuspensionManager.SessionState"/>.
     ''' </summary>
-    ''' <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-    Protected Overrides Sub SaveState(pageState As Dictionary(Of String, Object))
+    ''' <param name="sender">
+    ''' The source of the event; typically <see cref="NavigationHelper"/>
+    ''' </param>
+    ''' <param name="e">Event data that provides an empty dictionary to be populated with 
+    ''' serializable state.</param>
+    Private Sub NavigationHelper_SaveState(sender As Object, e As Common.SaveStateEventArgs)
         If Me.itemsViewSource.View IsNot Nothing Then
             Dim selectedItem As Data.SampleDataItem = DirectCast(Me.itemsViewSource.View.CurrentItem, Data.SampleDataItem)
-            If selectedItem IsNot Nothing Then pageState("SelectedItem") = selectedItem.UniqueId
+            If selectedItem IsNot Nothing Then e.PageState("SelectedItem") = selectedItem.UniqueId
         End If
     End Sub
 
-#End Region
-
 #Region "Logical page navigation"
 
-    ' Visual state management typically reflects the four application view states directly
-    ' (full screen landscape and portrait plus snapped and filled views.)  The split page is
-    ' designed so that the snapped and portrait view states each have two distinct sub-states:
-    ' either the item list or the details are displayed, but not both at the same time.
+    ' The split page is designed so that when the Window does have enough space to show
+    ' both the list and the details, only one pane will be shown at at time.
     '
     ' This is all implemented with a single physical page that can represent two logical
     ' pages.  The code below achieves this goal without making the user aware of the
     ' distinction.
 
+    Private Const MinimumWidthForSupportingTwoPanes As Integer = 768
+
     ''' <summary>
     ''' Invoked to determine whether the page should act as one logical page or two.
     ''' </summary>
-    ''' <param name="viewState">The view state for which the question is being posed, or null
-    ''' for the current view state.  This parameter is optional with null as the default
-    ''' value.</param>
     ''' <returns>True when the view state in question is portrait or snapped, false
     ''' otherwise.</returns>
-    Private Function UsingLogicalPageNavigation(Optional viewState As ApplicationViewState? = Nothing) As Boolean
-        If Not viewState.HasValue Then viewState = ApplicationView.Value
-        Return viewState.Value = ApplicationViewState.FullScreenPortrait OrElse
-            viewState.Value = ApplicationViewState.Snapped
+
+    Private Function UsingLogicalPageNavigation() As Boolean
+        Return Window.Current.Bounds.Width < MinimumWidthForSupportingTwoPanes
     End Function
 
-    ''' <summary>
-    ''' Invoked when an item within the list is selected.
-    ''' </summary>
-    ''' <param name="sender">The GridView (or ListView when the application is Snapped)
-    ''' displaying the selected item.</param>
-    ''' <param name="e">Event data that describes how the selection was changed.</param>
-    Private Sub ItemListView_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
-
-        ' Invalidate the view state when logical page navigation is in effect, as a change in
-        ' selection may cause a corresponding change in the current logical page.  When an item
-        ' is selected this has the effect of changing from displaying the item list to showing
-        ' the selected item's details.  When the selection is cleared this has the opposite effect.
-        If Me.UsingLogicalPageNavigation Then Me.InvalidateVisualState()
+    Private Sub Winow_SizeChanged(sender As Object, e As Windows.UI.Core.WindowSizeChangedEventArgs)
+        Me.InvalidateVisualState()
     End Sub
 
-    ''' <summary>
-    ''' Invoked when the page's back button is pressed.
-    ''' </summary>
-    ''' <param name="sender">The back button instance.</param>
-    ''' <param name="e">Event data that describes how the back button was clicked.</param>
-    Protected Overrides Sub GoBack(sender As Object, e As RoutedEventArgs)
-        If Me.UsingLogicalPageNavigation() AndAlso Me.itemListView.SelectedItem IsNot Nothing Then
-
-            ' When logical page navigation is in effect and there's a selected item that item's
-            ' details are currently displayed.  Clearing the selection will return to the item
-            ' list.  From the user's point of view this is a logical backward navigation.
-            Me.itemListView.SelectedItem = Nothing
-        Else
-
-            ' When logical page navigation is not in effect, or when there is no selected item,
-            ' use the default back button behavior.
-            MyBase.GoBack(sender, e)
+    Private Sub ItemListView_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+        If Me.UsingLogicalPageNavigation() Then
+            Me.InvalidateVisualState()
         End If
     End Sub
+
+    Private Function CanGoBack() As Boolean
+        If Me.UsingLogicalPageNavigation() AndAlso Me.itemListView.SelectedItem IsNot Nothing Then
+            Return True
+        Else
+            Return Me.NavigationHelper.CanGoBack()
+        End If
+    End Function
+    Private Sub GoBack()
+        If Me.UsingLogicalPageNavigation() AndAlso Me.itemListView.SelectedItem IsNot Nothing Then
+            ' When logical page navigation is in effect and there's a selected item that
+            ' item's details are currently displayed.  Clearing the selection will return to
+            ' the item list.  From the user's point of view this is a logical backward
+            ' navigation.
+            Me.itemListView.SelectedItem = Nothing
+        Else
+            Me.NavigationHelper.GoBack()
+        End If
+    End Sub
+
+    Private Sub InvalidateVisualState()
+        Dim visualState As String = DetermineVisualState()
+        VisualStateManager.GoToState(Me, visualState, False)
+        Me.NavigationHelper.GoBackCommand.RaiseCanExecuteChanged()
+    End Sub
+
 
     ''' <summary>
     ''' Invoked to determine the name of the visual state that corresponds to an application
     ''' view state.
     ''' </summary>
-    ''' <param name="viewState">The view state for which the question is being posed.</param>
     ''' <returns>The name of the desired visual state.  This is the same as the name of the
     ''' view state except when there is a selected item in portrait and snapped views where
     ''' this additional logical page is represented by adding a suffix of _Detail.</returns>
-    Protected Overrides Function DetermineVisualState(viewState As ApplicationViewState) As String
-
-        ' Update the back button's enabled state when the view state changes
-        Dim logicalPageBack As Boolean = Me.UsingLogicalPageNavigation(viewState) AndAlso Me.itemListView.SelectedItem IsNot Nothing
-        Dim physicalPageBack As Boolean = Me.Frame IsNot Nothing AndAlso Me.Frame.CanGoBack
-        Me.DefaultViewModel("CanGoBack") = logicalPageBack OrElse physicalPageBack
-
-        ' Determine visual states for landscape layouts based not on the view state, but
-        ' on the width of the window.  This page has one layout that is appropriate for
-        ' 1366 virtual pixels or wider, and another for narrower displays or when a snapped
-        ' application reduces the horizontal space available to less than 1366.
-        If viewState = ApplicationViewState.Filled OrElse
-            viewState = ApplicationViewState.FullScreenLandscape Then
-
-            Dim windowWidth As Double = Window.Current.Bounds.Width
-            If windowWidth >= 1366 Then Return "FullScreenLandscapeOrWide"
-            Return "FilledOrNarrow"
+    ''' <remarks></remarks>
+    Private Function DetermineVisualState() As String
+        If (Not UsingLogicalPageNavigation()) Then
+            Return "PrimaryView"
         End If
 
-        ' When in portrait or snapped start with the default visual state name, then add a
-        ' suffix when viewing details instead of the list
-        Dim defaultStateName As String = MyBase.DetermineVisualState(viewState)
-        If logicalPageBack Then Return defaultStateName + "_Detail"
-        Return defaultStateName
+        ' Update the back button's enabled state when the view state changes
+        Dim logicalPageBack As Boolean = Me.UsingLogicalPageNavigation() AndAlso Me.itemListView.SelectedItem IsNot Nothing
+
+        If logicalPageBack Then Return "SinglePane_Detail"
+        Return "SinglePane"
     End Function
 
+#End Region
+
+#Region "NavigationHelper registration"
+
+    ''' The methods provided in this section are simply used to allow
+    ''' NavigationHelper to respond to the page's navigation methods.
+    ''' 
+    ''' Page specific logic should be placed in event handlers for the  
+    ''' <see cref="Common.NavigationHelper.LoadState"/>
+    ''' and <see cref="Common.NavigationHelper.SaveState"/>.
+    ''' The navigation parameter is available in the LoadState method 
+    ''' in addition to page state preserved during an earlier session.
+
+    Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        _navigationHelper.OnNavigatedTo(e)
+    End Sub
+
+    Protected Overrides Sub OnNavigatedFrom(e As NavigationEventArgs)
+        _navigationHelper.OnNavigatedFrom(e)
+    End Sub
 #End Region
 
 End Class

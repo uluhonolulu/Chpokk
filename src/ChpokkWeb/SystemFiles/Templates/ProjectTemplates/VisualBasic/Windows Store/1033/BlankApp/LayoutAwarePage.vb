@@ -82,7 +82,7 @@
         ''' An implementation of <see cref="IObservableMap(Of String, Object)"/> designed to be
         ''' used as a trivial view model.
         ''' </summary>
-        Protected Property DefaultViewModel As IObservableMap(Of String, Object)
+        Public Property DefaultViewModel As IObservableMap(Of String, Object)
             Get
                 Return DirectCast(Me.GetValue(DefaultViewModelProperty), IObservableMap(Of String, Object))
             End Get
@@ -143,15 +143,15 @@
         ''' between pages even when the page itself doesn't have focus.
         ''' </summary>
         ''' <param name="sender">Instance that triggered the event.</param>
-        ''' <param name="args">Event data describing the conditions that led to the event.</param>
+        ''' <param name="e">Event data describing the conditions that led to the event.</param>
         Private Sub CoreDispatcher_AcceleratorKeyActivated(sender As Windows.UI.Core.CoreDispatcher,
-                                                           args As Windows.UI.Core.AcceleratorKeyEventArgs)
-            Dim virtualKey As Windows.System.VirtualKey = args.VirtualKey
+                                                           e As Windows.UI.Core.AcceleratorKeyEventArgs)
+            Dim virtualKey As Windows.System.VirtualKey = e.VirtualKey
 
             ' Only investigate further when Left, Right, or the dedicated Previous or Next keys
             ' are pressed
-            If (args.EventType = Windows.UI.Core.CoreAcceleratorKeyEventType.SystemKeyDown OrElse
-                args.EventType = Windows.UI.Core.CoreAcceleratorKeyEventType.KeyDown) AndAlso
+            If (e.EventType = Windows.UI.Core.CoreAcceleratorKeyEventType.SystemKeyDown OrElse
+                e.EventType = Windows.UI.Core.CoreAcceleratorKeyEventType.KeyDown) AndAlso
                 (virtualKey = Windows.System.VirtualKey.Left OrElse
                 virtualKey = Windows.System.VirtualKey.Right OrElse
                 virtualKey = 166 OrElse
@@ -170,13 +170,13 @@
                     (virtualKey = Windows.System.VirtualKey.Left AndAlso onlyAlt) Then
 
                     ' When the previous key or Alt+Left are pressed navigate back
-                    args.Handled = True
+                    e.Handled = True
                     Me.GoBack(Me, New RoutedEventArgs())
                 ElseIf (virtualKey = 167 AndAlso noModifiers) OrElse
                     (virtualKey = Windows.System.VirtualKey.Right AndAlso onlyAlt) Then
 
                     ' When the next key or Alt+Right are pressed navigate forward
-                    args.Handled = True
+                    e.Handled = True
                     Me.GoForward(Me, New RoutedEventArgs())
                 End If
             End If
@@ -188,10 +188,10 @@
         ''' previous mouse button clicks to navigate between pages.
         ''' </summary>
         ''' <param name="sender">Instance that triggered the event.</param>
-        ''' <param name="args">Event data describing the conditions that led to the event.</param>
+        ''' <param name="e">Event data describing the conditions that led to the event.</param>
         Private Sub CoreWindow_PointerPressed(sender As Windows.UI.Core.CoreWindow,
-                                              args As Windows.UI.Core.PointerEventArgs)
-            Dim properties As Windows.UI.Input.PointerPointProperties = args.CurrentPoint.Properties
+                                              e As Windows.UI.Core.PointerEventArgs)
+            Dim properties As Windows.UI.Input.PointerPointProperties = e.CurrentPoint.Properties
 
             ' Ignore button chords with the left, right, and middle buttons
             If properties.IsLeftButtonPressed OrElse properties.IsRightButtonPressed OrElse
@@ -201,7 +201,7 @@
             Dim backPressed As Boolean = properties.IsXButton1Pressed
             Dim forwardPressed As Boolean = properties.IsXButton2Pressed
             If backPressed Xor forwardPressed Then
-                args.Handled = True
+                e.Handled = True
                 If backPressed Then Me.GoBack(Me, New RoutedEventArgs())
                 If forwardPressed Then Me.GoForward(Me, New RoutedEventArgs())
             End If
@@ -317,10 +317,6 @@
         ''' <param name="e">Event data that describes how this page was reached.  The Parameter
         ''' property provides the group to be displayed.</param>
         Protected Overrides Sub OnNavigatedTo(e As Navigation.NavigationEventArgs)
-
-            ' Returning to a cached page through navigation shouldn't trigger state loading
-            If Me._pageKey IsNot Nothing Then Return
-
             Dim frameState As Dictionary(Of String, Object) = SuspensionManager.SessionStateForFrame(Me.Frame)
             Me._pageKey = "Page-" & Me.Frame.BackStackDepth
 

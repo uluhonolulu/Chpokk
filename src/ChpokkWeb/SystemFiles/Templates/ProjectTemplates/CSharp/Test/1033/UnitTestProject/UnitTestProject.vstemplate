@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="510" />
+    <Name Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="510">Unit Test Project</Name>
     <Description Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="511" />
-    <Icon Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="531"/>
+    <Icon Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="531" />
     <TemplateID>Microsoft.CSharp.UnitTestProject</TemplateID>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>

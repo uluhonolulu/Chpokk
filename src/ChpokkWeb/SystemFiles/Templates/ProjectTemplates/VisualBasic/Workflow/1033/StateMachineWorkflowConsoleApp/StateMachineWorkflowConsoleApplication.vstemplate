@@ -1,6 +1,6 @@
-﻿<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="151" />
+    <Name Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="151">State Machine Workflow Console Application</Name>
     <Description Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="152" />
     <Icon Package="{9D2881F7-F482-416C-8D64-CA83326250B9}" ID="142" />
     <ProjectType>VisualBasic</ProjectType>
@@ -21,7 +21,7 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="My Project\MySettings.vb">MySettings.vb</ProjectItem>
     </Project>
     <CustomParameters>
-      <CustomParameter Name = "$SafeClassName$" Value="Workflow1" />
+      <CustomParameter Name="$SafeClassName$" Value="Workflow1" />
     </CustomParameters>
   </TemplateContent>
 </VSTemplate>

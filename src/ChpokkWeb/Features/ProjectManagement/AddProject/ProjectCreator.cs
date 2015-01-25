@@ -13,11 +13,13 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 	public class ProjectCreator {
 		private readonly IFileSystem _fileSystem;
 		private readonly ProjectParser _projectParser;
-		private IAppRootProvider _appRootProvider;
-		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider) {
+		private readonly IAppRootProvider _appRootProvider;
+		private TemplateManager _templateManager;
+		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider, TemplateManager templateManager) {
 			_projectParser = projectParser;
 			_fileSystem = fileSystem;
 			_appRootProvider = appRootProvider;
+			_templateManager = templateManager;
 		}
 
 		public ProjectRootElement CreateProject(string outputType, string projectName, string projectPath,
@@ -50,11 +52,10 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 			var templateFileName = templateFilePath.PathRelativeTo(projectTemplateFolder).TrimEnd('_'); //trim the last char so that we handle web.config_
 			targetPath = targetPath?? projectFolder.AppendPath(templateFileName);
 			var templateFileContent =
-				_fileSystem.ReadStringFromFile(templateFilePath)
-				           .Replace("$safeprojectname$", projectName)
-				           .Replace("$targetframeworkversion$", "4.5")
-				           .Replace("$guid1$", Guid.NewGuid().ToString());
-			_fileSystem.WriteStringToFile(targetPath, templateFileContent);
+				_fileSystem.ReadStringFromFile(templateFilePath);
+			var replacements = new Dictionary<string, string>() {{"$safeprojectname$", projectName}, {"$targetframeworkversion$", "4.5"}, {"$guid1$", Guid.NewGuid().ToString()}};
+			var processedContent = _templateManager.Evaluate(templateFileContent, replacements);
+			_fileSystem.WriteStringToFile(targetPath, processedContent);
 		}
 	}
 }

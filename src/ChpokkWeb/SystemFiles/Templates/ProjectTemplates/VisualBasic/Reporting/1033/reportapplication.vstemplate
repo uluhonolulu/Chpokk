@@ -1,0 +1,34 @@
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name Package="{F3A96850-E2AE-4e00-9278-8FE23F225A0D}" ID="219">Reports Application</Name>
+    <Description Package="{F3A96850-E2AE-4e00-9278-8FE23F225A0D}" ID="220" />
+    <Icon Package="{F3A96850-E2AE-4e00-9278-8FE23F225A0D}" ID="207" />
+    <ProjectType>VisualBasic</ProjectType>
+    <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+    <SortOrder>140</SortOrder>
+    <NumberOfParentCategoriesToRollUp>0</NumberOfParentCategoriesToRollUp>
+    <CreateNewFolder>true</CreateNewFolder>
+    <CreateInPlace>true</CreateInPlace>
+    <DefaultName>ReportsApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ReportsApplication.vbproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" OpenInEditor="true" OpenOrder="10">Form1.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true">Form1.Designer.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\Application.myapp">MyApplication.myapp</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\Application.Designer.vb">MyApplication.Designer.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="My Project\Resources.resx">Resources.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\Resources.Designer.vb">Resources.Designer.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="My Project\Settings.settings">Settings.settings</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="My Project\Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
+      <ProjectItem ReplaceParameters="true">App.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" OpenInEditor="true" OpenOrder="11">Report1.rdlc</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.ReportDesigner12, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</Assembly>
+    <FullClassName>Microsoft.ReportDesigner.ReportWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

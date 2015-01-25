@@ -11,9 +11,17 @@ NotInheritable Class App
     ''' will be used when the application is launched to open a specific file, to display
     ''' search results, and so forth.
     ''' </summary>
-    ''' <param name="args">Details about the launch request and process.</param>
-    Protected Overrides Async Sub OnLaunched(args As LaunchActivatedEventArgs)
-        Dim rootFrame As Frame = Window.Current.Content
+    ''' <param name="e">Details about the launch request and process.</param>
+    Protected Overrides Async Sub OnLaunched(e As LaunchActivatedEventArgs)
+#If DEBUG Then
+        ' Show graphics profiling information while debugging.
+        If System.Diagnostics.Debugger.IsAttached Then
+            ' Display the current frame rate counters
+            Me.DebugSettings.EnableFrameRateCounter = True
+        End If
+#End If
+
+        Dim rootFrame As Frame = TryCast(Window.Current.Content, Frame)
 
         ' Do not repeat app initialization when the Window already has content,
         ' just ensure that the window is active
@@ -22,7 +30,12 @@ NotInheritable Class App
             ' a SuspensionManager key
             rootFrame = New Frame()
             Common.SuspensionManager.RegisterFrame(rootFrame, "AppFrame")
-            If args.PreviousExecutionState = ApplicationExecutionState.Terminated Then
+            ' Set the default language
+            rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages(0)
+
+            AddHandler rootFrame.NavigationFailed, AddressOf OnNavigationFailed
+
+            If e.PreviousExecutionState = ApplicationExecutionState.Terminated Then
                 ' Restore the saved session state only when appropriate
                 Try
                     Await Common.SuspensionManager.RestoreAsync()
@@ -38,12 +51,19 @@ NotInheritable Class App
             ' When the navigation stack isn't restored navigate to the first page,
             ' configuring the new page by passing required information as a navigation
             ' parameter
-            If Not rootFrame.Navigate(GetType(ItemsPage), "AllGroups") Then
-                Throw New Exception("Failed to create initial page")
-            End If
+            rootFrame.Navigate(GetType(ItemsPage), e.Arguments)
         End If
         ' Ensure the current window is active
         Window.Current.Activate()
+    End Sub
+
+    ''' <summary>
+    ''' Invoked when Navigation to a certain page fails
+    ''' </summary>
+    ''' <param name="sender">The Frame which failed navigation</param>
+    ''' <param name="e">Details about the navigation failure</param>
+    Private Sub OnNavigationFailed(sender As Object, e As NavigationFailedEventArgs)
+        Throw New Exception("Failed to load Page " + e.SourcePageType.FullName)
     End Sub
 
     ''' <summary>
@@ -52,9 +72,9 @@ NotInheritable Class App
     ''' of memory still intact.
     ''' </summary>
     ''' <param name="sender">The source of the suspend request.</param>
-    ''' <param name="args">Details about the suspend request.</param>
-    Private Async Sub OnSuspending(sender As Object, args As SuspendingEventArgs) Handles Me.Suspending
-        Dim deferral As SuspendingDeferral = args.SuspendingOperation.GetDeferral()
+    ''' <param name="e">Details about the suspend request.</param>
+    Private Async Sub OnSuspending(sender As Object, e As SuspendingEventArgs) Handles Me.Suspending
+        Dim deferral As SuspendingDeferral = e.SuspendingOperation.GetDeferral()
         Await Common.SuspensionManager.SaveAsync()
         deferral.Complete()
     End Sub

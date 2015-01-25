@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>$guid1$</ProjectGuid>
+    <ProjectGuid>{$guid1$}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <RootNamespace>$safeprojectname$</RootNamespace>
     <AssemblyName>$safeprojectname$</AssemblyName>
     <DefaultLanguage>$currentuiculturename$</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -19,7 +21,6 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <NoConfig>true</NoConfig>
-    <MyType>Empty</MyType>
     <OutputPath>bin\Debug</OutputPath>
     <DocumentationFile>$safeprojectname$.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
@@ -133,6 +134,7 @@
     <Import Include="System.Linq" />
     <Import Include="System.Runtime.CompilerServices" />
     <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Runtime.InteropServices.WindowsRuntime"/>
     <Import Include="System.Xml.Linq" />
     <Import Include="Windows.ApplicationModel" />
     <Import Include="Windows.ApplicationModel.Activation" />
@@ -148,8 +150,8 @@
     <Import Include="Windows.UI.Xaml.Media" />
     <Import Include="Windows.UI.Xaml.Media.Imaging" />
   </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
-    <VisualStudioVersion>11.0</VisualStudioVersion>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>

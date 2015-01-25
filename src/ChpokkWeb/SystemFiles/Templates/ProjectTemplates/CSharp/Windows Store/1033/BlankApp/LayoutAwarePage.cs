@@ -89,7 +89,7 @@ namespace $safeprojectname$.Common
         /// An implementation of <see cref="IObservableMap&lt;String, Object&gt;"/> designed to be
         /// used as a trivial view model.
         /// </summary>
-        protected IObservableMap<String, Object> DefaultViewModel
+        public IObservableMap<String, Object> DefaultViewModel
         {
             get
             {
@@ -151,16 +151,16 @@ namespace $safeprojectname$.Common
         /// between pages even when the page itself doesn't have focus.
         /// </summary>
         /// <param name="sender">Instance that triggered the event.</param>
-        /// <param name="args">Event data describing the conditions that led to the event.</param>
+        /// <param name="e">Event data describing the conditions that led to the event.</param>
         private void CoreDispatcher_AcceleratorKeyActivated(CoreDispatcher sender,
-            AcceleratorKeyEventArgs args)
+            AcceleratorKeyEventArgs e)
         {
-            var virtualKey = args.VirtualKey;
+            var virtualKey = e.VirtualKey;
 
             // Only investigate further when Left, Right, or the dedicated Previous or Next keys
             // are pressed
-            if ((args.EventType == CoreAcceleratorKeyEventType.SystemKeyDown ||
-                args.EventType == CoreAcceleratorKeyEventType.KeyDown) &&
+            if ((e.EventType == CoreAcceleratorKeyEventType.SystemKeyDown ||
+                e.EventType == CoreAcceleratorKeyEventType.KeyDown) &&
                 (virtualKey == VirtualKey.Left || virtualKey == VirtualKey.Right ||
                 (int)virtualKey == 166 || (int)virtualKey == 167))
             {
@@ -176,14 +176,14 @@ namespace $safeprojectname$.Common
                     (virtualKey == VirtualKey.Left && onlyAlt))
                 {
                     // When the previous key or Alt+Left are pressed navigate back
-                    args.Handled = true;
+                    e.Handled = true;
                     this.GoBack(this, new RoutedEventArgs());
                 }
                 else if (((int)virtualKey == 167 && noModifiers) ||
                     (virtualKey == VirtualKey.Right && onlyAlt))
                 {
                     // When the next key or Alt+Right are pressed navigate forward
-                    args.Handled = true;
+                    e.Handled = true;
                     this.GoForward(this, new RoutedEventArgs());
                 }
             }
@@ -195,11 +195,11 @@ namespace $safeprojectname$.Common
         /// previous mouse button clicks to navigate between pages.
         /// </summary>
         /// <param name="sender">Instance that triggered the event.</param>
-        /// <param name="args">Event data describing the conditions that led to the event.</param>
+        /// <param name="e">Event data describing the conditions that led to the event.</param>
         private void CoreWindow_PointerPressed(CoreWindow sender,
-            PointerEventArgs args)
+            PointerEventArgs e)
         {
-            var properties = args.CurrentPoint.Properties;
+            var properties = e.CurrentPoint.Properties;
 
             // Ignore button chords with the left, right, and middle buttons
             if (properties.IsLeftButtonPressed || properties.IsRightButtonPressed ||
@@ -210,7 +210,7 @@ namespace $safeprojectname$.Common
             bool forwardPressed = properties.IsXButton2Pressed;
             if (backPressed ^ forwardPressed)
             {
-                args.Handled = true;
+                e.Handled = true;
                 if (backPressed) this.GoBack(this, new RoutedEventArgs());
                 if (forwardPressed) this.GoForward(this, new RoutedEventArgs());
             }
@@ -330,9 +330,6 @@ namespace $safeprojectname$.Common
         /// property provides the group to be displayed.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Returning to a cached page through navigation shouldn't trigger state loading
-            if (this._pageKey != null) return;
-
             var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
             this._pageKey = "Page-" + this.Frame.BackStackDepth;
 

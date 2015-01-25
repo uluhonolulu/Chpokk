@@ -1,0 +1,123 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name Package="{141DA93E-88A7-45D5-B15B-89117F514D64}" ID="21210">ASP.NET MVC 4 Intranet Application (ASPX)</Name>
+    <Description Package="{141DA93E-88A7-45D5-B15B-89117F514D64}" ID="21211" />
+    <Icon Package="{349c5850-65df-11da-9384-00065b846f21}" ID="9002" />
+    <ProjectType>VisualBasic</ProjectType>
+    <ProjectSubType>Web</ProjectSubType>
+    <TemplateGroupID>Web</TemplateGroupID>
+    <TemplateID>Microsoft.WAP.VisualBasicAspx.MVCIntranetApplication.v401</TemplateID>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <SortOrder>41</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>MvcIntranetApplication</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>
+      <CustomParameter Name="$language$" Value="VB" />
+      <CustomParameter Name="$languageext$" Value="vb" />
+      <CustomParameter Name="$globalclassname$" Value="MvcApplication" />
+    </CustomParameters>
+    <Project File="MvcIntranetApplication.vbproj" ReplaceParameters="true">
+      <Folder Name="My Project" TargetFolderName="My Project">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Application.myapp">Application.myapp</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Application.Designer.vb">Application.Designer.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.vb">AssemblyInfo.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.vb">Resources.Designer.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
+      </Folder>
+      <Folder Name="App_Data" TargetFolderName="App_Data" />
+      <Folder Name="App_Start" TargetFolderName="App_Start">
+        <ProjectItem ReplaceParameters="true" TargetFileName="BundleConfig.vb">BundleConfig.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="FilterConfig.vb">FilterConfig.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RouteConfig.vb">RouteConfig.vb</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="WebApiConfig.vb">WebApiConfig.WithQueryable.vb</ProjectItem>
+      </Folder>
+      <Folder Name="Content" TargetFolderName="Content">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
+      </Folder>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <ProjectItem OpenInEditor="true" OpenOrder="10" ReplaceParameters="true" TargetFileName="HomeController.vb">HomeController.vb</ProjectItem>
+      </Folder>
+      <Folder Name="Images" TargetFolderName="Images">
+        <ProjectItem ReplaceParameters="false" TargetFileName="accent.png">accent.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="bullet.png">bullet.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="heroAccent.png">heroAccent.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList0.png">orderedList0.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList1.png">orderedList1.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList2.png">orderedList2.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList3.png">orderedList3.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList4.png">orderedList4.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList5.png">orderedList5.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList6.png">orderedList6.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList7.png">orderedList7.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList8.png">orderedList8.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList9.png">orderedList9.png</ProjectItem>
+      </Folder>
+      <Folder Name="Models" TargetFolderName="Models" />
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>
+      </Folder>
+      <Folder Name="Views" TargetFolderName="Views">
+        <Folder Name="Home" TargetFolderName="Home">
+          <ProjectItem ReplaceParameters="true" TargetFileName="About.aspx">About.vb.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Contact.aspx">Contact.vb.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Index.aspx">Index.vb.aspx</ProjectItem>
+        </Folder>
+        <Folder Name="Shared" TargetFolderName="Shared">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Error.aspx">Error.vb.aspx</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Site.Master">IntranetSite.vb.Master</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      </Folder>
+      <ProjectItem>favicon.ico</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax.vb">Global.NoAuth.asax.vb</ProjectItem>
+      <ProjectItem OpenInEditor="true" OpenOrder="5" ReplaceParameters="false" TargetFileName="readme.txt">IntranetReadMe.11.txt</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">IntranetWeb.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="registry" keyName="AspNetMvc4VS12" isPreunzipped="true">
+      <package id="EntityFramework" version="5.0.0" skipAssemblyReferences="true" />
+      <package id="jQuery" version="1.8.2" skipAssemblyReferences="true" />
+      <package id="jQuery.Validation" version="1.10.0" skipAssemblyReferences="true" />
+      <package id="jQuery.UI.Combined" version="1.8.24" skipAssemblyReferences="true" />
+      <package id="Microsoft.jQuery.Unobtrusive.Validation" version="2.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.jQuery.Unobtrusive.Ajax" version="2.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Modernizr" version="2.6.2" skipAssemblyReferences="true" />
+      <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" skipAssemblyReferences="true" />
+      <package id="Newtonsoft.Json" version="4.5.11" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.Razor" version="2.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.WebPages" version="2.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.Mvc" version="4.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.Mvc.FixedDisplayModes" version="1.0.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.WebApi.Client" version="4.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.Net.Http" version="2.0.20710.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.WebApi.Core" version="4.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.WebApi.WebHost" version="4.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.WebApi" version="4.0.30506.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.Web.Optimization" version="1.0.0" skipAssemblyReferences="true" />
+      <package id="System.Spatial" version="5.2.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.Data.Edm" version="5.2.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.Data.OData" version="5.2.0" skipAssemblyReferences="true" />
+      <package id="Microsoft.AspNet.WebApi.OData" version="4.0.30506" skipAssemblyReferences="true" />
+      <package id="WebGrease" version="1.3.0" skipAssemblyReferences="true" />
+      <package id="knockoutjs" version="2.2.0" skipAssemblyReferences="true" />
+    </packages>
+  </WizardData>
+</VSTemplate>

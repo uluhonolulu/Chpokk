@@ -1,0 +1,25 @@
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <TemplateID>CloudService_vb</TemplateID>
+    <Name>Get Windows Azure SDK for .NET</Name>
+    <Description>To create Windows Azure projects, you must install Windows Azure SDK for .NET.</Description>
+    <ProjectType>VisualBasic</ProjectType>
+    <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <CreateNewFolder>false</CreateNewFolder>
+    <DefaultName>WindowsAzure</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <Icon>cloudservice.ico</Icon>
+    <SortOrder>100</SortOrder>
+    <PromptForSaveOnCreation>false</PromptForSaveOnCreation>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>false</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="emptyproject.vbproj" ReplaceParameters="true">
+      <ProjectItem OpenInWebBrowser="true">WindowsAzureTools.html</ProjectItem>
+      <ProjectItem>VSLogo.gif</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

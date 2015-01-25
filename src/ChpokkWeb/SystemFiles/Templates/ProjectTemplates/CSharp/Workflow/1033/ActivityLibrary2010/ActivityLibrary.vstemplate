@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name Package="{AAFFDC1E-A1C7-47bc-B3DC-9E685DF3959B}" ID="204" />
+    <Name Package="{AAFFDC1E-A1C7-47bc-B3DC-9E685DF3959B}" ID="204">Activity Library</Name>
     <Description Package="{AAFFDC1E-A1C7-47bc-B3DC-9E685DF3959B}" ID="205" />
     <TemplateID>Microsoft.CSharp.ActivityLibrary</TemplateID>
     <ProjectType>CSharp</ProjectType>

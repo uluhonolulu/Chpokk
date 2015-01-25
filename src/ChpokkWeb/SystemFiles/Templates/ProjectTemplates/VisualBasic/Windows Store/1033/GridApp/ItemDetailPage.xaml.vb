@@ -5,40 +5,71 @@
 ''' gestures to flip through other items belonging to the same group.
 ''' </summary>
 Public NotInheritable Class ItemDetailPage
-    Inherits Common.LayoutAwarePage
+    Inherits Page
+
+    ''' <summary>
+    ''' NavigationHelper is used on each page to aid in navigation and 
+    ''' process lifetime management
+    ''' </summary>
+    Public ReadOnly Property NavigationHelper As Common.NavigationHelper
+        Get
+            Return Me._navigationHelper
+        End Get
+    End Property
+    Private _navigationHelper As Common.NavigationHelper
+
+    ''' <summary>
+    ''' This can be changed to a strongly typed view model.
+    ''' </summary>
+    Public ReadOnly Property DefaultViewModel As Common.ObservableDictionary
+        Get
+            Return Me._defaultViewModel
+        End Get
+    End Property
+    Private _defaultViewModel As New Common.ObservableDictionary()
+
+
+    Public Sub New()
+        InitializeComponent()
+        Me._navigationHelper = New Common.NavigationHelper(Me)
+        AddHandler Me._navigationHelper.LoadState,
+            AddressOf NavigationHelper_LoadState
+    End Sub
 
     ''' <summary>
     ''' Populates the page with content passed during navigation.  Any saved state is also
     ''' provided when recreating a page from a prior session.
     ''' </summary>
-    ''' <param name="navigationParameter">The parameter value passed to <see cref="Frame.Navigate"/>
-    ''' when this page was initially requested.
+    ''' <param name="sender">
+    ''' The source of the event; typically <see cref="NavigationHelper"/>
     ''' </param>
-    ''' <param name="pageState">A dictionary of state preserved by this page during an earlier
-    ''' session.  This will be null the first time a page is visited.</param>
-    Protected Overrides Sub LoadState(navigationParameter As Object, pageState As Dictionary(Of String, Object))
-
-        ' Allow saved page state to override the initial item to display
-        If pageState IsNot Nothing AndAlso pageState.ContainsKey("SelectedItem") Then
-            navigationParameter = pageState("SelectedItem")
-        End If
-
+    ''' <param name="e">Event data that provides both the navigation parameter passed to
+    ''' <see cref="Frame.Navigate"/> when this page was initially requested and
+    ''' a dictionary of state preserved by this page during an earlier
+    ''' session.  The state will be null the first time a page is visited.</param>
+    Private Async Sub NavigationHelper_LoadState(sender As Object, e As Common.LoadStateEventArgs)
         ' TODO: Create an appropriate data model for your problem domain to replace the sample data
-        Dim item As Data.SampleDataItem = Data.SampleDataSource.GetItem(DirectCast(navigationParameter, String))
-        Me.DefaultViewModel("Group") = item.Group
-        Me.DefaultViewModel("Items") = item.Group.Items
-        Me.flipView.SelectedItem = item
+        Dim item As Data.SampleDataItem = Await Data.SampleDataSource.GetItemAsync(DirectCast(e.NavigationParameter, String))
+        Me.DefaultViewModel("Item") = item
     End Sub
 
-    ''' <summary>
-    ''' Preserves state associated with this page in case the application is suspended or the
-    ''' page is discarded from the navigation cache.  Values must conform to the serialization
-    ''' requirements of <see cref="Common.SuspensionManager.SessionState"/>.
-    ''' </summary>
-    ''' <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-    Protected Overrides Sub SaveState(pageState As Dictionary(Of String, Object))
-        Dim selectedItem As Data.SampleDataItem = DirectCast(Me.flipView.SelectedItem, Data.SampleDataItem)
-        pageState("SelectedItem") = selectedItem.UniqueId
+#Region "NavigationHelper registration"
+
+    ''' The methods provided in this section are simply used to allow
+    ''' NavigationHelper to respond to the page's navigation methods.
+    ''' 
+    ''' Page specific logic should be placed in event handlers for the  
+    ''' <see cref="Common.NavigationHelper.LoadState"/>
+    ''' and <see cref="Common.NavigationHelper.SaveState"/>.
+    ''' The navigation parameter is available in the LoadState method 
+    ''' in addition to page state preserved during an earlier session.
+
+    Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        _navigationHelper.OnNavigatedTo(e)
     End Sub
 
+    Protected Overrides Sub OnNavigatedFrom(e As NavigationEventArgs)
+        _navigationHelper.OnNavigatedFrom(e)
+    End Sub
+#End Region
 End Class

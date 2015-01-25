@@ -1,6 +1,6 @@
 ﻿<TestClass>
 Public Class $safeitemname$
-    
+
     <TestMethod>
     Public Sub TestMethod1()
 

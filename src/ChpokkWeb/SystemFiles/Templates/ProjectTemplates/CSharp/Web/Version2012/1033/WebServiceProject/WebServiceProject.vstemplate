@@ -1,0 +1,31 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name Package="{349c5850-65df-11da-9384-00065b846f21}" ID="1005">ASP.NET Web Service Application</Name>
+    <Description Package="{349c5850-65df-11da-9384-00065b846f21}" ID="1006" />
+    <Icon Package="{349c5850-65df-11da-9384-00065b846f21}" ID="9004" />
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>Web</ProjectSubType>
+    <TemplateGroupID>Web</TemplateGroupID>
+    <TemplateID>Microsoft.WAP.CSharp.WebService</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <MaxFrameworkVersion>3.5</MaxFrameworkVersion>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>WebService</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="WebService.csproj" ReplaceParameters="true">
+      <Folder Name="App_Data" TargetFolderName="App_Data" />
+      <ProjectItem ReplaceParameters="true" TargetFileName="Service1.asmx">Service1.asmx</ProjectItem>
+      <ProjectItem OpenInEditor="true" OpenOrder="10" ReplaceParameters="true" TargetFileName="Service1.asmx.cs">Service1.asmx.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
