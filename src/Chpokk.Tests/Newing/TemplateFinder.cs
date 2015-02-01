@@ -22,37 +22,6 @@ namespace Chpokk.Tests.Newing {
 			webTemplate.RequiredFrameworkVersion.ShouldBe("4.5");
 		}
 
-		[Test]
-		public void FixingTheProject() {
-			var projectPath = @"D:\Projects\Chpokk\src\ChpokkWeb\ChpokkWeb.csproj";
-			var project = ProjectRootElement.Open(projectPath);
-			var fileSystem = Context.Container.Get<FileSystem>();
-			var templateFolder = Context.Container.Get<IAppRootProvider>().AppRoot.AppendPath(@"SystemFiles\Templates\ProjectTemplates\");
-			var templatePaths = fileSystem.FindFiles(templateFolder, new FileSet() { DeepSearch = true });
-			var relativePaths = from path in templatePaths select path.PathRelativeTo(projectPath.ParentDirectory());
-			var contentPaths = from item in project.Items select item.Include;
-			var notIncluded = relativePaths.Except(contentPaths);
-			Console.WriteLine("Missing");
-			foreach (var path in notIncluded) {
-				Console.WriteLine(path);
-				//project.AddItem("Content", path);
-			}
-			//project.Save();
-			//foreach (var item in project.Items) {
-			//	if (item.Include.StartsWith(@"SystemFiles\Templates")) {
-			//		var templatePath = projectPath.ParentDirectory().AppendPath(item.Include);
-			//		if (!File.Exists(templatePath)) {
-			//			Console.WriteLine(templatePath);
-			//			item.Parent.RemoveChild(item);
-			//		}
-			//		else {
-			//			item.ItemType = "Content";
-			//		}
-			//	}
-			//}
-			//project.Save();
-		}
-
 		public override IList<ProjectTemplateData> Act() {
 			var templates = new List<ProjectTemplateData>();
 			var fileSystem = Context.Container.Get<FileSystem>();
