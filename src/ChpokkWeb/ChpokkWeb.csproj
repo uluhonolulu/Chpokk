@@ -10467,6 +10467,7 @@
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\ProjectCreator.cs" />
     <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\Template.cs" />
     <Compile Include="Features\ProjectManagement\TemplateInstaller.cs" />
     <Compile Include="Features\ProjectManagement\TemplateTransformer.cs" />
     <Compile Include="Features\ProjectManagement\Properties\EditPropertiesEndpoint.cs" />

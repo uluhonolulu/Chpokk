@@ -65,24 +65,25 @@ namespace Chpokk.Tests.Newing {
 			var projectFolder = projectPath.ParentDirectory();
 			var projectName = PROJECT_NAME;
 			var projectTemplateFolder = templatePath.ParentDirectory();
-			var templateFilePath = projectTemplateFolder.AppendPath(CONTENT_FILENAME);
 			var xmlDocument = new XmlDocument();
 			xmlDocument.Load(templatePath);
 			var ns = new XmlNamespaceManager(xmlDocument.NameTable);
 			ns.AddNamespace("d", "http://schemas.microsoft.com/developer/vstemplate/2005");
 			var replacements = new Dictionary<string, string>() { { "$safeprojectname$", projectName }, { "$targetframeworkversion$", "4.5" }, { "$guid1$", Guid.NewGuid().ToString() } };
-			foreach (XmlNode projectItemNode in xmlDocument.SelectNodes("//d:ProjectItem",ns)) {
-				var templateFileRelativePath = projectItemNode.InnerText;	//relative to template folder
+			var template = new Template(templatePath);
+			var projectItems = template.GetProjectItems();
+			foreach (var projectItem in projectItems) {
+				var templateFileRelativePath = projectItem.FileName;	//relative to template folder
 				var templateFileSourcePath = projectTemplateFolder.AppendPath(templateFileRelativePath);
-				var destinationAttribute = projectItemNode.Attributes["TargetFileName"];
-				var destinationRelativePath = destinationAttribute != null? destinationAttribute.Value : templateFileRelativePath;
+				var destinationRelativePath = projectItem.TargetFileName;
 				var destinationPath = projectFolder.AppendPath(destinationRelativePath);
-				//Console.WriteLine("Copying {0} to {1}", templateFileSourcePath, destinationPath);
 				var templateFileContent = _fileSystem.ReadStringFromFile(templateFileSourcePath);
 				var processedContent = _templateTransformer.Evaluate(templateFileContent, replacements);
 				_fileSystem.WriteStringToFile(destinationPath, processedContent);
-				//AddFileFromTemplate(projectName, templateFilePath, projectTemplateFolder, projectFolder);
+				
 			}
+			//foreach (XmlNode projectItemNode in xmlDocument.SelectNodes("//d:ProjectItem",ns)) {
+			//}
 
 			var projectNode = xmlDocument.SelectSingleNode("//d:Project", ns);
 			var projectFileSourceRelativePath = projectNode.Attributes["File"].Value;
@@ -91,24 +92,6 @@ namespace Chpokk.Tests.Newing {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFileSourcePath);
 			var processedProjectContent = _templateTransformer.Evaluate(projectFileContent, replacements);
 			_fileSystem.WriteStringToFile(destinationProjectPath, processedProjectContent);
-			return null;
-		}
-
-		private void AddFileFromTemplate(string projectName, string templateFilePath, string projectTemplateFolder,
-								 string projectFolder, string targetPath = null) {
-			var templateFileName = templateFilePath.PathRelativeTo(projectTemplateFolder); 
-			targetPath = targetPath ?? projectFolder.AppendPath(templateFileName);
-			var templateFileContent =
-				_fileSystem.ReadStringFromFile(templateFilePath);
-			var replacements = new Dictionary<string, string>() { { "$safeprojectname$", projectName }, { "$targetframeworkversion$", "4.5" }, { "$guid1$", Guid.NewGuid().ToString() } };
-			var processedContent = _templateTransformer.Evaluate(templateFileContent, replacements);
-			_fileSystem.WriteStringToFile(targetPath, processedContent);
-		}
-
-		private static string GetNodeValue(XmlDocument document, XmlNamespaceManager ns, string name) {
-			var node = document.SelectSingleNode("//d:TemplateData/d:{0}".ToFormat(name), ns);
-			if (node != null && node.FirstChild != null)
-				return node.FirstChild.Value;
 			return null;
 		}
 
