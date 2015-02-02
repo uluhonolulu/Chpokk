@@ -65,10 +65,6 @@ namespace Chpokk.Tests.Newing {
 			var projectFolder = projectPath.ParentDirectory();
 			var projectName = PROJECT_NAME;
 			var projectTemplateFolder = templatePath.ParentDirectory();
-			var xmlDocument = new XmlDocument();
-			xmlDocument.Load(templatePath);
-			var ns = new XmlNamespaceManager(xmlDocument.NameTable);
-			ns.AddNamespace("d", "http://schemas.microsoft.com/developer/vstemplate/2005");
 			var replacements = new Dictionary<string, string>() { { "$safeprojectname$", projectName }, { "$targetframeworkversion$", "4.5" }, { "$guid1$", Guid.NewGuid().ToString() } };
 			var template = new Template(templatePath);
 			var projectItems = template.GetProjectItems();
@@ -82,11 +78,8 @@ namespace Chpokk.Tests.Newing {
 				_fileSystem.WriteStringToFile(destinationPath, processedContent);
 				
 			}
-			//foreach (XmlNode projectItemNode in xmlDocument.SelectNodes("//d:ProjectItem",ns)) {
-			//}
 
-			var projectNode = xmlDocument.SelectSingleNode("//d:Project", ns);
-			var projectFileSourceRelativePath = projectNode.Attributes["File"].Value;
+			var projectFileSourceRelativePath = template.ProjectFileName;
 			var projectFileSourcePath = projectTemplateFolder.AppendPath(projectFileSourceRelativePath);
 			var destinationProjectPath = projectFolder.AppendPath(projectName + Path.GetExtension(projectFileSourceRelativePath));
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFileSourcePath);

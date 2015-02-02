@@ -19,6 +19,13 @@ namespace ChpokkWeb.Features.ProjectManagement {
 
 		public string Path { get; private set; }
 
+		public string ProjectFileName {
+			get {
+				var projectNode = _xmlDocument.SelectSingleNode("//d:Project", _namespaceManager);
+				return projectNode.Attributes["File"].Value;
+			}
+		}
+
 		public IEnumerable<ProjectItem> GetProjectItems() {
 			return from XmlNode projectItemNode in _xmlDocument.SelectNodes("//d:ProjectItem", _namespaceManager)
 			       select new ProjectItem(projectItemNode);
