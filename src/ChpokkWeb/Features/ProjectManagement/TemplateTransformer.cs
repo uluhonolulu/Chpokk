@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 
 namespace ChpokkWeb.Features.ProjectManagement {
-	public class TemplateManager {
+	public class TemplateTransformer {
 
 		private readonly Regex _regEquality = new Regex("(?<operand1>.*)==(?<operand2>.*)");
 		private readonly Regex _regNoEquality = new Regex("(?<operand1>.*)!=(?<operand2>.*)");
@@ -19,12 +19,17 @@ namespace ChpokkWeb.Features.ProjectManagement {
 		private readonly Regex _elseRegEx = new Regex("\\$else\\$(?<output>.*)", RegexOptions.Singleline);
 
 		public string Evaluate(string inputText, Dictionary<string, string> replacementValues) {
-			string result;
-			if (this.Evaluate(inputText, replacementValues, out result)) {
-				result = ReplaceValues(result, replacementValues);
-				return result;
-			}
-			throw new InvalidOperationException("Problem converting the template source: " + inputText);
+			//var match = new Regex("(?<comparison>\\$if\\$[\\s]*\\([\\s]*(?<expression>[^\\)]*)[\\s]*\\))(?<output>.*?)\\$endif\\$", RegexOptions.Singleline).Match(inputText);
+			return new Regex("(?<comparison>\\$if\\$[\\s]*\\([\\s]*(?<expression>[^\\)]*)[\\s]*\\))(?<output>.*?)\\$endif\\$",
+			          RegexOptions.Singleline).Replace(inputText, match1
+			                                                      =>
+			          {
+						  string result;
+				          var statement = match1.Value;
+				          this.Evaluate(statement, replacementValues, out result);
+				          return result;
+			          });
+
 		}
 
 		private string ReplaceValues(string inputText, Dictionary<string, string> replacementValues) {
@@ -36,6 +41,10 @@ namespace ChpokkWeb.Features.ProjectManagement {
 		}
 
 		private bool Evaluate(string inputText, Dictionary<string, string> replacementValues, out string outputText) {
+			if (!inputText.Contains("$if$")) {
+				outputText = inputText;
+				return true;
+			}
 			string input1 = inputText;
 			if (input1.Contains("$elseif$"))
 				input1 = input1.Substring(0, input1.IndexOf("$elseif$"));

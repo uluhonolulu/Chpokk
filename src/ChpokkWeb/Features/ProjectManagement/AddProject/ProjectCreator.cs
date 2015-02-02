@@ -14,12 +14,12 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		private readonly IFileSystem _fileSystem;
 		private readonly ProjectParser _projectParser;
 		private readonly IAppRootProvider _appRootProvider;
-		private TemplateManager _templateManager;
-		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider, TemplateManager templateManager) {
+		private TemplateTransformer _templateTransformer;
+		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider, TemplateTransformer templateTransformer) {
 			_projectParser = projectParser;
 			_fileSystem = fileSystem;
 			_appRootProvider = appRootProvider;
-			_templateManager = templateManager;
+			_templateTransformer = templateTransformer;
 		}
 
 		public ProjectRootElement CreateProject(string outputType, string projectName, string projectPath,
@@ -54,7 +54,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 			var templateFileContent =
 				_fileSystem.ReadStringFromFile(templateFilePath);
 			var replacements = new Dictionary<string, string>() {{"$safeprojectname$", projectName}, {"$targetframeworkversion$", "4.5"}, {"$guid1$", Guid.NewGuid().ToString()}};
-			var processedContent = _templateManager.Evaluate(templateFileContent, replacements);
+			var processedContent = _templateTransformer.Evaluate(templateFileContent, replacements);
 			_fileSystem.WriteStringToFile(targetPath, processedContent);
 		}
 	}

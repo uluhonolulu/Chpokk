@@ -1565,11 +1565,17 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ClassLibrary\csClassLibrary.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\App.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\assemblyinfo.cs" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\consoleapplication.csproj" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\csConsoleApplication.vstemplate" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\consoleapplication.csproj">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\csConsoleApplication.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\program.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\EmptyProject\App.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\EmptyProject\csEmptyProject.vstemplate" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\EmptyProject\csEmptyProject.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\EmptyProject\emptyproject.csproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\PortableClassLibrary\assemblyinfo.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\PortableClassLibrary\class1.cs" />
@@ -10461,7 +10467,8 @@
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\ProjectCreator.cs" />
     <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
-    <Compile Include="Features\ProjectManagement\TemplateManager.cs" />
+    <Compile Include="Features\ProjectManagement\TemplateInstaller.cs" />
+    <Compile Include="Features\ProjectManagement\TemplateTransformer.cs" />
     <Compile Include="Features\ProjectManagement\Properties\EditPropertiesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\ProjectPropertiesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\References\Files\UploadAssemblyEndpoint.cs" />

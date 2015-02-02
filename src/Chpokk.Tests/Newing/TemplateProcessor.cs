@@ -12,7 +12,7 @@ namespace Chpokk.Tests.Newing {
 		public void CanProcessIfStatementsInATemplate() {
 			const string source = "$if$ ($targetframeworkversion$ >= 4.0)<supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v$targetframeworkversion$\" />$endif$$if$ ($targetframeworkversion$ < 4.0)<supportedRuntime version=\"v2.0.50727\" />$endif$";
 			var replacements = new Dictionary<string, string>() {{"$targetframeworkversion$", "4.0"}};
-			string result = new TemplateManager().Evaluate(source, replacements);
+			string result = new TemplateTransformer().Evaluate(source, replacements);
 			result.ShouldBe("<supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.0\" />");
 		}
 

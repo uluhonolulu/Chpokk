@@ -385,6 +385,7 @@
     <Compile Include="Newing\SolutionContent\AddingProjectToProjectSection.cs" />
     <Compile Include="Newing\SolutionWithTwoProjectsContext.cs" />
     <Compile Include="Newing\TemplateFinder.cs" />
+    <Compile Include="Newing\TemplateInstaller.cs" />
     <Compile Include="NewSubscription\Notification.cs" />
     <Compile Include="ProjectLoading\CheckingBclWhenPackagesOnly.cs" />
     <Compile Include="ProjectLoading\CheckingPackagesWhenBclOnly.cs" />
