@@ -22,21 +22,6 @@ namespace Chpokk.Tests.Newing {
 			webTemplate.RequiredFrameworkVersion.ShouldBe("4.5");
 		}
 
-		[Test]
-		public void RemoveDuplicates() {
-			var project = ProjectRootElement.Open(@"D:\Projects\Chpokk\src\ChpokkWeb\ChpokkWeb.csproj");
-			var items = project.Items;
-			var duplicates = items.GroupBy(element => element.Include)
-			  .Where(g => g.Count() > 1)
-			  .ToList();
-			foreach (var duplicate in duplicates) {
-				Console.WriteLine(duplicate.Key);
-				var itemToBeRemoved = duplicate.Last();
-				itemToBeRemoved.Parent.RemoveChild(itemToBeRemoved);
-				//project.RemoveChild(itemToBeRemoved);
-			}
-			//project.Save();
-		}
 
 		public override IList<ProjectTemplateData> Act() {
 			var templates = new List<ProjectTemplateData>();
