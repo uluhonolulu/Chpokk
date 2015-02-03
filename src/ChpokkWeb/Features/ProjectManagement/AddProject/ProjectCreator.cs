@@ -14,33 +14,24 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		private readonly IFileSystem _fileSystem;
 		private readonly ProjectParser _projectParser;
 		private readonly IAppRootProvider _appRootProvider;
-		private TemplateTransformer _templateTransformer;
-		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider, TemplateTransformer templateTransformer) {
+		private readonly TemplateTransformer _templateTransformer;
+		private TemplateInstaller _templateInstaller;
+		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider, TemplateTransformer templateTransformer, TemplateInstaller templateInstaller) {
 			_projectParser = projectParser;
 			_fileSystem = fileSystem;
 			_appRootProvider = appRootProvider;
 			_templateTransformer = templateTransformer;
+			_templateInstaller = templateInstaller;
 		}
 
 		public ProjectRootElement CreateProject(string outputType, string projectName, string projectPath,
 											 SupportedLanguage language) {
 			if (outputType == "Web") {
 				// from template
-				var projectFolder = projectPath.ParentDirectory();
-				var projectTemplateFolder =
+				var projectTemplatePath =
 					_appRootProvider.AppRoot.AppendPath(
-						@"SystemFiles\Templates\ProjectTemplates\{0}\Web\EmptyWebApplicationProject40\".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic"));
-				var templateFiles = Directory.EnumerateFiles(projectTemplateFolder, "*.*", SearchOption.AllDirectories);
-				var projectExtension = Path.GetExtension(projectPath);
-				var projectTemplatePath = projectTemplateFolder.AppendPath("WebApplication" + projectExtension);
-				foreach (var templateFilePath in templateFiles) {
-					if (templateFilePath == projectTemplatePath) {
-						AddFileFromTemplate(projectName, projectTemplatePath, projectTemplateFolder, projectFolder, projectPath);					
-					}
-					else {
-						AddFileFromTemplate(projectName, templateFilePath, projectTemplateFolder, projectFolder);		
-					}
-				}
+						@"SystemFiles\Templates\ProjectTemplates\{0}\Web\Version2012\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic"));
+				_templateInstaller.CreateProjectFromTemplate(projectPath, projectTemplatePath);
 
 				return ProjectRootElement.Open(projectPath);
 			}
