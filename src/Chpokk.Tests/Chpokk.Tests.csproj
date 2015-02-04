@@ -381,6 +381,7 @@
     <Compile Include="Newing\AddingAProjectToSolution.cs" />
     <Compile Include="Newing\CreatingASimpleWebSolution.cs" />
     <Compile Include="Newing\GettingTheListOfExistingProjects.cs" />
+    <Compile Include="Newing\ProjectTemplates\GettingListOfProjectItems.cs" />
     <Compile Include="Newing\SolutionContent\AddingProjectToGlobalSection.cs" />
     <Compile Include="Newing\SolutionContent\AddingProjectToProjectSection.cs" />
     <Compile Include="Newing\SolutionWithTwoProjectsContext.cs" />
