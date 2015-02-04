@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
+﻿using System.IO;
 using Arractas;
 using Chpokk.Tests.Exploring;
-using ChpokkWeb.Features.ProjectManagement;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
-using Gallio.Framework;
-using ICSharpCode.NRefactory;
 using MbUnit.Framework;
-using MbUnit.Framework.ContractVerifiers;
 using FubuCore;
 using Shouldly;
 
-namespace Chpokk.Tests.Newing {
+namespace Chpokk.Tests.Newing.ProjectTemplates {
 	[TestFixture]
-	public class TemplateInstaller: BaseCommandTest<RepositoryFolderContext> {
+	public class InstallingTemplate: BaseCommandTest<RepositoryFolderContext> {
 		private const string CONTENT_FILENAME = "App.config";
 		private const string CONTENT_OTHERFILENAME = @"Properties\AssemblyInfo.cs";
 		private const string PROJECT_NAME = "NewProjectName";

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Xml;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using MbUnit.Framework;
-using Microsoft.Build.Construction;
 using System.Linq;
 using Shouldly;
 
-namespace Chpokk.Tests.Newing {
+namespace Chpokk.Tests.Newing.ProjectTemplates {
 	[TestFixture]
-	public class TemplateFinder : BaseQueryTest<SimpleConfiguredContext, IList<ProjectTemplateData>> {
+	public class BrowsingTemplates : BaseQueryTest<SimpleConfiguredContext, IList<ProjectTemplateData>> {
 		[Test]
 		public void CanFindSimpleNamedProject() {
 			var webTemplate = Result.First(data => data.Name == "ASP.NET Web Application");

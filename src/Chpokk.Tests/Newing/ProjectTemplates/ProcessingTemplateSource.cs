@@ -3,9 +3,9 @@ using ChpokkWeb.Features.ProjectManagement;
 using MbUnit.Framework;
 using Shouldly;
 
-namespace Chpokk.Tests.Newing {
+namespace Chpokk.Tests.Newing.ProjectTemplates {
 	[TestFixture]
-	public class TemplateProcessor {
+	public class ProcessingTemplateSource {
 
 
 		[Test]
