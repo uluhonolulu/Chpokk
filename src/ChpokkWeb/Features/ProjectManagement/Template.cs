@@ -6,18 +6,27 @@ using System.Xml;
 
 namespace ChpokkWeb.Features.ProjectManagement {
 	public class Template {
-		private readonly XmlDocument _xmlDocument;
-		private readonly XmlNamespaceManager _namespaceManager;
+		private  XmlDocument _xmlDocument;
+		private  XmlNamespaceManager _namespaceManager;
 
-		public Template(string path) {
-			Path = path;
+		public Template(string xml) {
 			_xmlDocument = new XmlDocument();
-			_xmlDocument.Load(path);
+			_xmlDocument.LoadXml(xml);
 			_namespaceManager = new XmlNamespaceManager(_xmlDocument.NameTable);
 			_namespaceManager.AddNamespace("d", "http://schemas.microsoft.com/developer/vstemplate/2005");
 		}
 
-		public string Path { get; private set; }
+		private Template() {}
+
+		public static Template LoadTemplate(string path) {
+			var template = new Template {_xmlDocument = new XmlDocument()};
+			template._xmlDocument.Load(path);
+			template._namespaceManager = new XmlNamespaceManager(template._xmlDocument.NameTable);
+			template._namespaceManager.AddNamespace("d", "http://schemas.microsoft.com/developer/vstemplate/2005");
+			return template;
+		}
+
+		//public string Path { get; private set; }
 
 		public string ProjectFileName {
 			get {

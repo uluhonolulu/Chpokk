@@ -7,8 +7,8 @@ using FubuCore;
 
 namespace ChpokkWeb.Features.ProjectManagement {
 	public class TemplateInstaller {
-		private FileSystem _fileSystem;
-		private TemplateTransformer _templateTransformer;
+		private readonly FileSystem _fileSystem;
+		private readonly TemplateTransformer _templateTransformer;
 		public TemplateInstaller(FileSystem fileSystem, TemplateTransformer templateTransformer) {
 			_fileSystem = fileSystem;
 			_templateTransformer = templateTransformer;
@@ -19,7 +19,7 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			var projectName = Path.GetFileNameWithoutExtension(projectPath);
 			var projectTemplateFolder = templatePath.ParentDirectory();
 			var replacements = new Dictionary<string, string>() { { "$safeprojectname$", projectName }, { "$targetframeworkversion$", "4.5" }, { "$guid1$", Guid.NewGuid().ToString() } };
-			var template = new Template(templatePath);
+			var template = Template.LoadTemplate(templatePath);
 			var projectItems = template.GetProjectItems();
 			foreach (var projectItem in projectItems) {
 				var templateFileRelativePath = projectItem.FileName;	//relative to template folder
