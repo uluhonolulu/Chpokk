@@ -384,8 +384,8 @@
     <Compile Include="Newing\SolutionContent\AddingProjectToGlobalSection.cs" />
     <Compile Include="Newing\SolutionContent\AddingProjectToProjectSection.cs" />
     <Compile Include="Newing\SolutionWithTwoProjectsContext.cs" />
-    <Compile Include="Newing\TemplateFinder.cs" />
-    <Compile Include="Newing\TemplateInstaller.cs" />
+    <Compile Include="Newing\ProjectTemplates\TemplateFinder.cs" />
+    <Compile Include="Newing\ProjectTemplates\TemplateInstaller.cs" />
     <Compile Include="NewSubscription\Notification.cs" />
     <Compile Include="ProjectLoading\CheckingBclWhenPackagesOnly.cs" />
     <Compile Include="ProjectLoading\CheckingPackagesWhenBclOnly.cs" />
@@ -457,7 +457,7 @@
     <Compile Include="Spikes\NewFolderStructure.cs" />
     <Compile Include="Spikes\ParsingWithRoslyn.cs" />
     <Compile Include="Spikes\RelativeUrlInScript.cs" />
-    <Compile Include="Newing\TemplateProcessor.cs" />
+    <Compile Include="Newing\ProjectTemplates\TemplateProcessor.cs" />
     <Compile Include="Testing\RunningTests.cs" />
     <Compile Include="Spikes\SearchingForNuSpec.cs" />
     <Compile Include="Spikes\Security.cs" />
