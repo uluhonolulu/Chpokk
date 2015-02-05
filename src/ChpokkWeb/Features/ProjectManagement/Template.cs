@@ -36,15 +36,10 @@ namespace ChpokkWeb.Features.ProjectManagement {
 
 		public IEnumerable<ProjectItem> GetProjectItems() {
 			var projectNode = _xmlDocument.SelectSingleNode("//d:Project", _namespaceManager);
-			return GetProjectItemsFromFolder(projectNode, string.Empty, string.Empty);
-			var projectItems = from XmlNode projectItemNode in projectNode.SelectNodes("d:ProjectItem", _namespaceManager)
-			                   select new ProjectItem(projectItemNode, string.Empty, string.Empty);
-			foreach (XmlNode folderNode in projectNode.SelectNodes("d:Folder", _namespaceManager)) {
-				var subfolderItems = from XmlNode projectItemNode in folderNode.SelectNodes("d:ProjectItem", _namespaceManager)
-									 select new ProjectItem(projectItemNode, folderNode.Attributes["Name"].Value, folderNode.Attributes["TargetFolderName"].Value);
-				projectItems = projectItems.Concat(subfolderItems);
+			if (projectNode == null) {
+				return Enumerable.Empty<ProjectItem>();
 			}
-			return projectItems;
+			return GetProjectItemsFromFolder(projectNode, string.Empty, string.Empty);
 		}
 
 		private IEnumerable<ProjectItem> GetProjectItemsFromFolder(XmlNode folderNode, string parentPath, string parentTargetPath) {
@@ -69,9 +64,10 @@ namespace ChpokkWeb.Features.ProjectManagement {
 				_itemNode = itemNode;
 				_path = path;
 				_targetPath = targetPath;
+				FileName = _path.AppendPath(_itemNode.InnerText) ;
 			}
 
-			public string FileName { get { return _path.AppendPath(_itemNode.InnerText) ; } }
+			public string FileName { get; set; }
 			public string TargetFileName { 
 				get {
 					var targetFileAttribute = _itemNode.Attributes["TargetFileName"];

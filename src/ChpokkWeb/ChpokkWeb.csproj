@@ -449,8 +449,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\WCFWorkflowServiceApplication\Web.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\WCFWorkflowServiceApplication\Web.Debug.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\WCFWorkflowServiceApplication\Web.Release.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\MvcWebApplicationProjectTemplatev4.1.cs.net40\MvcWebApplicationProjectTemplate.cs.net40.vstemplate" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\1033\WebTemplate45\WebTemplate.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\AjaxControlExtender\AjaxControlExtender.csproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\AjaxControlExtender\AjaxControlExtender.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\AjaxControlExtender\AssemblyInfo.cs" />
@@ -1261,7 +1259,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.cshtml\Web.Auth.11.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.cshtml\Web.Debug.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.cshtml\Web.Release.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.cs\MvcWebApplicationProjectTemplate.cs.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\WebApiApplicationProjectTemplatev4.1.cshtml\App_Start\BundleConfig.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\WebApiApplicationProjectTemplatev4.1.cshtml\App_Start\FilterConfig.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Web\Version2012\1033\WebApiApplicationProjectTemplatev4.1.cshtml\App_Start\RouteConfig.cs" />
@@ -1510,10 +1507,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\HubApp\SplashScreen.png" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\HubApp\StoreLogo.png" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\HubApp\SuspensionManager.cs" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\InstallWindows81\InstallWindows81.html" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\InstallWindows81\InstallWindows81.ico" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\InstallWindows81\InstallWindows81.vstemplate" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\InstallWindows81\VSlogo.gif" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\PortableClassLibrary\assemblyinfo.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\PortableClassLibrary\class1.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Windows Store\1033\PortableClassLibrary\csPortableClassLibrary.vstemplate" />
@@ -1862,8 +1855,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\WCF\1033\WCFWorkflowServiceApplication\Web.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\WCF\1033\WCFWorkflowServiceApplication\Web.Debug.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\WCF\1033\WCFWorkflowServiceApplication\Web.Release.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\MvcWebApplicationProjectTemplatev4.1.vb.net40\MvcWebApplicationProjectTemplate.vb.net40.vstemplate" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\1033\WebTemplate45\WebTemplate.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\AjaxControlExtender\AjaxControlExtender.vbproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\AjaxControlExtender\AjaxControlExtender.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\AjaxControlExtender\AssemblyInfo.vb" />
@@ -2781,7 +2772,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.vbhtml\Web.Auth.11.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.vbhtml\Web.Debug.config" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.vbhtml\Web.Release.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\MvcWebApplicationProjectTemplatev4.1.vb\MvcWebApplicationProjectTemplate.vb.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\WebApiApplicationProjectTemplatev4.1.vbhtml\App_Start\BundleConfig.vb" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\WebApiApplicationProjectTemplatev4.1.vbhtml\App_Start\FilterConfig.vb" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\WebApiApplicationProjectTemplatev4.1.vbhtml\App_Start\RouteConfig.vb" />
@@ -3084,10 +3074,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\HubApp\SplashScreen.png" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\HubApp\StoreLogo.png" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\HubApp\SuspensionManager.vb" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\InstallWindows81\InstallWindows81.html" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\InstallWindows81\InstallWindows81.ico" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\InstallWindows81\InstallWindows81.vstemplate" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\InstallWindows81\VSlogo.gif" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\PortableClassLibrary\assemblyinfo.vb" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\PortableClassLibrary\Class1.vb" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Windows Store\1033\PortableClassLibrary\PortableClassLibrary.vbproj" />

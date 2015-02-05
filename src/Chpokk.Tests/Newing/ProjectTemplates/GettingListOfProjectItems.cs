@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
@@ -8,6 +9,8 @@ using Gallio.Framework;
 using MbUnit.Framework;
 using MbUnit.Framework.ContractVerifiers;
 using Shouldly;
+using FubuCore;
+using System.Linq;
 
 namespace Chpokk.Tests.Newing.ProjectTemplates {
 	[TestFixture]
@@ -42,6 +45,31 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 				Console.WriteLine(projectItem.FileName + " -> " + projectItem.TargetFileName);
 			}
 			return projectItems;
+		}
+	}
+
+	public class LetsCheckAllItems {
+		[Test]
+		public void AllTemplatesShouldContainExistingFiles() {
+			var root = @"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\";
+			var templateFiles = Directory.EnumerateFiles(root, "*.vstemplate", SearchOption.AllDirectories);
+			foreach (var templateFile in templateFiles) {
+				//Console.WriteLine(templateFile);
+				var template = Template.LoadTemplate(templateFile);
+				if (!template.GetProjectItems().Any()) {
+					Console.WriteLine("Empty template: " + templateFile);
+				}
+				foreach (var item in template.GetProjectItems()) {
+					var path = templateFile.ParentDirectory().AppendPath(item.FileName);
+					if (!File.Exists(path)) {
+						path = Directory.EnumerateFiles(templateFile.ParentDirectory(), Path.GetFileName(item.FileName)).FirstOrDefault();
+						item.FileName = path.PathRelativeTo(templateFile.ParentDirectory());
+						path = templateFile.ParentDirectory().AppendPath(item.FileName);
+					}
+					//Console.WriteLine(path);
+					File.Exists(path).ShouldBe(true);
+				}
+			}
 		}
 	}
 }
