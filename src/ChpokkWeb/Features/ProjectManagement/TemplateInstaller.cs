@@ -24,6 +24,9 @@ namespace ChpokkWeb.Features.ProjectManagement {
 			foreach (var projectItem in projectItems) {
 				var templateFileRelativePath = projectItem.FileName;	//relative to template folder
 				var templateFileSourcePath = projectTemplateFolder.AppendPath(templateFileRelativePath);
+				if (!File.Exists(templateFileSourcePath)) {//sometimes all files are in the root folder despite the folder structure in the template file; let's search by name in the template folder
+					templateFileSourcePath = Directory.EnumerateFiles(projectTemplateFolder, Path.GetFileName(projectItem.FileName)).First();
+				}
 				var destinationRelativePath = projectItem.TargetFileName;
 				var destinationPath = projectFolder.AppendPath(destinationRelativePath);
 				var templateFileContent = _fileSystem.ReadStringFromFile(templateFileSourcePath);

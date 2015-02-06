@@ -48,28 +48,5 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 		}
 	}
 
-	public class LetsCheckAllItems {
-		[Test]
-		public void AllTemplatesShouldContainExistingFiles() {
-			var root = @"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\";
-			var templateFiles = Directory.EnumerateFiles(root, "*.vstemplate", SearchOption.AllDirectories);
-			foreach (var templateFile in templateFiles) {
-				//Console.WriteLine(templateFile);
-				var template = Template.LoadTemplate(templateFile);
-				if (!template.GetProjectItems().Any()) {
-					Console.WriteLine("Empty template: " + templateFile);
-				}
-				foreach (var item in template.GetProjectItems()) {
-					var path = templateFile.ParentDirectory().AppendPath(item.FileName);
-					if (!File.Exists(path)) {
-						path = Directory.EnumerateFiles(templateFile.ParentDirectory(), Path.GetFileName(item.FileName)).FirstOrDefault();
-						item.FileName = path.PathRelativeTo(templateFile.ParentDirectory());
-						path = templateFile.ParentDirectory().AppendPath(item.FileName);
-					}
-					//Console.WriteLine(path);
-					File.Exists(path).ShouldBe(true);
-				}
-			}
-		}
-	}
+
 }
