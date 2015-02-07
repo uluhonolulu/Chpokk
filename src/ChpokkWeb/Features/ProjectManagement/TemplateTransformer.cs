@@ -20,16 +20,14 @@ namespace ChpokkWeb.Features.ProjectManagement {
 
 		public string Evaluate(string inputText, Dictionary<string, string> replacementValues) {
 			//var match = new Regex("(?<comparison>\\$if\\$[\\s]*\\([\\s]*(?<expression>[^\\)]*)[\\s]*\\))(?<output>.*?)\\$endif\\$", RegexOptions.Singleline).Match(inputText);
-			return new Regex("(?<comparison>\\$if\\$[\\s]*\\([\\s]*(?<expression>[^\\)]*)[\\s]*\\))(?<output>.*?)\\$endif\\$",
-			          RegexOptions.Singleline).Replace(inputText, match1
-			                                                      =>
-			          {
-						  string result;
-				          var statement = match1.Value;
-				          this.Evaluate(statement, replacementValues, out result);
-				          return result;
-			          });
-
+			var processedIfInstructions = new Regex("(?<comparison>\\$if\\$[\\s]*\\([\\s]*(?<expression>[^\\)]*)[\\s]*\\))(?<output>.*?)\\$endif\\$", RegexOptions.Singleline).Replace(inputText, match1 =>
+			{
+				string result;
+				var statement = match1.Value;
+				this.Evaluate(statement, replacementValues, out result);
+				return result;
+			});
+			return ReplaceValues(processedIfInstructions, replacementValues);
 		}
 
 		private string ReplaceValues(string inputText, Dictionary<string, string> replacementValues) {
