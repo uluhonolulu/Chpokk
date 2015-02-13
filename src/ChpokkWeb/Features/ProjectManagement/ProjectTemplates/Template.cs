@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Xml;
 using FubuCore;
 
-namespace ChpokkWeb.Features.ProjectManagement {
+namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 	public class Template {
 		private  XmlDocument _xmlDocument;
 		private  XmlNamespaceManager _namespaceManager;

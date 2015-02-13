@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 
-namespace ChpokkWeb.Features.ProjectManagement {
+namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 	public class TemplateTransformer {
 
 		private readonly Regex _regEquality = new Regex("(?<operand1>.*)==(?<operand2>.*)");

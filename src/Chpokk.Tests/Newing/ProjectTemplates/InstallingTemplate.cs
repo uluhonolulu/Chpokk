@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Arractas;
 using Chpokk.Tests.Exploring;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using ChpokkWeb.Features.RepositoryManagement;
 using ChpokkWeb.Infrastructure;
 using MbUnit.Framework;
@@ -44,7 +45,7 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 			var templatePath = Context.Container.Get<IAppRootProvider>().AppRoot.AppendPath(templateRelativePath);
 			var projectPath = Context.Container.Get<RepositoryManager>()
 			                            .NewGetAbsolutePathFor(Context.REPO_NAME, PROJECT_NAME.AppendPath(PROJECT_NAME + ".csproj"));
-			Context.Container.Get<ChpokkWeb.Features.ProjectManagement.TemplateInstaller>().CreateProjectFromTemplate(projectPath, templatePath);
+			Context.Container.Get<TemplateInstaller>().CreateProjectFromTemplate(projectPath, templatePath);
 		}
 
 

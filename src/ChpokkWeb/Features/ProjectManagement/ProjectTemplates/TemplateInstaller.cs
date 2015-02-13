@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using FubuCore;
 
-namespace ChpokkWeb.Features.ProjectManagement {
+namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 	public class TemplateInstaller {
 		private readonly FileSystem _fileSystem;
 		private readonly TemplateTransformer _templateTransformer;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ChpokkWeb.Features.ProjectManagement;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using MbUnit.Framework;
 using Shouldly;
 

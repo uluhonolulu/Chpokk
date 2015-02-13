@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using ICSharpCode.NRefactory;
