@@ -87,7 +87,7 @@ function initTreeView(selector) {
 	$('li[data-type="file"]').click(function () {
 		window.location.hash = $(this).attr('data-path');
 	});
-	$(selector).treeview({ collapsed: true, persist: "cookie" });
+	$(selector).treeview({ collapsed: true, persist: "cookie" });	//defined in lib/jquery.treeview.js
     openItemIfSingle($(selector));
 }
 

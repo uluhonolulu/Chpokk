@@ -2,6 +2,7 @@
 using System.Xml;
 using Arractas;
 using Chpokk.Tests.Infrastructure;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 using MbUnit.Framework;
@@ -13,10 +14,10 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 	public class BrowsingTemplates : BaseQueryTest<SimpleConfiguredContext, IList<ProjectTemplateData>> {
 		[Test]
 		public void CanFindSimpleNamedProject() {
-			var webTemplate = Result.First(data => data.Name == "ASP.NET Web Application");
-			webTemplate.Path.ShouldBe(@"CSharp\Web\1033\WebTemplate45\WebTemplate.vstemplate");
+			var webTemplate = Result.First(data => data.Name == "ASP.NET Empty Web Application");
+			webTemplate.Path.ShouldBe(@"CSharp\Web\Version2012\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate");
 			webTemplate.DisplayPath.ShouldBe(@"CSharp\Web");
-			webTemplate.RequiredFrameworkVersion.ShouldBe("4.5");
+			webTemplate.RequiredFrameworkVersion.ShouldBe("4.0");
 		}
 
 
@@ -26,15 +27,12 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 			var templateFolder = Context.Container.Get<IAppRootProvider>().AppRoot.AppendPath(@"SystemFiles\Templates\ProjectTemplates\") ;
 			var templateFiles = fileSystem.FindFiles(templateFolder, new FileSet() { Include = "*.vstemplate", DeepSearch = true });
 			foreach (var templateFile in templateFiles) {
-				var xmlDocument = new XmlDocument();
-				xmlDocument.Load(templateFile);
-				var ns = new XmlNamespaceManager(xmlDocument.NameTable);
-				ns.AddNamespace("d", "http://schemas.microsoft.com/developer/vstemplate/2005");
+				var template = Template.LoadTemplate(templateFile);
 				var templateData = new ProjectTemplateData()
 					{
-						Name = GetNodeValue(xmlDocument, ns, "Name"),
+						Name = template.Name,
 						Path = templateFile.PathRelativeTo(templateFolder),
-						RequiredFrameworkVersion = GetNodeValue(xmlDocument, ns, "RequiredFrameworkVersion")
+						RequiredFrameworkVersion = template.RequiredFrameworkVersion
 					};
 				templates.Add(templateData); 
 			}
@@ -51,15 +49,5 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 	}
 
 
-	public class ProjectTemplateData {
-		public string Name { get; set; }
-		public string RequiredFrameworkVersion { get; set; }
-		public string Path { get; set; }
-		public string DisplayPath {
-			get { 
-				var ignoredFolders = new[] {"1033"};
-				return Path.ParentDirectory().ParentDirectory().getPathParts().Except(ignoredFolders).Join(@"\");
-			}
-		}
-	}
+
 }

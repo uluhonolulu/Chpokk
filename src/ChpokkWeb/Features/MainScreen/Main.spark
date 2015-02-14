@@ -12,7 +12,7 @@
 </main>
 
 <use file="RepositoryMenu\DashBoard"/>
-
+<use file="ProjectManagement\ProjectTemplates\TemplateBrowser.spark"/>
 
 <content name="menu">
 	<ul class="nav navbar-nav">

@@ -32,6 +32,23 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			}
 		}
 
+		public string Name {
+			get {
+				var nameNode = _xmlDocument.SelectSingleNode("//d:TemplateData/d:Name", _namespaceManager);
+				return nameNode.InnerText;
+			}
+		}
+
+		public string RequiredFrameworkVersion {
+			get {
+				var node = _xmlDocument.SelectSingleNode("//d:TemplateData/d:RequiredFrameworkVersion", _namespaceManager);
+				if (node == null) {
+					return null;
+				}
+				return node.InnerText;
+			}
+		}
+
 		public IEnumerable<ProjectItem> GetProjectItems() {
 			var projectNode = _xmlDocument.SelectSingleNode("//d:Project", _namespaceManager);
 			if (projectNode == null) {

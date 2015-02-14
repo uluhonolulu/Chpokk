@@ -1,0 +1,40 @@
+﻿
+<use namespace="ChpokkWeb.Features.ProjectManagement.ProjectTemplates" />
+
+<!--TemplateBrowser.spark-->
+Template Browser
+<ul id="templates">
+
+</ul>
+
+<script type="text/javascript">
+	$(function() {
+		$.get('/projectmanagement/projecttemplates', function(data) {
+			var templates = data.Templates;
+			for (var templateIndex = 0; templateIndex < templates.length; templateIndex++) {
+				var template = templates[templateIndex];
+				var path = template.DisplayPath + '\\' + template.Name;
+				var folders = path.split('\\');
+
+				var parent = $('#templates');
+				for (var i = 0; i < folders.length; i++) {
+					var id = folders.slice(0, i + 1).join('_').replace(/ /g, '');
+					var li = $('#' + id);	//try and find an existing folder
+					if (li.length == 0) {
+						var ul = $('<ul/>');
+						ul.appendTo(parent);
+						li = $('<li/>');
+						li.prop('id', id);
+						li.text(folders[i]);
+						li.appendTo(ul);
+					}
+					parent = li;
+				}				
+			}
+
+
+			$('#templates').treeview({ collapsed: true, persist: "cookie" });
+			//debugger;
+		});
+	});
+</script>

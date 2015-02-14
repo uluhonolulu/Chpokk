@@ -383,7 +383,9 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\Properties\AppManifest.xml" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\Properties\AssemblyInfo.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\SLNavApplication.csproj" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\SLNavApplication.vstemplate" />
+    <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\SLNavApplication.vstemplate">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\Views\About.xaml" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\Views\About.xaml.cs" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Silverlight\1033\SLNavApplication\Views\ErrorWindow.xaml" />
@@ -4569,6 +4571,7 @@
     <Content Include="Features\ReadMe\ReadMe.spark" />
     <Content Include="Shared\Content.spark" />
     <Content Include="Features\Blog\Post\_disqus.spark" />
+    <Content Include="Features\ProjectManagement\ProjectTemplates\TemplateBrowser.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -5700,6 +5703,7 @@
     <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTemplates\Template.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateInstaller.cs" />
+    <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateListEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateTransformer.cs" />
     <Compile Include="Features\ProjectManagement\Properties\EditPropertiesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\ProjectPropertiesEndpoint.cs" />
