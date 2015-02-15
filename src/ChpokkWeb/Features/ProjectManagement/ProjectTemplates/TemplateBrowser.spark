@@ -3,7 +3,7 @@
 
 <!--TemplateBrowser.spark-->
 Template Browser
-<ul id="templates">
+<ul id="templates" class="filetree treeview">
 
 </ul>
 
@@ -21,14 +21,19 @@ Template Browser
 					var id = folders.slice(0, i + 1).join('_').replace(/ /g, '');
 					var li = $('#' + id);	//try and find an existing folder
 					if (li.length == 0) {
-						var ul = $('<ul/>');
-						ul.appendTo(parent);
 						li = $('<li/>');
 						li.prop('id', id);
-						li.text(folders[i]);
-						li.appendTo(ul);
+						var span = $('<span/>').text(folders[i]);
+						li.append(span);
+						li.appendTo(parent);
+						if (i < folders.length - 1){		// it's a folder				
+							span.addClass('folder');		// display an icon
+							$('<ul/>').appendTo(li);		// append the new child container
+						} else {
+							span.addClass('file');
+						}
 					}
-					parent = li;
+					parent = li.find('ul');
 				}				
 			}
 

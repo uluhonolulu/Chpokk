@@ -295,11 +295,11 @@ div#title
 
 
 /* Project explorer */
-*[data-type="file"] {
+*[data-type="file"], .filetree .file {
 	cursor: pointer;
 }
 
-*[data-type="file"]:hover {
+*[data-type="file"]:hover, .filetree .file:hover {
 	background-color: #E0E0E0; 
 }
 
@@ -308,9 +308,9 @@ div#title
 	background-color: inherit;
 }
 
-#solutionBrowser { font-size: 12px; }
+.filetree { font-size: 12px; }
 
-#solutionBrowser.filetree span.folder {
+.filetree span.folder {
 	padding-left: 18px;
 }
 
