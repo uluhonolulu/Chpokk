@@ -299,7 +299,7 @@ div#title
 	cursor: pointer;
 }
 
-*[data-type="file"]:hover, .filetree .file:hover {
+*[data-type="file"]:hover, .filetree .file:hover, .filetree .file.selected {
 	background-color: #E0E0E0; 
 }
 

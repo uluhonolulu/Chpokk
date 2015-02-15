@@ -29,8 +29,13 @@ Template Browser
 						if (i < folders.length - 1){		// it's a folder				
 							span.addClass('folder');		// display an icon
 							$('<ul/>').appendTo(li);		// append the new child container
-						} else {
+						} else {							// it's a template
 							span.addClass('file');
+							span.data('template', template);
+							span.click(function() {
+								$('#templates .file').removeClass('selected');		//deselect all
+								$(this).addClass('selected');						//select this
+							});
 						}
 					}
 					parent = li.find('ul');
