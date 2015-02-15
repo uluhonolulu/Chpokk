@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Infrastructure;
 using FubuCore;
 
 namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 	public class TemplateListEndpoint {
+		private readonly IAppRootProvider _rootProvider;
+		private readonly FileSystem _fileSystem;
+		public TemplateListEndpoint(IAppRootProvider rootProvider, FileSystem fileSystem) {
+			_rootProvider = rootProvider;
+			_fileSystem = fileSystem;
+		}
+
 		public TemplateListModel DoIt() {
-			var template =
-				Template.LoadTemplate(
-					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\RssService\RssServiceLibrary.vstemplate");
-			var templateData = new ProjectTemplateData()
+			var templateFolder = _rootProvider.AppRoot.AppendPath(@"SystemFiles\Templates\ProjectTemplates\");
+			var templateFiles = _fileSystem.FindFiles(templateFolder, new FileSet() { Include = "*.vstemplate", DeepSearch = true });
+			var templates = from file in templateFiles select Template.LoadTemplate(file);
+			var templateItems = from template in templates select  new ProjectTemplateData()
 				{
 					Name = template.Name,
-					Path = @"CSharp\WCF\1033\RssService\RssServiceLibrary.vstemplate",
+					Path = template.Path.PathRelativeTo(templateFolder),
 					RequiredFrameworkVersion = template.RequiredFrameworkVersion
 				};
-			var template2 =
-				Template.LoadTemplate(
-					@"D:\Projects\Chpokk\src\ChpokkWeb\SystemFiles\Templates\ProjectTemplates\CSharp\WCF\1033\SequentialWorkflowServiceLibrary\SequentialWorkflowServiceLibrary.vstemplate");
-			var templateData2 = new ProjectTemplateData()
-				{
-					Name = template2.Name,
-					Path = @"CSharp\WCF\1033\SequentialWorkflowServiceLibrary\SequentialWorkflowServiceLibrary.vstemplate",
-					RequiredFrameworkVersion = template2.RequiredFrameworkVersion
-				};
-			return new TemplateListModel() {Templates = new[] {templateData, templateData2}};
+			return new TemplateListModel() {Templates = templateItems.ToArray()};
+
 		}
 	}
 

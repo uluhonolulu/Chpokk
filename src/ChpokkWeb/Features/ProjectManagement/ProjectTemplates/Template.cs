@@ -22,6 +22,7 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			template._xmlDocument.Load(path);
 			template._namespaceManager = new XmlNamespaceManager(template._xmlDocument.NameTable);
 			template._namespaceManager.AddNamespace("d", "http://schemas.microsoft.com/developer/vstemplate/2005");
+			template.Path = path;
 			return template;
 		}
 
@@ -48,6 +49,8 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 				return node.InnerText;
 			}
 		}
+
+		public string Path { get; private set; }
 
 		public IEnumerable<ProjectItem> GetProjectItems() {
 			var projectNode = _xmlDocument.SelectSingleNode("//d:Project", _namespaceManager);

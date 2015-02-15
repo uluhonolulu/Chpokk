@@ -18,7 +18,7 @@ Template Browser
 
 				var parent = $('#templates');
 				for (var i = 0; i < folders.length; i++) {
-					var id = folders.slice(0, i + 1).join('_').replace(/ /g, '');
+					var id = folders.slice(0, i + 1).join('_').replace(/[ \.\(\)]/g, '');
 					var li = $('#' + id);	//try and find an existing folder
 					if (li.length == 0) {
 						li = $('<li/>');
@@ -38,7 +38,7 @@ Template Browser
 							});
 						}
 					}
-					parent = li.find('ul');
+					parent = li.children('ul');
 				}				
 			}
 
