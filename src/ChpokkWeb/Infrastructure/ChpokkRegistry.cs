@@ -10,6 +10,7 @@ using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using ChpokkWeb.Features.Editor.Intellisense.Providers;
 using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.ProjectManagement;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.Remotes;
@@ -50,6 +51,9 @@ namespace ChpokkWeb.Infrastructure {
 			For<ProjectCollection>().Singleton().Use(() => ProjectCollection.GlobalProjectCollection);
 			For<KeywordProvider>().Singleton();
 			For<BclAssembliesProvider>().Singleton();
+			//project template cache
+			For<TemplateListCache>().Singleton();
+
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<IRetrievePolicy>();
@@ -67,6 +71,8 @@ namespace ChpokkWeb.Infrastructure {
 			For<PackageSource>().Singleton().Use(context => new PackageSource(NuGetConstants.DefaultFeedUrl));
 			For<IPackageSourceProvider>().Singleton().Use(context => new PackageSourceProvider(context.GetInstance<ISettings>(), new[] { context.GetInstance<PackageSource>() }));
 			For<IPackageRepository>().Singleton().Use(context => context.GetInstance<IPackageSourceProvider>().CreateAggregateRepository(PackageRepositoryFactory.Default, true));
+
+
 
 			//SignalR
 			For<SignalRLogger>().LifecycleIs(new HybridLifecycle());

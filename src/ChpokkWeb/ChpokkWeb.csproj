@@ -5701,9 +5701,10 @@
     <Compile Include="Features\ProjectManagement\AddProject\AddProjectInputModel.cs" />
     <Compile Include="Features\ProjectManagement\AddProject\ProjectCreator.cs" />
     <Compile Include="Features\ProjectManagement\CreateEmptySolution\CreateEmptySolutionEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\ProjectTemplates\ProjectTemplateData.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTemplates\Template.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateInstaller.cs" />
-    <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateListEndpoint.cs" />
+    <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateListCache.cs" />
     <Compile Include="Features\ProjectManagement\ProjectTemplates\TemplateTransformer.cs" />
     <Compile Include="Features\ProjectManagement\Properties\EditPropertiesEndpoint.cs" />
     <Compile Include="Features\ProjectManagement\Properties\ProjectPropertiesEndpoint.cs" />

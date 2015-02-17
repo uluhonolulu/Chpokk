@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using ChpokkWeb.Features.Exploring;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using ChpokkWeb.Features.ProjectManagement.References.Bcl;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
@@ -19,13 +20,15 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		private readonly SolutionParser _solutionParser;
 		private readonly PackageInstaller _packageInstaller;
 		private readonly IFileSystem _fileSystem;
-		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser, PackageInstaller packageInstaller, IFileSystem fileSystem) {
+		private readonly TemplateListCache _templateListCache;
+		public ProjectPropertiesEndpoint(BclAssembliesProvider assembliesProvider, ProjectParser projectParser, RepositoryManager repositoryManager, SolutionParser solutionParser, PackageInstaller packageInstaller, IFileSystem fileSystem, TemplateListCache templateListCache) {
 			_assembliesProvider = assembliesProvider;
 			_projectParser = projectParser;
 			_repositoryManager = repositoryManager;
 			_solutionParser = solutionParser;
 			_packageInstaller = packageInstaller;
 			_fileSystem = fileSystem;
+			_templateListCache = templateListCache;
 		}
 
 		public ProjectPropertiesModel DoIt(ProjectPropertiesInputModel model) {
@@ -47,6 +50,10 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 				output.ProjectName =_projectParser.GetProjectName(project);
 				output.ProjectType = _projectParser.GetProjectOutputType(project);
 				output.Language = _projectParser.GetProjectLanguage(project);				
+			}
+
+			if (project == null) {
+				output.ProjectTemplates.AddRange(_templateListCache.ProjectTemplates);
 			}
 
 			return output;
@@ -99,8 +106,6 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 						   Selected = absoluteReferencedPaths.Contains(assemblyPath)
 				       };
 		}
-
-
 	}
 
 	public class ProjectPropertiesModel {
@@ -111,6 +116,7 @@ namespace ChpokkWeb.Features.ProjectManagement.Properties {
 		public IList<object> PackageReferences = new List<object>();
 		public IList<object> ProjectReferences = new List<object>();
 		public IList<object> FileReferences = new List<object>();
+		public IList<ProjectTemplateData> ProjectTemplates = new List<ProjectTemplateData>();
 	}
 
 	public class ProjectPropertiesInputModel: BaseRepositoryInputModel {
