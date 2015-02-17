@@ -13,6 +13,20 @@
 		}
 
 		$(function() {
+			setupUpload(); //set up file uploading
+			
+			//when project properties are loaded, display the list of files
+			amplify.subscribe('projectPropertiesLoaded', function (data) {
+				displayFileReferences(data.FileReferences);
+			});
+		});
+
+		function appendReference(path) {
+			var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
+			$.tmpl(template, {Name: path, Selected: true }).appendTo($('#filesContainer'));
+		}
+
+		function setupUpload() {
 			var url = '${Urls.UrlFor<UploadAssemblyInputModel>()}';
 			$('#assemblyupload').fileupload({
 				url: url,
@@ -25,12 +39,7 @@
 					}
 				}
 			}).prop('disabled', !$.support.fileInput);
-
-		});
-
-		function appendReference(path) {
-			var template = '<div><input type="checkbox" name="Files" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
-			$.tmpl(template, {Name: path, Selected: true }).appendTo($('#filesContainer'));
+			
 		}
 	</script>
 

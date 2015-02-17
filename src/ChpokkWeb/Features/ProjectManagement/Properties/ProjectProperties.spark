@@ -2,18 +2,18 @@
 <use namespace="ChpokkWeb.Features.ProjectManagement.Properties" />
 
 <content name="InlineScripts">
-    <!-- ProjectProperties.spark -->
-    <script type="text/javascript">
+	<!-- ProjectProperties.spark -->
+	<script type="text/javascript">
 
-    	function addProject(solutionPath) {
-    		$('#projectPropertiesDialog #dialogTitle').text("Add a project to the solution");
-    		$('#projectPropertiesDialog #save').text("Create");
-    		$('#projectName').val('');
-    		$('#projectName').prop('disabled', false);
-    		$('#projectType').val('Exe');
-    		$('#language').val('CSharp');
-    		$('#language').prop('disabled', false);
-    		displayProjectPropertiesDialog(null, solutionPath);
+		function addProject(solutionPath) {
+			$('#projectPropertiesDialog #dialogTitle').text("Add a project to the solution");
+			$('#projectPropertiesDialog #save').text("Create");
+			$('#projectName').val('');
+			$('#projectName').prop('disabled', false);
+			$('#projectType').val('Exe');
+			$('#language').val('CSharp');
+			$('#language').prop('disabled', false);
+			displayProjectPropertiesDialog(null, solutionPath);
 			//handle the creation
 			$('#save').one('click', function () {
 				$('#save').text("Please wait..");
@@ -25,14 +25,14 @@
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
 			});  
-    	}
+		}
 
-    	function editProjectProperties(projectPath, solutionPath) {
-    		$('#projectPropertiesDialog #dialogTitle').text("Edit Project Properties");
-    		$('#projectPropertiesDialog #save').text("Save changes");
-    		$('#projectName').prop('disabled', true);
-    		$('#language').prop('disabled', true);
-    		displayProjectPropertiesDialog(projectPath, solutionPath);
+		function editProjectProperties(projectPath, solutionPath) {
+			$('#projectPropertiesDialog #dialogTitle').text("Edit Project Properties");
+			$('#projectPropertiesDialog #save').text("Save changes");
+			$('#projectName').prop('disabled', true);
+			$('#language').prop('disabled', true);
+			displayProjectPropertiesDialog(projectPath, solutionPath);
 			$('#save').one('click', function () {
 				$('#save').text("Please wait..");
 				$('#save').addClass('disabled');
@@ -44,42 +44,39 @@
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
 			});  
-    	}
+		}
 
-    	function displayProjectPropertiesDialog(projectPath, solutionPath) {
-    		var url = '${Urls.UrlFor<ProjectPropertiesInputModel>()}';
-    		var model = $.extend({}, window.model, { ProjectPath: projectPath, SolutionPath: solutionPath });
-    		$.post(url, model, function(data) {
-    			if (data.ProjectName) $('#projectName').val(data.ProjectName);
-    			if (data.ProjectType) $('#projectType').val(data.ProjectType);
-    			if (data.Language) $('#language').val(data.Language);
-    			displayPackageReferences(data.PackageReferences); //defined in \Features\ProjectManagement\References\NuGet\NugetPackages.spark
-    			displayBclReferences(data.BclReferences); //defined in \Features\ProjectManagement\References\Bcl\BclReferences
-    			displayProjectReferences(data.ProjectReferences); //defined in \Features\ProjectManagement\References\OtherProjects\OtherProjects.spark
-    			displayFileReferences(data.FileReferences);
-    			$('#projectPropertiesDialog').modal('show');
-    		});
+		function displayProjectPropertiesDialog(projectPath, solutionPath) {
+			var url = '${Urls.UrlFor<ProjectPropertiesInputModel>()}';
+			var model = $.extend({}, window.model, { ProjectPath: projectPath, SolutionPath: solutionPath });
+			$.post(url, model, function(data) {
+				if (data.ProjectName) $('#projectName').val(data.ProjectName);
+				if (data.ProjectType) $('#projectType').val(data.ProjectType);
+				if (data.Language) $('#language').val(data.Language);
+				amplify.publish('projectPropertiesLoaded', data);
+				$('#projectPropertiesDialog').modal('show');
+			});
   
-    	}
-    </script>
+		}
+	</script>
 </content>
 
 <content name="Dialogs">
-    <!-- ProjectProperties.spark -->
-    <div class="modal fade" id="projectPropertiesDialog" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="dialogTitle">Add a project to the solution</h4>
-                </div>
-                <div class="modal-body">
+	<!-- ProjectProperties.spark -->
+	<div class="modal fade" id="projectPropertiesDialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="dialogTitle">Add a project to the solution</h4>
+				</div>
+				<div class="modal-body">
 					<form class="well" id="projectForm">
 						<label for="projectName">Project name</label>
 						<input name="ProjectName" id="projectName" type="text" class="form-control"/>
 						
-					    <label for="projectType">Project type</label>
-                        <div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
+						<label for="projectType">Project type</label>
+						<div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
 						<select name="OutputType" id="projectType" class="form-control">
 							<option>Exe</option>
 							<option>Library</option>
@@ -87,23 +84,23 @@
 						</select>
 						
 						<label for="language">Language</label>
-					    <select name="Language" id="language" class="form-control">
-					        <option value="CSharp">C#</option>
-					        <option value="VBNet">VB.Net</option>
-					    </select>
+						<select name="Language" id="language" class="form-control">
+							<option value="CSharp">C#</option>
+							<option value="VBNet">VB.Net</option>
+						</select>
 						
-					    <render partial="ProjectManagement\References\References"/>
+						<render partial="ProjectManagement\References\References"/>
 						<input name="SolutionPath" id="SolutionPath" type="hidden"/>
 					</form>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="save">Create</button>
-                    
-                    <div id="createProjectLogger" style="font-size: smaller;"/>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" id="save">Create</button>
+					
+					<div id="createProjectLogger" style="font-size: smaller;"/>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 </content>

@@ -9,9 +9,8 @@
 <content name="InlineScripts">
     <!-- OtherProjects.spark -->
     <script type="text/javascript">
-    	//amplify.subscribe('solutionLoaded', loadOtherProjects);
 
-        function loadOtherProjects(solutionData) { //deprecated?
+    	function loadOtherProjects(solutionData) { //deprecated?
 	        if (solutionData.Items.length == 0) return;
         	var url = '${Urls.UrlFor<OtherProjectsInputModel>()}';
 			var solutionPath = solutionData.Items[0].PathRelativeToRepositoryRoot;
@@ -33,6 +32,10 @@
         }
         
         $(function() {
+	    	//when project properties are loaded, display the list of packages
+	    	amplify.subscribe('projectPropertiesLoaded', function (data) {
+	    		displayProjectReferences(data.ProjectReferences);
+	    	});
             
         });
     </script>

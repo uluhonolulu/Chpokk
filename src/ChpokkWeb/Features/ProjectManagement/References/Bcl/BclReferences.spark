@@ -8,6 +8,10 @@
     <!-- BclReferences.spark -->
     <script type="text/javascript">
 	    $(function() {
+	    	//when project properties are loaded, display the list of packages
+	    	amplify.subscribe('projectPropertiesLoaded', function (data) {
+	    		displayBclReferences(data.BclReferences);
+	    	});
 
 	    });
 

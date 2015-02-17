@@ -43,6 +43,11 @@
 			//open a hub connection and assign the connection ID to the model.
 			setupHub();
 			
+			//when project properties are loaded, display the list of packages
+			amplify.subscribe('projectPropertiesLoaded', function(data) {
+				displayPackageReferences(data.PackageReferences);
+			});
+			
 			function findPackages(query) {
 				//display loading animation
 				$('#packagesLoading').show();
