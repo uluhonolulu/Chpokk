@@ -24,7 +24,8 @@ namespace Chpokk.Tests.Blog.Parser {
 
 		[Test]
 		public void ParsedDescriptionShouldMatchSourceDescription() {
-			Result.Description.ShouldContain("<p>description</p>");
+			Result.HtmlDescription.ShouldContain("<p>description</p>");
+			Result.Description.ShouldContain("description");
 		}
 
 		[Test]

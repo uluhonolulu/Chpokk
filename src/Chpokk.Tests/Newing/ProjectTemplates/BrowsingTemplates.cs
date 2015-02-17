@@ -22,22 +22,8 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 
 
 		public override IList<ProjectTemplateData> Act() {
-			var templates = new List<ProjectTemplateData>();
-			var fileSystem = Context.Container.Get<FileSystem>();
-			var templateFolder = Context.Container.Get<IAppRootProvider>().AppRoot.AppendPath(@"SystemFiles\Templates\ProjectTemplates\") ;
-			var templateFiles = fileSystem.FindFiles(templateFolder, new FileSet() { Include = "*.vstemplate", DeepSearch = true });
-			foreach (var templateFile in templateFiles) {
-				var template = Template.LoadTemplate(templateFile);
-				var templateData = new ProjectTemplateData()
-					{
-						Name = template.Name,
-						Path = templateFile.PathRelativeTo(templateFolder),
-						RequiredFrameworkVersion = template.RequiredFrameworkVersion
-					};
-				templates.Add(templateData); 
-			}
-
-			return templates;
+			var endpoint = Context.Container.Get<TemplateListEndpoint>();
+			return endpoint.DoIt().Templates.ToList();
 		}
 		private static string GetNodeValue(XmlDocument document, XmlNamespaceManager ns, string name) {
 			var node = document.SelectSingleNode("//d:TemplateData/d:{0}".ToFormat(name), ns);

@@ -31,7 +31,7 @@ namespace ChpokkWeb.Features.Blog {
 		private void AddMetadata(TModel blogPostModel, string metadataSource) {
 			var lines = metadataSource.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 			foreach (var line in lines) {
-				var splitted = line.Split(':');
+				var splitted = line.Split(new[] { ':' }, 2);
 				var propertyName = splitted[0].Trim();
 				var property = typeof (BlogPostModel).GetProperty(propertyName);
 				if (property != null) {

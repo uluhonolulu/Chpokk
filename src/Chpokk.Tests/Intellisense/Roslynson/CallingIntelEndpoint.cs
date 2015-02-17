@@ -31,7 +31,15 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 		[Test]
 		public void ContainsTheMethodOfTheClass() {
 			var memberNames = Result.Select(item => item.Name);
-			Assert.Contains(memberNames, "B");
+			try {
+				Assert.Contains(memberNames, "B");
+			}
+			catch (Exception e) {
+				foreach (var memberName in memberNames) {
+					Console.WriteLine(memberName);
+				}
+				throw;
+			}
 		}
 	}
 
