@@ -42,7 +42,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 
 			//create a project
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(projectName, Path.Combine(projectName, projectName + language.GetProjectExtension()));
-			var rootElement = _projectCreator.CreateProject(outputType, projectName, projectPath, language);
+			var rootElement = _projectCreator.CreateProject(outputType, projectName, projectPath, inputModel.TemplatePath, language);
 
 
 			AddBclReferences(inputModel, rootElement);

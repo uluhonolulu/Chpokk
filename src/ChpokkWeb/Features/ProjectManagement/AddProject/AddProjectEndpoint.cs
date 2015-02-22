@@ -21,7 +21,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 			var projectFileName = inputModel.ProjectName + inputModel.Language.GetProjectExtension();
 			var relativeProjectPath = Path.Combine(inputModel.SolutionPath.ParentDirectory(), inputModel.ProjectName, projectFileName);
 			var projectPath = _repositoryManager.NewGetAbsolutePathFor(inputModel.RepositoryName, relativeProjectPath);
-			var rootElement = _projectCreator.CreateProject(inputModel.OutputType, inputModel.ProjectName, projectPath, inputModel.Language);
+			var rootElement = _projectCreator.CreateProject(inputModel.OutputType, inputModel.ProjectName, projectPath, inputModel.TemplatePath, inputModel.Language);
 
 			//add references
 			AddBclReferences(inputModel, rootElement);

@@ -16,7 +16,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		private readonly ProjectParser _projectParser;
 		private readonly IAppRootProvider _appRootProvider;
 		private readonly TemplateTransformer _templateTransformer;
-		private TemplateInstaller _templateInstaller;
+		private readonly TemplateInstaller _templateInstaller;
 		public ProjectCreator(ProjectParser projectParser, IFileSystem fileSystem, IAppRootProvider appRootProvider, TemplateTransformer templateTransformer, TemplateInstaller templateInstaller) {
 			_projectParser = projectParser;
 			_fileSystem = fileSystem;
@@ -25,27 +25,18 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 			_templateInstaller = templateInstaller;
 		}
 
-		public ProjectRootElement CreateProject(string outputType, string projectName, string projectPath,
+		public ProjectRootElement CreateProject(string outputType, string projectName, string projectPath, string templatePath,
 											 SupportedLanguage language) {
-			if (outputType == "Web") {
+			if (outputType == "Web" || outputType == "Template") {
 				// from template
-				var projectTemplatePath = @"{0}\Web\Version2012\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
-				_templateInstaller.CreateProjectFromTemplate(projectPath, projectTemplatePath);
+				if (outputType == "Web")
+					templatePath = @"{0}\Web\Version2012\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
+				_templateInstaller.CreateProjectFromTemplate(projectPath, templatePath);
 
 				return ProjectRootElement.Open(projectPath);
 			}
 			else return _projectParser.CreateProject(outputType, language, projectPath, projectName);
 		}
 
-		private void AddFileFromTemplate(string projectName, string templateFilePath, string projectTemplateFolder,
-										 string projectFolder, string targetPath = null) {
-			var templateFileName = templateFilePath.PathRelativeTo(projectTemplateFolder).TrimEnd('_'); //trim the last char so that we handle web.config_
-			targetPath = targetPath?? projectFolder.AppendPath(templateFileName);
-			var templateFileContent =
-				_fileSystem.ReadStringFromFile(templateFilePath);
-			var replacements = new Dictionary<string, string>() {{"$safeprojectname$", projectName}, {"$targetframeworkversion$", "4.5"}, {"$guid1$", Guid.NewGuid().ToString()}};
-			var processedContent = _templateTransformer.Evaluate(templateFileContent, replacements);
-			_fileSystem.WriteStringToFile(targetPath, processedContent);
-		}
 	}
 }

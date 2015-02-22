@@ -22,7 +22,15 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			var projectName = Path.GetFileNameWithoutExtension(projectPath);
 			var templatePath = this.TemplateFolder.AppendPath(templateRelativePath);
 			var projectTemplateFolder = templatePath.ParentDirectory();
-			var replacements = new Dictionary<string, string>() { { "$safeprojectname$", projectName }, { "$targetframeworkversion$", "4.5" }, { "$guid1$", Guid.NewGuid().ToString() } };
+			var replacements = new Dictionary<string, string>()
+				{
+					{"$safeprojectname$", projectName},
+					{"$projectname$", projectName},
+					{"$targetframeworkversion$", "4.5"},
+					{"$registeredorganization$", "GeekSoft"},
+					{"$year$", DateTime.Today.Year.ToString()},
+					{"$guid1$", Guid.NewGuid().ToString()}
+				};
 			var template = Template.LoadTemplate(templatePath);
 			var projectItems = template.GetProjectItems();
 			foreach (var projectItem in projectItems) {
