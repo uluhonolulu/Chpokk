@@ -21,10 +21,9 @@
 				var url = '${Urls.UrlFor<AddProjectInputModel>()}';
 				var model = $('#projectForm').serializeObject();
 				model.SolutionPath = solutionPath;
-				var selectedSpan = $('span.selected');
-				// template path
-				var templateData = selectedSpan.data('template');
-				model.TemplatePath = templateData.Path;
+				if (window.getTemplatePath) {
+					model.TemplatePath = window.getTemplatePath();
+				}
 				$.post(url, model);
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();

@@ -31,6 +31,9 @@
 				$('#save').addClass('disabled');
 				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
 				var model = $('#projectForm').serializeObject();
+				if (window.getTemplatePath) {
+					model.TemplatePath = window.getTemplatePath();
+				}
 				$.post(url, model);
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();

@@ -54,5 +54,14 @@
 			
 			}
 		});
+
+		function getTemplatePath() {
+			var selectedSpan = $('#templates span.selected');
+			var templateData = selectedSpan.data('template');
+			if (templateData) {
+				return templateData.Path;			
+			}
+			return null;
+		}
 	</script>	
 </content>
