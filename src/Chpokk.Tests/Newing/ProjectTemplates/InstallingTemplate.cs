@@ -41,11 +41,10 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 		}
 
 		public override void Act() {
-			var templateRelativePath = @"SystemFiles\Templates\ProjectTemplates\CSharp\Windows\1033\ConsoleApplication\csConsoleApplication.vstemplate";
-			var templatePath = Context.Container.Get<IAppRootProvider>().AppRoot.AppendPath(templateRelativePath);
+			var templateRelativePath = @"CSharp\Windows\1033\ConsoleApplication\csConsoleApplication.vstemplate";
 			var projectPath = Context.Container.Get<RepositoryManager>()
 			                            .NewGetAbsolutePathFor(Context.REPO_NAME, PROJECT_NAME.AppendPath(PROJECT_NAME + ".csproj"));
-			Context.Container.Get<TemplateInstaller>().CreateProjectFromTemplate(projectPath, templatePath);
+			Context.Container.Get<TemplateInstaller>().CreateProjectFromTemplate(projectPath, templateRelativePath);
 		}
 
 

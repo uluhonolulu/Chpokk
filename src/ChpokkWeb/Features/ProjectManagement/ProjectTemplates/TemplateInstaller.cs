@@ -17,9 +17,10 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			_rootProvider = rootProvider;
 		}
 
-		public void CreateProjectFromTemplate(string projectPath, string templatePath) {
+		public void CreateProjectFromTemplate(string projectPath, string templateRelativePath) {
 			var projectFolder = projectPath.ParentDirectory();
 			var projectName = Path.GetFileNameWithoutExtension(projectPath);
+			var templatePath = this.TemplateFolder.AppendPath(templateRelativePath);
 			var projectTemplateFolder = templatePath.ParentDirectory();
 			var replacements = new Dictionary<string, string>() { { "$safeprojectname$", projectName }, { "$targetframeworkversion$", "4.5" }, { "$guid1$", Guid.NewGuid().ToString() } };
 			var template = Template.LoadTemplate(templatePath);

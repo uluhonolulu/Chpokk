@@ -22,8 +22,8 @@ namespace Chpokk.Tests.Newing.ProjectTemplates {
 
 
 		public override IList<ProjectTemplateData> Act() {
-			var endpoint = Context.Container.Get<TemplateListEndpoint>();
-			return endpoint.DoIt().Templates.ToList();
+			var endpoint = Context.Container.Get<TemplateInstaller>();
+			return endpoint.GetTemplateData().ToList();
 		}
 		private static string GetNodeValue(XmlDocument document, XmlNamespaceManager ns, string name) {
 			var node = document.SelectSingleNode("//d:TemplateData/d:{0}".ToFormat(name), ns);

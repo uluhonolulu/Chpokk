@@ -29,9 +29,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 											 SupportedLanguage language) {
 			if (outputType == "Web") {
 				// from template
-				var projectTemplatePath =
-					_appRootProvider.AppRoot.AppendPath(
-						@"SystemFiles\Templates\ProjectTemplates\{0}\Web\Version2012\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic"));
+				var projectTemplatePath = @"{0}\Web\Version2012\1033\EmptyWebApplicationProject40\EmptyWebApplicationProject40.vstemplate".ToFormat(language == SupportedLanguage.CSharp ? "CSharp" : "VisualBasic");
 				_templateInstaller.CreateProjectFromTemplate(projectPath, projectTemplatePath);
 
 				return ProjectRootElement.Open(projectPath);
