@@ -10,7 +10,8 @@
 			$('#projectPropertiesDialog #save').text("Create");
 			$('#projectName').val('');
 			$('#projectName').prop('disabled', false);
-			$('#projectType').val('Exe');
+			$('[name="OutputType"]').prop('disabled', false);
+			setProjectType('Exe');
 			$('#language').val('CSharp');
 			$('#language').prop('disabled', false);
 			displayProjectPropertiesDialog(null, solutionPath);
@@ -35,6 +36,8 @@
 			$('#projectPropertiesDialog #save').text("Save changes");
 			$('#projectName').prop('disabled', true);
 			$('#language').prop('disabled', true);
+			$('[name="OutputType"]').prop('disabled', true);
+			$('#projectTemplateWrapper').hide();
 			displayProjectPropertiesDialog(projectPath, solutionPath);
 			$('#save').one('click', function () {
 				$('#save').text("Please wait..");
@@ -54,7 +57,7 @@
 			var model = $.extend({}, window.model, { ProjectPath: projectPath, SolutionPath: solutionPath });
 			$.post(url, model, function(data) {
 				if (data.ProjectName) $('#projectName').val(data.ProjectName);
-				if (data.ProjectType) $('#projectType').val(data.ProjectType);
+				if (data.ProjectType) setProjectType(data.ProjectType);
 				if (data.Language) $('#language').val(data.Language);
 				amplify.publish('projectPropertiesLoaded', data);
 				$('#projectPropertiesDialog').modal('show');
@@ -71,6 +74,10 @@
 		$(function() {
 			$('[name="OutputType"]').click(toggleProjectTemplateBrowser);
 		});
+		
+		function setProjectType(val) {
+			$('input:radio[name="OutputType"]').filter('[value="' + val +'"]').prop('checked', true);
+		}
 		
 	</script>
 </content>
