@@ -2,58 +2,57 @@
 <use namespace="ChpokkWeb.Features.ProjectManagement.ProjectTemplates" />
 
 <!--TemplateBrowser.spark-->
-Template Browser
 <ul id="templates" class="filetree treeview">
 
 </ul>
 
-<script type="text/javascript">
-	$(function () {
-		//when project properties are loaded, display the list of files
-		amplify.subscribe('projectPropertiesLoaded', function (data) {
-			if (data.ProjectTemplates)
-				displayTemplates(data.ProjectTemplates);
-		});
+<content name="InlineScripts">
+<!--TemplateBrowser.spark-->
 
-		function displayTemplates(templates) {
-			for (var templateIndex = 0; templateIndex < templates.length; templateIndex++) {
-				var template = templates[templateIndex];
-				var path = template.DisplayPath + '\\' + template.Name;
-				var folders = path.split('\\');
+	<script type="text/javascript">
+		$(function () {
+			//when project properties are loaded, display the list of files
+			amplify.subscribe('projectPropertiesLoaded', function (data) {
+				if (data.ProjectTemplates)
+					displayTemplates(data.ProjectTemplates);
+			});
 
-				var parent = $('#templates');
-				for (var i = 0; i < folders.length; i++) {
-					var id = folders.slice(0, i + 1).join('_').replace(/[ \.\(\)]/g, '');
-					var li = $('#' + id);	//try and find an existing folder
-					if (li.length == 0) {
-						li = $('<li/>');
-						li.prop('id', id);
-						var span = $('<span/>').text(folders[i]);
-						li.append(span);
-						li.appendTo(parent);
-						if (i < folders.length - 1){		// it's a folder				
-							span.addClass('folder');		// display an icon
-							$('<ul/>').appendTo(li);		// append the new child container
-						} else {							// it's a template
-							span.addClass('file');
-							span.data('template', template);
-							span.click(function() {
-								$('#templates .file').removeClass('selected');		//deselect all
-								$(this).addClass('selected');						//select this
-							});
+			function displayTemplates(templates) {
+				for (var templateIndex = 0; templateIndex < templates.length; templateIndex++) {
+					var template = templates[templateIndex];
+					var path = template.DisplayPath + '\\' + template.Name;
+					var folders = path.split('\\');
+
+					var parent = $('#templates');
+					for (var i = 0; i < folders.length; i++) {
+						var id = folders.slice(0, i + 1).join('_').replace(/[ \.\(\)]/g, '');
+						var li = $('#' + id);	//try and find an existing folder
+						if (li.length == 0) {
+							li = $('<li/>');
+							li.prop('id', id);
+							var span = $('<span/>').text(folders[i]);
+							li.append(span);
+							li.appendTo(parent);
+							if (i < folders.length - 1){		// it's a folder				
+								span.addClass('folder');		// display an icon
+								$('<ul/>').appendTo(li);		// append the new child container
+							} else {							// it's a template
+								span.addClass('file');
+								span.data('template', template);
+								span.click(function() {
+									$('#templates .file').removeClass('selected');		//deselect all
+									$(this).addClass('selected');						//select this
+								});
+							}
 						}
-					}
-					parent = li.children('ul');
-				}				
-			}
+						parent = li.children('ul');
+					}				
+				}
 
 
-			$('#templates').treeview({ collapsed: true, persist: "cookie" });
+				$('#templates').treeview({ collapsed: true, persist: "cookie" });
 			
-		}
-		$.get('/projectmanagement/projecttemplates', function(data) {
-			var templates = data.Templates;
-			//debugger;
+			}
 		});
-	});
-</script>
+	</script>	
+</content>

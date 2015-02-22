@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
+using ChpokkWeb.Features.ProjectManagement.ProjectTemplates;
 using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
@@ -16,6 +17,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 		protected PackageInstaller _packageInstaller;
 		protected SignalRLogger _logger;
 		protected ProjectCreator _projectCreator;
+		private TemplateInstaller _templateInstaller;
 
 		public AddProjectBase(ProjectParser projectParser, RepositoryManager repositoryManager, PackageInstaller packageInstaller, SignalRLogger logger, ProjectCreator projectCreator) {
 			_projectParser = projectParser;
@@ -68,5 +70,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddProject {
 				}
 			}			
 		}
+
+		//protected void CreateProjectFromTemplate
 	}
 }

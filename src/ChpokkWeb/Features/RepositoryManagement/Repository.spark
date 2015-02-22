@@ -47,7 +47,6 @@
 	<div class="row-fluid" style="height: 100%;">
 		<div class="col-lg-3" if="this.Get<FubuMVC.Core.Security.ISecurityContext>().IsAuthenticated()">
 			!{this.Partial(new SolutionBrowserPartialModel{RepositoryName = Model.RepositoryName})}		
-			<use file="ProjectManagement\ProjectTemplates\TemplateBrowser.spark"/>	
 		</div>
 		<div class="col-lg-9" style="height: 100%" id="editorContainer">
 			<div id="fileContent" style="margin-right:0px;height: 100%; display: none;" class="panel panel-default">

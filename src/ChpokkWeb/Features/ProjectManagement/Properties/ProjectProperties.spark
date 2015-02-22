@@ -21,6 +21,10 @@
 				var url = '${Urls.UrlFor<AddProjectInputModel>()}';
 				var model = $('#projectForm').serializeObject();
 				model.SolutionPath = solutionPath;
+				var selectedSpan = $('span.selected');
+				// template path
+				var templateData = selectedSpan.data('template');
+				model.TemplatePath = templateData.Path;
 				$.post(url, model);
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
@@ -58,6 +62,17 @@
 			});
   
 		}
+
+		// show or hide the template browser
+		function toggleProjectTemplateBrowser() {
+			var weSelectedTemplate = $('#OutputTypeTemplate').is(':checked');
+			$('#projectTemplateWrapper').toggle(weSelectedTemplate);
+		}
+
+		$(function() {
+			$('[name="OutputType"]').click(toggleProjectTemplateBrowser);
+		});
+		
 	</script>
 </content>
 
@@ -77,11 +92,18 @@
 						
 						<label for="projectType">Project type</label>
 						<div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
-						<select name="OutputType" id="projectType" class="form-control">
-							<option>Exe</option>
-							<option>Library</option>
-							<option>Web</option>
-						</select>
+						
+						<div>
+							<input name="OutputType" type="radio" id="OutputTypeExe" value="Exe"/> <label for="OutputTypeExe">Exe</label>
+							<input name="OutputType" type="radio" id="OutputTypeLibrary" value="Library"/> <label for="OutputTypeLibrary">Library</label>
+							<input name="OutputType" type="radio" id="OutputTypeWeb" value="Web"/> <label for="OutputTypeWeb">Web</label>
+							<input name="OutputType" type="radio" id="OutputTypeTemplate" value="Template"/> <label for="OutputTypeTemplate">Template</label>
+						</div>
+
+						<div id="projectTemplateWrapper" style="display: none; background-color: white;">
+							<use file="ProjectManagement\ProjectTemplates\TemplateBrowser.spark"/>	
+						</div>
+						
 						
 						<label for="language">Language</label>
 						<select name="Language" id="language" class="form-control">

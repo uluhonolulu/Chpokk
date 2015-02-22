@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ChpokkWeb.Infrastructure;
 using FubuCore;
 
 namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 	public class TemplateInstaller {
+		private const string TEMPLATE_ROOT = @"SystemFiles\Templates\ProjectTemplates\";
+		private readonly IAppRootProvider _rootProvider;
 		private readonly FileSystem _fileSystem;
 		private readonly TemplateTransformer _templateTransformer;
-		public TemplateInstaller(FileSystem fileSystem, TemplateTransformer templateTransformer) {
+		public TemplateInstaller(FileSystem fileSystem, TemplateTransformer templateTransformer, IAppRootProvider rootProvider) {
 			_fileSystem = fileSystem;
 			_templateTransformer = templateTransformer;
+			_rootProvider = rootProvider;
 		}
 
 		public void CreateProjectFromTemplate(string projectPath, string templatePath) {
@@ -39,6 +43,26 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFileSourcePath);
 			var processedProjectContent = _templateTransformer.Evaluate(projectFileContent, replacements);
 			_fileSystem.WriteStringToFile(projectPath, processedProjectContent);
+		}
+
+		public IEnumerable<Template> GetTemplates() {
+			var templateFiles = _fileSystem.FindFiles(TemplateFolder, new FileSet() { Include = "*.vstemplate", DeepSearch = true });
+			return from file in templateFiles select Template.LoadTemplate(file);
+		}
+
+		public IEnumerable<ProjectTemplateData> GetTemplateData() {
+			var templates = this.GetTemplates();
+			return from template in templates
+				   select new ProjectTemplateData() {
+					   Name = template.Name,
+					   Path = template.Path.PathRelativeTo(TemplateFolder),
+					   RequiredFrameworkVersion = template.RequiredFrameworkVersion
+				   };
+			
+		}
+
+		private string TemplateFolder {
+			get { return _rootProvider.AppRoot.AppendPath(TEMPLATE_ROOT); }
 		}
 	}
 }
