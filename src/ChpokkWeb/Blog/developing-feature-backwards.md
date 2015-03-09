@@ -1,7 +1,7 @@
 ﻿Title: Developing a New Feature, Backwards
 Date: 2015-02-10
 ==
-If you've mastered the basics of TDD, it is easy to add a new piece of functionality to an existing feature using TDD. For example, add an edge case to a calculator. Or add a welcome email to the registration process. All it takes is writing a new test for an existing method, or for a new method in an existing class, and, red-green-refactor, here we go.
+If you've mastered the basics of TDD, it is easy to add a new piece of functionality to an existing feature using it. For example, to add an edge case to a calculator. Or to add a welcome email to the registration process. All it takes is writing a new test for an existing method, or for a new method in an existing class, and, red-green-refactor, here we go.
 
 Not so easy when you are starting to work on a new feature. You want to run to a blackboard and draw diagrams and layers of abstraction vigorously, but the shadows of TDD Grandfathers look at you with infinite sadness, so you suppress your urge and just stare at the screen, not knowing how to start writing your first test.
 

@@ -4290,7 +4290,6 @@
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\WebWCFService\WCFService.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\WebWCFService\WCFService.webproj" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\VisualBasic\Web\Version2012\1033\WebWCFService\Web.config" />
-    <Content Include="SystemFiles\Templates\ProjectTemplates\Новая папка\Web\CSharp\1033\RazorStarterSiteProjectTemplate.cshtml\WebApplication.webproj" />
     <EmbeddedResource Include="App_GlobalResources\FileTemplates\Module1.vb" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\boot\bootstrap-responsive.css" />
