@@ -5,7 +5,7 @@
 </div>
 
 <content name="menu">
-	<ul class="nav navbar-nav">
+	<ul class="nav navbar-nav navbar-default">		<!--navbar-default for coloring when you drop-down the menu-->
 		<li>
 			<a href="/">Home</a>
 		</li>
