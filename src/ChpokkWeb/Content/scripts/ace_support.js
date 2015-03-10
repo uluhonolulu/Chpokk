@@ -132,7 +132,7 @@ window.tabs = window.tabs || {
 window.tabs.all = window.tabs.all || {};
 
 function loadFile(path, editor, onload) {
-	//track('loading ' + path);
+	track('loading ' + path);
 	$('#fileContent').show();
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
@@ -140,7 +140,9 @@ function loadFile(path, editor, onload) {
 	fileData["ui-draggable"] = null; //fix cyclic error
 	// if we haven't loaded this file yet, let's load it and add to cache; then call this method again
 	if (!window.tabs.all[path]) {
-		//track('sending ' + JSON.stringify(fileData));
+		track('sending ' + JSON.stringify(fileData));
+		if (!fileData.PathRelativeToRepositoryRoot)
+			track('ERROR: PathRelativeToRepositoryRoot is null!!!');
 		$.ajax({
 			type: "POST",
 			url: 'url::ChpokkWeb.Features.Exploring.FileContentInputModel',
