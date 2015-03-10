@@ -2,4 +2,5 @@
 Allow: /$
 Allow: /blog/*
 Allow: /readme/*
+Allow: /_content/*
 Disallow: /*
