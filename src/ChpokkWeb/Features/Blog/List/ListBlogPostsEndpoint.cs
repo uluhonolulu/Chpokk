@@ -52,10 +52,10 @@ namespace ChpokkWeb.Features.Blog.List {
 													GetUriForContentModel(model), model.Slug, model.Date)
 					                {
 						                Summary =
-							                new TextSyndicationContent("summary", TextSyndicationContentKind.Html),
+											new TextSyndicationContent(model.HtmlDescription, TextSyndicationContentKind.Html),
 						                PublishDate = model.Date,
 						                Content =
-							                SyndicationContent.CreatePlaintextContent(model.HtmlDescription),
+							                SyndicationContent.CreateHtmlContent(model.Content),
 						                Categories = {new SyndicationCategory("CodeProject")}
 					                };
 			var updatedTime = feedItems.First().PublishDate;
