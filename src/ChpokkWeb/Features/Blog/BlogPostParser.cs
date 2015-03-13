@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using ChpokkWeb.Features.Blog.Post;
 using ChpokkWeb.Features.ReadMe;
 using FubuCore;
@@ -36,7 +37,14 @@ namespace ChpokkWeb.Features.Blog {
 				var property = typeof (BlogPostModel).GetProperty(propertyName);
 				if (property != null) {
 					var stringValue = splitted[1].Trim();
-					property.SetValue(blogPostModel, Convert.ChangeType(stringValue, property.PropertyType, CultureInfo.InvariantCulture));		
+					if (property.PropertyType.IsArray) {
+						var propertyValue = (from s in stringValue.Split(',') select s.Trim()).ToArray();
+						property.SetValue(blogPostModel, propertyValue);						
+					}
+					else {
+						property.SetValue(blogPostModel, Convert.ChangeType(stringValue, property.PropertyType, CultureInfo.InvariantCulture));						
+					}
+	
 				}
 			}
 

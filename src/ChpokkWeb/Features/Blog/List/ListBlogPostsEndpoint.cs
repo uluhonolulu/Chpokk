@@ -48,16 +48,7 @@ namespace ChpokkWeb.Features.Blog.List {
 			var source = postModels.OrderByDescending(model => model.Date).Take(10);
 			var feedItems = from model in source
 			                select
-				                new SyndicationItem(model.Title, SyndicationContent.CreateXhtmlContent(model.Content),
-													GetUriForContentModel(model), model.Slug, model.Date)
-					                {
-						                Summary =
-											new TextSyndicationContent(model.HtmlDescription, TextSyndicationContentKind.Html),
-						                PublishDate = model.Date,
-						                Content =
-							                SyndicationContent.CreateHtmlContent(model.Content),
-						                Categories = {new SyndicationCategory("CodeProject")}
-					                };
+				                CreateSyndicationItem(model);
 			var updatedTime = feedItems.First().PublishDate;
 			var feed = new SyndicationFeed
 				{
@@ -84,6 +75,22 @@ namespace ChpokkWeb.Features.Blog.List {
 			}
 
 			return doc;
+		}
+
+		private SyndicationItem CreateSyndicationItem(BlogPostModel model) {
+			var syndicationItem = new SyndicationItem(model.Title, SyndicationContent.CreateXhtmlContent(model.Content), GetUriForContentModel(model), model.Slug, model.Date)
+				{
+					Summary = new TextSyndicationContent(model.HtmlDescription, TextSyndicationContentKind.Html), 
+					PublishDate = model.Date, 
+					Content = SyndicationContent.CreateHtmlContent(model.Content)
+				};
+			if (model.Categories != null) {
+				foreach (var category in model.Categories) {
+					syndicationItem.Categories.Add(new SyndicationCategory(category));
+				}				
+			}
+
+			return syndicationItem;
 		}
 
 		private Uri GetUriForContentModel(BaseContentModel model) {

@@ -1,6 +1,6 @@
 ﻿Title: Providing user feedback for long running tasks in Asp.Net
 Date: 2015-01-06
-Categories: CodeProject
+Categories: CodeProject, SignalR
 ==
 There are many cases when you want to start a long operation and watch its progress. 
 In my [Chpokk project](http://chpokk.apphb.com/) (a C# and VB.Net IDE), you can see it when you create a project (primarily when adding NuGet packages, which can be long), compiling, executing, and automated testing. 
