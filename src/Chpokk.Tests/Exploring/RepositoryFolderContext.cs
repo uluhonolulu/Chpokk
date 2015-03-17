@@ -8,6 +8,7 @@ using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.RepositoryManagement;
 using LibGit2Sharp.Tests.TestHelpers;
 using FubuCore;
+using Microsoft.Build.Evaluation;
 
 namespace Chpokk.Tests.Exploring {
 	public class RepositoryFolderContext : SimpleAuthenticatedContext, IDisposable {
@@ -31,6 +32,7 @@ namespace Chpokk.Tests.Exploring {
 
 		public override void Dispose() {
 			DirectoryHelper.DeleteDirectory(RepositoryRoot);
+			ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
 			base.Dispose();
 		}
 	}

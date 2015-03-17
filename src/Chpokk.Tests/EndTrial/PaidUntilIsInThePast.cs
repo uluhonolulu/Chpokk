@@ -21,7 +21,7 @@ namespace Chpokk.Tests.EndTrial {
 		}
 
 		protected override dynamic GetTestUser() {
-			return new { PaidUntil = DATE2014};
+			return new { PaidUntil = DATE2014, Status = "not null"};
 		}
 
 		public override bool Act() {

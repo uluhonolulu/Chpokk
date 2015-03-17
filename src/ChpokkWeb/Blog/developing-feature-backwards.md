@@ -9,9 +9,16 @@ I'm going to tell you how I'm doing it, and been doing it for a few years, using
 
 You're gonna like it.
 --
-In a Web application, a typical feature can be seen as a "dialogue" between a user and a Smart Machine. We programmers should program The Machine so that her answers is, well, smart. Many times we have several user actions related to a particular feature, and the most important is the last action. In my case, the feature I am talking about is choosing a new project from a template. First a user opens a new project screen, and the system, in response to this action, displays the list of available templates (and many other things, of course). This is Step 1. Next, the user chooses a template, and the system creates a new project, based on this choice and many other parameters entered at the New Project screen. This is Step 2, and it is the purpose of the feature we're developing.
+In a Web application, a typical feature can be seen as a "dialogue" between a user and a Smart Machine. We programmers should program The Machine so that her answers is, well, smart. Many times we have several user actions related to a particular feature, and the most important is the last action. In my case, the feature I am talking about is choosing a new project from a template. So, the typical workflow is something like this:
+
+Step 1. A user opens a new project screen, and the system, in response to this action, displays the list of available templates (and many other things, of course). 
+Step 2. Next, the user chooses a template, and the system creates a new project, based on this choice and many other parameters entered at the New Project screen. This is the actual purpose of the feature we're developing.
 
 We are tempted to start with Step 1. We're going to start with Step 2 instead. Here's why.
+
+##Get it done, fast
+
+The first reason is that we, being followers of the Lean Development Movement, want to have something useful done as quickly and as simply as possible. While a piece of user interface for Step 1 is not something we can actually use, we could use the part where the system creates a project from a template: for example, we could send the template path and the other data manually, using Fiddler or even Telnet.
 
 After we develop the server-side code for Step 2, we'll know what kind of input data is required. In our case it's the full path to the project template and to the project being created. Next, we figure the data that's needed to be sent from the client side (note that we're getting closer to Step 1). Apparently we don't want to leak the absolute paths, so we send relative paths instead. Then we get to Step1 client side. We see that we have to have the relative template paths on the client (in addition to their names and, possibly, descriptions and icons, for UI purposes). Now we're ready to write the code that displays the list of templates and sends the user's choice to the server. Finally, we know what kind of info we need to get from the server before displaying the list of templates to the user, so we are ready to develop the server-side part of Step 1.  If you have client-side and server-side testing set up, the entire feature can be perfected before you open it in your browser for the first time. 
 

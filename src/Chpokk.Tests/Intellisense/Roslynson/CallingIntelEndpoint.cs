@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Arractas;
+using CThru.BuiltInAspects;
 using Chpokk.Tests.Exploring;
 using ChpokkWeb.Features.Editor.Intellisense;
 using MbUnit.Framework;
+using Microsoft.Build.Evaluation;
 using Roslyn.Compilers;
 
 namespace Chpokk.Tests.Intellisense.Roslynson {
@@ -25,6 +27,8 @@ namespace Chpokk.Tests.Intellisense.Roslynson {
 							PathRelativeToRepositoryRoot = "x.cs",
 							ProjectPath = Path.Combine("src", Context.PROJECT_PATH) // src\ProjectName\ProjectName.csproj
 			            };
+			//Trace.That(info => info.TargetInstance is CompletionProvider).DisplayFor<IEnumerable<string>>(enumerable => enumerable.Join(", "));
+			//Trace.That(info => info.TargetInstance is IntelDataLoader);
 			return endpoint.GetIntellisenseData(model).Items;
 		}
 
