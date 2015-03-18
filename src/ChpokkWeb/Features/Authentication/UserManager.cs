@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using FubuMVC.Core.Security;
 using Newtonsoft.Json;
@@ -20,12 +21,18 @@ namespace ChpokkWeb.Features.Authentication {
 			var userName = GetUsername(profile);
 			_authenticationContext.ThisUserHasBeenAuthenticated(userName, true);
 
+			Task.Run(() => SaveUser(profile, rawData));
+			return userName;
+		}
+
+		private void SaveUser(dynamic profile, string rawData) {
+			var userName = GetUsername(profile);
 			var db = Database.Open();
 			var user = db.Users.FindByUserId(userName);
 			if (user == null) {
-				db.Users.Insert(UserId: userName, FullName: profile.displayName, Email: profile.email, Photo: profile.photo, Data: rawData);
+				db.Users.Insert(UserId: userName, FullName: profile.displayName, Email: profile.email, Photo: profile.photo,
+				                Data: rawData);
 			}
-			return userName;
 		}
 
 		public void SignoutUser() {
