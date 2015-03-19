@@ -45,6 +45,7 @@ namespace ChpokkWeb.Infrastructure {
 								 .Use(new AmazonS3Client("AKIAIHOC7V5PPD4KIZBQ", "UJlRXeixN8/cQ5XuZK9USGUMzhnxsGs7YYiZpozM", RegionEndpoint.USEast1));
 			For<IS3Client>().Singleton()
 				.Use(context => new S3Client(context.GetInstance<AmazonS3Client>(), true));
+			For<RemoteFileListCache>().Singleton();
 			For<RestoreSynchronizer>().LifecycleIs(new HybridSessionLifecycle());
 			For<ActivityTracker>().LifecycleIs(new HybridSessionLifecycle());
 			For<UserData>().LifecycleIs(new HybridSessionLifecycle());
