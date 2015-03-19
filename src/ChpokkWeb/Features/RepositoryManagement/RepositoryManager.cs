@@ -25,9 +25,9 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly IAppRootProvider _rootProvider;
 		private readonly IS3Client _client;
 		private readonly ActivityTracker _activityTracker;
-		private RestoreSynchronizer _restoreSynchronizer;
+		private RemoteFileListCache _remoteFileListCache;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client, ActivityTracker activityTracker, RestoreSynchronizer restoreSynchronizer) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client, ActivityTracker activityTracker, RestoreSynchronizer restoreSynchronizer, RemoteFileListCache remoteFileListCache) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
@@ -36,7 +36,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			_backup = backup;
 			_client = client;
 			_activityTracker = activityTracker;
-			_restoreSynchronizer = restoreSynchronizer;
+			_remoteFileListCache = remoteFileListCache;
 			RegisterUserFolderForBackup();
 		}
 
@@ -102,7 +102,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		public IEnumerable<string> GetRepositoryNamesFromStorage() {
 			var repositoryFolder = GetRepositoryFolder();
 			var storagePrefix = repositoryFolder.PathRelativeTo(AppRoot).Replace('\\', '/').MakeSureEndsWith("/");
-			var fullRemotePaths = _client.EnumerateChildren("chpokk", storagePrefix);
+			var fullRemotePaths = _remoteFileListCache.Paths.Where(s => s.StartsWith(storagePrefix)); //_client.EnumerateChildren("chpokk", storagePrefix);
 			return (from path in fullRemotePaths select path.Substring(storagePrefix.Length).Split('/')[0]).Distinct();
 		}
 
