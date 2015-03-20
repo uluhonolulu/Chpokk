@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using ChpokkWeb.Infrastructure;
+using FubuMVC.Core;
 
 namespace ChpokkWeb.Features.Storage {
 	public class RestoreEndpoint {
 		private readonly Downloader _downloader;
-		private RemoteFileListCache _cache;
+		private readonly RemoteFileListCache _cache;
 		public RestoreEndpoint(Downloader downloader, RemoteFileListCache cache) {
 			_downloader = downloader;
 			_cache = cache;
@@ -20,8 +21,9 @@ namespace ChpokkWeb.Features.Storage {
 			return builder.ToString();
 		}
 
-		public IEnumerable<string> AllFiles() {
-			return _cache.Paths;
+		[JsonEndpoint]
+		public object AllFiles() {
+			return _cache.Paths.Count();
 		}  
 	}
 	public class RestoreInputModel {
