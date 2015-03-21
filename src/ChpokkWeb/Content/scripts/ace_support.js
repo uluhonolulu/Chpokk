@@ -136,6 +136,9 @@ function loadFile(path, editor, onload) {
 	$('#fileContent').show();
 	var selector = 'li[data-path="' + path.replace(/\\/g, '\\\\') + '"]';
 	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
+	if (itemContainer.length == 0) {
+		track('ERROR: couldn\'t find itemContainer: ' + '#solutionBrowser ' + selector + ' .file');
+	}
 	var fileData = $.extend({}, model, itemContainer.data());
 	fileData["ui-draggable"] = null; //fix cyclic error
 	// if we haven't loaded this file yet, let's load it and add to cache; then call this method again
