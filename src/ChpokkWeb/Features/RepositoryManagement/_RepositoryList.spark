@@ -5,6 +5,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				Your repositories</h4>
+			<!--<button id="deleteAll">Delete all. ALL.</button>-->
 		</div>
 		<div class="panel-body">
 			<for each="var name in Model.RepositoryNames">
@@ -16,6 +17,7 @@
 </div>
 
 <content name="InlineScripts">
+	<!--_RepositoryList.spark-->
 	<test if="!Model.RepositoryNames.Any()">
 		<script type="text/javascript">
 			$(function () {
@@ -24,6 +26,13 @@
 				window.noRepositories = true;
 			});
 		</script>
-			
 	</test>
+<!--	<script type="text/javascript">
+		$(function () {
+			$('#deleteAll').click(function() {
+				$.post('/repositorymanagement/deleterepository/deleteall');
+				//$.post('/authentication');
+			});
+		});
+	</script>-->
 </content>

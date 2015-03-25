@@ -95,7 +95,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		[NotNull] 
 		public IEnumerable<string> GetRepositoryNames() {
 			var repositoryFolder = GetRepositoryFolder();
-			if (!Directory.Exists(repositoryFolder)) return Enumerable.Empty<string>();
+			if (!Directory.Exists(repositoryFolder)) return GetRepositoryNamesFromStorage();
 			return Directory.EnumerateDirectories(repositoryFolder).Select(Path.GetFileName);
 		}
 
@@ -187,7 +187,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			if (Directory.Exists(this.GetRepositoryFolder())) {
 				return !ChildDirectoriesExist(this.GetRepositoryFolder());
 			}
-			return false;
+			return true;
 		}
 
 		public void RestoreFilesForCurrentUser() {
@@ -199,7 +199,8 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 				var repositoryPath = GetAbsoluteRepositoryPath(repositoryName);
 				Directory.CreateDirectory(repositoryPath);
 				//download each repository asynchronously
-				Task.Run(() => _downloader.DownloadAllFiles(AppRoot, repositoryPath.PathRelativeTo(AppRoot), RecordDownloadedFile));
+				//let's not -- too many threads busy
+				//Task.Run(() => _downloader.DownloadAllFiles(AppRoot, repositoryPath.PathRelativeTo(AppRoot), RecordDownloadedFile));
 
 			}
 			//downloading all files that are not there yet (other than repos)

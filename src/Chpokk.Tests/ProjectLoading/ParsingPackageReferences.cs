@@ -16,20 +16,23 @@ using Shouldly;
 
 namespace Chpokk.Tests.ProjectLoading {
 	[TestFixture]
-	public class ParsingPackageReferences : BaseQueryTest<ProjectFileWithOnePackageReferenceContext, IEnumerable<object>> {
+	public class ParsingPackageReferences : BaseQueryTest<ProjectFileWithOnePackageReferenceContext, IEnumerable<dynamic>> {
 		[Test]
 		public void ShouldReturnTheNameOfThePackage() {
-			var packageName = Result.Single();
-			packageName.ShouldBe(Context.PACKAGE_NAME);
+			var referencedPackageInfo = Result.Single();
+			var packageName = referencedPackageInfo.Name;
+			((string) packageName).ShouldBe(Context.PACKAGE_NAME);
+			((bool) referencedPackageInfo.Selected).ShouldBe(true);
 		}
 
-		public override IEnumerable<object> Act() {
+		public override IEnumerable<dynamic> Act() {
 			var parser = Context.Container.Get<ProjectParser>();
-			var package = new DataServicePackage() {Id = Context.PACKAGE_NAME, }; //new InMemoryPackage();
-			foreach (var reference in package.AssemblyReferences) {
-				Console.WriteLine(reference.Name);
-			}
-			return null;// parser.GetPackageReferences(Context.ProjectPath);
+			//var package = new DataServicePackage() {Id = Context.PACKAGE_NAME}; //new InMemoryPackage();
+			//foreach (var reference in package.AssemblyReferences) {
+			//	Console.WriteLine(reference.Name);
+			//}
+			var package = new InMemoryPackage() {AssemblyReferences = new List<IPackageAssemblyReference>(), Id = Context.PACKAGE_NAME};
+			return parser.GetPackageReferences(Context.ProjectPath, new[]{package});
 		}
 	}
 
