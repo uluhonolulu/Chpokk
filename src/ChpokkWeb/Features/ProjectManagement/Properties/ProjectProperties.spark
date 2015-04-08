@@ -93,14 +93,14 @@
 				</div>
 				<div class="modal-body">
 					<form class="well" id="projectForm">
-						<label for="projectName">Project name</label>
+						<h4>Project name</h4>
 						<input name="ProjectName" id="projectName" type="text" class="form-control"/>
 						
-						<label for="projectType">Project type</label>
+						<h4>Project type</h4>
 						<div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
 						
 						<div>
-							<input name="OutputType" type="radio" id="OutputTypeExe" value="Exe"/> <label for="OutputTypeExe">Exe</label>
+							<input name="OutputType" type="radio" id="OutputTypeExe" value="Exe" checked="checked"/> <label for="OutputTypeExe">Exe</label>
 							<input name="OutputType" type="radio" id="OutputTypeLibrary" value="Library"/> <label for="OutputTypeLibrary">Library</label>
 							<input name="OutputType" type="radio" id="OutputTypeWeb" value="Web"/> <label for="OutputTypeWeb">Web</label>
 							<input name="OutputType" type="radio" id="OutputTypeTemplate" value="Template"/> <label for="OutputTypeTemplate">Template</label>
@@ -111,11 +111,11 @@
 						</div>
 						
 						
-						<label for="language">Language</label>
-						<select name="Language" id="language" class="form-control">
-							<option value="CSharp">C#</option>
-							<option value="VBNet">VB.Net</option>
-						</select>
+						<h4>Language</h4>
+						<div>
+							<input name="Language" type="radio" id="LanguageCSharp" value="CSharp" checked="checked"/> <label for="LanguageCSharp">C#</label>
+							<input name="Language" type="radio" id="LanguageVBNet" value="VBNet"/> <label for="LanguageVBNet">VB.Net</label>
+						</div>
 						
 						<render partial="ProjectManagement\References\References"/>
 						<input name="SolutionPath" id="SolutionPath" type="hidden"/>
@@ -131,4 +131,10 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+</content>
+
+<content name="head">
+	<style>
+		html #projectForm label { margin-right: 10px; }
+	</style>
 </content>
