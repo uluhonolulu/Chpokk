@@ -27,6 +27,7 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 					{"$safeprojectname$", projectName},
 					{"$projectname$", projectName},
 					{"$targetframeworkversion$", "4.5"},
+					{"$clrversion$", "4.0"},
 					{"$registeredorganization$", "GeekSoft"},
 					{"$year$", DateTime.Today.Year.ToString()},
 					{"$guid1$", Guid.NewGuid().ToString()}
