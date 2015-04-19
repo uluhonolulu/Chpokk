@@ -45,10 +45,10 @@
 	<!--Scripts from Views -->
 	<use content="InlineScripts" />
 
-	<ga />
 
 	
 	<iAgreeToCookies/>
+	<ga />
 
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">

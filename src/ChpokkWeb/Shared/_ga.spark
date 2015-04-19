@@ -1,5 +1,5 @@
-﻿<script  type="text/plain" class="cc-onconsent-analytics">
-	
+﻿<!--_ga.spark-->
+<script  type="text/plain" class="cc-onconsent-inline-analytics">
 	(
 		function(i,s,o,g,r,a,m){
 			i['GoogleAnalyticsObject']=r;

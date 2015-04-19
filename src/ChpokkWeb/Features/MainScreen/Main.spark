@@ -32,19 +32,26 @@
 </content>
 
 
-			  <content name="InlineScripts">
-				  <script type="text/javascript">
-					function addRepositoryMenuItem(item, handler) {
-						if (typeof item === "string") {
-							item = $('<a/>').text(item);
-						}
-						if (handler) {
-							item.click(handler);
-						}
-						var menuItem = $('<li/>').append(item);
-						$('#repositoryMenu').append(menuItem);
-					}
-				</script>
-			  </content>
+<content name="InlineScripts">
+	<script type="text/javascript">
+		function addRepositoryMenuItem(item, handler) {
+			if (typeof item === "string") {
+				item = $('<a/>').text(item);
+			}
+			if (handler) {
+				item.click(handler);
+			}
+			var menuItem = $('<li/>').append(item);
+			$('#repositoryMenu').append(menuItem);
+		}
+	</script>
+</content>
 
 <keepalive/>
+
+<!-- track successful logins -->
+<var ctx="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
+<script if="ctx.IsAuthenticated()" type="text/plain" class="cc-onconsent-inline-analytics">  <!--must be run after GA-->
+	ga('send', 'event', 'auth', 'main page loaded');
+</script>
+
