@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-	<title>
+<head itemscope itemtype="http://schema.org/WebSite">
+	<title itemprop='name'>
 		<use content="title">Chpokk, your online .Net editor and compiler</use>
 	</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
