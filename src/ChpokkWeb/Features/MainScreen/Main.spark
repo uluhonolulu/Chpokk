@@ -50,8 +50,9 @@
 <keepalive/>
 
 <!-- track successful logins -->
-<var ctx="this.Get<FubuMVC.Core.Security.ISecurityContext>()" />
-<script if="ctx.IsAuthenticated()" type="text/plain" class="cc-onconsent-inline-analytics">  <!--must be run after GA-->
+<var ctx="this.Get<FubuMVC.Core.Security.ISecurityContext>()"/>
+<!--must be run after GA, thus adding the onconsent class-->
+<script if="ctx.IsAuthenticated()" type="text/plain" class="cc-onconsent-inline-analytics"> 
 	ga('send', 'event', 'auth', 'main page loaded');
 </script>
 
