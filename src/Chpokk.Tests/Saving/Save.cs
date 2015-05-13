@@ -46,7 +46,7 @@ namespace Chpokk.Tests.Saving {
 			const string pathRelativeToRepositoryRoot = @"src\ProjectName\Class1.cs";
 			//Context.FakeSecurityContext.UserName = "ulu";
 			using (var repo = new Repository(Context.RepositoryRoot)) {
-				repo.Index.Stage(Context.FilePath);				
+				repo.Index.Add(Context.FilePath);				
 			}
 			controller.SaveCommit(new SaveCommitInputModel { RepositoryName = Context.REPO_NAME, Content = NEW_CONTENT, PathRelativeToRepositoryRoot = pathRelativeToRepositoryRoot, CommitMessage = "doesntmater" });
 

@@ -17,7 +17,7 @@ namespace ChpokkWeb.Features.Remotes.Git {
 			var userName = _securityContext.CurrentIdentity.Name;
 			var author = new Signature(userName, userName, DateTimeOffset.Now);
 			using (var repo = new Repository(repositoryPath)) {
-				repo.Index.Stage(filePath);
+				repo.Index.Add(filePath);
 				repo.Commit(commitMessage, author, author);
 			}
 		}
@@ -26,7 +26,7 @@ namespace ChpokkWeb.Features.Remotes.Git {
 			var userName = _securityContext.CurrentIdentity.Name;
 			var author = new Signature(userName, userName, DateTimeOffset.Now);
 			using (var repo = new Repository(repositoryPath)) {
-				filePaths.Each(filePath => repo.Index.Stage(filePath));
+				filePaths.Each(filePath => repo.Index.Add(filePath));
 				repo.Commit(commitMessage, author, author);
 			}			
 		}
