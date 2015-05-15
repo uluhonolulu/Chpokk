@@ -138,6 +138,8 @@ function loadFile(path, editor, onload) {
 	var itemContainer = $('#solutionBrowser ' + selector + ' .file');
 	if (itemContainer.length == 0) {
 		track('ERROR: couldn\'t find itemContainer: ' + '#solutionBrowser ' + selector + ' .file');
+		var paths = $('#solutionBrowser li').map(function () { return $(this).data('path'); }).get().join();
+		track("ALL PATHS: " + paths);
 	}
 	var fileData = $.extend({}, model, itemContainer.data());
 	fileData["ui-draggable"] = null; //fix cyclic error
