@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using FubuMVC.Core.Security;
@@ -21,7 +22,8 @@ namespace ChpokkWeb.Features.Authentication {
 			var userName = GetUsername(profile);
 			_authenticationContext.ThisUserHasBeenAuthenticated(userName, true);
 
-			Task.Run(() => SaveUser(profile, rawData));
+			new Thread(() => SaveUser(profile, rawData)).Start();
+			//Task.Run(() => SaveUser(profile, rawData));
 			return userName;
 		}
 
