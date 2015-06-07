@@ -5904,11 +5904,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(WebProjectOutputDir)\bin\NativeBinaries" md "$(WebProjectOutputDir)\bin\NativeBinaries"
-if not exist "$(WebProjectOutputDir)\bin\NativeBinaries\x86" md "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
-if not exist "$(WebProjectOutputDir)\bin\NativeBinaries\amd64" md "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"
-xcopy /s /y /d "$(SolutionDir)packages\LibGit2Sharp.0.21.0.176\lib\net40\NativeBinaries\x86\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\x86"
-xcopy /s /y /d "$(SolutionDir)packages\LibGit2Sharp.0.21.0.176\lib\net40\NativeBinaries\amd64\*.*" "$(WebProjectOutputDir)\bin\NativeBinaries\amd64"</PostBuildEvent>
+    <PostBuildEvent>del /Q "$(WebProjectOutputDir)\bin\git2-*.*"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
