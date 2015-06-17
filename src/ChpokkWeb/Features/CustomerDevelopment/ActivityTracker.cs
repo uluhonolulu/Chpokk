@@ -44,15 +44,15 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		public void Dispose() {
-			if (UserName.IsEmpty()) {
-				return; //don't send for anonymous
-			}
+			//if (UserName.IsEmpty()) {
+			//	return; //don't send for anonymous
+			//}
 			if (GetDuration() == TimeSpan.Zero) {
 				return; //don't send empty stuff
 			}
 			try {
 				var messageBuilder = new StringBuilder();
-				messageBuilder.AppendLine("User: " + UserName);
+				messageBuilder.AppendLine("User: " + (IsLoggedIn? UserName: "anonymous"));
 				messageBuilder.AppendLine("Browser: " + Browser);
 				foreach (var model in _log) {
 					messageBuilder.AppendLine(model.ToString());
@@ -62,23 +62,33 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 					var body = messageBuilder.ToString().Replace(@"\r\n", Environment.NewLine); // making the serialized values readable
 					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
 				}
-				_usageRecorder.AddUsage(UserName, messageBuilder.ToString(), GetDuration());
+				if (IsLoggedIn) {
+					_usageRecorder.AddUsage(UserName, messageBuilder.ToString(), GetDuration());				
+				}
+
 			}
 			catch (Exception e) {
 				_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", "Error sending actions: " + e.Message, e.ToString());
 			}
 
+			if (IsLoggedIn) {
+				_onlineTracker.Off(UserName);			
+			}
 
-			_onlineTracker.Off(UserName);
 		}
 
+		private bool IsLoggedIn { get { return UserName.IsNotEmpty(); }}
+
 		private string GetSubject() {
-			var subject = "Actions for " + UserName;
+			var subject = "Actions for " + (IsLoggedIn ? UserName : "anonymous");
 			if (HasThisAction("Subscribed")) subject += " (SUBSCRIBED!!!)";
 			if (HasThisAction("Shit Canceled")) subject += " (canceled!!!)";
 			if (_log.OfType<ErrorModel>().Any()) subject += " ERROR!!!";
-			var previousUsages = _usageCounter.GetUsageCount(UserName);
-			subject += ", previous usages: {0}.".ToFormat(previousUsages);
+			if (IsLoggedIn) {
+				var previousUsages = _usageCounter.GetUsageCount(UserName);
+				subject += ", previous usages: {0}.".ToFormat(previousUsages);				
+			}
+
 			var duration = GetDuration();
 			subject += " duration:" + duration.ToString(@"h\:mm\:ss");
 			if (HasThisAction("createSimpleProjectButton")) subject += " (created a project)";
