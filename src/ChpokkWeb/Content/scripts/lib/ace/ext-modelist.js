@@ -122,7 +122,7 @@ var supportedModes = {
     Toml:        ["toml"],
     Twig:        ["twig"],
     Typescript:  ["typescript|ts|str"],
-    VBScript:    ["vbs|vb"],
+    VBNet:		 ["vb"],
     Velocity:    ["vm"],
     XML:         ["xml|rdf|rss|wsdl|xslt|atom|mathml|mml|xul|xbl"],
     XQuery:      ["xq"],

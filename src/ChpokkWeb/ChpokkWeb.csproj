@@ -27,8 +27,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-	<UseWPP_CopyWebApplication>True</UseWPP_CopyWebApplication>
-	<PipelineDependsOnBuild>False</PipelineDependsOnBuild>
+    <UseWPP_CopyWebApplication>True</UseWPP_CopyWebApplication>
+    <PipelineDependsOnBuild>False</PipelineDependsOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -343,6 +343,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\scripts\lib\ace\mode-vbnet.js" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\cloudservice.ico" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\CloudService.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\CloudServiceTemplates.dll" />
