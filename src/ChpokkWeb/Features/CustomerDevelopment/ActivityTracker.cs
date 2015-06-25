@@ -36,7 +36,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			if (url.IsEmpty())
 				url = _httpRequest.FullUrl();
 			_log.Add(new TrackerInputModel{What = caption, Url = url});
-			UserName = userName ?? _securityContext.CurrentIdentity.Name;
+			if (userName.IsNotEmpty()) {
+				UserName = userName;
+			}
 			if (Browser.IsEmpty()) Browser = browser;
 			if (UserName.IsNotEmpty()) {
 				_onlineTracker.On(UserName);
