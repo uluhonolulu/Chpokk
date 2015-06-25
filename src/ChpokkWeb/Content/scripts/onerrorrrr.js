@@ -171,17 +171,7 @@ if (!localStorageOk) {
 //on AJAX error, track
 $(document).ajaxError(function (event, jqxhr, settings, exception) {
 	//var data = { event: event, request: jqxhr, settings: settings, exception: exception };
-	var data = { responseText: jqxhr.responseText, data: settings.data };
-	try {
-		data.request = JSON.stringify(jqxhr);
-	} catch(e) {
-		data.request = e;
-	} 
-	try {
-		data.settings = JSON.stringify(settings);
-	} catch (e) {
-		data.settings = e;
-	}
+	var data = { responseText: getErrorText(jqxhr.responseText), data: settings.data };
 	try {
 		data.exception = JSON.stringify(exception);
 	} catch (e) {
@@ -194,3 +184,12 @@ function isPlainString(source) {
 	var parsed = $.parseHTML(source);
 	return parsed.length == 1 && parsed[0].nodeName == "#text";
 }
+
+function getErrorText(source) {
+	if (source.contains('<html>')) {
+		var regex = /\<pre\>((?:.|\s)*)\<\/pre\>/im;
+		return regex.exec(source)[1];
+	}
+	return source;
+}
+

@@ -13,7 +13,7 @@ $(function () {
 
 
 
-    //traditional ajaxsettings so that we don't screw up with arrays
+	//traditional ajaxsettings so that we don't screw up with arrays
 	$.ajaxSetup({ traditional: true });
 	
 	//track ajax calls
@@ -55,13 +55,13 @@ function track(message) {
 (function() {
 	var alertTemplate = '<div class="alert alert-dismissable alert-${type}" style=\'white-space:pre;\'> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
 	function getAlertFunction(type) {
-	    return function (message) {
-	        var messageDiv = $.tmpl(alertTemplate, { type: type, message: message });
+		return function (message) {
+			var messageDiv = $.tmpl(alertTemplate, { type: type, message: message });
 			messageDiv.appendTo($('#alertContainer'));
-	        var messageDivHtml = messageDiv.get(0);
-	        if (messageDivHtml.scrollWidth > messageDivHtml.clientWidth) {
-	            messageDiv.css('white-space', 'normal').css('text-align', 'left');
-	        }
+			var messageDivHtml = messageDiv.get(0);
+			if (messageDivHtml.scrollWidth > messageDivHtml.clientWidth) {
+				messageDiv.css('white-space', 'normal').css('text-align', 'left');
+			}
 		};
 	}
 
@@ -109,10 +109,10 @@ window.alert = danger;
 		matcher.lastIndex = 0;
 
 		var expr = match[3],
-            m,
-            check, val,
-            allMatch = null,
-            foundMatch = false;
+			m,
+			check, val,
+			allMatch = null,
+			foundMatch = false;
 
 		while (m = matcher.exec(expr)) {
 
@@ -167,6 +167,10 @@ String.prototype.startsWith = function(prefix) {
 	return this.indexOf(prefix) === 0;
 };
 
+String.prototype.contains = function (substr) {
+	return this.indexOf(substr) >= 0;
+};
+
 String.prototype.startsWithIgnoreCase = function(prefix) {
 	return this.toLowerCase().startsWith(prefix.toLowerCase());
 };
@@ -207,5 +211,5 @@ $.fn.serializeObject = function () {
 	if (model)
 		o = $.extend(model, o);
 	//return JSON.stringify(o);
-    return o;
+	return o;
 };
