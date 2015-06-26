@@ -22,7 +22,7 @@ $(function () {
 	});
 
 	//track button clicks
-	$(document).on('click', '.btn, a, input:checkbox', function (e) {
+	$(document).on('click', '.btn, a, input:checkbox, input:radio, #templates span.file', function (e) {
 		var button = e.target;
 		var buttonId = $(button).text().trim() + ' (' + button.id + ')';
 		track(buttonId);
