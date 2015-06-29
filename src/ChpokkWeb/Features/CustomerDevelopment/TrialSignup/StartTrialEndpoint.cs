@@ -50,8 +50,11 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 					var messageToUser = _fileSystem.ReadStringFromFile(messageTemplatePath);
 
 					if (_mailer.Host != null) {
-						_mailer.Send("uluhonolulu@gmail.com", user.Email, "A free month of Chpokk. Interested?", messageToUser);
-						_mailer.Send("uluhonolulu@gmail.com", "uluhonolulu@gmail.com", "A free month of Chpokk. Interested?", messageToUser);
+						var myAddress = new MailAddress("uluhonolulu@gmail.com", "Artem Smirnov");
+						var herAddress = new MailAddress(user.Email, user.FullName);
+						var message = new MailMessage(myAddress, herAddress){Subject = "A free month of Chpokk. Interested?", Body = messageToUser};
+						message.Bcc.Add(myAddress);
+						_mailer.Send(message);
 						
 					}					
 				}
