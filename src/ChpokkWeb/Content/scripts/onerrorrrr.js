@@ -186,7 +186,7 @@ function isPlainString(source) {
 }
 
 function getErrorText(source) {
-	if (source.contains('<html>')) {
+	if (source && source.contains('<html>')) {
 		var regex = /\<pre\>((?:.|\s)*)\<\/pre\>/im;
 		return regex.exec(source)[1];
 	}
