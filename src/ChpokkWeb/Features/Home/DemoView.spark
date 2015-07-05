@@ -76,7 +76,7 @@
 					<p>
 						Chpokk has been designed for .Net development, and supports .Net specific
 						features, like Intellisense and syntax check.</p>
-					<p><a href="Main">Start coding!</a></p>
+					<p><a href="Main" class="btn btn-default">Start coding!</a></p>
 				</div>
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 						Compile your code, run automated tests, even execute a console program. Reference .Net framework assemblies, install NuGet packages, or use your dll files.</p>
 					<p>
 						<span style="font-weight: bold;">NEW:</span> Publish your Web application to AppHarbor.</p>
-					<p><a href="Main">Start coding!</a></p>
+					<p><a href="Main" class="btn btn-default">Start coding!</a></p>
 				</div>
 			</div>
 		</div>
