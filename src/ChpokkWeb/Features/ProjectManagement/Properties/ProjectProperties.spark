@@ -28,7 +28,8 @@
 				$.post(url, model);
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
-			});  
+				track("Creating a project: " + JSON.stringify(model));
+			});
 		}
 
 		function editProjectProperties(projectPath, solutionPath) {
@@ -49,7 +50,8 @@
 				$.post(url, model);
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
-			});  
+				track("Creating a project: " + JSON.stringify(model));
+			});
 		}
 
 		function displayProjectPropertiesDialog(projectPath, solutionPath) {

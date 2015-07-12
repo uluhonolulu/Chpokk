@@ -37,6 +37,7 @@
 				$.post(url, model);
 				$('#projectPropertiesDialog').modal('hide');
 				showWaiter();
+				track("Creating a project: " + JSON.stringify(model));
 			});
 		}
 	</script>
