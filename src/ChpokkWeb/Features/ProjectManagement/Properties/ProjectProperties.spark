@@ -96,7 +96,7 @@
 				<div class="modal-body">
 					<form class="well" id="projectForm">
 						<h4>Project name</h4>
-						<input name="ProjectName" id="projectName" type="text" class="form-control"/>
+						<input name="ProjectName" id="projectName" type="text" class="form-control" required/>
 						
 						<h4>Project type</h4>
 						<div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>

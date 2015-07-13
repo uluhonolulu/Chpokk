@@ -5688,6 +5688,7 @@
     <Compile Include="Features\Editor\Intellisense\Providers\RoslynExtensions.cs" />
     <Compile Include="Features\Editor\Menu\Policies\SvnEditorMenuPolicy.cs" />
     <Compile Include="Features\Editor\Menu\Policies\VersionControlEditorMenuPolicy.cs" />
+    <Compile Include="Features\Editor\Menu\Policies\WebPublishEditorMenuPolicy.cs" />
     <Compile Include="Features\Editor\Parsing\ErrorInfo.cs" />
     <Compile Include="Features\Exploring\Rename\RenameEndpoint.cs" />
     <Compile Include="Features\Exploring\Rename\RenameInputModel.cs" />
@@ -5869,6 +5870,7 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
+    <Folder Include="Features\Remotes\WebPublish\" />
     <Folder Include="Features\Shared\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
     <Folder Include="SystemFiles\Templates\ProjectTemplates\Web\CSharp\1033\" />
