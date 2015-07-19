@@ -4574,6 +4574,7 @@
     <Content Include="Shared\Content.spark" />
     <Content Include="Features\Blog\Post\_disqus.spark" />
     <Content Include="Features\ProjectManagement\ProjectTemplates\TemplateBrowser.spark" />
+    <Content Include="Features\Remotes\WebPublish\PublishConfig.spark" />
     <None Include="fubu-content\FubuMVC.Core.Assets\.version" />
     <None Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
     <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config">
@@ -5870,7 +5871,6 @@
     <Folder Include="bin\NativeBinaries\x86\" />
     <Folder Include="Content\less\" />
     <Folder Include="Features\Pokk\Intellisense\" />
-    <Folder Include="Features\Remotes\WebPublish\" />
     <Folder Include="Features\Shared\" />
     <Folder Include="SystemFiles\GallioPlugins\DLR\libs\IronRuby\lib\site_ruby\1.8\" />
     <Folder Include="SystemFiles\Templates\ProjectTemplates\Web\CSharp\1033\" />

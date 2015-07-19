@@ -93,3 +93,4 @@
 
 <render partial="ProjectManagement\AddItem\AddItem" />
 <render partial="Compilation\Compile" />
+<render partial="Remotes\WebPublish\PublishConfig" />
