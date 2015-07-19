@@ -9,15 +9,16 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Configure Web publishing</h4>
 				</div>
-				<div class="modal-body">
-					<form class="well" id="webPublishConfigForm">
+				<form class="well" id="webPublishConfigForm" action="" method="GET">
+					<div class="modal-body">
 						<h4>Publish your Web to..</h4>
 						<div>
-							<input name="Host" type="radio" value="Azure" id="HostAzure"/> <label for="HostAzure">Azure</label>
+							<input name="Host" type="radio" value="Azure" id="HostAzure" required/> <label for="HostAzure">Azure</label>
 							<input name="Host" type="radio" value="AppHarbor" id="HostAppHarbor"/> <label for="HostAppHarbor">AppHarbor</label>
 							<input name="Host" type="radio" value="Other" id="HostOther"/> <label for="HostOther">Other</label>
 						</div>
-						<p style="font-size: smaller;">Note: Chpokk currently supports Web publishing to Git-based repositories only. If you need support for other publishing types, please <a href="javascript:showTab();"  data-uv-trigger="contact">drop me a line</a> (and get a free month of Chpokk)</p>
+						<p style="font-size: smaller;">Note: Chpokk currently supports Web publishing to Git-based repositories only. If you need support for other publishing types, please <a href="javascript:showTab();" data-uv-trigger="contact">drop me a line</a> (and get a free month of Chpokk)
+						</p>
 						<div id="remoteSetup" style="display: none;">
 							<div id="webNameContainer">
 								<label>Web Name</label>
@@ -25,19 +26,19 @@
 							</div>
 							<div id="remoteNameContainer">
 								<label>Name</label>
-								<input type="text" style="width: 100%" class="form-control" name="NewRemote" id="newRemote" value=""/>
+								<input type="text" style="width: 100%" class="form-control" name="NewRemote" id="newRemote" value="" required/>
 							</div>
-							<div id="urlContainer">								
+							<div id="urlContainer">
 								<label>URL</label>
-								<input type="text" style="width: 100%" class="form-control" name="NewRemoteUrl" id="newRemoteUrl" value=""/>
+								<input type="text" style="width: 100%" class="form-control" name="NewRemoteUrl" id="newRemoteUrl" value="" required/>
 							</div>
 						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="closer" data-dismiss="modal">Close</button>
+						<input type="submit" value="Save changes" class="btn btn-primary" id="saver"/>
+					</div>
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -48,6 +49,13 @@
 	$(function() {
 		$('#publishWebButton').click(function () {
 			$('#webPublishConfigDialog').modal('show');
+		});
+
+		$('#webPublishConfigForm').submit(function (event) {
+			// cancels the form submission
+			event.preventDefault();
+
+			// do whatever you want here
 		});
 
 		//handling the target chooser
@@ -61,7 +69,10 @@
 	function displayHostSpecificUI(host) {
 		switch (host) {
 			case "Azure":
+				$('#webNameContainer').show();
 				$('#newRemote').val(host);
+				$('#newRemoteUrl')[0].required = false;
+				$('#webName')[0].required = true;
 				$('#webName').on('keyup change', function () {
 					var name = $(this).val();
 					var url = "https://" + name + ".scm.azurewebsites.net:443/" + name + ".git";
