@@ -343,6 +343,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\hourglas.gif" />
     <Content Include="Content\scripts\lib\ace\mode-vbnet.js" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\cloudservice.ico" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\CloudService.vstemplate" />
