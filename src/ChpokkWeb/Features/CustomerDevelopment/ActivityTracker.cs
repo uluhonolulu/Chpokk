@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Web.Script.Serialization;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
+using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
 using FubuCore;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Http.AspNet;
@@ -19,13 +21,15 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly ISecurityContext _securityContext;
 		private readonly WhosOnlineTracker _onlineTracker;
 		private ICurrentHttpRequest _httpRequest;
-		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker, ICurrentHttpRequest httpRequest) {
+		private IEnumerable<IAmImportant> _importantRules;
+		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker, ICurrentHttpRequest httpRequest, IEnumerable<IAmImportant> importantRules) {
 			_mailer = mailer;
 			_usageRecorder = usageRecorder;
 			_securityContext = securityContext;
 			_usageCounter = usageCounter;
 			_onlineTracker = onlineTracker;
 			_httpRequest = httpRequest;
+			_importantRules = importantRules;
 		}
 
 		public void Record(string message) {
@@ -56,6 +60,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				var messageBuilder = new StringBuilder();
 				messageBuilder.AppendLine("User: " + (IsLoggedIn? UserName: "anonymous"));
 				messageBuilder.AppendLine("Browser: " + Browser);
+				messageBuilder.AppendLine("");
+				foreach (var rule in _importantRules) {
+					var message = rule.GetMessage(_log.Cast<TrackerInputModel>());
+					if (message != null) {
+						messageBuilder.AppendLine(message);
+					}
+				}
+				messageBuilder.AppendLine("");
 				foreach (var model in _log) {
 					messageBuilder.AppendLine(model.ToString());
 				}
@@ -117,6 +129,43 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		public string Browser { get; set; }
 		public void RecordException(ErrorModel model) {
 			_log.Add(model);
+		}
+	}
+
+	public interface IAmImportant {
+		string GetMessage(IEnumerable<TrackerInputModel> log);
+	}
+
+	public class DurationRule : IAmImportant {
+		public string GetMessage(IEnumerable<TrackerInputModel> log) {
+			var startLoginRecord = log.FirstOrDefault(track => track.What.Contains("http://kopchik.rpxnow.com"));
+			if (startLoginRecord == null) {
+				return null;
+			}
+			var endLoginRecord = log.FirstOrDefault(track => track.When > startLoginRecord.When && track.What == "Page load");
+			if (endLoginRecord == null) {
+				return null;
+			}
+			return "Time to login: " + (endLoginRecord.When - startLoginRecord.When).TotalSeconds + "s";
+		}
+
+	}
+
+	public class ProjectCreatedRule : IAmImportant {
+		public string GetMessage(IEnumerable<TrackerInputModel> log) {
+			var validEntries = from entry in log where entry.What.StartsWith("Creating a project") select entry;
+			var messages = (from entry in validEntries select GetMessage(entry)).ToArray();
+			if (messages.Any()) {
+				return messages.Join(Environment.NewLine);
+			}
+			return null;
+		}
+
+		private string GetMessage(TrackerInputModel entry) {
+			var serializedModel = entry.What.Substring("Creating a project: ".Length);
+			var model = new JavaScriptSerializer().Deserialize<AddSimpleProjectInputModel>(serializedModel);
+			return "Created a project: " + model.OutputType +
+			       (model.TemplatePath.IsNotEmpty() ? ", template: " + model.TemplatePath : String.Empty);
 		}
 	}
 }

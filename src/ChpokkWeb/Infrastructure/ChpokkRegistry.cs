@@ -61,6 +61,7 @@ namespace ChpokkWeb.Infrastructure {
 				scanner.AddAllTypesOf<IRetrievePolicy>();
 				scanner.AddAllTypesOf<IEditorMenuPolicy>();
 				scanner.AddAllTypesOf<ICommitter>();
+				scanner.AddAllTypesOf<IAmImportant>();
 
 				scanner.WithDefaultConventions();
 			});
