@@ -37,8 +37,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		public void Record(string userName, string caption, string url, string browser) {
-			if (url.IsEmpty())
-				url = _httpRequest.FullUrl();
+			//if (url.IsEmpty())
+			//	url = _httpRequest.FullUrl();
 			_log.Add(new TrackerInputModel{What = caption, Url = url});
 			if (userName.IsNotEmpty()) {
 				UserName = userName;
@@ -163,9 +163,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 
 		private string GetMessage(TrackerInputModel entry) {
 			var serializedModel = entry.What.Substring("Creating a project: ".Length);
-			var model = new JavaScriptSerializer().Deserialize<AddSimpleProjectInputModel>(serializedModel);
-			return "Created a project: " + model.OutputType +
-			       (model.TemplatePath.IsNotEmpty() ? ", template: " + model.TemplatePath : String.Empty);
+			try {
+				var model = new JavaScriptSerializer().Deserialize<AddSimpleProjectInputModel>(serializedModel);
+				return "Created a project: " + model.OutputType +
+				       (model.TemplatePath.IsNotEmpty() ? ", template: " + model.TemplatePath : String.Empty);
+			}
+			catch (Exception exception) {
+				return "Created a project: " + serializedModel + " (" + exception.ToString() + ")";
+			}
 		}
 	}
 }
