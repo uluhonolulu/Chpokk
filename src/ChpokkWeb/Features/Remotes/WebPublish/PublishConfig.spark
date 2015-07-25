@@ -67,11 +67,12 @@
 	});
 
 	function displayHostSpecificUI(host) {
+		$('#webName').val('');
+		$('#newRemoteUrl').val('');
 		switch (host) {
 			case "Azure":
-				$('#webNameContainer').show();
 				$('#newRemote').val(host);
-				$('#newRemoteUrl')[0].required = false;
+				$('#webNameContainer').show();
 				$('#webName')[0].required = true;
 				$('#webName').on('keyup change', function () {
 					var name = $(this).val();
@@ -81,13 +82,20 @@
 				break;
 			case "AppHarbor":
 				$('#newRemote').val(host);
+				$('#webNameContainer').show();
+				$('#webName')[0].required = true;
 				$('#webName').on('keyup change', function () {
 					var name = $(this).val();
 					var url = "https://appharbor.com/" + name + ".git";
 					$('#newRemoteUrl').val(url);
 				});
 				break;
-		default:
+			default:
+				$('#newRemote').val('');
+				$('#webNameContainer').hide();
+				$('#webName')[0].required = false;
+				$('#webName').off('keyup change');
+				break;
 		}
 	}
 
