@@ -9,7 +9,7 @@
 
 
 
-<div id="remoteSetup" style="display: none;">
+<div id="remoteSetup">
 	<h3>New remote</h3>
 	<label>Name</label>
 	!{this.InputFor<PushInputModel>(m => m.NewRemote).AddClass("form-control").Style("width", "100%")}
@@ -27,6 +27,7 @@
 		});
 
 		function displayRemoteSelector() {
+			displayNewRemoteSetup(false);
 			var url = '${Urls.UrlFor<RemoteListInputModel>()}';
 			$.post(url, model, function(data) {
 				for (var i = 0; i < data.Remotes.length; i++) {

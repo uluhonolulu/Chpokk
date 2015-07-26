@@ -343,8 +343,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\help\appharbor_web.png" />
+    <Content Include="Content\images\help\azure_web.png" />
     <Content Include="Content\images\hourglas.gif" />
     <Content Include="Content\scripts\lib\ace\mode-vbnet.js" />
+    <Content Include="Content\scripts\lib\drop.js" />
+    <Content Include="Content\scripts\lib\tether.js" />
+    <Content Include="Content\styles\lib\drop-theme-hubspot-popovers.css" />
+    <Content Include="Content\styles\lib\drop-twitter-bootstrap.css" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\cloudservice.ico" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\CloudService.vstemplate" />
     <Content Include="SystemFiles\Templates\ProjectTemplates\CSharp\Cloud\1033\CloudServiceTemplates.dll" />

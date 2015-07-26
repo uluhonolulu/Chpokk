@@ -19,85 +19,153 @@
 						</div>
 						<p style="font-size: smaller;">Note: Chpokk currently supports Web publishing to Git-based repositories only. If you need support for other publishing types, please <a href="javascript:showTab();" data-uv-trigger="contact">drop me a line</a> (and get a free month of Chpokk)
 						</p>
+						<p>When setting up an Azure Website, set up Deployment and specify "Local Git repository" as the source.</p>
 						<div id="remoteSetup" style="display: none;">
 							<div id="webNameContainer">
 								<label>Web Name</label>
+								<span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="webNameHelpIcon" style="cursor: pointer;"></span>
 								<input type="text" style="width: 100%" class="form-control" id="webName" value=""/>
 							</div>
 							<div id="remoteNameContainer">
 								<label>Name</label>
+								<span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="nameHelpIcon" style="cursor: pointer;"></span>
 								<input type="text" style="width: 100%" class="form-control" name="NewRemote" id="newRemote" value="" required/>
 							</div>
 							<div id="urlContainer">
 								<label>URL</label>
+								<span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="urlHelpIcon" style="cursor: pointer;"></span>
 								<input type="text" style="width: 100%" class="form-control" name="NewRemoteUrl" id="newRemoteUrl" value="" required/>
 							</div>
+							<label>Username</label>
+							!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Username).AddClass("form-control").Style("width", "100%")}
+							<label>Password</label>
+							!{this.InputFor<ChpokkWeb.Features.Remotes.Git.Clone.CloneInputModel>(m => m.Password).AddClass("form-control").Style("width", "100%").Attr("type", "password")}					
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" id="closer" data-dismiss="modal">Close</button>
-						<input type="submit" value="Save changes" class="btn btn-primary" id="saver"/>
+						<input type="submit" value="Publish" class="btn btn-primary" id="saver"/>
 					</div>
 				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+
+	<!--helpers-->
+	<div class="drop-content" id="webNameHelper">
+		<div class="drop-content-inner" style="width: 580px;">
+			<h3 class="title">Web name</h3>
+			<div>Use the name that you used when you created your Web in the Azure or AppHarbor control panel (see the images below).</div>
+			<div style="margin: auto; margin-top: 10px;">
+				<img src="/_content/images/help/azure_web.png" alt="" style="vertical-align: top; margin-right: 10px;"/>
+				<img src="/_content/images/help/appharbor_web.png" alt="" style="height: 145px;"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="drop-content" id="nameHelper">
+		<div class="drop-content-inner">
+			<h3 class="title">Remote name</h3>
+			<div>A unique name used to distinguish your publish targets.</div>
+		</div>
+	</div>
+
+	<div class="drop-content" id="urlHelper">
+		<div class="drop-content-inner">
+			<h3 class="title">Remote URL</h3>
+			<div>Url of the remote repository, used in the git push command (filled in automatically if you use Azure or AppHarbor publishing).</div>		
+		</div>
+	</div>
 </content>
 
 <content name="InlineScripts">
 	<script type="text/javascript">
-	$(function() {
-		$('#publishWebButton').click(function () {
-			$('#webPublishConfigDialog').modal('show');
+		$(function() {
+			$('#publishWebButton').click(function() {
+				$('#webPublishConfigDialog').modal('show');
+			});
+
+			$('#webPublishConfigForm').submit(function(event) {
+				// cancels the form submission
+				event.preventDefault();
+
+					var url = '${Urls.UrlFor<PushInputModel>()}';
+					var model = $('#webPublishConfigForm').serializeObject();
+					$('#saver').text("Please wait..").addClass('disabled');
+					showWaiter();
+					$.post(url, model);
+				
+			});
+
+			//handling the target chooser
+			$('[name="Host"]').click(function() {
+				$('#remoteSetup').show();
+				var selectedHost = $(this).val();
+				displayHostSpecificUI(selectedHost);
+			});
+
+			//config help hints
+			new Drop({
+				target: $('#webNameHelpIcon')[0],
+				content: $('#webNameHelper')[0],
+				position: 'bottom center',
+				open: 'hover',
+				classes: 'drop-theme-hubspot-popovers'
+			});
+			new Drop({
+				target: $('#nameHelpIcon')[0],
+				content: $('#nameHelper')[0],
+				position: 'bottom center',
+				open: 'hover',
+				classes: 'drop-theme-hubspot-popovers'
+			});
+			new Drop({
+				target: $('#urlHelpIcon')[0],
+				content: $('#urlHelper')[0],
+				position: 'bottom center',
+				open: 'hover',
+				classes: 'drop-theme-hubspot-popovers'
+			});
 		});
 
-		$('#webPublishConfigForm').submit(function (event) {
-			// cancels the form submission
-			event.preventDefault();
-
-			// do whatever you want here
-		});
-
-		//handling the target chooser
-		$('[name="Host"]').click(function() {
-			$('#remoteSetup').show();
-			var selectedHost = $(this).val();
-			displayHostSpecificUI(selectedHost);
-		});
-	});
-
-	function displayHostSpecificUI(host) {
-		$('#webName').val('');
-		$('#newRemoteUrl').val('');
-		switch (host) {
-			case "Azure":
-				$('#newRemote').val(host);
-				$('#webNameContainer').show();
-				$('#webName')[0].required = true;
-				$('#webName').on('keyup change', function () {
-					var name = $(this).val();
-					var url = "https://" + name + ".scm.azurewebsites.net:443/" + name + ".git";
-					$('#newRemoteUrl').val(url);
-				});
-				break;
-			case "AppHarbor":
-				$('#newRemote').val(host);
-				$('#webNameContainer').show();
-				$('#webName')[0].required = true;
-				$('#webName').on('keyup change', function () {
-					var name = $(this).val();
-					var url = "https://appharbor.com/" + name + ".git";
-					$('#newRemoteUrl').val(url);
-				});
-				break;
-			default:
-				$('#newRemote').val('');
-				$('#webNameContainer').hide();
-				$('#webName')[0].required = false;
-				$('#webName').off('keyup change');
-				break;
+		function displayHostSpecificUI(host) {
+			$('#webName').val('');
+			$('#newRemoteUrl').val('');
+			switch (host) {
+				case "Azure":
+					$('#newRemote').val(host);
+					$('#webNameContainer').show();
+					$('#webName')[0].required = true;
+					$('#webName').on('keyup change', function() {
+						var name = $(this).val();
+						var url = "https://" + name + ".scm.azurewebsites.net:443/" + name + ".git";
+						$('#newRemoteUrl').val(url);
+					});
+					break;
+				case "AppHarbor":
+					$('#newRemote').val(host);
+					$('#webNameContainer').show();
+					$('#webName')[0].required = true;
+					$('#webName').on('keyup change', function() {
+						var name = $(this).val();
+						var url = "https://appharbor.com/" + name + ".git";
+						$('#newRemoteUrl').val(url);
+					});
+					break;
+				default:
+					$('#newRemote').val('');
+					$('#webNameContainer').hide();
+					$('#webName')[0].required = false;
+					$('#webName').off('keyup change');
+					break;
+			}
 		}
-	}
 
 	</script>
+</content>
+
+<content name="head">
+	<Script src="lib/drop.js"/>
+	<Stylesheet href="lib/drop-theme-hubspot-popovers.css"/>
+	<Stylesheet href="lib/drop-twitter-bootstrap.css"/>
 </content>
