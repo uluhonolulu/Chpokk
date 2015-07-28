@@ -16,11 +16,8 @@ namespace ChpokkWeb.Features.Remotes.Git.Init {
 		}
 
 		public void Init(string repositoryRoot) {
-			var allFiles = _fileSystem.FindFiles(repositoryRoot, FileSet.Everything());
 			Repository.Init(repositoryRoot);
-			if (allFiles.Any()) {
-				_gitCommitter.Commit(allFiles, "InitialCommit", repositoryRoot);	
-			}
+			_gitCommitter.CommitAll("InitialCommit", repositoryRoot);
 		}
 
 		public bool GitRepositoryExistsIn(string repositoryRoot) {

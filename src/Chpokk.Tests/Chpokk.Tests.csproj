@@ -451,6 +451,7 @@
     <Compile Include="References\StandardLibraryList.cs" />
     <Compile Include="Spikes\CloningFromAssembla.cs" />
     <Compile Include="Spikes\CodeParser.cs" />
+    <Compile Include="Spikes\ConfigAndPushSpike.cs" />
     <Compile Include="Spikes\ContinuationSpike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spikes\GetVbKeywords.cs" />
