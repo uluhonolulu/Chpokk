@@ -53,7 +53,7 @@ function track(message) {
 }
 
 (function() {
-	var alertTemplate = '<div class="alert alert-dismissable alert-${type}" style=\'white-space:pre;\'> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>${message}</div>';
+	var alertTemplate = '<div class="alert alert-dismissable alert-${type}" style=\'white-space:pre;\'> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{html message}}</div>';
 	function getAlertFunction(type) {
 		return function (message) {
 			var messageDiv = $.tmpl(alertTemplate, { type: type, message: message });

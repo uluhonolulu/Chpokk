@@ -26,6 +26,7 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 				{
 					{"$safeprojectname$", projectName},
 					{"$projectname$", projectName},
+					{"$nugetpackagesfolder$", @"..\packages\"},
 					{"$targetframeworkversion$", "4.5"},
 					{"$clrversion$", "4.0"},
 					{"$registeredorganization$", "GeekSoft"},

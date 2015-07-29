@@ -80,7 +80,7 @@
 
 <content name="InlineScripts">
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			$('#publishWebButton').click(function() {
 				$('#webPublishConfigDialog').modal('show');
 			});
@@ -89,11 +89,27 @@
 				// cancels the form submission
 				event.preventDefault();
 
-					var url = '${Urls.UrlFor<PushInputModel>()}';
-					var model = $('#webPublishConfigForm').serializeObject();
-					$('#saver').text("Please wait..").addClass('disabled');
-					showWaiter();
-					$.post(url, model);
+				var url = '${Urls.UrlFor<PushInputModel>()}';
+				var model = $('#webPublishConfigForm').serializeObject();
+				$('#saver').text("Please wait..").addClass('disabled');
+				showWaiter();
+				$.post(url, model, function (response) {
+					hideWaiter();
+					$('#webPublishConfigDialog').modal('hide');
+					if (response.Success) {
+						var message = "Your project has been published successfully. <br/>";
+						if (response.PreviewLink) {
+							message += "Click <a href='" + response.PreviewLink + "' target='preview' class='alert-link'>here</a> to view it.";
+						}
+						success(message);
+					} else {
+						alert(response.ErrorMessage);
+					}
+					//reload on closing the alert
+					$('.alert button').on('click', function() {
+						window.location.reload();
+					});
+				});
 				
 			});
 

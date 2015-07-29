@@ -20,13 +20,12 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 		}
 
 
-		public AjaxContinuation Push(PushInputModel model) {
+		public PushResultModel Push(PushInputModel model) {
 			var repositoryRoot = _manager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			EnsureInit(repositoryRoot);
 			EnsureCommit(repositoryRoot);
 			var credentials = model.Username.IsEmpty()? null: new UsernamePasswordCredentials() {Username = model.Username, Password = model.Password};
-			var ajaxContinuation = AjaxContinuation.Successful();
-			ajaxContinuation.ShouldRefresh = true;
+			var result = new PushResultModel { Success = true, ErrorMessage = String.Empty, PreviewLink = GetPreviewUrl(model.NewRemoteUrl)};
 			var remoteName = GetRemoteName(model, repositoryRoot);
 			using (var repo = new Repository(repositoryRoot)) {
 				var remote = repo.Network.Remotes[remoteName];
@@ -36,15 +35,15 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 						OnPushTransferProgress = (current, total, bytes) => true, //TODO: log this to screen
 						OnPushStatusError = error =>
 						{
-							ajaxContinuation.Success = false;
+							result.Success = false;
 							var errorMessage = error.Reference + ": " + error.Message + "/r";
-							ajaxContinuation.Errors.Add(new AjaxError {message = errorMessage});
+							result.ErrorMessage += errorMessage;
 						},
 						CredentialsProvider = (url, fromUrl, types) => credentials
 					};
 				repo.Network.Push(remote, "HEAD", repo.Head.CanonicalName, options);
 			}
-			return ajaxContinuation;
+			return result;
 		}
 
 		private string GetRemoteName(PushInputModel model, string repositoryRoot) {
@@ -68,5 +67,27 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 			var commitMessage = "Autocommit " + DateTime.Now.ToString();
 			_gitCommitter.CommitAll(commitMessage, repositoryRoot);
 		}
+
+		private string GetPreviewUrl(string pushUrl) {
+			if (pushUrl.IsEmpty()) {
+				return null;
+			}
+			var uri = new Uri(pushUrl);
+			if (uri.Host.Contains("azurewebsites.net")) {
+				var newHost = uri.Host.Replace(".scm.", ".");
+				return "http://" + newHost;
+			}
+			if (uri.Host == "appharbor.com") {
+				var siteName = uri.AbsolutePath.TrimStart('/').Replace(".git", "");
+				return "http://" + siteName + ".apphb.com/";
+			}
+			return null;
+		}
+	}
+
+	public class PushResultModel {
+		public bool Success { get; set; }
+		public string PreviewLink { get; set; }
+		public string ErrorMessage { get; set; }
 	}
 }

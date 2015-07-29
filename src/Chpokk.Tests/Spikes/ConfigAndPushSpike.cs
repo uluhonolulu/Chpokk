@@ -11,6 +11,7 @@ using MbUnit.Framework.ContractVerifiers;
 namespace Chpokk.Tests.Spikes {
 	[TestFixture]
 	public class ConfigAndPushSpike: BaseCommandTest<OneFileInRepositoryFolderContext> {
+		//NOTE: this should be removed since we're not sure about the remote  -- can contain some commits that could cause this test to fail
 		[Test]
 		public void Test() {
 			//
