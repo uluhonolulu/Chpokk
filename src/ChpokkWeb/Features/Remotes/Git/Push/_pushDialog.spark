@@ -41,10 +41,12 @@
 		function pushRepository(repositoryName) {
 			$('#pushDialog').modal();
 			$('#pushDialog #pushOkButton').one('click', function () {
+				showWaiter();
 				var pushModel = $('#pushForm').serializeObject();
 				var pushUrl = '${Urls.UrlFor<ChpokkWeb.Features.Remotes.Git.Push.PushInputModel>()}';
 				$.post(pushUrl, pushModel, function () {
-					info("Pushed successfully!");
+					hideWaiter();
+					success("Pushed successfully!");
 				});
 				$('#pushDialog').modal('hide');
 			});

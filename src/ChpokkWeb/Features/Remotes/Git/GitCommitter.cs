@@ -38,7 +38,7 @@ namespace ChpokkWeb.Features.Remotes.Git {
 			using (var repo = new Repository(repositoryPath)) {
 				var repositoryStatus = repo.RetrieveStatus();
 				if (repositoryStatus.IsDirty) {
-					var entries = repositoryStatus.Untracked;// repositoryStatus.Added.Concat(repositoryStatus.Modified);
+					var entries = repositoryStatus.Untracked.Concat(repositoryStatus.Modified);// repositoryStatus.Added.Concat(repositoryStatus.Modified);
 					var filePaths = from entry in entries select entry.FilePath;
 					filePaths.Each(filePath => repo.Index.Add(filePath));
 					repo.Commit(commitMessage, author, author);

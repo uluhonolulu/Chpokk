@@ -2,6 +2,7 @@
 using ChpokkWeb.Features.Remotes.Git.Init;
 using ChpokkWeb.Features.Remotes.Git.Remotes;
 using ChpokkWeb.Features.RepositoryManagement;
+using ChpokkWeb.Infrastructure.Logging;
 using FubuCore;
 using FubuMVC.Core.Ajax;
 using LibGit2Sharp;
@@ -11,7 +12,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 		private readonly RepositoryManager _manager;
 		private readonly RemoteInfoProvider _remoteInfoProvider;
 		private readonly GitInitializer _gitInitializer;
-		private GitCommitter _gitCommitter;
+		private readonly GitCommitter _gitCommitter;
 		public PushEndpoint(RepositoryManager manager, RemoteInfoProvider remoteInfoProvider, GitInitializer gitInitializer, GitCommitter gitCommitter) {
 			_manager = manager;
 			_remoteInfoProvider = remoteInfoProvider;
@@ -21,26 +22,44 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 
 
 		public PushResultModel Push(PushInputModel model) {
+			var logger = SimpleLogger.CreateLogger(model.ConnectionId);
 			var repositoryRoot = _manager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			EnsureInit(repositoryRoot);
+			logger.Log("Autocommitting changes..");
 			EnsureCommit(repositoryRoot);
 			var credentials = model.Username.IsEmpty()? null: new UsernamePasswordCredentials() {Username = model.Username, Password = model.Password};
 			var result = new PushResultModel { Success = true, ErrorMessage = String.Empty, PreviewLink = GetPreviewUrl(model.NewRemoteUrl)};
 			var remoteName = GetRemoteName(model, repositoryRoot);
 			using (var repo = new Repository(repositoryRoot)) {
 				var remote = repo.Network.Remotes[remoteName];
+				if (model.NewRemoteUrl.IsEmpty()) {
+					result.PreviewLink = GetPreviewUrl(remote.Url);
+				}
 				var options = new PushOptions()
 					{
-						OnPackBuilderProgress = (stage, current, total) => true, 
-						OnPushTransferProgress = (current, total, bytes) => true, //TODO: log this to screen
+						OnPackBuilderProgress = (stage, current, total) =>
+						{
+							logger.Log(stage.ToString() + ": " + current + "/" + total);
+							return true;
+						}, 
+						OnPushTransferProgress = (current, total, bytes) =>
+						{
+							logger.Log("Transferring data: " + current + "/" + total);
+							return true;
+						}, 
 						OnPushStatusError = error =>
 						{
 							result.Success = false;
 							var errorMessage = error.Reference + ": " + error.Message + "/r";
+							logger.Log("Error: " + errorMessage);
 							result.ErrorMessage += errorMessage;
 						},
-						CredentialsProvider = (url, fromUrl, types) => credentials
+						CredentialsProvider = (url, fromUrl, types) =>
+						{
+							return credentials;
+						}
 					};
+				logger.Log("Pushing to the remote Git repository..");
 				repo.Network.Push(remote, "HEAD", repo.Head.CanonicalName, options);
 			}
 			return result;

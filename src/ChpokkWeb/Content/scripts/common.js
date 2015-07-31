@@ -140,6 +140,26 @@ window.alert = danger;
 
 }());
 
+//simple logging
+function setupLogging() {
+	// connect to SignalR and keep the ConnectionId
+	//For JavaScript clients you have to register at least one event handler before calling the Start method to establish the connection. 
+	window.log = window.log || function (message) { };
+	$.connection.simpleLoggerHub.client.log = function (message) { log(message); };
+	$.connection.hub.logging = true;
+	$.connection.hub.start({ transport: ['serverSentEvents', 'foreverFrame', 'longPolling'] })
+		.done(function (data) {
+			model.ConnectionId = data.id;//$.connection.hub.id
+			amplify.publish('connected', data.id);
+		});
+	$.connection.hub.disconnected(function () {
+		track('SignalR: disconnected');
+	});
+	$.connection.hub.reconnected(function () {
+		track('SignalR: reconnected');
+	});
+}
+
 //format
 String.prototype.toFormat = function(values) {
 	var result = this;

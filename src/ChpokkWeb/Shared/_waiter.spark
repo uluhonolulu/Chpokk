@@ -12,11 +12,11 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<script type="text/javascript">
+		var simpleLoggerHub = $.connection.simpleLoggerHub;
 		function showWaiter() {
 			$('#waiterDialog').modal('show');
 			//setup logger
-			var simpleloggerhub = $.connection.simpleloggerhub;
-			simpleloggerhub.client.log = function (message) {
+			window.log = function (message) {
 				$('<span/>').text(message).appendTo($('#waiterLog'));
 			};
 
@@ -24,8 +24,7 @@
 		function hideWaiter() {
 			$('#waiterDialog').modal('hide');
 			//cancel logging
-			var simpleloggerhub = $.connection.simpleloggerhub;
-			simpleloggerhub.client.log = function() {};
+			window.log =  function () { };
 		}
 	</script>
 <content name="Dialogs">

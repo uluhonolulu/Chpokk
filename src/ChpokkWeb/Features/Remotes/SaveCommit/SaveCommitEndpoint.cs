@@ -19,11 +19,10 @@ namespace ChpokkWeb.Features.Remotes.SaveCommit {
 
 		public void SaveCommit(SaveCommitInputModel model) {
 			_savior.SaveFile(model);
-			var filePath = _manager.NewGetAbsolutePathFor(model.RepositoryName, model.PathRelativeToRepositoryRoot);
 			var repositoryPath = _manager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			foreach (var committer in _committers) {
 				if (committer.Matches(repositoryPath)) {
-					committer.Commit(filePath, model.CommitMessage, repositoryPath);
+					committer.Commit(model.PathRelativeToRepositoryRoot, model.CommitMessage, repositoryPath);
 				}
 			}
 		}

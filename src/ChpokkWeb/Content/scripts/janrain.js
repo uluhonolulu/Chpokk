@@ -6,7 +6,7 @@
 	janrain.settings.actionText = "Sign in using";
 	janrain.settings.tokenAction = 'event';
 	//janrain.engage.signin.appendTokenParams({ 'param1': 'value1', 'param2': 'value2', 'param3': 'value3' });
-    
+	
 	function isReady() { janrain.ready = true; };
 	if (document.addEventListener) {
 		document.addEventListener("DOMContentLoaded", isReady, false);
@@ -86,6 +86,6 @@ function clearLog() {
 	$('.janrainContent').empty();
 }
 $(function() {
-	$.connection.simpleLoggerHub.client.log = loginLog;
+	window.log = loginLog;
 });
 
