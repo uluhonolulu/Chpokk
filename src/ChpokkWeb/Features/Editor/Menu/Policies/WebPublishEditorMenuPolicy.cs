@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using ChpokkWeb.Infrastructure;
 using FubuCore;
 using FubuMVC.Navigation;
 using LibGit2Sharp;
@@ -29,8 +30,8 @@ namespace ChpokkWeb.Features.Editor.Menu.Policies {
 			}
 		}
 
-		public IEnumerable<MenuItemToken> GetMenuItems() {
-			yield return new MenuItemToken() { Text = "Preview your Web", Key = "publishWeb", MenuItemState = MenuItemState.Available };
+		public IEnumerable<MenuItem> GetMenuItems(string repositoryPath) {
+			yield return new MenuItem() { Caption = "Preview your Web", Id = "publishWeb" };
 		}
 	}
 }

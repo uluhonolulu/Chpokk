@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ChpokkWeb.Features.Editor.Menu;
+using ChpokkWeb.Infrastructure;
 using FubuMVC.Navigation;
 
 namespace ChpokkWeb.Features.RepositoryManagement.FileSystem {
@@ -11,8 +12,8 @@ namespace ChpokkWeb.Features.RepositoryManagement.FileSystem {
 			return true;
 		}
 
-		public IEnumerable<MenuItemToken> GetMenuItems() {
-			yield return new MenuItemToken(){Text = "Save", Key = "save", MenuItemState = MenuItemState.Available};
+		public IEnumerable<MenuItem> GetMenuItems(string repositoryPath) {
+			yield return new MenuItem() { Caption = "Save", Id = "save" };
 		}
 	}
 }

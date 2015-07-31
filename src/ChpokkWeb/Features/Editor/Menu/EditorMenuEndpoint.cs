@@ -16,8 +16,8 @@ namespace ChpokkWeb.Features.Editor.Menu {
 		public EditorMenuModel DoIt(EditorMenuInputModel model) {
 			var repositoryPath = _repositoryManager.GetAbsoluteRepositoryPath(model.RepositoryName);
 			var matchingPolicies = _menuPolicies.Where(policy => policy.Matches(repositoryPath));
-			var menuItemTokens = matchingPolicies.SelectMany(policy => policy.GetMenuItems());
-			return new EditorMenuModel(){MenuItems = menuItemTokens};
+			var menuItems = matchingPolicies.SelectMany(policy => policy.GetMenuItems(repositoryPath));
+			return new EditorMenuModel(){MenuItems = menuItems};
 		}
 	}
 }

@@ -1,12 +1,15 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using ChpokkWeb.Features.Editor.Menu;
 using ChpokkWeb.Features.Remotes.Git.Init;
 using ChpokkWeb.Features.Remotes.Git.Remotes;
 using ChpokkWeb.Infrastructure;
 using ChpokkWeb.Infrastructure.Menu;
 using FubuCore;
+using FubuMVC.Navigation;
 
 namespace ChpokkWeb.Features.Remotes.Git.Push {
-	public class PushPolicy: IRetrievePolicy, IMenuItemSource {
+	public class PushPolicy : IRetrievePolicy, IMenuItemSource, IEditorMenuPolicy {
 		private readonly RemoteInfoProvider _remoteInfoProvider;
 		private readonly GitInitializer _gitInitializer;
 
@@ -23,6 +26,12 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 			else
 				return false;
 		}
+
+		public IEnumerable<MenuItem> GetMenuItems(string repositoryRoot) {
+			var defaultRemote = _remoteInfoProvider.GetDefaultRemote(repositoryRoot);
+			yield return new MenuItem() { Caption = "Publish to " + defaultRemote };
+		}
+
 
 		public MenuItem GetMenuItem(string repositoryRoot) {
 			var defaultRemote = _remoteInfoProvider.GetDefaultRemote(repositoryRoot);
