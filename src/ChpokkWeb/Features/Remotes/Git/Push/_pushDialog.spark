@@ -31,7 +31,7 @@
 <!-- Push Dialog -->
 	<script type="text/javascript">
 		$(function() {
-			$('#pusher').click(function () {
+			$('#pusher, #pushButton').click(function () {
 				pushRepository(model.RepositoryName);
 			});
 

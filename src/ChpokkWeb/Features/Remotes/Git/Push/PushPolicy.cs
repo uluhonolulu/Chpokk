@@ -29,7 +29,7 @@ namespace ChpokkWeb.Features.Remotes.Git.Push {
 
 		public IEnumerable<MenuItem> GetMenuItems(string repositoryRoot) {
 			var defaultRemote = _remoteInfoProvider.GetDefaultRemote(repositoryRoot);
-			yield return new MenuItem() { Caption = "Publish to " + defaultRemote };
+			yield return new MenuItem() { Caption = "Publish to " + defaultRemote, Id = "push"};
 		}
 
 

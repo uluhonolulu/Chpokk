@@ -17,7 +17,7 @@
 			$('#waiterDialog').modal('show');
 			//setup logger
 			window.log = function (message) {
-				$('<span/>').text(message).appendTo($('#waiterLog'));
+				$('<div/>').text(message).appendTo($('#waiterLog'));
 			};
 
 		}
