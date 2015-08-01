@@ -174,10 +174,26 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 	}
 
-	public class PreviewDialogOpenedRule : IAmImportant {
+	public abstract class MatchingRule : IAmImportant {
 		public string GetMessage(IEnumerable<TrackerInputModel> log) {
-			var validEntries = from entry in log where entry.What.Contains("publishWeb") select entry;
-			return validEntries.Any()? "Opened Web Publish Dialog" : null;
+			var validEntries = from entry in log where Matters(entry.What) select entry;
+			return validEntries.Any() ? GetMessage(validEntries.First().What) : null;
+		}
+
+		protected abstract string GetMessage(string what);
+
+		protected abstract bool Matters(string what);
+	}
+
+	public class PreviewDialogOpenedRule : MatchingRule {
+		protected override string GetMessage(string what) {
+			return "Opened Web Publish Dialog";
+		}
+
+		protected override bool Matters(string what) {
+			return what.Contains("publishWeb");
 		}
 	}
+
+	//public class ProgramRun
 }
