@@ -173,4 +173,11 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			}
 		}
 	}
+
+	public class PreviewDialogOpenedRule : IAmImportant {
+		public string GetMessage(IEnumerable<TrackerInputModel> log) {
+			var validEntries = from entry in log where entry.What.Contains("publishWeb") select entry;
+			return validEntries.Any()? "Opened Web Publish Dialog" : null;
+		}
+	}
 }
