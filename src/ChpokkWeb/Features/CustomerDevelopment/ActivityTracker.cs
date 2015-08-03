@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -7,10 +8,9 @@ using System.Web.Script.Serialization;
 using ChpokkWeb.Features.Authentication;
 using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
+using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
-using FubuMVC.Core.Http;
-using FubuMVC.Core.Http.AspNet;
-using FubuMVC.Core.Security;
+using StructureMap;
 
 namespace ChpokkWeb.Features.CustomerDevelopment {
 	public class ActivityTracker: IDisposable {
@@ -18,17 +18,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly SmtpClient _mailer;
 		private readonly UsageRecorder _usageRecorder;
 		private readonly UsageCounter _usageCounter;
-		private readonly ISecurityContext _securityContext;
 		private readonly WhosOnlineTracker _onlineTracker;
-		private ICurrentHttpRequest _httpRequest;
-		private IEnumerable<IAmImportant> _importantRules;
-		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, ISecurityContext securityContext, UsageCounter usageCounter, WhosOnlineTracker onlineTracker, ICurrentHttpRequest httpRequest, IEnumerable<IAmImportant> importantRules) {
+		private readonly IEnumerable<IAmImportant> _importantRules;
+
+		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, UsageCounter usageCounter, WhosOnlineTracker onlineTracker, IEnumerable<IAmImportant> importantRules, IContainer container) {
 			_mailer = mailer;
 			_usageRecorder = usageRecorder;
-			_securityContext = securityContext;
 			_usageCounter = usageCounter;
 			_onlineTracker = onlineTracker;
-			_httpRequest = httpRequest;
 			_importantRules = importantRules;
 		}
 
@@ -47,6 +44,9 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			if (UserName.IsNotEmpty()) {
 				_onlineTracker.On(UserName);
 			}
+			//TODO: remove this
+			//var path = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google+".AppendPath("activity.log");
+			//File.AppendAllText(path, DateTime.Now.ToString("HH:mm:ss") + ": " + caption + Environment.NewLine);
 		}
 
 		public void Dispose() {

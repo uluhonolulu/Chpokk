@@ -77,7 +77,7 @@
 	
 	// enable/disable autocompletion
 	$('#autoSuggestOff').click(function() {
-		editor.enableIntellisense = !$(this).is(':checked');
+		editor.enableIntellisense = editor.intellisenseAvailable && !$(this).is(':checked');
 	});
 
 
@@ -204,7 +204,8 @@ function setContent(path, editor, content) {
 	editor.getSession().setMode(mode);
 
 	//enable/disable autocompletion
-	editor.enableIntellisense = path.endsWith('.cs') || path.endsWith('.vb');
+	editor.intellisenseAvailable = path.endsWith('.cs') || path.endsWith('.vb');
+	editor.enableIntellisense = editor.intellisenseAvailable;
 	if (editor.enableIntellisense) {
 		checkSyntax(editor);
 	}

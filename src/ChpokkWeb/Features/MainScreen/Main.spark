@@ -2,16 +2,23 @@
 <use namespace="FubuMVC.Core.UI" />
 <use namespace="ChpokkWeb.Infrastructure" />
 <use namespace="ChpokkWeb.Features.Authentication" />
-<use namespace="ChpokkWeb.Features.ProjectManagement.AddSimpleProject" />
+<use namespace="ChpokkWeb.Features.ProjectManagement.AddSimpleProject"/>
+<use namespace="ChpokkWeb.Features.CustomerDevelopment"/>
+
+<var tracker="this.Get<ActivityTracker>()"/>
 
 <content name="title">Chpokk, an online C# and Vb.Net IDE</content>
 
 
 <main class="container" if="System.Web.HttpContext.Current.User.Identity.IsAuthenticated">
+	# tracker.Record("Repository List start");
 	${PartialExpressionExtensions.Partial<ChpokkWeb.Features.RepositoryManagement.RepositoryListInputModel>(this)}
+	# tracker.Record("Repository List end");
 </main>
 
+# tracker.Record("DashBoard start");
 <use file="RepositoryMenu\DashBoard"/>
+# tracker.Record("DashBoard end");
 
 <content name="menu">
 	<ul class="nav navbar-nav">
@@ -28,7 +35,9 @@
 </content>
 
 <content name="rightcorner">
+	# tracker.Record("Login start");
 	<render partial="Authentication\_LoginStatus" />
+	# tracker.Record("Login end");
 </content>
 
 
