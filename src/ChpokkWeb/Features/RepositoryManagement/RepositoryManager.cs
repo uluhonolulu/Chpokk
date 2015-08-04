@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.Exploring;
 using ChpokkWeb.Features.Remotes;
 using ChpokkWeb.Features.Remotes.DownloadZip;
 using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using ChpokkWeb.Infrastructure.Menu;
-using Emkay.S3;
 using FubuCore;
 using System.Linq;
 using FubuMVC.Core.Security;
@@ -20,22 +18,16 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 		private readonly ISecurityContext _securityContext;
 		private readonly IEnumerable<IRetrievePolicy> _retrievePolicies;
 		private readonly IFileSystem _fileSystem;
-		private readonly Downloader _downloader;
 		private readonly Backup _backup;
 		private readonly IAppRootProvider _rootProvider;
-		private readonly IS3Client _client;
-		private readonly ActivityTracker _activityTracker;
-		private RemoteFileListCache _remoteFileListCache;
+		private readonly RemoteFileListCache _remoteFileListCache;
 
-		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, Downloader downloader, IAppRootProvider rootProvider, Backup backup, IS3Client client, ActivityTracker activityTracker, RestoreSynchronizer restoreSynchronizer, RemoteFileListCache remoteFileListCache) {
+		public RepositoryManager(ISecurityContext securityContext, IEnumerable<IRetrievePolicy> retrievePolicies, IFileSystem fileSystem, IAppRootProvider rootProvider, Backup backup, RemoteFileListCache remoteFileListCache) {
 			_securityContext = securityContext;
 			_retrievePolicies = retrievePolicies;
 			_fileSystem = fileSystem;
-			_downloader = downloader;
 			_rootProvider = rootProvider;
 			_backup = backup;
-			_client = client;
-			_activityTracker = activityTracker;
 			_remoteFileListCache = remoteFileListCache;
 			RegisterUserFolderForBackup();
 		}
@@ -177,43 +169,8 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 			return _fileSystem.ChildDirectoriesFor(parent).Any();
 		}
 
-		public bool ShouldRestore() {
-			_activityTracker.Record("Should we restore?");
-			if (!Directory.Exists(this.GetUserFolder()) || !ChildDirectoriesExist(this.GetUserFolder())) {
-				return true; //user folder does not exist or is empty
-			}
 
-			//we probably don't need this at all
-			if (Directory.Exists(this.GetRepositoryFolder())) {
-				return !ChildDirectoriesExist(this.GetRepositoryFolder());
-			}
-			return true;
-		}
 
-		public void RestoreFilesForCurrentUser() {
-			//create folders so that we see the list of repositories -- the files will be downloaded while we are staring at that list
-			_activityTracker.Record("Getting repository list");
-			var repositoryNames = GetRepositoryNamesFromStorage();
-			foreach (var repositoryName in repositoryNames) {
-				_activityTracker.Record("Creating folder for " + repositoryName);
-				var repositoryPath = GetAbsoluteRepositoryPath(repositoryName);
-				Directory.CreateDirectory(repositoryPath);
-				//download each repository asynchronously
-				//let's not -- too many threads busy
-				//Task.Run(() => _downloader.DownloadAllFiles(AppRoot, repositoryPath.PathRelativeTo(AppRoot), RecordDownloadedFile));
-
-			}
-			//downloading all files that are not there yet (other than repos)
-			Task.Run(() => _downloader.DownloadAllFiles(AppRoot, RelativeUserFolder, RecordDownloadedFile));
-
-		}
-
-		private void RecordDownloadedFile(string remotePath, string localPath) {
-			_activityTracker.Record(null,
-									"Downloaded {0} to {1}".ToFormat(remotePath,
-																	 localPath),
-									null, null);
-		}
 
 		public void EnsureAuthenticated() {
 			if (!_securityContext.IsAuthenticated()) {

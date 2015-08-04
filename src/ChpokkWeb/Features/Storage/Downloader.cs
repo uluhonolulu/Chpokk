@@ -9,7 +9,7 @@ using System.Linq;
 namespace ChpokkWeb.Features.Storage {
 	public class Downloader {
 		private readonly IS3Client _client;
-		private RestoreSynchronizer _restoreSynchronizer;
+		private readonly RestoreSynchronizer _restoreSynchronizer;
 
 
 		public Downloader(IS3Client client, RestoreSynchronizer restoreSynchronizer) {

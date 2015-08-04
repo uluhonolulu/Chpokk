@@ -28,7 +28,7 @@ namespace ChpokkWeb.Features.RepositoryManagement {
 
 		public RepositoryListModel GetRepositoryList([NotNull]RepositoryListInputModel model) {
 			_tracker.Record("Restoring");
-			_restore.RestoreFilesForCurrentUser();
+			_restore.RestoreFilesForCurrentUserIfNeeded();
 			_tracker.Record("Restored");
 			return new RepositoryListModel {RepositoryNames = _manager.GetRepositoryNames()};
 		}
