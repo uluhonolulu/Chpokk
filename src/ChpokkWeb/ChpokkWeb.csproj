@@ -5845,6 +5845,7 @@
     <Compile Include="Infrastructure\FileSystem\FileExistenceChecker.cs" />
     <Compile Include="Infrastructure\Logging\SignalRConnectionMapper.cs" />
     <Compile Include="Infrastructure\Logging\SimpleLogger.cs" />
+    <Compile Include="Infrastructure\Logging\TimingBehavior.cs" />
     <Compile Include="Infrastructure\MakesFubuHappy\ContinuationExtensions.cs" />
     <Compile Include="Infrastructure\AssetUrlTransform\ModelUrlResolutionCache.cs" />
     <Compile Include="Infrastructure\DownloadDataConvention.cs" />

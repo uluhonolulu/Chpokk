@@ -11,9 +11,11 @@ using ChpokkWeb.Features.MainScreen;
 using ChpokkWeb.Features.Storage;
 using ChpokkWeb.Infrastructure;
 using ChpokkWeb.Infrastructure.FileSystem;
+using ChpokkWeb.Infrastructure.Logging;
 using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Assets.Content;
+using FubuMVC.Core.Assets.Files;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Spark;
@@ -54,13 +56,16 @@ namespace ChpokkWeb {
 
 			Policies.Add<DownloadDataConvention>();
 
+			//timing for the Main screen
+			//Policies.WrapWith<TimingBehavior>(); (that wraps all nodes, which is not what we need)
+			var policy = new Policy();
+			policy.Where.ChainMatches(chain => chain.Route != null && !(chain.Route.Pattern.StartsWith("_content")));
+			policy.Wrap.WithBehavior<TimingBehavior>();
+			Policies.Add(policy, "InjectNodes");
+
 			// if the user is authenticated, but not in the database, force it to log out so that it signs in via Janrain
 			//ApplyConvention<AjaxExceptionWrappingConvention>();
 			//Policies.Add<SignoutJohnDoeConfiguration>();
-			//var policy = new Policy();
-			//policy.Where.InputTypeIs<MainDummyModel>();
-			//policy.Wrap.WithBehavior<SignoutJohnDoeBehavior>();
-			//Policies.Add(policy, "InjectNodes");
 
 			this.AlterSettings <SparkEngineSettings>(settings => {
 				                                                     settings.PrecompileViews = false;
