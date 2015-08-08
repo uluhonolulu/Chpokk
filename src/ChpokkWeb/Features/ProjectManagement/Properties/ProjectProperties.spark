@@ -102,10 +102,10 @@
 						<div style="font-size: smaller; ">Hint: choose "exe" if you want to run it online and read the console output.</div>
 						
 						<div>
-							<input name="OutputType" type="radio" id="OutputTypeExe" value="Exe" checked="checked"/> <label for="OutputTypeExe">Exe</label>
-							<input name="OutputType" type="radio" id="OutputTypeLibrary" value="Library"/> <label for="OutputTypeLibrary">Library</label>
-							<input name="OutputType" type="radio" id="OutputTypeWeb" value="Web"/> <label for="OutputTypeWeb">Web</label>
-							<input name="OutputType" type="radio" id="OutputTypeTemplate" value="Template"/> <label for="OutputTypeTemplate">Template</label>
+							<input name="OutputType" type="radio" id="OutputTypeExe" value="Exe" checked="checked"/> <label for="OutputTypeExe" class="bigger">Exe</label>
+							<input name="OutputType" type="radio" id="OutputTypeLibrary" value="Library"/> <label for="OutputTypeLibrary" class="bigger">Library</label>
+							<input name="OutputType" type="radio" id="OutputTypeWeb" value="Web"/> <label for="OutputTypeWeb" class="bigger">Web</label>
+							<input name="OutputType" type="radio" id="OutputTypeTemplate" value="Template"/> <label for="OutputTypeTemplate" class="bigger">From template</label>
 						</div>
 
 						<div id="projectTemplateWrapper" style="display: none; background-color: white;">
@@ -114,9 +114,9 @@
 						
 						
 						<h4>Language</h4>
-						<div>
-							<input name="Language" type="radio" id="LanguageCSharp" value="CSharp" checked="checked"/> <label for="LanguageCSharp">C#</label>
-							<input name="Language" type="radio" id="LanguageVBNet" value="VBNet"/> <label for="LanguageVBNet">VB.Net</label>
+						<div style="font-size: 15px;">
+							<input name="Language" type="radio" id="LanguageCSharp" value="CSharp" checked="checked"/> <label for="LanguageCSharp" class="bigger">C#</label>
+							<input name="Language" type="radio" id="LanguageVBNet" value="VBNet"/> <label for="LanguageVBNet" class="bigger">VB.Net</label>
 						</div>
 						
 						<render partial="ProjectManagement\References\References"/>

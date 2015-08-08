@@ -15,7 +15,7 @@ to use a different color start by replacing all instances of
 
 /* Tell the browser to render HTML 5 elements as block */
 header, footer, section, aside, nav, article {
-    display: block;
+	display: block;
 }
 
 /* navbar */
@@ -29,46 +29,46 @@ header, footer, section, aside, nav, article {
 page width. Or, you can specify an exact pixel width. */
 .page
 {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #header
 {
-    position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
+	position: relative;
+	margin-bottom: 0px;
+	color: #000;
+	padding: 0;
 }
 
 #header h1
 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-size: 32px !important;
+	font-weight: bold;
+	padding: 5px 0;
+	margin: 0;
+	color: #fff;
+	border: none;
+	line-height: 2em;
+	font-size: 32px !important;
 }
 
 #main
 {
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+	padding: 30px 30px 15px 30px;
+	background-color: #fff;
+	margin-bottom: 30px;
+	_height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
 
 #footer
 {
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0;
-    font-size: .9em;
+	color: #999;
+	padding: 10px 0;
+	text-align: center;
+	line-height: normal;
+	margin: 0;
+	font-size: .9em;
 }
 
 #brand 
@@ -80,54 +80,54 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
-    position: relative;
-    margin: 0;
-    text-align: right;
+	border-bottom: 1px #5C87B2 solid;
+	padding: 0 0 2px;
+	position: relative;
+	margin: 0;
+	text-align: right;
 }
 
 ul#menu li
 {
-    display: inline;
-    list-style: none;
+	display: inline;
+	list-style: none;
 }
 
 ul#menu li#greeting
 {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
+	padding: 10px 20px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: #fff;
 }
 
 ul#menu li a
 {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
+	padding: 10px 20px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	background-color: #e8eef4;
+	color: #034af3;
 }
 
 ul#menu li a:hover
 {
-    background-color: #fff;
-    text-decoration: none;
+	background-color: #fff;
+	text-decoration: none;
 }
 
 ul#menu li a:active
 {
-    background-color: #a6e2a6;
-    text-decoration: none;
+	background-color: #a6e2a6;
+	text-decoration: none;
 }
 
 ul#menu li.selected a
 {
-    background-color: #fff;
-    color: #000;
+	background-color: #fff;
+	color: #000;
 }
 
 /* FORM LAYOUT ELEMENTS   
@@ -135,20 +135,20 @@ ul#menu li.selected a
 
 fieldset 
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+	border:1px solid #ddd;
+	padding:0 1.4em 1.4em 1.4em;
+	margin:0 0 1.5em 0;
 }
 
 legend 
 {
-    font-size:1.2em;
-    font-weight: bold;
+	font-size:1.2em;
+	font-weight: bold;
 }
 
 textarea 
 {
-    min-height: 75px;
+	min-height: 75px;
 }
 
 
@@ -183,80 +183,80 @@ table th
 a { cursor: pointer;}
 .clear
 {
-    clear: both;
+	clear: both;
 }
 
 .error
 {
-    color:Red;
+	color:Red;
 }
 
 #menucontainer
 {
-    margin-top:40px;
+	margin-top:40px;
 }
 
 div#title
 {
-    display:block;
-    float:left;
-    text-align:left;
+	display:block;
+	float:left;
+	text-align:left;
 }
 
 #logindisplay
 {
-    font-size:1.1em;
-    display:block;
-    text-align:right;
-    margin:10px;
-    color:White;
+	font-size:1.1em;
+	display:block;
+	text-align:right;
+	margin:10px;
+	color:White;
 }
 
 #logindisplay a:link
 {
-    color: white;
-    text-decoration: underline;
+	color: white;
+	text-decoration: underline;
 }
 
 #logindisplay a:visited
 {
-    color: white;
-    text-decoration: underline;
+	color: white;
+	text-decoration: underline;
 }
 
 #logindisplay a:hover
 {
-    color: white;
-    text-decoration: none;
+	color: white;
+	text-decoration: none;
 }
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
 .field-validation-error
 {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 .field-validation-valid
 {
-    display: none;
+	display: none;
 }
 
 .input-validation-error
 {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+	border: 1px solid #ff0000;
+	background-color: #ffeeee;
 }
 
 .validation-summary-errors
 {
-    font-weight: bold;
-    color: #ff0000;
+	font-weight: bold;
+	color: #ff0000;
 }
 
 .validation-summary-valid
 {
-    display: none;
+	display: none;
 }
 
 /* Styles for editor and display helpers
@@ -264,28 +264,28 @@ div#title
 .display-label,
 .editor-label
 {
-    margin: 1em 0 0 0;
+	margin: 1em 0 0 0;
 }
 
 .display-field,
 .editor-field
 {
-    margin:0.5em 0 0 0;
+	margin:0.5em 0 0 0;
 }
 
 .text-box
 {
-    width: 30em;
+	width: 30em;
 }
 
 .text-box.multi-line
 {
-    height: 6.5em;
+	height: 6.5em;
 }
 
 .tri-state
 {
-    width: 6em;
+	width: 6em;
 }
 
 
@@ -352,7 +352,8 @@ div#title
 #janrainModal, #janrainModal * { box-sizing: content-box;-moz-box-sizing: content-box;}
 
 /*dialogs*/
-.modal-dialog label { font-size: smaller;color: #404040;}
+.modal-dialog label { font-size: smaller; }
+.modal-dialog label.bigger { font-size: 15px; }
 
 /*editor tabs*/
 #fileContent .nav-tabs li a {
@@ -364,8 +365,8 @@ div#title
 
 /*logs*/
 #output {
-    background-color: #191919;
-    /*font-family: monospace;*/
+	background-color: #191919;
+	/*font-family: monospace;*/
 	padding-left: 3px;
 	height: 200px;
 	overflow-y: auto;
@@ -379,8 +380,8 @@ div#title
 	text-decoration: underline;
 }
 #output .danger, #output .danger a {
-    color: #E92E2E;
+	color: #E92E2E;
 }
 #output .success {
-    color: #46A609;
+	color: #46A609;
 }
