@@ -344,7 +344,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\help\appharbor_web.png" />
+    <Content Include="Content\images\help\apphb.png" />
+    <Content Include="Content\images\help\azure1.png" />
+    <Content Include="Content\images\help\azure2.png" />
+    <Content Include="Content\images\help\azure3.png" />
+    <Content Include="Content\images\help\azure4.png" />
+    <Content Include="Content\images\help\azure5.png" />
+    <Content Include="Content\images\help\azure6.png" />
     <Content Include="Content\images\help\azure_web.png" />
+    <Content Include="Content\images\help\chpokk_create_web.png" />
     <Content Include="Content\images\hourglas.gif" />
     <Content Include="Content\scripts\lib\ace\mode-vbnet.js" />
     <Content Include="Content\scripts\lib\drop.js" />
@@ -4550,6 +4558,7 @@
     <Content Include="Blog\long-running-process.md" />
     <Content Include="Blog\renaming-files.md" />
     <Content Include="Blog\developing-feature-backwards.md" />
+    <Content Include="Blog\web-publishing.md" />
     <None Include="Content\styles\fonts\DroidSansMono.ttf" />
     <Content Include="Features\CustomerDevelopment\Pricelist\PriceListLink.spark" />
     <Content Include="Features\ProjectManagement\AddSimpleProject\NewSimpleProject.spark" />
