@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using ChpokkWeb.Infrastructure.Windows;
 using FubuCore;
 
 namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
@@ -60,6 +61,34 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			return GetProjectItemsFromFolder(projectNode, string.Empty, string.Empty);
 		}
 
+		public string PackagesPath{
+			get{
+				var packagesNode = _xmlDocument.SelectSingleNode("//d:WizardData/d:packages", _namespaceManager);
+				if (packagesNode == null) {
+					return null;
+				}
+				var keyName = packagesNode.Attributes["keyName"].Value;
+				return ((string)RegistryUtils.GetRegistryValue(@"SOFTWARE\Wow6432Node\NuGet\Repository", keyName));
+			}
+		}
+
+		public IEnumerable<TemplatePackages.NameAndVersion> Packages{
+			get
+			{
+				var packageNodes = _xmlDocument.SelectNodes("//d:WizardData/d:packages/d:package", _namespaceManager);
+				return from node in packageNodes.Cast<XmlNode>()
+					select
+						new TemplatePackages.NameAndVersion
+						{
+							PackageId = node.Attributes["id"].Value,
+							Version = node.Attributes["version"].Value
+						};
+
+			}
+		}
+
+		public TemplatePackages TemplatePackages { get {return new TemplatePackages(){Packages = this.Packages, PackageRepositoryPath = this.PackagesPath};}}
+
 		private IEnumerable<ProjectItem> GetProjectItemsFromFolder(XmlNode folderNode, string parentPath, string parentTargetPath) {
 			var localPath = folderNode.Attributes["Name"] != null? folderNode.Attributes["Name"].Value : string.Empty;
 			var path = parentPath.AppendPath(localPath);
@@ -93,6 +122,16 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 					return _targetPath.AppendPath(fileName);
 				} 
 			}
+		}
+	}
+
+	public class TemplatePackages {
+		public string PackageRepositoryPath { get; set; }
+		public IEnumerable<NameAndVersion> Packages { get; set; }
+
+		public class NameAndVersion {
+			public string PackageId { get; set; }
+			public string Version { get; set; }
 		}
 	}
 }

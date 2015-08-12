@@ -353,6 +353,10 @@
     <Content Include="Content\images\help\azure6.png" />
     <Content Include="Content\images\help\azure_web.png" />
     <Content Include="Content\images\help\chpokk_create_web.png" />
+    <Content Include="Content\images\help\chpokk_pub_button.png" />
+    <Content Include="Content\images\help\chpokk_pub_dialog.png" />
+    <Content Include="Content\images\help\chpokk_pub_result.png" />
+    <Content Include="Content\images\help\chpokk_reloaded.png" />
     <Content Include="Content\images\hourglas.gif" />
     <Content Include="Content\scripts\lib\ace\mode-vbnet.js" />
     <Content Include="Content\scripts\lib\drop.js" />
@@ -5873,6 +5877,7 @@
     <Compile Include="Infrastructure\SignalRStarter.cs" />
     <Compile Include="Infrastructure\SimpleZip\Zipper.cs" />
     <Compile Include="Infrastructure\Treeview\ICanHasChildren.cs" />
+    <Compile Include="Infrastructure\Windows\RegistryUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Remotes\Git\Clone\CloneEndpoint.cs" />
     <Compile Include="Features\Exploring\ContentController.cs" />

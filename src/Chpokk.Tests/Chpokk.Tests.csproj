@@ -382,6 +382,8 @@
     <Compile Include="Newing\AddingAProjectToSolution.cs" />
     <Compile Include="Newing\CreatingASimpleWebSolution.cs" />
     <Compile Include="Newing\GettingTheListOfExistingProjects.cs" />
+    <Compile Include="Newing\ProjectTemplates\ListOfPreinstalledPackages.cs" />
+    <Compile Include="References\LocalNuget\InstallingPackageFromLocalFolder.cs" />
     <Compile Include="Newing\ProjectTemplates\GettingListOfProjectItems.cs" />
     <Compile Include="Newing\SolutionContent\AddingProjectToGlobalSection.cs" />
     <Compile Include="Newing\SolutionContent\AddingProjectToProjectSection.cs" />

@@ -38,6 +38,15 @@ namespace ChpokkWeb.Features.ProjectManagement.References.NuGet {
 			projectSystem.Save();
 		}
 
+		public void CopyPackageFromLocalFolder(string packagesFolder, string packageId, string packageVersion, string projectPath = null,
+			string targetFolder = null) {
+			var packageRepository = PackageRepositoryFactory.Default.CreateRepository(packagesFolder);
+			if (targetFolder == null)
+				targetFolder = projectPath.ParentDirectory().ParentDirectory().AppendPath(PackagesFolder);
+			var packageManager = new PackageManager(packageRepository, targetFolder){Logger = _console};
+			packageManager.InstallPackage(packageId, SemanticVersion.Parse(packageVersion));
+		}
+
 		private void SaveAssemblyFile(string installPath, IPackageFile file) {
 			var targetPath = installPath.AppendPath(file.Path);
 			Directory.CreateDirectory(targetPath.ParentDirectory());
