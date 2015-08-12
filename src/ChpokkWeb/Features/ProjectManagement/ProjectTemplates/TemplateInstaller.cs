@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ChpokkWeb.Features.ProjectManagement.References.NuGet;
 using ChpokkWeb.Infrastructure;
 using FubuCore;
 
@@ -11,10 +12,12 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 		private readonly IAppRootProvider _rootProvider;
 		private readonly FileSystem _fileSystem;
 		private readonly TemplateTransformer _templateTransformer;
-		public TemplateInstaller(FileSystem fileSystem, TemplateTransformer templateTransformer, IAppRootProvider rootProvider) {
+		private PackageInstaller _packageInstaller;
+		public TemplateInstaller(FileSystem fileSystem, TemplateTransformer templateTransformer, IAppRootProvider rootProvider, PackageInstaller packageInstaller) {
 			_fileSystem = fileSystem;
 			_templateTransformer = templateTransformer;
 			_rootProvider = rootProvider;
+			_packageInstaller = packageInstaller;
 		}
 
 		public void CreateProjectFromTemplate(string projectPath, string templateRelativePath) {
@@ -54,6 +57,12 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 			var projectFileContent = _fileSystem.ReadStringFromFile(projectFileSourcePath);
 			var processedProjectContent = _templateTransformer.Evaluate(projectFileContent, replacements);
 			_fileSystem.WriteStringToFile(projectPath, processedProjectContent);
+
+			//adding referenced packages
+			var templatePackages = template.TemplatePackages;
+			foreach (var package in templatePackages.Packages) {
+				_packageInstaller.CopyPackageFromLocalFolder(templatePackages.PackageRepositoryPath, package.PackageId, package.Version, projectPath);
+			}
 		}
 
 		public IEnumerable<Template> GetTemplates() {
