@@ -17,11 +17,12 @@ namespace ChpokkWeb.Infrastructure.Logging
 {
 	public class TimingBehavior : StopwatchBehavior
 	{
-		public TimingBehavior(ActivityTracker tracker, ICurrentChain currentChain) : base(timeSpent =>	//
+		public TimingBehavior(ActivityTracker tracker, ICurrentChain currentChain) : base(timeSpent =>
 		{
 			var info = currentChain.Current.ToString() + "|" +
 			           currentChain.OriginatingChain.ToString();
-			tracker.Record("Timing for " + info + ": " + timeSpent);
+			if (timeSpent > 10) 
+				tracker.Record("Timing for " + info + ": " + timeSpent);
 		}) {}
 	}
 
