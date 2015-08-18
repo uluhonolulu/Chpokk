@@ -3,9 +3,9 @@
 	<script type="text/javascript">
 		$(function() {
 			var compilerHub = $.connection.compilerHub;
-			compilerHub.client.danger = function (message, wrap) { log(message, 'danger', wrap); };
-			compilerHub.client.success = function (message, wrap) { log(message, 'success', wrap); };
-			compilerHub.client.info = function (message, wrap) { log(message, 'info', wrap); };
+			compilerHub.client.danger = function (message, wrap) { logToOutputWindow(message, 'danger', wrap); };
+			compilerHub.client.success = function (message, wrap) { logToOutputWindow(message, 'success', wrap); };
+			compilerHub.client.info = function (message, wrap) { logToOutputWindow(message, 'info', wrap); };
 			
 		});
 		amplify.subscribe('connected', function(connectionId) {
@@ -50,11 +50,11 @@
 			$('#output').show();
 			$('#output').empty();
 			$('#output').get(0).scrollIntoView(top);
-			log("Please wait..");
+			logToOutputWindow("Please wait..");
 
 		}
 
-		function log(message, category, wrap) {
+		function logToOutputWindow(message, category, wrap) {
 			var container = wrap ? $('<div/>') : $('<span/>');
 			if (message.line) {
 				message = '<a href="/Repository/{RepositoryName}#{file}?line={line}">{message}</a>'.toFormat($.extend(message, model));
