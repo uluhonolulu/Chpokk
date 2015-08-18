@@ -26,19 +26,8 @@
 			$('#language').prop('disabled', false);
 			displayProjectPropertiesDialog(null, null);
 			//handle the creation
-			$('#save').one('click', function () {
-				$('#save').text("Please wait..");
-				$('#save').addClass('disabled');
-				var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
-				var model = $('#projectForm').serializeObject();
-				if (window.getTemplatePath) {
-					model.TemplatePath = window.getTemplatePath();
-				}
-				$.post(url, model);
-				$('#projectPropertiesDialog').modal('hide');
-				showWaiter();
-				track("Creating a project: " + JSON.stringify(model));
-			});
+			var url = '${Urls.UrlFor<AddSimpleProjectInputModel>()}';
+			handleSave(url);
 		}
 	</script>
 </content>

@@ -49,6 +49,7 @@ namespace ChpokkWeb.Features.ProjectManagement.AddSimpleProject {
 			AddPackages(inputModel, projectPath);
 			rootElement.Save();
 			_logger.WriteLine("Project created");
+			_logger.WriteLine("Redirecting..");
 
 			//redirect to the new repository
 			var projectUrl = _registry.UrlFor(new RepositoryInputModel { RepositoryName = projectName });

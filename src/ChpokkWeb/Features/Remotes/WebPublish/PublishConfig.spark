@@ -96,19 +96,7 @@
 				$.post(url, model, function (response) {
 					hideWaiter();
 					$('#webPublishConfigDialog').modal('hide');
-					if (response.Success) {
-						var message = "Your project has been published successfully. <br/>";
-						if (response.PreviewLink) {
-							message += "Click <a href='" + response.PreviewLink + "' target='preview' class='alert-link'>here</a> to view it.";
-						}
-						success(message);
-					} else {
-						alert(response.ErrorMessage);
-					}
-					//reload on closing the alert
-					$('.alert button').on('click', function() {
-						window.location.reload();
-					});
+					displaySuccessMessage(response);
 				});
 				
 			});
@@ -175,6 +163,23 @@
 					$('#webName').off('keyup change');
 					break;
 			}
+		}
+
+		function displaySuccessMessage(response) {
+			if (response.Success) {
+				var message = "Your project has been published successfully. <br/>";
+				if (response.PreviewLink) {
+					message += "Click <a href='" + response.PreviewLink + "' target='preview' class='alert-link'>here</a> to view it.";
+				}
+				success(message);
+			} else {
+				alert(response.ErrorMessage);
+			}
+
+			//reload on closing the alert
+			$('.alert button').on('click', function () {
+				window.location.reload();
+			});
 		}
 
 	</script>

@@ -16,20 +16,8 @@
 			$('#language').prop('disabled', false);
 			displayProjectPropertiesDialog(null, solutionPath);
 			//handle the creation
-			$('#save').one('click', function () {
-				$('#save').text("Please wait..");
-				$('#save').addClass('disabled');
-				var url = '${Urls.UrlFor<AddProjectInputModel>()}';
-				var model = $('#projectForm').serializeObject();
-				model.SolutionPath = solutionPath;
-				if (window.getTemplatePath) {
-					model.TemplatePath = window.getTemplatePath();
-				}
-				$.post(url, model);
-				$('#projectPropertiesDialog').modal('hide');
-				showWaiter();
-				track("Creating a project: " + JSON.stringify(model));
-			});
+			var url = '${Urls.UrlFor<AddProjectInputModel>()}';
+			handleSave(url, null, solutionPath);
 		}
 
 		function editProjectProperties(projectPath, solutionPath) {
@@ -40,18 +28,8 @@
 			$('[name="OutputType"]').prop('disabled', true);
 			$('#projectTemplateWrapper').hide();
 			displayProjectPropertiesDialog(projectPath, solutionPath);
-			$('#save').one('click', function () {
-				$('#save').text("Please wait..");
-				$('#save').addClass('disabled');
-				var url = '${Urls.UrlFor<EditPropertiesInputModel>()}';
-				var model = $('#projectForm').serializeObject();
-				model.SolutionPath = solutionPath;
-				model.ProjectPath = projectPath;
-				$.post(url, model);
-				$('#projectPropertiesDialog').modal('hide');
-				showWaiter();
-				track("Creating a project: " + JSON.stringify(model));
-			});
+			var url = '${Urls.UrlFor<EditPropertiesInputModel>()}';
+			handleSave(url, projectPath, solutionPath);
 		}
 
 		function displayProjectPropertiesDialog(projectPath, solutionPath) {
@@ -67,6 +45,22 @@
   
 		}
 
+		function handleSave(url, projectPath, solutionPath) {
+			$(document).one('save', function () {			//we handle the "save" event rather than onclick -- need to cancel the form submission and still handle the submit click (needed for auto validation)
+				$('#save').text("Please wait..");
+				var model = $('#projectPropertiesForm').serializeObject();
+				model.SolutionPath = solutionPath;
+				model.ProjectPath = projectPath;
+				if (window.getTemplatePath) {
+					model.TemplatePath = window.getTemplatePath();
+				}
+				$.post(url, model);
+				$('#projectPropertiesDialog').modal('hide');
+				showWaiter();
+				track("Creating a project: " + JSON.stringify(model));
+			});
+		}
+
 		// show or hide the template browser
 		function toggleProjectTemplateBrowser() {
 			var weSelectedTemplate = $('#OutputTypeTemplate').is(':checked');
@@ -75,6 +69,11 @@
 
 		$(function() {
 			$('[name="OutputType"]').click(toggleProjectTemplateBrowser);
+
+			$('#projectPropertiesForm').submit(function (event) {
+				event.preventDefault();
+				$(document).trigger('save');
+			});
 		});
 		
 		function setProjectType(val) {
@@ -93,8 +92,8 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="dialogTitle">Add a project to the solution</h4>
 				</div>
-				<div class="modal-body">
-					<form class="well" id="projectForm">
+				<form class="well" id="projectPropertiesForm" action="" method="GET">
+					<div class="modal-body">
 						<h4>Project name</h4>
 						<input name="ProjectName" id="projectName" type="text" class="form-control" required/>
 						
@@ -121,15 +120,16 @@
 						
 						<render partial="ProjectManagement\References\References"/>
 						<input name="SolutionPath" id="SolutionPath" type="hidden"/>
-					</form>
 					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" id="save">Create</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<input type="submit" value="Create" class="btn btn-primary" id="save" />
 					
-					<div id="createProjectLogger" style="font-size: smaller;"/>
-				</div>
+						<div id="createProjectLogger" style="font-size: smaller;"></div>
+					</div>
+					
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
