@@ -21,7 +21,7 @@ namespace ChpokkWeb.Infrastructure.Logging
 		{
 			var info = currentChain.Current.ToString() + "|" +
 			           currentChain.OriginatingChain.ToString();
-			if (timeSpent > 10) 
+			if (timeSpent > 11) 
 				tracker.Record("Timing for " + info + ": " + timeSpent);
 		}) {}
 	}
