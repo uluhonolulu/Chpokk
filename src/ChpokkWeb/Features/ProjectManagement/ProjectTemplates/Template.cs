@@ -53,6 +53,17 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 
 		public string Path { get; private set; }
 
+		public IDictionary<string, string> Replacements{
+			get{
+				var replacements = new Dictionary<string, string>();
+				var replacementNodes = _xmlDocument.SelectNodes("//d:CustomParameter", _namespaceManager);
+				foreach (var node in replacementNodes.Cast<XmlNode>()) {
+					replacements.Add(node.Attributes["Name"].Value, node.Attributes["Value"].Value);
+				}
+				return replacements;
+			}
+		}
+
 		public IEnumerable<ProjectItem> GetProjectItems() {
 			var projectNode = _xmlDocument.SelectSingleNode("//d:Project", _namespaceManager);
 			if (projectNode == null) {

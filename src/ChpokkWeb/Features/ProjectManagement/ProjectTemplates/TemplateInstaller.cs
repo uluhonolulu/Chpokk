@@ -34,9 +34,13 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 					{"$clrversion$", "4.0"},
 					{"$registeredorganization$", "GeekSoft"},
 					{"$year$", DateTime.Today.Year.ToString()},
-					{"$guid1$", Guid.NewGuid().ToString()}
+					{"$guid1$", Guid.NewGuid().ToString()},
+					{"$guid2$", Guid.NewGuid().ToString()}
 				};
 			var template = Template.LoadTemplate(templatePath);
+			foreach (var replacement in template.Replacements) {
+				replacements[replacement.Key] = replacement.Value;
+			}
 			var projectItems = template.GetProjectItems();
 			foreach (var projectItem in projectItems) {
 				var templateFileRelativePath = projectItem.FileName;	//relative to template folder
