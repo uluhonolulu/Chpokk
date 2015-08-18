@@ -195,5 +195,15 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 	}
 
+	public class RanRule : MatchingRule {
+		protected override string GetMessage(string what) {
+			return "Ran the program";
+		}
+
+		protected override bool Matters(string what) {
+			return what.Contains("runButton");
+		}
+	}
+
 	//public class ProgramRun
 }
