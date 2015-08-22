@@ -205,5 +205,18 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 	}
 
+	public class SlowActions : IAmImportant {
+		public string GetMessage(IEnumerable<TrackerInputModel> log) {
+			var timings = from entry in log where entry.What.StartsWith("Timing for ") select entry;
+			var slowTimings = from entry in timings where IsSlow(entry) select entry.What;
+			return slowTimings.Join(Environment.NewLine);
+		}
+
+		private bool IsSlow(TrackerInputModel entry) {
+			var time = int.Parse(entry.What.Split(':')[1].Trim());
+			return time > 1000;
+		}
+	}
+
 	//public class ProgramRun
 }
