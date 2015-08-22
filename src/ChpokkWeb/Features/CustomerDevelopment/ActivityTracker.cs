@@ -213,7 +213,8 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		private bool IsSlow(TrackerInputModel entry) {
-			var time = int.Parse(entry.What.Split(':')[1].Trim());
+			var timing = entry.What.Split('>')[1].Trim();
+			var time = int.Parse(timing);
 			return time > 1000;
 		}
 	}
