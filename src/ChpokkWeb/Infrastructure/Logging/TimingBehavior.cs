@@ -20,7 +20,7 @@ namespace ChpokkWeb.Infrastructure.Logging
 		public TimingBehavior(ActivityTracker tracker, ICurrentChain currentChain) : base(timeSpent =>
 		{
 			var info = currentChain.Current.ToString() + " | " +
-					   currentChain.Current.FirstCall().ToString() + " | " +
+				(currentChain.Current.FirstCall() != null? currentChain.Current.FirstCall().ToString() : "null") + " | " +
 			           currentChain.OriginatingChain.ToString();
 			if (timeSpent > 11) 
 				tracker.Record("Timing for " + info + "> " + timeSpent);
