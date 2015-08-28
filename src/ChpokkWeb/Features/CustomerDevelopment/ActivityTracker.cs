@@ -166,7 +166,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			try {
 				var model = new JavaScriptSerializer().Deserialize<AddSimpleProjectInputModel>(serializedModel);
 				return "Created a project: " + model.OutputType +
-				       (model.TemplatePath.IsNotEmpty() ? ", template: " + model.TemplatePath : String.Empty);
+				       (model.TemplatePath.IsNotEmpty() ? ", template: " + model.TemplatePath : string.Empty);
 			}
 			catch (Exception exception) {
 				return "Created a project: " + serializedModel + " (" + exception.ToString() + ")";
