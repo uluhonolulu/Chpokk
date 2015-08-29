@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using ChpokkWeb.Features.Blog.Post;
+using ChpokkWeb.Features.CustomerDevelopment;
 using ChpokkWeb.Features.ReadMe;
 using FubuCore;
 using Tanka.Markdown;
@@ -14,11 +15,14 @@ namespace ChpokkWeb.Features.Blog {
 		private const string MetadataBoundary = "\r\n==\r\n";
 		private const string DescriptionBoundary = "\r\n--\r\n";
 		private readonly IFileSystem _fileSystem;
-		public BlogPostParser(IFileSystem fileSystem) {
+		private ActivityTracker _activityTracker;
+		public BlogPostParser(IFileSystem fileSystem, ActivityTracker activityTracker) {
 			_fileSystem = fileSystem;
+			_activityTracker = activityTracker;
 		}
 
 		public TModel Parse(string source) {
+			_activityTracker.Record("Parse start");
 			var parts = source.Split(new[] {MetadataBoundary}, StringSplitOptions.None);
 			var content = parts.Length > 1 ? parts[1].Replace(DescriptionBoundary, Environment.NewLine + Environment.NewLine) : string.Empty;
 			var blogPostModel = new TModel { Content = ParseContent(content) };
@@ -26,7 +30,12 @@ namespace ChpokkWeb.Features.Blog {
 			var description = parts.Length > 1 ? parts[1].Split(new[] {DescriptionBoundary}, StringSplitOptions.None)[0] : string.Empty;
 			blogPostModel.Description = description;
 			blogPostModel.HtmlDescription = ParseContent(description);
-			return blogPostModel;
+			try {
+				return blogPostModel;
+			}
+			finally {
+				_activityTracker.Record("Parse end");
+			}
 		}
 
 		private void AddMetadata(TModel blogPostModel, string metadataSource) {
