@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using ChpokkWeb.Features.CustomerDevelopment;
 using FubuMVC.Core.Security;
 using Newtonsoft.Json;
 using Simple.Data;
@@ -12,9 +13,11 @@ using Simple.Data;
 namespace ChpokkWeb.Features.Authentication {
 	public class UserManager {
 		protected readonly IAuthenticationContext _authenticationContext;
+		private ActivityTracker _activityTracker;
 
-		public UserManager(IAuthenticationContext authenticationContext) {
+		public UserManager(IAuthenticationContext authenticationContext, ActivityTracker activityTracker) {
 			_authenticationContext = authenticationContext;
+			_activityTracker = activityTracker;
 		}
 
 		public string SigninUser(dynamic profile, string rawData, UserData userData) {
@@ -42,13 +45,27 @@ namespace ChpokkWeb.Features.Authentication {
 		}
 
 		public dynamic GetUser(string userName) {
-			var db = Database.Open();
-			return db.Users.FindByUserId(userName);
+			_activityTracker.Record("GetUser start");
+			try {
+				var db = Database.Open();
+				_activityTracker.Record("DB open");
+				return db.Users.FindByUserId(userName);
+			}
+			finally {
+				_activityTracker.Record("GetUser end");
+			}
 		}
 
 		public void UpdateUser(dynamic user) {
-			var db = Database.Open();
-			db.Users.Update(user);
+			_activityTracker.Record("UpdateUser start");
+			try {
+				var db = Database.Open();
+				_activityTracker.Record("DB open");
+				db.Users.Update(user);
+			}
+			finally {
+				_activityTracker.Record("UpdateUser end");				
+			}
 		}
 
 		private dynamic GetUsername(dynamic profile) {
@@ -66,7 +83,7 @@ namespace ChpokkWeb.Features.Authentication {
 	public class UserManagerInContext: UserManager {
 		private readonly ISecurityContext _securityContext;
 
-		public UserManagerInContext(IAuthenticationContext authenticationContext, ISecurityContext securityContext) : base(authenticationContext) {
+		public UserManagerInContext(IAuthenticationContext authenticationContext, ISecurityContext securityContext, ActivityTracker activityTracker) : base(authenticationContext, activityTracker) {
 			_securityContext = securityContext;
 		}
 
