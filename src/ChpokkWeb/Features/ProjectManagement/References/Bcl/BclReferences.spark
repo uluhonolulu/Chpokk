@@ -17,7 +17,7 @@
 
 	    function displayBclReferences(references) {
 		    $('#bclContainer').empty();
-	    	var template = '<div><input type="checkbox" name="References" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} /> <label for=\'$${Name}\' >$${Name}</label></div>';
+		    var template = '<div><input type="checkbox" name="References" value=\'$${Name}\' id=\'$${Name}\' {{if Selected}} checked {{/if}} message=\'BCL.$${Name}\'/> <label for=\'$${Name}\' >$${Name}</label></div>';
 	    	$.tmpl(template, references).appendTo($('#bclContainer'));
 		    selectDefaultReferences();
 	    }

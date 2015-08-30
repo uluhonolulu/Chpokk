@@ -57,7 +57,7 @@
 				var data = { Query: query };
 				$.post(url, data, function(result) {
 					//TODO: filter out what's here already
-					var template = '<div><input type="checkbox" name="Packages" value=\'$${Id}\' id=\'$${Id}\'> <label for=\'$${Id}\' title="$${Description}">$${Id} $${Version}</label></div>';
+					var template = '<div><input type="checkbox" name="Packages" value=\'$${Id}\' id=\'$${Id}\' message=\'NuGet.$${Id}\'> <label for=\'$${Id}\' title="$${Description}">$${Id} $${Version}</label></div>';
 					$.tmpl(template, result.Packages).appendTo($('#packagesContainer'));
 					$('#packagesLoading').hide();
 				});
