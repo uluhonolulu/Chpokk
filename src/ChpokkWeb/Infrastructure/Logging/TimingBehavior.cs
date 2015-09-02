@@ -15,8 +15,9 @@ using FubuMVC.Core.Runtime;
 
 namespace ChpokkWeb.Infrastructure.Logging
 {
-	public class TimingBehavior : StopwatchBehavior
-	{
+	public class TimingBehavior : StopwatchBehavior {
+		private ActivityTracker _tracker;
+		private ICurrentChain _currentChain;
 		public TimingBehavior(ActivityTracker tracker, ICurrentChain currentChain) : base(timeSpent =>
 		{
 			var info = currentChain.Current.ToString() + " | " +
@@ -24,7 +25,18 @@ namespace ChpokkWeb.Infrastructure.Logging
 			           currentChain.OriginatingChain.ToString();
 			if (timeSpent > 11) 
 				tracker.Record("Timing for " + info + "> " + timeSpent);
-		}) {}
+		}) {
+			_currentChain = currentChain;
+			_tracker = tracker;
+		}
+
+		protected override void invoke(Action action) {
+			var info = _currentChain.Current + " | " +
+				(_currentChain.Current.FirstCall() != null ? _currentChain.Current.FirstCall().ToString() : "null") + " | " +
+					   _currentChain.OriginatingChain;
+			_tracker.Record("Calling " + info);
+			base.invoke(action);
+		}
 	}
 
 
