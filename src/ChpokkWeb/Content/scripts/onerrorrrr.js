@@ -189,8 +189,15 @@ function getErrorText(source) {
 	if (source && source.contains('<html>')) {
 		var regex = /\<pre\>[\s\S]*?\<\/pre\>/im;///\<pre\>((?:.|\s)*)\<\/pre\>/im
 		var pre = regex.exec(source);
+		if (!pre) {
+			return source;
+		}
 		regex = /\<pre\>([\s\S]*)\<\/pre\>/im;
-		return regex.exec(pre)[1];
+		var result = regex.exec(pre);
+		if (!result) {
+			return pre;
+		}
+		return result[1];
 	}
 	return source;
 }
