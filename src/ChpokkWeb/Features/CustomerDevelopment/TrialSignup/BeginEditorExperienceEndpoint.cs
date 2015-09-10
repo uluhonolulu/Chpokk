@@ -13,16 +13,20 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 		private readonly InterestDetector _interestDetector;
 		private readonly ISecurityContext _securityContext;
 		private readonly ExperienceTracker _experienceTracker;
-		private UserManagerInContext _userManager;
-		public BeginEditorExperienceEndpoint(InterestDetector interestDetector, ISecurityContext securityContext, ExperienceTracker experienceTracker, UserManagerInContext userManager) {
+		private readonly UserManagerInContext _userManager;
+		private ActivityTracker _activityTracker;
+		public BeginEditorExperienceEndpoint(InterestDetector interestDetector, ISecurityContext securityContext, ExperienceTracker experienceTracker, UserManagerInContext userManager, ActivityTracker activityTracker) {
 			_interestDetector = interestDetector;
 			_securityContext = securityContext;
 			_experienceTracker = experienceTracker;
 			_userManager = userManager;
+			_activityTracker = activityTracker;
 		}
 
 		public BeginEditorExperienceModel DoIt(BeginEditorExperienceDummyInputModel _) {
+			_activityTracker.Record("Calling ShouldStart");
 			var shouldStart = _interestDetector.ShouldStart(_securityContext.CurrentIdentity);
+			_activityTracker.Record("Called ShouldStart");
 			return new BeginEditorExperienceModel { ShouldStart = shouldStart };
 		}
 
