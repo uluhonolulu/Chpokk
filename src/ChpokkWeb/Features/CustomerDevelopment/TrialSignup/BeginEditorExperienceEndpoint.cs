@@ -59,3 +59,5 @@ namespace ChpokkWeb.Features.CustomerDevelopment.TrialSignup {
 
 	public class BeginEditorExperienceDummyInputModel {}
 }
+
+//OH GOD OH GOD PLZ PLZ PLZ!!!
