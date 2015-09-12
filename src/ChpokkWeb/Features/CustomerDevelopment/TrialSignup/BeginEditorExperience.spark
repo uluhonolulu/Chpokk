@@ -5,34 +5,34 @@
 <content name="InlineScripts">
 	<!-- BeginEditorExperience.spark -->
 	<script>
-	    $(function () {
-	    	track("User status from server: !{Model.ShouldStart}");
-	    })
+		$(function () {
+			track("User status from server: !{Model.ShouldStart}");
+		})
 	</script> 	
-    <if condition="Model.ShouldStart == InterestStatus.Newbie">
-	    <script>
-	        $(function () {
-	        	var userHub = $.connection.userHub;
-	        	amplify.subscribe('connected', function (connectionId) {
-	            	userHub.server.onStartPlayingWith().done(function(status) {
-	            		try {
-	            			track("User status: " + JSON.stringify(status));
-	            		} catch (e) {
-	            			track("User status threw an exception: " + e.toString());
-	            		};	            		
-	            	});
-	        		//StartTimingInputModel
-	            	$.post('!{this.Urls.UrlFor<StartTimingInputModel>()}', { ConnectionId: $.connection.hub.id });
-	        	});
-	        })
-	    </script>        
-    </if>
-    <if condition="Model.ShouldStart == InterestStatus.TrialCanceled">
-	    <script>
-	        $(function () {
-	        	displayTrialInvitation();
-	        })
-	    </script>        
-    </if>
+	<if condition="Model.ShouldStart == InterestStatus.Newbie">
+		<script>
+			$(function () {
+				var userHub = $.connection.userHub;
+				amplify.subscribe('connected', function (connectionId) {
+					userHub.server.onStartPlayingWith().done(function(status) {
+						try {
+							track("User status: " + JSON.stringify(status));
+						} catch (e) {
+							track("User status threw an exception: " + e.toString());
+						};	            		
+					});
+					//StartTimingInputModel
+					$.post('!{this.Urls.UrlFor<StartTimingInputModel>()}', { ConnectionId: $.connection.hub.id });
+				});
+			})
+		</script>        
+	</if>
+	<if condition="Model.ShouldStart == InterestStatus.TrialCanceled">
+		<script>
+			$(function () {
+				displayTrialInvitation();
+			})
+		</script>        
+	</if>
 	!{"<!--"} !{Model.ShouldStart} -->
 </content>

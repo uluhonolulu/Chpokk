@@ -219,5 +219,14 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 	}
 
+	public class DisplayedInvitationRule : MatchingRule {
+		protected override string GetMessage(string what) {
+			return what;
+		}
+
+		protected override bool Matters(string what) {
+			return what == "Displaying invitation";
+		}
+	}
 	//public class ProgramRun
 }
