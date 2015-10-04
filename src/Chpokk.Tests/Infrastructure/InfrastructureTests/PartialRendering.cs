@@ -44,7 +44,8 @@ namespace Chpokk.Tests.Infrastructure.InfrastructureTests {
 			var graph = Context.Container.Get<BehaviorGraph>();
 			var writer = Context.Container.Get<IOutputWriter>();
 			var methodName = "TellMe";
-			var result = ModellessPartialExtension.Partial<SampleHandler>(methodName, partialFactory, graph, arguments, writer);
+			var result = ModellessPartialExtension.Partial<SampleHandler>(methodName, partialFactory, graph, arguments, writer,
+				s => { });
 			return spy.Results.FirstOrDefault();
 		}
 
