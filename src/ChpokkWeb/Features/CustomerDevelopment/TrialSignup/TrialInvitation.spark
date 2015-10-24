@@ -19,11 +19,13 @@
 				$.post(url);
 			});
 
-		});
+			displayTrialInvitation();
+
+		});
 
 		function displayTrialInvitation() {
-			track("Displaying invitation");
-			$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
+			track("Displaying invitation");			if (tabs.activePath) {			//only save if there's an open file
+				$('#saveButton').click(); //that's how we save stuff, sorry			}			$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
 		}
 	</script>
 <div class="modal fade stay" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">
@@ -43,7 +45,8 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" id="cancel">Stop using Chpokk</button>
 				<button type="button" class="btn btn-primary" id="subscribe" data-dismiss="modal">Continue using Chpokk for a reduced price</button>
+				<div><a class="zipper">Download your files, .zipped</a></div>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div><!-- /.modal --> 

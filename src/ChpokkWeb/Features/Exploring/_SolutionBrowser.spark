@@ -27,7 +27,7 @@
 		$(function () {
 			loadSolutionExplorer();
 			
-			$('#zipper').click(function() {
+			$('#zipper, .zipper').click(function() {
 				document.location.href = '${Urls.UrlFor<DownloadZipInputModel>()}?RepositoryName=${Model.RepositoryName}';
 			});
 
