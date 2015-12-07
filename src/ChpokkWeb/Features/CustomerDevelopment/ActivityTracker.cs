@@ -20,6 +20,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		private readonly UsageCounter _usageCounter;
 		private readonly WhosOnlineTracker _onlineTracker;
 		private readonly IEnumerable<IAmImportant> _importantRules;
+		private static object _locker = new object();
 
 		public ActivityTracker(SmtpClient mailer, UsageRecorder usageRecorder, UsageCounter usageCounter, WhosOnlineTracker onlineTracker, IEnumerable<IAmImportant> importantRules, IContainer container) {
 			_mailer = mailer;
@@ -74,7 +75,10 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				if (_mailer.Host != null) {
 					var subject = GetSubject();
 					var body = messageBuilder.ToString().Replace(@"\r\n", Environment.NewLine); // making the serialized values readable
-					_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);
+					lock (_locker) {
+						_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);					
+					}
+
 				}
 				if (IsLoggedIn) {
 					_usageRecorder.AddUsage(UserName, messageBuilder.ToString(), GetDuration());				
