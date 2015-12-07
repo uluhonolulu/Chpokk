@@ -16,8 +16,8 @@ using FubuMVC.Core.Runtime;
 namespace ChpokkWeb.Infrastructure.Logging
 {
 	public class TimingBehavior : StopwatchBehavior {
-		private ActivityTracker _tracker;
-		private ICurrentChain _currentChain;
+		private readonly ActivityTracker _tracker;
+		private readonly ICurrentChain _currentChain;
 		public TimingBehavior(ActivityTracker tracker, ICurrentChain currentChain) : base(timeSpent =>
 		{
 			var info = currentChain.Current.ToString() + " | " +
