@@ -10,6 +10,7 @@ using ChpokkWeb.Features.CustomerDevelopment.WhosOnline;
 using ChpokkWeb.Features.ProjectManagement.AddSimpleProject;
 using ChpokkWeb.Features.RepositoryManagement;
 using FubuCore;
+using SendGrid;
 using StructureMap;
 
 namespace ChpokkWeb.Features.CustomerDevelopment {
@@ -72,11 +73,17 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 				foreach (var model in _log) {
 					messageBuilder.AppendLine(model.ToString());
 				}
-				if (_mailer.Host != null) {
+
+				//sending
+				if (_mailer.Host != null || true) {
 					var subject = GetSubject();
 					var body = messageBuilder.ToString().Replace(@"\r\n", Environment.NewLine); // making the serialized values readable
 					lock (_locker) {
-						_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);					
+						var apiKey = "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";// Environment.GetEnvironmentVariable("SENDGRID_KEY");
+						var transportWeb = new Web(apiKey);
+						var message = new SendGridMessage(new MailAddress("actions@chpokk.apphb.com"), new[] { new MailAddress("uluhonolulu@gmail.com") }, subject, body, body);
+						//_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);					
+						transportWeb.DeliverAsync(message).Wait();
 					}
 
 				}
