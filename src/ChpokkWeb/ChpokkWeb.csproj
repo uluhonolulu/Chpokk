@@ -5771,6 +5771,7 @@
     <Compile Include="Features\Storage\RestoreSynchronizer.cs" />
     <Compile Include="Features\Testing\Tester.cs" />
     <Compile Include="Features\Testing\WebGallioConsole.cs" />
+    <Compile Include="Infrastructure\DomainRedirectionBehavior.cs" />
     <Compile Include="Infrastructure\FileSystem\LocalAndRemoteFileSystem.cs" />
     <Compile Include="Infrastructure\FileSystem\LocalAndRemoteXmlReader.cs" />
     <Compile Include="Infrastructure\FileSystem\RemoteFileSystem.cs" />

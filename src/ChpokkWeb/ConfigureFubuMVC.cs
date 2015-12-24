@@ -63,6 +63,9 @@ namespace ChpokkWeb {
 			policy.Wrap.WithBehavior<TimingBehavior>();
 			Policies.Add(policy, "InjectNodes");
 
+			//redirect to the new domain
+			Policies.WrapWith<DomainRedirectionBehavior>();
+
 			// if the user is authenticated, but not in the database, force it to log out so that it signs in via Janrain
 			//ApplyConvention<AjaxExceptionWrappingConvention>();
 			//Policies.Add<SignoutJohnDoeConfiguration>();
