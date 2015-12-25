@@ -24,11 +24,14 @@ namespace ChpokkWeb.Infrastructure {
 		protected override void invoke(Action action) {
 			var url = _currentHttpRequest.FullUrl();
 			var uri = new Uri(url);
+			_outputWriter.AppendHeader("X-Host", uri.Host);
 			if (uri.Host == OLD_HOST) {
+				_outputWriter.AppendHeader("X-Redirecting", true.ToString());
 				uri = new UriBuilder(uri.Scheme, NEW_HOST, 80, uri.PathAndQuery).Uri;
 				_outputWriter.WritePermanentRedirectTo(uri.ToString());
 			}
 			else {
+				_outputWriter.AppendHeader("X-Redirecting", false.ToString());
 				action();
 			}
 		}
