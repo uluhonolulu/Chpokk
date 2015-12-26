@@ -77,7 +77,7 @@ span.node-trace-duration
 }
 
 a.external {
-    background: url(/content/images/external.png) center right no-repeat;
+    background: url(/_content/images/external.png) center right no-repeat;
     padding-right: 13px;
 }
 
@@ -162,4 +162,8 @@ li.gray div.node-trace-container
 {
 	color: Gray;
 	text-decoration: line-through;
+}
+
+td.number {
+    text-align: right !important;
 }
