@@ -4576,6 +4576,7 @@
     <Content Include="Blog\renaming-files.md" />
     <Content Include="Blog\developing-feature-backwards.md" />
     <Content Include="Blog\web-publishing.md" />
+    <Content Include="Blog\list-all-available-routes-in-a-Nancy-application.md" />
     <Content Include="Blog\hosting-winforms-control.md" />
     <None Include="Content\styles\fonts\DroidSansMono.ttf" />
     <Content Include="Features\CustomerDevelopment\Pricelist\PriceListLink.spark" />
