@@ -5712,7 +5712,6 @@
     <Compile Include="Features\CustomerDevelopment\TrialSignup\ExperienceTracker.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\InterestDetector.cs" />
     <Compile Include="Features\CustomerDevelopment\TrialSignup\StartTrialEndpoint.cs" />
-    <Compile Include="Features\CustomerDevelopment\TrialSignup\UserHub.cs" />
     <Compile Include="Features\CustomerDevelopment\WhosOnline\WhosOnlineEndpoint.cs" />
     <Compile Include="Features\CustomerDevelopment\WhosOnline\WhosOnlineTracker.cs" />
     <Compile Include="Features\Editor\Intellisense\Providers\DotlessCompletionProvider.cs" />
