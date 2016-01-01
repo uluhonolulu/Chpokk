@@ -14,13 +14,13 @@
 			$(function () {
 				var userHub = $.connection.userHub;
 				amplify.subscribe('connected', function (connectionId) {
-					userHub.server.onStartPlayingWith().done(function(status) {
-						try {
-							track("User status: " + JSON.stringify(status));
-						} catch (e) {
-							track("User status threw an exception: " + e.toString());
-						};	            		
-					});
+					//userHub.server.onStartPlayingWith().done(function(status) {
+					//	try {
+					//		track("User status: " + JSON.stringify(status));
+					//	} catch (e) {
+					//		track("User status threw an exception: " + e.toString());
+					//	};	            		
+					//});
 					//StartTimingInputModel
 					$.post('!{this.Urls.UrlFor<StartTimingInputModel>()}', { ConnectionId: $.connection.hub.id });
 				});
