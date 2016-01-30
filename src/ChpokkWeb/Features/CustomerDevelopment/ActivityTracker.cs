@@ -46,9 +46,6 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 			if (UserName.IsNotEmpty()) {
 				_onlineTracker.On(UserName);
 			}
-			//TODO: remove this
-			//var path = @"D:\Projects\Chpokk\src\ChpokkWeb\UserFiles\uluhonolulu_Google+".AppendPath("activity.log");
-			//File.AppendAllText(path, DateTime.Now.ToString("HH:mm:ss") + ": " + caption + Environment.NewLine);
 		}
 
 		public void Dispose() {
@@ -122,7 +119,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 		}
 
 		private TimeSpan GetDuration() {
-			var activeActions = _log.Where(track => !track.ToString().Contains("keepalive")).ToArray();
+			var activeActions = _log.Where(track => !track.ToString().Contains("keepalive") && !track.ToString().Contains("customerdevelopment")).ToArray();
 			if (activeActions.Any()) {
 				return activeActions.Last().When - activeActions.First().When;			
 			}
