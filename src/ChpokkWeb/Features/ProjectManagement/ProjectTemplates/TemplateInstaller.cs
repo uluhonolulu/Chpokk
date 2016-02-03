@@ -48,7 +48,7 @@ namespace ChpokkWeb.Features.ProjectManagement.ProjectTemplates {
 				if (!File.Exists(templateFileSourcePath)) {//sometimes all files are in the root folder despite the folder structure in the template file; let's search by name in the template folder
 					templateFileSourcePath = Directory.EnumerateFiles(projectTemplateFolder, Path.GetFileName(projectItem.FileName)).FirstOrDefault();
 					if (templateFileSourcePath.IsEmpty()) {
-						throw new Exception("Couldn't find template file: " + projectItem.FileName);
+						throw new Exception("Couldn't find template file " + projectItem.FileName + " for " + templateRelativePath);
 					}
 				}
 				var destinationRelativePath = projectItem.TargetFileName;
