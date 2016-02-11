@@ -5,7 +5,7 @@ Yes, I'm doing terrible, horrible things on my daytime job. One of these things 
 
 But I'm not complaining.
 
-So, you probably don't care why, but I was tasked with creating a .Net control as a replacement for an existing ActiveX, which had been developed in ancient times where we had a guy in our team that really could do C++.
+So, you probably don't care why, but I was tasked with creating a .Net control as a replacement for an existing ActiveX, which had been developed in ancient times when we had a guy on our team who could really do C++.
 
 (BTW there were times when I also did *the pluses*, but after the first project (which involved a screensaver with a plastic Bill Gates leaving colorful footsteps all over your precious work) I promised myself to never come close to it).
 
