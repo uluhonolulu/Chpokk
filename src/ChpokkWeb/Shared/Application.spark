@@ -37,7 +37,8 @@
 	
 	<iAgreeToCookies/>
 	<ga />
-
+	<meta name="verifyownership" 
+	      content="a71b85cb3ba990b04880e0aeb03b754e"/>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
 	<div class="navbar navbar-default navbar-fixed-top" style="height: 60px;" itemscope itemtype="http://schema.org/WPHeader">
