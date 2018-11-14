@@ -76,11 +76,7 @@ namespace ChpokkWeb.Features.CustomerDevelopment {
 					var subject = GetSubject();
 					var body = messageBuilder.ToString().Replace(@"\r\n", Environment.NewLine); // making the serialized values readable
 					lock (_locker) {
-						_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);					
-						//var apiKey = "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";// Environment.GetEnvironmentVariable("SENDGRID_KEY");
-						//var transportWeb = new Web(apiKey);
-						//var message = new SendGridMessage(new MailAddress("actions@chpokk.apphb.com"), new[] { new MailAddress("uluhonolulu@gmail.com") }, subject, body, body);
-						//transportWeb.DeliverAsync(message).Wait();
+						_mailer.Send("actions@chpokk.apphb.com", "uluhonolulu@gmail.com", subject, body);	
 					}
 
 				}
