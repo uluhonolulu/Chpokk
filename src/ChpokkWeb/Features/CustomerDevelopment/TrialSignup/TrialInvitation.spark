@@ -21,8 +21,8 @@
 		});
 
 		function displayTrialInvitation() {
-			track("Displaying invitation");			if (tabs.activePath) {			//only save if there's an open file
-				$('#saveButton').click(); //that's how we save stuff, sorry			}			$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
+			//track("Displaying invitation");			//if (tabs.activePath) {			//only save if there's an open file
+			//	$('#saveButton').click(); //that's how we save stuff, sorry			//}			//$('#trialDialog').modal({ backdrop: 'static', keyboard: false });
 		}
 	</script>
 <div class="modal fade stay" id="trialDialog" tabindex="-1" role="dialog" aria-hidden="true">
